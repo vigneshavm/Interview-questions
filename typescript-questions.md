@@ -1,4 +1,4 @@
-## Typescript-Specific Questions
+# Typescript-Specific Questions
 1. What are the differences between interface and type in TypeScript? When would you use one over the other?
 2. Explain the concept of generics in TypeScript. Can you provide an example of how generics can be useful in building reusable components?
 3. How does TypeScript handle inheritance? How can you extend classes or interfaces in TypeScript?

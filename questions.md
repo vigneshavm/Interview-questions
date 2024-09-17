@@ -15,3 +15,35 @@
 3. mongoDB scaling
 4. Which database will be better for social media application
 5. Create custom stream in nodejs
+
+# Msys
+
+1. Program to count occurance of each letters in a string. Ignore space
+2. How to define routes in express. they asked import statement
+3. How do you use redis
+4. Queuing system like rabbitmq
+5. Read content of a file and append something and new content to same file
+6. Callback hell
+7. Deference between promise and async/await
+8. What if i not use await keyword
+9. Closure in Javascript
+10. ES5 and Es6. Any advantages in ES6
+11. Clustering in mongodb
+12. Execution of bellow code
+```js
+    setTimeout(() => {
+        console.info('Execution of Timeout Callback Function'); 
+    }, 10);
+    setImmediate(() => {
+        console.info('Execution of Immediate Callback Function'); 
+    });
+    process.nextTick(() => {
+        console.info('Execution of NextTick Callback Function');
+    })
+    console.info('Execution of Main Module Ends');
+```
+13. Explain Event loop
+14. Deference between $in and $all in mongodb
+15. const and object.freeze
+16. How to ignore some routes in express middleware
+17. 

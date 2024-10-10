@@ -71,4 +71,29 @@ filename and pattern - that returns whether the filename matches the
 
 js code to match pattern. not use regex
 ```
+# Coverforce
+```
+/**
+ * Problem: You're tracking the daily price of a stock and need to figure out how many consecutive days, including today, the stock's price has been less than or equal to today's price. This is called the "span."
+Each time you get a new price, you return the span of that day.
+Class StockSpanner() { 
+….
+    Func next(int price) //needs to be implemented.
+}
+Example:
+Input:
+StockSpanner spanner = new StockSpanner(); 
+spanner.next(100) // Returns 1 
+spanner.next(80) // Returns 1
+ spanner.next(60) // Returns 1 
+spanner.next(70) // Returns 2 
+spanner.next(60) // Returns 1 
+spanner.next(75) // Returns 4 
+spanner.next(85) // Returns 6
+Output:
+[1, 1, 1, 2, 1, 4, 6]
 
+*/
+
+js code for this. i need solution in optimized way with time and space complexity
+```

@@ -47,3 +47,28 @@
 15. const and object.freeze
 16. How to ignore some routes in express middleware
 17. 
+
+# CloudSense
+```
+Write a boolean returning function that takes 2 string arguments - 
+filename and pattern - that returns whether the filename matches the
+ pattern. The pattern is in the form used in dos/windows/unix shell 
+ where * matches any number of characters (0-n).
+ 
+ Filename, pattern -> expected output
+'abc', 'a*' -> true
+'abc', '*bc' -> true
+'abc', 'a*c' -> true
+'text.json', 'sample*' -> false
+'text.json', 'json*' -> false
+'asdsasseacdvscg', '*vscg' -> true
+'asdsasseacdvscg', 'abc*' -> false
+'asdsasseacdvscg', 'a*s*v*g' -> true
+'asdsasseacdvscg', 'a*s*m*g' -> false
+'asdsasseacdvscg', '*ds*vs*' -> true
+'asdsasseacdvscg', 'a*g*' -> false
+'asdsasseacdvscg', '**c*g' -> true
+
+js code to match pattern. not use regex
+```
+

@@ -100,3 +100,10 @@ js code for this. i need solution in optimized way with time and space complexit
 # Infosys
 
 # Ease Commerce
+
+# TCS
+1. Event loop
+2. Callback hell
+3. difference between promise.all and promise.race
+4. How would you handle high volume requests
+5. 

@@ -106,4 +106,7 @@ js code for this. i need solution in optimized way with time and space complexit
 2. Callback hell
 3. difference between promise.all and promise.race
 4. How would you handle high volume requests
-5. 
+5. difference between import and require
+6. How middleware works
+7. How do you define database schema
+8. 

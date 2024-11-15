@@ -109,4 +109,5 @@ js code for this. i need solution in optimized way with time and space complexit
 5. difference between import and require
 6. How middleware works
 7. How do you define database schema
-8. 
+8. State of promises
+9. Await usecase

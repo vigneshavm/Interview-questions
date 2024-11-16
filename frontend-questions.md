@@ -6,18 +6,18 @@
 5. explain routes and child route
 6. explain input and output decorator
 7. what is directive and types directive
-    # component direct
-    # attribute directive
-    # structural directive
+    * component direct
+    * attribute directive
+    * structural directive
 8. data binding and types
 9. how to protect route and explain(Auth Guard)
 10. what is promise and observable
 11. rxjs operators
-    # Of
-    # fork-join
-    # tab
-    # pipe
-    # map
+    * Of
+    * fork-join
+    * tab
+    * pipe
+    * map
 12. Host listener and host binding
 13. view child and view children
 14. lazy loading

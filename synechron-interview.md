@@ -35,8 +35,8 @@ for(var i = 0; i < 5; i++) {
 ```
 2.  Write common function for below two function calls
 ```
-fun(2, 3);
-fun(2)(3);
+sum(2, 3);
+sum(2)(3);
 ```
 
 3. Remove duplicates in array and sort them in efficient way ( Don't use util functions and bubble sort algorithm) (Interviewer expected to use merge sort algorithm)

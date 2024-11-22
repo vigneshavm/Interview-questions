@@ -1,5 +1,4 @@
 ## 1st round
-# Synechron
 1. Variable hoisting
 2. function hoisting
 3. ES6 features

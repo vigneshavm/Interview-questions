@@ -111,4 +111,3 @@ js code for this. i need solution in optimized way with time and space complexit
 7. How do you define database schema
 8. State of promises
 9. Await usecase
-

@@ -111,3 +111,22 @@ js code for this. i need solution in optimized way with time and space complexit
 7. How do you define database schema
 8. State of promises
 9. Await usecase
+
+# Cloud destination
+1. WHat is API in general
+2. What is non blocking
+3. How Does JavaScript Work Behind the Scenes
+```
+Input
+let str = `hihelloworldwelcom`;
+
+Output
+Find occurrence of each character
+```
+
+```
+let amounts = [1200, 400, 300, 2000, 1500];
+let maxWithdrawLimit = 400;
+
+there are 5 person needs to withdraw money
+```

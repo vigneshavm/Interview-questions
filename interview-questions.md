@@ -130,3 +130,19 @@ let maxWithdrawLimit = 400;
 
 there are 5 person needs to withdraw money
 ```
+
+# Clarity TTS
+1. Why nodejs single threaded
+2. What is Event loop
+3. Difference between Process.nextTick() and setImmediate()
+4. How to handle CPU intensive task in nodejs
+5. What if concurrent CPU intensive requests incoming? should we create separate worker thread for each and every task
+6. How to handle memory leak issue in nodejs
+7. Sharding in mongodb
+8. replicaset in mongodb
+9. Program to find second largest integer in array
+10. Remove those values if they are duplicated in array
+```
+Input: [1,2, 3, 4, 1, 5, 5, 6]
+Output: [2, 3, 4, 6]
+```

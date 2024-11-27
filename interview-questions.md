@@ -138,10 +138,12 @@ there are 5 person needs to withdraw money
 4. How to handle CPU intensive task in nodejs
 5. What if concurrent CPU intensive requests incoming? should we create separate worker thread for each and every task
 6. How to handle memory leak issue in nodejs
-7. Sharding in mongodb
-8. replicaset in mongodb
-9. Program to find second largest integer in array
-10. Remove those values if they are duplicated in array
+7. what is middleware
+8. how user authendicated in nodejs
+9. Sharding in mongodb
+10. replicaset in mongodb
+11. Program to find second largest integer in array
+12. Remove those values if they are duplicated in array
 ```
 Input: [1,2, 3, 4, 1, 5, 5, 6]
 Output: [2, 3, 4, 6]

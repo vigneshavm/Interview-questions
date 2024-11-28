@@ -128,7 +128,18 @@ Find occurrence of each character
 let amounts = [1200, 400, 300, 2000, 1500];
 let maxWithdrawLimit = 400;
 
-there are 5 person needs to withdraw money
+You are given an array amounts where each element represents the initial amount of money in a person’s wallet. Another variable maxWithdrawLimit specifies the maximum amount a person can withdraw in a single transaction. There are 5 people in a queue, and they take turns withdrawing money one by one. If a person’s remaining balance becomes 0 or negative after a withdrawal, they leave the queue.
+
+Task:
+Simulate this withdrawal process and produce two output arrays:
+
+Exit order: The order in which the people leave the queue.
+Withdrawal queue: The sequence of people’s indexes who make withdrawals during the process.
+
+The output should be two array that have order of exit and withdrawal queue
+exitOrder = [2, 3, 1, 5, 4]
+queue = [1, 2, 3, 4, 5, 1, 4, 5, 1, 4, 5, 4, 5, 4]
+
 ```
 
 # Clarity TTS

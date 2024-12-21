@@ -68,8 +68,85 @@ const routes: Routes = [
 ---
 
 ### 6. **Input and Output Decorators**
-- `@Input`: Allows data to pass **from parent to child** component.
-- `@Output`: Allows communication **from child to parent** using `EventEmitter`.
+Here's an optimized version of the **Input** and **Output** decorator example with a concise explanation:
+
+---
+
+### **`@Input` and `@Output` in Angular**
+
+1. **`@Input`**: Passes data from the parent component to the child component.
+2. **`@Output`**: Sends data or events from the child component to the parent using `EventEmitter`.
+
+---
+
+### **Example**
+
+#### **Parent Component: `app.component.ts`**
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>Parent Component</h1>
+    <app-child 
+      [dataFromParent]="message" 
+      (dataToParent)="handleChildEvent($event)">
+    </app-child>
+  `
+})
+export class AppComponent {
+  message = "Hello from Parent!";
+
+  handleChildEvent(childMessage: string) {
+    console.log("Received from Child:", childMessage);
+  }
+}
+```
+
+---
+
+#### **Child Component: `child.component.ts`**
+```typescript
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `
+    <h2>Child Component</h2>
+    <p>Parent says: {{ dataFromParent }}</p>
+    <button (click)="notifyParent()">Send Message to Parent</button>
+  `
+})
+export class ChildComponent {
+  @Input() dataFromParent!: string; // Data from parent
+  @Output() dataToParent = new EventEmitter<string>(); // Event to parent
+
+  notifyParent() {
+    this.dataToParent.emit("Hello from Child!");
+  }
+}
+```
+
+---
+
+### **How It Works**
+
+1. **`@Input`: Passing data from Parent to Child**  
+   - The parent binds the `message` property to the `dataFromParent` input in the child using `[dataFromParent]`.  
+   - In the child, `dataFromParent` receives the value `"Hello from Parent!"`.
+
+2. **`@Output`: Sending data from Child to Parent**  
+   - The child defines an `EventEmitter` called `dataToParent`.
+   - When the button is clicked, the child calls `notifyParent()` and emits `"Hello from Child!"` using `this.dataToParent.emit()`.
+   - The parent listens to the event with `(dataToParent)` and executes `handleChildEvent()`.
+
+---
+
+### **Output**
+```
+Received from Child: Hello from Child!
+```
 
 ---
 

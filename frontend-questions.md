@@ -8,14 +8,32 @@ Angular is a TypeScript-based, open-source front-end framework developed by Goog
 ### 2. **Life Cycle Hooks**
 Angular components have life cycle hooks that provide insights into their creation, update, and destruction:
 
-1. `ngOnInit` – Called once after component initialization.
-2. `ngOnChanges` – Responds to input property changes.
-3. `ngDoCheck` – Detects changes manually for performance optimization.
-4. `ngAfterViewInit` – Called after component views are initialized.
-5. `ngAfterViewChecked` – Executes after the view is checked.
-6. `ngAfterContentInit` – After content projected into the component.
-7. `ngAfterContentChecked` – After checking the projected content.
-8. `ngOnDestroy` – Called during the component's destruction.
+1. **Constructor**  
+   The constructor is invoked when the component is instantiated. It is used to initialize class members and inject dependencies. Avoid placing complex logic or DOM manipulations here.
+
+2. **ngOnChanges**  
+   This method is triggered whenever an input or output binding value changes. It allows you to respond to changes in the component's data-bound properties.
+
+3. **ngOnInit**  
+   Called after the first `ngOnChanges`. This is the perfect place for component initialization logic, such as fetching data or setting up default values.
+
+4. **ngDoCheck**  
+   A custom change detection hook that developers can use to implement manual or optimized change detection logic.
+
+5. **ngAfterContentInit**  
+   Executed after Angular initializes any projected content inside the component (e.g., `<ng-content>`).
+
+6. **ngAfterContentChecked**  
+   Called after every change detection check of the projected content. This allows you to respond to any changes in the content.
+
+7. **ngAfterViewInit**  
+   Triggered after the component's view and its child views have been fully initialized. Ideal for logic that requires the DOM to be ready.
+
+8. **ngAfterViewChecked**  
+   Invoked after every change detection cycle of the component's view and child views. It can be used to respond to changes in the view.
+
+9. **ngOnDestroy**  
+   This is called just before the component or directive is destroyed. Use this hook for cleanup tasks, such as unsubscribing from Observables or detaching event listeners.
 
 ---
 

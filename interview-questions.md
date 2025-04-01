@@ -1,86 +1,87 @@
+### **Node.js Core Concepts**
 
-## **Node.js Core Concepts**  
-### **Single-Threaded Nature**  
-- Node.js runs on a **single core by default** using a single-threaded event loop.  
-- It can handle multiple concurrent I/O operations due to **non-blocking asynchronous execution**.  
-- To utilize multiple cores, **clustering** or **worker threads** can be used.
+#### **Single-Threaded Nature**
+- Node.js runs in a **single-threaded environment** using a single thread, allowing it to handle concurrent I/O operations effectively due to its **non-blocking asynchronous execution model**.
+- For **multi-core utilization**, Node.js can use **clustering** (which creates multiple Node.js processes) or **worker threads**.
 
-### **Event Loop & Concurrency**  
-- **Phases of Event Loop**:  
-  1. **Timers** – Executes `setTimeout` and `setInterval` callbacks.  
-  2. **Pending Callbacks** – Executes I/O-related callbacks.  
-  3. **Idle/Prepare** – Internal operations.  
-  4. **Poll** – Retrieves new I/O events and executes ready callbacks.  
-  5. **Check** – Executes `setImmediate` callbacks.  
-  6. **Close Callbacks** – Handles `close` event listeners.  
+#### **Event Loop & Concurrency**
 
-- **Execution Order of Below Code:**
-  ```js
-  setTimeout(() => console.log("Timeout Callback"), 10);
-  setImmediate(() => console.log("Immediate Callback"));
-  process.nextTick(() => console.log("NextTick Callback"));
-  console.log("Main Module Ends");
-  ```
-  **Output:**  
-  ```
-  Main Module Ends  
-  NextTick Callback  
-  Immediate Callback  
-  Timeout Callback
-  ```
+**Phases of the Event Loop:**
+1. **Timers**: Executes the callbacks for `setTimeout` and `setInterval`.
+2. **Pending Callbacks**: Handles I/O callbacks (e.g., TCP callbacks).
+3. **Idle/Prepare**: Internal phase for system operations.
+4. **Poll**: Waits for new I/O events and executes callbacks when ready.
+5. **Check**: Executes `setImmediate` callbacks.
+6. **Close Callbacks**: Handles events such as `close` event listeners.
 
-- **Difference Between `process.nextTick()` and `setImmediate()`**:  
-  - `process.nextTick()` executes **before I/O operations** and **before the next event loop iteration**.  
-  - `setImmediate()` executes **after the I/O callbacks**, right **before the event loop continues**.
+**Code Execution Order:**
+```js
+setTimeout(() => console.log("Timeout Callback"), 10);
+setImmediate(() => console.log("Immediate Callback"));
+process.nextTick(() => console.log("NextTick Callback"));
+console.log("Main Module Ends");
+```
+**Output:**
+```
+Main Module Ends
+NextTick Callback
+Immediate Callback
+Timeout Callback
+```
 
-### **Callback Hell & Solutions**  
-- Callback Hell: Multiple nested callbacks make the code unreadable.  
-- Solution:  
-  1. **Using Promises**  
-  2. **Using `async/await`**  
+- **`process.nextTick()` vs `setImmediate()`**:  
+  - `process.nextTick()` executes **before** I/O operations, and **before** the next event loop iteration.
+  - `setImmediate()` executes **after I/O callbacks**, right before the event loop continues.
 
-- **Difference Between Promises and `async/await`**  
-  - **Promises**: `.then().catch()` for chaining asynchronous calls.  
-  - **Async/Await**: Cleaner, avoids chaining complexity.  
-  - **What If You Don’t Use `await`?** Execution proceeds without waiting for the result.
+#### **Callback Hell & Solutions**
+- **Callback Hell** refers to nested callbacks that make code unreadable and difficult to maintain.
+- **Solutions**: 
+  - **Promises**: Handles asynchronous behavior more cleanly with `.then()`, `.catch()`.
+  - **Async/Await**: Allows asynchronous code to be written in a synchronous style, improving readability.
 
-- **Difference Between `Promise.all()` and `Promise.race()`**  
-  - `Promise.all()`: Resolves when **all** promises complete.  
-  - `Promise.race()`: Resolves when **the first** promise completes.
+**Promise vs Async/Await**:
+- **Promises**: Use `.then()` and `.catch()` for chaining async calls.
+- **Async/Await**: More readable and concise for handling asynchronous operations.
 
-### **Handling CPU-Intensive Tasks**  
-- **Worker Threads** (`worker_threads` module) should be used for CPU-intensive operations.  
-- **Do not** spawn a new worker for every request—use a worker pool.  
+**`Promise.all()` vs `Promise.race()`**:
+- **`Promise.all()`**: Resolves when **all** promises are completed.
+- **`Promise.race()`**: Resolves when **the first** promise resolves or rejects.
+
+#### **Handling CPU-Intensive Tasks**
+- Use **Worker Threads** (via the `worker_threads` module) for CPU-intensive tasks, which offloads the task to another thread and prevents blocking the main event loop.
+- For efficiency, use **worker pools** instead of spawning a new worker for each task.
 
 ---
 
-## **Databases**  
-### **MongoDB**  
-- **Scaling MongoDB**  
-  - **Vertical Scaling**: Adding more resources to a single server.  
-  - **Horizontal Scaling**: Using **sharding** to distribute data across multiple servers.  
+### **Databases**
 
-- **Difference Between `$in` and `$all` in MongoDB**  
-  - `$in`: Matches **any** value in the array.  
-  - `$all`: Matches **all** values in the array.
+#### **MongoDB**
+- **Scaling MongoDB**:
+  - **Vertical Scaling**: Adding more resources (CPU, memory) to a single server.
+  - **Horizontal Scaling**: Using **sharding** to distribute data across multiple servers.
 
-- **Clustering & Replication**  
-  - **Replica Set**: High availability by maintaining multiple copies of data.  
+**Difference Between `$in` and `$all` in MongoDB**:
+- `$in`: Matches if the value is in the provided array.
+- `$all`: Matches if the value contains all of the provided elements in the array.
+
+- **Clustering & Replication**:
+  - **Replica Set**: Maintains multiple copies of data for high availability.
   - **Sharding**: Distributes data across multiple nodes for scalability.
 
-- **Searching in MongoDB**  
-  ```js
-  db.collection.find({ $text: { $search: "searchText" } });
-  ```
+**Searching in MongoDB**:
+```js
+db.collection.find({ $text: { $search: "searchText" } });
+```
 
-### **Database for a Social Media App**  
-- **MongoDB** – Best for large-scale, unstructured data.  
-- **PostgreSQL** – Suitable if structured relations are needed.
+#### **Databases for a Social Media App**
+- **MongoDB** is a good fit for unstructured or semi-structured data (large-scale).
+- **PostgreSQL** is ideal for structured data with complex relationships and ACID compliance.
 
 ---
 
-## **Caching & Queues**  
-### **Redis for Caching**  
+### **Caching & Queues**
+
+#### **Redis for Caching**
 ```js
 const redis = require("redis");
 const client = redis.createClient();
@@ -88,36 +89,38 @@ client.set("key", "value");
 client.get("key", (err, data) => console.log(data));
 ```
 
-### **Queuing System (RabbitMQ/Kafka)**  
-- Use **RabbitMQ** or **Redis Pub/Sub** for background job processing.  
+#### **Queuing System (RabbitMQ/Kafka)**
+- Use **RabbitMQ** or **Redis Pub/Sub** for background job processing and messaging.
 
 ---
 
-## **Backend API Development**  
-### **Defining API Routes in Express**  
+### **Backend API Development**
+
+#### **Defining API Routes in Express**
 ```js
 const express = require("express");
 const router = express.Router();
 router.get("/route", (req, res) => res.send("Hello"));
 ```
 
-### **Ignoring Some Routes in Middleware**  
+#### **Ignoring Routes in Middleware**
 ```js
 app.use((req, res, next) => {
   if (req.path.startsWith("/ignore")) return next();
 });
 ```
 
-### **Using Swagger for API Documentation**  
-- Install Swagger:  
+#### **Using Swagger for API Documentation**
+- To document APIs:
   ```sh
   npm install swagger-jsdoc swagger-ui-express
   ```
 
 ---
 
-## **JavaScript Core Concepts**  
-### **Closures**  
+### **JavaScript Core Concepts**
+
+#### **Closures**
 ```js
 function outer() {
   let counter = 0;
@@ -131,18 +134,19 @@ increment(); // 1
 increment(); // 2
 ```
 
-### **ES5 vs ES6 Advantages**  
-- **ES6 Advantages:**  
-  - `let` & `const` (block scope variables)  
-  - Arrow Functions  
-  - Destructuring  
-  - Template Literals  
-  - Default Parameters  
+#### **ES5 vs ES6 Advantages**
+- **ES6 Improvements**:
+  - **Block scope variables** (`let` and `const`)
+  - **Arrow Functions**
+  - **Destructuring** for easier variable extraction
+  - **Template Literals** for easy string interpolation
+  - **Default Parameters**
 
 ---
 
-## **Coding Questions**  
-### **Count Character Occurrences in a String (Ignore Spaces)**  
+### **Coding Questions**
+
+#### **Count Character Occurrences in a String (Ignore Spaces)**
 ```js
 const countChars = (str) => {
   const result = {};
@@ -153,7 +157,7 @@ const countChars = (str) => {
 };
 ```
 
-### **Boolean Function to Match Filename Pattern Without Regex**  
+#### **Boolean Function to Match Filename Pattern Without Regex**
 ```js
 function matchPattern(filename, pattern) {
   let i = 0, j = 0, starIdx = -1, match = 0;
@@ -171,7 +175,7 @@ function matchPattern(filename, pattern) {
 }
 ```
 
-### **Stock Span Problem (Optimized Solution)**  
+#### **Stock Span Problem (Optimized Solution)**
 ```js
 class StockSpanner {
   constructor() {
@@ -187,10 +191,10 @@ class StockSpanner {
   }
 }
 ```
-- **Time Complexity**: **O(n) amortized**  
-- **Space Complexity**: **O(n)**  
+- **Time Complexity**: **O(n) amortized**
+- **Space Complexity**: **O(n)**
 
-### **Simulating Wallet Withdrawal Queue**  
+#### **Simulating Wallet Withdrawal Queue**
 ```js
 function withdrawQueue(amounts, maxLimit) {
   let exitOrder = [], queue = [], i = 0;
@@ -207,7 +211,7 @@ function withdrawQueue(amounts, maxLimit) {
 console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
 ```
 
-### **Find Second Largest in an Array**  
+#### **Find Second Largest in an Array**
 ```js
 const secondLargest = arr => {
   const unique = [...new Set(arr)].sort((a, b) => b - a);
@@ -215,9 +219,8 @@ const secondLargest = arr => {
 };
 ```
 
-### **Remove Duplicates From an Array**  
+#### **Remove Duplicates From an Array**
 ```js
 const removeDuplicates = arr => arr.filter(item => arr.indexOf(item) === arr.lastIndexOf(item));
 console.log(removeDuplicates([1, 2, 3, 4, 1, 5, 5, 6])); // [2, 3, 4, 6]
 ```
-

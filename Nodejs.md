@@ -157,3 +157,203 @@ app.use((req, res, next) => {
 ```
 
 
+### **Node.js and Architecture Interview Questions & Answers** (Continued)
+
+### 11. Load Balancing in Node.js Applications
+- **Horizontal Scaling:** Distribute incoming requests across multiple instances of the application using a **load balancer**.
+- **Tools for Load Balancing:**
+  - **Nginx**: Acts as a reverse proxy and load balancer.
+  - **PM2**: Node.js process manager that handles clustering and load balancing.
+  - **HAProxy**: Advanced load balancing for complex setups.
+- **Round-robin Strategy:** Distributes requests equally among available servers.
+
+```sh
+pm2 start app.js -i max  # Automatically spawns one instance per CPU core.
+```
+
+### 12. Database Transactions in Node.js
+- **Transactional Integrity:** Use **ACID** properties to ensure data consistency.
+- **Libraries to Handle Transactions:**
+  - **Sequelize** (ORM for SQL databases): Manages transactions and commits/rollbacks.
+  - **Mongoose**: For MongoDB transactions (since version 4.x).
+
+Example using Sequelize:
+```ts
+const { sequelize } = require("./models");
+
+async function performTransaction() {
+  const t = await sequelize.transaction();
+
+  try {
+    await User.create({ name: 'John' }, { transaction: t });
+    await Order.create({ userId: 1, total: 100 }, { transaction: t });
+
+    await t.commit();  // Commit the transaction
+  } catch (error) {
+    await t.rollback();  // Rollback if an error occurs
+  }
+}
+```
+
+### 13. Caching Strategies in Node.js
+- **In-memory Caching:** Use **Redis** to cache frequently accessed data.
+- **Cache Expiration:** Set TTL (Time to Live) to avoid stale data.
+- **Lazy Caching:** Cache data only when necessary to prevent unnecessary data storage.
+
+```ts
+import redis from 'redis';
+const client = redis.createClient();
+
+// Set cache with expiration time (TTL)
+client.setex('user:123', 3600, JSON.stringify(userData));
+
+// Get cached data
+client.get('user:123', (err, data) => {
+  if (data) {
+    console.log('Cache hit:', JSON.parse(data));
+  } else {
+    console.log('Cache miss');
+  }
+});
+```
+
+### 14. Optimizing Performance in Node.js Applications
+- **Database Optimizations:**
+  - Use **indexing** for fast queries.
+  - Use **pagination** for large datasets to minimize the data fetched at once.
+- **Memory Management:**
+  - Monitor memory usage using `process.memoryUsage()` to prevent memory leaks.
+  - Optimize large JSON objects by using **streams** to process data in chunks.
+- **Cluster Mode:** Use Node's built-in clustering to take advantage of multiple CPU cores.
+
+Example of using a stream:
+```ts
+import fs from 'fs';
+import readline from 'readline';
+
+const fileStream = fs.createReadStream('largefile.txt');
+const rl = readline.createInterface({
+  input: fileStream,
+  crlfDelay: Infinity,
+});
+
+rl.on('line', (line) => {
+  console.log(`Processing line: ${line}`);
+});
+```
+
+### 15. Microservices Communication Patterns
+- **Synchronous Communication:**
+  - **HTTP REST**: Commonly used for simple, synchronous requests.
+  - **gRPC**: Fast and efficient communication for microservices with strongly-typed contracts.
+- **Asynchronous Communication:**
+  - **Message Queues** (RabbitMQ, Kafka): Used for decoupling microservices and handling background jobs.
+  - **Event-Driven Architecture**: Microservices emit events for other services to consume, often using event brokers like Kafka.
+
+Example of an event-driven communication:
+```ts
+// Producer (Event emitter)
+import { EventEmitter } from 'events';
+
+const emitter = new EventEmitter();
+emitter.emit('userCreated', { userId: 1, name: 'John' });
+
+// Consumer (Event listener)
+emitter.on('userCreated', (data) => {
+  console.log('User created event received:', data);
+});
+```
+
+### 16. Design Patterns in Node.js
+- **Singleton Pattern:** Ensures only one instance of a service or module is created.
+- **Factory Pattern:** Provides a way to instantiate different types of objects based on conditions.
+- **Observer Pattern:** A pattern for event-driven communication, typically using an event emitter.
+
+Example of Singleton Pattern:
+```ts
+class DatabaseConnection {
+  private static instance: DatabaseConnection;
+
+  private constructor() {}
+
+  static getInstance(): DatabaseConnection {
+    if (!DatabaseConnection.instance) {
+      DatabaseConnection.instance = new DatabaseConnection();
+    }
+    return DatabaseConnection.instance;
+  }
+}
+```
+
+### 17. Dependency Injection in Node.js
+- **Dependency Injection (DI)**: A design pattern that helps manage the dependencies of services within the application.
+- **Libraries for DI:**
+  - **InversifyJS**: A powerful library for implementing DI in TypeScript.
+  - **Awilix**: Another DI container for Node.js.
+- **Benefits**: Simplifies testing and decouples service logic.
+
+Example using InversifyJS:
+```ts
+import { Container, inject, injectable } from 'inversify';
+
+@injectable()
+class UserService {
+  private db: any;
+  constructor(@inject('Database') db: any) {
+    this.db = db;
+  }
+  getUser(id: string) {
+    return this.db.findUser(id);
+  }
+}
+
+const container = new Container();
+container.bind('Database').toConstantValue(new DatabaseConnection());
+container.bind(UserService).toSelf();
+
+const userService = container.get(UserService);
+userService.getUser('123');
+```
+
+### 18. Data Validation in Node.js with TypeScript
+- Use **Joi** or **express-validator** to validate request data in APIs.
+- **Joi** supports complex validations with a fluent API.
+
+Example using Joi:
+```ts
+import Joi from 'joi';
+
+const userSchema = Joi.object({
+  name: Joi.string().min(3).max(30).required(),
+  email: Joi.string().email().required(),
+  age: Joi.number().integer().min(18).required(),
+});
+
+const { error, value } = userSchema.validate({ name: 'John', email: 'john@example.com', age: 25 });
+if (error) {
+  console.error('Validation Error:', error.details);
+} else {
+  console.log('Validated Data:', value);
+}
+```
+
+### 19. Handling Large File Uploads in Node.js
+- Use **multer** for handling multipart file uploads.
+- Store large files in cloud storage (AWS S3, Google Cloud Storage) to offload the file handling from the server.
+
+Example using Multer for file uploads:
+```ts
+import multer from 'multer';
+
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/upload', upload.single('file'), (req, res) => {
+  console.log('File uploaded:', req.file);
+  res.send('File uploaded successfully');
+});
+```
+
+---
+
+
+

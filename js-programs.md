@@ -1,16 +1,4 @@
 
-### **19. MongoDB Clustering**  
-- **Sharding** (Distributes data across nodes)  
-- **Replica Sets** (Ensures redundancy & failover)  
-
-### **20. Indexing in MongoDB**  
-- Improves query performance:  
-```js
-db.collection.createIndex({ name: 1 });
-```
-
----
-
 ## **2nd Round Interview Answers**
 
 ### **1. Output Order of Asynchronous Code**

@@ -1,4 +1,3 @@
-
 # **JavaScript Interview Questions & Answers**  
 
 ### **1. What is Hoisting in JavaScript?**  
@@ -49,8 +48,8 @@ All three methods are used to invoke a function with a specific `this` value.
 function greet(age) { console.log(`Hello, ${this.name}, you are ${age}`); }
 const user = { name: "John" };
 
-greet.call(user, 25); 
-greet.apply(user, [30]); 
+greet.call(user, 25);
+greet.apply(user, [30]);
 const boundGreet = greet.bind(user, 35);
 boundGreet();
 ```
@@ -88,3 +87,5 @@ console.log("End");
 
 // Output: Start -> End -> Promise -> Timeout
 ```
+
+---

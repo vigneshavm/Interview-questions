@@ -1,5 +1,3 @@
----
-
 ### **JavaScript Concepts**
 
 #### **1. Variable Hoisting**

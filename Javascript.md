@@ -98,17 +98,3 @@ let deep = JSON.parse(JSON.stringify(obj)); // Deep copy
 deep.b.c = 3;
 console.log(obj.b.c); // 2 (original remains unchanged)
 ```
-
-
-### **Express.js Middleware**
-
-#### **10. Middleware in Express.js**
-- Middleware functions in Express are functions that have access to the request (`req`), response (`res`), and next function (`next`).
-- They can be used for tasks such as logging, authentication, validation, and error handling.
-  
-```js
-app.use((req, res, next) => {
-  console.log("Middleware running");
-  next(); // Passes control to the next middleware
-});
-```

@@ -1,74 +1,175 @@
-# **TypeScript Interview Questions & Answers**  
-
-### **1. What are the key differences between TypeScript and JavaScript?**  
-**Answer:**  
-| Feature          | JavaScript | TypeScript |
-|-----------------|------------|-------------|
-| Type Checking   | Dynamic    | Static       |
-| Compilation     | No (Interpreted) | Yes (Transpiled to JS) |
-| Interfaces      | Not Available | Available |
-| Generics        | Not Available | Available |
-| Modularity      | Limited Support | Stronger Support |
-
 ---
 
-### **2. Explain TypeScript Interfaces and give an example.**  
-**Answer:**  
-An interface in TypeScript defines the structure of an object and enforces type checking.  
+# **TypeScript Interview Questions & Answers**
+
+### **1. Interface vs. Type**
+**Differences:**
+
+| Aspect         | Interface                      | Type                          |
+|----------------|---------------------------------|-------------------------------|
+| **Definition** | Contract for objects            | Alias for types               |
+| **Extensibility** | `extends`, merging allowed      | Uses intersections (`&`)      |
+| **Use Cases**  | Best for objects, classes       | For primitive types, unions   |
+
+**When to Use:**
+- **Interface:** When working with objects or classes (supports declaration merging).
+- **Type:** For unions, tuples, or complex transformations.
 
 ```typescript
-interface User {
-  name: string;
-  age: number;
-}
+// Interface
+interface Person { name: string; age: number; }
+interface Employee extends Person { jobTitle: string; }
 
-const user: User = { name: "John", age: 25 };
+// Type Alias
+type Point = { x: number; y: number };
+type ReadOnlyPoint = Readonly<Point>;
 ```
 
 ---
 
-### **3. What are Generics in TypeScript?**  
-**Answer:**  
-Generics allow writing reusable and type-safe functions or classes.  
+### **2. Generics**
+Generics provide flexibility while maintaining type safety, making code reusable.
 
 ```typescript
-function identity<T>(arg: T): T {
-  return arg;
-}
+// Generic Function
+function identity<T>(value: T): T { return value; }
 
-console.log(identity<number>(10));
-console.log(identity<string>("Hello"));
+// Generic Interface
+interface Box<T> { content: T; }
+
+const stringBox: Box<string> = { content: "TypeScript" };
 ```
 
 ---
 
-### **4. What are Utility Types in TypeScript?**  
-**Answer:**  
-TypeScript provides built-in utility types to modify existing types.  
-
-- `Partial<T>` - Makes all properties optional  
-- `Pick<T, K>` - Selects specific properties  
-- `Omit<T, K>` - Removes specific properties  
+### **3. Inheritance**
+- **Extending Classes**:
 
 ```typescript
-type Person = { name: string; age: number; };
-type PartialPerson = Partial<Person>;
-type PersonName = Pick<Person, "name">;
+class Animal { move() { console.log("Moving..."); } }
+class Dog extends Animal { bark() { console.log("Woof!"); } }
+
+const dog = new Dog();
+dog.move(); // Moving...
+dog.bark(); // Woof!
+```
+
+- **Extending Interfaces**:
+
+```typescript
+interface Person { name: string; }
+interface Employee extends Person { employeeId: number; }
+const emp: Employee = { name: "John", employeeId: 123 };
 ```
 
 ---
 
-### **5. What are Decorators in TypeScript?**  
-**Answer:**  
-Decorators are special functions prefixed with `@` that modify classes, methods, or properties. They are used in frameworks like Angular.  
+### **4. Union Types**
+Union types allow a variable to hold multiple types.
 
 ```typescript
-function Log(target: any, key: string) {
-  console.log(`Property: ${key}`);
+let id: string | number;
+id = 123; // valid
+id = "ABC"; // valid
+
+function display(value: string | number) { console.log(value); }
+```
+
+---
+
+### **5. Type Inference**
+TypeScript infers types based on variable initialization.
+
+```typescript
+// Implicit Inference
+let age = 25; // inferred as number
+
+// Explicit Type
+let name: string = "John";
+```
+
+---
+
+### **6. Mapped Types**
+Mapped types allow transforming types dynamically.
+
+```typescript
+type User = { name: string; age: number; };
+type PartialUser = { [K in keyof User]?: User[K]; };
+const user: PartialUser = { name: "Alice" };
+```
+
+---
+
+### **7. Decorators**
+Decorators modify classes, methods, or properties. Enable with `experimentalDecorators: true` in `tsconfig.json`.
+
+```typescript
+import "reflect-metadata";
+
+function Controller(route: string) {
+  return function(target: Function) { target.prototype.route = route; };
 }
 
-class User {
-  @Log
-  name: string = "John";
+@Controller("/api/user")
+class UserController { getUser() { console.log("Fetching User..."); } }
+
+console.log(new UserController().route); // "/api/user"
+```
+
+---
+
+### **8. Async/Await**
+Async/await simplifies working with promises and asynchronous code.
+
+```typescript
+async function fetchData() {
+  try {
+    const response = await fetch("https://api.example.com/data");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 ```
+
+---
+
+### **9. Utility Types**
+Common utility types to transform types:
+- **Partial**: Makes all properties optional.
+- **Pick**: Selects specific properties.
+- **Omit**: Excludes specific properties.
+
+```typescript
+interface User { name: string; age: number; }
+type PartialUser = Partial<User>;
+type UserName = Pick<User, "name">;
+type UserWithoutAge = Omit<User, "age">;
+```
+
+---
+
+### **10. Module System & Compiler Options**
+Key compiler options:
+- **`esModuleInterop`**: Enables default imports from non-ES modules.
+- **`allowSyntheticDefaultImports`**: Affects only type-checking.
+
+```json
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
+```
+
+**With `esModuleInterop`, you can import modules like:**
+
+```typescript
+import fs from "fs"; // Works if enabled
+```
+
+---
+

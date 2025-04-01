@@ -241,4 +241,49 @@ app.use((req, res, next) => {
 
 --- 
 
-This organization separates the topics based on their relevant technology, helping to easily identify which area each concept belongs to.
+1. Variable Hoisting
+Hoisting moves variable declarations to the top of their scope.
+var is hoisted with undefined, while let and const are hoisted but remain uninitialized (Temporal Dead Zone).
+console.log(a); // undefined
+var a = 5;
+
+console.log(b); // ReferenceError
+let b = 10;
+2. Function Hoisting
+Function declarations are fully hoisted (can be called before definition).
+Function expressions are hoisted as variables (undefined before assignment).
+hoisted(); // Works
+function hoisted() { console.log("Function hoisted"); }
+
+notHoisted(); // TypeError
+var notHoisted = function () { console.log("Expression not hoisted"); };
+3. Key ES6 Features
+let & const (block scoping)
+Arrow functions (=> syntax)
+Default parameters, template literals, destructuring
+Spread/rest operators (...)
+Classes, modules (import/export), promises, async/await, generators
+4. Spread & Rest Operator
+Spread (...) expands elements:
+const arr = [1, 2, 3];
+const newArr = [...arr, 4, 5]; // [1, 2, 3, 4, 5]
+Rest (...) collects arguments into an array:
+function sum(...numbers) {
+  return numbers.reduce((a, b) => a + b);
+}
+console.log(sum(1, 2, 3)); // 6
+5. Normal vs Arrow Functions
+Aspect	Normal Function	Arrow Function
+this binding	Dynamic (based on caller)	Lexical (parent scope)
+arguments object	Available	Not available
+Constructors	Can use new	Cannot use new
+6. Shallow vs Deep Copy
+Shallow Copy: Copies references of nested objects.
+let obj = { a: 1, b: { c: 2 } };
+let shallow = { ...obj };
+shallow.b.c = 3;
+console.log(obj.b.c); // 3
+Deep Copy: Recursively copies all properties.
+let deep = JSON.parse(JSON.stringify(obj));
+deep.b.c = 3;
+console.log(obj.b.c); // 2

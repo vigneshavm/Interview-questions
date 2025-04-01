@@ -1,6 +1,3 @@
-Here’s an optimized and structured version for interview preparation, covering key Angular and React concepts concisely:  
-
----
 
 # **Angular Interview Guide**
 

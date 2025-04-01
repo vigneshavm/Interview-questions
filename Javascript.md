@@ -1,5 +1,3 @@
-This is a well-organized set of JavaScript interview questions and answers that covers important concepts and key ES6 features. Here's a quick overview and the correct approach for each topic:
-
 ---
 
 ### **JavaScript Concepts**

@@ -1,133 +1,123 @@
-JavaScript Interview Preparation
+## 1. Variable Hoisting in JavaScript
 
-1. Variable Hoisting in JavaScript
-
-Hoisting Overview:
+### **Hoisting Overview:**
 
 Hoisting is JavaScript's behavior of moving variable and function declarations to the top of their scope before execution.
 
-Key Points:
+### **Key Points:**
 
-Variable declarations are hoisted, but initializations are not.
+- Variable **declarations** are hoisted, but **initializations** are not.
+- `var` is hoisted and initialized as `undefined`.
+- `let` and `const` are hoisted but remain in the **Temporal Dead Zone (TDZ)** until their definition.
+- Function **declarations** are fully hoisted, including their body.
 
-var is hoisted and initialized as undefined.
+### **Examples:**
 
-let and const are hoisted but remain in the Temporal Dead Zone (TDZ) until their definition.
+#### Hoisting with `var`
 
-Function declarations are fully hoisted, including their body.
-
-Examples:
-
-Hoisting with var
-
+```javascript
 console.log(a); // undefined
 var a = 10;
 console.log(a); // 10
+```
 
-var a is hoisted, but a = 10 is not, leading to undefined.
+- `var a` is hoisted, but `a = 10` is not, leading to `undefined`.
 
-Hoisting with let and const
+#### Hoisting with `let` and `const`
 
+```javascript
 console.log(b); // ReferenceError: Cannot access 'b' before initialization
 let b = 10;
+```
 
-let and const are hoisted but in TDZ, causing a ReferenceError.
+- `let` and `const` are hoisted but in TDZ, causing a ReferenceError.
 
-Function Hoisting
+#### Function Hoisting
 
+```javascript
 foo(); // Output: "Hello"
 function foo() {
   console.log("Hello");
 }
+```
 
-Function declarations are fully hoisted.
+- Function declarations are **fully hoisted**.
 
-2. Difference Between call(), apply(), and bind()
+---
 
-Overview:
+## 2. Difference Between `call()`, `apply()`, and `bind()`
 
-These methods manipulate the this context of a function.
+### **Overview:**
 
-Comparison Table:
+These methods manipulate the `this` context of a function.
 
-Method
+### **Comparison Table:**
 
-Execution
+| Method  | Execution     | Arguments           | Returns         |
+| ------- | ------------- | ------------------- | --------------- |
+| `call`  | Immediately   | Passed individually | Function result |
+| `apply` | Immediately   | Passed as an array  | Function result |
+| `bind`  | Not immediate | Passed individually | New function    |
 
-Arguments
+### **Examples:**
 
-Returns
-
-call
-
-Immediately
-
-Passed individually
-
-Function result
-
-apply
-
-Immediately
-
-Passed as an array
-
-Function result
-
-bind
-
-Not immediate
-
-Passed individually
-
-New function
-
-Examples:
-
+```javascript
 function greet(name, age) {
   console.log(`Hello ${name}, you are ${age} years old`);
   console.log(this);
 }
 const person = { profession: "Developer" };
+```
 
-Using call
+#### **Using ****`call`**
 
+```javascript
 greet.call(person, "John", 30);
+```
 
-Output:
+**Output:**
 
+```
 Hello John, you are 30 years old
 { profession: "Developer" }
+```
 
-Using apply
+#### **Using ****`apply`**
 
+```javascript
 greet.apply(person, ["Jane", 25]);
+```
 
-Using bind
+#### **Using ****`bind`**
 
+```javascript
 const boundGreet = greet.bind(person, "Smith", 40);
 boundGreet();
+```
 
-When to Use?
+### **When to Use?**
 
-call → When arguments are passed individually.
+- **`call`** → When arguments are passed individually.
+- **`apply`** → When arguments are in an array (e.g., `Math.max.apply(null, [1, 2, 3])`).
+- **`bind`** → When creating a **new function** with a pre-set `this`.
 
-apply → When arguments are in an array (e.g., Math.max.apply(null, [1, 2, 3])).
+---
 
-bind → When creating a new function with a pre-set this.
+## 3. Optimized Binary Search with Sorting
 
-3. Optimized Binary Search with Sorting
+### **Step 1: Sorting the Array**
 
-Step 1: Sorting the Array
-
+```javascript
 let array = [1, 6, 2, 9, 4, 5, 7, 3];
 array.sort((a, b) => a - b);
 console.log("Sorted Array:", array);
+```
 
-Sorted Output: [1, 2, 3, 4, 5, 6, 7, 9]
+**Sorted Output:** `[1, 2, 3, 4, 5, 6, 7, 9]`
 
-Step 2: Implementing Binary Search
+### **Step 2: Implementing Binary Search**
 
+```javascript
 function binarySearch(arr, target) {
   let left = 0, right = arr.length - 1;
   while (left <= right) {
@@ -141,31 +131,27 @@ function binarySearch(arr, target) {
 let target = 3;
 let index = binarySearch(array, target);
 console.log(`Index of ${target}:`, index);
+```
 
-Output:
+**Output:**
 
+```
 Index of 3: 2
+```
 
-Binary Search Breakdown:
+### **Binary Search Breakdown:**
 
-Initialize left = 0, right = arr.length - 1.
+1. **Initialize** `left = 0`, `right = arr.length - 1`.
+2. **Find middle index** `mid = Math.floor((left + right) / 2)`.
+3. **Compare ****`arr[mid]`**** with target:**
+   - If equal → return `mid`.
+   - If greater → search **left half** (`right = mid - 1`).
+   - If smaller → search **right half** (`left = mid + 1`).
+4. **Repeat** until `left > right`.
 
-Find middle index mid = Math.floor((left + right) / 2).
+### **Time Complexity:**
 
-Compare arr[mid] with target:
+- **Sorting:** `O(n log n)`
+- **Binary Search:** `O(log n)`
+- **Total Complexity:** `O(n log n)` (due to sorting step)
 
-If equal → return mid.
-
-If greater → search left half (right = mid - 1).
-
-If smaller → search right half (left = mid + 1).
-
-Repeat until left > right.
-
-Time Complexity:
-
-Sorting: O(n log n)
-
-Binary Search: O(log n)
-
-Total Complexity: O(n log n) (due to sorting step)

@@ -353,7 +353,86 @@ app.post('/upload', upload.single('file'), (req, res) => {
 });
 ```
 
----
+### **7. Node.js Architecture**  
+- **Event-Driven, Non-Blocking I/O**  
+- Components:  
+  - **Event Loop** (Handles async operations)  
+  - **Libuv** (Thread pool)  
+  - **V8 Engine** (Executes JS)  
+  - **C++ Bindings** (OS access)  
+
+### **8. Event Loop Phases**  
+1. **Timers** (`setTimeout`, `setInterval`)  
+2. **Pending I/O**  
+3. **Idle/Prepare**  
+4. **Poll** (New I/O events)  
+5. **Check** (`setImmediate`)  
+6. **Close Callbacks**  
+
+### **9. Authentication vs Authorization**  
+- **Authentication**: Verifies identity (e.g., login).  
+- **Authorization**: Determines permissions (e.g., access control).  
+
+### **10. Middleware in Express.js**  
+- Functions executed before reaching the route handler.  
+```js
+app.use((req, res, next) => {
+  console.log("Middleware running");
+  next();
+});
+```
+#### Examples:
+- **Logging**, **Authentication**, **Validation**  
+
+### **11. How JWT Works**  
+1. **User logs in → Server generates JWT**  
+2. **JWT structure**:  
+   - **Header** (Algorithm & type)  
+   - **Payload** (User data)  
+   - **Signature** (Hash with secret key)  
+3. **Client sends JWT in Authorization header**  
+4. **Server verifies JWT before authorizing request**  
+
+### **12. Securing a Node.js App**  
+✅ Use **HTTPS**  
+✅ Validate **input data**  
+✅ Use **Helmet** for security headers  
+✅ Prevent **SQL injection** with ORMs  
+✅ Use **rate limiting**  
+✅ Run **npm audit** for security checks  
+
+### **13. Performance Optimization**  
+- Use **caching** (Redis)  
+- Optimize **DB queries**  
+- Use **clustering/load balancing**  
+- Enable **Gzip compression**  
+- Implement **lazy loading**  
+
+### **14. Helmet Middleware (Security Headers)**  
+```js
+const helmet = require('helmet');
+app.use(helmet());
+```
+
+### **15. CORS Middleware (Cross-Origin Requests)**  
+```js
+const cors = require('cors');
+app.use(cors({ origin: "http://example.com" }));
+```
+
+### **16. Promises in JavaScript**  
+- A **Promise** represents an asynchronous operation.  
+- States: **Pending → Fulfilled → Rejected**  
+
+### **17. Worker Threads in Node.js**  
+- **Offloads CPU-intensive tasks** to separate threads, preventing main thread blocking.  
+
+### **18. Handling High-Volume Requests**  
+- **Use Clustering** (Multiple processes)  
+- **Load Balancers** (e.g., Nginx)  
+- **Cache Responses** (e.g., Redis)  
+- **Optimize DB Queries**  
+
 
 
 

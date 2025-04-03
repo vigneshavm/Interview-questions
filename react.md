@@ -2,6 +2,7 @@
 
 ### 1. What is the useState Hook?
 **Question:** How does the `useState` hook work in React?
+
 **Answer:** The `useState` hook manages local state in functional components.
 ```jsx
 const [count, setCount] = useState(0);

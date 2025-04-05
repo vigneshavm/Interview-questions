@@ -151,10 +151,34 @@ function removeDuplicates(arr) {
   const result = [];
   for (let i = 0; i < arr.length; i++) {
     if (!result.includes(arr[i])) {      result.push(arr[i]);    }
-  }
-  return result;
-}
 
-const array = [4, 2, 5, 3, 4, 2, 1];
+
+
+
+
+
+** Binary Search for Value 3**
+
+sort the array:
+```js
+let arr = [1, 6, 2, 9, 4, 5, 7, 3];
+arr.sort((a, b) => a - b); // Ascending sort
+// arr = [1, 2, 3, 4, 5, 6, 7, 9]
+```
+binary search to find index of value `3`:
+```js
+function binarySearch(arr, target) {
+  let left = 0, right = arr.length - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+        if (arr[mid] === target) return mid;
+    else if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+  return -1; // Not found
+}
+const index = binarySearch(arr, 3);
+console.log("Sorted Array:", arr);
+console.log("Index of 3:", index);
 console.log(removeDuplicates(array)); // [4, 2, 5, 3, 1]
 ```

@@ -1,4 +1,156 @@
 
+
+## 1. How do you create an index in MongoDB?
+**Answer:** Use the `createIndex()` method to improve query performance.
+
+```js
+db.users.createIndex({ email: 1 })  // Ascending index on email
+```
+
+---
+
+## 2. What are the types of indexes available?
+**Answer:**
+
+| Index Type        | Description                                     |
+|-------------------|-------------------------------------------------|
+| Single Field      | Index on one field                              |
+| Compound          | Index on multiple fields                        |
+| Multikey          | Indexes arrays                                  |
+| Text              | For text search in strings                      |
+| Hashed            | Hash-based, used for sharding                   |
+| Geospatial        | For location-based data (`2d`, `2dsphere`)      |
+| Wildcard (`$**`)  | Indexes all fields or dynamic fields            |
+
+---
+
+## 3. How do you perform aggregations in MongoDB?
+**Answer:** MongoDB uses the **aggregation pipeline** to process data step-by-step.
+
+```js
+db.orders.aggregate([
+  { $match: { status: "completed" } },
+  { $group: { _id: "$customerId", totalAmount: { $sum: "$amount" } } }
+])
+```
+
+---
+
+## 4. What is the `$lookup` stage in aggregation and how is it used for joins?
+**Answer:** `$lookup` joins documents from another collection, similar to SQL joins.
+
+```js
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "customers",
+      localField: "customerId",
+      foreignField: "_id",
+      as: "customerInfo"
+    }
+  }
+])
+```
+
+---
+
+## 5. How would you model relationships (one-to-one, one-to-many, many-to-many) in MongoDB?
+**Answer:**
+
+| Type           | Description                       | Approach             |
+|----------------|-----------------------------------|----------------------|
+| One-to-One     | User ↔ Profile                    | Embedded or Ref      |
+| One-to-Many    | Blog ↔ Comments                   | Embed or Ref IDs     |
+| Many-to-Many   | Students ↔ Courses                | Array of IDs in both |
+
+```js
+// One-to-Many Referencing Example
+{ _id: 1, title: "Post A", commentIds: [101, 102] }
+{ _id: 101, content: "Nice!" }
+```
+
+---
+
+## 6. What’s the difference between embedded and referenced documents?
+**Answer:**
+
+| Feature       | Embedded                         | Referenced                        |
+|---------------|----------------------------------|-----------------------------------|
+| Structure     | Nested within parent             | Separate collection with linkage  |
+| Performance   | Faster reads                     | Slower, needs additional query    |
+| Flexibility   | Less flexible                    | Highly flexible                   |
+
+```js
+// Embedded
+{ name: "John", address: { city: "Hyd", pin: 500001 } }
+
+// Referenced
+{ _id: 1, name: "John", addressId: 101 }
+```
+
+---
+
+## 7. What is a capped collection in MongoDB?
+**Answer:** A **capped collection** is a fixed-size, high-performance collection like a circular queue.
+
+```js
+db.createCollection("logs", { capped: true, size: 100000 })
+```
+
+---
+
+## 8. How does MongoDB handle schema enforcement?
+**Answer:** MongoDB is **schema-less by default**, but schema validation can be added via **JSON Schema**.
+
+```js
+db.createCollection("products", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["name", "price"],
+      properties: {
+        name: { bsonType: "string" },
+        price: { bsonType: "number" }
+      }
+    }
+  }
+})
+```
+
+---
+
+## 9. How do you update multiple documents in MongoDB?
+**Answer:** Use the `updateMany()` method.
+
+```js
+db.users.updateMany(
+  { country: "India" },
+  { $set: { active: true } }
+)
+```
+
+---
+
+## 10. Explain updateOne(), updateMany(), and replaceOne()
+**Answer:**
+
+| Method         | Description                          | Example                              |
+|----------------|--------------------------------------|--------------------------------------|
+| `updateOne()`   | Updates the first matching document  | `{ $set: { age: 30 } }`              |
+| `updateMany()`  | Updates all matching documents       | `{ $set: { verified: true } }`       |
+| `replaceOne()`  | Replaces an entire document          | `{ name: "Raj", age: 25 }`           |
+
+```js
+db.users.updateOne({ name: "Raj" }, { $set: { age: 30 } })
+db.users.updateMany({ country: "IN" }, { $set: { verified: true } })
+db.users.replaceOne({ _id: 1 }, { name: "Anu", age: 24 }) // full replace
+```
+
+---
+```
+
+
+
 ## **Scaling MongoDB**:
   - **Vertical Scaling**: Adding more resources (CPU, memory) to a single server.
   - **Horizontal Scaling**: Using **sharding** to distribute data across multiple servers.

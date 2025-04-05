@@ -7,7 +7,7 @@
 - Uses **libuv** to handle asynchronous I/O.
 - Designed for **non-blocking**, **event-driven** applications.
 
-### Code Sample
+ Code Sample
 ```js
 const http = require('http');
 
@@ -28,7 +28,7 @@ server.listen(3000, () => {
 - Handles asynchronous operations using a queue system.
 - Executes callbacks from timers, I/O events, etc.
 
-### Code Sample
+ Code Sample
 ```js
 console.log('Start');
 
@@ -53,7 +53,7 @@ Timeout
 - Node.js uses `EventEmitter` class to handle events.
 - You can create, emit, and listen to custom events.
 
-### Code Sample
+ Code Sample
 ```js
 const EventEmitter = require('events');
 
@@ -72,7 +72,7 @@ myEmitter.emit('greet');
 - Handle large data chunks efficiently.
 - Types: Readable, Writable, Duplex, Transform.
 
-### Code Sample
+ Code Sample
 ```js
 const fs = require('fs');
 
@@ -89,7 +89,7 @@ readable.on('data', (chunk) => {
 - Represents binary data.
 - Useful when dealing with streams.
 
-### Code Sample
+ Code Sample
 ```js
 const buf = Buffer.from('Hello');
 console.log(buf); // <Buffer 48 65 6c 6c 6f>
@@ -103,7 +103,7 @@ console.log(buf.toString()); // Hello
 - Functions that execute during the request-response cycle.
 - Can modify request, response objects.
 
-### Code Sample
+ Code Sample
 ```js
 const express = require('express');
 const app = express();
@@ -129,7 +129,7 @@ app.listen(3000);
 - Global object for current Node.js process.
 - Access environment variables, exit process, etc.
 
-### Code Sample
+ Code Sample
 ```js
 console.log(`PID: ${process.pid}`);
 console.log(`Platform: ${process.platform}`);
@@ -142,7 +142,7 @@ console.log(`Platform: ${process.platform}`);
 - Enables spawning of subprocesses.
 - Useful for CPU-intensive tasks.
 
-### Code Sample
+ Code Sample
 ```js
 const { exec } = require('child_process');
 
@@ -162,7 +162,7 @@ exec('ls', (error, stdout, stderr) => {
 - Enables creation of child processes that share server ports.
 - Used to utilize multi-core systems.
 
-### Code Sample
+ Code Sample
 ```js
 const cluster = require('cluster');
 const http = require('http');
@@ -187,7 +187,7 @@ if (cluster.isMaster) {
 - `__dirname`, `__filename`, `global`, `process`
 - Available in all modules.
 
-### Code Sample
+ Code Sample
 ```js
 console.log(__dirname);
 console.log(__filename);

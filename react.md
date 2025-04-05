@@ -170,13 +170,20 @@ ReactDOM.render(virtualDOM, document.getElementById('root'));
 ## Lifecycle Methods *(10:10)*
 
 Lifecycle methods let you run code at specific **stages of a component’s life** (Mount, Update, Unmount).
-
+Lifecycle methods are special methods in class components. Hooks like `useEffect` replicate them in functional components.
 ### In class components:
 
 ```jsx
-componentDidMount()      // after initial render  
+class Demo extends React.Component {
+ componentDidMount() {
+    console.log('Component Mounted');
+  }      // after initial render  
 componentDidUpdate()     // after update  
 componentWillUnmount()   // before component is removed
+ render() {
+    return <p>Hello</p>;
+  }
+}
 ```
 
 ### In functional components:
@@ -395,29 +402,7 @@ const LazyComponent = React.lazy(() => import("./Component"));
 
 
 
-## React Lifecycle Methods
-**Interview Answer:**  
-Lifecycle methods are special methods in class components. Hooks like `useEffect` replicate them in functional components.
 
-```jsx
-// In class component
-class Demo extends React.Component {
-  componentDidMount() {
-    console.log('Component Mounted');
-  }
-
-  render() {
-    return <p>Hello</p>;
-  }
-}
-
-// In functional component
-useEffect(() => {
-  console.log('Component Mounted');
-}, []);
-```
-
----
 
 
 

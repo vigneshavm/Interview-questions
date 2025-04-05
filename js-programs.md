@@ -206,3 +206,57 @@ console.log("Sorted Array:", arr);
 console.log("Index of 3:", index);
 console.log(removeDuplicates(array)); // [4, 2, 5, 3, 1]
 ```
+
+#### **Boolean Function to Match Filename Pattern Without Regex**
+```js
+function matchPattern(filename, pattern) {
+  let i = 0, j = 0, starIdx = -1, match = 0;
+  while (i < filename.length) {
+    if (j < pattern.length && (pattern[j] === "?" || pattern[j] === filename[i])) {
+      i++; j++;
+    } else if (j < pattern.length && pattern[j] === "*") {
+      starIdx = j++; match = i;
+    } else if (starIdx !== -1) {
+      j = starIdx + 1; i = ++match;
+    } else return false;
+  }
+  while (j < pattern.length && pattern[j] === "*") j++;
+  return j === pattern.length;
+}
+```
+
+**Stock Span Problem (Optimized Solution)**
+```js
+class StockSpanner {
+  constructor() {
+    this.stack = [];
+  }
+  next(price) {
+    let span = 1;
+    while (this.stack.length && this.stack[this.stack.length - 1][0] <= price) {
+      span += this.stack.pop()[1];
+    }
+    this.stack.push([price, span]);
+    return span;
+  }
+}
+```
+- **Time Complexity**: **O(n) amortized**
+- **Space Complexity**: **O(n)**
+
+**Simulating Wallet Withdrawal Queue**
+```js
+function withdrawQueue(amounts, maxLimit) {
+  let exitOrder = [], queue = [], i = 0;
+  while (amounts.some(a => a > 0)) {
+    if (amounts[i] > 0) {
+      queue.push(i + 1);
+      amounts[i] -= Math.min(amounts[i], maxLimit);
+      if (amounts[i] <= 0) exitOrder.push(i + 1);
+    }
+    i = (i + 1) % amounts.length;
+  }
+  return { exitOrder, queue };
+}
+console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
+```

@@ -28,6 +28,24 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
+**Difference between `var`, `let`, and `const`?**  
+- `var`: **Function-scoped**, hoisted, can be re-declared.  
+- `let`: **Block-scoped**, not hoisted, prevents redeclaration issues.  
+- `const`: **Block-scoped**, immutable reference, must be initialized.  
+
+Example:  
+```js
+if (true) {
+    var x = 10;  // Accessible outside block
+    let y = 20;  // Block-scoped
+    const z = 30; // Block-scoped & immutable
+}
+console.log(x); // 10
+// console.log(y, z); // Error
+```
+
+---
+
 **Key ES6 Features**
 - **let and const**: Block-scoped variables, unlike var which is function-scoped.
 - **Arrow functions**: Shorter syntax with lexical this binding.
@@ -103,9 +121,10 @@ const person = { name: "Alice" };
 ---
 
 
+**What is a Closure?**  
+A closure allows a function to **remember its outer scope** even after execution.  
 
-
-**Closures**
+Example:  
 ```js
 function outer() {
   let counter = 0;
@@ -118,3 +137,22 @@ const increment = outer();
 increment(); // 1
 increment(); // 2
 ```
+**Use case:** **Data encapsulation** (e.g., private variables).
+
+---
+
+**Synchronous vs. Asynchronous JavaScript?**  
+- **Synchronous**: Code executes sequentially, blocking further execution.  
+- **Asynchronous**: Operations (e.g., API calls) run in the background without blocking.  
+
+Example (Async/Await):  
+```js
+async function fetchData() {
+    let response = await fetch("https://api.example.com/data");
+    let data = await response.json();
+    console.log(data);
+}
+fetchData();
+```
+
+

@@ -1,6 +1,6 @@
 
 
-## 1. **Node.js Architecture**
+##  **Node.js Architecture**
 
 - Node.js uses a **single-threaded** event loop architecture.
 - Built on **Chrome's V8** JavaScript engine.
@@ -22,7 +22,7 @@ server.listen(3000, () => {
 
 ---
 
-## 2. **Event Loop**
+##  **Event Loop**
 
 - Core of Node.js concurrency model.
 - Handles asynchronous operations using a queue system.
@@ -48,7 +48,7 @@ Timeout
 
 ---
 
-## 3. **Event Emitters**
+##  **Event Emitters**
 
 - Node.js uses `EventEmitter` class to handle events.
 - You can create, emit, and listen to custom events.
@@ -67,7 +67,7 @@ myEmitter.emit('greet');
 
 ---
 
-## 4. **Streams**
+##  **Streams**
 
 - Handle large data chunks efficiently.
 - Types: Readable, Writable, Duplex, Transform.
@@ -84,7 +84,7 @@ readable.on('data', (chunk) => {
 
 ---
 
-## 5. **Buffer**
+##  **Buffer**
 
 - Represents binary data.
 - Useful when dealing with streams.
@@ -98,7 +98,7 @@ console.log(buf.toString()); // Hello
 
 ---
 
-## 6. **Middleware in Express**
+##  **Middleware in Express**
 
 - Functions that execute during the request-response cycle.
 - Can modify request, response objects.
@@ -124,7 +124,7 @@ app.listen(3000);
 
 ---
 
-## 7. **Process Object**
+##  **Process Object**
 
 - Global object for current Node.js process.
 - Access environment variables, exit process, etc.
@@ -137,7 +137,7 @@ console.log(`Platform: ${process.platform}`);
 
 ---
 
-## 8. **Child Processes**
+##  **Child Processes**
 
 - Enables spawning of subprocesses.
 - Useful for CPU-intensive tasks.
@@ -157,7 +157,7 @@ exec('ls', (error, stdout, stderr) => {
 
 ---
 
-## 9. **Cluster Module**
+##  **Cluster Module**
 
 - Enables creation of child processes that share server ports.
 - Used to utilize multi-core systems.
@@ -182,7 +182,7 @@ if (cluster.isMaster) {
 
 ---
 
-## 10. **Global Objects**
+##  **Global Objects**
 
 - `__dirname`, `__filename`, `global`, `process`
 - Available in all modules.
@@ -197,7 +197,7 @@ console.log(foo);
 
 ---
 
-## 1. **Process & Threads**
+##  **Process & Threads**
 
  
 
@@ -215,7 +215,7 @@ setTimeout(() => console.log('Async operation'), 1000);
 
 ---
 
-## 2. **Cluster Module**
+##  **Cluster Module**
 
  
 
@@ -244,7 +244,7 @@ if (cluster.isMaster) {
 
 ---
 
-## 3. **Streams (Readable, Writable, Duplex, Transform)**
+##  **Streams (Readable, Writable, Duplex, Transform)**
 
  
 
@@ -267,7 +267,7 @@ readStream.pipe(writeStream);
 
 ---
 
-## 4. **WebSockets (Socket.IO Basics)**
+##  **WebSockets (Socket.IO Basics)**
 
  
 
@@ -293,7 +293,7 @@ http.listen(3000);
 
 ---
 
-## 5. **CORS in Node.js**
+##  **CORS in Node.js**
 
  
 
@@ -315,7 +315,7 @@ app.listen(3000);
 
 ---
 
-## 6. **Environment Variables and dotenv**
+##  **Environment Variables and dotenv**
 
  
 
@@ -336,7 +336,7 @@ console.log(process.env.API_KEY);
 
 ---
 
-## 7. **Rate Limiting APIs**
+##  **Rate Limiting APIs**
 
  
 
@@ -357,7 +357,7 @@ app.use(limiter);
 
 ---
 
-## 8. **Node.js with Redis (Caching)**
+##  **Node.js with Redis (Caching)**
 
  
 
@@ -384,4 +384,255 @@ app.get('/data', async (req, res) => {
 ```
 
 ---
+
+
+## ** Difference Between CommonJS and ES Modules**
+
+- **CommonJS** is used in Node.js and uses `require()` and `module.exports`.
+- **ES Modules** (introduced in ES6) use `import` and `export`.
+
+**Example:**
+- CommonJS:
+  ```js
+  const fs = require("fs");
+  module.exports = { greet };
+  ```
+- ES Modules:
+  ```js
+  export function greet() { console.log("Hello!"); }
+  import { greet } from "./module.js";
+  ```
+
+---
+
+## ** Explain Streams in Node.js**
+
+Streams process large data efficiently by handling it in chunks, avoiding memory overload.
+
+- **Readable**: Data source (e.g., `fs.createReadStream()`).
+- **Writable**: Data destination (e.g., `fs.createWriteStream()`).
+- **Duplex**: Both readable and writable.
+- **Transform**: Modify data as it flows.
+
+```js
+const fs = require("fs");
+const readStream = fs.createReadStream("file.txt");
+readStream.on("data", chunk => console.log(chunk));
+```
+
+---
+
+## ** Error Handling in Node.js**
+
+- **Synchronous**: `try-catch`.
+- **Asynchronous**: `Error-first callback pattern`, `Promises`, `Async/Await`.
+
+```js
+fs.readFile("file.txt", "utf8", (err, data) => {
+  if (err) console.error(err);
+  else console.log(data);
+});
+```
+
+---
+
+## ** Middleware in Express.js**
+
+Middleware functions execute before route handlers. They can perform tasks like logging, authentication, and error handling.
+
+```js
+app.use((req, res, next) => {
+  console.log("Middleware running");
+  next();  // Pass control to the next middleware
+});
+```
+
+---
+
+## ** Event Loop Phases**
+
+The Node.js **event loop** manages asynchronous operations and includes these phases:
+ **Timers** (`setTimeout`, `setInterval`)
+ **Pending I/O**
+ **Idle/Prepare**
+ **Poll** (Handles I/O events)
+ **Check** (`setImmediate`)
+ **Close Callbacks**
+
+---
+
+## ** Authentication vs Authorization**
+
+- **Authentication**: Verifies user identity (e.g., login).
+- **Authorization**: Determines what resources a user can access.
+
+---
+
+## ** JWT (JSON Web Token) Flow**
+
+ **User logs in** → Server generates JWT.
+ **JWT Structure**: Header (algorithm), Payload (user data), Signature (hash).
+ **Client sends JWT** in the `Authorization` header.
+ **Server verifies** JWT before granting access.
+
+---
+
+## ** Securing a Node.js App**
+
+- Use **HTTPS**.
+- Validate **input data**.
+- Use **Helmet** for HTTP headers security.
+- Prevent **SQL injection** with ORMs.
+- Enable **rate limiting**.
+- Run **npm audit** for vulnerabilities.
+
+---
+
+## ** Performance Optimization**
+
+- Use **caching** (e.g., Redis).
+- Optimize **DB queries**.
+- Enable **load balancing** and **clustering**.
+- Use **Gzip compression**.
+- Implement **lazy loading** to optimize resource loading.
+
+---
+
+## ** Worker Threads in Node.js**
+
+Worker threads offload CPU-intensive tasks to separate threads, ensuring the main thread isn't blocked.
+
+---
+
+## ** CORS Middleware (Cross-Origin Resource Sharing)**
+
+Use **CORS** to manage cross-origin requests, restricting access to certain origins.
+
+```js
+const cors = require('cors');
+app.use(cors({ origin: "http://example.com" }));
+```
+
+---
+
+## ** Caching Strategies in Node.js**
+
+- **In-memory Caching**: Use **Redis** for frequently accessed data.
+- **Cache Expiration**: Set TTL (Time to Live) to prevent stale data.
+- **Lazy Loading**: Cache data only when required.
+
+---
+
+## ** Microservices Communication**
+
+- **Synchronous**: Use **HTTP REST** or **gRPC**.
+- **Asynchronous**: Use **message queues** (RabbitMQ, Kafka) for decoupling services.
+
+Example of an **event-driven** architecture:
+```js
+const emitter = new EventEmitter();
+emitter.emit('userCreated', { userId: 1, name: 'John' });
+
+emitter.on('userCreated', (data) => {
+  console.log('User created:', data);
+});
+```
+
+---
+
+## ** Load Balancing in Node.js**
+
+Distribute requests across multiple instances using tools like **PM2**, **Nginx**, or **HAProxy**.
+
+```sh
+pm2 start app.js -i max  # Start one instance per CPU core
+```
+
+---
+
+## ** Handling Large File Uploads**
+
+Use **Multer** for handling multipart file uploads and consider storing large files in cloud services like **AWS S3** or **Google Cloud Storage**.
+
+```js
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/upload', upload.single('file'), (req, res) => {
+  console.log('File uploaded:', req.file);
+  res.send('File uploaded successfully');
+});
+```
+
+---
+
+## ** Dependency Injection in Node.js**
+
+Dependency Injection (DI) helps manage service dependencies and simplifies testing.
+
+Example using **InversifyJS**:
+```ts
+import { Container, inject, injectable } from 'inversify';
+
+@injectable()
+class UserService {
+  constructor(@inject('Database') private db: any) {}
+  getUser(id: string) {
+    return this.db.findUser(id);
+  }
+}
+
+const container = new Container();
+container.bind('Database').toConstantValue(new DatabaseConnection());
+container.bind(UserService).toSelf();
+```
+
+---
+
+## ** Database Transactions in Node.js**
+
+Use ORMs like **Sequelize** or **Mongoose** to handle database transactions and ensure data consistency.
+
+Example using **Sequelize**:
+```ts
+const { sequelize } = require("./models");
+
+async function performTransaction() {
+  const t = await sequelize.transaction();
+
+  try {
+    await User.create({ name: 'John' }, { transaction: t });
+    await Order.create({ userId: 1, total: 100 }, { transaction: t });
+
+    await t.commit();
+  } catch (error) {
+    await t.rollback();
+  }
+}
+```
+
+---
+
+## ** Data Validation in Node.js with TypeScript**
+
+Use **Joi** or **express-validator** for input validation in APIs.
+
+Example using **Joi**:
+```ts
+import Joi from 'joi';
+
+const userSchema = Joi.object({
+  name: Joi.string().min(3).required(),
+  email: Joi.string().email().required(),
+  age: Joi.number().min(18).required(),
+});
+
+const { error, value } = userSchema.validate(req.body);
+if (error) {
+  res.status(400).send(error.details);
+} else {
+  res.status(200).send(value);
+}
+```
+
 

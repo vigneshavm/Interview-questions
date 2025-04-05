@@ -22,7 +22,7 @@ server.listen(3000, () => {
 
 ---
 
-## **Event Loop **
+## **Event Loop**
 
 **Phases of the Event Loop:**
  **Timers**: Executes the callbacks for `setTimeout` and `setInterval`.

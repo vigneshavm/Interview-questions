@@ -199,7 +199,7 @@ console.log(foo);
 
 ## 1. **Process & Threads**
 
-### ✅ Description (Interview Style)
+ 
 
 - Node.js runs on a single-threaded event loop architecture.
 - It uses **libuv** under the hood for managing asynchronous operations via a pool of worker threads.
@@ -217,7 +217,7 @@ setTimeout(() => console.log('Async operation'), 1000);
 
 ## 2. **Cluster Module**
 
-### ✅ Description (Interview Style)
+ 
 
 - Used to create child processes (workers) that share the same server port.
 - Improves performance on multi-core systems.
@@ -246,7 +246,7 @@ if (cluster.isMaster) {
 
 ## 3. **Streams (Readable, Writable, Duplex, Transform)**
 
-### ✅ Description (Interview Style)
+ 
 
 - Streams are memory-efficient for reading/writing large data.
 - Types:
@@ -269,7 +269,7 @@ readStream.pipe(writeStream);
 
 ## 4. **WebSockets (Socket.IO Basics)**
 
-### ✅ Description (Interview Style)
+ 
 
 - Enables two-way, real-time communication between client and server.
 - Used in chats, games, real-time dashboards.
@@ -295,7 +295,7 @@ http.listen(3000);
 
 ## 5. **CORS in Node.js**
 
-### ✅ Description (Interview Style)
+ 
 
 - Cross-Origin Resource Sharing (CORS) is a browser security feature.
 - Node.js needs to set appropriate headers for cross-domain requests.
@@ -317,7 +317,7 @@ app.listen(3000);
 
 ## 6. **Environment Variables and dotenv**
 
-### ✅ Description (Interview Style)
+ 
 
 - Secure and manage configuration outside of the source code.
 - The `dotenv` package loads `.env` file variables into `process.env`.
@@ -338,7 +338,7 @@ console.log(process.env.API_KEY);
 
 ## 7. **Rate Limiting APIs**
 
-### ✅ Description (Interview Style)
+ 
 
 - Protects APIs from abuse or brute-force attacks.
 - Implemented using middleware like `express-rate-limit`.
@@ -359,7 +359,7 @@ app.use(limiter);
 
 ## 8. **Node.js with Redis (Caching)**
 
-### ✅ Description (Interview Style)
+ 
 
 - Redis is used for caching, session storage, pub/sub.
 - Reduces DB load by storing frequently accessed data.

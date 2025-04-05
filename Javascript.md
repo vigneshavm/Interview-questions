@@ -288,39 +288,11 @@ import { add } from "./math.js";
 console.log(add(2, 3)); // ✅ 5
 ```
 
----
 
-### **How does TypeScript improve JavaScript?**  
-✅ **Static Typing** (`number`, `string`, `boolean`, `any`)  
-✅ **Interfaces & Types** (`interface User { name: string; age: number }`)  
-✅ **Better Code Completion & Debugging**  
 
-Example:  
-```ts
-function greet(name: string): string {
-    return `Hello, ${name}`;
-}
-console.log(greet("John")); // ✅ Hello, John
-```
 
----
 
-### **What is Duck Typing in TypeScript?**  
-If an object has required properties, it's considered compatible (structural typing).  
-
-Example:  
-```ts
-interface User {
-    name: string;
-    age: number;
-}
-const user = { name: "Alice", age: 25, city: "NY" }; // Extra props are ignored
-let person: User = user;  // ✅ Works
-```
-
----
-
-### **Event Propagation in JavaScript**
+### **Event Propagation**
 Event propagation is the way events travel through the DOM tree. It has three phases:
 
 1. **Capturing Phase (Event Capturing)**: The event starts from the root and moves down to the target.
@@ -348,7 +320,7 @@ document.getElementById("child").addEventListener("click", (event) => {
 
 ---
 
-### **Inheritance in JavaScript**
+### **Inheritance**
 JavaScript supports **prototypal inheritance**, allowing objects to inherit properties and methods from other objects.
 
 Example:
@@ -373,27 +345,7 @@ kid.greet(); // Hello, John
 
 ---
 
-### **`let` vs `const` vs `var`**
-| Feature      | `var` | `let` | `const` |
-|-------------|------|------|--------|
-| Scope       | Function-scoped | Block-scoped | Block-scoped |
-| Reassignable | ✅ Yes | ✅ Yes | ❌ No |
-| Redeclarable | ✅ Yes | ❌ No | ❌ No |
-| Hoisting     | ✅ Yes (initialized as `undefined`) | ✅ Yes (in **Temporal Dead Zone**) | ✅ Yes (in **TDZ**) |
 
-**Example:**
-```js
-console.log(a); // undefined
-var a = 5;
-
-console.log(b); // ReferenceError
-let b = 10;
-
-const c = 15;
-c = 20; // TypeError
-```
-
----
 
 ### **Normal Function vs Arrow Function**
 | Feature | Normal Function | Arrow Function |
@@ -443,7 +395,7 @@ function throttle(func, limit) {
 
 ---
 
-### **Closures in JavaScript**
+### **Closures**
 A **closure** is a function that retains access to variables from its outer scope even after the outer function has finished executing.
 
 **Example:**
@@ -459,7 +411,7 @@ closureExample("World"); // Outer: Hello, Inner: World
 
 ---
 
-### **Currying in JavaScript**
+### **Currying**
 Currying is a technique where a function takes multiple arguments one at a time.
 
 **Example:**

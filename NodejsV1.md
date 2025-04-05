@@ -641,6 +641,9 @@ if (error) {
 ## **Promise vs Async/Await**:
 - **Promises**: Use `.then()` and `.catch()` for chaining async calls.
 - **Async/Await**: More readable and concise for handling asynchronous operations.
+- Promises simplify callbacks but can still become complex.
+- **Async/await** allows writing asynchronous code like synchronous code, improving readability.
+- Async/await works on top of promises and eliminates `.then()` chains.
 
 ## **`Promise.all()` vs `Promise.race()`**:
 - **`Promise.all()`**: Resolves when **all** promises are completed.
@@ -663,21 +666,18 @@ if (error) {
 
 ---
 
-##  **How do you handle callback hell in Node.js?**
+##  **Callback hell in Node.js?**
    - Use **Promises** to flatten the callback chain.
    - Use **async/await** for better readability and linear flow.
    - Modularize code into smaller functions for better maintainability.
 
 ---
 
-##  **Promises vs Async/Await**
-   - Promises simplify callbacks but can still become complex.
-   - **Async/await** allows writing asynchronous code like synchronous code, improving readability.
-   - Async/await works on top of promises and eliminates `.then()` chains.
+
 
 ---
 
-###  **How do you manage security in Node.js applications?**
+##  **Manage security**
    - **Input Validation**: Use libraries like Joi or Express-validator to validate inputs.
    - **Sanitize Data**: Prevent SQL injections and XSS attacks.
    - **Authentication**: Use JWT or OAuth for secure authentication.

@@ -153,11 +153,7 @@ function removeDuplicates(arr) {
     if (!result.includes(arr[i])) {      result.push(arr[i]);    }
 ```
 
-
-
-
-
-** Binary Search for Value 3**
+**Binary Search for Value 3**
 
 sort the array:
 ```js

@@ -320,14 +320,14 @@ let person: User = user;  // ✅ Works
 
 ---
 
-## **1. Event Propagation in JavaScript**
+### **Event Propagation in JavaScript**
 Event propagation is the way events travel through the DOM tree. It has three phases:
 
 1. **Capturing Phase (Event Capturing)**: The event starts from the root and moves down to the target.
 2. **Target Phase**: The event reaches the target element.
 3. **Bubbling Phase (Event Bubbling)**: The event travels back up the DOM tree.
 
-### Example:
+Example:
 ```html
 <div id="parent">
   <button id="child">Click Me</button>
@@ -348,10 +348,10 @@ document.getElementById("child").addEventListener("click", (event) => {
 
 ---
 
-## **2. Inheritance in JavaScript**
+### **Inheritance in JavaScript**
 JavaScript supports **prototypal inheritance**, allowing objects to inherit properties and methods from other objects.
 
-### Example:
+Example:
 ```js
 function Parent(name) {
   this.name = name;
@@ -373,7 +373,7 @@ kid.greet(); // Hello, John
 
 ---
 
-## **3. `let` vs `const` vs `var`**
+### **`let` vs `const` vs `var`**
 | Feature      | `var` | `let` | `const` |
 |-------------|------|------|--------|
 | Scope       | Function-scoped | Block-scoped | Block-scoped |
@@ -395,7 +395,7 @@ c = 20; // TypeError
 
 ---
 
-## **4. Normal Function vs Arrow Function**
+### **Normal Function vs Arrow Function**
 | Feature | Normal Function | Arrow Function |
 |---------|----------------|---------------|
 | `this` Binding | Dynamic (depends on how it's called) | Lexical (inherits from surrounding scope) |
@@ -414,7 +414,7 @@ const arrowFunc = () => {
 
 ---
 
-## **5. Debouncing vs Throttling**
+### **Debouncing vs Throttling**
 | Feature  | Debouncing | Throttling |
 |----------|-----------|------------|
 | Definition | Delays execution until after a certain time has passed | Executes at most once in a given interval |
@@ -443,7 +443,7 @@ function throttle(func, limit) {
 
 ---
 
-## **6. Closures in JavaScript**
+### **Closures in JavaScript**
 A **closure** is a function that retains access to variables from its outer scope even after the outer function has finished executing.
 
 **Example:**
@@ -459,7 +459,7 @@ closureExample("World"); // Outer: Hello, Inner: World
 
 ---
 
-## **7. Currying in JavaScript**
+### **Currying in JavaScript**
 Currying is a technique where a function takes multiple arguments one at a time.
 
 **Example:**

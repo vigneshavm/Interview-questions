@@ -28,10 +28,9 @@ function isAnagram(a: string, b: string): boolean {
   const normalize = (str: string) => str.split('').sort().join('');
     return normalize(a) === normalize(b);
   }
-```
 console.log(isAnagram("listen", "silent"));  // true
 console.log(isAnagram("abc", "def"));        // false
-
+```
 **Grouping Items by Property**
 ```js
 const products = [
@@ -39,7 +38,6 @@ const products = [
   { id: 2, name: "Carrot", category: "Vegetables" },
   { id: 3, name: "Banana", category: "Fruits" },
 ];
-
 function groupByCategory(products: { id: number; name: string; category: string }[]) {
   return products.reduce((acc, curr) => {
       acc[curr.category] = acc[curr.category] || [];
@@ -49,7 +47,6 @@ function groupByCategory(products: { id: number; name: string; category: string 
   }
 console.log(groupByCategory(products));
 ```
-
 **Find First Non-Repeating Character**
 ```js
 function firstNonRepeatingChar(str: string): string | null {

@@ -320,4 +320,161 @@ let person: User = user;  // ✅ Works
 
 ---
 
+## **1. Event Propagation in JavaScript**
+Event propagation is the way events travel through the DOM tree. It has three phases:
+
+1. **Capturing Phase (Event Capturing)**: The event starts from the root and moves down to the target.
+2. **Target Phase**: The event reaches the target element.
+3. **Bubbling Phase (Event Bubbling)**: The event travels back up the DOM tree.
+
+### Example:
+```html
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+```
+```js
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent clicked");
+}, true); // Capturing phase
+
+document.getElementById("child").addEventListener("click", (event) => {
+  console.log("Child clicked");
+  event.stopPropagation(); // Prevents bubbling
+}, false); // Bubbling phase
+```
+- **`event.stopPropagation()`** prevents the event from moving up (bubbling).
+- **`true` in addEventListener** makes the event trigger in the capturing phase.
+
+---
+
+## **2. Inheritance in JavaScript**
+JavaScript supports **prototypal inheritance**, allowing objects to inherit properties and methods from other objects.
+
+### Example:
+```js
+function Parent(name) {
+  this.name = name;
+}
+Parent.prototype.greet = function () {
+  console.log(`Hello, ${this.name}`);
+};
+
+function Child(name, age) {
+  Parent.call(this, name);
+  this.age = age;
+}
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+
+const kid = new Child("John", 10);
+kid.greet(); // Hello, John
+```
+
+---
+
+## **3. `let` vs `const` vs `var`**
+| Feature      | `var` | `let` | `const` |
+|-------------|------|------|--------|
+| Scope       | Function-scoped | Block-scoped | Block-scoped |
+| Reassignable | ✅ Yes | ✅ Yes | ❌ No |
+| Redeclarable | ✅ Yes | ❌ No | ❌ No |
+| Hoisting     | ✅ Yes (initialized as `undefined`) | ✅ Yes (in **Temporal Dead Zone**) | ✅ Yes (in **TDZ**) |
+
+**Example:**
+```js
+console.log(a); // undefined
+var a = 5;
+
+console.log(b); // ReferenceError
+let b = 10;
+
+const c = 15;
+c = 20; // TypeError
+```
+
+---
+
+## **4. Normal Function vs Arrow Function**
+| Feature | Normal Function | Arrow Function |
+|---------|----------------|---------------|
+| `this` Binding | Dynamic (depends on how it's called) | Lexical (inherits from surrounding scope) |
+| Arguments Object | ✅ Yes (`arguments`) | ❌ No (`arguments` is undefined) |
+| Suitable for Methods | ✅ Yes | ❌ No (Cannot use `this` in objects) |
+
+**Example:**
+```js
+function normalFunc() {
+  console.log(this); // `this` depends on call context
+}
+const arrowFunc = () => {
+  console.log(this); // `this` inherits from parent scope
+};
+```
+
+---
+
+## **5. Debouncing vs Throttling**
+| Feature  | Debouncing | Throttling |
+|----------|-----------|------------|
+| Definition | Delays execution until after a certain time has passed | Executes at most once in a given interval |
+| Use Case | Search input, resize events | Scroll events, button clicks |
+
+**Example:**
+```js
+function debounce(func, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+function throttle(func, limit) {
+  let lastFunc;
+  return function (...args) {
+    if (!lastFunc) {
+      func.apply(this, args);
+      lastFunc = setTimeout(() => (lastFunc = null), limit);
+    }
+  };
+}
+```
+
+---
+
+## **6. Closures in JavaScript**
+A **closure** is a function that retains access to variables from its outer scope even after the outer function has finished executing.
+
+**Example:**
+```js
+function outerFunction(outerVariable) {
+  return function innerFunction(innerVariable) {
+    console.log(`Outer: ${outerVariable}, Inner: ${innerVariable}`);
+  };
+}
+const closureExample = outerFunction("Hello");
+closureExample("World"); // Outer: Hello, Inner: World
+```
+
+---
+
+## **7. Currying in JavaScript**
+Currying is a technique where a function takes multiple arguments one at a time.
+
+**Example:**
+```js
+function curry(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+console.log(curry(1)(2)(3)); // 6
+```
+
+---
+
+
 

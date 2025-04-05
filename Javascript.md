@@ -29,13 +29,13 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 ---
 
 **Key ES6 Features**
-- **`let and const: Block-scoped variables, unlike var which is function-scoped.
-- **`Arrow functions: Shorter syntax with lexical this binding.
-- **`Template literals: Easier string interpolation using backticks.
-- **`Default parameters: Set default values for function parameters.
-- **`Destructuring: Extract values from arrays or objects into variables.
-- **`Spread/Rest operators: ... used to expand or collect values.
-  
+- **let and const**: Block-scoped variables, unlike var which is function-scoped.
+- **Arrow functions**: Shorter syntax with lexical this binding.
+- **Template literals**: Easier string interpolation using backticks.
+- **Default parameters**: Set default values for function parameters.
+- **Destructuring**: Extract values from arrays or objects into variables.
+- **Spread** operators: Expands elements, typically in arrays or objects.
+- **Rest** operators: Gathers remaining parameters into an array.
 ```js
 // Arrow function
 const greet = name => `Hello, ${name}`;
@@ -53,25 +53,7 @@ function sum(...numbers) {
 }
 ```
 
----
 
-**Spread & Rest Operator**
-- **Spread**: Expands elements, typically in arrays or objects.
-- **Rest**: Gathers remaining parameters into an array.
-
-```js
-// Spread
-const arr = [1, 2, 3];
-const newArr = [...arr, 4, 5]; // [1, 2, 3, 4, 5]
-
-// Rest
-function sum(...numbers) {
-  return numbers.reduce((a, b) => a + b, 0); 
-}
-console.log(sum(1, 2, 3)); // 6
-```
-
----
 
 **Normal vs Arrow Functions**
 | Aspect | Normal Function | Arrow Function |

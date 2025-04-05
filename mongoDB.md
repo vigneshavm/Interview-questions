@@ -4,7 +4,6 @@
 
 MongoDB is a **NoSQL, document-oriented database**. It stores data in flexible, JSON-like documents instead of rows and columns.
 
-### 🔍 Comparison Table
 
 | Feature              | MongoDB                     | Relational DB (RDBMS)        |
 |----------------------|-----------------------------|------------------------------|
@@ -49,7 +48,6 @@ Here, `users` is the collection name.
 
 Data is stored in **BSON** (Binary JSON) format, which is optimized for speed and supports additional data types.
 
-### 🔥 Benefits of BSON:
 - Efficient binary encoding
 - Supports types like `Date`, `ObjectId`, `Binary`
 - Faster traversal and indexing
@@ -120,8 +118,6 @@ MongoDB supports many BSON types:
 
 **BSON** (Binary JSON) is a binary-encoded format used by MongoDB to store documents.
 
-### 🔍 BSON vs JSON
-
 | Feature     | BSON                            | JSON                      |
 |-------------|----------------------------------|---------------------------|
 | Format      | Binary                          | Text-based                |
@@ -135,7 +131,7 @@ MongoDB supports many BSON types:
 
 
 
-## 1. How do you create an index in MongoDB?
+## Creating an Index in MongoDB
 **Answer:** Use the `createIndex()` method to improve query performance.
 
 ```js
@@ -144,7 +140,7 @@ db.users.createIndex({ email: 1 })  // Ascending index on email
 
 ---
 
-## 2. What are the types of indexes available?
+## Types of Indexes in MongoDB
 **Answer:**
 
 | Index Type        | Description                                     |
@@ -159,15 +155,132 @@ db.users.createIndex({ email: 1 })  // Ascending index on email
 
 ---
 
-## 3. How do you perform aggregations in MongoDB?
-**Answer:** MongoDB uses the **aggregation pipeline** to process data step-by-step.
+
+## Performing Aggregations in MongoDB
+
+
+**✅ Answer:**  
+Aggregation in MongoDB is used to process data and return computed results, similar to SQL `GROUP BY` and other data transformations. MongoDB provides the **aggregation pipeline** to perform complex transformations and computations.
+
+### Aggregation Pipeline
+
+The **aggregation pipeline** is a series of stages that process documents. Each stage transforms the document and passes it to the next stage.
+
+### Basic Syntax:
+
+```js
+db.collection.aggregate([
+  { stage1 },
+  { stage2 },
+  { stage3 },
+  ...
+])
+```
+
+### Common Aggregation Stages:
+
+1. **`$match`** – Filters documents to pass only those that match the specified condition(s).
+   - Similar to a `WHERE` clause in SQL.
+
+   ```js
+   db.orders.aggregate([
+     { $match: { status: "shipped" } }
+   ])
+   ```
+
+2. **`$group`** – Groups documents by some identifier and performs aggregation on them (e.g., sum, average).
+   - Similar to `GROUP BY` in SQL.
+
+   ```js
+   db.orders.aggregate([
+     { $group: { _id: "$customerId", totalAmount: { $sum: "$amount" } } }
+   ])
+   ```
+
+3. **`$sort`** – Sorts documents by a specified field.
+
+   ```js
+   db.orders.aggregate([
+     { $sort: { totalAmount: -1 } }
+   ])
+   ```
+
+4. **`$project`** – Used to reshape the documents by including, excluding, or adding new fields.
+
+   ```js
+   db.orders.aggregate([
+     { $project: { orderId: 1, customerId: 1, totalAmount: 1 } }
+   ])
+   ```
+
+5. **`$limit`** – Limits the number of documents returned.
+
+   ```js
+   db.orders.aggregate([
+     { $limit: 5 }
+   ])
+   ```
+
+6. **`$skip`** – Skips a specified number of documents.
+
+   ```js
+   db.orders.aggregate([
+     { $skip: 10 }
+   ])
+   ```
+
+7. **`$unwind`** – Deconstructs an array field from the input document to output a document for each element in the array.
+
+   ```js
+   db.orders.aggregate([
+     { $unwind: "$items" }
+   ])
+   ```
+
+8. **`$lookup`** – Performs a left outer join to combine documents from two collections.
+
+   ```js
+   db.orders.aggregate([
+     { $lookup: {
+         from: "customers",
+         localField: "customerId",
+         foreignField: "_id",
+         as: "customerDetails"
+     }}
+   ])
+   ```
+
+9. **`$addFields`** – Adds new fields to the documents.
+
+   ```js
+   db.orders.aggregate([
+     { $addFields: { discountAmount: { $multiply: ["$totalAmount", 0.1] } } }
+   ])
+   ```
+
+### Example: Aggregating Order Data
+
+Here’s an example that combines multiple stages to find the total amount spent by each customer, sorts the results, and limits the output:
 
 ```js
 db.orders.aggregate([
-  { $match: { status: "completed" } },
-  { $group: { _id: "$customerId", totalAmount: { $sum: "$amount" } } }
+  { $match: { status: "shipped" } },  // Filter for shipped orders
+  { $group: { _id: "$customerId", totalAmount: { $sum: "$amount" } } },  // Group by customerId
+  { $sort: { totalAmount: -1 } },  // Sort by totalAmount in descending order
+  { $limit: 5 }  // Get top 5 customers
 ])
 ```
+
+### Aggregation Operators:
+- **`$sum`** – Sums values.
+- **`$avg`** – Averages values.
+- **`$min`** – Returns the minimum value.
+- **`$max`** – Returns the maximum value.
+- **`$push`** – Creates an array of values.
+
+---
+
+
 
 ---
 

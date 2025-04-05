@@ -76,6 +76,24 @@ id = "ABC"; // valid
 function display(value: string | number) { console.log(value); }
 ```
 
+
+---
+
+### **What is Duck Typing in TypeScript?**  
+If an object has required properties, it's considered compatible (structural typing).  
+
+Example:  
+```ts
+interface User {
+    name: string;
+    age: number;
+}
+const user = { name: "Alice", age: 25, city: "NY" }; // Extra props are ignored
+let person: User = user;  // ✅ Works
+```
+
+---
+
 ---
 
 ### **5. Type Inference**

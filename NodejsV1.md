@@ -633,7 +633,11 @@ if (error) {
 
 
 ## **Callback Hell** 
-  refers to nested callbacks that make code unreadable and difficult to maintain.
+      - refers to nested callbacks that make code unreadable and difficult to maintain.
+      - Use **Promises** to flatten the callback chain.
+      - Use **async/await** for better readability and linear flow.
+      -  Modularize code into smaller functions for better maintainability.
+
 - **Solutions**: 
   - **Promises**: Handles asynchronous behavior more cleanly with `.then()`, `.catch()`.
   - **Async/Await**: Allows asynchronous code to be written in a synchronous style, improving readability.
@@ -663,17 +667,6 @@ if (error) {
    - Use distributed transaction mechanisms like **two-phase commit**.
    - Implement **event-driven architecture** with message brokers (e.g., Kafka, RabbitMQ) for eventual consistency.
    - Use database strategies like **write-ahead logs** and **saga patterns** for managing consistency.
-
----
-
-##  **Callback hell in Node.js?**
-   - Use **Promises** to flatten the callback chain.
-   - Use **async/await** for better readability and linear flow.
-   - Modularize code into smaller functions for better maintainability.
-
----
-
-
 
 ---
 

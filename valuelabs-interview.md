@@ -1,24 +1,4 @@
 
-### 📞 2. **Difference between `call()`, `apply()`, and `bind()`**
-
-All three methods allow you to set the `this` context for a function.
-
-```js
-function greet(greeting, punctuation) {
-  console.log(`${greeting}, ${this.name}${punctuation}`);
-}
-
-const person = { name: "Alice" };
-```
-
-| Method  | Syntax | Behavior |
-|---------|--------|----------|
-| `call`  | `greet.call(person, "Hello", "!")` | Calls the function immediately with `this = person` |
-| `apply` | `greet.apply(person, ["Hello", "!"])` | Same as `call`, but takes arguments as an array |
-| `bind`  | `const greetAlice = greet.bind(person, "Hello", "!")`<br>`greetAlice()` | Returns a new function with bound `this` (can call later) |
-
----
-
 ### 🌲 3. Binary Search for Value 3
 
 Let's first **sort** the array:

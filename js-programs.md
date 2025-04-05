@@ -167,6 +167,17 @@ function removeDuplicates(arr) {
     if (!result.includes(arr[i])) {      result.push(arr[i]);    }
 ```
 
+**Count Character Occurrences in a String (Ignore Spaces)**
+```js
+const countChars = (str) => {
+  const result = {};
+  for (let char of str.replace(/\s/g, "")) {
+    result[char] = (result[char] || 0) + 1;
+  }
+  return result;
+};
+```
+
 **Binary Search for Value 3**
 
 sort the array:

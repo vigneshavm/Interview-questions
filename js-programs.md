@@ -1,3 +1,17 @@
+#### **Find Second Largest in an Array**
+```js
+const secondLargest = arr => {
+  const unique = [...new Set(arr)].sort((a, b) => b - a);
+  return unique[1];
+};
+```
+
+#### **Remove Duplicates From an Array**
+```js
+const removeDuplicates = arr => arr.filter(item => arr.indexOf(item) === arr.lastIndexOf(item));
+console.log(removeDuplicates([1, 2, 3, 4, 1, 5, 5, 6])); // [2, 3, 4, 6]
+```
+
 **Remove Duplicates from Array of Objects by**
 ```js
 const data = [  { id: 1, name: "A" },   { id: 1, name: "A" },  { id: 3, name: "C" }];

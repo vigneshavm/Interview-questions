@@ -31,6 +31,18 @@ function countFrequency(arr: number[]): Record<number, number> {
     return freq;
   }
 ```
+
+**Count Character Occurrences in a String (Ignore Spaces)**
+```js
+const countChars = (str) => {
+  const result = {};
+  for (let char of str.replace(/\s/g, "")) {
+    result[char] = (result[char] || 0) + 1;
+  }
+  return result;
+};
+```
+
 **Sort an Array of Objects by a Field**
 ```js
 const users = [  { id: 1, age: 30 },  { id: 2, age: 25 },  { id: 3, age: 35 }];
@@ -167,16 +179,7 @@ function removeDuplicates(arr) {
     if (!result.includes(arr[i])) {      result.push(arr[i]);    }
 ```
 
-**Count Character Occurrences in a String (Ignore Spaces)**
-```js
-const countChars = (str) => {
-  const result = {};
-  for (let char of str.replace(/\s/g, "")) {
-    result[char] = (result[char] || 0) + 1;
-  }
-  return result;
-};
-```
+
 
 **Binary Search for Value 3**
 

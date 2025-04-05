@@ -82,3 +82,30 @@ for (var i = 0; i < 5; i++) {
   (function(i) {    setTimeout(() => console.log(i), 0);  })(i);
 }
 ```
+**Remove Duplicates & Sort Using Merge Sort**
+```js
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  const mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+  
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  let result = [], i = 0, j = 0;
+
+  while (i < left.length && j < right.length) {
+    result.push(left[i] < right[j] ? left[i++] : right[j++]);
+  }
+  return result.concat(left.slice(i), right.slice(j));
+}
+
+function removeDuplicatesAndSort(arr) {
+  return mergeSort([...new Set(arr)]); // Using Set to remove duplicates
+}
+
+const array = [4, 2, 5, 3, 4, 2, 1];
+console.log(removeDuplicatesAndSort(array)); // [1, 2,
+```

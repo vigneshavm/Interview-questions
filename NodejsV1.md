@@ -253,6 +253,7 @@ if (cluster.isMaster) {
  
 
 - Streams are memory-efficient for reading/writing large data.
+- Streams process large data efficiently by handling it in chunks, avoiding memory overload.
 - Types:
   - **Readable**: Used for reading operations.
   - **Writable**: Used for writing operations.
@@ -265,7 +266,7 @@ if (cluster.isMaster) {
 const fs = require('fs');
 const readStream = fs.createReadStream('input.txt');
 const writeStream = fs.createWriteStream('output.txt');
-
+readStream.on("data", chunk => console.log(chunk));
 readStream.pipe(writeStream);
 ```
 
@@ -407,24 +408,7 @@ app.get('/data', async (req, res) => {
   import { greet } from "./module.js";
   ```
 
----
 
-## **Explain Streams in Node.js**
-
-Streams process large data efficiently by handling it in chunks, avoiding memory overload.
-
-- **Readable**: Data source (e.g., `fs.createReadStream()`).
-- **Writable**: Data destination (e.g., `fs.createWriteStream()`).
-- **Duplex**: Both readable and writable.
-- **Transform**: Modify data as it flows.
-
-```js
-const fs = require("fs");
-const readStream = fs.createReadStream("file.txt");
-readStream.on("data", chunk => console.log(chunk));
-```
-
----
 
 ## **Error Handling in Node.js**
 

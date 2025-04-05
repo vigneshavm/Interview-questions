@@ -29,17 +29,12 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 ---
 
 **Key ES6 Features**
-- **`let` and `const`**: Block scoping, unlike `var` which is function-scoped.
-- **Arrow functions**: Shorter function syntax that lexically binds `this`.
-- **Template literals**: For easier string interpolation.
-- **Default parameters**: Allows setting default values for function parameters.
-- **Destructuring**: Extract values from arrays or objects directly into variables.
-- **Spread/Rest operators**: `...` used to expand or collect values.
-- **Block scope variables** (`let` and `const`)
-- **Arrow Functions**
-- **Destructuring** for easier variable extraction
-- **Template Literals** for easy string interpolation
-- **Default Parameters**
+- **`let and const: Block-scoped variables, unlike var which is function-scoped.
+- **`Arrow functions: Shorter syntax with lexical this binding.
+- **`Template literals: Easier string interpolation using backticks.
+- **`Default parameters: Set default values for function parameters.
+- **`Destructuring: Extract values from arrays or objects into variables.
+- **`Spread/Rest operators: ... used to expand or collect values.
   
 ```js
 // Arrow function

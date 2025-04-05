@@ -386,7 +386,7 @@ app.get('/data', async (req, res) => {
 ---
 
 
-## ** Difference Between CommonJS and ES Modules**
+## **Difference Between CommonJS and ES Modules**
 
 - **CommonJS** is used in Node.js and uses `require()` and `module.exports`.
 - **ES Modules** (introduced in ES6) use `import` and `export`.
@@ -405,7 +405,7 @@ app.get('/data', async (req, res) => {
 
 ---
 
-## ** Explain Streams in Node.js**
+## **Explain Streams in Node.js**
 
 Streams process large data efficiently by handling it in chunks, avoiding memory overload.
 
@@ -422,7 +422,7 @@ readStream.on("data", chunk => console.log(chunk));
 
 ---
 
-## ** Error Handling in Node.js**
+## **Error Handling in Node.js**
 
 - **Synchronous**: `try-catch`.
 - **Asynchronous**: `Error-first callback pattern`, `Promises`, `Async/Await`.
@@ -436,7 +436,7 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 
 ---
 
-## ** Middleware in Express.js**
+## **Middleware in Express.js**
 
 Middleware functions execute before route handlers. They can perform tasks like logging, authentication, and error handling.
 
@@ -449,7 +449,7 @@ app.use((req, res, next) => {
 
 ---
 
-## ** Event Loop Phases**
+## **Event Loop Phases**
 
 The Node.js **event loop** manages asynchronous operations and includes these phases:
  **Timers** (`setTimeout`, `setInterval`)
@@ -461,14 +461,14 @@ The Node.js **event loop** manages asynchronous operations and includes these ph
 
 ---
 
-## ** Authentication vs Authorization**
+## **Authentication vs Authorization**
 
 - **Authentication**: Verifies user identity (e.g., login).
 - **Authorization**: Determines what resources a user can access.
 
 ---
 
-## ** JWT (JSON Web Token) Flow**
+## **JWT (JSON Web Token) Flow**
 
  **User logs in** → Server generates JWT.
  **JWT Structure**: Header (algorithm), Payload (user data), Signature (hash).
@@ -477,7 +477,7 @@ The Node.js **event loop** manages asynchronous operations and includes these ph
 
 ---
 
-## ** Securing a Node.js App**
+## **Securing a Node.js App**
 
 - Use **HTTPS**.
 - Validate **input data**.
@@ -488,7 +488,7 @@ The Node.js **event loop** manages asynchronous operations and includes these ph
 
 ---
 
-## ** Performance Optimization**
+## **Performance Optimization**
 
 - Use **caching** (e.g., Redis).
 - Optimize **DB queries**.
@@ -498,13 +498,13 @@ The Node.js **event loop** manages asynchronous operations and includes these ph
 
 ---
 
-## ** Worker Threads in Node.js**
+## **Worker Threads in Node.js**
 
 Worker threads offload CPU-intensive tasks to separate threads, ensuring the main thread isn't blocked.
 
 ---
 
-## ** CORS Middleware (Cross-Origin Resource Sharing)**
+## **CORS Middleware (Cross-Origin Resource Sharing)**
 
 Use **CORS** to manage cross-origin requests, restricting access to certain origins.
 
@@ -515,7 +515,7 @@ app.use(cors({ origin: "http://example.com" }));
 
 ---
 
-## ** Caching Strategies in Node.js**
+## **Caching Strategies in Node.js**
 
 - **In-memory Caching**: Use **Redis** for frequently accessed data.
 - **Cache Expiration**: Set TTL (Time to Live) to prevent stale data.
@@ -523,7 +523,7 @@ app.use(cors({ origin: "http://example.com" }));
 
 ---
 
-## ** Microservices Communication**
+## **Microservices Communication**
 
 - **Synchronous**: Use **HTTP REST** or **gRPC**.
 - **Asynchronous**: Use **message queues** (RabbitMQ, Kafka) for decoupling services.
@@ -540,7 +540,7 @@ emitter.on('userCreated', (data) => {
 
 ---
 
-## ** Load Balancing in Node.js**
+## **Load Balancing in Node.js**
 
 Distribute requests across multiple instances using tools like **PM2**, **Nginx**, or **HAProxy**.
 
@@ -550,7 +550,7 @@ pm2 start app.js -i max  # Start one instance per CPU core
 
 ---
 
-## ** Handling Large File Uploads**
+## **Handling Large File Uploads**
 
 Use **Multer** for handling multipart file uploads and consider storing large files in cloud services like **AWS S3** or **Google Cloud Storage**.
 
@@ -566,7 +566,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 
 ---
 
-## ** Dependency Injection in Node.js**
+## **Dependency Injection in Node.js**
 
 Dependency Injection (DI) helps manage service dependencies and simplifies testing.
 
@@ -589,7 +589,7 @@ container.bind(UserService).toSelf();
 
 ---
 
-## ** Database Transactions in Node.js**
+## **Database Transactions in Node.js**
 
 Use ORMs like **Sequelize** or **Mongoose** to handle database transactions and ensure data consistency.
 
@@ -613,7 +613,7 @@ async function performTransaction() {
 
 ---
 
-## ** Data Validation in Node.js with TypeScript**
+## **Data Validation in Node.js with TypeScript**
 
 Use **Joi** or **express-validator** for input validation in APIs.
 

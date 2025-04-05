@@ -664,7 +664,6 @@ Keys help React identify which items have changed. They must be unique and stabl
 ```
 
 
-# React Hook Concepts: `useCallback` vs `useMemo`
 
 ## useCallback vs useMemo (Advanced Optimization Hooks)
 

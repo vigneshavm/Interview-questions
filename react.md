@@ -189,7 +189,7 @@ useEffect(() => {
 
 ---
 
-####  What is props drilling in React?** *(21:17)*  
+#### Props drilling in React?** *(21:17)*  
 **Answer:**  
 Props drilling is the process of passing props through multiple levels of components that don’t need the data, just to reach the desired child.
 
@@ -199,7 +199,7 @@ Props drilling is the process of passing props through multiple levels of compon
 
 
 
-####  What is the Context API?** *(26:33)*  
+#### Context API?** *(26:33)*  
 **Answer:**  
 Context API allows you to **share global data** (like auth, theme) across components **without passing props manually** at every level.
 
@@ -219,7 +219,7 @@ const theme = useContext(ThemeContext);
 
 ---
 
-####  What are Higher-Order Components (HOCs)?** *(32:36)*  
+####  Higher-Order Components (HOCs)?** *(32:36)*  
 **Answer:**  
 A Higher-Order Component is a function that **takes a component and returns a new component** with added features.
 
@@ -236,7 +236,7 @@ function withLogger(WrappedComponent) {
 
 ---
 
-####  What is Reconciliation in React?** *(41:01)*  
+####  Reconciliation in React?** *(41:01)*  
 **Answer:**  
 Reconciliation is the process of comparing the new virtual DOM with the previous one and updating the real DOM with the minimal number of changes.  
 - React uses a **diffing algorithm**
@@ -245,7 +245,7 @@ Reconciliation is the process of comparing the new virtual DOM with the previous
 
 ---
 
-####  What are React Portals?** *(42:44)*  
+####  React Portals?** *(42:44)*  
 **Answer:**  
 Portals let you render a component **outside the main DOM hierarchy**.
 
@@ -257,7 +257,7 @@ ReactDOM.createPortal(<Modal />, document.getElementById('modal-root'));
 
 ---
 
-####  How does React Router handle navigation in SPAs?** *(48:23)*  
+####  React Router handle navigation in SPAs?** *(48:23)*  
 **Answer:**  
 React Router manipulates the **browser history** using JavaScript to update the UI without full page reloads.
 
@@ -270,11 +270,11 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 
 ---
 
-####  What is Redux and why is it used?** *(52:10)*  
+####  Redux and why is it used?** *(52:10)*  
 **Answer:**  
 Redux is a **predictable state management library** used to manage application state in a **centralized store**.
 
-#### Key Concepts:
+ Key Concepts:
 - **Store** – Holds global state  
 - **Action** – Plain JS object describing a change  
 - **Reducer** – Function that returns new state based on action  

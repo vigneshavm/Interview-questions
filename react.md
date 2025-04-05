@@ -153,11 +153,16 @@ Alternative syntax:
 
 ## Virtual DOM *(07:50)*
 
-The Virtual DOM is a lightweight, in-memory representation of the real DOM.
+The Virtual DOM is a lightweight, in-memory representation of the real DOM. React uses it to optimize performance by minimizing direct DOM manipulations.
+React updates the Virtual DOM first, then uses a diffing algorithm to compare it with the previous version.
+It identifies and updates only the parts that changed in the actual DOM — a process known as reconciliation.
+This results in faster rendering and improved performance.
 
-- React updates the **Virtual DOM first**, then compares it to the previous version (**diffing algorithm**)  
-- Only **changed parts** are updated in the actual DOM (**reconciliation**)  
-- Results in **better performance and faster rendering**
+```jsx
+// Behind the scenes (conceptually)
+const virtualDOM = React.createElement('div', null, 'Hello');
+ReactDOM.render(virtualDOM, document.getElementById('root'));
+```
 
 ---
 
@@ -432,17 +437,7 @@ Use when:
 ---
 
 
-## Virtual DOM
-**Interview Answer:**  
-The Virtual DOM is a lightweight copy of the actual DOM. React uses it to track changes efficiently. When state or props change, React calculates a diff and updates only what’s needed in the real DOM.
 
-```jsx
-// Behind the scenes (conceptually)
-const virtualDOM = React.createElement('div', null, 'Hello');
-ReactDOM.render(virtualDOM, document.getElementById('root'));
-```
-
----
 
 ## React Lifecycle Methods
 **Interview Answer:**  
@@ -653,15 +648,6 @@ return (
 );
 ```
 
----
-
-## Keys in Lists
-**Interview Answer:**  
-Keys help React identify which items have changed. They must be unique and stable.
-
-```jsx
-{items.map(item => <li key={item.id}>{item.name}</li>)}
-```
 
 
 

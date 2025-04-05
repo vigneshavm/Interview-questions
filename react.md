@@ -195,27 +195,7 @@ useEffect(() => {
 
 ---
 
-## useState & useEffect Hooks *(14:45)*
 
-### `useState` – for managing state
-
-```jsx
-const [count, setCount] = useState(0);
-```
-
-### `useEffect` – for side effects (data fetch, subscriptions, timers)
-
-```jsx
-useEffect(() => {
-  // Code to run on mount/update
-}, [dependencies]);
-```
-
-- Without dependencies: runs on every render  
-- With empty array `[]`: runs only once  
-- With `[count]`: runs when `count` changes
-
----
 
 ## Props Drilling *(21:17)*
 
@@ -464,108 +444,7 @@ useEffect(() => {
 
 ---
 
-## useState Hook
-**Interview Answer:**  
-`useState` is a React Hook that lets us add local state to functional components.
 
-```jsx
-import { useState } from 'react';
-
-function Counter() {
-  const [count, setCount] = useState(0);
-  return <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>;
-}
-```
-
----
-
-## useEffect Hook
-**Interview Answer:**  
-`useEffect` lets us perform side effects (like API calls or subscriptions) in functional components.
-
-```jsx
-useEffect(() => {
-  console.log("Component rendered or updated");
-  return () => console.log("Cleanup");
-}, []);
-```
-
----
-
-## useRef Hook
-**Interview Answer:**  
-`useRef` is used to access DOM elements directly or persist values across renders without re-rendering.
-
-```jsx
-const inputRef = useRef();
-
-function focusInput() {
-  inputRef.current.focus();
-}
-
-return <input ref={inputRef} />;
-```
-
----
-
-## useContext Hook
-**Interview Answer:**  
-`useContext` allows us to share state globally without prop drilling.
-
-```jsx
-const ThemeContext = React.createContext();
-
-function App() {
-  return (
-    <ThemeContext.Provider value="dark">
-      <Child />
-    </ThemeContext.Provider>
-  );
-}
-
-function Child() {
-  const theme = useContext(ThemeContext);
-  return <div>Theme: {theme}</div>;
-}
-```
-
----
-
-## useCallback Hook
-**Interview Answer:**  
-`useCallback` is used to memoize functions, preventing unnecessary re-creations during re-renders.
-
-```jsx
-const handleClick = useCallback(() => {
-  console.log("Clicked");
-}, []);
-```
-
----
-
-## useMemo Hook
-**Interview Answer:**  
-`useMemo` is used to memoize expensive calculations.
-
-```jsx
-const expensiveValue = useMemo(() => {
-  return computeHeavyFunction(num);
-}, [num]);
-```
-
----
-
-## Memo vs useMemo
-**Interview Answer:**  
-`React.memo` is used to memoize entire components. `useMemo` is used to memoize values returned from a function.
-
-```jsx
-const MyComponent = React.memo(function ({ name }) {
-  return <div>{name}</div>;
-});
-```
-
----
 
 ## React Router
 **Interview Answer:**  
@@ -639,9 +518,131 @@ class ErrorBoundary extends React.Component {
 
 
 
+## React Hooks *(14:45)*
 
+React Hooks are functions that let you "hook into" React state and lifecycle features from function components.
 
-## useCallback vs useMemo (Advanced Optimization Hooks)
+---
+
+### `useState` – For Managing State
+
+```jsx
+const [count, setCount] = useState(0);
+```
+
+- Adds state to functional components  
+- Returns a stateful value and a function to update it
+
+```jsx
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>;
+}
+```
+
+---
+
+### `useEffect` – For Side Effects (Data Fetch, Subscriptions, Timers)
+
+```jsx
+useEffect(() => {
+  // Code to run on mount/update
+}, [dependencies]);
+```
+
+- Without dependencies: runs on every render  
+- With empty array `[]`: runs only once  
+- With `[count]`: runs when `count` changes
+
+```jsx
+useEffect(() => {
+  console.log("Component rendered or updated");
+  return () => console.log("Cleanup");
+}, []);
+```
+
+---
+
+### `useRef` – For Persistent Values & Accessing DOM
+
+```jsx
+const inputRef = useRef();
+
+function focusInput() {
+  inputRef.current.focus();
+}
+
+return <input ref={inputRef} />;
+```
+
+- Accesses DOM elements directly  
+- Stores mutable values that do not cause re-renders
+
+---
+
+### `useContext` – For Global State (Avoid Prop Drilling)
+
+```jsx
+const ThemeContext = React.createContext();
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Child />
+    </ThemeContext.Provider>
+  );
+}
+
+function Child() {
+  const theme = useContext(ThemeContext);
+  return <div>Theme: {theme}</div>;
+}
+```
+
+---
+
+### `useCallback` – Memoize Functions
+
+```jsx
+const handleClick = useCallback(() => {
+  console.log("Clicked");
+}, []);
+```
+
+- Prevents unnecessary re-creation of functions on re-renders  
+- Useful when passing callbacks to memoized child components
+
+---
+
+### `useMemo` – Memoize Expensive Calculations
+
+```jsx
+const expensiveValue = useMemo(() => {
+  return computeHeavyFunction(num);
+}, [num]);
+```
+
+- Avoids recalculating expensive values on every render  
+- Runs only when dependencies change
+
+---
+
+### `React.memo` vs `useMemo`
+
+```jsx
+const MyComponent = React.memo(function ({ name }) {
+  return <div>{name}</div>;
+});
+```
+
+- `React.memo` memoizes components  
+- `useMemo` memoizes values
+
+---
+
+### `useCallback` vs `useMemo`
 
 | Hook         | Purpose                                      | Use Case                                                                 |
 |--------------|----------------------------------------------|--------------------------------------------------------------------------|
@@ -653,7 +654,7 @@ class ErrorBoundary extends React.Component {
 
 ---
 
-### 🔍 Example: `useCallback`
+### `useCallback` Example
 
 ```jsx
 const handleClick = useCallback(() => {
@@ -661,11 +662,11 @@ const handleClick = useCallback(() => {
 }, []);
 ```
 
-Prevents re-creation unless dependencies change – useful when passing down to memoized children.
+- Prevents re-creation unless dependencies change
 
 ---
 
-### 🔍 Example: `useMemo`
+### `useMemo` Example
 
 ```jsx
 const filteredItems = useMemo(() => {
@@ -673,7 +674,10 @@ const filteredItems = useMemo(() => {
 }, [items]);
 ```
 
-Avoids filtering on every render unless `items` change.
+- Avoids filtering on every render unless `items` change
+
+---
+```
 
 ---
 

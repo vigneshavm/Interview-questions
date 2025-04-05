@@ -391,31 +391,6 @@ const LazyComponent = React.lazy(() => import("./Component"));
 
 ---
 
-## React.memo Hook
-
-`React.memo` is a **HOC** that memoizes functional components and prevents unnecessary re-renders.
-
-```jsx
-const MyComponent = React.memo(function MyComponent(props) {
-  return <div>{props.name}</div>;
-});
-```
-
-Use when:
-
-- Props change infrequently  
-- Component re-renders cause performance hits
-
----
-
-## useCallback vs useMemo
-
-| Hook         | Purpose                        | Use Case                         |
-|--------------|--------------------------------|----------------------------------|
-| `useCallback`| Memoizes a function reference  | When passing callbacks to children |
-| `useMemo`    | Memoizes computed value        | When recalculating is expensive   |
-
----
 
 
 
@@ -677,7 +652,32 @@ const filteredItems = useMemo(() => {
 - Avoids filtering on every render unless `items` change
 
 ---
+
+
+### React.memo Hook
+
+`React.memo` is a **HOC** that memoizes functional components and prevents unnecessary re-renders.
+
+```jsx
+const MyComponent = React.memo(function MyComponent(props) {
+  return <div>{props.name}</div>;
+});
 ```
 
+Use when:
+
+- Props change infrequently  
+- Component re-renders cause performance hits
+
 ---
+
+### useCallback vs useMemo
+
+| Hook         | Purpose                        | Use Case                         |
+|--------------|--------------------------------|----------------------------------|
+| `useCallback`| Memoizes a function reference  | When passing callbacks to children |
+| `useMemo`    | Memoizes computed value        | When recalculating is expensive   |
+
+---
+
 

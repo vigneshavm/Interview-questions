@@ -1,6 +1,4 @@
-### **JavaScript Concepts**
-
-**Variable Hoisting**
+### **Variable Hoisting**
 - Hoisting refers to how JavaScript moves declarations to the top of their scope, but **only the declarations** (not the assignments). 
 - Variables declared using `var` are hoisted and initialized to `undefined`. `let` and `const` are hoisted but remain in the **Temporal Dead Zone** until initialized.
   
@@ -14,7 +12,7 @@ let b = 10; // b is in TDZ
 
 ---
 
-**Function Hoisting**
+### **Function Hoisting**
 - Function declarations are hoisted completely, meaning you can call them before their declaration in code.
 - Function expressions (like those using `var`, `let`, or `const`) are hoisted as variables, and they are `undefined` until assigned.
   
@@ -28,7 +26,7 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
-**Difference between `var`, `let`, and `const`?**  
+### **Difference between `var`, `let`, and `const`?**  
 - `var`: **Function-scoped**, hoisted, can be re-declared.  
 - `let`: **Block-scoped**, not hoisted, prevents redeclaration issues.  
 - `const`: **Block-scoped**, immutable reference, must be initialized.
@@ -53,7 +51,7 @@ console.log(x); // 10
 
 ---
 
-**Key ES6 Features**
+### **Key ES6 Features**
 - **let and const**: Block-scoped variables, unlike var which is function-scoped.
 - **Arrow functions**: Shorter syntax with lexical this binding.
 - **Template literals**: Easier string interpolation using backticks.
@@ -84,7 +82,7 @@ function sum(...numbers) {
 
 
 
-**Normal vs Arrow Functions**
+### **Normal vs Arrow Functions**
 | Aspect | Normal Function | Arrow Function |
 |--------|-----------------|----------------|
 | `this` binding | Dynamic (depends on how the function is called) | Lexical (inherited from parent scope) |
@@ -93,7 +91,7 @@ function sum(...numbers) {
 
 ---
 
-**Shallow vs Deep Copy**
+### **Shallow vs Deep Copy**
 - **Shallow Copy**: Copies object references. Nested objects are still linked.
 - **Deep Copy**: Recursively copies the values of objects, ensuring no references remain.
 
@@ -111,7 +109,7 @@ console.log(obj.b.c); // 2 (original remains unchanged)
 ```
 
 
-**Difference between `call()`, `apply()`, and `bind()`**
+### **Difference between `call()`, `apply()`, and `bind()`**
 
 All three methods allow you to set the `this` context for a function.
 
@@ -132,7 +130,7 @@ const person = { name: "Alice" };
 ---
 
 
-**What is a Closure?**  
+### **What is a Closure?**  
 A closure allows a function to **remember its outer scope** even after execution.  
 
 Example:  
@@ -152,7 +150,7 @@ increment(); // 2
 
 ---
 
-**Synchronous vs. Asynchronous JavaScript?**  
+### **Synchronous vs. Asynchronous JavaScript?**  
 - **Synchronous**: Code executes sequentially, blocking further execution.  
 - **Asynchronous**: Operations (e.g., API calls) run in the background without blocking.  
 
@@ -166,14 +164,7 @@ async function fetchData() {
 fetchData();
 ```
 
-
-
-
-
-
-
-
-**Explain the difference between `==` and `===` in JavaScript.**  
+### **Explain the difference between `==` and `===` in JavaScript.**  
 - `==` (Abstract Equality): Converts types before comparing.  
 - `===` (Strict Equality): No type conversion, **compares both value & type**.  
 
@@ -187,7 +178,7 @@ console.log(5 === "5"); // ❌ false (different types)
 
 
 
-**Explain `this` keyword in JavaScript.**  
+### **Explain `this` keyword in JavaScript.**  
 - **Global scope (`this` = window/globalThis)**  
 - **Object method (`this` = object)**  
 - **Arrow function (`this` = lexical/parent scope)**  
@@ -213,7 +204,7 @@ console.log(obj2.getValue()); // ❌ undefined
 
 ---
 
-**What is the difference between `null` and `undefined`?**  
+### **What is the difference between `null` and `undefined`?**  
 | Feature | `null` | `undefined` |
 |---------|--------|------------|
 | Meaning | Absence of a value (intentional) | Variable declared but not assigned |
@@ -231,7 +222,7 @@ console.log(b); // undefined
 
 
 
-**Explain Event Loop & Call Stack in JavaScript.**  
+### **What is the difference between `null` and `undefined`?**  Explain Event Loop & Call Stack in JavaScript.**  
 JavaScript is **single-threaded** but can handle async tasks via the **Event Loop**.  
 1. **Call Stack**: Executes synchronous code.  
 2. **Web APIs**: Handles async tasks (setTimeout, fetch).  
@@ -255,7 +246,7 @@ Timeout
 
 ---
 
-**Explain the difference between `async/await` and Promises.**  
+### **What is the difference between `null` and `undefined`?**  Explain the difference between `async/await` and Promises.**  
 - **Promise**: Handles async code with `.then()` and `.catch()`.  
 - **async/await**: Cleaner syntax, uses `await` inside an `async` function.  
 
@@ -282,7 +273,7 @@ fetchData();
 
 ---
 
-**What are JavaScript Modules (`import/export`)?**  
+### **What is the difference between `null` and `undefined`?**  What are JavaScript Modules (`import/export`)?**  
 Modules **split** code into reusable files.  
 
 **Exporting (`math.js`)**:  
@@ -299,7 +290,7 @@ console.log(add(2, 3)); // ✅ 5
 
 ---
 
-**How does TypeScript improve JavaScript?**  
+### **How does TypeScript improve JavaScript?**  
 ✅ **Static Typing** (`number`, `string`, `boolean`, `any`)  
 ✅ **Interfaces & Types** (`interface User { name: string; age: number }`)  
 ✅ **Better Code Completion & Debugging**  
@@ -314,7 +305,7 @@ console.log(greet("John")); // ✅ Hello, John
 
 ---
 
-**What is Duck Typing in TypeScript?**  
+### **What is Duck Typing in TypeScript?**  
 If an object has required properties, it's considered compatible (structural typing).  
 
 Example:  

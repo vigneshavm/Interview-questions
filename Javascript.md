@@ -1,6 +1,6 @@
 ### **JavaScript Concepts**
 
-#### **1. Variable Hoisting**
+**Variable Hoisting**
 - Hoisting refers to how JavaScript moves declarations to the top of their scope, but **only the declarations** (not the assignments). 
 - Variables declared using `var` are hoisted and initialized to `undefined`. `let` and `const` are hoisted but remain in the **Temporal Dead Zone** until initialized.
   
@@ -14,7 +14,7 @@ let b = 10; // b is in TDZ
 
 ---
 
-#### **2. Function Hoisting**
+**Function Hoisting**
 - Function declarations are hoisted completely, meaning you can call them before their declaration in code.
 - Function expressions (like those using `var`, `let`, or `const`) are hoisted as variables, and they are `undefined` until assigned.
   
@@ -28,13 +28,18 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
-#### **3. Key ES6 Features**
+**Key ES6 Features**
 - **`let` and `const`**: Block scoping, unlike `var` which is function-scoped.
 - **Arrow functions**: Shorter function syntax that lexically binds `this`.
 - **Template literals**: For easier string interpolation.
 - **Default parameters**: Allows setting default values for function parameters.
 - **Destructuring**: Extract values from arrays or objects directly into variables.
 - **Spread/Rest operators**: `...` used to expand or collect values.
+- **Block scope variables** (`let` and `const`)
+- **Arrow Functions**
+- **Destructuring** for easier variable extraction
+- **Template Literals** for easy string interpolation
+- **Default Parameters**
   
 ```js
 // Arrow function
@@ -55,7 +60,7 @@ function sum(...numbers) {
 
 ---
 
-#### **4. Spread & Rest Operator**
+**Spread & Rest Operator**
 - **Spread**: Expands elements, typically in arrays or objects.
 - **Rest**: Gathers remaining parameters into an array.
 
@@ -73,7 +78,7 @@ console.log(sum(1, 2, 3)); // 6
 
 ---
 
-#### **5. Normal vs Arrow Functions**
+**Normal vs Arrow Functions**
 | Aspect | Normal Function | Arrow Function |
 |--------|-----------------|----------------|
 | `this` binding | Dynamic (depends on how the function is called) | Lexical (inherited from parent scope) |
@@ -82,7 +87,7 @@ console.log(sum(1, 2, 3)); // 6
 
 ---
 
-#### **6. Shallow vs Deep Copy**
+**Shallow vs Deep Copy**
 - **Shallow Copy**: Copies object references. Nested objects are still linked.
 - **Deep Copy**: Recursively copies the values of objects, ensuring no references remain.
 
@@ -100,7 +105,7 @@ console.log(obj.b.c); // 2 (original remains unchanged)
 ```
 
 
-#### **7. Difference between `call()`, `apply()`, and `bind()`**
+**Difference between `call()`, `apply()`, and `bind()`**
 
 All three methods allow you to set the `this` context for a function.
 
@@ -119,3 +124,20 @@ const person = { name: "Alice" };
 | `bind`  | `const greetAlice = greet.bind(person, "Hello", "!")`<br>`greetAlice()` | Returns a new function with bound `this` (can call later) |
 
 ---
+
+
+
+
+**Closures**
+```js
+function outer() {
+  let counter = 0;
+  return function inner() {
+    counter++;
+    console.log(counter);
+  };
+}
+const increment = outer();
+increment(); // 1
+increment(); // 2
+```

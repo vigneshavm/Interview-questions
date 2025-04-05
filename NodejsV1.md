@@ -25,11 +25,11 @@ server.listen(3000, () => {
 ## **Event Loop **
 
 **Phases of the Event Loop:**
-1. **Timers**: Executes the callbacks for `setTimeout` and `setInterval`.
-2. **Pending Callbacks**: Handles I/O callbacks (e.g., TCP callbacks).
-3. **Idle/Prepare**: Internal phase for system operations.
-4. **Poll**: Waits for new I/O events and executes callbacks when ready.
-5. **Check**: Executes `setImmediate` callbacks.
+ **Timers**: Executes the callbacks for `setTimeout` and `setInterval`.
+ **Pending Callbacks**: Handles I/O callbacks (e.g., TCP callbacks).
+ **Idle/Prepare**: Internal phase for system operations.
+ **Poll**: Waits for new I/O events and executes callbacks when ready.
+ **Check**: Executes `setImmediate` callbacks.
 6. **Close Callbacks**: Handles events such as `close` event listeners.
 
 **Code Execution Order:**
@@ -644,6 +644,60 @@ if (error) {
 **`Promise.all()` vs `Promise.race()`**:
 - **`Promise.all()`**: Resolves when **all** promises are completed.
 - **`Promise.race()`**: Resolves when **the first** promise resolves or rejects.
+
 - 
+
+##  **How do you handle scalability issues in Node.js applications?**
+   - **Clustering**: Use the `cluster` module to utilize multi-core systems by spawning worker processes.
+   - **Load Balancing**: Distribute incoming requests across multiple servers using NGINX, HAProxy, or AWS Elastic Load Balancer.
+   - **Horizontal Scaling**: Deploy multiple instances of the application using containers (e.g., Docker) and orchestration tools like Kubernetes.
+   - **Caching**: Use Redis or Memcached to cache frequently accessed data.
+   - **Optimize Queries**: Use efficient database queries and indexing.
+
+---
+
+##  **How do you ensure data consistency across distributed services?**
+   - Use distributed transaction mechanisms like **two-phase commit**.
+   - Implement **event-driven architecture** with message brokers (e.g., Kafka, RabbitMQ) for eventual consistency.
+   - Use database strategies like **write-ahead logs** and **saga patterns** for managing consistency.
+
+---
+
+##  **How do you handle callback hell in Node.js?**
+   - Use **Promises** to flatten the callback chain.
+   - Use **async/await** for better readability and linear flow.
+   - Modularize code into smaller functions for better maintainability.
+
+---
+
+##  **Promises vs Async/Await**
+   - Promises simplify callbacks but can still become complex.
+   - **Async/await** allows writing asynchronous code like synchronous code, improving readability.
+   - Async/await works on top of promises and eliminates `.then()` chains.
+
+---
+
+###  **How do you manage security in Node.js applications?**
+   - **Input Validation**: Use libraries like Joi or Express-validator to validate inputs.
+   - **Sanitize Data**: Prevent SQL injections and XSS attacks.
+   - **Authentication**: Use JWT or OAuth for secure authentication.
+   - **Environment Variables**: Store secrets securely using `dotenv` or AWS Secrets Manager.
+   - **Rate Limiting**: Use middleware to limit requests (e.g., `express-rate-limit`).
+   - **Helmet**: Protect HTTP headers for Express apps.
+
+---
+
+## **Single-Threaded Nature**
+- Node.js runs in a **single-threaded environment** using a single thread, allowing it to handle concurrent I/O operations effectively due to its **non-blocking asynchronous execution model**.
+- For **multi-core utilization**, Node.js can use **clustering** (which creates multiple Node.js processes) or **worker threads**.
+
+
+## **Handling CPU-Intensive Tasks**
+- Use **Worker Threads** (via the `worker_threads` module) for CPU-intensive tasks, which offloads the task to another thread and prevents blocking the main event loop.
+- For efficiency, use **worker pools** instead of spawning a new worker for each task.
+
+---
+
+
 
 

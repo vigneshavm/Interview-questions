@@ -109,3 +109,52 @@ function removeDuplicatesAndSort(arr) {
 const array = [4, 2, 5, 3, 4, 2, 1];
 console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
 ```
+
+**Remove Duplicates Without Predefined Functions**
+```js
+function removeDuplicates(arr) {
+  const result = [];
+  let resultIndex = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    let isDuplicate = false;
+
+    // Check if arr[i] already exists in result[]
+    for (let j = 0; j < resultIndex; j++) {
+      if (arr[i] === result[j]) {
+        isDuplicate = true;
+        break;
+      }
+    }
+
+    // If not found in result[], add it
+    if (!isDuplicate) {
+      result[resultIndex] = arr[i];
+      resultIndex++;
+    }
+  }
+
+  return result;
+}
+
+const array = [4, 2, 5, 3, 4, 2, 1];
+const noDupes = removeDuplicates(array);
+
+for (let i = 0; i < noDupes.length; i++) {
+  console.log(noDupes[i]); // Output: 4 2 5 3 1
+}
+```
+
+**Remove Duplicates from an array without using Set**
+```js
+function removeDuplicates(arr) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!result.includes(arr[i])) {      result.push(arr[i]);    }
+  }
+  return result;
+}
+
+const array = [4, 2, 5, 3, 4, 2, 1];
+console.log(removeDuplicates(array)); // [4, 2, 5, 3, 1]
+```

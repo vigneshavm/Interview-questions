@@ -631,21 +631,21 @@ if (error) {
 
 
 
-## **Callback Hell & Solutions**
-- **Callback Hell** refers to nested callbacks that make code unreadable and difficult to maintain.
+
+## **Callback Hell** 
+  refers to nested callbacks that make code unreadable and difficult to maintain.
 - **Solutions**: 
   - **Promises**: Handles asynchronous behavior more cleanly with `.then()`, `.catch()`.
   - **Async/Await**: Allows asynchronous code to be written in a synchronous style, improving readability.
 
-**Promise vs Async/Await**:
+## **Promise vs Async/Await**:
 - **Promises**: Use `.then()` and `.catch()` for chaining async calls.
 - **Async/Await**: More readable and concise for handling asynchronous operations.
 
-**`Promise.all()` vs `Promise.race()`**:
+## **`Promise.all()` vs `Promise.race()`**:
 - **`Promise.all()`**: Resolves when **all** promises are completed.
 - **`Promise.race()`**: Resolves when **the first** promise resolves or rejects.
 
-- 
 
 ##  **How do you handle scalability issues in Node.js applications?**
    - **Clustering**: Use the `cluster` module to utilize multi-core systems by spawning worker processes.

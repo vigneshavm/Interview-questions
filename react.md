@@ -134,6 +134,7 @@ The `key` prop helps React **track changes in a list** of elements efficiently d
 
 Fragments allow grouping multiple elements **without adding extra nodes** to the DOM.
 
+
 ```jsx
 <>
   <td>Name</td>
@@ -149,7 +150,7 @@ Alternative syntax:
 </React.Fragment>
 ```
 
----
+
 
 ## Virtual DOM *(07:50)*
 
@@ -635,18 +636,7 @@ class ErrorBoundary extends React.Component {
 
 ---
 
-## React Fragments
-**Interview Answer:**  
-Fragments let you return multiple elements without adding extra DOM nodes.
 
-```jsx
-return (
-  <>
-    <h1>Title</h1>
-    <p>Description</p>
-  </>
-);
-```
 
 
 

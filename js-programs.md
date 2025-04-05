@@ -107,5 +107,5 @@ function removeDuplicatesAndSort(arr) {
 }
 
 const array = [4, 2, 5, 3, 4, 2, 1];
-console.log(removeDuplicatesAndSort(array)); // [1, 2,
+console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
 ```

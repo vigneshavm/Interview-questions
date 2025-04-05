@@ -164,7 +164,7 @@ async function fetchData() {
 fetchData();
 ```
 
-### **Explain the difference between `==` and `===` in JavaScript.**  
+### **`==` and `===` in JavaScript.**  
 - `==` (Abstract Equality): Converts types before comparing.  
 - `===` (Strict Equality): No type conversion, **compares both value & type**.  
 
@@ -178,7 +178,7 @@ console.log(5 === "5"); // ❌ false (different types)
 
 
 
-### **Explain `this` keyword in JavaScript.**  
+### **`this` keyword in JavaScript.**  
 - **Global scope (`this` = window/globalThis)**  
 - **Object method (`this` = object)**  
 - **Arrow function (`this` = lexical/parent scope)**  
@@ -222,7 +222,7 @@ console.log(b); // undefined
 
 
 
-### ** `null` vs `undefined`?**  Explain Event Loop & Call Stack in JavaScript.**  
+### **Event Loop & Call Stack in JavaScript.**  
 JavaScript is **single-threaded** but can handle async tasks via the **Event Loop**.  
 1. **Call Stack**: Executes synchronous code.  
 2. **Web APIs**: Handles async tasks (setTimeout, fetch).  
@@ -246,7 +246,7 @@ Timeout
 
 ---
 
-### ** `null` and `undefined`?**  Explain the difference between `async/await` and Promises.**  
+### **`async/await` Vs Promises.**  
 - **Promise**: Handles async code with `.then()` and `.catch()`.  
 - **async/await**: Cleaner syntax, uses `await` inside an `async` function.  
 
@@ -273,7 +273,7 @@ fetchData();
 
 ---
 
-### ** `null` and `undefined`?**  What are JavaScript Modules (`import/export`)?**  
+### **JavaScript Modules (`import/export`)?**  
 Modules **split** code into reusable files.  
 
 **Exporting (`math.js`)**:  

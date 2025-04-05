@@ -22,31 +22,35 @@ server.listen(3000, () => {
 
 ---
 
-##  **Event Loop**
+## **Event Loop & Concurrency**
 
-- Core of Node.js concurrency model.
-- Handles asynchronous operations using a queue system.
-- Executes callbacks from timers, I/O events, etc.
+**Phases of the Event Loop:**
+1. **Timers**: Executes the callbacks for `setTimeout` and `setInterval`.
+2. **Pending Callbacks**: Handles I/O callbacks (e.g., TCP callbacks).
+3. **Idle/Prepare**: Internal phase for system operations.
+4. **Poll**: Waits for new I/O events and executes callbacks when ready.
+5. **Check**: Executes `setImmediate` callbacks.
+6. **Close Callbacks**: Handles events such as `close` event listeners.
 
- Code Sample
+**Code Execution Order:**
 ```js
-console.log('Start');
-
-setTimeout(() => {
-  console.log('Timeout');
-}, 0);
-
-console.log('End');
+setTimeout(() => console.log("Timeout Callback"), 10);
+setImmediate(() => console.log("Immediate Callback"));
+process.nextTick(() => console.log("NextTick Callback"));
+console.log("Main Module Ends");
 ```
-
 **Output:**
 ```
-Start
-End
-Timeout
+Main Module Ends
+NextTick Callback
+Immediate Callback
+Timeout Callback
 ```
 
----
+- **`process.nextTick()` vs `setImmediate()`**:  
+  - `process.nextTick()` executes **before** I/O operations, and **before** the next event loop iteration.
+  - `setImmediate()` executes **after I/O callbacks**, right before the event loop continues.
+
 
 ##  **Event Emitters**
 

@@ -206,7 +206,7 @@ console.log(foo);
 - CPU-bound tasks should be offloaded to child processes or worker threads.
 - Suitable for I/O-bound, not CPU-bound applications.
 
-### 💡 Sample Code
+
 
 ```js
 console.log(`Main process PID: ${process.pid}`);
@@ -223,7 +223,7 @@ setTimeout(() => console.log('Async operation'), 1000);
 - Improves performance on multi-core systems.
 - Each worker runs in its own thread/process.
 
-### 💡 Sample Code
+
 
 ```js
 const cluster = require('cluster');
@@ -255,7 +255,7 @@ if (cluster.isMaster) {
   - **Duplex**: Both read and write.
   - **Transform**: Modify data while reading/writing.
 
-### 💡 Sample Code
+
 
 ```js
 const fs = require('fs');
@@ -275,7 +275,7 @@ readStream.pipe(writeStream);
 - Used in chats, games, real-time dashboards.
 - Socket.IO simplifies WebSocket implementation with fallback mechanisms.
 
-### 💡 Sample Code
+
 
 ```js
 const http = require('http').createServer();
@@ -301,7 +301,7 @@ http.listen(3000);
 - Node.js needs to set appropriate headers for cross-domain requests.
 - Easily managed using the `cors` npm package.
 
-### 💡 Sample Code
+
 
 ```js
 const express = require('express');
@@ -322,7 +322,7 @@ app.listen(3000);
 - Secure and manage configuration outside of the source code.
 - The `dotenv` package loads `.env` file variables into `process.env`.
 
-### 💡 Sample Code
+
 
 ```env
 PORT=3000
@@ -343,7 +343,7 @@ console.log(process.env.API_KEY);
 - Protects APIs from abuse or brute-force attacks.
 - Implemented using middleware like `express-rate-limit`.
 
-### 💡 Sample Code
+
 
 ```js
 const rateLimit = require('express-rate-limit');
@@ -364,7 +364,7 @@ app.use(limiter);
 - Redis is used for caching, session storage, pub/sub.
 - Reduces DB load by storing frequently accessed data.
 
-### 💡 Sample Code
+
 
 ```js
 const redis = require('redis');

@@ -32,6 +32,12 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 - `var`: **Function-scoped**, hoisted, can be re-declared.  
 - `let`: **Block-scoped**, not hoisted, prevents redeclaration issues.  
 - `const`: **Block-scoped**, immutable reference, must be initialized.  
+| Feature  | `var` | `let` | `const` |
+|----------|------|------|--------|
+| Scope | Function-scoped | Block-scoped | Block-scoped |
+| Hoisting | Hoisted (undefined) | Hoisted (TDZ) | Hoisted (TDZ) |
+| Reassignment | ✅ Allowed | ✅ Allowed | ❌ Not allowed |
+| Redeclaration | ✅ Allowed | ❌ Not allowed | ❌ Not allowed |
 
 Example:  
 ```js
@@ -41,7 +47,7 @@ if (true) {
     const z = 30; // Block-scoped & immutable
 }
 console.log(x); // 10
-// console.log(y, z); // Error
+// console.log(y, z); // ReferenceError
 ```
 
 ---
@@ -54,6 +60,10 @@ console.log(x); // 10
 - **Destructuring**: Extract values from arrays or objects into variables.
 - **Spread** operators: Expands elements, typically in arrays or objects.
 - **Rest** operators: Gathers remaining parameters into an array.
+- **Promises & Async/Await**
+- **Modules (`import/export`)**
+- **Optional Chaining (`?.`)**
+
 ```js
 // Arrow function
 const greet = name => `Hello, ${name}`;
@@ -154,5 +164,168 @@ async function fetchData() {
 }
 fetchData();
 ```
+
+
+
+
+
+
+
+
+**Explain the difference between `==` and `===` in JavaScript.**  
+- `==` (Abstract Equality): Converts types before comparing.  
+- `===` (Strict Equality): No type conversion, **compares both value & type**.  
+
+Example:  
+```js
+console.log(5 == "5");  // ✅ true (type conversion)
+console.log(5 === "5"); // ❌ false (different types)
+```
+
+---
+
+
+
+**Explain `this` keyword in JavaScript.**  
+- **Global scope (`this` = window/globalThis)**  
+- **Object method (`this` = object)**  
+- **Arrow function (`this` = lexical/parent scope)**  
+
+Example:  
+```js
+const obj = {
+    value: 42,
+    getValue: function () {
+        return this.value;
+    },
+};
+console.log(obj.getValue()); // ✅ 42
+```
+**Arrow function (`this` is not bound)**:  
+```js
+const obj2 = {
+    value: 10,
+    getValue: () => this.value, // ❌ `this` refers to global
+};
+console.log(obj2.getValue()); // ❌ undefined
+```
+
+---
+
+**What is the difference between `null` and `undefined`?**  
+| Feature | `null` | `undefined` |
+|---------|--------|------------|
+| Meaning | Absence of a value (intentional) | Variable declared but not assigned |
+| Type | Object (`typeof null === "object"`) | Undefined (`typeof undefined === "undefined"`) |
+
+Example:  
+```js
+let a = null;
+let b;
+console.log(a); // null
+console.log(b); // undefined
+```
+
+---
+
+
+
+**Explain Event Loop & Call Stack in JavaScript.**  
+JavaScript is **single-threaded** but can handle async tasks via the **Event Loop**.  
+1. **Call Stack**: Executes synchronous code.  
+2. **Web APIs**: Handles async tasks (setTimeout, fetch).  
+3. **Callback Queue**: Holds async tasks to be executed.  
+4. **Event Loop**: Moves tasks from the queue to the call stack.  
+
+Example:  
+```js
+console.log("Start");
+setTimeout(() => console.log("Timeout"), 0);
+Promise.resolve().then(() => console.log("Promise"));
+console.log("End");
+```
+**Output:**  
+```
+Start
+End
+Promise
+Timeout
+```
+
+---
+
+**Explain the difference between `async/await` and Promises.**  
+- **Promise**: Handles async code with `.then()` and `.catch()`.  
+- **async/await**: Cleaner syntax, uses `await` inside an `async` function.  
+
+Example using **Promises**:  
+```js
+fetch("https://api.example.com/data")
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+```
+Example using **async/await**:  
+```js
+async function fetchData() {
+    try {
+        let response = await fetch("https://api.example.com/data");
+        let data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+fetchData();
+```
+
+---
+
+**What are JavaScript Modules (`import/export`)?**  
+Modules **split** code into reusable files.  
+
+**Exporting (`math.js`)**:  
+```js
+export function add(a, b) {
+    return a + b;
+}
+```
+**Importing (`app.js`)**:  
+```js
+import { add } from "./math.js";
+console.log(add(2, 3)); // ✅ 5
+```
+
+---
+
+**How does TypeScript improve JavaScript?**  
+✅ **Static Typing** (`number`, `string`, `boolean`, `any`)  
+✅ **Interfaces & Types** (`interface User { name: string; age: number }`)  
+✅ **Better Code Completion & Debugging**  
+
+Example:  
+```ts
+function greet(name: string): string {
+    return `Hello, ${name}`;
+}
+console.log(greet("John")); // ✅ Hello, John
+```
+
+---
+
+**What is Duck Typing in TypeScript?**  
+If an object has required properties, it's considered compatible (structural typing).  
+
+Example:  
+```ts
+interface User {
+    name: string;
+    age: number;
+}
+const user = { name: "Alice", age: 25, city: "NY" }; // Extra props are ignored
+let person: User = user;  // ✅ Works
+```
+
+---
 
 

@@ -204,7 +204,7 @@ console.log(obj2.getValue()); // ❌ undefined
 
 ---
 
-### ** `null` and `undefined`?**  
+### **`null` and `undefined`?**  
 | Feature | `null` | `undefined` |
 |---------|--------|------------|
 | Meaning | Absence of a value (intentional) | Variable declared but not assigned |

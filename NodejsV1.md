@@ -102,28 +102,47 @@ console.log(buf.toString()); // Hello
 
 ---
 
+
+
+
+
+
 ##  **Middleware in Express**
 
 - Functions that execute during the request-response cycle.
 - Can modify request, response objects.
+- Middleware functions execute before route handlers. They can perform tasks like logging, authentication, and error handling.
 
  Code Sample
 ```js
 const express = require('express');
 const app = express();
 
+// General middleware
+app.use((req, res, next) => {
+  console.log("Middleware running");
+  next();  // Pass control to the next middleware
+});
+
+// Logger middleware
 const logger = (req, res, next) => {
   console.log(`${req.method} ${req.url}`);
-  next();
+  next(); // Pass control to the next middleware
 };
 
 app.use(logger);
 
+// Route
 app.get('/', (req, res) => {
   res.send('Home');
 });
 
-app.listen(3000);
+// Start server with callback
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
 ```
 
 ---
@@ -424,18 +443,7 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 
 ---
 
-## **Middleware in Express.js**
 
-Middleware functions execute before route handlers. They can perform tasks like logging, authentication, and error handling.
-
-```js
-app.use((req, res, next) => {
-  console.log("Middleware running");
-  next();  // Pass control to the next middleware
-});
-```
-
----
 
 
 

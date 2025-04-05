@@ -104,47 +104,6 @@ console.log(processWaitingList([1, 2, 3], [5, 5])); // Output: [1, 2]
 
 ---
 
-## **Node.js Questions**
-
-### 1. **How do you handle scalability issues in Node.js applications?**
-   - **Clustering**: Use the `cluster` module to utilize multi-core systems by spawning worker processes.
-   - **Load Balancing**: Distribute incoming requests across multiple servers using NGINX, HAProxy, or AWS Elastic Load Balancer.
-   - **Horizontal Scaling**: Deploy multiple instances of the application using containers (e.g., Docker) and orchestration tools like Kubernetes.
-   - **Caching**: Use Redis or Memcached to cache frequently accessed data.
-   - **Optimize Queries**: Use efficient database queries and indexing.
-
----
-
-### 2. **How do you ensure data consistency across distributed services?**
-   - Use distributed transaction mechanisms like **two-phase commit**.
-   - Implement **event-driven architecture** with message brokers (e.g., Kafka, RabbitMQ) for eventual consistency.
-   - Use database strategies like **write-ahead logs** and **saga patterns** for managing consistency.
-
----
-
-### 3. **How do you handle callback hell in Node.js?**
-   - Use **Promises** to flatten the callback chain.
-   - Use **async/await** for better readability and linear flow.
-   - Modularize code into smaller functions for better maintainability.
-
----
-
-### 4. **Promises vs Async/Await**
-   - Promises simplify callbacks but can still become complex.
-   - **Async/await** allows writing asynchronous code like synchronous code, improving readability.
-   - Async/await works on top of promises and eliminates `.then()` chains.
-
----
-
-### 5. **How do you manage security in Node.js applications?**
-   - **Input Validation**: Use libraries like Joi or Express-validator to validate inputs.
-   - **Sanitize Data**: Prevent SQL injections and XSS attacks.
-   - **Authentication**: Use JWT or OAuth for secure authentication.
-   - **Environment Variables**: Store secrets securely using `dotenv` or AWS Secrets Manager.
-   - **Rate Limiting**: Use middleware to limit requests (e.g., `express-rate-limit`).
-   - **Helmet**: Protect HTTP headers for Express apps.
-
----
 
 ## **AWS Questions**
 

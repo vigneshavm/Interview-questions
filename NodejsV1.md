@@ -453,17 +453,7 @@ app.use((req, res, next) => {
 
 ---
 
-## **Event Loop Phases**
 
-The Node.js **event loop** manages asynchronous operations and includes these phases:
- **Timers** (`setTimeout`, `setInterval`)
- **Pending I/O**
- **Idle/Prepare**
- **Poll** (Handles I/O events)
- **Check** (`setImmediate`)
- **Close Callbacks**
-
----
 
 ## **Authentication vs Authorization**
 
@@ -638,5 +628,22 @@ if (error) {
   res.status(200).send(value);
 }
 ```
+
+
+
+## **Callback Hell & Solutions**
+- **Callback Hell** refers to nested callbacks that make code unreadable and difficult to maintain.
+- **Solutions**: 
+  - **Promises**: Handles asynchronous behavior more cleanly with `.then()`, `.catch()`.
+  - **Async/Await**: Allows asynchronous code to be written in a synchronous style, improving readability.
+
+**Promise vs Async/Await**:
+- **Promises**: Use `.then()` and `.catch()` for chaining async calls.
+- **Async/Await**: More readable and concise for handling asynchronous operations.
+
+**`Promise.all()` vs `Promise.race()`**:
+- **`Promise.all()`**: Resolves when **all** promises are completed.
+- **`Promise.race()`**: Resolves when **the first** promise resolves or rejects.
+- 
 
 

@@ -61,17 +61,38 @@ app.use((req, res, next) => {
 
 ---
 
-### **5. Event Loop Phases**
+### **Event Loop **
 
-The Node.js **event loop** manages asynchronous operations and includes these phases:
-1. **Timers** (`setTimeout`, `setInterval`)
-2. **Pending I/O**
-3. **Idle/Prepare**
-4. **Poll** (Handles I/O events)
-5. **Check** (`setImmediate`)
-6. **Close Callbacks**
+**Phases of the Event Loop:**
+1. **Timers**: Executes the callbacks for `setTimeout` and `setInterval`.
+2. **Pending Callbacks**: Handles I/O callbacks (e.g., TCP callbacks).
+3. **Idle/Prepare**: Internal phase for system operations.
+4. **Poll**: Waits for new I/O events and executes callbacks when ready.
+5. **Check**: Executes `setImmediate` callbacks.
+6. **Close Callbacks**: Handles events such as `close` event listeners.
 
+**Code Execution Order:**
+```js
+setTimeout(() => console.log("Timeout Callback"), 10);
+setImmediate(() => console.log("Immediate Callback"));
+process.nextTick(() => console.log("NextTick Callback"));
+console.log("Main Module Ends");
+```
+**Output:**
+```
+Main Module Ends
+NextTick Callback
+Immediate Callback
+Timeout Callback
+```
+
+- **`process.nextTick()` vs `setImmediate()`**:  
+  - `process.nextTick()` executes **before** I/O operations, and **before** the next event loop iteration.
+  - `setImmediate()` executes **after I/O callbacks**, right before the event loop continues.
+    
 ---
+
+
 
 ### **6. Authentication vs Authorization**
 

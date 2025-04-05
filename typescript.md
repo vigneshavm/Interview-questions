@@ -1,7 +1,20 @@
-
+# **TypeScript Interview Questions & Answers**
 ---
 
-# **TypeScript Interview Questions & Answers**
+### **How does TypeScript improve JavaScript?**  
+✅ **Static Typing** (`number`, `string`, `boolean`, `any`)  
+✅ **Interfaces & Types** (`interface User { name: string; age: number }`)  
+✅ **Better Code Completion & Debugging**  
+
+Example:  
+```ts
+function greet(name: string): string {
+    return `Hello, ${name}`;
+}
+console.log(greet("John")); // ✅ Hello, John
+```
+
+
 
 ### **1. Interface vs. Type**
 **Differences:**

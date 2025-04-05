@@ -12,7 +12,7 @@ const removeDuplicates = arr => arr.filter(item => arr.indexOf(item) === arr.las
 console.log(removeDuplicates([1, 2, 3, 4, 1, 5, 5, 6])); // [2, 3, 4, 6]
 ```
 
-**Remove Duplicates from Array of Objects by**
+#### **Remove Duplicates from Array of Objects by**
 ```js
 const data = [  { id: 1, name: "A" },   { id: 1, name: "A" },  { id: 3, name: "C" }];
 function removeDuplicates(arr:any) {
@@ -22,7 +22,7 @@ function removeDuplicates(arr:any) {
         seen.add(item.id);    return true;
       });}
 ```
-**Count Frequency of Elements in an Array**
+#### **Count Frequency of Elements in an Array**
 ```js
 const nums = [1, 2, 2, 3, 1, 4, 2];
 function countFrequency(arr: number[]): Record<number, number> {
@@ -32,7 +32,7 @@ function countFrequency(arr: number[]): Record<number, number> {
   }
 ```
 
-**Count Character Occurrences in a String (Ignore Spaces)**
+#### **Count Character Occurrences in a String (Ignore Spaces)**
 ```js
 const countChars = (str) => {
   const result = {};
@@ -43,12 +43,12 @@ const countChars = (str) => {
 };
 ```
 
-**Sort an Array of Objects by a Field**
+#### **Sort an Array of Objects by a Field**
 ```js
 const users = [  { id: 1, age: 30 },  { id: 2, age: 25 },  { id: 3, age: 35 }];
 users.sort((a, b) => a.age - b.age);
 ```
-**Anagram Checker**
+#### **Anagram Checker**
 ```js
 function isAnagram(a: string, b: string): boolean {
   const normalize = (str: string) => str.split('').sort().join('');
@@ -57,7 +57,7 @@ function isAnagram(a: string, b: string): boolean {
 console.log(isAnagram("listen", "silent"));  // true
 console.log(isAnagram("abc", "def"));        // false
 ```
-**Grouping Items by Property**
+#### **Grouping Items by Property**
 ```js
 const products = [
   { id: 1, name: "Apple", category: "Fruits" },
@@ -73,7 +73,7 @@ function groupByCategory(products: { id: number; name: string; category: string 
   }
 console.log(groupByCategory(products));
 ```
-**Find First Non-Repeating Character**
+#### **Find First Non-Repeating Character**
 ```js
 function firstNonRepeatingChar(str: string): string | null {
   const count: Record<string, number> = {};
@@ -82,13 +82,13 @@ function firstNonRepeatingChar(str: string): string | null {
     return null;
   }console.log(firstNonRepeatingChar("swiss")); // "w"
 ```
-**Flatten a Nested Array**
+#### **Flatten a Nested Array**
 ```js
 function flattenArray(arr: any[]): any[] {
   return arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flattenArray(val) : val), []);
   }console.log(flattenArray([1, [2, [3, 4]], 5]));
 ```
-**Output Order of Asynchronous Code Using var**
+#### **Output Order of Asynchronous Code Using var**
 ```js
 for (var i = 0; i < 5; i++) {
   console.log(i);  setTimeout(() => console.log(i), 0);
@@ -108,7 +108,7 @@ for (var i = 0; i < 5; i++) {
   (function(i) {    setTimeout(() => console.log(i), 0);  })(i);
 }
 ```
-**Remove Duplicates & Sort Using Merge Sort**
+#### **Remove Duplicates & Sort Using Merge Sort**
 ```js
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;
@@ -136,7 +136,7 @@ const array = [4, 2, 5, 3, 4, 2, 1];
 console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
 ```
 
-**Remove Duplicates Without Predefined Functions**
+#### **Remove Duplicates Without Predefined Functions**
 ```js
 function removeDuplicates(arr) {
   const result = [];
@@ -171,7 +171,7 @@ for (let i = 0; i < noDupes.length; i++) {
 }
 ```
 
-**Remove Duplicates from an array without using Set**
+#### **Remove Duplicates from an array without using Set**
 ```js
 function removeDuplicates(arr) {
   const result = [];
@@ -181,7 +181,7 @@ function removeDuplicates(arr) {
 
 
 
-**Binary Search for Value 3**
+#### **Binary Search for Value 3**
 
 sort the array:
 ```js
@@ -225,7 +225,7 @@ function matchPattern(filename, pattern) {
 }
 ```
 
-**Stock Span Problem (Optimized Solution)**
+#### **Stock Span Problem (Optimized Solution)**
 ```js
 class StockSpanner {
   constructor() {
@@ -240,11 +240,12 @@ class StockSpanner {
     return span;
   }
 }
-```
 - **Time Complexity**: **O(n) amortized**
 - **Space Complexity**: **O(n)**
 
-**Simulating Wallet Withdrawal Queue**
+```
+
+#### **Simulating Wallet Withdrawal Queue**
 ```js
 function withdrawQueue(amounts, maxLimit) {
   let exitOrder = [], queue = [], i = 0;

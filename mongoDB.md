@@ -160,13 +160,11 @@ db.users.createIndex({ email: 1 })  // Ascending index on email
 
 
 **✅ Answer:**  
-Aggregation in MongoDB is used to process data and return computed results, similar to SQL `GROUP BY` and other data transformations. MongoDB provides the **aggregation pipeline** to perform complex transformations and computations.
+- Aggregation in MongoDB is used to process data and return computed results, similar to SQL `GROUP BY` and other data transformations. 
+- MongoDB provides the **aggregation pipeline** to perform complex transformations and computations.
+- The **aggregation pipeline** is a series of stages that process documents. Each stage transforms the document and passes it to the next stage.
 
-### Aggregation Pipeline
-
-The **aggregation pipeline** is a series of stages that process documents. Each stage transforms the document and passes it to the next stage.
-
-### Basic Syntax:
+Basic Syntax:
 
 ```js
 db.collection.aggregate([
@@ -177,7 +175,7 @@ db.collection.aggregate([
 ])
 ```
 
-### Common Aggregation Stages:
+## Common Aggregation Stages:
 
 1. **`$match`** – Filters documents to pass only those that match the specified condition(s).
    - Similar to a `WHERE` clause in SQL.
@@ -258,9 +256,7 @@ db.collection.aggregate([
    ])
    ```
 
-### Example: Aggregating Order Data
 
-Here’s an example that combines multiple stages to find the total amount spent by each customer, sorts the results, and limits the output:
 
 ```js
 db.orders.aggregate([
@@ -271,7 +267,7 @@ db.orders.aggregate([
 ])
 ```
 
-### Aggregation Operators:
+## Aggregation Operators:
 - **`$sum`** – Sums values.
 - **`$avg`** – Averages values.
 - **`$min`** – Returns the minimum value.

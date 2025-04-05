@@ -1,28 +1,3 @@
-Great! Let's break this down step by step:
-
----
-
-### 🔁 1. **Variable Hoisting in JavaScript**
-**Hoisting** is JavaScript's default behavior of moving declarations to the top of their scope (before code execution).
-
-```js
-console.log(x); // undefined
-var x = 5;
-```
-
-JavaScript *hoists* the `var x` declaration like this:
-
-```js
-var x;
-console.log(x); // undefined
-x = 5;
-```
-
-💡 **Important Notes:**
-- `var` declarations are hoisted and initialized with `undefined`.
-- `let` and `const` are hoisted too, but they are not initialized, and accessing them before declaration throws a **ReferenceError**.
-
----
 
 ### 📞 2. **Difference between `call()`, `apply()`, and `bind()`**
 

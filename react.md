@@ -532,7 +532,8 @@ useEffect(() => {
 
 ---
 
-### `useRef` – For Persistent Values & Accessing DOM
+### `useRef` 
+– For Persistent Values & Accessing DOM
 
 ```jsx
 const inputRef = useRef();
@@ -549,7 +550,8 @@ return <input ref={inputRef} />;
 
 ---
 
-### `useContext` – For Global State (Avoid Prop Drilling)
+### `useContext` 
+– For Global State (Avoid Prop Drilling)
 
 ```jsx
 const ThemeContext = React.createContext();
@@ -570,7 +572,8 @@ function Child() {
 
 ---
 
-### `useCallback` – Memoize Functions
+### `useCallback` 
+– Memoize Functions
 
 ```jsx
 const handleClick = useCallback(() => {

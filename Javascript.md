@@ -180,9 +180,7 @@ const person = { name: "Alice" };
 
 
 ### **Closure?**  
-A closure allows a function to **remember its outer scope** even after execution.  
-A **closure** is a function that retains access to variables from its outer scope even after the outer function has finished executing.
-
+A closure is a function that captures and remembers variables from its outer scope, even after that outer function has returned.
 
 Example:  
 ```js

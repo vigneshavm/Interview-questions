@@ -140,7 +140,7 @@ db.users.createIndex({ email: 1 })  // Ascending index on email
 
 ---
 
-## Types of Indexes in MongoDB
+### Types of Indexes in MongoDB
 **Answer:**
 
 | Index Type        | Description                                     |

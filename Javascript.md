@@ -84,7 +84,7 @@ function sum(...numbers) {
 
 
 
-## Normal Function vs Arrow Function
+### Normal Function vs Arrow Function
 
 
 

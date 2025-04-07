@@ -297,7 +297,7 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 
 Redux is a **predictable state management library** used to manage application state in a **centralized store**.
 
-### Key Concepts:
+Key Concepts:
 
 - **Store** – Holds global state  
 - **Action** – Plain JS object describing a change  

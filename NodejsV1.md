@@ -2,10 +2,12 @@
 
 ---
 ## Create Node App using JS
-mkdir user-api && cd user-api
-npm init -y
-npm install express
+
+- mkdir user-api && cd user-api
+- npm init -y
+- npm install express
 ---
+
 ---
 ## Create Node App using Typescript
 mkdir user-api && cd user-api

@@ -29,6 +29,32 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
+##  Function Declarations vs Function Expressions
+
+ **Function Declarations**
+
+Fully hoisted (both name and body):
+```js
+greet(); // "Hello!"
+function greet() {
+  console.log("Hello!");
+}
+```
+
+ **Function Expressions**
+
+Only the variable is hoisted, not the function definition:
+```js
+sayHi(); // TypeError: sayHi is not a function
+var sayHi = function () {
+  console.log("Hi!");
+};
+```
+
+---
+
+---
+
  **Hoisting Behavior Summary**
 
 | Declaration Type           | Is it hoisted? | Is it initialized? | Access Before Declaration |
@@ -68,31 +94,7 @@ if (true) {
 console.log(x); // 10
 // console.log(y, z); // ReferenceError
 ```
----
 
-##  Function Declarations vs Function Expressions
-
-### Function Declarations
-
-Fully hoisted (both name and body):
-```js
-greet(); // "Hello!"
-function greet() {
-  console.log("Hello!");
-}
-```
-
-### Function Expressions
-
-Only the variable is hoisted, not the function definition:
-```js
-sayHi(); // TypeError: sayHi is not a function
-var sayHi = function () {
-  console.log("Hi!");
-};
-```
-
----
 
 ##  Common Hoisting Pitfalls
 

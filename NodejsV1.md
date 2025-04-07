@@ -1,5 +1,35 @@
 
 
+---
+## Create Node App using JS
+mkdir user-api && cd user-api
+npm init -y
+npm install express
+---
+---
+## Create Node App using Typescript
+mkdir user-api && cd user-api
+npm init -y
+npm install express
+npm install -D typescript ts-node-dev @types/node @types/express
+
+
+```js
+tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "rootDir": "src",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
+```
+---
+
+
 ##  **Node.js Architecture**
 
 - Node.js uses a **single-threaded** event loop architecture.

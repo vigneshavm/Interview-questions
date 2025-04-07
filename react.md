@@ -3,6 +3,11 @@
 
 ---
 
+## Create React App using Typescript
+
+npx create-react-app@latest sample-app --template typescript
+---
+
 ## React Overview *(01:20)*
 
 React is a **JavaScript library** for building **user interfaces**, especially for single-page applications that require a fast, interactive experience.

@@ -181,6 +181,8 @@ const person = { name: "Alice" };
 
 ### **Closure?**  
 A closure allows a function to **remember its outer scope** even after execution.  
+A **closure** is a function that retains access to variables from its outer scope even after the outer function has finished executing.
+
 
 Example:  
 ```js
@@ -197,7 +199,18 @@ increment(); // 2
 ```
 **Use case:** **Data encapsulation** (e.g., private variables).
 
+Example:  
+```js
+function outerFunction(outerVariable) {
+  return function innerFunction(innerVariable) {
+    console.log(`Outer: ${outerVariable}, Inner: ${innerVariable}`);
+  };
+}
+const closureExample = outerFunction("Hello");
+closureExample("World"); // Outer: Hello, Inner: World
+```
 ---
+
 
 ### **Synchronous vs. Asynchronous JavaScript?**  
 - **Synchronous**: Code executes sequentially, blocking further execution.  
@@ -427,23 +440,7 @@ function throttle(func, limit) {
 }
 ```
 
----
 
-### **Closures**
-A **closure** is a function that retains access to variables from its outer scope even after the outer function has finished executing.
-
-**Example:**
-```js
-function outerFunction(outerVariable) {
-  return function innerFunction(innerVariable) {
-    console.log(`Outer: ${outerVariable}, Inner: ${innerVariable}`);
-  };
-}
-const closureExample = outerFunction("Hello");
-closureExample("World"); // Outer: Hello, Inner: World
-```
-
----
 
 ### **Currying**
 Currying is a technique where a function takes multiple arguments one at a time.

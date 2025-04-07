@@ -29,7 +29,7 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
-##  Hoisting Behavior Summary
+ **Hoisting Behavior Summary**
 
 | Declaration Type           | Is it hoisted? | Is it initialized? | Access Before Declaration |
 |---------------------------|----------------|---------------------|----------------------------|

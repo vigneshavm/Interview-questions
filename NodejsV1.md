@@ -493,6 +493,164 @@ fs.readFile("file.txt", "utf8", (err, data) => {
  **Client sends JWT** in the `Authorization` header.
  **Server verifies** JWT before granting access.
 
+
+ 
+---
+
+## 🧠 JWT Flow Overview
+
+1. User logs in with credentials
+2. Server verifies and generates a JWT
+3. Client stores the JWT (e.g., in localStorage)
+4. Client sends the token in `Authorization: Bearer <token>` header
+5. Server verifies token and grants access to protected routes
+
+---
+
+## 📁 Folder Structure
+
+```
+jwt-auth-ts/
+├── src/
+│   ├── index.ts
+│   ├── auth.ts
+│   ├── middleware/
+│   │   └── authMiddleware.ts
+├── .env
+├── tsconfig.json
+├── package.json
+```
+
+---
+
+## ⚙️ Project Setup
+
+
+
+
+
+
+
+---
+
+## 🚀 Sample Code
+
+### `src/index.ts`
+
+```ts
+import express from "express";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import { authMiddleware } from "./middleware/authMiddleware";
+
+dotenv.config();
+
+const app = express();
+app.use(express.json());
+
+const PORT = 4000;
+const USERS = [{ id: 1, username: "admin", password: "password" }];
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  const user = USERS.find(u => u.username === username && u.password === password);
+
+  if (!user) return res.status(401).json({ message: "Invalid credentials" });
+
+  const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET as string, {
+    expiresIn: "1h"
+  });
+
+  res.json({ token });
+});
+
+app.get("/protected", authMiddleware, (req, res) => {
+  res.json({ message: "You accessed protected data!" });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+```
+
+---
+
+### `src/middleware/authMiddleware.ts`
+
+```ts
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+interface TokenPayload {
+  id: number;
+  username: string;
+  iat: number;
+  exp: number;
+}
+
+export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader?.split(" ")[1];
+
+  if (!token) return res.status(401).json({ message: "Token missing" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as TokenPayload;
+    req.user = decoded; // Optional: attach to req
+    next();
+  } catch {
+    res.status(401).json({ message: "Invalid or expired token" });
+  }
+};
+```
+
+---
+
+### `.env`
+
+```
+JWT_SECRET=mySuperSecretKey
+```
+
+---
+
+### Scripts in `package.json`
+
+```json
+"scripts": {
+  "dev": "ts-node-dev --respawn src/index.ts",
+  "start": "tsc && node dist/index.js"
+}
+```
+
+---
+
+## 🧪 Testing
+
+### Login and get token
+
+```bash
+curl -X POST http://localhost:4000/login \
+-H "Content-Type: application/json" \
+-d '{"username":"admin","password":"password"}'
+```
+
+### Access protected route
+
+```bash
+curl http://localhost:4000/protected \
+-H "Authorization: Bearer <your_token_here>"
+```
+
+
+
+
+
+
+
 ---
 
 ## **Securing a Node.js App**

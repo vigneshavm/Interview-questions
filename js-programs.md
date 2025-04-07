@@ -6,6 +6,161 @@ const secondLargest = arr => {
 };
 ```
 
+
+
+
+
+
+#### **Remove Duplicates from an Arrayy**
+
+```js
+function removeDuplicates(arr) {
+  return [...new Set(arr)];
+}
+console.log(removeDuplicates([1, 2, 2, 3, 4, 4])); // [1, 2, 3, 4]
+```
+
+---
+
+#### **Find the Second Largest Numbery**
+
+```js
+function secondLargest(arr) {
+  const unique = [...new Set(arr)];
+  unique.sort((a, b) => b - a);
+  return unique[1];
+}
+console.log(secondLargest([5, 1, 2, 5, 3])); // 3
+```
+
+---
+
+#### **Flatten a Nested Arrayy**
+
+```js
+function flattenArray(arr) {
+  return arr.flat(Infinity);
+}
+console.log(flattenArray([1, [2, [3, 4], 5]])); // [1, 2, 3, 4, 5]
+```
+
+---
+
+#### **Chunk an Arrayy**
+
+```js
+function chunkArray(arr, size) {
+  let res = [];
+  for (let i = 0; i < arr.length; i += size) {
+    res.push(arr.slice(i, i + size));
+  }
+  return res;
+}
+console.log(chunkArray([1, 2, 3, 4, 5], 2)); // [[1,2],[3,4],[5]]
+```
+
+---
+
+
+#### **Check if a String is a Palindromey**
+
+```js
+function isPalindrome(str) {
+  const clean = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  return clean === clean.split('').reverse().join('');
+}
+console.log(isPalindrome("Racecar")); // true
+```
+
+---
+
+#### ** Reverse Words in a Sentencey**
+
+```js
+function reverseWords(str) {
+  return str.split(' ').reverse().join(' ');
+}
+console.log(reverseWords("Hello world from JS")); // "JS from world Hello"
+```
+
+---
+
+#### **Count Vowels in a Stringy**
+
+```js
+function countVowels(str) {
+  return (str.match(/[aeiou]/gi) || []).length;
+}
+console.log(countVowels("Hello World")); // 3
+```
+
+---
+
+#### **Find the First Non-Repeating Charactery**
+
+```js
+function firstUniqueChar(str) {
+  for (let char of str) {
+    if (str.indexOf(char) === str.lastIndexOf(char)) return char;
+  }
+  return null;
+}
+console.log(firstUniqueChar("swiss")); // "w"
+```
+
+---
+
+
+#### **Factorialy**
+
+```js
+function factorial(n) {
+  if (n <= 1) return 1;
+  return n * factorial(n - 1);
+}
+console.log(factorial(5)); // 120
+```
+
+---
+
+#### **Fibonacci (Recursive)y**
+
+```js
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+console.log(fibonacci(6)); // 8
+```
+
+---
+
+#### **Sum of Array Elements (Recursive)y**
+
+```js
+function recursiveSum(arr) {
+  if (arr.length === 0) return 0;
+  return arr[0] + recursiveSum(arr.slice(1));
+}
+console.log(recursiveSum([1, 2, 3, 4])); // 10
+```
+
+---
+
+#### **Power Function: aⁿ using recursiony**
+
+```js
+function power(base, exponent) {
+  if (exponent === 0) return 1;
+  return base * power(base, exponent - 1);
+}
+console.log(power(2, 4)); // 16
+```
+
+
+
+
+
 #### **Remove Duplicates From an Array**
 ```js
 const removeDuplicates = arr => arr.filter(item => arr.indexOf(item) === arr.lastIndexOf(item));

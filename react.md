@@ -489,7 +489,8 @@ React Hooks are functions that let you "hook into" React state and lifecycle fea
 
 ---
 
-### `useState` – For Managing State
+### `useState` 
+– For Managing State
 
 ```jsx
 const [count, setCount] = useState(0);
@@ -509,7 +510,8 @@ function Counter() {
 
 ---
 
-### `useEffect` – For Side Effects (Data Fetch, Subscriptions, Timers)
+### `useEffect`
+– For Side Effects (Data Fetch, Subscriptions, Timers)
 
 ```jsx
 useEffect(() => {

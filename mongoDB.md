@@ -292,7 +292,7 @@ db.orders.aggregate([
 
 ---
 
-## Model relationships (one-to-one, one-to-many, many-to-many) in MongoDB?
+## Model relationships
 **Answer:**
 
 | Type           | Description                       | Approach             |

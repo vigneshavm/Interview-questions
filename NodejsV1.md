@@ -10,10 +10,10 @@
 
 ---
 ## Create Node App using Typescript
-mkdir user-api && cd user-api
-npm init -y
-npm install express
-npm install -D typescript ts-node-dev @types/node @types/express
+- mkdir user-api && cd user-api
+- npm init -y
+- npm install express
+- npm install -D typescript ts-node-dev @types/node @types/express
 
 
 ```js

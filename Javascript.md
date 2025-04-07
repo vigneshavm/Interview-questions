@@ -82,31 +82,63 @@ function sum(...numbers) {
 
 
 
-### **Normal vs Arrow Functions**
-| Aspect | Normal Function | Arrow Function |
-|--------|-----------------|----------------|
-| `this` binding | Dynamic (depends on how the function is called) | Lexical (inherited from parent scope) |
-| `arguments` object | Available | Not available |
-| Can be used as constructors | Yes | No |
+
+
+## Normal Function vs Arrow Function
 
 
 
-| Feature | Normal Function | Arrow Function |
-|---------|----------------|---------------|
-| `this` Binding | Dynamic (depends on how it's called) | Lexical (inherits from surrounding scope) |
-| Arguments Object | ✅ Yes (`arguments`) | ❌ No (`arguments` is undefined) |
-| Suitable for Methods | ✅ Yes | ❌ No (Cannot use `this` in objects) |
+| **Aspect**               | **Normal Function**                                                                 | **Arrow Function**                                                            |
+|--------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| **`this` Binding**        | Dynamic – depends on how the function is called                                     | Lexical – inherits `this` from the surrounding (parent) scope                 |
+| **`arguments` Object**    | ✅ Available – has its own `arguments` object                                        | ❌ Not available – doesn't bind its own `arguments`                           |
+| **Used as Constructor**   | ✅ Yes – can be used with `new` to create instances                                  | ❌ No – cannot be used as a constructor                                       |
+| **Suitable for Methods**  | ✅ Yes – ideal for defining object/class methods                                     | ⚠️ No – `this` won't refer to the object, so not ideal for object methods     |
+| **Hoisting**              | ✅ Fully hoisted (function declarations)                                             | ❌ Not hoisted – must be defined before use (arrow functions are expressions) |
 
-**Example:**
+---
+
+
+
+ **Normal Functions**
+Best for:
+- Object methods  
+- Constructors  
+- Functions needing `this` or `arguments`  
+
+ **Arrow Functions**
+Best for:
+- Callbacks  
+- Short functions  
+- Preserving `this` (e.g., in React or event handlers)
+
+---
+
+ Examples
+
 ```js
+// Normal Function
 function normalFunc() {
-  console.log(this); // `this` depends on call context
+  console.log(this);       // Depends on how it's called
+  console.log(arguments);  // Accessible
 }
+
+// Arrow Function
 const arrowFunc = () => {
-  console.log(this); // `this` inherits from parent scope
+  console.log(this);       // Inherits from parent scope
+  console.log(arguments);  // Error: arguments is not defined
 };
 ```
+
 ---
+
+ Key Tip for Interviews
+
+> If you're dealing with `this` or need `arguments`, use a normal function.  
+> If you want to retain `this` from the outer context, prefer an arrow function.
+
+
+
 
 ### **Shallow vs Deep Copy**
 - **Shallow Copy**: Copies object references. Nested objects are still linked.

@@ -8,7 +8,7 @@
 - npx create-react-app@latest sample-app --template typescript
 ---
 
-## React Overview *(01:20)*
+## React Overview 
 
 React is a **JavaScript library** for building **user interfaces**, especially for single-page applications that require a fast, interactive experience.
 
@@ -19,7 +19,7 @@ React is a **JavaScript library** for building **user interfaces**, especially f
 
 ---
 
-## Single Page Applications (SPA) *(01:50)*
+## Single Page Applications (SPA) 
 
 An SPA is a web application that loads a **single HTML page** and updates content dynamically without refreshing the page.
 
@@ -29,7 +29,7 @@ An SPA is a web application that loads a **single HTML page** and updates conten
 
 ---
 
-## JSX vs HTML *(02:35)*
+## JSX vs HTML 
 
 JSX stands for **JavaScript XML** – it allows you to write HTML-like code within JavaScript.
 
@@ -44,7 +44,7 @@ const element = <h1>Hello, {user.name}</h1>;
 
 ---
 
-## Class vs Functional Components *(03:14)*
+## Class vs Functional Components 
 
 | Feature              | Class Component             | Functional Component              |
 |----------------------|-----------------------------|------------------------------------|
@@ -57,7 +57,7 @@ React now recommends **functional components** for most use cases using **hooks*
 
 ---
 
-## Stateless vs Stateful Components *(04:09)*
+## Stateless vs Stateful Components 
 
 - **Stateless Components**: Do not manage state internally. Receive data via **props** only.  
 - **Stateful Components**: Manage and update their own internal **state**.
@@ -75,7 +75,7 @@ function Counter() {
 
 ---
 
-## Props in React *(04:50)*
+## Props in React 
 
 Props (short for **properties**) are **read-only inputs** passed from a parent to child components.  
 They make components **dynamic, reusable**, and modular.
@@ -94,7 +94,7 @@ const Greeting = ({ name }) => <h1>Hello, {name}</h1>;
 
 ---
 
-## Props vs State *(05:22)*
+## Props vs State 
 
 | Feature     | Props                     | State                            |
 |-------------|---------------------------|----------------------------------|
@@ -104,7 +104,7 @@ const Greeting = ({ name }) => <h1>Hello, {name}</h1>;
 
 ---
 
-## Controlled vs Uncontrolled Components *(05:58)*
+## Controlled vs Uncontrolled Components 
 
 - **Controlled Components**: Form inputs are controlled via React's **state**
 
@@ -122,7 +122,7 @@ const Greeting = ({ name }) => <h1>Hello, {name}</h1>;
 
 ---
 
-## Keys in Lists *(06:47)*
+## Keys in Lists 
 
 The `key` prop helps React **track changes in a list** of elements efficiently during re-rendering.
 
@@ -135,7 +135,7 @@ The `key` prop helps React **track changes in a list** of elements efficiently d
 
 ---
 
-## React Fragments *(07:25)*
+## React Fragments 
 
 Fragments allow grouping multiple elements **without adding extra nodes** to the DOM.
 
@@ -157,7 +157,7 @@ Alternative syntax:
 
 
 
-## Virtual DOM *(07:50)*
+## Virtual DOM 
 
 - The Virtual DOM is a lightweight, in-memory representation of the real DOM. React uses it to optimize performance by minimizing direct DOM manipulations.
 - React updates the Virtual DOM first, then uses a diffing algorithm to compare it with the previous version.
@@ -172,7 +172,7 @@ ReactDOM.render(virtualDOM, document.getElementById('root'));
 
 ---
 
-## Lifecycle Methods *(10:10)*
+## Lifecycle Methods 
 
 Lifecycle methods let you run code at specific **stages of a component’s life** (Mount, Update, Unmount).
 Lifecycle methods are special methods in class components. Hooks like `useEffect` replicate them in functional components.
@@ -209,7 +209,7 @@ useEffect(() => {
 
 
 
-## Props Drilling *(21:17)*
+## Props Drilling 
 
 Props drilling is the process of passing props through multiple levels of components that don’t need the data, just to reach the desired child.
 
@@ -220,7 +220,7 @@ Props drilling is the process of passing props through multiple levels of compon
 
 ---
 
-## Context API *(26:33)*
+## Context API
 
 Context API allows you to **share global data** (like auth, theme) across components **without passing props manually** at every level.
 
@@ -241,7 +241,7 @@ const theme = useContext(ThemeContext);
 
 ---
 
-## Higher-Order Components (HOCs) *(32:36)*
+## Higher-Order Components (HOCs) 
 
 A Higher-Order Component is a function that **takes a component and returns a new component** with added features.
 
@@ -258,7 +258,7 @@ function withLogger(WrappedComponent) {
 
 ---
 
-## Reconciliation Process *(41:01)*
+## Reconciliation Process 
 
 Reconciliation is the process of comparing the new virtual DOM with the previous one and updating the real DOM with the minimal number of changes.
 
@@ -268,7 +268,7 @@ Reconciliation is the process of comparing the new virtual DOM with the previous
 
 ---
 
-## React Portals *(42:44)*
+## React Portals 
 
 Portals let you render a component **outside the main DOM hierarchy**.
 
@@ -280,7 +280,7 @@ ReactDOM.createPortal(<Modal />, document.getElementById('modal-root'));
 
 ---
 
-## React Router Navigation *(48:23)*
+## React Router Navigation 
 
 React Router manipulates the **browser history** using JavaScript to update the UI without full page reloads.
 
@@ -293,7 +293,7 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 
 ---
 
-## Redux Overview *(52:10)*
+## Redux Overview 
 
 Redux is a **predictable state management library** used to manage application state in a **centralized store**.
 
@@ -483,7 +483,7 @@ class ErrorBoundary extends React.Component {
 
 
 
-## React Hooks *(14:45)*
+## React Hooks 
 
 React Hooks are functions that let you "hook into" React state and lifecycle features from function components.
 

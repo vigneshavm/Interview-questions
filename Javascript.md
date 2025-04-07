@@ -2,7 +2,9 @@
  **Variable Hoisting**
 - Hoisting refers to how JavaScript moves declarations to the top of their scope, but **only the declarations** (not the assignments). 
 - Variables declared using `var` are hoisted and initialized to `undefined`. `let` and `const` are hoisted but remain in the **Temporal Dead Zone** until initialized.
-  
+-  **Hoisting** is JavaScript’s behavior of moving **declarations** (but not initializations) to the **top of their scope** during the compile phase. 
+- This applies to variables, functions, classes, and imports — each with different behavior.
+
 ```js
 console.log(a); // undefined
 var a = 5; // a is hoisted as undefined
@@ -24,13 +26,31 @@ notHoisted(); // TypeError: notHoisted is not a function
 var notHoisted = function () { console.log("Expression not hoisted"); };
 ```
 
+
+---
+
+##  Hoisting Behavior Summary
+
+| Declaration Type           | Is it hoisted? | Is it initialized? | Access Before Declaration |
+|---------------------------|----------------|---------------------|----------------------------|
+| `var`                     | ✅ Yes         | ✅ As `undefined`   | Returns `undefined`       |
+| `let`, `const`            | ✅ Yes         | ❌ No               | Throws `ReferenceError`   |
+| `function` declaration    | ✅ Yes         | ✅ Yes (fully)      | Works normally             |
+| `var` function expression | ✅ Yes (var)   | ❌ No (function)    | Throws `TypeError`        |
+| `class` declaration       | ✅ Yes         | ❌ No               | Throws `ReferenceError`   |
+| `import` statements       | ✅ Yes         | ✅ Yes              | Must be at the top        |
+
+---
+
 ---
 
 ### **`var`, `let`, and `const`**  
 - `var`: **Function-scoped**, hoisted, can be re-declared.  
+- `var` is **function-scoped** and initialized as `undefined`. Can be used before its line of declaration.
 - `let`: **Block-scoped**, not hoisted, prevents redeclaration issues.  
 - `const`: **Block-scoped**, immutable reference, must be initialized.
-
+- `let` and `const` are **block-scoped** and not initialized. Accessing them before declaration throws a `ReferenceError`.
+  
 | Feature  | `var` | `let` | `const` |
 |----------|------|------|--------|
 | Scope | Function-scoped | Block-scoped | Block-scoped |
@@ -48,50 +68,6 @@ if (true) {
 console.log(x); // 10
 // console.log(y, z); // ReferenceError
 ```
-
----
-
-
-
-
-
-##  What is Hoisting?
-
-    - **Hoisting** is JavaScript’s behavior of moving **declarations** (but not initializations) to the **top of their scope** during the compile phase. 
-    - This applies to variables, functions, classes, and imports — each with different behavior.
-
----
-
-##  Hoisting Behavior Summary
-
-| Declaration Type           | Is it hoisted? | Is it initialized? | Access Before Declaration |
-|---------------------------|----------------|---------------------|----------------------------|
-| `var`                     | ✅ Yes         | ✅ As `undefined`   | Returns `undefined`       |
-| `let`, `const`            | ✅ Yes         | ❌ No               | Throws `ReferenceError`   |
-| `function` declaration    | ✅ Yes         | ✅ Yes (fully)      | Works normally             |
-| `var` function expression | ✅ Yes (var)   | ❌ No (function)    | Throws `TypeError`        |
-| `class` declaration       | ✅ Yes         | ❌ No               | Throws `ReferenceError`   |
-| `import` statements       | ✅ Yes         | ✅ Yes              | Must be at the top        |
-
----
-
-##  Difference Between `var`, `let`, and `const`
-
-- `var` is **function-scoped** and initialized as `undefined`. Can be used before its line of declaration.
-  ```js
-  console.log(x); // undefined
-  var x = 10;
-  ```
-
-- `let` and `const` are **block-scoped** and not initialized. Accessing them before declaration throws a `ReferenceError`.
-  ```js
-  console.log(y); // ReferenceError
-  let y = 20;
-
-  console.log(z); // ReferenceError
-  const z = 30;
-  ```
-
 ---
 
 ##  Function Declarations vs Function Expressions

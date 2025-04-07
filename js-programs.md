@@ -218,6 +218,55 @@ function groupByCategory(products: { id: number; name: string; category: string 
   }
 console.log(groupByCategory(products));
 ```
+
+
+
+## Grouping Elements
+
+
+
+```javascript
+const input = [
+  { name: "one", class: 1 },
+  { name: "two", class: 2 },
+  { name: "three", class: 3 },
+  { name: "four", class: 1 },
+  { name: "five", class: 2 },
+];
+```
+
+
+
+```javascript
+function groupInputByClass(inputArray) {
+  const grouped = inputArray.reduce((acc, curr) => {
+    let group = acc.find(g => g.class === curr.class);
+    if (group) {
+      group.names.push(curr.name);
+    } else {
+      acc.push({ class: curr.class, names: [curr.name] });
+    }
+
+    return acc;
+  }, []);
+
+  return grouped;
+}
+```
+```javascript
+console.log(groupInputByClass(input));
+```
+
+```javascript
+[
+  { class: 1, names: ['one', 'four'] },
+  { class: 2, names: ['two', 'five'] },
+  { class: 3, names: ['three'] }
+]
+```
+```
+
+
 #### **Find First Non-Repeating Character**
 ```js
 function firstNonRepeatingChar(str: string): string | null {

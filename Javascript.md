@@ -1,4 +1,5 @@
-### **Variable Hoisting**
+### **Hoisting**
+ **Variable Hoisting**
 - Hoisting refers to how JavaScript moves declarations to the top of their scope, but **only the declarations** (not the assignments). 
 - Variables declared using `var` are hoisted and initialized to `undefined`. `let` and `const` are hoisted but remain in the **Temporal Dead Zone** until initialized.
   
@@ -11,8 +12,7 @@ let b = 10; // b is in TDZ
 ```
 
 ---
-
-### **Function Hoisting**
+ **Function Hoisting**
 - Function declarations are hoisted completely, meaning you can call them before their declaration in code.
 - Function expressions (like those using `var`, `let`, or `const`) are hoisted as variables, and they are `undefined` until assigned.
   

@@ -1,6 +1,6 @@
 
 
-##  MongoDB vs Traditional Relational Databases
+##  MongoDB vs  Relational Databases
 
 MongoDB is a **NoSQL, document-oriented database**. It stores data in flexible, JSON-like documents instead of rows and columns.
 
@@ -280,7 +280,7 @@ db.orders.aggregate([
 
 ---
 
-## 4. What is the `$lookup` stage in aggregation and how is it used for joins?
+## `$lookup` stage in aggregation and how is it used for joins?
 **Answer:** `$lookup` joins documents from another collection, similar to SQL joins.
 
 ```js
@@ -298,7 +298,7 @@ db.orders.aggregate([
 
 ---
 
-## 5. How would you model relationships (one-to-one, one-to-many, many-to-many) in MongoDB?
+## Model relationships (one-to-one, one-to-many, many-to-many) in MongoDB?
 **Answer:**
 
 | Type           | Description                       | Approach             |
@@ -315,7 +315,7 @@ db.orders.aggregate([
 
 ---
 
-## 6. What’s the difference between embedded and referenced documents?
+## Embedded and Referenced documents?
 **Answer:**
 
 | Feature       | Embedded                         | Referenced                        |
@@ -334,7 +334,7 @@ db.orders.aggregate([
 
 ---
 
-## 7. What is a capped collection in MongoDB?
+## Capped collection in MongoDB?
 **Answer:** A **capped collection** is a fixed-size, high-performance collection like a circular queue.
 
 ```js
@@ -343,7 +343,7 @@ db.createCollection("logs", { capped: true, size: 100000 })
 
 ---
 
-## 8. How does MongoDB handle schema enforcement?
+## MongoDB handle schema enforcement?
 **Answer:** MongoDB is **schema-less by default**, but schema validation can be added via **JSON Schema**.
 
 ```js
@@ -363,7 +363,7 @@ db.createCollection("products", {
 
 ---
 
-## 9. How do you update multiple documents in MongoDB?
+## Update multiple documents in MongoDB?
 **Answer:** Use the `updateMany()` method.
 
 ```js
@@ -375,7 +375,7 @@ db.users.updateMany(
 
 ---
 
-## 10. Explain updateOne(), updateMany(), and replaceOne()
+## updateOne(), updateMany(), and replaceOne()
 **Answer:**
 
 | Method         | Description                          | Example                              |
@@ -418,7 +418,7 @@ db.collection.find({ $text: { $search: "searchText" } });
 
 ---
 
-## 1. What is Sharding and Why is it Used?
+## Sharding and Why is it Used?
 
 **Concept:**  
 Sharding is horizontal partitioning of data across multiple machines for high scalability.
@@ -435,7 +435,7 @@ sh.shardCollection("myDatabase.users", { userId: 1 })
 
 ---
 
-## 2. Explain Replication and How Failover Works in MongoDB
+## Replication and How Failover Works in MongoDB
 
 **Concept:**  
 Replication copies data across multiple servers for redundancy and high availability.
@@ -458,7 +458,7 @@ rs.initiate({
 
 ---
 
-## 3. What is a Replica Set?
+## Replica Set?
 
 **Concept:**  
 A replica set is a group of MongoDB servers that replicate data.
@@ -469,7 +469,7 @@ A replica set is a group of MongoDB servers that replicate data.
 
 ---
 
-## 4. How Would You Handle Transactions in MongoDB? (v4.0+)
+## Handle Transactions in MongoDB? (v4.0+)
 
 **Concept:**  
 MongoDB supports ACID-compliant transactions across multiple documents.
@@ -489,7 +489,7 @@ try {
 
 ---
 
-## 5. Explain Write Concerns and Read Preferences
+## Write Concerns and Read Preferences
 
 **Write Concern:**  
 Specifies acknowledgment level for write operations (e.g., `w: 1`, `w: majority`).
@@ -505,7 +505,7 @@ db.collection.find().readPref("secondaryPreferred")
 
 ---
 
-## 6. What Are Some Performance Tuning Techniques in MongoDB?
+## Performance Tuning Techniques in MongoDB?
 
 **Tips:**
 - Use proper indexes
@@ -521,7 +521,7 @@ db.products.createIndex({ category: 1, price: -1 })
 
 ---
 
-## 7. How Would You Handle Large File Storage in MongoDB? (GridFS)
+## Handle Large File Storage in MongoDB? (GridFS)
 
 **Concept:**  
 GridFS stores files >16MB by splitting into chunks.
@@ -536,14 +536,14 @@ mongofiles -d mydb put video.mp4
 
 ---
 
-## 8. How Does MongoDB Ensure Durability and Consistency?
+## MongoDB Ensure Durability and Consistency?
 
 - **Durability:** Journaling, replica sets, write concern
 - **Consistency:** Transactions & atomic operations per document
 
 ---
 
-## 9. CAP Theorem in MongoDB Context
+## CAP Theorem in MongoDB Context
 
 **CAP Theorem:**
 - **C**onsistency
@@ -554,7 +554,7 @@ MongoDB is **CP by default**, with options to tune for **AP** using read prefere
 
 ---
 
-## 10. What Are the Limitations of MongoDB and How to Overcome Them?
+## Limitations of MongoDB and How to Overcome Them?
 
 | Limitation                       | Solution                              |
 |----------------------------------|----------------------------------------|

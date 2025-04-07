@@ -496,7 +496,7 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 - Server verifies JWT and grants access to protected routes
 ---
 
-## 📁 Folder Structure
+Folder Structure
 
 ```
 jwt-auth-ts/

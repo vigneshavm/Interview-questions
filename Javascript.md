@@ -458,4 +458,35 @@ console.log(curry(1)(2)(3)); // 6
 ---
 
 
+### Pure Functions in JavaScript
+
+A **pure function** is a function that always:
+
+1. **Returns the same output** for the same input.
+2. **Does not produce side effects** (like modifying global variables, DOM, logging, writing to files, etc).
+
+---
+
+
+
+| Feature             | Description                                 |
+|---------------------|---------------------------------------------|
+| ✅ Deterministic     | Same inputs give same output                |
+| ✅ No Side Effects   | Doesn’t change or depend on outside state   |
+| ✅ Testable          | Easy to test, debug, and reason about       |
+| ✅ Composability     | Can be easily combined with other functions |
+
+---
+
+Example of a Pure Function
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3)); // 5
+console.log(add(2, 3)); // 5 (Always returns the same)
+
+
 

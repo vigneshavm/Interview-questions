@@ -458,7 +458,7 @@ console.log(curry(1)(2)(3)); // 6
 ---
 
 
-### Pure Functions in JavaScript
+### Pure Functions
 
 A **pure function** is a function that always:
 

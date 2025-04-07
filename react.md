@@ -291,44 +291,7 @@ React Router manipulates the **browser history** using JavaScript to update the 
 
 Internally uses the **History API** (`pushState`, `replaceState`) to update the URL and render components accordingly.
 
----
 
-## Redux Overview 
-
-Redux is a **predictable state management library** used to manage application state in a **centralized store**.
-
-Key Concepts:
-
-- **Store** – Holds global state  
-- **Action** – Plain JS object describing a change  
-- **Reducer** – Function that returns new state based on action  
-- **Dispatch** – Sends action to reducer
-
-```jsx
-// Action
-const INCREMENT = "INCREMENT";
-
-// Reducer
-function counterReducer(state = 0, action) {
-  switch (action.type) {
-    case INCREMENT:
-      return state + 1;
-    default:
-      return state;
-  }
-}
-```
-
-Use with `react-redux`:
-
-```jsx
-const count = useSelector(state => state.count);
-const dispatch = useDispatch();
-
-<button onClick={() => dispatch({ type: INCREMENT })}>+</button>
-```
-
----
 
 ## Error Handling in Components
 
@@ -359,11 +322,49 @@ class ErrorBoundary extends React.Component {
 
 ---
 
-## Redux Concepts Recap
+---
 
+## Redux Overview 
+
+Redux is a **predictable state management library** used to manage application state in a **centralized store**.
+
+Key Concepts:
+
+- **Store** – Holds global state  
+- **Action** – Plain JS object describing a change  
+- **Reducer** – Function that returns new state based on action  
+- **Dispatch** – Sends action to reducer
 - **Actions** – Describe what happened  
 - **Reducers** – Specify how the state changes  
 - **Store** – Holds and manages the state
+
+```jsx
+// Action
+const INCREMENT = "INCREMENT";
+
+// Reducer
+function counterReducer(state = 0, action) {
+  switch (action.type) {
+    case INCREMENT:
+      return state + 1;
+    default:
+      return state;
+  }
+}
+```
+
+Use with `react-redux`:
+
+```jsx
+const count = useSelector(state => state.count);
+const dispatch = useDispatch();
+
+<button onClick={() => dispatch({ type: INCREMENT })}>+</button>
+```
+
+
+
+
 
 > State changes in Redux are **predictable**, making debugging and testing easier.
 

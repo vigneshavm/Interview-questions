@@ -32,16 +32,9 @@ console.log(secondLargest([5, 1, 2, 5, 3])); // 3
 
 ---
 
-#### **Flatten a Nested Arrayy**
 
-```js
-function flattenArray(arr) {
-  return arr.flat(Infinity);
-}
-console.log(flattenArray([1, [2, [3, 4], 5]])); // [1, 2, 3, 4, 5]
-```
 
----
+
 
 #### **Chunk an Arrayy**
 

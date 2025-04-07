@@ -51,6 +51,110 @@ console.log(x); // 10
 
 ---
 
+
+
+
+
+##  What is Hoisting?
+
+    - **Hoisting** is JavaScript’s behavior of moving **declarations** (but not initializations) to the **top of their scope** during the compile phase. 
+    - This applies to variables, functions, classes, and imports — each with different behavior.
+
+---
+
+##  Hoisting Behavior Summary
+
+| Declaration Type           | Is it hoisted? | Is it initialized? | Access Before Declaration |
+|---------------------------|----------------|---------------------|----------------------------|
+| `var`                     | ✅ Yes         | ✅ As `undefined`   | Returns `undefined`       |
+| `let`, `const`            | ✅ Yes         | ❌ No               | Throws `ReferenceError`   |
+| `function` declaration    | ✅ Yes         | ✅ Yes (fully)      | Works normally             |
+| `var` function expression | ✅ Yes (var)   | ❌ No (function)    | Throws `TypeError`        |
+| `class` declaration       | ✅ Yes         | ❌ No               | Throws `ReferenceError`   |
+| `import` statements       | ✅ Yes         | ✅ Yes              | Must be at the top        |
+
+---
+
+##  Difference Between `var`, `let`, and `const`
+
+- `var` is **function-scoped** and initialized as `undefined`. Can be used before its line of declaration.
+  ```js
+  console.log(x); // undefined
+  var x = 10;
+  ```
+
+- `let` and `const` are **block-scoped** and not initialized. Accessing them before declaration throws a `ReferenceError`.
+  ```js
+  console.log(y); // ReferenceError
+  let y = 20;
+
+  console.log(z); // ReferenceError
+  const z = 30;
+  ```
+
+---
+
+##  Function Declarations vs Function Expressions
+
+### Function Declarations
+
+Fully hoisted (both name and body):
+```js
+greet(); // "Hello!"
+function greet() {
+  console.log("Hello!");
+}
+```
+
+### Function Expressions
+
+Only the variable is hoisted, not the function definition:
+```js
+sayHi(); // TypeError: sayHi is not a function
+var sayHi = function () {
+  console.log("Hi!");
+};
+```
+
+---
+
+##  Common Hoisting Pitfalls
+
+1. **Unexpected `undefined` values**
+   ```js
+   console.log(a); // undefined
+   var a = 10;
+   ```
+
+2. **ReferenceError with `let` and `const`**
+   ```js
+   console.log(b); // ReferenceError
+   let b = 20;
+   ```
+
+3. **Calling function expressions before declaration**
+   ```js
+   sayHello(); // TypeError
+   var sayHello = function() { console.log('Hello'); };
+   ```
+
+4. **Using classes before declaration**
+   ```js
+   const obj = new MyClass(); // ReferenceError
+   class MyClass {}
+   ```
+
+---
+
+
+```
+
+
+
+---
+
+
+
 ### **Key ES6 Features**
 - **let and const**: Block-scoped variables, unlike var which is function-scoped.
 - **Arrow functions**: Shorter syntax with lexical this binding.

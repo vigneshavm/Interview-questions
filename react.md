@@ -5,7 +5,7 @@
 
 ## Create React App using Typescript
 
-npx create-react-app@latest sample-app --template typescript
+- npx create-react-app@latest sample-app --template typescript
 ---
 
 ## React Overview *(01:20)*

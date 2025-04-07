@@ -324,7 +324,7 @@ class ErrorBoundary extends React.Component {
 
 ---
 
-# 📦 Redux – Predictable State Management
+## Redux – Predictable State Management
 
 **Redux** is a predictable state container for JavaScript applications.  
 It helps manage **application state** in a **centralized store**, making data flow easier to debug and test.

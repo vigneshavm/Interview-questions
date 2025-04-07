@@ -158,7 +158,7 @@ console.log(obj.b.c); // 2 (original remains unchanged)
 ```
 
 
-### **Difference between `call()`, `apply()`, and `bind()`**
+### **`call()`, `apply()`, and `bind()`**
 
 All three methods allow you to set the `this` context for a function.
 
@@ -282,7 +282,7 @@ console.log(b); // undefined
 
 
 
-### **Event Loop & Call Stack in JavaScript.**  
+### **Event Loop & Call Stack**  
 JavaScript is **single-threaded** but can handle async tasks via the **Event Loop**.  
 1. **Call Stack**: Executes synchronous code.  
 2. **Web APIs**: Handles async tasks (setTimeout, fetch).  

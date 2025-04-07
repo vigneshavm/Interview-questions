@@ -29,8 +29,6 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
-##  Function Declarations vs Function Expressions
-
  **Function Declarations**
 
 Fully hoisted (both name and body):
@@ -96,7 +94,7 @@ console.log(x); // 10
 ```
 
 
-##  Common Hoisting Pitfalls
+###  Common Hoisting Pitfalls
 
 1. **Unexpected `undefined` values**
    ```js

@@ -26,7 +26,7 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
-### ** `var`, `let`, and `const` **  
+### **`var`, `let`, and `const`**  
 - `var`: **Function-scoped**, hoisted, can be re-declared.  
 - `let`: **Block-scoped**, not hoisted, prevents redeclaration issues.  
 - `const`: **Block-scoped**, immutable reference, must be initialized.

@@ -221,11 +221,10 @@ console.log(groupByCategory(products));
 
 
 
-## Grouping Elements
+#### **Grouping Elements**
 
 
-
-```javascript
+```js
 const input = [
   { name: "one", class: 1 },
   { name: "two", class: 2 },
@@ -235,9 +234,7 @@ const input = [
 ];
 ```
 
-
-
-```javascript
+```js
 function groupInputByClass(inputArray) {
   const grouped = inputArray.reduce((acc, curr) => {
     let group = acc.find(g => g.class === curr.class);
@@ -252,18 +249,6 @@ function groupInputByClass(inputArray) {
 
   return grouped;
 }
-```
-```javascript
-console.log(groupInputByClass(input));
-```
-
-```javascript
-[
-  { class: 1, names: ['one', 'four'] },
-  { class: 2, names: ['two', 'five'] },
-  { class: 3, names: ['three'] }
-]
-```
 ```
 
 

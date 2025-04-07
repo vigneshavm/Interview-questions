@@ -324,19 +324,32 @@ class ErrorBoundary extends React.Component {
 
 ---
 
-## Redux Overview 
+# 📦 Redux – Predictable State Management
 
-Redux is a **predictable state management library** used to manage application state in a **centralized store**.
+**Redux** is a predictable state container for JavaScript applications.  
+It helps manage **application state** in a **centralized store**, making data flow easier to debug and test.
 
-Key Concepts:
+---
 
-- **Store** – Holds global state  
-- **Action** – Plain JS object describing a change  
-- **Reducer** – Function that returns new state based on action  
-- **Dispatch** – Sends action to reducer
-- **Actions** – Describe what happened  
-- **Reducers** – Specify how the state changes  
-- **Store** – Holds and manages the state
+**Key Concepts**
+
+| **Concept**   | **Description**                                                                 |
+|---------------|----------------------------------------------------------------------------------|
+| **Store**     | Holds and manages the entire global application state                            |
+| **Action**    | A plain JavaScript object that describes **what happened**                       |
+| **Reducer**   | A pure function that takes the current state and an action, then returns new state |
+| **Dispatch**  | Sends an action to the store to trigger a state update via reducers              |
+
+---
+
+**Redux Flow**
+
+1. **UI** triggers an **action** (e.g., button click)
+2. **Dispatch** sends the action to the **store**
+3. **Reducers** handle the action and return new state
+4. **Store** updates, and **UI** re-renders with new state
+
+---
 
 ```jsx
 // Action
@@ -362,10 +375,7 @@ const dispatch = useDispatch();
 <button onClick={() => dispatch({ type: INCREMENT })}>+</button>
 ```
 
-
-
-
-
+> Redux is ideal when multiple components need access to the same state or when app state becomes too complex to manage via props or local state.
 > State changes in Redux are **predictable**, making debugging and testing easier.
 
 ---

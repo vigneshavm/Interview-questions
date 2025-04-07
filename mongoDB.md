@@ -156,7 +156,7 @@ db.users.createIndex({ email: 1 })  // Ascending index on email
 ---
 
 
-## Performing Aggregations in MongoDB
+##  Aggregations in MongoDB
 
 
 **✅ Answer:**  
@@ -175,7 +175,7 @@ db.collection.aggregate([
 ])
 ```
 
-## Common Aggregation Stages:
+### Common Aggregation Stages:
 
 1. **`$match`** – Filters documents to pass only those that match the specified condition(s).
    - Similar to a `WHERE` clause in SQL.
@@ -256,32 +256,7 @@ db.collection.aggregate([
    ])
    ```
 
-
-
-```js
-db.orders.aggregate([
-  { $match: { status: "shipped" } },  // Filter for shipped orders
-  { $group: { _id: "$customerId", totalAmount: { $sum: "$amount" } } },  // Group by customerId
-  { $sort: { totalAmount: -1 } },  // Sort by totalAmount in descending order
-  { $limit: 5 }  // Get top 5 customers
-])
-```
-
-## Aggregation Operators:
-- **`$sum`** – Sums values.
-- **`$avg`** – Averages values.
-- **`$min`** – Returns the minimum value.
-- **`$max`** – Returns the maximum value.
-- **`$push`** – Creates an array of values.
-
----
-
-
-
----
-
-## `$lookup` stage in aggregation and how is it used for joins?
-**Answer:** `$lookup` joins documents from another collection, similar to SQL joins.
+10. **`$lookup`** – joins documents from another collection, similar to SQL join
 
 ```js
 db.orders.aggregate([
@@ -295,6 +270,25 @@ db.orders.aggregate([
   }
 ])
 ```
+
+```js
+db.orders.aggregate([
+  { $match: { status: "shipped" } },  // Filter for shipped orders
+  { $group: { _id: "$customerId", totalAmount: { $sum: "$amount" } } },  // Group by customerId
+  { $sort: { totalAmount: -1 } },  // Sort by totalAmount in descending order
+  { $limit: 5 }  // Get top 5 customers
+])
+```
+
+### Aggregation Operators:
+- **`$sum`** – Sums values.
+- **`$avg`** – Averages values.
+- **`$min`** – Returns the minimum value.
+- **`$max`** – Returns the maximum value.
+- **`$push`** – Creates an array of values.
+
+---
+
 
 ---
 

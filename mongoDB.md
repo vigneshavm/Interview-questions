@@ -463,7 +463,7 @@ A replica set is a group of MongoDB servers that replicate data.
 
 ---
 
-## Handle Transactions in MongoDB? (v4.0+)
+## Handle Transactions in MongoDB?
 
 **Concept:**  
 MongoDB supports ACID-compliant transactions across multiple documents.

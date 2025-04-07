@@ -614,6 +614,8 @@ const MyComponent = React.memo(function ({ name }) {
 
 ### `useCallback` vs `useMemo`
 
+---
+
 | Hook         | Purpose                                      | Use Case                                                                 |
 |--------------|----------------------------------------------|--------------------------------------------------------------------------|
 | `useCallback` | Returns a **memoized function**              | Prevents **re-creation** of functions on every render (useful for props) |
@@ -624,7 +626,7 @@ const MyComponent = React.memo(function ({ name }) {
 
 ---
 
-### `useCallback` Example
+ **`useCallback` Example**
 
 ```jsx
 const handleClick = useCallback(() => {
@@ -636,7 +638,7 @@ const handleClick = useCallback(() => {
 
 ---
 
-### `useMemo` Example
+ **`useMemo` Example**
 
 ```jsx
 const filteredItems = useMemo(() => {
@@ -664,15 +666,6 @@ Use when:
 - Props change infrequently  
 - Component re-renders cause performance hits
 
----
 
-### useCallback vs useMemo
-
-| Hook         | Purpose                        | Use Case                         |
-|--------------|--------------------------------|----------------------------------|
-| `useCallback`| Memoizes a function reference  | When passing callbacks to children |
-| `useMemo`    | Memoizes computed value        | When recalculating is expensive   |
-
----
 
 

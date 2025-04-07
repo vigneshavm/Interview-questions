@@ -89,6 +89,23 @@ function sum(...numbers) {
 | `arguments` object | Available | Not available |
 | Can be used as constructors | Yes | No |
 
+
+
+| Feature | Normal Function | Arrow Function |
+|---------|----------------|---------------|
+| `this` Binding | Dynamic (depends on how it's called) | Lexical (inherits from surrounding scope) |
+| Arguments Object | ✅ Yes (`arguments`) | ❌ No (`arguments` is undefined) |
+| Suitable for Methods | ✅ Yes | ❌ No (Cannot use `this` in objects) |
+
+**Example:**
+```js
+function normalFunc() {
+  console.log(this); // `this` depends on call context
+}
+const arrowFunc = () => {
+  console.log(this); // `this` inherits from parent scope
+};
+```
 ---
 
 ### **Shallow vs Deep Copy**
@@ -347,22 +364,7 @@ kid.greet(); // Hello, John
 
 
 
-### **Normal Function vs Arrow Function**
-| Feature | Normal Function | Arrow Function |
-|---------|----------------|---------------|
-| `this` Binding | Dynamic (depends on how it's called) | Lexical (inherits from surrounding scope) |
-| Arguments Object | ✅ Yes (`arguments`) | ❌ No (`arguments` is undefined) |
-| Suitable for Methods | ✅ Yes | ❌ No (Cannot use `this` in objects) |
 
-**Example:**
-```js
-function normalFunc() {
-  console.log(this); // `this` depends on call context
-}
-const arrowFunc = () => {
-  console.log(this); // `this` inherits from parent scope
-};
-```
 
 ---
 

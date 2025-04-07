@@ -57,12 +57,12 @@ server.listen(3000, () => {
 ## **Event Loop**
 
 **Phases of the Event Loop:**
- **Timers**: Executes the callbacks for `setTimeout` and `setInterval`.
- **Pending Callbacks**: Handles I/O callbacks (e.g., TCP callbacks).
- **Idle/Prepare**: Internal phase for system operations.
- **Poll**: Waits for new I/O events and executes callbacks when ready.
- **Check**: Executes `setImmediate` callbacks.
-6. **Close Callbacks**: Handles events such as `close` event listeners.
+-  **Timers**: Executes the callbacks for `setTimeout` and `setInterval`.
+-  **Pending Callbacks**: Handles I/O callbacks (e.g., TCP callbacks).
+-  **Idle/Prepare**: Internal phase for system operations.
+-  **Poll**: Waits for new I/O events and executes callbacks when ready.
+-  **Check**: Executes `setImmediate` callbacks.
+-  **Close Callbacks**: Handles events such as `close` event listeners.
 
 **Code Execution Order:**
 ```js

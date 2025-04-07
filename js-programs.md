@@ -8,9 +8,6 @@ const secondLargest = arr => {
 
 
 
-
-
-
 #### **Remove Duplicates from an Arrayy**
 
 ```js
@@ -74,7 +71,7 @@ console.log(isPalindrome("Racecar")); // true
 
 ---
 
-#### ** Reverse Words in a Sentencey**
+#### **Reverse Words in a Sentencey**
 
 ```js
 function reverseWords(str) {

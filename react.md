@@ -498,6 +498,27 @@ class ErrorBoundary extends React.Component {
 
 React Hooks are functions that let you "hook into" React state and lifecycle features from function components.
 
+
+
+| **Hook**                   | **Purpose**                                                                 | **When to Use**                                                          | **Example Use Case**                                 |
+|----------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------|------------------------------------------------------|
+| `useState`                 | Store and update local state                                                | Any dynamic value inside a component                                     | Form inputs, counters, toggles                      |
+| `useEffect`                | Perform side effects                                                        | Fetching data, setting timers, subscriptions                             | API calls, local storage, DOM listeners             |
+| `useContext`               | Consume data from a context provider                                        | Access global values without prop drilling                               | Theme, user auth, language preference               |
+| `useReducer`              | Complex state logic with actions                                            | When state updates depend on previous state                              | Forms, shopping carts, toggle reducers              |
+| `useCallback`              | Memoize a callback function                                                 | Prevent re-renders of children receiving functions as props              | Event handlers, expensive calculations              |
+| `useMemo`                 | Memoize an expensive computed value                                         | Heavy calculations that depend on specific inputs                        | Filtering/sorting lists, derived state              |
+| `useRef`                   | Store mutable values or DOM refs                                            | When value shouldn't trigger re-render                                   | Accessing input fields, tracking previous values    |
+| `useImperativeHandle`      | Expose methods from child component using `ref`                            | Parent needs to call child functions directly                            | Custom modals, form controls                        |
+| `useLayoutEffect`          | Like `useEffect` but fires before painting                                 | DOM reads/measurements to avoid flicker                                  | Animations, layout adjustments                      |
+| `useDebugValue`            | Show custom hook info in React DevTools                                     | Inside custom hooks                                                      | Debugging user login status                         |
+| `useDeferredValue`         | Delay rendering a value (concurrent-friendly)                              | Heavy UI renders based on fast input                                    | Real-time search filter                             |
+| `useTransition`            | Mark non-urgent updates for smoother UI                                     | Updating large UI without blocking input                                | Tab switching, background state changes             |
+| `useId`                    | Generate unique IDs for accessibility & SSR                                 | Generate stable IDs for input-label, list keys                           | Forms with server-rendered markup                   |
+| `useSyncExternalStore`     | Subscribe to external data stores                                           | For state libraries, global stores                                       | Zustand, Redux, or any custom external store        |
+| `useInsertionEffect`       | Inject styles before layout/render                                          | With CSS-in-JS libraries                                                 | Emotion, styled-components                          |
+
+
 ---
 
 ### `useState` 

@@ -488,23 +488,12 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 
 ## **JWT (JSON Web Token) Flow**
 
- **User logs in** → Server generates JWT.
- **JWT Structure**: Header (algorithm), Payload (user data), Signature (hash).
- **Client sends JWT** in the `Authorization` header.
- **Server verifies** JWT before granting access.
-
-
- 
----
-
-## 🧠 JWT Flow Overview
-
-1. User logs in with credentials
-2. Server verifies and generates a JWT
-3. Client stores the JWT (e.g., in localStorage)
-4. Client sends the token in `Authorization: Bearer <token>` header
-5. Server verifies token and grants access to protected routes
-
+- User logs in with credentials
+- User logs in → Server generates JWT.
+- JWT Structure: Header (algorithm), Payload (user data), Signature (hash).
+- Client stores the JWT (e.g., in localStorage)
+- Client sends JWT in the `Authorization` header.
+- Server verifies JWT and grants access to protected routes
 ---
 
 ## 📁 Folder Structure
@@ -523,19 +512,9 @@ jwt-auth-ts/
 
 ---
 
-## ⚙️ Project Setup
 
 
-
-
-
-
-
----
-
-## 🚀 Sample Code
-
-### `src/index.ts`
+ `src/index.ts`
 
 ```ts
 import express from "express";
@@ -575,7 +554,7 @@ app.listen(PORT, () => {
 
 ---
 
-### `src/middleware/authMiddleware.ts`
+ `src/middleware/authMiddleware.ts`
 
 ```ts
 import { Request, Response, NextFunction } from "express";
@@ -609,7 +588,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
 
 ---
 
-### `.env`
+ `.env`
 
 ```
 JWT_SECRET=mySuperSecretKey
@@ -617,7 +596,7 @@ JWT_SECRET=mySuperSecretKey
 
 ---
 
-### Scripts in `package.json`
+ Scripts in `package.json`
 
 ```json
 "scripts": {
@@ -628,9 +607,9 @@ JWT_SECRET=mySuperSecretKey
 
 ---
 
-## 🧪 Testing
+ 🧪 Testing
 
-### Login and get token
+ Login and get token
 
 ```bash
 curl -X POST http://localhost:4000/login \
@@ -638,17 +617,12 @@ curl -X POST http://localhost:4000/login \
 -d '{"username":"admin","password":"password"}'
 ```
 
-### Access protected route
+ Access protected route
 
 ```bash
 curl http://localhost:4000/protected \
 -H "Authorization: Bearer <your_token_here>"
 ```
-
-
-
-
-
 
 
 ---

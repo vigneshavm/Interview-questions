@@ -566,6 +566,37 @@ MongoDB is **CP by default**, with options to tune for **AP** using read prefere
 
 ---
 
+
+
+
+
+## MongoDB with Node.js
+
+
+- Using the official MongoDB Node.js driver or an ODM like Mongoose. Example (using Mongoose):
+
+```js
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/mydb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 ```
 
+---
 
+## `useNewUrlParser` and `useUnifiedTopology` in Mongoose?
+
+
+- These are options to handle MongoDB's newer connection logic:
+- `useNewUrlParser`: Parses MongoDB connection strings using the new parser.  
+- `useUnifiedTopology`: Enables the new unified topology layer for monitoring servers.
+
+---
+
+## 3. Mongoose Vs  MongoDB native driver?
+
+
+- **Mongoose** is an ODM (Object Document Mapper) that provides schema, models, and built-in validation.  
+- **MongoDB native driver** is low-level, offering direct access to the database. It is more flexible but less structured.
+```

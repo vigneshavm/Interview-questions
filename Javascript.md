@@ -26,7 +26,7 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
-### **Difference between `var`, `let`, and `const`?**  
+### ** `var`, `let`, and `const` **  
 - `var`: **Function-scoped**, hoisted, can be re-declared.  
 - `let`: **Block-scoped**, not hoisted, prevents redeclaration issues.  
 - `const`: **Block-scoped**, immutable reference, must be initialized.
@@ -179,7 +179,7 @@ const person = { name: "Alice" };
 ---
 
 
-### **Closure?**  
+### **Closure**  
 A closure is a function that captures and remembers variables from its outer scope, even after that outer function has returned.
 
 Example:  
@@ -210,7 +210,7 @@ closureExample("World"); // Outer: Hello, Inner: World
 ---
 
 
-### **Synchronous vs. Asynchronous JavaScript?**  
+### **Synchronous vs. Asynchronous**  
 - **Synchronous**: Code executes sequentially, blocking further execution.  
 - **Asynchronous**: Operations (e.g., API calls) run in the background without blocking.  
 
@@ -264,7 +264,7 @@ console.log(obj2.getValue()); // ❌ undefined
 
 ---
 
-### **`null` and `undefined`?**  
+### **`null` and `undefined`**  
 | Feature | `null` | `undefined` |
 |---------|--------|------------|
 | Meaning | Absence of a value (intentional) | Variable declared but not assigned |
@@ -333,7 +333,7 @@ fetchData();
 
 ---
 
-### **JavaScript Modules (`import/export`)?**  
+### **JavaScript Modules (`import/export`)**  
 Modules **split** code into reusable files.  
 
 **Exporting (`math.js`)**:  

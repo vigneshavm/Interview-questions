@@ -11,8 +11,7 @@
 | [Cookies vs `sessionStorage` vs `localStorage`](#cookies-vs-sessionstorage-vs-localstorage) | [Function Declarations vs Expressions vs Instantiation](#function-declarations-vs-expressions-vs-instantiation) | [Aborting Web Requests with `AbortController`](#aborting-web-requests-with-abortcontroller) |
 | [Function Declarations vs Function Expressions](#function-declarations-vs-function-expressions) | [Use Cases for Anonymous Functions](#use-cases-for-anonymous-functions) | [JavaScript Polyfills](#javascript-polyfills) |
 | [Object Creation Techniques](#object-creation-techniques) | [Closures in JavaScript](#closures-in-javascript) | [Extending Built-in Objects](#extending-built-in-objects) |
-| [Higher-Order Functions](#higher-order-functions) | [ES2015 Classes vs ES5 Constructors](#es2015-classes-vs-es5-constructors) | [Avoiding Pollution of Global Scope](#avoiding-pollution-of-global-scope) |
-| [Event Bubbling](#event-bubbling) | [Event Capturing](#event-capturing) | [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
+| [ES2015 Classes vs ES5 Constructors](#es2015-classes-vs-es5-constructors) | [Avoiding Pollution of Global Scope](#avoiding-pollution-of-global-scope) |
 | [`mouseenter` vs `mouseover`](#mouseenter-vs-mouseover) | [JavaScript Data Types](#javascript-data-types) | [Looping Through Objects and Arrays](#looping-through-objects-and-arrays) |
 | [Spread Syntax vs Rest Syntax](#spread-syntax-vs-rest-syntax) | [Iterators and Generators](#iterators-and-generators) | [Mutable vs Immutable Objects](#mutable-vs-immutable-objects) |
 | [`Map` vs Plain Object](#map-vs-plain-object) | [`Map`/`Set` vs `WeakMap`/`WeakSet`](#mapset-vs-weakmapweakset) | [Static Class Members](#static-class-members) |

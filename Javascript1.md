@@ -11,9 +11,9 @@
 | [What is the difference between `==` and `===` in JavaScript?](#what-is-the-difference-between--and--in-javascript)  | [What language constructs do you use for iterating over object properties and array items in JavaScript?](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript)  | [What is the purpose of the `break` and `continue` statements?](#what-is-the-purpose-of-the-break-and-continue-statements)  | [What is the ternary operator and how is it used?](#what-is-the-ternary-operator-and-how-is-it-used)  | [How do you access the index of an element in an array during iteration?](#how-do-you-access-the-index-of-an-element-in-an-array-during-iteration)  | [What is the purpose of the `switch` statement?](#what-is-the-purpose-of-the-switch-statement)  | [What are rest parameters and how are they used?](#what-are-rest-parameters-and-how-are-they-used)  | [Explain the concept of the spread operator and its uses](#explain-the-concept-of-the-spread-operator-and-its-uses)  | 
 | [What are the benefits of using spread syntax in JavaScript and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax)  | [What are iterators and generators in JavaScript and what are they used for?](#what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for)  | [Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}` in JavaScript](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function--in-javascript)  | [What is the difference between a parameter and an argument?](#what-is-the-difference-between-a-parameter-and-an-argument)  | [Explain the concept of hoisting with regards to functions](#explain-the-concept-of-hoisting-with-regards-to-functions)  | [What's the difference between `.call` and `.apply` in JavaScript?](#whats-the-difference-between-call-and-apply-in-javascript)  | [Can you offer a use case for the new arrow => function syntax?](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax)  | [Difference between: `function Person(){}`, `const person = Person()`, and `const person = new Person()` in JavaScript?](#difference-between-function-person-const-person--person-and-const-person--new-person-in-javascript)  | 
 | [What is the definition of a higher-order function in JavaScript?](#what-is-the-definition-of-a-higher-order-function-in-javascript)  | [What are callback functions and how are they used?](#what-are-callback-functions-and-how-are-they-used)  | [What's a typical use case for anonymous functions in JavaScript?](#whats-a-typical-use-case-for-anonymous-functions-in-javascript)  | [What is recursion and how is it used in JavaScript?](#what-is-recursion-and-how-is-it-used-in-javascript)  | [What are default parameters and how are they used?](#what-are-default-parameters-and-how-are-they-used)  | [Explain why the following doesn't work as an IIFE: `function foo(){}();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo-what-needs-to-be-changed-to-properly-make-it-an-iife)  | [What are the various ways to create objects in JavaScript?](#what-are-the-various-ways-to-create-objects-in-javascript)  | [Explain the difference between dot notation and bracket notation for accessing object properties](#explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties)  | 
-| [What are the different methods for iterating over an array?](#what-are-the-different-methods-for-iterating-over-an-array)  | [How do you add, remove, and update elements in an array?](#how-do-you-add-remove-and-update-elements-in-an-array)  | [What are the different ways to copy an object or an array?](#what-are-the-different-ways-to-copy-an-object-or-an-array)  | [Explain the difference between shallow copy and deep copy](#explain-the-difference-between-shallow-copy-and-deep-copy)  | [What are the advantages of using the spread operator with arrays and objects?](#what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects)  | [How do you check if an object has a specific property?](#how-do-you-check-if-an-object-has-a-specific-property)  | [Explain the difference between mutable and immutable objects in JavaScript](#explain-the-difference-between-mutable-and-immutable-objects-in-javascript)  | [Explain the concept of destructuring assignment for objects and arrays](#explain-the-concept-of-destructuring-assignment-for-objects-and-arrays)  | 
-| [What is `Object.freeze()` for?](#what-is-objectfreeze-for)  | [What is `Object.seal()` for?](#what-is-objectseal-for)  | [What is `Object.preventExtensions()` for?](#what-is-objectpreventextensions-for)  | [What are JavaScript object getters and setters for?](#what-are-javascript-object-getters-and-setters-for)  | [What are JavaScript object property flags and descriptors?](#what-are-javascript-object-property-flags-and-descriptors)  | [How do you reliably determine whether an object is empty?](#how-do-you-reliably-determine-whether-an-object-is-empty)  | [What is the event loop in JavaScript runtimes?](#what-is-the-event-loop-in-javascript-runtimes)  | [Explain the difference between synchronous and asynchronous functions in JavaScript](#explain-the-difference-between-synchronous-and-asynchronous-functions-in-javascript)  | 
-| [Explain the concept of a callback function in asynchronous operations](#explain-the-concept-of-a-callback-function-in-asynchronous-operations)  | [What are Promises and how do they work?](#what-are-promises-and-how-do-they-work)  | [Explain the different states of a Promise](#explain-the-different-states-of-a-promise)  | [What are the pros and cons of using Promises instead of callbacks in JavaScript?](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks-in-javascript)  | [What is the use of `Promise.all()`](#what-is-the-use-of-promiseall)  | [How is `Promise.all()` different from `Promise.allSettled()`?](#how-is-promiseall-different-from-promiseallsettled)  | [What is async/await and how does it simplify asynchronous code?](#what-is-asyncawait-and-how-does-it-simplify-asynchronous-code)  | [How do you handle errors in asynchronous operations?](#how-do-you-handle-errors-in-asynchronous-operations)  | 
+| [array iterating](#what-are-the-different-methods-for-iterating-over-an-array)  | [array -  add, remove, and update elements?](#how-do-you-add-remove-and-update-elements-in-an-array)  | [copy an object or an array](#what-are-the-different-ways-to-copy-an-object-or-an-array)  | [shallow copy Vs deep copy](#explain-the-difference-between-shallow-copy-and-deep-copy)  | [spread operator with arrays and objects](#what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects)  | [Check object has a specific property](#how-do-you-check-if-an-object-has-a-specific-property)  | [mutable Vs immutable objects](#explain-the-difference-between-mutable-and-immutable-objects-in-javascript)  | [destructuring assignment for objects and arrays](#explain-the-concept-of-destructuring-assignment-for-objects-and-arrays)  | 
+| [Object.freeze()](#what-is-objectfreeze-for)  | [Object.seal()](#what-is-objectseal-for)  | [Object.preventExtensions()](#what-is-objectpreventextensions-for)  | [getters and setters](#what-are-javascript-object-getters-and-setters-for)  | [object property flags](#what-are-javascript-object-property-flags-and-descriptors)  | [Check object is empty](#how-do-you-reliably-determine-whether-an-object-is-empty)  | [event loop](#what-is-the-event-loop-in-javascript-runtimes)  | [synchronous Vs asynchronous functions](#explain-the-difference-between-synchronous-and-asynchronous-functions-in-javascript)  | 
+| [callback function](#explain-the-concept-of-a-callback-function-in-asynchronous-operations)  | [Promises](#what-are-promises-and-how-do-they-work)  | [Promises - states](#explain-the-different-states-of-a-promise)  | [Promises - pros and cons](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks-in-javascript)  | [Promise.all()](#what-is-the-use-of-promiseall)  | [`Promise.all()` Vs `Promise.allSettled()`](#how-is-promiseall-different-from-promiseallsettled)  | [async/await ](#what-is-asyncawait-and-how-does-it-simplify-asynchronous-code)  | [handle errors in asynchronous operations](#how-do-you-handle-errors-in-asynchronous-operations)  | 
 | [microtask queue](#explain-the-concept-of-a-microtask-queue)  | [`setTimeout()`, `setImmediate()`, and `process.nextTick()`](#what-is-the-difference-between-settimeout-setimmediate-and-processnexttick)  | [inheritance](#explain-how-prototypal-inheritance-works-in-javascript)  | [prototype chain](#what-is-the-prototype-chain-and-how-does-it-work)  | [classical inheritance Vs prototypal inheritance](#explain-the-difference-between-classical-inheritance-and-prototypal-inheritance)  | [inheritance in ES2015 classes](#explain-the-concept-of-inheritance-in-es2015-classes)  | [ `new` keyword](#what-is-the-purpose-of-the-new-keyword)  | [constructor function](#how-do-you-create-a-constructor-function)  | 
 | [JavaScript ES2015 classes and ES5 function constructors](#what-are-the-differences-between-javascript-es2015-classes-and-es5-function-constructors)  | [Arrow functions](#what-advantage-is-there-for-using-the-javascript-arrow-syntax-for-a-method-in-a-constructor)  | [create static class members](#why-might-you-want-to-create-static-class-members-in-javascript)  | [closure](#what-is-a-closure-in-javascript-and-howwhy-would-you-use-one)  | [lexical scoping](#explain-the-concept-of-lexical-scoping)  | [Scope](#explain-the-concept-of-scope-in-javascript)  | [closures - private variables](#how-can-closures-be-used-to-create-private-variables)  | [closures - potential pitfalls](#what-are-the-potential-pitfalls-of-using-closures)  | 
 | [global scope, function scope, and block scope](#explain-the-difference-between-global-scope-function-scope-and-block-scope)  | [`this` works in JavaScript](#explain-how-this-works-in-javascript)  | [Function.prototype.bind](#explain-functionprototypebind-in-javascript)  | [`this` - different ways](#explain-the-different-ways-the-this-keyword-can-be-bound)  | [`this` keyword - common pitfalls](#what-are-the-common-pitfalls-of-using-the-this-keyword)  | [`this` binding in event handlers](#explain-the-concept-of-this-binding-in-event-handlers)  | [DOM?](#what-is-the-dom-and-how-is-it-structured)  | [What's the difference between an "attribute" and a "property" in the DOM?](#whats-the-difference-between-an-attribute-and-a-property-in-the-dom)  | 
@@ -116,7 +116,7 @@ In JavaScript, `let`, `var`, and `const` are all keywords used to declare variab
 
 <br>
 
-### What is the event loop in JavaScript runtimes?
+### event loop
 
 <!-- Update here: /questions/what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue/en-US.mdx -->
 
@@ -861,7 +861,7 @@ Overall, the benefits outweigh the disadvantages and there is not really a need 
 
 <br>
 
-### Explain the difference between synchronous and asynchronous functions in JavaScript
+### synchronous Vs asynchronous functions
 
 <!-- Update here: /questions/explain-the-difference-between-synchronous-and-asynchronous-functions/en-US.mdx -->
 
@@ -906,7 +906,7 @@ console.log('Call made to fetch data'); // This will print before the data is fe
 
 <br>
 
-### What are the pros and cons of using Promises instead of callbacks in JavaScript?
+### Promises - pros and cons
 
 <!-- Update here: /questions/what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks/en-US.mdx -->
 
@@ -1437,7 +1437,7 @@ Generators are powerful for creating iterators on-demand, especially for infinit
 
 <br>
 
-### Explain the difference between mutable and immutable objects in JavaScript
+### mutable Vs immutable objects
 
 <!-- Update here: /questions/explain-the-difference-between-mutable-and-immutable-objects/en-US.mdx -->
 
@@ -1698,7 +1698,7 @@ In this example, the server sends a "Hello from server" message initially, and t
 
 <br>
 
-### What are JavaScript object property flags and descriptors?
+### object property flags
 
 <!-- Update here: /questions/what-are-javascript-object-property-flags-and-descriptors/en-US.mdx -->
 
@@ -1733,7 +1733,7 @@ The use cases of property descriptors are as follows:
 
 <br>
 
-### What are JavaScript object getters and setters for?
+### getters and setters
 
 <!-- Update here: /questions/what-are-javascript-object-getters-and-setters-for/en-US.mdx -->
 
@@ -3090,7 +3090,7 @@ console.log(obj['favorite color']); // blue
 
 <br>
 
-### What are the different methods for iterating over an array?
+### array iterating
 
 <!-- Update here: /questions/what-are-the-different-methods-for-iterating-over-an-array/en-US.mdx -->
 
@@ -3104,7 +3104,7 @@ There are several methods to iterate over an array in JavaScript. The most commo
 
 <br>
 
-### How do you add, remove, and update elements in an array?
+### array -  add, remove, and update elements?
 
 <!-- Update here: /questions/how-do-you-add-remove-and-update-elements-in-an-array/en-US.mdx -->
 
@@ -3138,7 +3138,7 @@ console.log(arr); // Final state: [1, 5, 3]
 
 <br>
 
-### What are the different ways to copy an object or an array?
+### copy an object or an array
 
 <!-- Update here: /questions/what-are-the-different-ways-to-copy-an-object-or-an-array/en-US.mdx -->
 
@@ -3168,7 +3168,7 @@ console.log(deepCopyObject); // { a: 1, b: 2 };
 
 <br>
 
-### Explain the difference between shallow copy and deep copy
+### shallow copy Vs deep copy
 
 <!-- Update here: /questions/explain-the-difference-between-shallow-copy-and-deep-copy/en-US.mdx -->
 
@@ -3198,7 +3198,7 @@ console.log(obj2.b.c); // Output: 2 (original nested object remains unchanged)
 
 <br>
 
-### What are the advantages of using the spread operator with arrays and objects?
+### spread operator with arrays and objects
 
 <!-- Update here: /questions/what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects/en-US.mdx -->
 
@@ -3224,7 +3224,7 @@ console.log(obj2); // { a: 1, b: 2, c: 3 }
 
 <br>
 
-### How do you check if an object has a specific property?
+### Check object has a specific property
 
 <!-- Update here: /questions/how-do-you-check-if-an-object-has-a-specific-property/en-US.mdx -->
 
@@ -3252,7 +3252,7 @@ if (obj.hasOwnProperty('key')) {
 
 <br>
 
-### Explain the difference between mutable and immutable objects in JavaScript
+### mutable Vs immutable objects
 
 <!-- Update here: /questions/explain-the-difference-between-mutable-and-immutable-objects/en-US.mdx -->
 
@@ -3296,7 +3296,7 @@ The key difference between mutable and immutable objects is modifiability. Immut
 
 <br>
 
-### Explain the concept of destructuring assignment for objects and arrays
+### destructuring assignment for objects and arrays
 
 <!-- Update here: /questions/explain-the-concept-of-destructuring-assignment-for-objects-and-arrays/en-US.mdx -->
 
@@ -3318,7 +3318,7 @@ const { name, age } = { name: 'John', age: 30 };
 
 <br>
 
-### What is `Object.freeze()` for?
+### Object.freeze()
 
 <!-- Update here: /questions/what-is-objectfreeze-for/en-US.mdx -->
 
@@ -3340,7 +3340,7 @@ console.log(obj); // { name: 'John' }
 
 <br>
 
-### What is `Object.seal()` for?
+### Object.seal()
 
 <!-- Update here: /questions/what-is-objectseal-for/en-US.mdx -->
 
@@ -3367,7 +3367,7 @@ console.log(obj); // { name: 'Jane } (unchanged)
 
 <br>
 
-### What is `Object.preventExtensions()` for?
+### Object.preventExtensions()
 
 <!-- Update here: /questions/what-is-objectpreventextensions-for/en-US.mdx -->
 
@@ -3389,7 +3389,7 @@ console.log(obj.age); // undefined
 
 <br>
 
-### What are JavaScript object getters and setters for?
+### getters and setters
 
 <!-- Update here: /questions/what-are-javascript-object-getters-and-setters-for/en-US.mdx -->
 
@@ -3436,7 +3436,7 @@ console.log(person.name); // Output: 'Jane Smith'
 
 <br>
 
-### What are JavaScript object property flags and descriptors?
+### object property flags
 
 <!-- Update here: /questions/what-are-javascript-object-property-flags-and-descriptors/en-US.mdx -->
 
@@ -3469,7 +3469,7 @@ The use cases of property descriptors are as follows:
 
 <br>
 
-### How do you reliably determine whether an object is empty?
+### Check object is empty
 
 <!-- Update here: /questions/how-do-you-reliably-determine-whether-an-object-is-empty/en-US.mdx -->
 
@@ -3490,7 +3490,7 @@ console.log(isEmpty(obj)); // true
 
 <br>
 
-### What is the event loop in JavaScript runtimes?
+### event loop
 
 <!-- Update here: /questions/what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue/en-US.mdx -->
 
@@ -3522,7 +3522,7 @@ We recommend watching [Lydia's video](https://www.youtube.com/watch?v=eiC58R16hb
 
 <br>
 
-### Explain the difference between synchronous and asynchronous functions in JavaScript
+### synchronous Vs asynchronous functions
 
 <!-- Update here: /questions/explain-the-difference-between-synchronous-and-asynchronous-functions/en-US.mdx -->
 
@@ -3565,7 +3565,7 @@ console.log('Call made to fetch data'); // This will print before the data is fe
 
 <br>
 
-### Explain the concept of a callback function in asynchronous operations
+### callback function
 
 <!-- Update here: /questions/explain-the-concept-of-a-callback-function-in-asynchronous-operations/en-US.mdx -->
 
@@ -3592,7 +3592,7 @@ fetchData((data) => {
 
 <br>
 
-### What are Promises and how do they work?
+### Promises
 
 <!-- Update here: /questions/what-are-promises-and-how-do-they-work/en-US.mdx -->
 
@@ -3626,7 +3626,7 @@ promise
 
 <br>
 
-### Explain the different states of a Promise
+### Promises - states
 
 <!-- Update here: /questions/explain-the-different-states-of-a-promise/en-US.mdx -->
 
@@ -3651,7 +3651,7 @@ let promise = new Promise((resolve, reject) => {
 
 <br>
 
-### What are the pros and cons of using Promises instead of callbacks in JavaScript?
+### Promises - pros and cons
 
 <!-- Update here: /questions/what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks/en-US.mdx -->
 
@@ -3665,7 +3665,7 @@ Promises offer a cleaner alternative to callbacks, helping to avoid callback hel
 
 <br>
 
-### What is the use of `Promise.all()`
+### Promise.all()
 
 <!-- Update here: /questions/what-is-the-use-of-promiseall/en-US.mdx -->
 
@@ -3691,7 +3691,7 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
 <br>
 
-### How is `Promise.all()` different from `Promise.allSettled()`?
+### `Promise.all()` Vs `Promise.allSettled()`
 
 <!-- Update here: /questions/how-is-promiseall-different-from-promiseallsettled/en-US.mdx -->
 
@@ -3705,7 +3705,7 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
 <br>
 
-### What is async/await and how does it simplify asynchronous code?
+### async/await 
 
 <!-- Update here: /questions/what-is-asyncawait-and-how-does-it-simplify-asynchronous-code/en-US.mdx -->
 
@@ -3734,7 +3734,7 @@ fetchData();
 
 <br>
 
-### How do you handle errors in asynchronous operations?
+### handle errors in asynchronous operations
 
 <!-- Update here: /questions/how-do-you-handle-errors-in-asynchronous-operations/en-US.mdx -->
 

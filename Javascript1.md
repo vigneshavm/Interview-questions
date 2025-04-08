@@ -26,7 +26,7 @@
 | [How do `Set`s and `Map`s handle equality checks for objects?](#how-do-sets-and-maps-handle-equality-checks-for-objects)  | [What are some common performance bottlenecks in JavaScript applications?](#what-are-some-common-performance-bottlenecks-in-javascript-applications)  | [Explain the concept of debouncing and throttling](#explain-the-concept-of-debouncing-and-throttling)  | [How can you optimize DOM manipulation for better performance?](#how-can-you-optimize-dom-manipulation-for-better-performance)  | [What are some techniques for reducing reflows and repaints?](#what-are-some-techniques-for-reducing-reflows-and-repaints)  | [Explain the concept of lazy loading and how it can improve performance](#explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance)  | [What are Web Workers and how can they be used to improve performance?](#what-are-web-workers-and-how-can-they-be-used-to-improve-performance)  | [Explain the concept of caching and how it can be used to improve performance](#explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance)  | 
 | [What are some tools that can be used to measure and analyze JavaScript performance?](#what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance)  | [How can you optimize network requests for better performance?](#how-can-you-optimize-network-requests-for-better-performance)  | [What are the different types of testing in software development?](#what-are-the-different-types-of-testing-in-software-development)  | [Explain the difference between unit testing, integration testing, and end-to-end testing](#explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing)  |  [What are some popular JavaScript testing frameworks?](#what-are-some-popular-javascript-testing-frameworks)  | [How do you write unit tests for JavaScript code?](#how-do-you-write-unit-tests-for-javascript-code)  | [Explain the concept of test-driven development (TDD)](#explain-the-concept-of-test-driven-development-tdd)  | [What are mocks and stubs and how are they used in testing?](#what-are-mocks-and-stubs-and-how-are-they-used-in-testing)  | 
 | [How can you test asynchronous code in JavaScript?](#how-can-you-test-asynchronous-code-in-javascript)  | [What are some best practices for writing maintainable and effective tests in JavaScript?](#what-are-some-best-practices-for-writing-maintainable-and-effective-tests-in-javascript)  | [Explain the concept of code coverage and how it can be used to assess test quality](#explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality)  | [What are some tools that can be used for JavaScript testing?](#what-are-some-tools-that-can-be-used-for-javascript-testing)  | [What are design patterns and why are they useful?](#what-are-design-patterns-and-why-are-they-useful)  | [Explain the concept of the Singleton pattern](#explain-the-concept-of-the-singleton-pattern)  | [What is the Factory pattern and how is it used?](#what-is-the-factory-pattern-and-how-is-it-used)  | [Explain the Observer pattern and its use cases](#explain-the-observer-pattern-and-its-use-cases)  | 
-| [What is the Module pattern and how does it help with encapsulation?](#what-is-the-module-pattern-and-how-does-it-help-with-encapsulation)  | [Explain the concept of the Prototype pattern](#explain-the-concept-of-the-prototype-pattern)  | [What is the Decorator pattern and how is it used?](#what-is-the-decorator-pattern-and-how-is-it-used)  | [Explain the concept of the Strategy pattern](#explain-the-concept-of-the-strategy-pattern)  | [What is the Command pattern and how is it used?](#what-is-the-command-pattern-and-how-is-it-used)  | [Why is extending built-in JavaScript objects not a good idea?](#why-is-extending-built-in-javascript-objects-not-a-good-idea)  | [What is Cross-Site Scripting (XSS) and how can you prevent it?](#what-is-cross-site-scripting-xss-and-how-can-you-prevent-it)  | [Explain the concept of Cross-Site Request Forgery (CSRF) and its mitigation techniques](#explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques)  | 
+| [?](#what-is-the-module-pattern-and-how-does-it-help-with-encapsulation)  | [Prototype Pattern](#explain-the-concept-of-the-prototype-pattern)  | [Decorator Pattern?](#what-is-the-decorator-pattern-and-how-is-it-used)  | [Strategy Pattern](#explain-the-concept-of-the-strategy-pattern)  | [Command Pattern](#what-is-the-command-pattern-and-how-is-it-used)  | [Extending Built-in JavaScript Objects](#why-is-extending-built-in-javascript-objects-not-a-good-idea)  | [Cross-Site Scripting (XSS) and Prevention](#what-is-cross-site-scripting-xss-and-how-can-you-prevent-it)  | [Cross-Site Request Forgery (CSRF) and Mitigation Techniques mitigation techniques](#explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques)  | 
 | [Preventing SQL Injection Vulnerabilities?](#how-can-you-prevent-sql-injection-vulnerabilities-in-javascript-applications)  | [Handling Sensitive Data?](#what-are-some-best-practices-for-handling-sensitive-data-in-javascript)  | [Content Security Policy (CSP)](#explain-the-concept-of-content-security-policy-csp-and-how-it-enhances-security)  | [Common Security Headers and Their Purposes](#what-are-some-common-security-headers-and-their-purpose)  | [Preventing Clickjacking Attacks](#how-can-you-prevent-clickjacking-attacks)  | [ Input Validation and Its Importance](#explain-the-concept-of-input-validation-and-its-importance-in-security)  | [ Identifying Security Vulnerabilities:](#what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code)  | [Secure Authentication and Authorization](#how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications)  | 
 | [Same-Origin Policy in JavaScript](#explain-the-same-origin-policy-with-regards-to-javascript)  | ['use strict' Directive in JavaScript](#what-is-use-strict-in-javascript-for)  | [Tools and Techniques for Debugging JavaScript Code](#what-tools-and-techniques-do-you-use-for-debugging-javascript-code)  | [JavaScript Garbage Collection Mechanisms?](#how-does-javascript-garbage-collection-work)  | [SEO Strategies for Single Page Applications (SPAs)](#explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly)  | [Sharing Code Between JavaScript Files?](#how-can-you-share-code-between-javascript-files)  | [Organizing JavaScript Code for Maintainability?](#how-do-you-organize-your-code)  | [Pros and Cons of Using Languages that Compile to JavaScript?](#what-are-some-of-the-advantagesdisadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript)  | [When would you use `document.write()`?](#when-would-you-use-documentwrite)  | 
 
@@ -1105,7 +1105,7 @@ Libraries and services for polyfills:
 
 <br>
 
-### Why is extending built-in JavaScript objects not a good idea?
+### Extending Built-in JavaScript Objects
 
 <!-- Update here: /questions/why-is-extending-built-in-javascript-objects-not-a-good-idea/en-US.mdx -->
 
@@ -6355,7 +6355,7 @@ The Observer pattern is a design pattern where an object, known as the subject, 
 
 <br>
 
-### What is the Module pattern and how does it help with encapsulation?
+### Module Pattern and Encapsulation?
 
 <!-- Update here: /questions/what-is-the-module-pattern-and-how-does-it-help-with-encapsulation/en-US.mdx -->
 
@@ -6387,7 +6387,7 @@ myModule.publicMethod(); // Logs: I am private
 
 <br>
 
-### Explain the concept of the Prototype pattern
+### Prototype Pattern
 
 <!-- Update here: /questions/explain-the-concept-of-the-prototype-pattern/en-US.mdx -->
 
@@ -6412,7 +6412,7 @@ newObject.greet(); // Outputs: Hello, world!
 
 <br>
 
-### What is the Decorator pattern and how is it used?
+### Decorator Pattern?
 
 <!-- Update here: /questions/what-is-the-decorator-pattern-and-how-is-it-used/en-US.mdx -->
 
@@ -6456,7 +6456,7 @@ console.log(myCarWithGPS.drive()); // "Driving with GPS"
 
 <br>
 
-### Explain the concept of the Strategy pattern
+### Strategy Pattern
 
 <!-- Update here: /questions/explain-the-concept-of-the-strategy-pattern/en-US.mdx -->
 
@@ -6500,7 +6500,7 @@ context.executeStrategy('someData'); // Output: Algorithm A was run on someData
 
 <br>
 
-### What is the Command pattern and how is it used?
+### Command Pattern
 
 <!-- Update here: /questions/what-is-the-command-pattern-and-how-is-it-used/en-US.mdx -->
 
@@ -6548,7 +6548,7 @@ lightOnCommand.undo(); // Light is off
 
 <br>
 
-### Why is extending built-in JavaScript objects not a good idea?
+### Extending Built-in JavaScript Objects
 
 <!-- Update here: /questions/why-is-extending-built-in-javascript-objects-not-a-good-idea/en-US.mdx -->
 
@@ -6564,7 +6564,7 @@ The only time you may want to extend a native object is when you want to create 
 
 <br>
 
-### What is Cross-Site Scripting (XSS) and how can you prevent it?
+### Cross-Site Scripting (XSS) and Prevention
 
 <!-- Update here: /questions/what-is-cross-site-scripting-xss-and-how-can-you-prevent-it/en-US.mdx -->
 
@@ -6578,7 +6578,7 @@ Cross-Site Scripting (XSS) is a security vulnerability that allows attackers to 
 
 <br>
 
-### Explain the concept of Cross-Site Request Forgery (CSRF) and its mitigation techniques
+### Cross-Site Request Forgery (CSRF) and Mitigation Techniques mitigation techniques
 
 <!-- Update here: /questions/explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques/en-US.mdx -->
 

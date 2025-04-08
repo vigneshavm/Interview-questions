@@ -1204,49 +1204,6 @@ Things to note are:
 
 
 
-### anonymous functions - use case
-
-<!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
-
-Anonymous function in Javascript is a function that does not have any name associated with it. They are typically used as arguments to other functions or assigned to variables.
-
-```js live
-const arr = [-1, 0, 5, 6];
-
-// The filter method is passed an anonymous function.
-arr.filter((x) => x > 1); // [5, 6]
-```
-
-They are often used as arguments to other functions, known as higher-order functions, which can take functions as input and return a function as output. Anonymous functions can access variables from the outer scope, a concept known as closures, allowing them to "close over" and remember the environment in which they were created.
-
-```js live
-// Encapsulating Code
-(function () {
-  // Some code here.
-})();
-
-// Callbacks
-setTimeout(function () {
-  console.log('Hello world!');
-}, 1000);
-
-// Functional programming constructs
-const arr = [1, 2, 3];
-const double = arr.map(function (el) {
-  return el * 2;
-});
-console.log(double); // [2, 4, 6]
-```
-
-<!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
-
-<br>
-    
-> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/whats-a-typical-use-case-for-anonymous-functions?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
-
-[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx)
-
-<br>
 
 ### create objects - various ways
 
@@ -2506,6 +2463,54 @@ console.log(sum(1, 2, 3, 4)); // Output: 10
 <br>
 
 
+### Anonymous Functions - Use Cases
+
+<!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
+
+Anonymous function in Javascript is a function that does not have any name associated with it. They are typically used as arguments to other functions or assigned to variables.
+
+```js live
+const arr = [-1, 0, 5, 6];
+
+// The filter method is passed an anonymous function.
+arr.filter((x) => x > 1); // [5, 6]
+```
+
+They are often used as arguments to other functions, known as higher-order functions, which can take functions as input and return a function as output. Anonymous functions can access variables from the outer scope, a concept known as closures, allowing them to "close over" and remember the environment in which they were created.
+
+```js live
+// Encapsulating Code
+(function () {
+  // Some code here.
+})();
+
+// Callbacks
+setTimeout(function () {
+  console.log('Hello world!');
+}, 1000);
+
+// Functional programming constructs
+const arr = [1, 2, 3];
+const double = arr.map(function (el) {
+  return el * 2;
+});
+console.log(double); // [2, 4, 6]
+```
+
+<!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
+
+<br>
+    
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/whats-a-typical-use-case-for-anonymous-functions?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
+
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx)
+
+<br>
+
+
+
+
+
 
 ### iterators and generators
 
@@ -2698,46 +2703,6 @@ fetchData(handleData);
 
 
 <br>
-
-### anonymous functions - use case
-
-<!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
-
-Anonymous function in Javascript is a function that does not have any name associated with it. They are typically used as arguments to other functions or assigned to variables.
-
-```js live
-const arr = [-1, 0, 5, 6];
-
-// The filter method is passed an anonymous function.
-arr.filter((x) => x > 1); // [5, 6]
-```
-
-They are often used as arguments to other functions, known as higher-order functions, which can take functions as input and return a function as output. Anonymous functions can access variables from the outer scope, a concept known as closures, allowing them to "close over" and remember the environment in which they were created.
-
-```js live
-// Encapsulating Code
-(function () {
-  // Some code here.
-})();
-
-// Callbacks
-setTimeout(function () {
-  console.log('Hello world!');
-}, 1000);
-
-// Functional programming constructs
-const arr = [1, 2, 3];
-const double = arr.map(function (el) {
-  return el * 2;
-});
-console.log(double); // [2, 4, 6]
-```
-
-<!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
-
-<br>
-    
-
 
 <br>
 

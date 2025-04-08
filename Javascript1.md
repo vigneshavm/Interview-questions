@@ -203,16 +203,7 @@ console.log(result); // "Hello world! How are you?"
 | Object cloning | `Object.assign({}, obj)`        | `{ ...obj }`           |
 | Object merging | `Object.assign({}, obj1, obj2)` | `{ ...obj1, ...obj2 }` |
 
-**Rest syntax** is the opposite of what spread syntax does. It collects a variable number of arguments into an array. This is often used in function parameters to handle a dynamic number of arguments.
 
-```js live
-// Using rest syntax in a function
-function sum(...numbers) {
-  return numbers.reduce((total, num) => total + num, 0);
-}
-
-console.log(sum(1, 2, 3)); // Output: 6
-```
 
 The spread operator, represented by three dots (`...`), is used in JavaScript to expand iterable objects like arrays or strings into individual elements. It can also be used to spread object properties. For example, you can use it to combine arrays, copy arrays, or pass array elements as arguments to a function.
 
@@ -268,6 +259,24 @@ console.log(sum(...numbers)); // Output: 6
 | Object cloning | `Object.assign({}, obj)`        | `{ ...obj }`           |
 | Object merging | `Object.assign({}, obj1, obj2)` | `{ ...obj1, ...obj2 }` |
 
+
+
+<br>
+
+## Rest Parameters
+
+**Rest syntax** is the opposite of what spread syntax does. It collects a variable number of arguments into an array. This is often used in function parameters to handle a dynamic number of arguments.
+
+```js live
+// Using rest syntax in a function
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(sum(1, 2, 3)); // Output: 6
+```
+
+
 **Rest syntax** is the opposite of what spread syntax does. It collects a variable number of arguments into an array. This is often used in function parameters to handle a dynamic number of arguments.
 
 ```js live
@@ -291,9 +300,6 @@ const obj1 = { a: 1, b: 2 };
 const obj2 = { ...obj1, c: 3 };
 console.log(obj2); // { a: 1, b: 2, c: 3 }
 ```
-
-
-<br>
 
 
 <br>
@@ -351,9 +357,6 @@ console.log(obj2); // { a: 1, b: 2, c: 3 }
 
 *Content for `switch` Statement section*
 
-## Rest Parameters
-
-*Content for Rest Parameters section*
 
 
 

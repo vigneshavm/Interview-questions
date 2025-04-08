@@ -1926,11 +1926,11 @@ The primitive types store a single value, while non-primitive types can store co
 
 ### How do you check the data type of a variable?
 
-<!-- Update here: /questions/how-do-you-check-the-data-type-of-a-variable/en-US.mdx -->
+<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
 
 To check the data type of a variable in JavaScript, you can use the `typeof` operator. For example, `typeof variableName` will return a string indicating the type of the variable, such as `"string"`, `"number"`, `"boolean"`, `"object"`, `"function"`, `"undefined"`, or `"symbol"`. For arrays and `null`, you can use `Array.isArray(variableName)` and `variableName === null`, respectively.
 
-<!-- Update here: /questions/how-do-you-check-the-data-type-of-a-variable/en-US.mdx -->
+<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
 
 <br>
     

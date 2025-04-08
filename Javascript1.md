@@ -496,15 +496,124 @@ Use cases include:
 
 ## `==` and `===`
 
-*Content for `==` and `===` section*
+`==` is the abstract equality operator while `===` is the strict equality operator. The `==` operator will compare for equality after doing any necessary type conversions. The `===` operator will not do type conversion, so if two values are not the same type `===` will simply return `false`.
+
+| Operator | `==` | `===` |
+| --- | --- | --- |
+| Name | (Loose) Equality operator | Strict equality operator |
+| Type coercion | Yes | No |
+| Compares value and type | No | Yes |
+
+
+<br>
+
 
 ## Iterating over Object Properties and Array Items in JavaScript
 
-*Content for Iterating over Object Properties and Array Items in JavaScript section*
+
+There are multiple ways to iterate over object properties as well as arrays in JavaScript:
+
+**`for...in` loop**
+
+The `for...in` loop iterates over all enumerable properties of an object, including inherited enumerable properties. So it is important to have a check if you only want to iterate over object's own properties
+
+```js live
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+
+for (const key in obj) {
+  // To avoid iterating over inherited properties
+  if (Object.hasOwn(obj, key)) {
+    console.log(`${key}: ${obj[key]}`);
+  }
+}
+```
+
+**`Object.keys()`**
+
+`Object.keys()` returns an array of the object's own enumerable property names. You can then use a for...of loop or forEach to iterate over this array.
+
+```js live
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+
+Object.keys(obj).forEach((key) => {
+  console.log(`${key}: ${obj[key]}`);
+});
+```
+
+Most common ways to iterate over array are using `for` loop and `Array.prototype.forEach` method.
+
+**Using `for` loop**
+
+```js live
+let array = [1, 2, 3, 4, 5, 6];
+for (let index = 0; index < array.length; index++) {
+  console.log(array[index]);
+}
+```
+
+**Using `Array.prototype.forEach` method**
+
+```js live
+let array = [1, 2, 3, 4, 5, 6];
+array.forEach((number, index) => {
+  console.log(`${number} at index ${index}`);
+});
+```
+
+**Using `for...of`**
+
+This method is the newest and most convenient way to iterate over arrays. It automatically iterates over each element without requiring you to manage the index.
+
+```js live
+const numbers = [1, 2, 3, 4, 5];
+
+for (const number of numbers) {
+  console.log(number);
+}
+```
+
+There are also other inbuilt methods available which are suitable for specific scenarios for example:
+
+- `Array.prototype.filter`: You can use the `filter` method to create a new array containing only the elements that satisfy a certain condition.
+- `Array.prototype.map`: You can use the `map` method to create a new array based on the existing one, transforming each element with a provided function.
+- `Array.prototype.reduce`: You can use the `reduce` method to combine all elements into a single value by repeatedly calling a function that takes two arguments: the accumulated value and the current element.
+
+
+<br>
+    
+
+
 
 ## `break` and `continue` Statements
 
-*Content for `break` and `continue` Statements section*
+
+The `break` statement is used to exit a loop or switch statement prematurely, while the `continue` statement skips the current iteration of a loop and proceeds to the next iteration. For example, in a `for` loop, `break` will stop the loop entirely, and `continue` will skip to the next iteration.
+
+```js live
+for (let i = 0; i < 10; i++) {
+  if (i === 5) break; // exits the loop when i is 5
+  console.log(i);
+}
+
+for (let i = 0; i < 10; i++) {
+  if (i === 5) continue; // skips the iteration when i is 5
+  console.log(i);
+}
+```
+
+
+<br>
+
+
+<br>
 
 ## Ternary Operator
 
@@ -652,22 +761,7 @@ myFunction(); // Output: 'Hello, world!'
     
 
 
-### `==` and `===`
 
-<!-- Update here: /questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx -->
-
-`==` is the abstract equality operator while `===` is the strict equality operator. The `==` operator will compare for equality after doing any necessary type conversions. The `===` operator will not do type conversion, so if two values are not the same type `===` will simply return `false`.
-
-| Operator | `==` | `===` |
-| --- | --- | --- |
-| Name | (Loose) Equality operator | Strict equality operator |
-| Type coercion | Yes | No |
-| Compares value and type | No | Yes |
-
-<!-- Update here: /questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx -->
-
-<br>
-    
 
 <br>
 
@@ -1715,101 +1809,7 @@ console.log(value); // 42
 
 
 
-### iterating over object properties and array items in JavaScript
 
-<!-- Update here: /questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx -->
-
-There are multiple ways to iterate over object properties as well as arrays in JavaScript:
-
-**`for...in` loop**
-
-The `for...in` loop iterates over all enumerable properties of an object, including inherited enumerable properties. So it is important to have a check if you only want to iterate over object's own properties
-
-```js live
-const obj = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
-
-for (const key in obj) {
-  // To avoid iterating over inherited properties
-  if (Object.hasOwn(obj, key)) {
-    console.log(`${key}: ${obj[key]}`);
-  }
-}
-```
-
-**`Object.keys()`**
-
-`Object.keys()` returns an array of the object's own enumerable property names. You can then use a for...of loop or forEach to iterate over this array.
-
-```js live
-const obj = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
-
-Object.keys(obj).forEach((key) => {
-  console.log(`${key}: ${obj[key]}`);
-});
-```
-
-Most common ways to iterate over array are using `for` loop and `Array.prototype.forEach` method.
-
-**Using `for` loop**
-
-```js live
-let array = [1, 2, 3, 4, 5, 6];
-for (let index = 0; index < array.length; index++) {
-  console.log(array[index]);
-}
-```
-
-**Using `Array.prototype.forEach` method**
-
-```js live
-let array = [1, 2, 3, 4, 5, 6];
-array.forEach((number, index) => {
-  console.log(`${number} at index ${index}`);
-});
-```
-
-**Using `for...of`**
-
-This method is the newest and most convenient way to iterate over arrays. It automatically iterates over each element without requiring you to manage the index.
-
-```js live
-const numbers = [1, 2, 3, 4, 5];
-
-for (const number of numbers) {
-  console.log(number);
-}
-```
-
-There are also other inbuilt methods available which are suitable for specific scenarios for example:
-
-- `Array.prototype.filter`: You can use the `filter` method to create a new array containing only the elements that satisfy a certain condition.
-- `Array.prototype.map`: You can use the `map` method to create a new array based on the existing one, transforming each element with a provided function.
-- `Array.prototype.reduce`: You can use the `reduce` method to combine all elements into a single value by repeatedly calling a function that takes two arguments: the accumulated value and the current element.
-
-<!-- Update here: /questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx -->
-
-<br>
-    
-> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
-
-[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx)
-
-<br>
-
-
-> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
-
-[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx)
-
-<br>
 
 ### iterators and generators
 
@@ -2454,135 +2454,13 @@ console.log(obj[sym]); // "value"
 
 <br>
 
-### `==` and `===`
-
-<!-- Update here: /questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx -->
-
-`==` is the abstract equality operator while `===` is the strict equality operator. The `==` operator will compare for equality after doing any necessary type conversions. The `===` operator will not do type conversion, so if two values are not the same type `===` will simply return `false`.
-
-| Operator | `==` | `===` |
-| --- | --- | --- |
-| Name | (Loose) Equality operator | Strict equality operator |
-| Type coercion | Yes | No |
-| Compares value and type | No | Yes |
-
-<!-- Update here: /questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx -->
-
-<br>
 
 
 <br>
 
-### iterating over object properties and array items in JavaScript
-
-<!-- Update here: /questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx -->
-
-There are multiple ways to iterate over object properties as well as arrays in JavaScript:
-
-**`for...in` loop**
-
-The `for...in` loop iterates over all enumerable properties of an object, including inherited enumerable properties. So it is important to have a check if you only want to iterate over object's own properties
-
-```js live
-const obj = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
-
-for (const key in obj) {
-  // To avoid iterating over inherited properties
-  if (Object.hasOwn(obj, key)) {
-    console.log(`${key}: ${obj[key]}`);
-  }
-}
-```
-
-**`Object.keys()`**
-
-`Object.keys()` returns an array of the object's own enumerable property names. You can then use a for...of loop or forEach to iterate over this array.
-
-```js live
-const obj = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
-
-Object.keys(obj).forEach((key) => {
-  console.log(`${key}: ${obj[key]}`);
-});
-```
-
-Most common ways to iterate over array are using `for` loop and `Array.prototype.forEach` method.
-
-**Using `for` loop**
-
-```js live
-let array = [1, 2, 3, 4, 5, 6];
-for (let index = 0; index < array.length; index++) {
-  console.log(array[index]);
-}
-```
-
-**Using `Array.prototype.forEach` method**
-
-```js live
-let array = [1, 2, 3, 4, 5, 6];
-array.forEach((number, index) => {
-  console.log(`${number} at index ${index}`);
-});
-```
-
-**Using `for...of`**
-
-This method is the newest and most convenient way to iterate over arrays. It automatically iterates over each element without requiring you to manage the index.
-
-```js live
-const numbers = [1, 2, 3, 4, 5];
-
-for (const number of numbers) {
-  console.log(number);
-}
-```
-
-There are also other inbuilt methods available which are suitable for specific scenarios for example:
-
-- `Array.prototype.filter`: You can use the `filter` method to create a new array containing only the elements that satisfy a certain condition.
-- `Array.prototype.map`: You can use the `map` method to create a new array based on the existing one, transforming each element with a provided function.
-- `Array.prototype.reduce`: You can use the `reduce` method to combine all elements into a single value by repeatedly calling a function that takes two arguments: the accumulated value and the current element.
-
-<!-- Update here: /questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx -->
-
-<br>
-    
-
-<br>
-
-###  `break` and `continue` statements
-
-<!-- Update here: /questions/what-is-the-purpose-of-the-break-and-continue-statements/en-US.mdx -->
-
-The `break` statement is used to exit a loop or switch statement prematurely, while the `continue` statement skips the current iteration of a loop and proceeds to the next iteration. For example, in a `for` loop, `break` will stop the loop entirely, and `continue` will skip to the next iteration.
-
-```js live
-for (let i = 0; i < 10; i++) {
-  if (i === 5) break; // exits the loop when i is 5
-  console.log(i);
-}
-
-for (let i = 0; i < 10; i++) {
-  if (i === 5) continue; // skips the iteration when i is 5
-  console.log(i);
-}
-```
-
-<!-- Update here: /questions/what-is-the-purpose-of-the-break-and-continue-statements/en-US.mdx -->
-
-<br>
 
 
-<br>
+
 
 ### ternary operator
 

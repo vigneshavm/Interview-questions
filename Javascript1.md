@@ -35,18 +35,16 @@
 
 ###  Inheritance in ES2015 classes
 ###  Prototypal vs classical inheritance
-###  Prototype pattern
-###  Singleton pattern
-###  Strategy pattern
-###  Factory pattern
-###  Decorator pattern
-###  Command pattern
-###  Module pattern
+###  Pattern
+**Singleton pattern**
+**Strategy pattern**
+**Factory pattern**
+**Decorator pattern**
+**Command pattern**
+**Module pattern**
 
-## Operators & Syntax
-###  Spread operator
-###  Rest syntax
-###  Ternary operator
+## Operators (Spread,Rest,...)
+
 ###  Default parameters
 ###  Tagged templates
 

@@ -6,7 +6,7 @@
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [ JavaScript Data Types?](#JavaScript-Data-Types)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#null-undefined-or-undeclared)  | [let, var, const?](#let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [Template literals](#Template-literals)  | [Tagged Templates in JavaScript](#Tagged-Templates)  | 
 | [Spread and Rest operator?](#spread-operator) | [Rest Parameters](#rest-parameters)  | [Data Types – Symbol?](#data-types--symbol) | [Proxies](#proxies) | [Hoisting](#hoisting) | [Hoisting - `var`, `let`, and `const`](#hoisting---var-let-and-const) | [Hoisting - function declarations and expressions](#hoisting---function-declarations-and-expressions) | [Hoisting - potential issues](#hoisting---potential-issues) | [Hoisting - avoid problems](#hoisting---avoid-problems) |
-| [`==` and `===`](#-and-) | [Iterating over Object Properties and Array Items in JavaScript](#iterating-over-object-properties-and-array-items-in-javascript) | [`break` and `continue` Statements](#break-and-continue-statements) | [Ternary Operator](#ternary-operator) | [Index of an Element in an Array During Iteration](#index-of-an-element-in-an-array-during-iteration) | [`switch` Statement](#switch-statement)  | [Iterators and Generators](#iterators-and-generators) | [`foo` in `function foo() {}` vs. `var foo = function() {}`](#foo-in-function-foo--vs-var-foo--function) |
+| [`==` and `===`](#-and-) | [Iterating over Object Properties and Array Items in JavaScript](#iterating-over-object-properties-and-array-items-in-javascript) | [`break` and `continue` Statements](#break-and-continue-statements) | [Ternary Operator](#ternary-operator) | [Index of an Element in an Array During Iteration](#index-of-an-element-in-an-array-during-iteration) | [`switch` Statement](#switch-statement)  | [Iterators and Generators](#iterators-and-generators) | [`foo` in `function foo() {}` vs. `var foo = function() {}`](#funtiontype-foo) |
 | [Parameter vs. Argument](#parameter-vs-argument) | [Hoisting](#hoisting) | [`.call` and `.apply`](#call-and-apply) | [Arrow Function Syntax](#arrow-function-syntax) | [Function Declaration vs. Function Call vs. Constructor Call](#function-declaration-vs-function-call-vs-constructor-call) |
 | [Higher-Order Functions](#higher-order-functions) | [Callback Functions](#callback-functions) | [Anonymous Functions - Use Cases](#anonymous-functions---use-cases) | [Recursion](#recursion) | [Default Parameters](#default-parameters) | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions-iife) | [Creating Objects - Various Ways](#creating-objects---various-ways) | [Dot Notation vs. Bracket Notation](#dot-notation-vs-bracket-notation) |
 | [Array Iteration Methods](#array-iteration-methods) | [Managing Array Elements](#managing-array-elements) | [Copying Objects and Arrays](#copying-objects-and-arrays) | [Shallow vs. Deep Copy](#shallow-vs-deep-copy)  | [Checking Object Properties](#checking-object-properties) | [Mutable vs. Immutable Objects](#mutable-vs-immutable-objects) | [Destructuring Assignment](#destructuring-assignment) |
@@ -32,9 +32,45 @@
 <!-- TABLE_OF_CONTENTS:ALL:END -->
 
 
-## `foo` in `function foo() {}` vs. `var foo = function() {}`
+## funtionType-foo
 
-*Content for `foo` in `function foo() {}` vs. `var foo = function() {}` section*
+
+`function foo() {}` a function declaration while the `var foo = function() {}` is a function expression. The key difference is that function declarations have its body hoisted but the bodies of function expressions are not (they have the same hoisting behavior as `var`-declared variables).
+
+If you try to invoke a function expression before it is declared, you will get an `Uncaught TypeError: XXX is not a function` error.
+
+Function declarations can be called in the enclosing scope even before they are declared.
+
+```js live
+foo(); // 'FOOOOO'
+function foo() {
+  console.log('FOOOOO');
+}
+```
+
+Function expressions if called before they are declared will result in an error.
+
+```js live
+foo(); // Uncaught TypeError: foo is not a function
+var foo = function () {
+  console.log('FOOOOO');
+};
+```
+
+Another key difference is in the scope of the function name. Function expressions can be named by defining it after the `function` and before the parenthesis. However when using named function expressions, the function name is only accessible within the function itself. Trying to access it outside will result in an error or `undefined`.
+
+```js live
+const myFunc = function namedFunc() {
+  console.log(namedFunc); // Works
+};
+
+myFunc(); // Runs the function and logs the function reference
+console.log(namedFunc); // ReferenceError: namedFunc is not defined
+```
+
+**Note**: The examples uses `var` due to legacy reasons. Function expressions can be defined using `let` and `const` and the key difference is in the hoisting behavior of those keywords.
+
+
 
 
 
@@ -1143,54 +1179,7 @@ Things to note are:
 <br>
 
 
-### `foo` between `function foo() {}` and `var foo = function() {}`
 
-<!-- Update here: /questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx -->
-
-`function foo() {}` a function declaration while the `var foo = function() {}` is a function expression. The key difference is that function declarations have its body hoisted but the bodies of function expressions are not (they have the same hoisting behavior as `var`-declared variables).
-
-If you try to invoke a function expression before it is declared, you will get an `Uncaught TypeError: XXX is not a function` error.
-
-Function declarations can be called in the enclosing scope even before they are declared.
-
-```js live
-foo(); // 'FOOOOO'
-function foo() {
-  console.log('FOOOOO');
-}
-```
-
-Function expressions if called before they are declared will result in an error.
-
-```js live
-foo(); // Uncaught TypeError: foo is not a function
-var foo = function () {
-  console.log('FOOOOO');
-};
-```
-
-Another key difference is in the scope of the function name. Function expressions can be named by defining it after the `function` and before the parenthesis. However when using named function expressions, the function name is only accessible within the function itself. Trying to access it outside will result in an error or `undefined`.
-
-```js live
-const myFunc = function namedFunc() {
-  console.log(namedFunc); // Works
-};
-
-myFunc(); // Runs the function and logs the function reference
-console.log(namedFunc); // ReferenceError: namedFunc is not defined
-```
-
-**Note**: The examples uses `var` due to legacy reasons. Function expressions can be defined using `let` and `const` and the key difference is in the hoisting behavior of those keywords.
-
-<!-- Update here: /questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx -->
-
-<br>
-    
-> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
-
-[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx)
-
-<br>
 
 ### anonymous functions - use case
 
@@ -2609,49 +2598,7 @@ Generators are powerful for creating iterators on-demand, especially for infinit
 
 <br>
 
-### `foo` between `function foo() {}` and `var foo = function() {}`
 
-<!-- Update here: /questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx -->
-
-`function foo() {}` a function declaration while the `var foo = function() {}` is a function expression. The key difference is that function declarations have its body hoisted but the bodies of function expressions are not (they have the same hoisting behavior as `var`-declared variables).
-
-If you try to invoke a function expression before it is declared, you will get an `Uncaught TypeError: XXX is not a function` error.
-
-Function declarations can be called in the enclosing scope even before they are declared.
-
-```js live
-foo(); // 'FOOOOO'
-function foo() {
-  console.log('FOOOOO');
-}
-```
-
-Function expressions if called before they are declared will result in an error.
-
-```js live
-foo(); // Uncaught TypeError: foo is not a function
-var foo = function () {
-  console.log('FOOOOO');
-};
-```
-
-Another key difference is in the scope of the function name. Function expressions can be named by defining it after the `function` and before the parenthesis. However when using named function expressions, the function name is only accessible within the function itself. Trying to access it outside will result in an error or `undefined`.
-
-```js live
-const myFunc = function namedFunc() {
-  console.log(namedFunc); // Works
-};
-
-myFunc(); // Runs the function and logs the function reference
-console.log(namedFunc); // ReferenceError: namedFunc is not defined
-```
-
-**Note**: The examples uses `var` due to legacy reasons. Function expressions can be defined using `let` and `const` and the key difference is in the hoisting behavior of those keywords.
-
-<!-- Update here: /questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx -->
-
-<br>
-    
 
 
 <br>

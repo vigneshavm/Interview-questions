@@ -1,4 +1,4 @@
-## Fundamentals
+
 ###  Hoisting in JavaScript
 ###  Differences between `let`, `var`, and `const`
 ###  Difference between `==` and `===`
@@ -16,7 +16,7 @@
 ###  `function foo() {}` vs `var foo = function() {}`
 ###  Ways to create objects
 
-## Functions & Scoping
+
 ###  Higher-order functions
 ###  ES2015 classes vs ES5 constructors
 ###  Event bubbling
@@ -32,7 +32,7 @@
 ###  JavaScript scope (global, function, block)
 ###  `this` binding in event handlers
 
-## Inheritance & Patterns
+
 ###  Inheritance in ES2015 classes
 ###  Prototypal vs classical inheritance
 ###  Prototype pattern
@@ -57,7 +57,7 @@
 ###  Prevent default behavior of an event
 ###  Event phases in browsers
 
-## Async & Networking
+
 ###  AJAX (detailed explanation)
 ###  Advantages & disadvantages of AJAX
 ###  `XMLHttpRequest` vs `fetch()`
@@ -70,14 +70,14 @@
 ###  Web Socket API
 ###  Server-sent events
 
-## Error Handling
+
 ###  Error propagation
 ###  `try...catch`
 ###  `finally` block
 ###  Handling errors in async operations
 ###  Creating custom error objects
 
-## Security
+
 ###  Cross-Site Scripting (XSS)
 ###  Cross-Site Request Forgery (CSRF)
 ###  Input validation
@@ -94,7 +94,7 @@
 ###  Mutable vs immutable objects
 ###  Equality in Sets and Maps
 
-## Iteration & Manipulation
+
 ###  Iterating over objects and arrays
 ###  `for`, `forEach`, `map`, etc.
 ###  Accessing array indices
@@ -107,7 +107,7 @@
 ###  Getting query string values
 ###  Empty object detection
 
-## Modularity
+
 ###  Import/export modules
 ###  Code sharing across files
 ###  CommonJS vs ES Modules
@@ -138,13 +138,13 @@
 ###  Handling sensitive data
 ###  Identifying security vulnerabilities
 
-## Functional Programming
+
 ###  Currying vs partial application
 ###  Anonymous functions
 ###  Use cases for arrow functions
 ###  Partial application examples
 
-## Advanced Concepts
+
 ###  Iterators and generators
 ###  Observers
 ###  Singleton vs Factory

@@ -28,7 +28,7 @@
 | [How can you test asynchronous code in JavaScript?](#how-can-you-test-asynchronous-code-in-javascript)  | [What are some best practices for writing maintainable and effective tests in JavaScript?](#what-are-some-best-practices-for-writing-maintainable-and-effective-tests-in-javascript)  | [Explain the concept of code coverage and how it can be used to assess test quality](#explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality)  | [What are some tools that can be used for JavaScript testing?](#what-are-some-tools-that-can-be-used-for-javascript-testing)  | [What are design patterns and why are they useful?](#what-are-design-patterns-and-why-are-they-useful)  | [Explain the concept of the Singleton pattern](#explain-the-concept-of-the-singleton-pattern)  | [What is the Factory pattern and how is it used?](#what-is-the-factory-pattern-and-how-is-it-used)  | [Explain the Observer pattern and its use cases](#explain-the-observer-pattern-and-its-use-cases)  | 
 | [What is the Module pattern and how does it help with encapsulation?](#what-is-the-module-pattern-and-how-does-it-help-with-encapsulation)  | [Explain the concept of the Prototype pattern](#explain-the-concept-of-the-prototype-pattern)  | [What is the Decorator pattern and how is it used?](#what-is-the-decorator-pattern-and-how-is-it-used)  | [Explain the concept of the Strategy pattern](#explain-the-concept-of-the-strategy-pattern)  | [What is the Command pattern and how is it used?](#what-is-the-command-pattern-and-how-is-it-used)  | [Why is extending built-in JavaScript objects not a good idea?](#why-is-extending-built-in-javascript-objects-not-a-good-idea)  | [What is Cross-Site Scripting (XSS) and how can you prevent it?](#what-is-cross-site-scripting-xss-and-how-can-you-prevent-it)  | [Explain the concept of Cross-Site Request Forgery (CSRF) and its mitigation techniques](#explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques)  | 
 | [How can you prevent SQL injection vulnerabilities in JavaScript applications?](#how-can-you-prevent-sql-injection-vulnerabilities-in-javascript-applications)  | [What are some best practices for handling sensitive data in JavaScript?](#what-are-some-best-practices-for-handling-sensitive-data-in-javascript)  | [Explain the concept of Content Security Policy (CSP) and how it enhances security](#explain-the-concept-of-content-security-policy-csp-and-how-it-enhances-security)  | [What are some common security headers and their purpose?](#what-are-some-common-security-headers-and-their-purpose)  | [How can you prevent clickjacking attacks?](#how-can-you-prevent-clickjacking-attacks)  | [Explain the concept of input validation and its importance in security](#explain-the-concept-of-input-validation-and-its-importance-in-security)  | [What are some tools and techniques for identifying security vulnerabilities in JavaScript code?](#what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code)  | [How can you implement secure authentication and authorization in JavaScript applications?](#how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications)  | 
-| [Explain the same-origin policy with regards to JavaScript](#explain-the-same-origin-policy-with-regards-to-javascript)  | [What is `'use strict';` in JavaScript for?](#what-is-use-strict-in-javascript-for)  | [What tools and techniques do you use for debugging JavaScript code?](#what-tools-and-techniques-do-you-use-for-debugging-javascript-code)  | [How does JavaScript garbage collection work?](#how-does-javascript-garbage-collection-work)  | [Explain what a single page app is and how to make one SEO-friendly](#explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly)  | [How can you share code between JavaScript files?](#how-can-you-share-code-between-javascript-files)  | [How do you organize your code?](#how-do-you-organize-your-code)  | [What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?](#what-are-some-of-the-advantagesdisadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript)  | [When would you use `document.write()`?](#when-would-you-use-documentwrite)  | 
+| [Same-Origin Policy in JavaScript](#explain-the-same-origin-policy-with-regards-to-javascript)  | ['use strict' Directive in JavaScript](#what-is-use-strict-in-javascript-for)  | [Tools and Techniques for Debugging JavaScript Code](#what-tools-and-techniques-do-you-use-for-debugging-javascript-code)  | [JavaScript Garbage Collection Mechanisms?](#how-does-javascript-garbage-collection-work)  | [SEO Strategies for Single Page Applications (SPAs)](#explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly)  | [Sharing Code Between JavaScript Files?](#how-can-you-share-code-between-javascript-files)  | [Organizing JavaScript Code for Maintainability?](#how-do-you-organize-your-code)  | [Pros and Cons of Using Languages that Compile to JavaScript?](#what-are-some-of-the-advantagesdisadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript)  | [When would you use `document.write()`?](#when-would-you-use-documentwrite)  | 
 
 <!-- TABLE_OF_CONTENTS:ALL:END -->
 
@@ -745,8 +745,7 @@ The main difference lies in the bubbling behavior of `mouseenter` and `mouseover
 
 
 
-###  `'use strict';` in JavaScript for?
-
+###  'use strict' Directive in JavaScript
 <!-- Update here: /questions/what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it/en-US.mdx -->
 
 `'use strict'` is a statement used to enable strict mode to entire scripts or individual functions. Strict mode is a way to opt into a restricted variant of JavaScript.
@@ -1753,7 +1752,7 @@ Use cases include:
 
 
 
-### What tools and techniques do you use for debugging JavaScript code?
+### Tools and Techniques for Debugging JavaScript Code
 
 <!-- Update here: /questions/what-tools-and-techniques-do-you-use-for-debugging-javascript-code/en-US.mdx -->
 
@@ -1823,7 +1822,7 @@ There are three main types of workers in JavaScript:
 
 
 
-### How does JavaScript garbage collection work?
+### JavaScript Garbage Collection Mechanisms?
 
 <!-- Update here: /questions/how-does-javascript-garbage-collection-work/en-US.mdx -->
 
@@ -6614,7 +6613,7 @@ To implement secure authentication and authorization in JavaScript applications,
 
 
 
-### Explain the same-origin policy with regards to JavaScript
+### Same-Origin Policy in JavaScript:
 
 <!-- Update here: /questions/explain-the-same-origin-policy-with-regards-to-javascript/en-US.mdx -->
 
@@ -6692,7 +6691,7 @@ Some of the most commonly used tools and techniques for debugging JavaScript:
 
 
 
-### How does JavaScript garbage collection work?
+### JavaScript Garbage Collection Mechanisms?
 
 <!-- Update here: /questions/how-does-javascript-garbage-collection-work/en-US.mdx -->
 
@@ -6721,7 +6720,7 @@ Different JavaScript engines (differs according to browsers) implement different
 
 
 
-### Explain what a single page app is and how to make one SEO-friendly
+### SEO Strategies for Single Page Applications (SPAs)
 
 <!-- Update here: /questions/explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly/en-US.mdx -->
 
@@ -6773,7 +6772,7 @@ greet();
 
 
 
-### How do you organize your code?
+### Organizing JavaScript Code for Maintainability?
 
 <!-- Update here: /questions/how-do-you-organize-your-code-module-pattern-classical-inheritance/en-US.mdx -->
 

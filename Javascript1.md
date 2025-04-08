@@ -1,7 +1,7 @@
 <!-- TABLE_OF_CONTENTS:TOP:START -->
 
-|  |  |  |  |  |
-| --- | --- | --- |--- |--- |
+|  |  |  |  |  |  |  |
+| --- | --- | --- |--- |--- |--- |--- |
 | [Hoisting](#explain-the-concept-of-hoisting-in-javascript) | [Script Loading Strategies: `<script>`, `async`, and `defer`](#script-loading-strategies-script-async-and-defer) | [`'use strict'` Directive in JavaScript](#use-strict-directive-in-javascript) |
 | [Hoisting: var, let, const](#explain-the-difference-in-hoisting-between-var-let-and-const) | [Function Hoisting](#how-does-hoisting-affect-function-declarations-and-expressions) | [Hoisting Issues](#what-are-the-potential-issues-caused-by-hoisting) |
 | [Variable Declarations: `let`, `var`, and `const`](#variable-declarations-let-var-and-const) | [`null`, `undefined`, and Undeclared Variables](#null-undefined-and-undeclared-variables) | [Synchronous vs Asynchronous Functions](#synchronous-vs-asynchronous-functions) |

@@ -14,8 +14,8 @@
 | [What are the different methods for iterating over an array?](#what-are-the-different-methods-for-iterating-over-an-array)  | [How do you add, remove, and update elements in an array?](#how-do-you-add-remove-and-update-elements-in-an-array)  | [What are the different ways to copy an object or an array?](#what-are-the-different-ways-to-copy-an-object-or-an-array)  | [Explain the difference between shallow copy and deep copy](#explain-the-difference-between-shallow-copy-and-deep-copy)  | [What are the advantages of using the spread operator with arrays and objects?](#what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects)  | [How do you check if an object has a specific property?](#how-do-you-check-if-an-object-has-a-specific-property)  | [Explain the difference between mutable and immutable objects in JavaScript](#explain-the-difference-between-mutable-and-immutable-objects-in-javascript)  | [Explain the concept of destructuring assignment for objects and arrays](#explain-the-concept-of-destructuring-assignment-for-objects-and-arrays)  | 
 | [What is `Object.freeze()` for?](#what-is-objectfreeze-for)  | [What is `Object.seal()` for?](#what-is-objectseal-for)  | [What is `Object.preventExtensions()` for?](#what-is-objectpreventextensions-for)  | [What are JavaScript object getters and setters for?](#what-are-javascript-object-getters-and-setters-for)  | [What are JavaScript object property flags and descriptors?](#what-are-javascript-object-property-flags-and-descriptors)  | [How do you reliably determine whether an object is empty?](#how-do-you-reliably-determine-whether-an-object-is-empty)  | [What is the event loop in JavaScript runtimes?](#what-is-the-event-loop-in-javascript-runtimes)  | [Explain the difference between synchronous and asynchronous functions in JavaScript](#explain-the-difference-between-synchronous-and-asynchronous-functions-in-javascript)  | 
 | [Explain the concept of a callback function in asynchronous operations](#explain-the-concept-of-a-callback-function-in-asynchronous-operations)  | [What are Promises and how do they work?](#what-are-promises-and-how-do-they-work)  | [Explain the different states of a Promise](#explain-the-different-states-of-a-promise)  | [What are the pros and cons of using Promises instead of callbacks in JavaScript?](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks-in-javascript)  | [What is the use of `Promise.all()`](#what-is-the-use-of-promiseall)  | [How is `Promise.all()` different from `Promise.allSettled()`?](#how-is-promiseall-different-from-promiseallsettled)  | [What is async/await and how does it simplify asynchronous code?](#what-is-asyncawait-and-how-does-it-simplify-asynchronous-code)  | [How do you handle errors in asynchronous operations?](#how-do-you-handle-errors-in-asynchronous-operations)  | 
-| [Explain the concept of a microtask queue](#explain-the-concept-of-a-microtask-queue)  | [What is the difference between `setTimeout()`, `setImmediate()`, and `process.nextTick()`?](#what-is-the-difference-between-settimeout-setimmediate-and-processnexttick)  | [Explain how prototypal inheritance works in JavaScript](#explain-how-prototypal-inheritance-works-in-javascript)  | [What is the prototype chain and how does it work?](#what-is-the-prototype-chain-and-how-does-it-work)  | [Explain the difference between classical inheritance and prototypal inheritance](#explain-the-difference-between-classical-inheritance-and-prototypal-inheritance)  | [Explain the concept of inheritance in ES2015 classes](#explain-the-concept-of-inheritance-in-es2015-classes)  | [What is the purpose of the `new` keyword?](#what-is-the-purpose-of-the-new-keyword)  | [How do you create a constructor function?](#how-do-you-create-a-constructor-function)  | 
-| [What are the differences between JavaScript ES2015 classes and ES5 function constructors?](#what-are-the-differences-between-javascript-es2015-classes-and-es5-function-constructors)  | [What advantage is there for using the JavaScript arrow syntax for a method in a constructor?](#what-advantage-is-there-for-using-the-javascript-arrow-syntax-for-a-method-in-a-constructor)  | [Why might you want to create static class members in JavaScript?](#why-might-you-want-to-create-static-class-members-in-javascript)  | [What is a closure in JavaScript, and how/why would you use one?](#what-is-a-closure-in-javascript-and-howwhy-would-you-use-one)  | [Explain the concept of lexical scoping](#explain-the-concept-of-lexical-scoping)  | [Explain the concept of scope in JavaScript](#explain-the-concept-of-scope-in-javascript)  | [How can closures be used to create private variables?](#how-can-closures-be-used-to-create-private-variables)  | [What are the potential pitfalls of using closures?](#what-are-the-potential-pitfalls-of-using-closures)  | 
+| [microtask queue](#explain-the-concept-of-a-microtask-queue)  | [`setTimeout()`, `setImmediate()`, and `process.nextTick()`](#what-is-the-difference-between-settimeout-setimmediate-and-processnexttick)  | [inheritance](#explain-how-prototypal-inheritance-works-in-javascript)  | [prototype chain](#what-is-the-prototype-chain-and-how-does-it-work)  | [classical inheritance Vs prototypal inheritance](#explain-the-difference-between-classical-inheritance-and-prototypal-inheritance)  | [inheritance in ES2015 classes](#explain-the-concept-of-inheritance-in-es2015-classes)  | [ `new` keyword](#what-is-the-purpose-of-the-new-keyword)  | [constructor function](#how-do-you-create-a-constructor-function)  | 
+| [JavaScript ES2015 classes and ES5 function constructors](#what-are-the-differences-between-javascript-es2015-classes-and-es5-function-constructors)  | [Arrow functions](#what-advantage-is-there-for-using-the-javascript-arrow-syntax-for-a-method-in-a-constructor)  | [create static class members](#why-might-you-want-to-create-static-class-members-in-javascript)  | [closure](#what-is-a-closure-in-javascript-and-howwhy-would-you-use-one)  | [lexical scoping](#explain-the-concept-of-lexical-scoping)  | [Scope](#explain-the-concept-of-scope-in-javascript)  | [closures - private variables](#how-can-closures-be-used-to-create-private-variables)  | [closures - potential pitfalls](#what-are-the-potential-pitfalls-of-using-closures)  | 
 | [global scope, function scope, and block scope](#explain-the-difference-between-global-scope-function-scope-and-block-scope)  | [`this` works in JavaScript](#explain-how-this-works-in-javascript)  | [Function.prototype.bind](#explain-functionprototypebind-in-javascript)  | [`this` - different ways](#explain-the-different-ways-the-this-keyword-can-be-bound)  | [`this` keyword - common pitfalls](#what-are-the-common-pitfalls-of-using-the-this-keyword)  | [`this` binding in event handlers](#explain-the-concept-of-this-binding-in-event-handlers)  | [DOM?](#what-is-the-dom-and-how-is-it-structured)  | [What's the difference between an "attribute" and a "property" in the DOM?](#whats-the-difference-between-an-attribute-and-a-property-in-the-dom)  | 
 | [`document.querySelector()` and `document.getElementById()`](#explain-the-difference-between-documentqueryselector-and-documentgetelementbyid)  | [add, remove, and modify HTML elements using JavaScript](#how-do-you-add-remove-and-modify-html-elements-using-javascript)  | [event listeners](#what-are-event-listeners-and-how-are-they-used)  | [event phases](#explain-the-event-phases-in-a-browser)  | [event bubbling](#describe-event-bubbling-in-javascript-and-browsers)  | [event capturing](#describe-event-capturing-in-javascript-and-browsers)  | [event delegation](#explain-event-delegation-in-javascript)  | [event - prevent the default behavior](#how-do-you-prevent-the-default-behavior-of-an-event)  | 
 | [`event.preventDefault()` Vs `event.stopPropagation()`](#what-is-the-difference-between-eventpreventdefault-and-eventstoppropagation)  | [`mouseenter` Vs `mouseover` ](#what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers)  | [W`innerHTML` Vs `textContent`](#what-is-the-difference-between-innerhtml-and-textcontent)  | [CSS styles manipulate](#how-do-you-manipulate-css-styles-using-javascript)  | [`<script>`, `<script async>` and `<script defer>`](#describe-the-difference-between-script-script-async-and-script-defer)  | [Window object Vs Document object](#what-is-the-difference-between-the-window-object-and-the-document-object)  | [Cookies, sessionStorage, and localStorage in web browsers](#describe-the-difference-between-a-cookie-sessionstorage-and-localstorage-in-browsers)  | [HTTP request using the Fetch API](#how-do-you-make-an-http-request-using-the-fetch-api)  | 
@@ -337,7 +337,7 @@ The `bind` method is particularly useful in scenarios where you need to ensure t
 
 <br>
 
-### What advantage is there for using the JavaScript arrow syntax for a method in a constructor?
+### Arrow functions
 
 <!-- Update here: /questions/what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor/en-US.mdx -->
 
@@ -391,7 +391,7 @@ The main takeaway here is that `this` can be changed for a normal function, but 
 
 <br>
 
-### Explain how prototypal inheritance works in JavaScript
+### inheritance
 
 <!-- Update here: /questions/explain-how-prototypal-inheritance-works/en-US.mdx -->
 
@@ -591,7 +591,7 @@ Creating objects in JavaScript offers several methods:
 
 <br>
 
-### What is a closure in JavaScript, and how/why would you use one?
+### closure
 
 <!-- Update here: /questions/what-is-a-closure-and-how-why-would-you-use-one/en-US.mdx -->
 
@@ -680,7 +680,7 @@ console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
 
 <br>
 
-### What are the differences between JavaScript ES2015 classes and ES5 function constructors?
+### JavaScript ES2015 classes and ES5 function constructors
 
 <!-- Update here: /questions/what-are-the-differences-between-es6-class-and-es5-function-constructors/en-US.mdx -->
 
@@ -1556,7 +1556,7 @@ On the other hand, `WeakSet` only allows objects as elements, and these object e
 
 <br>
 
-### Why might you want to create static class members in JavaScript?
+### create static class members
 
 <!-- Update here: /questions/why-you-might-want-to-create-static-class-members/en-US.mdx -->
 
@@ -3772,7 +3772,7 @@ fetch('https://api.example.com/data') // Invalid URl
 
 <br>
 
-### Explain the concept of a microtask queue
+### microtask queue
 
 <!-- Update here: /questions/explain-the-concept-of-a-microtask-queue/en-US.mdx -->
 
@@ -3786,7 +3786,7 @@ The microtask queue is a queue of tasks that need to be executed after the curre
 
 <br>
 
-### What is the difference between `setTimeout()`, `setImmediate()`, and `process.nextTick()`?
+### `setTimeout()`, `setImmediate()`, and `process.nextTick()`
 
 <!-- Update here: /questions/what-is-the-difference-between-settimeout-setimmediate-and-processnexttick/en-US.mdx -->
 
@@ -3808,7 +3808,7 @@ In this example, `process.nextTick()` will execute first, followed by either `se
 
 <br>
 
-### Explain how prototypal inheritance works in JavaScript
+### inheritance
 
 <!-- Update here: /questions/explain-how-prototypal-inheritance-works/en-US.mdx -->
 
@@ -3866,7 +3866,7 @@ Things to note are:
 
 <br>
 
-### What is the prototype chain and how does it work?
+### prototype chain
 
 <!-- Update here: /questions/what-is-the-prototype-chain-and-how-does-it-work/en-US.mdx -->
 
@@ -3895,7 +3895,7 @@ In this example, `alice` inherits the `greet` method from `Person.prototype`.
 
 <br>
 
-### Explain the difference between classical inheritance and prototypal inheritance
+### classical inheritance Vs prototypal inheritance
 
 <!-- Update here: /questions/explain-the-difference-between-classical-inheritance-and-prototypal-inheritance/en-US.mdx -->
 
@@ -3909,7 +3909,7 @@ Classical inheritance is a model where classes inherit from other classes, typic
 
 <br>
 
-### Explain the concept of inheritance in ES2015 classes
+### inheritance in ES2015 classes
 
 <!-- Update here: /questions/explain-the-concept-of-inheritance-in-es2015-classes/en-US.mdx -->
 
@@ -3949,7 +3949,7 @@ dog.speak(); // Rex barks.
 
 <br>
 
-### What is the purpose of the `new` keyword?
+###  `new` keyword
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-new-keyword/en-US.mdx -->
 
@@ -3972,7 +3972,7 @@ console.log(person1.name); // Alice
 
 <br>
 
-### How do you create a constructor function?
+### constructor function
 
 <!-- Update here: /questions/how-do-you-create-a-constructor-function/en-US.mdx -->
 
@@ -3996,7 +3996,7 @@ console.log(john.age); // 30
 
 <br>
 
-### What are the differences between JavaScript ES2015 classes and ES5 function constructors?
+### JavaScript ES2015 classes and ES5 function constructors
 
 <!-- Update here: /questions/what-are-the-differences-between-es6-class-and-es5-function-constructors/en-US.mdx -->
 
@@ -4080,7 +4080,7 @@ It's much more verbose to use inheritance in ES5 and the ES2015 version is easie
 
 <br>
 
-### What advantage is there for using the JavaScript arrow syntax for a method in a constructor?
+### Arrow functions
 
 <!-- Update here: /questions/what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor/en-US.mdx -->
 
@@ -4132,7 +4132,7 @@ The main takeaway here is that `this` can be changed for a normal function, but 
 
 <br>
 
-### Why might you want to create static class members in JavaScript?
+### create static class members
 
 <!-- Update here: /questions/why-you-might-want-to-create-static-class-members/en-US.mdx -->
 
@@ -4163,7 +4163,7 @@ Static members are useful under the following scenarios:
 
 <br>
 
-### What is a closure in JavaScript, and how/why would you use one?
+### closure
 
 <!-- Update here: /questions/what-is-a-closure-and-how-why-would-you-use-one/en-US.mdx -->
 
@@ -4204,7 +4204,7 @@ Key points to remember:
 
 <br>
 
-### Explain the concept of lexical scoping
+### lexical scoping
 
 <!-- Update here: /questions/explain-the-concept-of-lexical-scoping/en-US.mdx -->
 
@@ -4234,7 +4234,7 @@ In this example, `innerFunction` can access `outerVariable` because of lexical s
 
 <br>
 
-### Explain the concept of scope in JavaScript
+### Scope
 
 <!-- Update here: /questions/explain-the-concept-of-scope-in-javascript/en-US.mdx -->
 
@@ -4277,7 +4277,7 @@ console.log(globalVar); // Accessible
 
 <br>
 
-### How can closures be used to create private variables?
+### closures - private variables
 
 <!-- Update here: /questions/how-can-closures-be-used-to-create-private-variables/en-US.mdx -->
 
@@ -4316,7 +4316,7 @@ console.log(counter.count); // undefined
 
 <br>
 
-### What are the potential pitfalls of using closures?
+### closures - potential pitfalls
 
 <!-- Update here: /questions/what-are-the-potential-pitfalls-of-using-closures/en-US.mdx -->
 

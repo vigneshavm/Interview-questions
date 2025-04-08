@@ -2754,61 +2754,6 @@ greet('Alice'); // Output: Hello, Alice!
 
 <br>
 
-### Immediately Invoked Function Expression
-
-<!-- Update here: /questions/explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife/en-US.mdx -->
-
-The code `function foo(){}();` doesn't work as an Immediately Invoked Function Expression (IIFE) because the JavaScript parser treats `function foo(){}` as a function declaration, not an expression. To make it an IIFE, you need to wrap the function in parentheses to turn it into a function expression: `(function foo(){})();`.
-
-<!-- Update here: /questions/explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife/en-US.mdx -->
-
-<br>
-
-
-<br>
-
-### create objects - various ways
-
-<!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
-
-Creating objects in JavaScript offers several methods:
-
-- **Object literals (`{}`)**: Simplest and most popular approach. Define key-value pairs within curly braces.
-- **`Object()` constructor**: Use `new Object()` with dot notation to add properties.
-- **`Object.create()`**: Create new objects using existing objects as prototypes, inheriting properties and methods.
-- **Constructor functions**: Define blueprints for objects using functions, creating instances with `new`.
-- **ES2015 classes**: Structured syntax similar to other languages, using `class` and `constructor` keywords.
-
-<!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
-
-<br>
-
-
-<br>
-
-### dot notation and bracket notation 
-
-<!-- Update here: /questions/explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties/en-US.mdx -->
-
-Dot notation and bracket notation are two ways to access properties of an object in JavaScript. Dot notation is more concise and readable but can only be used with valid JavaScript identifiers. Bracket notation is more flexible and can be used with property names that are not valid identifiers, such as those containing spaces or special characters.
-
-```js live
-const obj = { name: 'Alice', 'favorite color': 'blue' };
-
-// Dot notation
-console.log(obj.name); // Alice
-
-// Bracket notation
-console.log(obj['favorite color']); // blue
-```
-
-<!-- Update here: /questions/explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties/en-US.mdx -->
-
-<br>
-    
-
-
-<br>
 
 ### array iterating
 
@@ -6406,6 +6351,65 @@ To identify security vulnerabilities in JavaScript code, you can use static code
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code/en-US.mdx)
 
 <br>
+
+
+## Immediately Invoked Function Expressions (IIFE)
+
+<!-- Update here: /questions/explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife/en-US.mdx -->
+
+The code `function foo(){}();` doesn't work as an Immediately Invoked Function Expression (IIFE) because the JavaScript parser treats `function foo(){}` as a function declaration, not an expression. To make it an IIFE, you need to wrap the function in parentheses to turn it into a function expression: `(function foo(){})();`.
+
+<!-- Update here: /questions/explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife/en-US.mdx -->
+
+<br>
+
+
+<br>
+
+## Creating Objects - Various Ways
+
+<!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
+
+Creating objects in JavaScript offers several methods:
+
+- **Object literals (`{}`)**: Simplest and most popular approach. Define key-value pairs within curly braces.
+- **`Object()` constructor**: Use `new Object()` with dot notation to add properties.
+- **`Object.create()`**: Create new objects using existing objects as prototypes, inheriting properties and methods.
+- **Constructor functions**: Define blueprints for objects using functions, creating instances with `new`.
+- **ES2015 classes**: Structured syntax similar to other languages, using `class` and `constructor` keywords.
+
+<!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
+
+<br>
+
+
+<br>
+
+## Dot Notation vs. Bracket Notation
+
+<!-- Update here: /questions/explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties/en-US.mdx -->
+
+Dot notation and bracket notation are two ways to access properties of an object in JavaScript. Dot notation is more concise and readable but can only be used with valid JavaScript identifiers. Bracket notation is more flexible and can be used with property names that are not valid identifiers, such as those containing spaces or special characters.
+
+```js live
+const obj = { name: 'Alice', 'favorite color': 'blue' };
+
+// Dot notation
+console.log(obj.name); // Alice
+
+// Bracket notation
+console.log(obj['favorite color']); // blue
+```
+
+<!-- Update here: /questions/explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties/en-US.mdx -->
+
+<br>
+    
+
+
+<br>
+
+
 
 ### Secure Authentication and Authorization
 

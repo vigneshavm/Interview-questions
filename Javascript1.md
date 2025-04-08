@@ -1233,15 +1233,7 @@ In JavaScript, data types can be categorized into `primitive` and `non-primitive
 
 The primitive types store a single value, while non-primitive types can store collections of data or complex entities.
 
-<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
 
-<br>
-    
-> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-various-data-types-in-javascript?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
-
-[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-various-data-types-in-javascript/en-US.mdx)
-
-<br>
 
 ### iterating over object properties and array items in JavaScript
 
@@ -2122,6 +2114,8 @@ console.log(result); // "Hello world! How are you?"
 
 ### Spread operator?
 
+
+
 <!-- Update here: /questions/what-is-the-spread-operator-and-how-is-it-used/en-US.mdx -->
 
 The spread operator, represented by three dots (`...`), is used in JavaScript to expand iterable objects like arrays or strings into individual elements. It can also be used to spread object properties. For example, you can use it to combine arrays, copy arrays, or pass array elements as arguments to a function.
@@ -2140,11 +2134,7 @@ console.log(combinedObj); // { a: 1, b: 2, c: 3, d: 4 }
 
 <!-- Update here: /questions/what-is-the-spread-operator-and-how-is-it-used/en-US.mdx -->
 
-<br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-spread-operator-and-how-is-it-used/en-US.mdx)
 
-<br>
 
 ### `Symbol`s used for in JavaScript
 
@@ -6796,11 +6786,7 @@ Some of the most commonly used tools and techniques for debugging JavaScript:
 
 <!-- Update here: /questions/what-tools-and-techniques-do-you-use-for-debugging-javascript-code/en-US.mdx -->
 
-<br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-tools-and-techniques-do-you-use-for-debugging-javascript-code/en-US.mdx)
 
-<br>
 
 ### How does JavaScript garbage collection work?
 
@@ -6825,11 +6811,7 @@ Different JavaScript engines (differs according to browsers) implement different
 
 <!-- Update here: /questions/how-does-javascript-garbage-collection-work/en-US.mdx -->
 
-<br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-does-javascript-garbage-collection-work/en-US.mdx)
 
-<br>
 
 ### Explain what a single page app is and how to make one SEO-friendly
 
@@ -6840,10 +6822,7 @@ A single page application (SPA) is a web application that loads a single HTML pa
 <!-- Update here: /questions/explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly/en-US.mdx)
 
-<br>
 
 ### How can you share code between JavaScript files?
 

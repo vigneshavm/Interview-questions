@@ -120,18 +120,7 @@ console.log(x); // 10
    class MyClass {}
    ```
 
----
-
-
-```
-
-
-
----
-
-
-
-### **Key ES6 Features**
+###  **Key ES6 Features**
 - **let and const**: Block-scoped variables, unlike var which is function-scoped.
 - **Arrow functions**: Shorter syntax with lexical this binding.
 - **Template literals**: Easier string interpolation using backticks.

@@ -22,7 +22,7 @@
 | [What are the different ways to make an API call in JavaScript?](#what-are-the-different-ways-to-make-an-api-call-in-javascript)  | [Explain AJAX in as much detail as possible](#explain-ajax-in-as-much-detail-as-possible)  | [What are the advantages and disadvantages of using AJAX?](#what-are-the-advantages-and-disadvantages-of-using-ajax)  | [What are the differences between `XMLHttpRequest` and `fetch()` in JavaScript and browsers?](#what-are-the-differences-between-xmlhttprequest-and-fetch-in-javascript-and-browsers)  |  [How do you abort a web request using `AbortController` in JavaScript?](#how-do-you-abort-a-web-request-using-abortcontroller-in-javascript)  | [Explain how JSONP works (and how it's not really Ajax)](#explain-how-jsonp-works-and-how-its-not-really-ajax)  | [What are workers in JavaScript used for?](#what-are-workers-in-javascript-used-for)  | [Explain the concept of the Web Socket API](#explain-the-concept-of-the-web-socket-api)  |  [What are JavaScript polyfills for?](#what-are-javascript-polyfills-for)  | [How do you detect if JavaScript is disabled on a page?](#how-do-you-detect-if-javascript-is-disabled-on-a-page)  | [What is the `Intl` namespace object for?](#what-is-the-intl-namespace-object-for)  | [How do you validate form elements using the Constraint Validation API?](#how-do-you-validate-form-elements-using-the-constraint-validation-api)  | [How do you use `window.history` API?](#how-do-you-use-windowhistory-api)  | [How do `<iframe>` on a page communicate?](#how-do-iframe-on-a-page-communicate)  | [Difference between document `load` event and document `DOMContentLoaded` event?](#difference-between-document-load-event-and-document-domcontentloaded-event)  | [How do you redirect to a new page in JavaScript?](#how-do-you-redirect-to-a-new-page-in-javascript)  | 
 | [How do you get the query string values of the current page in JavaScript?](#how-do-you-get-the-query-string-values-of-the-current-page-in-javascript)  | [What are server-sent events?](#what-are-server-sent-events)  | [What are Progressive Web Applications (PWAs)?](#what-are-progressive-web-applications-pwas)  | [What are modules and why are they useful?](#what-are-modules-and-why-are-they-useful)  | [Explain the differences between CommonJS modules and ES modules in JavaScript](#explain-the-differences-between-commonjs-modules-and-es-modules-in-javascript)  | [How do you import and export modules in JavaScript?](#how-do-you-import-and-export-modules-in-javascript)  | [What are the benefits of using a module bundler?](#what-are-the-benefits-of-using-a-module-bundler)  | [Explain the concept of tree shaking in module bundling](#explain-the-concept-of-tree-shaking-in-module-bundling)  | 
 | [What are the metadata fields of a module?](#what-are-the-metadata-fields-of-a-module)  | [What do you think of AMD vs CommonJS?](#what-do-you-think-of-amd-vs-commonjs)  | [What are the different types of errors in JavaScript?](#what-are-the-different-types-of-errors-in-javascript)  | [How do you handle errors using `try...catch` blocks?](#how-do-you-handle-errors-using-trycatch-blocks)  | [What is the purpose of the `finally` block?](#what-is-the-purpose-of-the-finally-block)  | [How can you create custom error objects?](#how-can-you-create-custom-error-objects)  | [Explain the concept of error propagation in JavaScript](#explain-the-concept-of-error-propagation-in-javascript)  | [What is currying and how does it work?](#what-is-currying-and-how-does-it-work)  | 
-| [Explain the concept of partial application](#explain-the-concept-of-partial-application)  | [What are the benefits of using currying and partial application?](#what-are-the-benefits-of-using-currying-and-partial-application)  | [Provide some examples of how currying and partial application can be used](#provide-some-examples-of-how-currying-and-partial-application-can-be-used)  | [How do currying and partial application differ from each other?](#how-do-currying-and-partial-application-differ-from-each-other)  | [What are `Set`s and `Map`s and how are they used?](#what-are-sets-and-maps-and-how-are-they-used)  | [What are the differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?](#what-are-the-differences-between-mapset-and-weakmapweakset-in-javascript)  | [How do you convert a `Set` to an array in JavaScript?](#how-do-you-convert-a-set-to-an-array-in-javascript)  | [What is the difference between a `Map` object and a plain object in JavaScript?](#what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript)  | 
+| [Partial application](#explain-the-concept-of-partial-application)  | [Currying](#what-are-the-benefits-of-using-currying-and-partial-application)  | [Currying  Example](#provide-some-examples-of-how-currying-and-partial-application-can-be-used)  | [Currying Vs Partial application?](#how-do-currying-and-partial-application-differ-from-each-other)  | [`Set`s and `Map`s?](#what-are-sets-and-maps-and-how-are-they-used)  | [`Map`/`Set` Vs `WeakMap`/`WeakSet`](#what-are-the-differences-between-mapset-and-weakmapweakset-in-javascript)  | [`Set` to an array?](#how-do-you-convert-a-set-to-an-array-in-javascript)  | [`Map` object and a plain object](#what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript)  | 
 | [`Set`s and `Map`s handle equality checks for objects](#how-do-sets-and-maps-handle-equality-checks-for-objects)  | [Performance bottlenecks in JavaScript applications?](#what-are-some-common-performance-bottlenecks-in-javascript-applications)  | [Debouncing and throttling](#explain-the-concept-of-debouncing-and-throttling)  | [DOM manipulation optimize ](#how-can-you-optimize-dom-manipulation-for-better-performance)  | [Reducing reflows and repaints?](#what-are-some-techniques-for-reducing-reflows-and-repaints)  | [Lazy loading](#explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance)  | [Web Workers](#what-are-web-workers-and-how-can-they-be-used-to-improve-performance)  | [Caching](#explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance)  | 
 | [Measure and analyze JavaScript performance Tools?](#what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance)  | [Network requests optimize  for better performance?](#how-can-you-optimize-network-requests-for-better-performance)  | [Software development testing Types?](#what-are-the-different-types-of-testing-in-software-development)  | [Unit testing, integration testing, and end-to-end testing](#explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing)  |  [Testing frameworks?](#what-are-some-popular-javascript-testing-frameworks)  | [Unit tests for JavaScript code?](#how-do-you-write-unit-tests-for-javascript-code)  | [Explain the concept of test-driven development (TDD)](#explain-the-concept-of-test-driven-development-tdd)  | [Mocks and stubs?](#what-are-mocks-and-stubs-and-how-are-they-used-in-testing)  | 
 | [Asynchronous code?](#how-can-you-test-asynchronous-code-in-javascript)  | [Best practices for writing maintainable and effective tests?](#what-are-some-best-practices-for-writing-maintainable-and-effective-tests-in-javascript)  | [Code coverage](#explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality)  | [JavaScript Testing Tools?](#what-are-some-tools-that-can-be-used-for-javascript-testing)  | [Design patterns?](#what-are-design-patterns-and-why-are-they-useful)  | [Singleton pattern](#explain-the-concept-of-the-singleton-pattern)  | [Factory pattern?](#what-is-the-factory-pattern-and-how-is-it-used)  | [Observer pattern](#explain-the-observer-pattern-and-its-use-cases)  | 
@@ -1483,7 +1483,7 @@ The key difference between mutable and immutable objects is modifiability. Immut
 
 <br>
 
-### What is the difference between a `Map` object and a plain object in JavaScript?
+### `Map` object and a plain object
 
 <!-- Update here: /questions/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/en-US.mdx -->
 
@@ -1509,7 +1509,7 @@ Both `Map` objects and plain objects in JavaScript can store key-value pairs, bu
 
 <br>
 
-### What are the differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?
+### `Map`/`Set` Vs `WeakMap`/`WeakSet`
 
 <!-- Update here: /questions/what-are-the-differences-between-map-set-and-weakmap-weakset/en-US.mdx -->
 
@@ -5691,7 +5691,7 @@ console.log(result); // Output: 6
 
 <br>
 
-### Explain the concept of partial application
+### Partial application
 
 <!-- Update here: /questions/explain-the-concept-of-partial-application/en-US.mdx -->
 
@@ -5714,7 +5714,7 @@ console.log(add5(10)); // Outputs 15
 
 <br>
 
-### What are the benefits of using currying and partial application?
+### Currying
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-currying-and-partial-application/en-US.mdx -->
 
@@ -5728,7 +5728,7 @@ Currying transforms a function with multiple arguments into a sequence of functi
 
 <br>
 
-### Provide some examples of how currying and partial application can be used
+### Currying  Example
 
 <!-- Update here: /questions/provide-some-examples-of-how-currying-and-partial-application-can-be-used/en-US.mdx -->
 
@@ -5758,11 +5758,12 @@ console.log(addTwo(3)); // 5
 
 <br>
 
-### How do currying and partial application differ from each other?
+### Currying Vs Partial application?
 
 <!-- Update here: /questions/how-do-currying-and-partial-application-differ-from-each-other/en-US.mdx -->
 
-Currying transforms a function with multiple arguments into a sequence of functions, each taking a single argument. For example, a function `f(a, b, c)` becomes `f(a)(b)(c)`. Partial application, on the other hand, fixes a few arguments of a function and produces another function with a smaller number of arguments. For example, if you partially apply `f(a, b, c)` with `a`, you get a new function `f'(b, c)`.
+Currying transforms a function with multiple arguments into a sequence of functions, each taking a single argument. For example, a function `f(a, b, c)` becomes `f(a)(b)(c)`. 
+Partial application, on the other hand, fixes a few arguments of a function and produces another function with a smaller number of arguments. For example, if you partially apply `f(a, b, c)` with `a`, you get a new function `f'(b, c)`.
 
 <!-- Update here: /questions/how-do-currying-and-partial-application-differ-from-each-other/en-US.mdx -->
 
@@ -5772,7 +5773,7 @@ Currying transforms a function with multiple arguments into a sequence of functi
 
 <br>
 
-### What are `Set`s and `Map`s and how are they used?
+### `Set`s and `Map`s?
 
 <!-- Update here: /questions/what-are-sets-and-maps-and-how-are-they-used/en-US.mdx -->
 
@@ -5799,7 +5800,7 @@ console.log(myMap.get('key1')); // 'value1'
 
 <br>
 
-### What are the differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?
+### `Map`/`Set` Vs `WeakMap`/`WeakSet`
 
 <!-- Update here: /questions/what-are-the-differences-between-map-set-and-weakmap-weakset/en-US.mdx -->
 
@@ -5844,7 +5845,7 @@ On the other hand, `WeakSet` only allows objects as elements, and these object e
 
 <br>
 
-### How do you convert a `Set` to an array in JavaScript?
+### `Set` to an array?
 
 <!-- Update here: /questions/how-do-you-convert-a-set-to-an-array-in-javascript/en-US.mdx -->
 
@@ -5866,7 +5867,7 @@ console.log(myArray); // Output: [1, 2, 3]
 
 <br>
 
-### What is the difference between a `Map` object and a plain object in JavaScript?
+### `Map` object and a plain object
 
 <!-- Update here: /questions/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/en-US.mdx -->
 

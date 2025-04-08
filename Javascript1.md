@@ -6,8 +6,8 @@
 
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [What are the various data types in JavaScript?](#what-are-the-various-data-types-in-javascript)  | [How do you check the data type of a variable?](#how-do-you-check-the-data-type-of-a-variable)  | [What's the difference between a JavaScript variable that is: `null`, `undefined` or undeclared?](#whats-the-difference-between-a-javascript-variable-that-is-null-undefined-or-undeclared)  | [What are the differences between JavaScript variables created using `let`, `var` or `const`?](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const)  | [Why is it, in general, a good idea to leave the global JavaScript scope of a website as-is and never touch it?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [How do you convert a string to a number in JavaScript?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [What are template literals and how are they used?](#what-are-template-literals-and-how-are-they-used)  | [Explain the concept of tagged templates](#explain-the-concept-of-tagged-templates)  | 
-| [What is the spread operator and how is it used?](#what-is-the-spread-operator-and-how-is-it-used)  | [What are `Symbol`s used for in JavaScript?](#what-are-symbols-used-for-in-javascript)  | [What are proxies in JavaScript used for?](#what-are-proxies-in-javascript-used-for)  | [Explain the concept of "hoisting" in JavaScript](#explain-the-concept-of-hoisting-in-javascript)  | [Explain the difference in hoisting between `var`, `let`, and `const`](#explain-the-difference-in-hoisting-between-var-let-and-const)  | [How does hoisting affect function declarations and expressions?](#how-does-hoisting-affect-function-declarations-and-expressions)  | [What are the potential issues caused by hoisting?](#what-are-the-potential-issues-caused-by-hoisting)  | [How can you avoid problems related to hoisting?](#how-can-you-avoid-problems-related-to-hoisting)  | 
+| [ JavaScript Data Types?](#what-are-the-various-data-types-in-javascript)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#whats-the-difference-between-a-javascript-variable-that-is-null-undefined-or-undeclared)  | [let, var, const?](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [What are template literals and how are they used?](#what-are-template-literals-and-how-are-they-used)  | [Tagged Templates in JavaScript](#explain-the-concept-of-tagged-templates)  | 
+| [What is the spread operator and how is it used?](#what-is-the-spread-operator-and-how-is-it-used)  | [Data Types – Symbol?](#what-are-symbols-used-for-in-javascript)  | [What are proxies in JavaScript used for?](#what-are-proxies-in-javascript-used-for)  | [Explain the concept of "hoisting" in JavaScript](#explain-the-concept-of-hoisting-in-javascript)  | [Explain the difference in hoisting between `var`, `let`, and `const`](#explain-the-difference-in-hoisting-between-var-let-and-const)  | [How does hoisting affect function declarations and expressions?](#how-does-hoisting-affect-function-declarations-and-expressions)  | [What are the potential issues caused by hoisting?](#what-are-the-potential-issues-caused-by-hoisting)  | [How can you avoid problems related to hoisting?](#how-can-you-avoid-problems-related-to-hoisting)  | 
 | [What is the difference between `==` and `===` in JavaScript?](#what-is-the-difference-between--and--in-javascript)  | [What language constructs do you use for iterating over object properties and array items in JavaScript?](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript)  | [What is the purpose of the `break` and `continue` statements?](#what-is-the-purpose-of-the-break-and-continue-statements)  | [What is the ternary operator and how is it used?](#what-is-the-ternary-operator-and-how-is-it-used)  | [How do you access the index of an element in an array during iteration?](#how-do-you-access-the-index-of-an-element-in-an-array-during-iteration)  | [What is the purpose of the `switch` statement?](#what-is-the-purpose-of-the-switch-statement)  | [What are rest parameters and how are they used?](#what-are-rest-parameters-and-how-are-they-used)  | [Explain the concept of the spread operator and its uses](#explain-the-concept-of-the-spread-operator-and-its-uses)  | 
 | [What are the benefits of using spread syntax in JavaScript and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax)  | [What are iterators and generators in JavaScript and what are they used for?](#what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for)  | [Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}` in JavaScript](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function--in-javascript)  | [What is the difference between a parameter and an argument?](#what-is-the-difference-between-a-parameter-and-an-argument)  | [Explain the concept of hoisting with regards to functions](#explain-the-concept-of-hoisting-with-regards-to-functions)  | [What's the difference between `.call` and `.apply` in JavaScript?](#whats-the-difference-between-call-and-apply-in-javascript)  | [Can you offer a use case for the new arrow => function syntax?](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax)  | [Difference between: `function Person(){}`, `const person = Person()`, and `const person = new Person()` in JavaScript?](#difference-between-function-person-const-person--person-and-const-person--new-person-in-javascript)  | 
 | [What is the definition of a higher-order function in JavaScript?](#what-is-the-definition-of-a-higher-order-function-in-javascript)  | [What are callback functions and how are they used?](#what-are-callback-functions-and-how-are-they-used)  | [What's a typical use case for anonymous functions in JavaScript?](#whats-a-typical-use-case-for-anonymous-functions-in-javascript)  | [What is recursion and how is it used in JavaScript?](#what-is-recursion-and-how-is-it-used-in-javascript)  | [What are default parameters and how are they used?](#what-are-default-parameters-and-how-are-they-used)  | [Explain why the following doesn't work as an IIFE: `function foo(){}();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo-what-needs-to-be-changed-to-properly-make-it-an-iife)  | [What are the various ways to create objects in JavaScript?](#what-are-the-various-ways-to-create-objects-in-javascript)  | [Explain the difference between dot notation and bracket notation for accessing object properties](#explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties)  | 
@@ -235,7 +235,7 @@ Here's a table summarizing the 3 ways of loading `<script>`s in a HTML document.
     
 
 
-### What's the difference between a JavaScript variable that is: `null`, `undefined` or undeclared?
+### null, undefined, and undeclared?
 
 <!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
 
@@ -1041,7 +1041,7 @@ The only time you may want to extend a native object is when you want to create 
 
 
 
-### Why is it, in general, a good idea to leave the global JavaScript scope of a website as-is and never touch it?
+### Global JavaScript scop?
 
 <!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
 
@@ -1897,7 +1897,7 @@ The primitive types store a single value, while non-primitive types can store co
 
 
 
-### How do you check the data type of a variable?
+###  JavaScript Data Type Checking?
 
 <!-- Update here: /questions/how-do-you-check-the-data-type-of-a-variable/en-US.mdx -->
 
@@ -1911,7 +1911,7 @@ To check the data type of a variable in JavaScript, you can use the `typeof` ope
 
 
 
-### What's the difference between a JavaScript variable that is: `null`, `undefined` or undeclared?
+### null, undefined, and undeclared?
 
 <!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
 
@@ -1951,7 +1951,7 @@ In JavaScript, `let`, `var`, and `const` are all keywords used to declare variab
 
 
 
-### Why is it, in general, a good idea to leave the global JavaScript scope of a website as-is and never touch it?
+### Global JavaScript scop?
 
 <!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
 
@@ -1979,7 +1979,7 @@ Follow these best practices to avoid global scope pollution:
 
 
 
-### How do you convert a string to a number in JavaScript?
+###  Type Conversion – Strings to Numbers?
 
 <!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
 

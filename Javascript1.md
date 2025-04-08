@@ -5487,7 +5487,7 @@ On the other hand, `WeakSet` only allows objects as elements, and these object e
 
 <br>
 
-## `Set` to an array?
+## Converting a Set to an Array in JavaScript
 
 <!-- Update here: /questions/how-do-you-convert-a-set-to-an-array-in-javascript/en-US.mdx -->
 
@@ -5509,7 +5509,7 @@ console.log(myArray); // Output: [1, 2, 3]
 
 <br>
 
-## `Map` object and a plain object
+## Map Object vs. Plain Object in JavaScript
 
 <!-- Update here: /questions/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/en-US.mdx -->
 
@@ -5533,7 +5533,7 @@ Both `Map` objects and plain objects in JavaScript can store key-value pairs, bu
 
 <br>
 
-## `Set`s and `Map`s handle equality checks for objects
+## Equality Checks for Objects in Sets and Maps
 
 <!-- Update here: /questions/how-do-sets-and-maps-handle-equality-checks-for-objects/en-US.mdx -->
 
@@ -5558,7 +5558,7 @@ console.log(set.size); // Output: 2
 
 <br>
 
-## Performance bottlenecks in JavaScript applications?
+## Common Performance Bottlenecks in JavaScript Applications
 
 <!-- Update here: /questions/what-are-some-common-performance-bottlenecks-in-javascript-applications/en-US.mdx -->
 
@@ -5627,7 +5627,7 @@ let intervalId = setInterval(() => {
 
 <br>
 
-## DOM manipulation optimize 
+## Optimizing DOM Manipulation for Better Performance
 
 <!-- Update here: /questions/how-can-you-optimize-dom-manipulation-for-better-performance/en-US.mdx -->
 
@@ -5641,7 +5641,7 @@ To optimize DOM manipulation for better performance, minimize direct DOM access 
 
 <br>
 
-## Reducing reflows and repaints?
+## Techniques to Reduce Reflows and Repaints
 
 <!-- Update here: /questions/what-are-some-techniques-for-reducing-reflows-and-repaints/en-US.mdx -->
 
@@ -5655,7 +5655,7 @@ To reduce reflows and repaints, you can minimize DOM manipulations, batch DOM ch
 
 <br>
 
-## Lazy loading
+## Implementing Lazy Loading to Enhance Performance
 
 <!-- Update here: /questions/explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance/en-US.mdx -->
 
@@ -5673,7 +5673,7 @@ Lazy loading is a design pattern that delays the loading of resources until they
 
 <br>
 
-## Web Workers
+## Utilizing Web Workers for Performance Improvement
 
 <!-- Update here: /questions/what-are-web-workers-and-how-can-they-be-used-to-improve-performance/en-US.mdx -->
 
@@ -5703,7 +5703,7 @@ onmessage = function (event) {
 
 <br>
 
-## Caching
+## Leveraging Caching Strategies for Performance Optimization
 
 <!-- Update here: /questions/explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance/en-US.mdx -->
 
@@ -5717,7 +5717,7 @@ Caching is a technique used to store copies of files or data in a temporary stor
 
 <br>
 
-## Measure and analyze JavaScript performance Tools?
+## Tools for Measuring and Analyzing JavaScript Performance
 
 <!-- Update here: /questions/what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance/en-US.mdx -->
 
@@ -5731,7 +5731,7 @@ To measure and analyze JavaScript performance, you can use tools like Chrome Dev
 
 <br>
 
-## Network requests optimize  for better performance?
+## Optimizing Network Requests for Better Performance
 
 <!-- Update here: /questions/how-can-you-optimize-network-requests-for-better-performance/en-US.mdx -->
 
@@ -5745,7 +5745,7 @@ To optimize network requests for better performance, you can minimize the number
 
 <br>
 
-## Software development testing Types?
+## Types of Testing in Software Development
 
 <!-- Update here: /questions/what-are-the-different-types-of-testing-in-software-development/en-US.mdx -->
 
@@ -5759,7 +5759,7 @@ In software development, there are several types of testing to ensure the qualit
 
 <br>
 
-## Unit testing, integration testing, and end-to-end testing
+## Differences Between Unit Testing, Integration Testing, and End-to-End Testing
 
 <!-- Update here: /questions/explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing/en-US.mdx -->
 
@@ -5773,7 +5773,7 @@ Unit testing focuses on testing individual components or functions in isolation 
 
 <br>
 
-## Testing frameworks?
+## Popular JavaScript Testing Frameworks
 
 <!-- Update here: /questions/what-are-some-popular-javascript-testing-frameworks/en-US.mdx -->
 
@@ -5787,7 +5787,7 @@ Some popular JavaScript testing frameworks include Jest, Mocha, Jasmine, and Cyp
 
 <br>
 
-## Unit tests for JavaScript code?
+## Writing Unit Tests for JavaScript Code
 
 <!-- Update here: /questions/how-do-you-write-unit-tests-for-javascript-code/en-US.mdx -->
 
@@ -5818,7 +5818,7 @@ test('adds 1 + 2 to equal 3', () => {
 
 <br>
 
-## Explain the concept of test-driven development (TDD)
+## Understanding Test-Driven Development (TDD)
 
 <!-- Update here: /questions/explain-the-concept-of-test-driven-development-tdd/en-US.mdx -->
 
@@ -5832,7 +5832,7 @@ Test-driven development (TDD) is a software development approach where you write
 
 <br>
 
-## Mocks and stubs?
+## Mocks and Stubs in Testing
 
 <!-- Update here: /questions/what-are-mocks-and-stubs-and-how-are-they-used-in-testing/en-US.mdx -->
 
@@ -5846,7 +5846,7 @@ Mocks and stubs are tools used in testing to simulate the behavior of real objec
 
 <br>
 
-## Asynchronous code?
+## Testing Asynchronous Code in JavaScript
 
 <!-- Update here: /questions/how-can-you-test-asynchronous-code-in-javascript/en-US.mdx -->
 
@@ -5869,7 +5869,8 @@ Alternatively, you can use callbacks and the `done` function to signal the end o
 
 <br>
 
-## maintainable and effective tests
+## Best Practices for Writing Maintainable and Effective Tests
+
 
 <!-- Update here: /questions/what-are-some-best-practices-for-writing-maintainable-and-effective-tests/en-US.mdx -->
 
@@ -5883,7 +5884,7 @@ To write maintainable and effective tests, ensure they are clear, concise, and f
 
 <br>
 
-## Code coverage
+## Understanding Code Coverage and Assessing Test Quality
 
 <!-- Update here: /questions/explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality/en-US.mdx -->
 
@@ -5897,7 +5898,7 @@ Code coverage is a metric that measures the percentage of code that is executed 
 
 <br>
 
-## JavaScript Testing Tools?
+## Tools for JavaScript Testing
 
 <!-- Update here: /questions/what-are-some-tools-that-can-be-used-for-javascript-testing/en-US.mdx -->
 
@@ -5911,7 +5912,7 @@ For JavaScript testing, you can use tools like Jest, Mocha, Jasmine, and Cypress
 
 <br>
 
-## Design patterns?
+## Introduction to Design Patterns and Their Importance
 
 <!-- Update here: /questions/what-are-design-patterns-and-why-are-they-useful/en-US.mdx -->
 
@@ -5925,7 +5926,7 @@ Design patterns are reusable solutions to common problems in software design. Th
 
 <br>
 
-## Singleton pattern
+## The Singleton Pattern Explained
 
 <!-- Update here: /questions/explain-the-concept-of-the-singleton-pattern/en-US.mdx -->
 
@@ -5955,7 +5956,7 @@ console.log(instance1 === instance2); // true
 
 <br>
 
-## Factory pattern?
+## Understanding the Factory Pattern and Its Usage
 
 <!-- Update here: /questions/what-is-the-factory-pattern-and-how-is-it-used/en-US.mdx -->
 
@@ -5984,7 +5985,7 @@ const cat = createAnimal('cat');
 
 <br>
 
-## Observer pattern
+## The Observer Pattern and Its Use Cases
 
 <!-- Update here: /questions/explain-the-observer-pattern-and-its-use-cases/en-US.mdx -->
 

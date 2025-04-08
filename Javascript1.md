@@ -1204,34 +1204,6 @@ console.log(value); // 42
 
 <br>
 
-### What are the various data types in JavaScript?
-
-<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
-
-In JavaScript, data types can be categorized into `primitive` and `non-primitive` types:
-
-**Primitive data types**
-
-- **Number**: Represents both integers and floating-point numbers.
-- **String**: Represents sequences of characters.
-- **Boolean**: Represents `true` or `false` values.
-- **Undefined**: A variable that has been declared but not assigned a value.
-- **Null**: Represents the intentional absence of any object value.
-- **Symbol**: A unique and immutable value used as object property keys. Read more in our [deep dive on `Symbol`s](https://greatfrontend.com/questions/quiz/what-are-symbols-used-for)
-- **BigInt**: Represents integers with arbitrary precision.
-
-**Non-primitive (Reference) data types**
-
-- **Object**: Used to store collections of data.
-- **Array**: An ordered collection of data.
-- **Function**: A callable object.
-- **Date**: Represents dates and times.
-- **RegExp**: Represents regular expressions.
-- **Map**: A collection of keyed data items.
-- **Set**: A collection of unique values.
-
-The primitive types store a single value, while non-primitive types can store collections of data or complex entities.
-
 
 
 ### iterating over object properties and array items in JavaScript
@@ -1966,7 +1938,7 @@ The primitive types store a single value, while non-primitive types can store co
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-various-data-types-in-javascript/en-US.mdx)
+
 
 <br>
 

@@ -27,7 +27,7 @@
 | [What are some tools that can be used to measure and analyze JavaScript performance?](#what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance)  | [How can you optimize network requests for better performance?](#how-can-you-optimize-network-requests-for-better-performance)  | [What are the different types of testing in software development?](#what-are-the-different-types-of-testing-in-software-development)  | [Explain the difference between unit testing, integration testing, and end-to-end testing](#explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing)  |  [What are some popular JavaScript testing frameworks?](#what-are-some-popular-javascript-testing-frameworks)  | [How do you write unit tests for JavaScript code?](#how-do-you-write-unit-tests-for-javascript-code)  | [Explain the concept of test-driven development (TDD)](#explain-the-concept-of-test-driven-development-tdd)  | [What are mocks and stubs and how are they used in testing?](#what-are-mocks-and-stubs-and-how-are-they-used-in-testing)  | 
 | [How can you test asynchronous code in JavaScript?](#how-can-you-test-asynchronous-code-in-javascript)  | [What are some best practices for writing maintainable and effective tests in JavaScript?](#what-are-some-best-practices-for-writing-maintainable-and-effective-tests-in-javascript)  | [Explain the concept of code coverage and how it can be used to assess test quality](#explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality)  | [What are some tools that can be used for JavaScript testing?](#what-are-some-tools-that-can-be-used-for-javascript-testing)  | [What are design patterns and why are they useful?](#what-are-design-patterns-and-why-are-they-useful)  | [Explain the concept of the Singleton pattern](#explain-the-concept-of-the-singleton-pattern)  | [What is the Factory pattern and how is it used?](#what-is-the-factory-pattern-and-how-is-it-used)  | [Explain the Observer pattern and its use cases](#explain-the-observer-pattern-and-its-use-cases)  | 
 | [What is the Module pattern and how does it help with encapsulation?](#what-is-the-module-pattern-and-how-does-it-help-with-encapsulation)  | [Explain the concept of the Prototype pattern](#explain-the-concept-of-the-prototype-pattern)  | [What is the Decorator pattern and how is it used?](#what-is-the-decorator-pattern-and-how-is-it-used)  | [Explain the concept of the Strategy pattern](#explain-the-concept-of-the-strategy-pattern)  | [What is the Command pattern and how is it used?](#what-is-the-command-pattern-and-how-is-it-used)  | [Why is extending built-in JavaScript objects not a good idea?](#why-is-extending-built-in-javascript-objects-not-a-good-idea)  | [What is Cross-Site Scripting (XSS) and how can you prevent it?](#what-is-cross-site-scripting-xss-and-how-can-you-prevent-it)  | [Explain the concept of Cross-Site Request Forgery (CSRF) and its mitigation techniques](#explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques)  | 
-| [How can you prevent SQL injection vulnerabilities in JavaScript applications?](#how-can-you-prevent-sql-injection-vulnerabilities-in-javascript-applications)  | [What are some best practices for handling sensitive data in JavaScript?](#what-are-some-best-practices-for-handling-sensitive-data-in-javascript)  | [Explain the concept of Content Security Policy (CSP) and how it enhances security](#explain-the-concept-of-content-security-policy-csp-and-how-it-enhances-security)  | [What are some common security headers and their purpose?](#what-are-some-common-security-headers-and-their-purpose)  | [How can you prevent clickjacking attacks?](#how-can-you-prevent-clickjacking-attacks)  | [Explain the concept of input validation and its importance in security](#explain-the-concept-of-input-validation-and-its-importance-in-security)  | [What are some tools and techniques for identifying security vulnerabilities in JavaScript code?](#what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code)  | [How can you implement secure authentication and authorization in JavaScript applications?](#how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications)  | 
+| [Preventing SQL Injection Vulnerabilities?](#how-can-you-prevent-sql-injection-vulnerabilities-in-javascript-applications)  | [Handling Sensitive Data?](#what-are-some-best-practices-for-handling-sensitive-data-in-javascript)  | [Content Security Policy (CSP)](#explain-the-concept-of-content-security-policy-csp-and-how-it-enhances-security)  | [Common Security Headers and Their Purposes](#what-are-some-common-security-headers-and-their-purpose)  | [Preventing Clickjacking Attacks](#how-can-you-prevent-clickjacking-attacks)  | [ Input Validation and Its Importance](#explain-the-concept-of-input-validation-and-its-importance-in-security)  | [ Identifying Security Vulnerabilities:](#what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code)  | [Secure Authentication and Authorization](#how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications)  | 
 | [Same-Origin Policy in JavaScript](#explain-the-same-origin-policy-with-regards-to-javascript)  | ['use strict' Directive in JavaScript](#what-is-use-strict-in-javascript-for)  | [Tools and Techniques for Debugging JavaScript Code](#what-tools-and-techniques-do-you-use-for-debugging-javascript-code)  | [JavaScript Garbage Collection Mechanisms?](#how-does-javascript-garbage-collection-work)  | [SEO Strategies for Single Page Applications (SPAs)](#explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly)  | [Sharing Code Between JavaScript Files?](#how-can-you-share-code-between-javascript-files)  | [Organizing JavaScript Code for Maintainability?](#how-do-you-organize-your-code)  | [Pros and Cons of Using Languages that Compile to JavaScript?](#what-are-some-of-the-advantagesdisadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript)  | [When would you use `document.write()`?](#when-would-you-use-documentwrite)  | 
 
 <!-- TABLE_OF_CONTENTS:ALL:END -->
@@ -6592,7 +6592,7 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious website tricks 
 
 <br>
 
-### How can you prevent SQL injection vulnerabilities in JavaScript applications?
+### Preventing SQL Injection Vulnerabilities?
 
 <!-- Update here: /questions/how-can-you-prevent-sql-injection-vulnerabilities-in-javascript-applications/en-US.mdx -->
 
@@ -6606,7 +6606,7 @@ To prevent SQL injection vulnerabilities in JavaScript applications, always use 
 
 <br>
 
-### What are some best practices for handling sensitive data in JavaScript?
+### Handling Sensitive Data?
 
 <!-- Update here: /questions/what-are-some-best-practices-for-handling-sensitive-data-in-javascript/en-US.mdx -->
 
@@ -6620,7 +6620,7 @@ Handling sensitive data in JavaScript requires careful attention to security pra
 
 <br>
 
-### Explain the concept of Content Security Policy (CSP) and how it enhances security
+### Content Security Policy (CSP)
 
 <!-- Update here: /questions/explain-the-concept-of-content-security-policy-csp-and-how-it-enhances-security/en-US.mdx -->
 
@@ -6638,7 +6638,7 @@ Content-Security-Policy: script-src 'self'
 
 <br>
 
-### What are some common security headers and their purpose?
+### Common Security Headers and Their Purposes
 
 <!-- Update here: /questions/what-are-some-common-security-headers-and-their-purpose/en-US.mdx -->
 
@@ -6659,7 +6659,7 @@ Security headers are HTTP response headers that help protect web applications fr
 
 <br>
 
-### How can you prevent clickjacking attacks?
+### Preventing Clickjacking Attacks
 
 <!-- Update here: /questions/how-can-you-prevent-clickjacking-attacks/en-US.mdx -->
 
@@ -6681,7 +6681,7 @@ Content-Security-Policy: frame-ancestors 'self'
 
 <br>
 
-### Explain the concept of input validation and its importance in security
+###  Input Validation and Its Importance
 
 <!-- Update here: /questions/explain-the-concept-of-input-validation-and-its-importance-in-security/en-US.mdx -->
 
@@ -6695,7 +6695,7 @@ Input validation is the process of ensuring that user input is correct, safe, an
 
 <br>
 
-### What are some tools and techniques for identifying security vulnerabilities in JavaScript code?
+###  Identifying Security Vulnerabilities:
 
 <!-- Update here: /questions/what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code/en-US.mdx -->
 
@@ -6709,7 +6709,7 @@ To identify security vulnerabilities in JavaScript code, you can use static code
 
 <br>
 
-### How can you implement secure authentication and authorization in JavaScript applications?
+### Secure Authentication and Authorization
 
 <!-- Update here: /questions/how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications/en-US.mdx -->
 

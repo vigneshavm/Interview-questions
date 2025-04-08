@@ -6,7 +6,7 @@
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [ JavaScript Data Types?](#JavaScript-Data-Types)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#null-undefined-or-undeclared)  | [let, var, const?](#let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [Template literals](#Template-literals)  | [Tagged Templates in JavaScript](#Tagged-Templates)  | 
 | [Spread operator?](#spread-operator) | [Data Types – Symbol?](#data-types--symbol) | [Proxies](#proxies) | [Hoisting](#hoisting) | [Hoisting - `var`, `let`, and `const`](#hoisting---var-let-and-const) | [Hoisting - function declarations and expressions](#hoisting---function-declarations-and-expressions) | [Hoisting - potential issues](#hoisting---potential-issues) | [Hoisting - avoid problems](#hoisting---avoid-problems) |
-| [`==` and `===`](#what-is-the-difference-between--and--in-javascript)  | [iterating over object properties and array items in JavaScript](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript)  | [ `break` and `continue` statements](#what-is-the-purpose-of-the-break-and-continue-statements)  | [ternary operator](#what-is-the-ternary-operator-and-how-is-it-used)  | [index of an element in an array during iteration](#how-do-you-access-the-index-of-an-element-in-an-array-during-iteration)  | [`switch` statement](#what-is-the-purpose-of-the-switch-statement)  | [rest parameters](#what-are-rest-parameters-and-how-are-they-used)  | [Spread operator](#explain-the-concept-of-the-spread-operator-and-its-uses)  | 
+| [`==` and `===`](#-and-) | [Iterating over Object Properties and Array Items in JavaScript](#iterating-over-object-properties-and-array-items-in-javascript) | [`break` and `continue` Statements](#break-and-continue-statements) | [Ternary Operator](#ternary-operator) | [Index of an Element in an Array During Iteration](#index-of-an-element-in-an-array-during-iteration) | [`switch` Statement](#switch-statement) | [Rest Parameters](#rest-parameters) | [Spread Operator](#spread-operator) |
 | [spread and rest syntax](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax)  | [iterators and generators](#what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for)  | [`foo` between `function foo() {}` and `var foo = function() {}`](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function--in-javascript)  | [parameter Vs argument](#what-is-the-difference-between-a-parameter-and-an-argument)  | [hoisting](#explain-the-concept-of-hoisting-with-regards-to-functions)  | [`.call` and `.apply`](#whats-the-difference-between-call-and-apply-in-javascript)  | [new arrow => function syntax](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax)  | [Function declaration | Function call | Constructor call](#difference-between-function-person-const-person--person-and-const-person--new-person-in-javascript)  | 
 | [higher-order function](#what-is-the-definition-of-a-higher-order-function-in-javascript)  | [callback functions](#what-are-callback-functions-and-how-are-they-used)  | [anonymous functions - use case](#whats-a-typical-use-case-for-anonymous-functions-in-javascript)  | [recursion](#what-is-recursion-and-how-is-it-used-in-javascript)  | [default parameters](#what-are-default-parameters-and-how-are-they-used)  | [Immediately Invoked Function Expression](#explain-why-the-following-doesnt-work-as-an-iife-function-foo-what-needs-to-be-changed-to-properly-make-it-an-iife)  | [create objects - various ways](#what-are-the-various-ways-to-create-objects-in-javascript)  | [dot notation and bracket notation](#explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties)  | 
 | [array iterating](#what-are-the-different-methods-for-iterating-over-an-array)  | [array -  add, remove, and update elements?](#how-do-you-add-remove-and-update-elements-in-an-array)  | [copy an object or an array](#what-are-the-different-ways-to-copy-an-object-or-an-array)  | [shallow copy Vs deep copy](#explain-the-difference-between-shallow-copy-and-deep-copy)  | [spread operator with arrays and objects](#what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects)  | [Check object has a specific property](#how-do-you-check-if-an-object-has-a-specific-property)  | [mutable Vs immutable objects](#explain-the-difference-between-mutable-and-immutable-objects-in-javascript)  | [destructuring assignment for objects and arrays](#explain-the-concept-of-destructuring-assignment-for-objects-and-arrays)  | 
@@ -75,6 +75,37 @@
 *Content for Hoisting - avoid problems section*
 
 
+## `==` and `===`
+
+*Content for `==` and `===` section*
+
+## Iterating over Object Properties and Array Items in JavaScript
+
+*Content for Iterating over Object Properties and Array Items in JavaScript section*
+
+## `break` and `continue` Statements
+
+*Content for `break` and `continue` Statements section*
+
+## Ternary Operator
+
+*Content for Ternary Operator section*
+
+## Index of an Element in an Array During Iteration
+
+*Content for Index of an Element in an Array During Iteration section*
+
+## `switch` Statement
+
+*Content for `switch` Statement section*
+
+## Rest Parameters
+
+*Content for Rest Parameters section*
+
+## Spread Operator
+
+*Content for Spread Operator section*
 
 
 ### Hoisting

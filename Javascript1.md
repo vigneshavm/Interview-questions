@@ -7,7 +7,7 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [ JavaScript Data Types?](#what-are-the-various-data-types-in-javascript)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#whats-the-difference-between-a-javascript-variable-that-is-null-undefined-or-undeclared)  | [let, var, const?](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [What are template literals and how are they used?](#what-are-template-literals-and-how-are-they-used)  | [Tagged Templates in JavaScript](#explain-the-concept-of-tagged-templates)  | 
-| [What is the spread operator and how is it used?](#spread-operator-and-how-is-it-used)  | [Data Types – Symbol?](#what-are-symbols-used-for-in-javascript)  | [What are proxies in JavaScript used for?](#what-are-proxies-in-javascript-used-for)  | [Explain the concept of "hoisting" in JavaScript](#explain-the-concept-of-hoisting-in-javascript)  | [Explain the difference in hoisting between `var`, `let`, and `const`](#explain-the-difference-in-hoisting-between-var-let-and-const)  | [How does hoisting affect function declarations and expressions?](#how-does-hoisting-affect-function-declarations-and-expressions)  | [What are the potential issues caused by hoisting?](#what-are-the-potential-issues-caused-by-hoisting)  | [How can you avoid problems related to hoisting?](#how-can-you-avoid-problems-related-to-hoisting)  | 
+| [Spread operator?](#what-is-the-spread-operator-and-how-is-it-used)  | [Data Types – Symbol?](#what-are-symbols-used-for-in-javascript)  | [What are proxies in JavaScript used for?](#what-are-proxies-in-javascript-used-for)  | [Explain the concept of "hoisting" in JavaScript](#explain-the-concept-of-hoisting-in-javascript)  | [Explain the difference in hoisting between `var`, `let`, and `const`](#explain-the-difference-in-hoisting-between-var-let-and-const)  | [How does hoisting affect function declarations and expressions?](#how-does-hoisting-affect-function-declarations-and-expressions)  | [What are the potential issues caused by hoisting?](#what-are-the-potential-issues-caused-by-hoisting)  | [How can you avoid problems related to hoisting?](#how-can-you-avoid-problems-related-to-hoisting)  | 
 | [What is the difference between `==` and `===` in JavaScript?](#what-is-the-difference-between--and--in-javascript)  | [What language constructs do you use for iterating over object properties and array items in JavaScript?](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript)  | [What is the purpose of the `break` and `continue` statements?](#what-is-the-purpose-of-the-break-and-continue-statements)  | [What is the ternary operator and how is it used?](#what-is-the-ternary-operator-and-how-is-it-used)  | [How do you access the index of an element in an array during iteration?](#how-do-you-access-the-index-of-an-element-in-an-array-during-iteration)  | [What is the purpose of the `switch` statement?](#what-is-the-purpose-of-the-switch-statement)  | [What are rest parameters and how are they used?](#what-are-rest-parameters-and-how-are-they-used)  | [Explain the concept of the spread operator and its uses](#explain-the-concept-of-the-spread-operator-and-its-uses)  | 
 | [What are the benefits of using spread syntax in JavaScript and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax)  | [What are iterators and generators in JavaScript and what are they used for?](#what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for)  | [Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}` in JavaScript](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function--in-javascript)  | [What is the difference between a parameter and an argument?](#what-is-the-difference-between-a-parameter-and-an-argument)  | [Explain the concept of hoisting with regards to functions](#explain-the-concept-of-hoisting-with-regards-to-functions)  | [What's the difference between `.call` and `.apply` in JavaScript?](#whats-the-difference-between-call-and-apply-in-javascript)  | [Can you offer a use case for the new arrow => function syntax?](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax)  | [Difference between: `function Person(){}`, `const person = Person()`, and `const person = new Person()` in JavaScript?](#difference-between-function-person-const-person--person-and-const-person--new-person-in-javascript)  | 
 | [What is the definition of a higher-order function in JavaScript?](#what-is-the-definition-of-a-higher-order-function-in-javascript)  | [What are callback functions and how are they used?](#what-are-callback-functions-and-how-are-they-used)  | [What's a typical use case for anonymous functions in JavaScript?](#whats-a-typical-use-case-for-anonymous-functions-in-javascript)  | [What is recursion and how is it used in JavaScript?](#what-is-recursion-and-how-is-it-used-in-javascript)  | [What are default parameters and how are they used?](#what-are-default-parameters-and-how-are-they-used)  | [Explain why the following doesn't work as an IIFE: `function foo(){}();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo-what-needs-to-be-changed-to-properly-make-it-an-iife)  | [What are the various ways to create objects in JavaScript?](#what-are-the-various-ways-to-create-objects-in-javascript)  | [Explain the difference between dot notation and bracket notation for accessing object properties](#explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties)  | 
@@ -24,8 +24,8 @@
 | [What are the metadata fields of a module?](#what-are-the-metadata-fields-of-a-module)  | [What do you think of AMD vs CommonJS?](#what-do-you-think-of-amd-vs-commonjs)  | [What are the different types of errors in JavaScript?](#what-are-the-different-types-of-errors-in-javascript)  | [How do you handle errors using `try...catch` blocks?](#how-do-you-handle-errors-using-trycatch-blocks)  | [What is the purpose of the `finally` block?](#what-is-the-purpose-of-the-finally-block)  | [How can you create custom error objects?](#how-can-you-create-custom-error-objects)  | [Explain the concept of error propagation in JavaScript](#explain-the-concept-of-error-propagation-in-javascript)  | [What is currying and how does it work?](#what-is-currying-and-how-does-it-work)  | 
 | [Explain the concept of partial application](#explain-the-concept-of-partial-application)  | [What are the benefits of using currying and partial application?](#what-are-the-benefits-of-using-currying-and-partial-application)  | [Provide some examples of how currying and partial application can be used](#provide-some-examples-of-how-currying-and-partial-application-can-be-used)  | [How do currying and partial application differ from each other?](#how-do-currying-and-partial-application-differ-from-each-other)  | [What are `Set`s and `Map`s and how are they used?](#what-are-sets-and-maps-and-how-are-they-used)  | [What are the differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?](#what-are-the-differences-between-mapset-and-weakmapweakset-in-javascript)  | [How do you convert a `Set` to an array in JavaScript?](#how-do-you-convert-a-set-to-an-array-in-javascript)  | [What is the difference between a `Map` object and a plain object in JavaScript?](#what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript)  | 
 | [How do `Set`s and `Map`s handle equality checks for objects?](#how-do-sets-and-maps-handle-equality-checks-for-objects)  | [What are some common performance bottlenecks in JavaScript applications?](#what-are-some-common-performance-bottlenecks-in-javascript-applications)  | [Explain the concept of debouncing and throttling](#explain-the-concept-of-debouncing-and-throttling)  | [How can you optimize DOM manipulation for better performance?](#how-can-you-optimize-dom-manipulation-for-better-performance)  | [What are some techniques for reducing reflows and repaints?](#what-are-some-techniques-for-reducing-reflows-and-repaints)  | [Explain the concept of lazy loading and how it can improve performance](#explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance)  | [What are Web Workers and how can they be used to improve performance?](#what-are-web-workers-and-how-can-they-be-used-to-improve-performance)  | [Explain the concept of caching and how it can be used to improve performance](#explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance)  | 
-| [What are some tools that can be used to measure and analyze JavaScript performance?](#what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance)  | [How can you optimize network requests for better performance?](#how-can-you-optimize-network-requests-for-better-performance)  | [What are the different types of testing in software development?](#what-are-the-different-types-of-testing-in-software-development)  | [Explain the difference between unit testing, integration testing, and end-to-end testing](#explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing)  |  [What are some popular JavaScript testing frameworks?](#what-are-some-popular-javascript-testing-frameworks)  | [How do you write unit tests for JavaScript code?](#how-do-you-write-unit-tests-for-javascript-code)  | [Explain the concept of test-driven development (TDD)](#explain-the-concept-of-test-driven-development-tdd)  | [What are mocks and stubs and how are they used in testing?](#what-are-mocks-and-stubs-and-how-are-they-used-in-testing)  | 
-| [How can you test asynchronous code in JavaScript?](#how-can-you-test-asynchronous-code-in-javascript)  | [What are some best practices for writing maintainable and effective tests in JavaScript?](#what-are-some-best-practices-for-writing-maintainable-and-effective-tests-in-javascript)  | [Explain the concept of code coverage and how it can be used to assess test quality](#explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality)  | [What are some tools that can be used for JavaScript testing?](#what-are-some-tools-that-can-be-used-for-javascript-testing)  | [What are design patterns and why are they useful?](#what-are-design-patterns-and-why-are-they-useful)  | [Explain the concept of the Singleton pattern](#explain-the-concept-of-the-singleton-pattern)  | [What is the Factory pattern and how is it used?](#what-is-the-factory-pattern-and-how-is-it-used)  | [Explain the Observer pattern and its use cases](#explain-the-observer-pattern-and-its-use-cases)  | 
+| [Measure and analyze JavaScript performance Tools?](#what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance)  | [Network requests optimize  for better performance?](#how-can-you-optimize-network-requests-for-better-performance)  | [Software development testing Types?](#what-are-the-different-types-of-testing-in-software-development)  | [Unit testing, integration testing, and end-to-end testing](#explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing)  |  [Testing frameworks?](#what-are-some-popular-javascript-testing-frameworks)  | [Unit tests for JavaScript code?](#how-do-you-write-unit-tests-for-javascript-code)  | [Explain the concept of test-driven development (TDD)](#explain-the-concept-of-test-driven-development-tdd)  | [Mocks and stubs?](#what-are-mocks-and-stubs-and-how-are-they-used-in-testing)  | 
+| [Asynchronous code?](#how-can-you-test-asynchronous-code-in-javascript)  | [Best practices for writing maintainable and effective tests?](#what-are-some-best-practices-for-writing-maintainable-and-effective-tests-in-javascript)  | [Code coverage](#explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality)  | [JavaScript Testing Tools?](#what-are-some-tools-that-can-be-used-for-javascript-testing)  | [Design patterns?](#what-are-design-patterns-and-why-are-they-useful)  | [Singleton pattern](#explain-the-concept-of-the-singleton-pattern)  | [Factory pattern?](#what-is-the-factory-pattern-and-how-is-it-used)  | [Observer pattern](#explain-the-observer-pattern-and-its-use-cases)  | 
 | [Module Pattern and Encapsulation](#what-is-the-module-pattern-and-how-does-it-help-with-encapsulation)  | [Prototype Pattern](#explain-the-concept-of-the-prototype-pattern)  | [Decorator Pattern?](#what-is-the-decorator-pattern-and-how-is-it-used)  | [Strategy Pattern](#explain-the-concept-of-the-strategy-pattern)  | [Command Pattern](#what-is-the-command-pattern-and-how-is-it-used)  | [Extending Built-in JavaScript Objects](#why-is-extending-built-in-javascript-objects-not-a-good-idea)  | [Cross-Site Scripting (XSS) and Prevention](#what-is-cross-site-scripting-xss-and-how-can-you-prevent-it)  | [Cross-Site Request Forgery (CSRF) and Mitigation Techniques mitigation techniques](#explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques)  | 
 | [Preventing SQL Injection Vulnerabilities?](#how-can-you-prevent-sql-injection-vulnerabilities-in-javascript-applications)  | [Handling Sensitive Data?](#what-are-some-best-practices-for-handling-sensitive-data-in-javascript)  | [Content Security Policy (CSP)](#explain-the-concept-of-content-security-policy-csp-and-how-it-enhances-security)  | [Common Security Headers and Their Purposes](#what-are-some-common-security-headers-and-their-purpose)  | [Preventing Clickjacking Attacks](#how-can-you-prevent-clickjacking-attacks)  | [ Input Validation and Its Importance](#explain-the-concept-of-input-validation-and-its-importance-in-security)  | [ Identifying Security Vulnerabilities:](#what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code)  | [Secure Authentication and Authorization](#how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications)  | 
 | [Same-Origin Policy in JavaScript](#explain-the-same-origin-policy-with-regards-to-javascript)  | ['use strict' Directive in JavaScript](#what-is-use-strict-in-javascript-for)  | [Tools and Techniques for Debugging JavaScript Code](#what-tools-and-techniques-do-you-use-for-debugging-javascript-code)  | [JavaScript Garbage Collection Mechanisms?](#how-does-javascript-garbage-collection-work)  | [SEO Strategies for Single Page Applications (SPAs)](#explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly)  | [Sharing Code Between JavaScript Files?](#how-can-you-share-code-between-javascript-files)  | [Organizing JavaScript Code for Maintainability?](#how-do-you-organize-your-code)  | [Pros and Cons of Using Languages that Compile to JavaScript?](#what-are-some-of-the-advantagesdisadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript)  | [When would you use `document.write()`?](#when-would-you-use-documentwrite)  | 
@@ -2120,7 +2120,7 @@ console.log(result); // "Hello world! How are you?"
 
 <br>
 
-### What is the spread operator and how is it used?
+### Spread operator?
 
 <!-- Update here: /questions/what-is-the-spread-operator-and-how-is-it-used/en-US.mdx -->
 
@@ -6074,7 +6074,7 @@ Caching is a technique used to store copies of files or data in a temporary stor
 
 <br>
 
-### What are some tools that can be used to measure and analyze JavaScript performance?
+### Measure and analyze JavaScript performance Tools?
 
 <!-- Update here: /questions/what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance/en-US.mdx -->
 
@@ -6088,7 +6088,7 @@ To measure and analyze JavaScript performance, you can use tools like Chrome Dev
 
 <br>
 
-### How can you optimize network requests for better performance?
+### Network requests optimize  for better performance?
 
 <!-- Update here: /questions/how-can-you-optimize-network-requests-for-better-performance/en-US.mdx -->
 
@@ -6102,7 +6102,7 @@ To optimize network requests for better performance, you can minimize the number
 
 <br>
 
-### What are the different types of testing in software development?
+### Software development testing Types?
 
 <!-- Update here: /questions/what-are-the-different-types-of-testing-in-software-development/en-US.mdx -->
 
@@ -6116,7 +6116,7 @@ In software development, there are several types of testing to ensure the qualit
 
 <br>
 
-### Explain the difference between unit testing, integration testing, and end-to-end testing
+### Unit testing, integration testing, and end-to-end testing
 
 <!-- Update here: /questions/explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing/en-US.mdx -->
 
@@ -6130,7 +6130,7 @@ Unit testing focuses on testing individual components or functions in isolation 
 
 <br>
 
-### What are some popular JavaScript testing frameworks?
+### Testing frameworks?
 
 <!-- Update here: /questions/what-are-some-popular-javascript-testing-frameworks/en-US.mdx -->
 
@@ -6144,7 +6144,7 @@ Some popular JavaScript testing frameworks include Jest, Mocha, Jasmine, and Cyp
 
 <br>
 
-### How do you write unit tests for JavaScript code?
+### Unit tests for JavaScript code?
 
 <!-- Update here: /questions/how-do-you-write-unit-tests-for-javascript-code/en-US.mdx -->
 
@@ -6189,7 +6189,7 @@ Test-driven development (TDD) is a software development approach where you write
 
 <br>
 
-### What are mocks and stubs and how are they used in testing?
+### Mocks and stubs?
 
 <!-- Update here: /questions/what-are-mocks-and-stubs-and-how-are-they-used-in-testing/en-US.mdx -->
 
@@ -6203,7 +6203,7 @@ Mocks and stubs are tools used in testing to simulate the behavior of real objec
 
 <br>
 
-### How can you test asynchronous code in JavaScript?
+### Asynchronous code?
 
 <!-- Update here: /questions/how-can-you-test-asynchronous-code-in-javascript/en-US.mdx -->
 
@@ -6226,7 +6226,7 @@ Alternatively, you can use callbacks and the `done` function to signal the end o
 
 <br>
 
-### What are some best practices for writing maintainable and effective tests in JavaScript?
+### Best practices for writing maintainable and effective tests?
 
 <!-- Update here: /questions/what-are-some-best-practices-for-writing-maintainable-and-effective-tests/en-US.mdx -->
 
@@ -6240,7 +6240,7 @@ To write maintainable and effective tests, ensure they are clear, concise, and f
 
 <br>
 
-### Explain the concept of code coverage and how it can be used to assess test quality
+### Code coverage
 
 <!-- Update here: /questions/explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality/en-US.mdx -->
 
@@ -6254,7 +6254,7 @@ Code coverage is a metric that measures the percentage of code that is executed 
 
 <br>
 
-### What are some tools that can be used for JavaScript testing?
+### JavaScript Testing Tools?
 
 <!-- Update here: /questions/what-are-some-tools-that-can-be-used-for-javascript-testing/en-US.mdx -->
 
@@ -6268,7 +6268,7 @@ For JavaScript testing, you can use tools like Jest, Mocha, Jasmine, and Cypress
 
 <br>
 
-### What are design patterns and why are they useful?
+### Design patterns?
 
 <!-- Update here: /questions/what-are-design-patterns-and-why-are-they-useful/en-US.mdx -->
 
@@ -6282,7 +6282,7 @@ Design patterns are reusable solutions to common problems in software design. Th
 
 <br>
 
-### Explain the concept of the Singleton pattern
+### Singleton pattern
 
 <!-- Update here: /questions/explain-the-concept-of-the-singleton-pattern/en-US.mdx -->
 
@@ -6312,7 +6312,7 @@ console.log(instance1 === instance2); // true
 
 <br>
 
-### What is the Factory pattern and how is it used?
+### Factory pattern?
 
 <!-- Update here: /questions/what-is-the-factory-pattern-and-how-is-it-used/en-US.mdx -->
 
@@ -6341,7 +6341,7 @@ const cat = createAnimal('cat');
 
 <br>
 
-### Explain the Observer pattern and its use cases
+### Observer pattern
 
 <!-- Update here: /questions/explain-the-observer-pattern-and-its-use-cases/en-US.mdx -->
 

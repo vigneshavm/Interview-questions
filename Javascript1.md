@@ -1,8 +1,3 @@
-
-
-```markdown
-
-
 ## Fundamentals
 - Hoisting in JavaScript
 - Differences between `let`, `var`, and `const`
@@ -166,6 +161,3 @@
 - Detecting JS disabled state
 - `window.history` API
 - `document.write()` usage
-
-```
-

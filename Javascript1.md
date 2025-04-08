@@ -2,8 +2,11 @@
 
 |  |  |  |
 | --- | --- | --- |
-| [Hoisting in JavaScript](#hoisting-in-javascript) | [Script Loading Strategies: `<script>`, `async`, and `defer`](#script-loading-strategies-script-async-and-defer) | [`'use strict'` Directive in JavaScript](#use-strict-directive-in-javascript) |
+| [Hoisting](#explain-the-concept-of-hoisting-in-javascript) | [Script Loading Strategies: `<script>`, `async`, and `defer`](#script-loading-strategies-script-async-and-defer) | [`'use strict'` Directive in JavaScript](#use-strict-directive-in-javascript) |
+| [Hoisting: var, let, const](#explain-the-difference-in-hoisting-between-var-let-and-const) | [Function Hoisting](#how-does-hoisting-affect-function-declarations-and-expressions) | [Hoisting Issues](#what-are-the-potential-issues-caused-by-hoisting) |
 | [Variable Declarations: `let`, `var`, and `const`](#variable-declarations-let-var-and-const) | [`null`, `undefined`, and Undeclared Variables](#null-undefined-and-undeclared-variables) | [Synchronous vs Asynchronous Functions](#synchronous-vs-asynchronous-functions) |
+| [Function Hoisting](#explain-the-concept-of-hoisting-with-regards-to-functions) | [.call vs .apply](#whats-the-difference-between-call-and-apply-in-javascript) | [Arrow Function Use Cases](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax) |
+| [Avoiding Hoisting Problems](#how-can-you-avoid-problems-related-to-hoisting) | [Loose vs Strict Equality](#what-is-the-difference-between--and--in-javascript) | [Object & Array Iteration](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript) |
 | [`==` vs `===` Operators](#vs-operators) | [Differences Between `.call` and `.apply`](#differences-between-call-and-apply) | [Promises vs Callbacks](#promises-vs-callbacks) |
 | [JavaScript Event Loop](#javascript-event-loop) | [`Function.prototype.bind`](#functionprototypebind) | [AJAX Explained in Detail](#ajax-explained-in-detail) |
 | [Event Delegation](#event-delegation) | [Using Arrow Functions in Constructors](#using-arrow-functions-in-constructors) | [Advantages and Disadvantages of AJAX](#advantages-and-disadvantages-of-ajax) |
@@ -20,14 +23,13 @@
 | [Web Workers](#web-workers) | [Garbage Collection in JavaScript](#garbage-collection-in-javascript) |  |
 | [Variable Declarations](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const) | [Global Scope](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it) | [String to Number Conversion](#how-do-you-convert-a-string-to-a-number-in-javascript) |
 | [Template Literals](#what-are-template-literals-and-how-are-they-used) | [Tagged Templates](#explain-the-concept-of-tagged-templates) | [Spread Operator](#what-is-the-spread-operator-and-how-is-it-used) |
-| [Symbols](#what-are-symbols-used-for-in-javascript) | [Proxies](#what-are-proxies-in-javascript-used-for) | [Hoisting](#explain-the-concept-of-hoisting-in-javascript) |
-| [Hoisting: var, let, const](#explain-the-difference-in-hoisting-between-var-let-and-const) | [Function Hoisting](#how-does-hoisting-affect-function-declarations-and-expressions) | [Hoisting Issues](#what-are-the-potential-issues-caused-by-hoisting) |
-| [Avoiding Hoisting Problems](#how-can-you-avoid-problems-related-to-hoisting) | [Loose vs Strict Equality](#what-is-the-difference-between--and--in-javascript) | [Object & Array Iteration](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript) |
+| [Symbols](#what-are-symbols-used-for-in-javascript) | [Proxies](#what-are-proxies-in-javascript-used-for) |  |
+
 | [Break & Continue](#what-is-the-purpose-of-the-break-and-continue-statements) | [Ternary Operator](#what-is-the-ternary-operator-and-how-is-it-used) | [Array Index Access](#how-do-you-access-the-index-of-an-element-in-an-array-during-iteration) |
 | [Switch Statement](#what-is-the-purpose-of-the-switch-statement) | [Rest Parameters](#what-are-rest-parameters-and-how-are-they-used) | [Spread vs Rest Syntax](#explain-the-concept-of-the-spread-operator-and-its-uses) |
 | [Spread Syntax Benefits](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax) |  |  |
 | [Iterators & Generators](#what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for) | [Function Declarations vs Expressions](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function--in-javascript) | [Parameters vs Arguments](#what-is-the-difference-between-a-parameter-and-an-argument) |
-| [Function Hoisting](#explain-the-concept-of-hoisting-with-regards-to-functions) | [.call vs .apply](#whats-the-difference-between-call-and-apply-in-javascript) | [Arrow Function Use Cases](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax) |
+
 | [Constructor Function Variations](#difference-between-function-person-const-person--person-and-const-person--new-person-in-javascript) | [Higher-Order Functions](#what-is-the-definition-of-a-higher-order-function-in-javascript) | [Callback Functions](#what-are-callback-functions-and-how-are-they-used) |
 | [Anonymous Functions](#whats-a-typical-use-case-for-anonymous-functions-in-javascript) | [Recursion](#what-is-recursion-and-how-is-it-used-in-javascript) | [Default Parameters](#what-are-default-parameters-and-how-are-they-used) |
 | [IIFE Syntax](#explain-why-the-following-doesnt-work-as-an-iife-function-foo-what-needs-to-be-changed-to-properly-make-it-an-iife) | [Object Creation Methods](#what-are-the-various-ways-to-create-objects-in-javascript) | [Dot vs Bracket Notation](#explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties) |

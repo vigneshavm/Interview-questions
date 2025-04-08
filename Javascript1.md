@@ -15,8 +15,6 @@
 
 | Topic Group | Concept 1 | Concept 2 | Concept 3 | Topic Group11 | Concept 111 | Concept 211 | Concept 311 |
 |-------------|-----------|-----------|-----------|-------------|-----------|-----------|-----------|
-
-
 | [Explain the concept of "hoisting" in JavaScript](#explain-the-concept-of-hoisting-in-javascript)
 | [What are the differences between JavaScript variables created using `let`, `var` or `const`?](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const)
 | [What is the difference between `==` and `===` in JavaScript?](#what-is-the-difference-between--and--in-javascript)

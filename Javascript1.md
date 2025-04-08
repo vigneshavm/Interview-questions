@@ -6411,7 +6411,7 @@ console.log(obj['favorite color']); // blue
 
 
 
-### Secure Authentication and Authorization
+## Secure Authentication and Authorization
 
 <!-- Update here: /questions/how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications/en-US.mdx -->
 
@@ -6425,7 +6425,10 @@ To implement secure authentication and authorization in JavaScript applications,
 
 <br>
 
-### Explain the same-origin policy with regards to JavaScript
+
+
+## Same-Origin Policy in JavaScript
+
 
 <!-- Update here: /questions/explain-the-same-origin-policy-with-regards-to-javascript/en-US.mdx -->
 
@@ -6439,7 +6442,14 @@ The same-origin policy is a security measure implemented in web browsers to prev
 
 <br>
 
-### What is `'use strict';` in JavaScript for?
+
+
+
+
+## 'use strict' Directive in JavaScript
+
+
+
 
 <!-- Update here: /questions/what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it/en-US.mdx -->
 
@@ -6471,7 +6481,14 @@ Overall, the benefits outweigh the disadvantages and there is not really a need 
 
 <br>
 
-### What tools and techniques do you use for debugging JavaScript code?
+
+
+
+
+
+## Tools and Techniques for Debugging JavaScript Code
+
+
 
 <!-- Update here: /questions/what-tools-and-techniques-do-you-use-for-debugging-javascript-code/en-US.mdx -->
 
@@ -6499,7 +6516,10 @@ Some of the most commonly used tools and techniques for debugging JavaScript:
 
 
 
-### How does JavaScript garbage collection work?
+
+
+## JavaScript Garbage Collection Mechanisms
+
 
 <!-- Update here: /questions/how-does-javascript-garbage-collection-work/en-US.mdx -->
 
@@ -6524,7 +6544,10 @@ Different JavaScript engines (differs according to browsers) implement different
 
 
 
-### Explain what a single page app is and how to make one SEO-friendly
+
+## SEO Strategies for Single Page Applications (SPAs)
+
+
 
 <!-- Update here: /questions/explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly/en-US.mdx -->
 
@@ -6535,7 +6558,8 @@ A single page application (SPA) is a web application that loads a single HTML pa
 <br>
 
 
-### How can you share code between JavaScript files?
+
+## Sharing Code Between JavaScript Files
 
 <!-- Update here: /questions/how-can-you-share-code-between-files/en-US.mdx -->
 
@@ -6573,7 +6597,12 @@ greet();
 
 <br>
 
-### How do you organize your code?
+
+
+
+
+
+## Organizing JavaScript Code for Maintainability
 
 <!-- Update here: /questions/how-do-you-organize-your-code-module-pattern-classical-inheritance/en-US.mdx -->
 
@@ -6587,7 +6616,7 @@ I organize my code by following a modular approach, using a clear folder structu
 
 <br>
 
-### What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
+## Pros and Cons of Using Languages that Compile to JavaScript
 
 <!-- Update here: /questions/what-are-some-of-the-advantages-disadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript/en-US.mdx -->
 
@@ -6613,7 +6642,11 @@ Disadvantages:
 
 <br>
 
-### When would you use `document.write()`?
+
+
+
+## When to Use `document.write()`
+
 
 <!-- Update here: /questions/when-would-you-use-document-write/en-US.mdx -->
 

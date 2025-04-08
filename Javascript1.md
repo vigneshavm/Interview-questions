@@ -20,8 +20,8 @@
 | [Different Ways to Make an API Call in JavaScript](#different-ways-to-make-an-api-call-in-javascript) |[AJAX](#ajax) | [Advantages and Disadvantages of Using AJAX](#advantages-and-disadvantages-of-using-ajax) |[Differences Between XMLHttpRequest and fetch()](#differences-between-xmlhttprequest-and-fetch) |[Using AbortController to Abort Web Requests](#using-abortcontroller-to-abort-web-requests)  | [How JSONP Works](#how-jsonp-works) | [Workers in JavaScript](#workers-in-javascript) |[The Web Socket API](#the-web-socket-api) |
 | [JavaScript Polyfills](#javascript-polyfills) | [Detecting if JavaScript is Disabled on a Page](#detecting-if-javascript-is-disabled-on-a-page) | [The `Intl` Namespace Object](#the-intl-namespace-object) | [Validating Form Elements Using the Constraint Validation API](#validating-form-elements-using-the-constraint-validation-api) | [Using the `window.history` API](#using-the-windowhistory-api) | [Communication Between iframes and Parent Pages](#communication-between-iframes-and-parent-pages) | [Difference Between `load` Event and `DOMContentLoaded` Event](#difference-between-load-event-and-domcontentloaded-event) | [Redirecting to a New Page in JavaScript](#redirecting-to-a-new-page-in-javascript) | 
 | [Retrieving Query String Values in JavaScript](#retrieving-query-string-values-in-javascript) | [Understanding Server-Sent Events](#understanding-server-sent-events) | [An Overview of Progressive Web Applications (PWAs)](#an-overview-of-progressive-web-applications-pwas) | [The Concept and Utility of Modules in JavaScript](#the-concept-and-utility-of-modules-in-javascript) | [Differences Between CommonJS and ES Modules](#differences-between-commonjs-and-es-modules) | [Techniques for Importing and Exporting Modules in JavaScript](#techniques-for-importing-and-exporting-modules-in-javascript) | [Advantages of Using Module Bundlers](#advantages-of-using-module-bundlers) | [Understanding Tree Shaking in Module Bundling](#understanding-tree-shaking-in-module-bundling) | 
-| [Metadata Fields in JavaScript Modules](#metadata-fields-in-javascript-modules) | [Comparison of AMD and CommonJS Module Systems](#comparison-of-amd-and-commonjs-module-systems) | [Types of Errors in JavaScript](#types-of-errors-in-javascript) | [Error Handling with `try...catch` Blocks](#error-handling-with-trycatch-blocks) | [Purpose and Use of the `finally` Block](#purpose-and-use-of-the-finally-block) | [Creating Custom Error Objects in JavaScript](#creating-custom-error-objects-in-javascript) | [Understanding Error Propagation in JavaScript](#understanding-error-propagation-in-javascript) | [Introduction to Currying in JavaScript](#introduction-to-currying-in-javascript)  | 
-| [Understanding Partial Application in JavaScript](#understanding-partial-application-in-javascript) | [Benefits of Currying and Partial Application](#benefits-of-currying-and-partial-application) | [Examples of Currying and Partial Application](#examples-of-currying-and-partial-application) | [Differences Between Currying and Partial Application](#differences-between-currying-and-partial-application) | [Overview of Sets and Maps in JavaScript](#overview-of-sets-and-maps-in-javascript) | [Differences Between Map/Set and WeakMap/WeakSet](#differences-between-mapset-and-weakmapweakset) | [Converting a Set to an Array in JavaScript](#converting-a-set-to-an-array-in-javascript) | [Map Object vs. Plain Object in JavaScript](#map-object-vs-plain-object-in-javascript) | 
+| [Metadata Fields in JavaScript Modules](#metadata-fields-in-javascript-modules) | [Comparison of AMD and CommonJS Module Systems](#comparison-of-amd-and-commonjs-module-systems) | [Types of Errors in JavaScript](#types-of-errors-in-javascript) | [Error Handling with `try...catch` Blocks](#error-handling-with-trycatch-blocks) | [Purpose and Use of the `finally` Block](#purpose-and-use-of-the-finally-block) | [Creating Custom Error Objects in JavaScript](#creating-custom-error-objects-in-javascript) | [Understanding Error Propagation in JavaScript](#understanding-error-propagation-in-javascript) | [Introduction to Currying in JavaScript](#currying)  | 
+| [Understanding Partial Application in JavaScript](#partial-application) | [Overview of Sets and Maps in JavaScript](#overview-of-sets-and-maps-in-javascript) | [Differences Between Map/Set and WeakMap/WeakSet](#differences-between-mapset-and-weakmapweakset) | [Converting a Set to an Array in JavaScript](#converting-a-set-to-an-array-in-javascript) | [Map Object vs. Plain Object in JavaScript](#map-object-vs-plain-object-in-javascript) | 
 | [Equality Checks for Objects in Sets and Maps](#equality-checks-for-objects-in-sets-and-maps) | [Common Performance Bottlenecks in JavaScript Applications](#common-performance-bottlenecks-in-javascript-applications) | [Debouncing and Throttling Techniques](#debouncing-and-throttling-techniques) | [Optimizing DOM Manipulation for Better Performance](#optimizing-dom-manipulation-for-better-performance) | [Techniques to Reduce Reflows and Repaints](#techniques-to-reduce-reflows-and-repaints) | [Implementing Lazy Loading to Enhance Performance](#implementing-lazy-loading-to-enhance-performance) | [Utilizing Web Workers for Performance Improvement](#utilizing-web-workers-for-performance-improvement) | [Leveraging Caching Strategies for Performance Optimization](#leveraging-caching-strategies-for-performance-optimization) | 
 | [Tools for Measuring and Analyzing JavaScript Performance](#tools-for-measuring-and-analyzing-javascript-performance) | [Optimizing Network Requests for Better Performance](#optimizing-network-requests-for-better-performance) | [Types of Testing in Software Development](#types-of-testing-in-software-development) | [Differences Between Unit Testing, Integration Testing, and End-to-End Testing](#differences-between-unit-testing-integration-testing-and-end-to-end-testing) | [Popular JavaScript Testing Frameworks](#popular-javascript-testing-frameworks) | [Writing Unit Tests for JavaScript Code](#writing-unit-tests-for-javascript-code) | [Understanding Test-Driven Development (TDD)](#understanding-test-driven-development-tdd) | [Mocks and Stubs in Testing](#mocks-and-stubs-in-testing) | 
 | [Testing Asynchronous Code in JavaScript](#testing-asynchronous-code-in-javascript) | [Best Practices for Writing Maintainable and Effective Tests](#best-practices-for-writing-maintainable-and-effective-tests) | [Understanding Code Coverage and Assessing Test Quality](#understanding-code-coverage-and-assessing-test-quality) | [Tools for JavaScript Testing](#tools-for-javascript-testing) | [Introduction to Design Patterns and Their Importance](#introduction-to-design-patterns-and-their-importance) | [The Singleton Pattern Explained](#the-singleton-pattern-explained) | [Understanding the Factory Pattern and Its Usage](#understanding-the-factory-pattern-and-its-usage) | [The Observer Pattern and Its Use Cases](#the-observer-pattern-and-its-use-cases) | 
@@ -5333,30 +5333,9 @@ console.log(result); // Output: 6
 
 <br>
 
-## Partial application
 
-<!-- Update here: /questions/explain-the-concept-of-partial-application/en-US.mdx -->
 
-Partial application is a technique in functional programming where a function is applied to some of its arguments, producing a new function that takes the remaining arguments. This allows you to create more specific functions from general ones. For example, if you have a function `add(a, b)`, you can partially apply it to create a new function `add5` that always adds 5 to its argument.
-
-```js live
-function add(a, b) {
-  return a + b;
-}
-
-const add5 = add.bind(null, 5);
-console.log(add5(10)); // Outputs 15
-```
-
-<!-- Update here: /questions/explain-the-concept-of-partial-application/en-US.mdx -->
-
-<br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-partial-application/en-US.mdx)
-
-<br>
-
-## Currying
+**Currying**
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-currying-and-partial-application/en-US.mdx -->
 
@@ -5370,7 +5349,7 @@ Currying transforms a function with multiple arguments into a sequence of functi
 
 <br>
 
-## Currying  Example
+**Currying  Example**
 
 <!-- Update here: /questions/provide-some-examples-of-how-currying-and-partial-application-can-be-used/en-US.mdx -->
 
@@ -5400,7 +5379,7 @@ console.log(addTwo(3)); // 5
 
 <br>
 
-## Currying Vs Partial application?
+**Currying Vs Partial application**
 
 <!-- Update here: /questions/how-do-currying-and-partial-application-differ-from-each-other/en-US.mdx -->
 
@@ -5415,7 +5394,31 @@ Partial application, on the other hand, fixes a few arguments of a function and 
 
 <br>
 
-## `Set`s and `Map`s?
+## Partial application
+
+
+<!-- Update here: /questions/explain-the-concept-of-partial-application/en-US.mdx -->
+
+Partial application is a technique in functional programming where a function is applied to some of its arguments, producing a new function that takes the remaining arguments. This allows you to create more specific functions from general ones. For example, if you have a function `add(a, b)`, you can partially apply it to create a new function `add5` that always adds 5 to its argument.
+
+```js live
+function add(a, b) {
+  return a + b;
+}
+
+const add5 = add.bind(null, 5);
+console.log(add5(10)); // Outputs 15
+```
+
+<!-- Update here: /questions/explain-the-concept-of-partial-application/en-US.mdx -->
+
+<br>
+    
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-partial-application/en-US.mdx)
+
+<br>
+
+## Sets and Maps?
 
 <!-- Update here: /questions/what-are-sets-and-maps-and-how-are-they-used/en-US.mdx -->
 

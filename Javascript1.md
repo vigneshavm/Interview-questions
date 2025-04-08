@@ -1,24 +1,3 @@
-<!-- TABLE_OF_CONTENTS:ALL:START -->
-
-| Questions 1                                         | Questions 2                                         | Questions 3                                             | Questions 4                                           | Questions 5                                                                                 | Questions 6                                          | Questions 7                                    | Questions 8                                     |
-|-----------------------------------------------------|-----------------------------------------------------|---------------------------------------------------------|-------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------|------------------------------------------------|
-| [JavaScript Data Types?](#what-are-the-various-data-types-in-javascript) | [JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable) | [null, undefined, and undeclared?](#whats-the-difference-between-a-javascript-variable-that-is-null-undefined-or-undeclared) | [let, var, const?](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const) | [Global JavaScript scope?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it) | [Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript) | [Template literals](#what-are-template-literals-and-how-are-they-used) | [Tagged Templates in JavaScript](#explain-the-concept-of-tagged-templates) |
-
-<!-- TABLE_OF_CONTENTS:ALL:END -->
-
-### How do you check the data type of a variable?
-
-To check the data type of a variable in JavaScript, you can use the `typeof` operator. For example, `typeof variableName` will return a string indicating the type of the variable, such as `"string"`, `"number"`, `"boolean"`, `"object"`, `"function"`, `"undefined"`, or `"symbol"`. For arrays and `null`, you can use `Array.isArray(variableName)` and `variableName === null`, respectively.
-
-### What's the difference between a JavaScript variable that is: `null`, `undefined`, or undeclared?
-
-| Trait                   | `null`                                               | `undefined`                                         | Undeclared                                           |
-|-------------------------|------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------------|
-| **Meaning**             | Explicitly set by the developer to indicate no value | Variable has been declared but not assigned a value | Variable has not been declared at all               |
-| **Type (via `typeof`)** | `'object'`                                           | `'undefined'`                                       | ReferenceError when accessed                        |
-| **Equality Comparison** | `null == undefined` is `true`                        | `undefined == null` is `true`                       | Throws a `ReferenceError`                           |
-
-
 
 
 <!-- TABLE_OF_CONTENTS:ALL:START -->

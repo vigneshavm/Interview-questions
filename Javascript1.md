@@ -32,7 +32,9 @@
 <!-- TABLE_OF_CONTENTS:ALL:END -->
 
 
+## `foo` in `function foo() {}` vs. `var foo = function() {}`
 
+*Content for `foo` in `function foo() {}` vs. `var foo = function() {}` section*
 
 
 

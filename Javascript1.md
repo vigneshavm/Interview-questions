@@ -7,7 +7,7 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [ JavaScript Data Types?](#what-are-the-various-data-types-in-javascript)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#whats-the-difference-between-a-javascript-variable-that-is-null-undefined-or-undeclared)  | [let, var, const?](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [What are template literals and how are they used?](#what-are-template-literals-and-how-are-they-used)  | [Tagged Templates in JavaScript](#explain-the-concept-of-tagged-templates)  | 
-| [Spread operator?](#what-is-the-spread-operator-and-how-is-it-used)  | [Data Types – Symbol?](#what-are-symbols-used-for-in-javascript)  | [What are proxies in JavaScript used for?](#what-are-proxies-in-javascript-used-for)  | [Explain the concept of "hoisting" in JavaScript](#explain-the-concept-of-hoisting-in-javascript)  | [Explain the difference in hoisting between `var`, `let`, and `const`](#explain-the-difference-in-hoisting-between-var-let-and-const)  | [How does hoisting affect function declarations and expressions?](#how-does-hoisting-affect-function-declarations-and-expressions)  | [What are the potential issues caused by hoisting?](#what-are-the-potential-issues-caused-by-hoisting)  | [How can you avoid problems related to hoisting?](#how-can-you-avoid-problems-related-to-hoisting)  | 
+| [Spread operator?](#what-is-the-spread-operator-and-how-is-it-used)  | [Data Types – Symbol?](#what-are-symbols-used-for-in-javascript)  | [proxies](#what-are-proxies-in-javascript-used-for)  | [Hoisting](#explain-the-concept-of-hoisting-in-javascript)  | [Explain the difference in hoisting between `var`, `let`, and `const`](#explain-the-difference-in-hoisting-between-var-let-and-const)  | [hoisting - function declarations and expressions](#how-does-hoisting-affect-function-declarations-and-expressions)  | [hoisting - potential issues](#what-are-the-potential-issues-caused-by-hoisting)  | [hoisting - avoid problems](#how-can-you-avoid-problems-related-to-hoisting)  | 
 | [`==` and `===`](#what-is-the-difference-between--and--in-javascript)  | [iterating over object properties and array items in JavaScript](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript)  | [ `break` and `continue` statements](#what-is-the-purpose-of-the-break-and-continue-statements)  | [ternary operator](#what-is-the-ternary-operator-and-how-is-it-used)  | [index of an element in an array during iteration](#how-do-you-access-the-index-of-an-element-in-an-array-during-iteration)  | [`switch` statement](#what-is-the-purpose-of-the-switch-statement)  | [rest parameters](#what-are-rest-parameters-and-how-are-they-used)  | [spread operator and its uses](#explain-the-concept-of-the-spread-operator-and-its-uses)  | 
 | [spread and rest syntax](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax)  | [iterators and generators](#what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for)  | [`foo` between `function foo() {}` and `var foo = function() {}`](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function--in-javascript)  | [parameter Vs argument](#what-is-the-difference-between-a-parameter-and-an-argument)  | [hoisting](#explain-the-concept-of-hoisting-with-regards-to-functions)  | [`.call` and `.apply`](#whats-the-difference-between-call-and-apply-in-javascript)  | [new arrow => function syntax](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax)  | [Function declaration | Function call | Constructor call](#difference-between-function-person-const-person--person-and-const-person--new-person-in-javascript)  | 
 | [higher-order function](#what-is-the-definition-of-a-higher-order-function-in-javascript)  | [callback functions](#what-are-callback-functions-and-how-are-they-used)  | [anonymous functions - use case](#whats-a-typical-use-case-for-anonymous-functions-in-javascript)  | [recursion](#what-is-recursion-and-how-is-it-used-in-javascript)  | [default parameters](#what-are-default-parameters-and-how-are-they-used)  | [Immediately Invoked Function Expression](#explain-why-the-following-doesnt-work-as-an-iife-function-foo-what-needs-to-be-changed-to-properly-make-it-an-iife)  | [create objects - various ways](#what-are-the-various-ways-to-create-objects-in-javascript)  | [Explain the difference between dot notation and bracket notation for accessing object properties](#explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties)  | 
@@ -35,7 +35,7 @@
 
 
 
-### Explain the concept of "hoisting" in JavaScript
+### Hoisting
 
 <!-- Update here: /questions/explain-hoisting/en-US.mdx -->
 
@@ -1589,7 +1589,7 @@ Static members are useful under the following scenarios:
 
 <br>
 
-### What are `Symbol`s used for in JavaScript?
+### `Symbol`s used for in JavaScript
 
 <!-- Update here: /questions/what-are-symbols-used-for/en-US.mdx -->
 
@@ -1782,7 +1782,7 @@ console.log(person.name); // Output: 'Jane Smith'
 
 <br>
 
-### What are proxies in JavaScript used for?
+### proxies
 
 <!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
 
@@ -2146,7 +2146,7 @@ console.log(combinedObj); // { a: 1, b: 2, c: 3, d: 4 }
 
 <br>
 
-### What are `Symbol`s used for in JavaScript?
+### `Symbol`s used for in JavaScript
 
 <!-- Update here: /questions/what-are-symbols-used-for/en-US.mdx -->
 
@@ -2176,7 +2176,7 @@ console.log(obj[sym]); // "value"
 
 <br>
 
-### What are proxies in JavaScript used for?
+### proxies
 
 <!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
 
@@ -2227,7 +2227,7 @@ Use cases include:
 
 <br>
 
-### Explain the concept of "hoisting" in JavaScript
+### Hoisting
 
 <!-- Update here: /questions/explain-hoisting/en-US.mdx -->
 
@@ -2260,7 +2260,7 @@ The following behavior summarizes the result of accessing the variables before t
 
 <br>
 
-### Explain the difference in hoisting between `var`, `let`, and `const`
+###`var`, `let`, and `const` - Hoisting
 
 <!-- Update here: /questions/explain-the-difference-in-hoisting-between-var-let-and-const/en-US.mdx -->
 
@@ -2274,7 +2274,7 @@ The following behavior summarizes the result of accessing the variables before t
 
 <br>
 
-### How does hoisting affect function declarations and expressions?
+### hoisting - function declarations and expressions
 
 <!-- Update here: /questions/how-does-hoisting-affect-function-declarations-and-expressions/en-US.mdx -->
 
@@ -2302,7 +2302,7 @@ var bar = function () {
 
 <br>
 
-### What are the potential issues caused by hoisting?
+### hoisting - potential issues
 
 <!-- Update here: /questions/what-are-the-potential-issues-caused-by-hoisting/en-US.mdx -->
 
@@ -2324,7 +2324,7 @@ let b = 10;
 
 <br>
 
-### How can you avoid problems related to hoisting?
+### hoisting - avoid problems
 
 <!-- Update here: /questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx -->
 

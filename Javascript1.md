@@ -446,27 +446,52 @@ console.log(Object.prototype.toString.call(myObj)); // "[object MyCustomObject]"
 
 ## Proxies
 
-*Content for Proxies section*
+In JavaScript, a proxy is an object that acts as an intermediary between an object and the code. Proxies are used to intercept and customize the fundamental operations of JavaScript objects, such as property access, assignment, function invocation, and more.
 
-## Hoisting
+Here's a basic example of using a `Proxy` to log every property access:
 
-*Content for Hoisting section*
+```js live
+const myObject = {
+  name: 'John',
+  age: 42,
+};
 
-## Hoisting - `var`, `let`, and `const`
+const handler = {
+  get: function (target, prop, receiver) {
+    console.log(`Someone accessed property "${prop}"`);
+    return target[prop];
+  },
+};
 
-*Content for Hoisting - `var`, `let`, and `const` section*
+const proxiedObject = new Proxy(myObject, handler);
 
-## Hoisting - function declarations and expressions
+console.log(proxiedObject.name);
+// Someone accessed property "name"
+// 'John'
 
-*Content for Hoisting - function declarations and expressions section*
+console.log(proxiedObject.age);
+// Someone accessed property "age"
+// 42
+```
 
-## Hoisting - potential issues
+Use cases include:
 
-*Content for Hoisting - potential issues section*
+- **Property access interception**: Intercept and customize property access on an object.
+  - **Property assignment validation**: Validate property values before they are set on the target object.
+  - **Logging and debugging**: Create wrappers for logging and debugging interactions with an object
+  - **Creating reactive systems**: Trigger updates in other parts of your application when object properties change (data binding).
+  - **Data transformation**: Transforming data being set or retrieved from an object.
+  - **Mocking and stubbing in tests**: Create mock or stub objects for testing purposes, allowing you to isolate dependencies and focus on the unit under test
+- **Function invocation interception**: Used to cache and return the result of frequently accessed methods if they involve network calls or computationally intensive logic, improving performance
+- **Dynamic property creation**: Useful for defining properties on-the-fly with default values and avoid storing redundant data in objects.
 
-## Hoisting - avoid problems
+<!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
 
-*Content for Hoisting - avoid problems section*
+<br>
+    
+
+
+
 
 
 ## `==` and `===`
@@ -496,9 +521,8 @@ console.log(Object.prototype.toString.call(myObj)); // "[object MyCustomObject]"
 
 
 
-### Hoisting
 
-<!-- Update here: /questions/explain-hoisting/en-US.mdx -->
+### Hoisting
 
 Hoisting is a JavaScript mechanism where variable and function declarations are moved ("hoisted") to the top of their containing scope during the compile phase.
 
@@ -521,16 +545,112 @@ The following behavior summarizes the result of accessing the variables before t
 | `function foo() { ... }`       | Normal                       |
 | `import`                       | Normal                       |
 
-<!-- Update here: /questions/explain-hoisting/en-US.mdx -->
 
 <br>
     
 
 <br>
 
+## Hoisting - `var`, `let`, and `const`
+
+<!-- Update here: /questions/explain-the-difference-in-hoisting-between-var-let-and-const/en-US.mdx -->
+
+`var` declarations are hoisted to the top of their scope and initialized with `undefined`, allowing them to be used before their declaration. `let` and `const` declarations are also hoisted but are not initialized, resulting in a `ReferenceError` if accessed before their declaration. `const` additionally requires an initial value at the time of declaration.
+
+<!-- Update here: /questions/explain-the-difference-in-hoisting-between-var-let-and-const/en-US.mdx -->
+
+<br>
+    
 
 
 <br>
+
+
+
+
+
+
+
+
+## Hoisting - function declarations and expressions
+
+<!-- Update here: /questions/how-does-hoisting-affect-function-declarations-and-expressions/en-US.mdx -->
+
+Hoisting in JavaScript means that function declarations are moved to the top of their containing scope during the compile phase, making them available throughout the entire scope. This allows you to call a function before it is defined in the code. However, function expressions are not hoisted in the same way. If you try to call a function expression before it is defined, you will get an error because the variable holding the function is hoisted but not its assignment.
+
+```js live
+// Function declaration
+console.log(foo()); // Works fine
+function foo() {
+  return 'Hello';
+}
+
+// Function expression
+console.log(bar()); // Throws TypeError: bar is not a function
+var bar = function () {
+  return 'Hello';
+};
+```
+
+<!-- Update here: /questions/how-does-hoisting-affect-function-declarations-and-expressions/en-US.mdx -->
+
+<br>
+    
+
+
+<br>
+
+
+## Hoisting - potential issues
+
+
+
+
+<!-- Update here: /questions/what-are-the-potential-issues-caused-by-hoisting/en-US.mdx -->
+
+Hoisting can lead to unexpected behavior in JavaScript because variable and function declarations are moved to the top of their containing scope during the compilation phase. This can result in `undefined` values for variables if they are used before their declaration and can cause confusion with function declarations and expressions. For example:
+
+```js live
+console.log(a); // undefined
+var a = 5;
+
+console.log(b); // ReferenceError: Cannot access 'b' before initialization
+let b = 10;
+```
+
+<!-- Update here: /questions/what-are-the-potential-issues-caused-by-hoisting/en-US.mdx -->
+
+<br>
+    
+
+
+<br>
+
+## Hoisting - avoid problems
+
+
+<!-- Update here: /questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx -->
+
+To avoid problems related to hoisting, always declare variables at the top of their scope using `let` or `const` instead of `var`. This ensures that variables are block-scoped and not hoisted to the top of their containing function or global scope. Additionally, declare functions before they are called to avoid issues with function hoisting.
+
+```js live
+// Use let or const
+let x = 10;
+const y = 20;
+console.log(x, y); // Output: 10 20
+
+// Declare functions before calling them
+function myFunction() {
+  console.log('Hello, world!');
+}
+myFunction(); // Output: 'Hello, world!'
+```
+
+<!-- Update here: /questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx -->
+
+<br>
+    
+
 
 ### `==` and `===`
 
@@ -2107,58 +2227,7 @@ console.log(person.name); // Output: 'Jane Smith'
 
 <br>
 
-### proxies
 
-<!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
-
-In JavaScript, a proxy is an object that acts as an intermediary between an object and the code. Proxies are used to intercept and customize the fundamental operations of JavaScript objects, such as property access, assignment, function invocation, and more.
-
-Here's a basic example of using a `Proxy` to log every property access:
-
-```js live
-const myObject = {
-  name: 'John',
-  age: 42,
-};
-
-const handler = {
-  get: function (target, prop, receiver) {
-    console.log(`Someone accessed property "${prop}"`);
-    return target[prop];
-  },
-};
-
-const proxiedObject = new Proxy(myObject, handler);
-
-console.log(proxiedObject.name);
-// Someone accessed property "name"
-// 'John'
-
-console.log(proxiedObject.age);
-// Someone accessed property "age"
-// 42
-```
-
-Use cases include:
-
-- **Property access interception**: Intercept and customize property access on an object.
-  - **Property assignment validation**: Validate property values before they are set on the target object.
-  - **Logging and debugging**: Create wrappers for logging and debugging interactions with an object
-  - **Creating reactive systems**: Trigger updates in other parts of your application when object properties change (data binding).
-  - **Data transformation**: Transforming data being set or retrieved from an object.
-  - **Mocking and stubbing in tests**: Create mock or stub objects for testing purposes, allowing you to isolate dependencies and focus on the unit under test
-- **Function invocation interception**: Used to cache and return the result of frequently accessed methods if they involve network calls or computationally intensive logic, improving performance
-- **Dynamic property creation**: Useful for defining properties on-the-fly with default values and avoid storing redundant data in objects.
-
-<!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
-
-<br>
-    
-> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-proxies-in-javascript-used-for?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
-
-[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-proxies-in-javascript-used-for/en-US.mdx)
-
-<br>
 
 ### What tools and techniques do you use for debugging JavaScript code?
 
@@ -2379,176 +2448,8 @@ console.log(obj[sym]); // "value"
 
 <br>
 
-### proxies
-
-<!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
-
-In JavaScript, a proxy is an object that acts as an intermediary between an object and the code. Proxies are used to intercept and customize the fundamental operations of JavaScript objects, such as property access, assignment, function invocation, and more.
-
-Here's a basic example of using a `Proxy` to log every property access:
-
-```js live
-const myObject = {
-  name: 'John',
-  age: 42,
-};
-
-const handler = {
-  get: function (target, prop, receiver) {
-    console.log(`Someone accessed property "${prop}"`);
-    return target[prop];
-  },
-};
-
-const proxiedObject = new Proxy(myObject, handler);
-
-console.log(proxiedObject.name);
-// Someone accessed property "name"
-// 'John'
-
-console.log(proxiedObject.age);
-// Someone accessed property "age"
-// 42
-```
-
-Use cases include:
-
-- **Property access interception**: Intercept and customize property access on an object.
-  - **Property assignment validation**: Validate property values before they are set on the target object.
-  - **Logging and debugging**: Create wrappers for logging and debugging interactions with an object
-  - **Creating reactive systems**: Trigger updates in other parts of your application when object properties change (data binding).
-  - **Data transformation**: Transforming data being set or retrieved from an object.
-  - **Mocking and stubbing in tests**: Create mock or stub objects for testing purposes, allowing you to isolate dependencies and focus on the unit under test
-- **Function invocation interception**: Used to cache and return the result of frequently accessed methods if they involve network calls or computationally intensive logic, improving performance
-- **Dynamic property creation**: Useful for defining properties on-the-fly with default values and avoid storing redundant data in objects.
-
-<!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
-
-<br>
-    
 
 
-<br>
-
-### Hoisting
-
-<!-- Update here: /questions/explain-hoisting/en-US.mdx -->
-
-Hoisting is a JavaScript mechanism where variable and function declarations are moved ("hoisted") to the top of their containing scope during the compile phase.
-
-- **Variable declarations (`var`)**: Declarations are hoisted, but not initializations. The value of the variable is `undefined` if accessed before initialization.
-- **Variable declarations (`let` and `const`)**: Declarations are hoisted, but not initialized. Accessing them results in `ReferenceError` until the actual declaration is encountered.
-- **Function expressions (`var`)**: Declarations are hoisted, but not initializations. The value of the variable is `undefined` if accessed before initialization.
-- **Function declarations (`function`)**: Both declaration and definition are fully hoisted.
-- **Class declarations (`class`)**: Declarations are hoisted, but not initialized. Accessing them results in `ReferenceError` until the actual declaration is encountered.
-- **Import declarations (`import`)**: Declarations are hoisted, and side effects of importing the module are executed before the rest of the code.
-
-The following behavior summarizes the result of accessing the variables before they are declared.
-
-| Declaration                    | Accessing before declaration |
-| ------------------------------ | ---------------------------- |
-| `var foo`                      | `undefined`                  |
-| `let foo`                      | `ReferenceError`             |
-| `const foo`                    | `ReferenceError`             |
-| `class Foo`                    | `ReferenceError`             |
-| `var foo = function() { ... }` | `undefined`                  |
-| `function foo() { ... }`       | Normal                       |
-| `import`                       | Normal                       |
-
-<!-- Update here: /questions/explain-hoisting/en-US.mdx -->
-
-<br>
-    
-
-<br>
-
-### Hoisting - `var`, `let`, and `const`
-
-<!-- Update here: /questions/explain-the-difference-in-hoisting-between-var-let-and-const/en-US.mdx -->
-
-`var` declarations are hoisted to the top of their scope and initialized with `undefined`, allowing them to be used before their declaration. `let` and `const` declarations are also hoisted but are not initialized, resulting in a `ReferenceError` if accessed before their declaration. `const` additionally requires an initial value at the time of declaration.
-
-<!-- Update here: /questions/explain-the-difference-in-hoisting-between-var-let-and-const/en-US.mdx -->
-
-<br>
-    
-
-
-<br>
-
-### hoisting - function declarations and expressions
-
-<!-- Update here: /questions/how-does-hoisting-affect-function-declarations-and-expressions/en-US.mdx -->
-
-Hoisting in JavaScript means that function declarations are moved to the top of their containing scope during the compile phase, making them available throughout the entire scope. This allows you to call a function before it is defined in the code. However, function expressions are not hoisted in the same way. If you try to call a function expression before it is defined, you will get an error because the variable holding the function is hoisted but not its assignment.
-
-```js live
-// Function declaration
-console.log(foo()); // Works fine
-function foo() {
-  return 'Hello';
-}
-
-// Function expression
-console.log(bar()); // Throws TypeError: bar is not a function
-var bar = function () {
-  return 'Hello';
-};
-```
-
-<!-- Update here: /questions/how-does-hoisting-affect-function-declarations-and-expressions/en-US.mdx -->
-
-<br>
-    
-
-
-<br>
-
-### hoisting - potential issues
-
-<!-- Update here: /questions/what-are-the-potential-issues-caused-by-hoisting/en-US.mdx -->
-
-Hoisting can lead to unexpected behavior in JavaScript because variable and function declarations are moved to the top of their containing scope during the compilation phase. This can result in `undefined` values for variables if they are used before their declaration and can cause confusion with function declarations and expressions. For example:
-
-```js live
-console.log(a); // undefined
-var a = 5;
-
-console.log(b); // ReferenceError: Cannot access 'b' before initialization
-let b = 10;
-```
-
-<!-- Update here: /questions/what-are-the-potential-issues-caused-by-hoisting/en-US.mdx -->
-
-<br>
-    
-
-
-<br>
-
-### hoisting - avoid problems
-
-<!-- Update here: /questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx -->
-
-To avoid problems related to hoisting, always declare variables at the top of their scope using `let` or `const` instead of `var`. This ensures that variables are block-scoped and not hoisted to the top of their containing function or global scope. Additionally, declare functions before they are called to avoid issues with function hoisting.
-
-```js live
-// Use let or const
-let x = 10;
-const y = 20;
-console.log(x, y); // Output: 10 20
-
-// Declare functions before calling them
-function myFunction() {
-  console.log('Hello, world!');
-}
-myFunction(); // Output: 'Hello, world!'
-```
-
-<!-- Update here: /questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx -->
-
-<br>
-    
 
 
 <br>
@@ -2897,30 +2798,7 @@ A parameter is a variable in the declaration of a function, while an argument is
 
 <br>
 
-### hoisting
 
-<!-- Update here: /questions/explain-the-concept-of-hoisting-with-regards-to-functions/en-US.mdx -->
-
-Hoisting in JavaScript is a behavior where function declarations are moved to the top of their containing scope during the compile phase. This means you can call a function before it is defined in the code. However, this does not apply to function expressions or arrow functions, which are not hoisted in the same way.
-
-```js live
-// Function declaration
-hoistedFunction(); // Works fine
-function hoistedFunction() {
-  console.log('This function is hoisted');
-}
-
-// Function expression
-nonHoistedFunction(); // Throws an error
-var nonHoistedFunction = function () {
-  console.log('This function is not hoisted');
-};
-```
-
-<!-- Update here: /questions/explain-the-concept-of-hoisting-with-regards-to-functions/en-US.mdx -->
-
-<br>
-    
 
 
 <br>

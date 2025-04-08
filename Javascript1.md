@@ -23,7 +23,7 @@
 | [How do you get the query string values of the current page in JavaScript?](#how-do-you-get-the-query-string-values-of-the-current-page-in-javascript)  | [What are server-sent events?](#what-are-server-sent-events)  | [What are Progressive Web Applications (PWAs)?](#what-are-progressive-web-applications-pwas)  | [What are modules and why are they useful?](#what-are-modules-and-why-are-they-useful)  | [Explain the differences between CommonJS modules and ES modules in JavaScript](#explain-the-differences-between-commonjs-modules-and-es-modules-in-javascript)  | [How do you import and export modules in JavaScript?](#how-do-you-import-and-export-modules-in-javascript)  | [What are the benefits of using a module bundler?](#what-are-the-benefits-of-using-a-module-bundler)  | [Explain the concept of tree shaking in module bundling](#explain-the-concept-of-tree-shaking-in-module-bundling)  | 
 | [What are the metadata fields of a module?](#what-are-the-metadata-fields-of-a-module)  | [What do you think of AMD vs CommonJS?](#what-do-you-think-of-amd-vs-commonjs)  | [What are the different types of errors in JavaScript?](#what-are-the-different-types-of-errors-in-javascript)  | [How do you handle errors using `try...catch` blocks?](#how-do-you-handle-errors-using-trycatch-blocks)  | [What is the purpose of the `finally` block?](#what-is-the-purpose-of-the-finally-block)  | [How can you create custom error objects?](#how-can-you-create-custom-error-objects)  | [Explain the concept of error propagation in JavaScript](#explain-the-concept-of-error-propagation-in-javascript)  | [What is currying and how does it work?](#what-is-currying-and-how-does-it-work)  | 
 | [Explain the concept of partial application](#explain-the-concept-of-partial-application)  | [What are the benefits of using currying and partial application?](#what-are-the-benefits-of-using-currying-and-partial-application)  | [Provide some examples of how currying and partial application can be used](#provide-some-examples-of-how-currying-and-partial-application-can-be-used)  | [How do currying and partial application differ from each other?](#how-do-currying-and-partial-application-differ-from-each-other)  | [What are `Set`s and `Map`s and how are they used?](#what-are-sets-and-maps-and-how-are-they-used)  | [What are the differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?](#what-are-the-differences-between-mapset-and-weakmapweakset-in-javascript)  | [How do you convert a `Set` to an array in JavaScript?](#how-do-you-convert-a-set-to-an-array-in-javascript)  | [What is the difference between a `Map` object and a plain object in JavaScript?](#what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript)  | 
-| [How do `Set`s and `Map`s handle equality checks for objects?](#how-do-sets-and-maps-handle-equality-checks-for-objects)  | [What are some common performance bottlenecks in JavaScript applications?](#what-are-some-common-performance-bottlenecks-in-javascript-applications)  | [Explain the concept of debouncing and throttling](#explain-the-concept-of-debouncing-and-throttling)  | [How can you optimize DOM manipulation for better performance?](#how-can-you-optimize-dom-manipulation-for-better-performance)  | [What are some techniques for reducing reflows and repaints?](#what-are-some-techniques-for-reducing-reflows-and-repaints)  | [Explain the concept of lazy loading and how it can improve performance](#explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance)  | [What are Web Workers and how can they be used to improve performance?](#what-are-web-workers-and-how-can-they-be-used-to-improve-performance)  | [Explain the concept of caching and how it can be used to improve performance](#explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance)  | 
+| [`Set`s and `Map`s handle equality checks for objects](#how-do-sets-and-maps-handle-equality-checks-for-objects)  | [Performance bottlenecks in JavaScript applications?](#what-are-some-common-performance-bottlenecks-in-javascript-applications)  | [Debouncing and throttling](#explain-the-concept-of-debouncing-and-throttling)  | [DOM manipulation optimize ](#how-can-you-optimize-dom-manipulation-for-better-performance)  | [Reducing reflows and repaints?](#what-are-some-techniques-for-reducing-reflows-and-repaints)  | [Lazy loading](#explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance)  | [Web Workers](#what-are-web-workers-and-how-can-they-be-used-to-improve-performance)  | [Caching](#explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance)  | 
 | [Measure and analyze JavaScript performance Tools?](#what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance)  | [Network requests optimize  for better performance?](#how-can-you-optimize-network-requests-for-better-performance)  | [Software development testing Types?](#what-are-the-different-types-of-testing-in-software-development)  | [Unit testing, integration testing, and end-to-end testing](#explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing)  |  [Testing frameworks?](#what-are-some-popular-javascript-testing-frameworks)  | [Unit tests for JavaScript code?](#how-do-you-write-unit-tests-for-javascript-code)  | [Explain the concept of test-driven development (TDD)](#explain-the-concept-of-test-driven-development-tdd)  | [Mocks and stubs?](#what-are-mocks-and-stubs-and-how-are-they-used-in-testing)  | 
 | [Asynchronous code?](#how-can-you-test-asynchronous-code-in-javascript)  | [Best practices for writing maintainable and effective tests?](#what-are-some-best-practices-for-writing-maintainable-and-effective-tests-in-javascript)  | [Code coverage](#explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality)  | [JavaScript Testing Tools?](#what-are-some-tools-that-can-be-used-for-javascript-testing)  | [Design patterns?](#what-are-design-patterns-and-why-are-they-useful)  | [Singleton pattern](#explain-the-concept-of-the-singleton-pattern)  | [Factory pattern?](#what-is-the-factory-pattern-and-how-is-it-used)  | [Observer pattern](#explain-the-observer-pattern-and-its-use-cases)  | 
 | [Module Pattern and Encapsulation](#what-is-the-module-pattern-and-how-does-it-help-with-encapsulation)  | [Prototype Pattern](#explain-the-concept-of-the-prototype-pattern)  | [Decorator Pattern?](#what-is-the-decorator-pattern-and-how-is-it-used)  | [Strategy Pattern](#explain-the-concept-of-the-strategy-pattern)  | [Command Pattern](#what-is-the-command-pattern-and-how-is-it-used)  | [Extending Built-in JavaScript Objects](#why-is-extending-built-in-javascript-objects-not-a-good-idea)  | [Cross-Site Scripting (XSS) and Prevention](#what-is-cross-site-scripting-xss-and-how-can-you-prevent-it)  | [Cross-Site Request Forgery (CSRF) and Mitigation Techniques mitigation techniques](#explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques)  | 
@@ -5890,7 +5890,7 @@ Both `Map` objects and plain objects in JavaScript can store key-value pairs, bu
 
 <br>
 
-### How do `Set`s and `Map`s handle equality checks for objects?
+### `Set`s and `Map`s handle equality checks for objects
 
 <!-- Update here: /questions/how-do-sets-and-maps-handle-equality-checks-for-objects/en-US.mdx -->
 
@@ -5915,7 +5915,7 @@ console.log(set.size); // Output: 2
 
 <br>
 
-### What are some common performance bottlenecks in JavaScript applications?
+### Performance bottlenecks in JavaScript applications?
 
 <!-- Update here: /questions/what-are-some-common-performance-bottlenecks-in-javascript-applications/en-US.mdx -->
 
@@ -5929,7 +5929,7 @@ Common performance bottlenecks in JavaScript applications include inefficient DO
 
 <br>
 
-### Explain the concept of debouncing and throttling
+### Debouncing and throttling
 
 <!-- Update here: /questions/explain-the-concept-of-debouncing-and-throttling/en-US.mdx -->
 
@@ -5984,7 +5984,7 @@ let intervalId = setInterval(() => {
 
 <br>
 
-### How can you optimize DOM manipulation for better performance?
+### DOM manipulation optimize 
 
 <!-- Update here: /questions/how-can-you-optimize-dom-manipulation-for-better-performance/en-US.mdx -->
 
@@ -5998,7 +5998,7 @@ To optimize DOM manipulation for better performance, minimize direct DOM access 
 
 <br>
 
-### What are some techniques for reducing reflows and repaints?
+### Reducing reflows and repaints?
 
 <!-- Update here: /questions/what-are-some-techniques-for-reducing-reflows-and-repaints/en-US.mdx -->
 
@@ -6012,7 +6012,7 @@ To reduce reflows and repaints, you can minimize DOM manipulations, batch DOM ch
 
 <br>
 
-### Explain the concept of lazy loading and how it can improve performance
+### Lazy loading
 
 <!-- Update here: /questions/explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance/en-US.mdx -->
 
@@ -6030,7 +6030,7 @@ Lazy loading is a design pattern that delays the loading of resources until they
 
 <br>
 
-### What are Web Workers and how can they be used to improve performance?
+### Web Workers
 
 <!-- Update here: /questions/what-are-web-workers-and-how-can-they-be-used-to-improve-performance/en-US.mdx -->
 
@@ -6060,7 +6060,7 @@ onmessage = function (event) {
 
 <br>
 
-### Explain the concept of caching and how it can be used to improve performance
+### Caching
 
 <!-- Update here: /questions/explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance/en-US.mdx -->
 

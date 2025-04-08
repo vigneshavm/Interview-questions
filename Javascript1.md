@@ -1906,7 +1906,7 @@ Different JavaScript engines (differs according to browsers) implement different
 
 <!-- QUESTIONS:ALL:START -->
 
-### What are the various data types in JavaScript?
+### JavaScript Data Types
 
 <!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
 

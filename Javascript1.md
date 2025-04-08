@@ -617,15 +617,54 @@ for (let i = 0; i < 10; i++) {
 
 ## Ternary Operator
 
-*Content for Ternary Operator section*
+
+The ternary operator is a shorthand for an `if-else` statement in JavaScript. It takes three operands: a condition, a result for true, and a result for false. The syntax is `condition ? expr1 : expr2`. For example, `let result = (a > b) ? 'a is greater' : 'b is greater';` assigns `'a is greater'` to `result` if `a` is greater than `b`, otherwise it assigns `'b is greater'`.
+
+
+<br>
+    
 
 ## Index of an Element in an Array During Iteration
 
-*Content for Index of an Element in an Array During Iteration section*
+<!-- Update here: /questions/how-do-you-access-the-index-of-an-element-in-an-array-during-iteration/en-US.mdx -->
+
+To access the index of an element in an array during iteration, you can use methods like `forEach`, `map`, `for...of` with `entries`, or a traditional `for` loop. For example, using `forEach`:
+
+```js live
+const array = ['a', 'b', 'c'];
+array.forEach((element, index) => {
+  console.log(index, element);
+});
+```
+
+<!-- Update here: /questions/how-do-you-access-the-index-of-an-element-in-an-array-during-iteration/en-US.mdx -->
+
+<br>
 
 ## `switch` Statement
 
-*Content for `switch` Statement section*
+
+<!-- Update here: /questions/what-is-the-purpose-of-the-switch-statement/en-US.mdx -->
+
+The `switch` statement is used to execute one block of code among many based on the value of an expression. It is an alternative to using multiple `if...else if` statements. The `switch` statement evaluates an expression, matches the expression's value to a `case` label, and executes the associated block of code. If no `case` matches, the `default` block is executed.
+
+```js
+switch (expression) {
+  case value1:
+    // code to be executed if expression === value1
+    break;
+  case value2:
+    // code to be executed if expression === value2
+    break;
+  default:
+  // code to be executed if no case matches
+}
+```
+
+<!-- Update here: /questions/what-is-the-purpose-of-the-switch-statement/en-US.mdx -->
+
+<br>
+
 
 
 
@@ -2462,65 +2501,17 @@ console.log(obj[sym]); // "value"
 
 
 
-### ternary operator
 
-<!-- Update here: /questions/what-is-the-ternary-operator-and-how-is-it-used/en-US.mdx -->
-
-The ternary operator is a shorthand for an `if-else` statement in JavaScript. It takes three operands: a condition, a result for true, and a result for false. The syntax is `condition ? expr1 : expr2`. For example, `let result = (a > b) ? 'a is greater' : 'b is greater';` assigns `'a is greater'` to `result` if `a` is greater than `b`, otherwise it assigns `'b is greater'`.
-
-<!-- Update here: /questions/what-is-the-ternary-operator-and-how-is-it-used/en-US.mdx -->
-
-<br>
-    
 
 
 <br>
 
-### index of an element in an array during iteration
 
-<!-- Update here: /questions/how-do-you-access-the-index-of-an-element-in-an-array-during-iteration/en-US.mdx -->
 
-To access the index of an element in an array during iteration, you can use methods like `forEach`, `map`, `for...of` with `entries`, or a traditional `for` loop. For example, using `forEach`:
-
-```js live
-const array = ['a', 'b', 'c'];
-array.forEach((element, index) => {
-  console.log(index, element);
-});
-```
-
-<!-- Update here: /questions/how-do-you-access-the-index-of-an-element-in-an-array-during-iteration/en-US.mdx -->
 
 <br>
 
 
-<br>
-
-### `switch` statement
-
-<!-- Update here: /questions/what-is-the-purpose-of-the-switch-statement/en-US.mdx -->
-
-The `switch` statement is used to execute one block of code among many based on the value of an expression. It is an alternative to using multiple `if...else if` statements. The `switch` statement evaluates an expression, matches the expression's value to a `case` label, and executes the associated block of code. If no `case` matches, the `default` block is executed.
-
-```js
-switch (expression) {
-  case value1:
-    // code to be executed if expression === value1
-    break;
-  case value2:
-    // code to be executed if expression === value2
-    break;
-  default:
-  // code to be executed if no case matches
-}
-```
-
-<!-- Update here: /questions/what-is-the-purpose-of-the-switch-statement/en-US.mdx -->
-
-<br>
-
-
-<br>
 
 ### rest parameters
 

@@ -1560,7 +1560,7 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 
 <br>
 
-## AJAX - advantages and disadvantages
+## Advantages and Disadvantages of Using AJAX
 
 <!-- Update here: /questions/what-are-the-advantages-and-disadvantages-of-using-ajax/en-US.mdx -->
 
@@ -1589,7 +1589,7 @@ AJAX (Asynchronous JavaScript and XML) is a technique in JavaScript that allows 
 
 <br>
 
-## `XMLHttpRequest` Vs `fetch()`
+## Differences Between XMLHttpRequest and fetch()
 
 <!-- Update here: /questions/what-are-the-differences-between-xmlhttprequest-and-fetch/en-US.mdx -->
 
@@ -1615,7 +1615,7 @@ These days `fetch()` is preferred for its cleaner syntax and modern features.
 
 <br>
 
-## AbortController
+## Using AbortController to Abort Web Requests
 
 <!-- Update here: /questions/how-do-you-abort-a-web-request-using-abortcontrollers/en-US.mdx -->
 
@@ -1657,7 +1657,7 @@ Aborting web requests is useful for:
 
 <br>
 
-## polyfills?
+## JavaScript Polyfills
 
 <!-- Update here: /questions/what-are-javascript-polyfills-for/en-US.mdx -->
 
@@ -1722,7 +1722,7 @@ The only time you may want to extend a native object is when you want to create 
 
 <br>
 
-## CommonJS modules Vs ES modules
+## Differences Between CommonJS and ES Modules
 
 <!-- Update here: /questions/explain-the-differences-between-commonjs-modules-and-es-modules/en-US.mdx -->
 
@@ -1920,7 +1920,7 @@ Both `Map` objects and plain objects in JavaScript can store key-value pairs, bu
 
 <br>
 
-## `Map`/`Set` Vs `WeakMap`/`WeakSet`
+## Differences Between Map/Set and WeakMap/WeakSet
 
 <!-- Update here: /questions/what-are-the-differences-between-map-set-and-weakmap-weakset/en-US.mdx -->
 

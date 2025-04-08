@@ -35,11 +35,7 @@
 
 
 
-## Top Questions with Answers
-
-<!-- QUESTIONS:TOP:START -->
-
-###  "hoisting" in JavaScript
+### Explain the concept of "hoisting" in JavaScript
 
 <!-- Update here: /questions/explain-hoisting/en-US.mdx -->
 
@@ -66,9 +62,15 @@ The following behavior summarizes the result of accessing the variables before t
 
 <!-- Update here: /questions/explain-hoisting/en-US.mdx -->
 
+<br>
+    
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-hoisting?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-hoisting/en-US.mdx)
 
-###  differences between JavaScript variables created using `let`, `var` or `const`?
+<br>
+
+### What are the differences between JavaScript variables created using `let`, `var` or `const`?
 
 <!-- Update here: /questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx -->
 
@@ -84,11 +86,15 @@ In JavaScript, `let`, `var`, and `const` are all keywords used to declare variab
 
 <!-- Update here: /questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-differences-between-variables-created-using-let-var-or-const?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx)
 
-### difference between `==` and `===` in JavaScript?
+<br>
+
+### What is the difference between `==` and `===` in JavaScript?
 
 <!-- Update here: /questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx -->
 
@@ -102,11 +108,15 @@ In JavaScript, `let`, `var`, and `const` are all keywords used to declare variab
 
 <!-- Update here: /questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-is-the-difference-between-double-equal-and-triple-equal?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx)
 
-### event loop in JavaScript runtimes?
+<br>
+
+### What is the event loop in JavaScript runtimes?
 
 <!-- Update here: /questions/what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue/en-US.mdx -->
 
@@ -132,9 +142,13 @@ We recommend watching [Lydia's video](https://www.youtube.com/watch?v=eiC58R16hb
 
 <!-- Update here: /questions/what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue/en-US.mdx)
+
+<br>
 
 ### Explain event delegation in JavaScript
 
@@ -155,9 +169,13 @@ However, do note that:
 
 <!-- Update here: /questions/explain-event-delegation/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-event-delegation?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-event-delegation/en-US.mdx)
+
+<br>
 
 ### Explain how `this` works in JavaScript
 
@@ -179,11 +197,15 @@ For an in-depth explanation, do check out [Arnav Aggrawal's article on Medium](h
 
 <!-- Update here: /questions/explain-how-this-works-in-javascript/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-how-this-works-in-javascript?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-how-this-works-in-javascript/en-US.mdx)
 
-### Cookies, sessionStorage, and localStorage in web browsers
+<br>
+
+### Describe the difference between a cookie, `sessionStorage` and `localStorage` in browsers
 
 <!-- Update here: /questions/describe-the-difference-between-a-cookie-sessionstorage-and-localstorage/en-US.mdx -->
 
@@ -207,9 +229,13 @@ Here's a table summarizing the 3 client storage mechanisms.
 
 <!-- Update here: /questions/describe-the-difference-between-a-cookie-sessionstorage-and-localstorage/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/describe-the-difference-between-a-cookie-sessionstorage-and-localstorage?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/describe-the-difference-between-a-cookie-sessionstorage-and-localstorage/en-US.mdx)
+
+<br>
 
 ### Describe the difference between `<script>`, `<script async>` and `<script defer>`
 
@@ -231,11 +257,15 @@ Here's a table summarizing the 3 ways of loading `<script>`s in a HTML document.
 
 <!-- Update here: /questions/describe-the-difference-between-script-async-and-script-defer/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/describe-the-difference-between-script-async-and-script-defer?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/describe-the-difference-between-script-async-and-script-defer/en-US.mdx)
 
-### null, undefined, and undeclared?
+<br>
+
+### What's the difference between a JavaScript variable that is: `null`, `undefined` or undeclared?
 
 <!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
 
@@ -247,9 +277,13 @@ Here's a table summarizing the 3 ways of loading `<script>`s in a HTML document.
 
 <!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx)
+
+<br>
 
 ### What's the difference between `.call` and `.apply` in JavaScript?
 
@@ -273,9 +307,13 @@ console.log(add.apply(null, [1, 2])); // 3
 
 <!-- Update here: /questions/whats-the-difference-between-call-and-apply/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/whats-the-difference-between-call-and-apply?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-the-difference-between-call-and-apply/en-US.mdx)
+
+<br>
 
 ### Explain `Function.prototype.bind` in JavaScript
 
@@ -291,9 +329,13 @@ The `bind` method is particularly useful in scenarios where you need to ensure t
 
 <!-- Update here: /questions/explain-function-prototype-bind/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-function-prototype-bind?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-function-prototype-bind/en-US.mdx)
+
+<br>
 
 ### What advantage is there for using the JavaScript arrow syntax for a method in a constructor?
 
@@ -341,9 +383,13 @@ The main takeaway here is that `this` can be changed for a normal function, but 
 
 <!-- Update here: /questions/what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor/en-US.mdx)
+
+<br>
 
 ### Explain how prototypal inheritance works in JavaScript
 
@@ -397,9 +443,13 @@ Things to note are:
 
 <!-- Update here: /questions/explain-how-prototypal-inheritance-works/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-how-prototypal-inheritance-works?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-how-prototypal-inheritance-works/en-US.mdx)
+
+<br>
 
 ### Difference between: `function Person(){}`, `const person = Person()`, and `const person = new Person()` in JavaScript?
 
@@ -418,9 +468,13 @@ Things to note are:
 
 <!-- Update here: /questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/difference-between-function-person-var-person-person-and-var-person-new-person?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx)
+
+<br>
 
 ### Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}` in JavaScript
 
@@ -463,9 +517,13 @@ console.log(namedFunc); // ReferenceError: namedFunc is not defined
 
 <!-- Update here: /questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx)
+
+<br>
 
 ### What's a typical use case for anonymous functions in JavaScript?
 
@@ -503,11 +561,15 @@ console.log(double); // [2, 4, 6]
 
 <!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/whats-a-typical-use-case-for-anonymous-functions?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx)
 
-###  various ways to create objects in JavaScript?
+<br>
+
+### What are the various ways to create objects in JavaScript?
 
 <!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
 
@@ -521,11 +583,15 @@ Creating objects in JavaScript offers several methods:
 
 <!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-various-ways-to-create-objects-in-javascript?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx)
 
-###  a closure in JavaScript, and how/why would you use one?
+<br>
+
+### What is a closure in JavaScript, and how/why would you use one?
 
 <!-- Update here: /questions/what-is-a-closure-and-how-why-would-you-use-one/en-US.mdx -->
 
@@ -560,11 +626,15 @@ Key points to remember:
 
 <!-- Update here: /questions/what-is-a-closure-and-how-why-would-you-use-one/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-is-a-closure-and-how-why-would-you-use-one?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-a-closure-and-how-why-would-you-use-one/en-US.mdx)
 
-### definition of a higher-order function in JavaScript?
+<br>
+
+### What is the definition of a higher-order function in JavaScript?
 
 <!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
 
@@ -602,11 +672,15 @@ console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
 
 <!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-is-the-definition-of-a-higher-order-function?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx)
 
-###  differences between JavaScript ES2015 classes and ES5 function constructors?
+<br>
+
+### What are the differences between JavaScript ES2015 classes and ES5 function constructors?
 
 <!-- Update here: /questions/what-are-the-differences-between-es6-class-and-es5-function-constructors/en-US.mdx -->
 
@@ -684,9 +758,13 @@ It's much more verbose to use inheritance in ES5 and the ES2015 version is easie
 
 <!-- Update here: /questions/what-are-the-differences-between-es6-class-and-es5-function-constructors/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-differences-between-es6-class-and-es5-function-constructors?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-differences-between-es6-class-and-es5-function-constructors/en-US.mdx)
+
+<br>
 
 ### Describe event bubbling in JavaScript and browsers
 
@@ -698,9 +776,13 @@ Event bubbling is essential for event delegation, where a single event handler m
 
 <!-- Update here: /questions/describe-event-bubbling/en-US.mdx -->
 
-
+<br>
     
+> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/describe-event-bubbling?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
+[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/describe-event-bubbling/en-US.mdx)
+
+<br>
 
 ### Describe event capturing in JavaScript and browsers
 
@@ -712,15 +794,15 @@ Event capturing is rarely used as compared to event bubbling, but it can be used
 
 <!-- Update here: /questions/describe-event-capturing/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/describe-event-capturing?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/describe-event-capturing/en-US.mdx)
 
+<br>
 
-
-### difference between `mouseenter` and `mouseover` event in JavaScript and browsers?
+### What is the difference between `mouseenter` and `mouseover` event in JavaScript and browsers?
 
 <!-- Update here: /questions/what-is-the-difference-between-mouseenter-and-mouseover-event/en-US.mdx -->
 
@@ -737,15 +819,16 @@ The main difference lies in the bubbling behavior of `mouseenter` and `mouseover
 
 <!-- Update here: /questions/what-is-the-difference-between-mouseenter-and-mouseover-event/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-is-the-difference-between-mouseenter-and-mouseover-event?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-mouseenter-and-mouseover-event/en-US.mdx)
 
+<br>
 
+### What is `'use strict';` in JavaScript for?
 
-###  'use strict' Directive in JavaScript
 <!-- Update here: /questions/what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it/en-US.mdx -->
 
 `'use strict'` is a statement used to enable strict mode to entire scripts or individual functions. Strict mode is a way to opt into a restricted variant of JavaScript.
@@ -770,15 +853,15 @@ Overall, the benefits outweigh the disadvantages and there is not really a need 
 
 <!-- Update here: /questions/what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it/en-US.mdx)
 
+<br>
 
-
-###  synchronous and asynchronous functions in JavaScript
+### Explain the difference between synchronous and asynchronous functions in JavaScript
 
 <!-- Update here: /questions/explain-the-difference-between-synchronous-and-asynchronous-functions/en-US.mdx -->
 
@@ -815,15 +898,15 @@ console.log('Call made to fetch data'); // This will print before the data is fe
 
 <!-- Update here: /questions/explain-the-difference-between-synchronous-and-asynchronous-functions/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-the-difference-between-synchronous-and-asynchronous-functions?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-synchronous-and-asynchronous-functions/en-US.mdx)
 
+<br>
 
-
-###  pros and cons of using Promises instead of callbacks in JavaScript?
+### What are the pros and cons of using Promises instead of callbacks in JavaScript?
 
 <!-- Update here: /questions/what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks/en-US.mdx -->
 
@@ -831,13 +914,13 @@ Promises offer a cleaner alternative to callbacks, helping to avoid callback hel
 
 <!-- Update here: /questions/what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks/en-US.mdx)
 
-
+<br>
 
 ### Explain AJAX in as much detail as possible
 
@@ -878,15 +961,15 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 
 <!-- Update here: /questions/explain-ajax-in-as-much-detail-as-possible/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-ajax-in-as-much-detail-as-possible?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-ajax-in-as-much-detail-as-possible/en-US.mdx)
 
+<br>
 
-
-###  advantages and disadvantages of using AJAX?
+### What are the advantages and disadvantages of using AJAX?
 
 <!-- Update here: /questions/what-are-the-advantages-and-disadvantages-of-using-ajax/en-US.mdx -->
 
@@ -907,15 +990,15 @@ AJAX (Asynchronous JavaScript and XML) is a technique in JavaScript that allows 
 
 <!-- Update here: /questions/what-are-the-advantages-and-disadvantages-of-using-ajax/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-advantages-and-disadvantages-of-using-ajax?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-advantages-and-disadvantages-of-using-ajax/en-US.mdx)
 
+<br>
 
-
-###  differences between `XMLHttpRequest` and `fetch()` in JavaScript and browsers?
+### What are the differences between `XMLHttpRequest` and `fetch()` in JavaScript and browsers?
 
 <!-- Update here: /questions/what-are-the-differences-between-xmlhttprequest-and-fetch/en-US.mdx -->
 
@@ -933,13 +1016,13 @@ These days `fetch()` is preferred for its cleaner syntax and modern features.
 
 <!-- Update here: /questions/what-are-the-differences-between-xmlhttprequest-and-fetch/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-differences-between-xmlhttprequest-and-fetch?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-differences-between-xmlhttprequest-and-fetch/en-US.mdx)
 
-
+<br>
 
 ### How do you abort a web request using `AbortController` in JavaScript?
 
@@ -975,15 +1058,15 @@ Aborting web requests is useful for:
 
 <!-- Update here: /questions/how-do-you-abort-a-web-request-using-abortcontrollers/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/how-do-you-abort-a-web-request-using-abortcontrollers?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-abort-a-web-request-using-abortcontrollers/en-US.mdx)
 
+<br>
 
-
-###  JavaScript polyfills for?
+### What are JavaScript polyfills for?
 
 <!-- Update here: /questions/what-are-javascript-polyfills-for/en-US.mdx -->
 
@@ -1014,13 +1097,13 @@ Libraries and services for polyfills:
 
 <!-- Update here: /questions/what-are-javascript-polyfills-for/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-javascript-polyfills-for?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-javascript-polyfills-for/en-US.mdx)
 
-
+<br>
 
 ### Why is extending built-in JavaScript objects not a good idea?
 
@@ -1032,15 +1115,15 @@ The only time you may want to extend a native object is when you want to create 
 
 <!-- Update here: /questions/why-is-extending-built-in-javascript-objects-not-a-good-idea/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/why-is-extending-built-in-javascript-objects-not-a-good-idea?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/why-is-extending-built-in-javascript-objects-not-a-good-idea/en-US.mdx)
 
+<br>
 
-
-### Global JavaScript scop?
+### Why is it, in general, a good idea to leave the global JavaScript scope of a website as-is and never touch it?
 
 <!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
 
@@ -1062,13 +1145,13 @@ Follow these best practices to avoid global scope pollution:
 
 <!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx)
 
-
+<br>
 
 ### Explain the differences between CommonJS modules and ES modules in JavaScript
 
@@ -1114,15 +1197,15 @@ console.log(value); // 42
 
 <!-- Update here: /questions/explain-the-differences-between-commonjs-modules-and-es-modules/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-the-differences-between-commonjs-modules-and-es-modules?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-differences-between-commonjs-modules-and-es-modules/en-US.mdx)
 
+<br>
 
-
-###  various data types in JavaScript?
+### What are the various data types in JavaScript?
 
 <!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
 
@@ -1152,13 +1235,13 @@ The primitive types store a single value, while non-primitive types can store co
 
 <!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-various-data-types-in-javascript?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-various-data-types-in-javascript/en-US.mdx)
 
-
+<br>
 
 ### What language constructs do you use for iterating over object properties and array items in JavaScript?
 
@@ -1241,15 +1324,15 @@ There are also other inbuilt methods available which are suitable for specific s
 
 <!-- Update here: /questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx)
 
+<br>
 
-
-###  benefits of using spread syntax in JavaScript and how is it different from rest syntax?
+### What are the benefits of using spread syntax in JavaScript and how is it different from rest syntax?
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
 
@@ -1275,15 +1358,15 @@ console.log(sum(1, 2, 3)); // Output: 6
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx)
 
+<br>
 
-
-###  iterators and generators in JavaScript and y used for?
+### What are iterators and generators in JavaScript and what are they used for?
 
 <!-- Update here: /questions/what-are-iterators-and-generators-and-what-are-they-used-for/en-US.mdx -->
 
@@ -1346,15 +1429,15 @@ Generators are powerful for creating iterators on-demand, especially for infinit
 
 <!-- Update here: /questions/what-are-iterators-and-generators-and-what-are-they-used-for/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-iterators-and-generators-and-what-are-they-used-for?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-iterators-and-generators-and-what-are-they-used-for/en-US.mdx)
 
+<br>
 
-
-###  mutable and immutable objects in JavaScript
+### Explain the difference between mutable and immutable objects in JavaScript
 
 <!-- Update here: /questions/explain-the-difference-between-mutable-and-immutable-objects/en-US.mdx -->
 
@@ -1392,15 +1475,15 @@ The key difference between mutable and immutable objects is modifiability. Immut
 
 <!-- Update here: /questions/explain-the-difference-between-mutable-and-immutable-objects/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/explain-the-difference-between-mutable-and-immutable-objects?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-mutable-and-immutable-objects/en-US.mdx)
 
+<br>
 
-
-### difference between a `Map` object and a plain object in JavaScript?
+### What is the difference between a `Map` object and a plain object in JavaScript?
 
 <!-- Update here: /questions/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/en-US.mdx -->
 
@@ -1418,15 +1501,15 @@ Both `Map` objects and plain objects in JavaScript can store key-value pairs, bu
 
 <!-- Update here: /questions/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/en-US.mdx)
 
+<br>
 
-
-###  differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?
+### What are the differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?
 
 <!-- Update here: /questions/what-are-the-differences-between-map-set-and-weakmap-weakset/en-US.mdx -->
 
@@ -1465,13 +1548,13 @@ On the other hand, `WeakSet` only allows objects as elements, and these object e
 
 <!-- Update here: /questions/what-are-the-differences-between-map-set-and-weakmap-weakset/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-differences-between-map-set-and-weakmap-weakset?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-differences-between-map-set-and-weakmap-weakset/en-US.mdx)
 
-
+<br>
 
 ### Why might you want to create static class members in JavaScript?
 
@@ -1498,15 +1581,15 @@ Static members are useful under the following scenarios:
 
 <!-- Update here: /questions/why-you-might-want-to-create-static-class-members/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/why-you-might-want-to-create-static-class-members?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/why-you-might-want-to-create-static-class-members/en-US.mdx)
 
+<br>
 
-
-###  `Symbol`s used for in JavaScript?
+### What are `Symbol`s used for in JavaScript?
 
 <!-- Update here: /questions/what-are-symbols-used-for/en-US.mdx -->
 
@@ -1530,15 +1613,15 @@ console.log(obj[sym]); // "value"
 
 <!-- Update here: /questions/what-are-symbols-used-for/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-symbols-used-for?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-symbols-used-for/en-US.mdx)
 
+<br>
 
-
-###  server-sent events?
+### What are server-sent events?
 
 <!-- Update here: /questions/what-are-server-sent-events/en-US.mdx -->
 
@@ -1607,15 +1690,15 @@ In this example, the server sends a "Hello from server" message initially, and t
 
 <!-- Update here: /questions/what-are-server-sent-events/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-server-sent-events?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-server-sent-events/en-US.mdx)
 
+<br>
 
-
-###  JavaScript object property flags and descriptors?
+### What are JavaScript object property flags and descriptors?
 
 <!-- Update here: /questions/what-are-javascript-object-property-flags-and-descriptors/en-US.mdx -->
 
@@ -1642,15 +1725,15 @@ The use cases of property descriptors are as follows:
 
 <!-- Update here: /questions/what-are-javascript-object-property-flags-and-descriptors/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-javascript-object-property-flags-and-descriptors?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-javascript-object-property-flags-and-descriptors/en-US.mdx)
 
+<br>
 
-
-###  JavaScript object getters and setters for?
+### What are JavaScript object getters and setters for?
 
 <!-- Update here: /questions/what-are-javascript-object-getters-and-setters-for/en-US.mdx -->
 
@@ -1691,15 +1774,15 @@ console.log(person.name); // Output: 'Jane Smith'
 
 <!-- Update here: /questions/what-are-javascript-object-getters-and-setters-for/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-javascript-object-getters-and-setters-for?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-javascript-object-getters-and-setters-for/en-US.mdx)
 
+<br>
 
-
-###  proxies in JavaScript used for?
+### What are proxies in JavaScript used for?
 
 <!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
 
@@ -1744,15 +1827,15 @@ Use cases include:
 
 <!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-proxies-in-javascript-used-for?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-proxies-in-javascript-used-for/en-US.mdx)
 
+<br>
 
-
-### Tools and Techniques for Debugging JavaScript Code
+### What tools and techniques do you use for debugging JavaScript code?
 
 <!-- Update here: /questions/what-tools-and-techniques-do-you-use-for-debugging-javascript-code/en-US.mdx -->
 
@@ -1778,15 +1861,15 @@ Some of the most commonly used tools and techniques for debugging JavaScript:
 
 <!-- Update here: /questions/what-tools-and-techniques-do-you-use-for-debugging-javascript-code/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-tools-and-techniques-do-you-use-for-debugging-javascript-code?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-tools-and-techniques-do-you-use-for-debugging-javascript-code/en-US.mdx)
 
+<br>
 
-
-###  workers in JavaScript used for?
+### What are workers in JavaScript used for?
 
 <!-- Update here: /questions/what-are-workers-in-javascript-used-for/en-US.mdx -->
 
@@ -1814,15 +1897,15 @@ There are three main types of workers in JavaScript:
 
 <!-- Update here: /questions/what-are-workers-in-javascript-used-for/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-workers-in-javascript-used-for?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-workers-in-javascript-used-for/en-US.mdx)
 
+<br>
 
-
-### JavaScript Garbage Collection Mechanisms?
+### How does JavaScript garbage collection work?
 
 <!-- Update here: /questions/how-does-javascript-garbage-collection-work/en-US.mdx -->
 
@@ -1845,13 +1928,13 @@ Different JavaScript engines (differs according to browsers) implement different
 
 <!-- Update here: /questions/how-does-javascript-garbage-collection-work/en-US.mdx -->
 
-
+<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/how-does-javascript-garbage-collection-work?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-does-javascript-garbage-collection-work/en-US.mdx)
 
-
+<br>
 
 
 <!-- QUESTIONS:TOP:END -->
@@ -1860,7 +1943,7 @@ Different JavaScript engines (differs according to browsers) implement different
 
 <!-- QUESTIONS:ALL:START -->
 
-###  various data types in JavaScript?
+### What are the various data types in JavaScript?
 
 <!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
 
@@ -1890,13 +1973,13 @@ The primitive types store a single value, while non-primitive types can store co
 
 <!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-various-data-types-in-javascript/en-US.mdx)
 
+<br>
 
-
-###  JavaScript Data Type Checking?
+### How do you check the data type of a variable?
 
 <!-- Update here: /questions/how-do-you-check-the-data-type-of-a-variable/en-US.mdx -->
 
@@ -1904,13 +1987,13 @@ To check the data type of a variable in JavaScript, you can use the `typeof` ope
 
 <!-- Update here: /questions/how-do-you-check-the-data-type-of-a-variable/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-check-the-data-type-of-a-variable/en-US.mdx)
 
+<br>
 
-
-### null, undefined, and undeclared?
+### What's the difference between a JavaScript variable that is: `null`, `undefined` or undeclared?
 
 <!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
 
@@ -1922,13 +2005,13 @@ To check the data type of a variable in JavaScript, you can use the `typeof` ope
 
 <!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx)
 
+<br>
 
-
-###  differences between JavaScript variables created using `let`, `var` or `const`?
+### What are the differences between JavaScript variables created using `let`, `var` or `const`?
 
 <!-- Update here: /questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx -->
 
@@ -1944,13 +2027,13 @@ In JavaScript, `let`, `var`, and `const` are all keywords used to declare variab
 
 <!-- Update here: /questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx)
 
+<br>
 
-
-### Global JavaScript scop?
+### Why is it, in general, a good idea to leave the global JavaScript scope of a website as-is and never touch it?
 
 <!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
 
@@ -1972,13 +2055,13 @@ Follow these best practices to avoid global scope pollution:
 
 <!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx)
 
+<br>
 
-
-###  Type Conversion – Strings to Numbers?
+### How do you convert a string to a number in JavaScript?
 
 <!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
 
@@ -1986,13 +2069,13 @@ In JavaScript, you can convert a string to a number using several methods. The m
 
 <!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx)
 
+<br>
 
-
-###  template literals and how are they used?
+### What are template literals and how are they used?
 
 <!-- Update here: /questions/what-are-template-literals-and-how-are-they-used/en-US.mdx -->
 
@@ -2008,13 +2091,13 @@ console.log(greeting); // Output: Hello, John!
 
 <!-- Update here: /questions/what-are-template-literals-and-how-are-they-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-template-literals-and-how-are-they-used/en-US.mdx)
 
+<br>
 
-
-###  tagged templates
+### Explain the concept of tagged templates
 
 <!-- Update here: /questions/explain-the-concept-of-tagged-templates/en-US.mdx -->
 
@@ -2031,13 +2114,13 @@ console.log(result); // "Hello world! How are you?"
 
 <!-- Update here: /questions/explain-the-concept-of-tagged-templates/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-tagged-templates/en-US.mdx)
 
+<br>
 
-
-### spread operator and how is it used?
+### What is the spread operator and how is it used?
 
 <!-- Update here: /questions/what-is-the-spread-operator-and-how-is-it-used/en-US.mdx -->
 
@@ -2057,13 +2140,13 @@ console.log(combinedObj); // { a: 1, b: 2, c: 3, d: 4 }
 
 <!-- Update here: /questions/what-is-the-spread-operator-and-how-is-it-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-spread-operator-and-how-is-it-used/en-US.mdx)
 
+<br>
 
-
-###  `Symbol`s used for in JavaScript?
+### What are `Symbol`s used for in JavaScript?
 
 <!-- Update here: /questions/what-are-symbols-used-for/en-US.mdx -->
 
@@ -2087,13 +2170,13 @@ console.log(obj[sym]); // "value"
 
 <!-- Update here: /questions/what-are-symbols-used-for/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-symbols-used-for/en-US.mdx)
 
+<br>
 
-
-###  proxies in JavaScript used for?
+### What are proxies in JavaScript used for?
 
 <!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
 
@@ -2138,13 +2221,13 @@ Use cases include:
 
 <!-- Update here: /questions/what-are-proxies-in-javascript-used-for/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-proxies-in-javascript-used-for/en-US.mdx)
 
+<br>
 
-
-###  "hoisting" in JavaScript
+### Explain the concept of "hoisting" in JavaScript
 
 <!-- Update here: /questions/explain-hoisting/en-US.mdx -->
 
@@ -2171,11 +2254,11 @@ The following behavior summarizes the result of accessing the variables before t
 
 <!-- Update here: /questions/explain-hoisting/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-hoisting/en-US.mdx)
 
-
+<br>
 
 ### Explain the difference in hoisting between `var`, `let`, and `const`
 
@@ -2185,11 +2268,11 @@ The following behavior summarizes the result of accessing the variables before t
 
 <!-- Update here: /questions/explain-the-difference-in-hoisting-between-var-let-and-const/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-in-hoisting-between-var-let-and-const/en-US.mdx)
 
-
+<br>
 
 ### How does hoisting affect function declarations and expressions?
 
@@ -2213,13 +2296,13 @@ var bar = function () {
 
 <!-- Update here: /questions/how-does-hoisting-affect-function-declarations-and-expressions/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-does-hoisting-affect-function-declarations-and-expressions/en-US.mdx)
 
+<br>
 
-
-###  potential issues caused by hoisting?
+### What are the potential issues caused by hoisting?
 
 <!-- Update here: /questions/what-are-the-potential-issues-caused-by-hoisting/en-US.mdx -->
 
@@ -2235,13 +2318,13 @@ let b = 10;
 
 <!-- Update here: /questions/what-are-the-potential-issues-caused-by-hoisting/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-potential-issues-caused-by-hoisting/en-US.mdx)
 
+<br>
 
-
-###  avoid problems related to hoisting?
+### How can you avoid problems related to hoisting?
 
 <!-- Update here: /questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx -->
 
@@ -2262,13 +2345,13 @@ myFunction(); // Output: 'Hello, world!'
 
 <!-- Update here: /questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx)
 
+<br>
 
-
-### difference between `==` and `===` in JavaScript?
+### What is the difference between `==` and `===` in JavaScript?
 
 <!-- Update here: /questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx -->
 
@@ -2282,11 +2365,11 @@ myFunction(); // Output: 'Hello, world!'
 
 <!-- Update here: /questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx)
 
-
+<br>
 
 ### What language constructs do you use for iterating over object properties and array items in JavaScript?
 
@@ -2369,13 +2452,13 @@ There are also other inbuilt methods available which are suitable for specific s
 
 <!-- Update here: /questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx)
 
+<br>
 
-
-### purpose of the `break` and `continue` statements?
+### What is the purpose of the `break` and `continue` statements?
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-break-and-continue-statements/en-US.mdx -->
 
@@ -2395,13 +2478,13 @@ for (let i = 0; i < 10; i++) {
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-break-and-continue-statements/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-purpose-of-the-break-and-continue-statements/en-US.mdx)
 
+<br>
 
-
-### ternary operator and how is it used?
+### What is the ternary operator and how is it used?
 
 <!-- Update here: /questions/what-is-the-ternary-operator-and-how-is-it-used/en-US.mdx -->
 
@@ -2409,11 +2492,11 @@ The ternary operator is a shorthand for an `if-else` statement in JavaScript. It
 
 <!-- Update here: /questions/what-is-the-ternary-operator-and-how-is-it-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-ternary-operator-and-how-is-it-used/en-US.mdx)
 
-
+<br>
 
 ### How do you access the index of an element in an array during iteration?
 
@@ -2430,13 +2513,13 @@ array.forEach((element, index) => {
 
 <!-- Update here: /questions/how-do-you-access-the-index-of-an-element-in-an-array-during-iteration/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-access-the-index-of-an-element-in-an-array-during-iteration/en-US.mdx)
 
+<br>
 
-
-### purpose of the `switch` statement?
+### What is the purpose of the `switch` statement?
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-switch-statement/en-US.mdx -->
 
@@ -2457,13 +2540,13 @@ switch (expression) {
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-switch-statement/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-purpose-of-the-switch-statement/en-US.mdx)
 
+<br>
 
-
-###  rest parameters and how are they used?
+### What are rest parameters and how are they used?
 
 <!-- Update here: /questions/what-are-rest-parameters-and-how-are-they-used/en-US.mdx -->
 
@@ -2479,13 +2562,13 @@ console.log(sum(1, 2, 3, 4)); // Output: 10
 
 <!-- Update here: /questions/what-are-rest-parameters-and-how-are-they-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-rest-parameters-and-how-are-they-used/en-US.mdx)
 
+<br>
 
-
-###  the spread operator and its uses
+### Explain the concept of the spread operator and its uses
 
 <!-- Update here: /questions/explain-the-concept-of-the-spread-operator-and-its-uses/en-US.mdx -->
 
@@ -2520,13 +2603,13 @@ console.log(sum(...numbers)); // Output: 6
 
 <!-- Update here: /questions/explain-the-concept-of-the-spread-operator-and-its-uses/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-the-spread-operator-and-its-uses/en-US.mdx)
 
+<br>
 
-
-###  benefits of using spread syntax in JavaScript and how is it different from rest syntax?
+### What are the benefits of using spread syntax in JavaScript and how is it different from rest syntax?
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
 
@@ -2552,13 +2635,13 @@ console.log(sum(1, 2, 3)); // Output: 6
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx)
 
+<br>
 
-
-###  iterators and generators in JavaScript and y used for?
+### What are iterators and generators in JavaScript and what are they used for?
 
 <!-- Update here: /questions/what-are-iterators-and-generators-and-what-are-they-used-for/en-US.mdx -->
 
@@ -2621,11 +2704,11 @@ Generators are powerful for creating iterators on-demand, especially for infinit
 
 <!-- Update here: /questions/what-are-iterators-and-generators-and-what-are-they-used-for/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-iterators-and-generators-and-what-are-they-used-for/en-US.mdx)
 
-
+<br>
 
 ### Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}` in JavaScript
 
@@ -2668,13 +2751,13 @@ console.log(namedFunc); // ReferenceError: namedFunc is not defined
 
 <!-- Update here: /questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx)
 
+<br>
 
-
-### difference between a parameter and an argument?
+### What is the difference between a parameter and an argument?
 
 <!-- Update here: /questions/what-is-the-difference-between-a-parameter-and-an-argument/en-US.mdx -->
 
@@ -2682,13 +2765,13 @@ A parameter is a variable in the declaration of a function, while an argument is
 
 <!-- Update here: /questions/what-is-the-difference-between-a-parameter-and-an-argument/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-a-parameter-and-an-argument/en-US.mdx)
 
+<br>
 
-
-###  hoisting with regards to functions
+### Explain the concept of hoisting with regards to functions
 
 <!-- Update here: /questions/explain-the-concept-of-hoisting-with-regards-to-functions/en-US.mdx -->
 
@@ -2710,11 +2793,11 @@ var nonHoistedFunction = function () {
 
 <!-- Update here: /questions/explain-the-concept-of-hoisting-with-regards-to-functions/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-hoisting-with-regards-to-functions/en-US.mdx)
 
-
+<br>
 
 ### What's the difference between `.call` and `.apply` in JavaScript?
 
@@ -2738,11 +2821,11 @@ console.log(add.apply(null, [1, 2])); // 3
 
 <!-- Update here: /questions/whats-the-difference-between-call-and-apply/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-the-difference-between-call-and-apply/en-US.mdx)
 
-
+<br>
 
 ### Can you offer a use case for the new arrow => function syntax?
 
@@ -2758,11 +2841,11 @@ console.log(doubled); // [2, 4, 6]
 
 <!-- Update here: /questions/can-you-offer-a-use-case-for-the-new-arrow-function-syntax-how-does-this-new-syntax-differ-from-other-functions/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/can-you-offer-a-use-case-for-the-new-arrow-function-syntax-how-does-this-new-syntax-differ-from-other-functions/en-US.mdx)
 
-
+<br>
 
 ### Difference between: `function Person(){}`, `const person = Person()`, and `const person = new Person()` in JavaScript?
 
@@ -2781,13 +2864,13 @@ console.log(doubled); // [2, 4, 6]
 
 <!-- Update here: /questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx)
 
+<br>
 
-
-### definition of a higher-order function in JavaScript?
+### What is the definition of a higher-order function in JavaScript?
 
 <!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
 
@@ -2825,13 +2908,13 @@ console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
 
 <!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx)
 
+<br>
 
-
-###  callback functions and how are they used?
+### What are callback functions and how are they used?
 
 <!-- Update here: /questions/what-are-callback-functions-and-how-are-they-used/en-US.mdx -->
 
@@ -2853,11 +2936,11 @@ fetchData(handleData);
 
 <!-- Update here: /questions/what-are-callback-functions-and-how-are-they-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-callback-functions-and-how-are-they-used/en-US.mdx)
 
-
+<br>
 
 ### What's a typical use case for anonymous functions in JavaScript?
 
@@ -2895,13 +2978,13 @@ console.log(double); // [2, 4, 6]
 
 <!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx)
 
+<br>
 
-
-###  recursion and how is it used in JavaScript?
+### What is recursion and how is it used in JavaScript?
 
 <!-- Update here: /questions/what-is-recursion-and-how-is-it-used-in-javascript/en-US.mdx -->
 
@@ -2920,13 +3003,13 @@ console.log(factorial(4)); // Output: 24
 
 <!-- Update here: /questions/what-is-recursion-and-how-is-it-used-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-recursion-and-how-is-it-used-in-javascript/en-US.mdx)
 
+<br>
 
-
-###  default parameters and how are they used?
+### What are default parameters and how are they used?
 
 <!-- Update here: /questions/what-are-default-parameters-and-how-are-they-used/en-US.mdx -->
 
@@ -2943,11 +3026,11 @@ greet('Alice'); // Output: Hello, Alice!
 
 <!-- Update here: /questions/what-are-default-parameters-and-how-are-they-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-default-parameters-and-how-are-they-used/en-US.mdx)
 
-
+<br>
 
 ### Explain why the following doesn't work as an IIFE: `function foo(){}();`. What needs to be changed to properly make it an IIFE?
 
@@ -2957,13 +3040,13 @@ The code `function foo(){}();` doesn't work as an Immediately Invoked Function E
 
 <!-- Update here: /questions/explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife/en-US.mdx)
 
+<br>
 
-
-###  various ways to create objects in JavaScript?
+### What are the various ways to create objects in JavaScript?
 
 <!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
 
@@ -2977,13 +3060,13 @@ Creating objects in JavaScript offers several methods:
 
 <!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx)
 
+<br>
 
-
-###  dot notation and bracket notation for accessing object properties
+### Explain the difference between dot notation and bracket notation for accessing object properties
 
 <!-- Update here: /questions/explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties/en-US.mdx -->
 
@@ -3001,13 +3084,13 @@ console.log(obj['favorite color']); // blue
 
 <!-- Update here: /questions/explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties/en-US.mdx)
 
+<br>
 
-
-###  different methods for iterating over an array?
+### What are the different methods for iterating over an array?
 
 <!-- Update here: /questions/what-are-the-different-methods-for-iterating-over-an-array/en-US.mdx -->
 
@@ -3015,11 +3098,11 @@ There are several methods to iterate over an array in JavaScript. The most commo
 
 <!-- Update here: /questions/what-are-the-different-methods-for-iterating-over-an-array/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-different-methods-for-iterating-over-an-array/en-US.mdx)
 
-
+<br>
 
 ### How do you add, remove, and update elements in an array?
 
@@ -3049,13 +3132,13 @@ console.log(arr); // Final state: [1, 5, 3]
 
 <!-- Update here: /questions/how-do-you-add-remove-and-update-elements-in-an-array/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-add-remove-and-update-elements-in-an-array/en-US.mdx)
 
+<br>
 
-
-###  different ways to copy an object or an array?
+### What are the different ways to copy an object or an array?
 
 <!-- Update here: /questions/what-are-the-different-ways-to-copy-an-object-or-an-array/en-US.mdx -->
 
@@ -3079,13 +3162,13 @@ console.log(deepCopyObject); // { a: 1, b: 2 };
 
 <!-- Update here: /questions/what-are-the-different-ways-to-copy-an-object-or-an-array/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-different-ways-to-copy-an-object-or-an-array/en-US.mdx)
 
+<br>
 
-
-###  shallow copy and deep copy
+### Explain the difference between shallow copy and deep copy
 
 <!-- Update here: /questions/explain-the-difference-between-shallow-copy-and-deep-copy/en-US.mdx -->
 
@@ -3109,13 +3192,13 @@ console.log(obj2.b.c); // Output: 2 (original nested object remains unchanged)
 
 <!-- Update here: /questions/explain-the-difference-between-shallow-copy-and-deep-copy/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-shallow-copy-and-deep-copy/en-US.mdx)
 
+<br>
 
-
-###  advantages of using the spread operator with arrays and objects?
+### What are the advantages of using the spread operator with arrays and objects?
 
 <!-- Update here: /questions/what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects/en-US.mdx -->
 
@@ -3135,11 +3218,11 @@ console.log(obj2); // { a: 1, b: 2, c: 3 }
 
 <!-- Update here: /questions/what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects/en-US.mdx)
 
-
+<br>
 
 ### How do you check if an object has a specific property?
 
@@ -3163,13 +3246,13 @@ if (obj.hasOwnProperty('key')) {
 
 <!-- Update here: /questions/how-do-you-check-if-an-object-has-a-specific-property/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-check-if-an-object-has-a-specific-property/en-US.mdx)
 
+<br>
 
-
-###  mutable and immutable objects in JavaScript
+### Explain the difference between mutable and immutable objects in JavaScript
 
 <!-- Update here: /questions/explain-the-difference-between-mutable-and-immutable-objects/en-US.mdx -->
 
@@ -3207,13 +3290,13 @@ The key difference between mutable and immutable objects is modifiability. Immut
 
 <!-- Update here: /questions/explain-the-difference-between-mutable-and-immutable-objects/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-mutable-and-immutable-objects/en-US.mdx)
 
+<br>
 
-
-###  destructuring assignment for objects and arrays
+### Explain the concept of destructuring assignment for objects and arrays
 
 <!-- Update here: /questions/explain-the-concept-of-destructuring-assignment-for-objects-and-arrays/en-US.mdx -->
 
@@ -3229,13 +3312,13 @@ const { name, age } = { name: 'John', age: 30 };
 
 <!-- Update here: /questions/explain-the-concept-of-destructuring-assignment-for-objects-and-arrays/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-destructuring-assignment-for-objects-and-arrays/en-US.mdx)
 
+<br>
 
-
-###  `Object.freeze()` for?
+### What is `Object.freeze()` for?
 
 <!-- Update here: /questions/what-is-objectfreeze-for/en-US.mdx -->
 
@@ -3251,13 +3334,13 @@ console.log(obj); // { name: 'John' }
 
 <!-- Update here: /questions/what-is-objectfreeze-for/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-objectfreeze-for/en-US.mdx)
 
+<br>
 
-
-###  `Object.seal()` for?
+### What is `Object.seal()` for?
 
 <!-- Update here: /questions/what-is-objectseal-for/en-US.mdx -->
 
@@ -3278,13 +3361,13 @@ console.log(obj); // { name: 'Jane } (unchanged)
 
 <!-- Update here: /questions/what-is-objectseal-for/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-objectseal-for/en-US.mdx)
 
+<br>
 
-
-###  `Object.preventExtensions()` for?
+### What is `Object.preventExtensions()` for?
 
 <!-- Update here: /questions/what-is-objectpreventextensions-for/en-US.mdx -->
 
@@ -3300,13 +3383,13 @@ console.log(obj.age); // undefined
 
 <!-- Update here: /questions/what-is-objectpreventextensions-for/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-objectpreventextensions-for/en-US.mdx)
 
+<br>
 
-
-###  JavaScript object getters and setters for?
+### What are JavaScript object getters and setters for?
 
 <!-- Update here: /questions/what-are-javascript-object-getters-and-setters-for/en-US.mdx -->
 
@@ -3347,13 +3430,13 @@ console.log(person.name); // Output: 'Jane Smith'
 
 <!-- Update here: /questions/what-are-javascript-object-getters-and-setters-for/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-javascript-object-getters-and-setters-for/en-US.mdx)
 
+<br>
 
-
-###  JavaScript object property flags and descriptors?
+### What are JavaScript object property flags and descriptors?
 
 <!-- Update here: /questions/what-are-javascript-object-property-flags-and-descriptors/en-US.mdx -->
 
@@ -3380,11 +3463,11 @@ The use cases of property descriptors are as follows:
 
 <!-- Update here: /questions/what-are-javascript-object-property-flags-and-descriptors/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-javascript-object-property-flags-and-descriptors/en-US.mdx)
 
-
+<br>
 
 ### How do you reliably determine whether an object is empty?
 
@@ -3401,13 +3484,13 @@ console.log(isEmpty(obj)); // true
 
 <!-- Update here: /questions/how-do-you-reliably-determine-whether-an-object-is-empty/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-reliably-determine-whether-an-object-is-empty/en-US.mdx)
 
+<br>
 
-
-### event loop in JavaScript runtimes?
+### What is the event loop in JavaScript runtimes?
 
 <!-- Update here: /questions/what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue/en-US.mdx -->
 
@@ -3433,13 +3516,13 @@ We recommend watching [Lydia's video](https://www.youtube.com/watch?v=eiC58R16hb
 
 <!-- Update here: /questions/what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-event-loop-what-is-the-difference-between-call-stack-and-task-queue/en-US.mdx)
 
+<br>
 
-
-###  synchronous and asynchronous functions in JavaScript
+### Explain the difference between synchronous and asynchronous functions in JavaScript
 
 <!-- Update here: /questions/explain-the-difference-between-synchronous-and-asynchronous-functions/en-US.mdx -->
 
@@ -3476,13 +3559,13 @@ console.log('Call made to fetch data'); // This will print before the data is fe
 
 <!-- Update here: /questions/explain-the-difference-between-synchronous-and-asynchronous-functions/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-synchronous-and-asynchronous-functions/en-US.mdx)
 
+<br>
 
-
-###  a callback function in asynchronous operations
+### Explain the concept of a callback function in asynchronous operations
 
 <!-- Update here: /questions/explain-the-concept-of-a-callback-function-in-asynchronous-operations/en-US.mdx -->
 
@@ -3503,13 +3586,13 @@ fetchData((data) => {
 
 <!-- Update here: /questions/explain-the-concept-of-a-callback-function-in-asynchronous-operations/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-a-callback-function-in-asynchronous-operations/en-US.mdx)
 
+<br>
 
-
-###  Promises and how do they work?
+### What are Promises and how do they work?
 
 <!-- Update here: /questions/what-are-promises-and-how-do-they-work/en-US.mdx -->
 
@@ -3537,11 +3620,11 @@ promise
 
 <!-- Update here: /questions/what-are-promises-and-how-do-they-work/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-promises-and-how-do-they-work/en-US.mdx)
 
-
+<br>
 
 ### Explain the different states of a Promise
 
@@ -3562,13 +3645,13 @@ let promise = new Promise((resolve, reject) => {
 
 <!-- Update here: /questions/explain-the-different-states-of-a-promise/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-different-states-of-a-promise/en-US.mdx)
 
+<br>
 
-
-###  pros and cons of using Promises instead of callbacks in JavaScript?
+### What are the pros and cons of using Promises instead of callbacks in JavaScript?
 
 <!-- Update here: /questions/what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks/en-US.mdx -->
 
@@ -3576,13 +3659,13 @@ Promises offer a cleaner alternative to callbacks, helping to avoid callback hel
 
 <!-- Update here: /questions/what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks/en-US.mdx)
 
+<br>
 
-
-### use of `Promise.all()`
+### What is the use of `Promise.all()`
 
 <!-- Update here: /questions/what-is-the-use-of-promiseall/en-US.mdx -->
 
@@ -3602,11 +3685,11 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
 <!-- Update here: /questions/what-is-the-use-of-promiseall/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-use-of-promiseall/en-US.mdx)
 
-
+<br>
 
 ### How is `Promise.all()` different from `Promise.allSettled()`?
 
@@ -3616,13 +3699,13 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 
 <!-- Update here: /questions/how-is-promiseall-different-from-promiseallsettled/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-is-promiseall-different-from-promiseallsettled/en-US.mdx)
 
+<br>
 
-
-###  async/await and how does it simplify asynchronous code?
+### What is async/await and how does it simplify asynchronous code?
 
 <!-- Update here: /questions/what-is-asyncawait-and-how-does-it-simplify-asynchronous-code/en-US.mdx -->
 
@@ -3645,11 +3728,11 @@ fetchData();
 
 <!-- Update here: /questions/what-is-asyncawait-and-how-does-it-simplify-asynchronous-code/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-asyncawait-and-how-does-it-simplify-asynchronous-code/en-US.mdx)
 
-
+<br>
 
 ### How do you handle errors in asynchronous operations?
 
@@ -3683,13 +3766,13 @@ fetch('https://api.example.com/data') // Invalid URl
 
 <!-- Update here: /questions/how-do-you-handle-errors-in-asynchronous-operations/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-handle-errors-in-asynchronous-operations/en-US.mdx)
 
+<br>
 
-
-###  a microtask queue
+### Explain the concept of a microtask queue
 
 <!-- Update here: /questions/explain-the-concept-of-a-microtask-queue/en-US.mdx -->
 
@@ -3697,13 +3780,13 @@ The microtask queue is a queue of tasks that need to be executed after the curre
 
 <!-- Update here: /questions/explain-the-concept-of-a-microtask-queue/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-a-microtask-queue/en-US.mdx)
 
+<br>
 
-
-### difference between `setTimeout()`, `setImmediate()`, and `process.nextTick()`?
+### What is the difference between `setTimeout()`, `setImmediate()`, and `process.nextTick()`?
 
 <!-- Update here: /questions/what-is-the-difference-between-settimeout-setimmediate-and-processnexttick/en-US.mdx -->
 
@@ -3719,11 +3802,11 @@ In this example, `process.nextTick()` will execute first, followed by either `se
 
 <!-- Update here: /questions/what-is-the-difference-between-settimeout-setimmediate-and-processnexttick/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-settimeout-setimmediate-and-processnexttick/en-US.mdx)
 
-
+<br>
 
 ### Explain how prototypal inheritance works in JavaScript
 
@@ -3777,13 +3860,13 @@ Things to note are:
 
 <!-- Update here: /questions/explain-how-prototypal-inheritance-works/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-how-prototypal-inheritance-works/en-US.mdx)
 
+<br>
 
-
-### prototype chain and how does it work?
+### What is the prototype chain and how does it work?
 
 <!-- Update here: /questions/what-is-the-prototype-chain-and-how-does-it-work/en-US.mdx -->
 
@@ -3806,13 +3889,13 @@ In this example, `alice` inherits the `greet` method from `Person.prototype`.
 
 <!-- Update here: /questions/what-is-the-prototype-chain-and-how-does-it-work/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-prototype-chain-and-how-does-it-work/en-US.mdx)
 
+<br>
 
-
-###  classical inheritance and prototypal inheritance
+### Explain the difference between classical inheritance and prototypal inheritance
 
 <!-- Update here: /questions/explain-the-difference-between-classical-inheritance-and-prototypal-inheritance/en-US.mdx -->
 
@@ -3820,13 +3903,13 @@ Classical inheritance is a model where classes inherit from other classes, typic
 
 <!-- Update here: /questions/explain-the-difference-between-classical-inheritance-and-prototypal-inheritance/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-classical-inheritance-and-prototypal-inheritance/en-US.mdx)
 
+<br>
 
-
-###  inheritance in ES2015 classes
+### Explain the concept of inheritance in ES2015 classes
 
 <!-- Update here: /questions/explain-the-concept-of-inheritance-in-es2015-classes/en-US.mdx -->
 
@@ -3860,13 +3943,13 @@ dog.speak(); // Rex barks.
 
 <!-- Update here: /questions/explain-the-concept-of-inheritance-in-es2015-classes/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-inheritance-in-es2015-classes/en-US.mdx)
 
+<br>
 
-
-### purpose of the `new` keyword?
+### What is the purpose of the `new` keyword?
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-new-keyword/en-US.mdx -->
 
@@ -3883,11 +3966,11 @@ console.log(person1.name); // Alice
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-new-keyword/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-purpose-of-the-new-keyword/en-US.mdx)
 
-
+<br>
 
 ### How do you create a constructor function?
 
@@ -3907,13 +3990,13 @@ console.log(john.age); // 30
 
 <!-- Update here: /questions/how-do-you-create-a-constructor-function/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-create-a-constructor-function/en-US.mdx)
 
+<br>
 
-
-###  differences between JavaScript ES2015 classes and ES5 function constructors?
+### What are the differences between JavaScript ES2015 classes and ES5 function constructors?
 
 <!-- Update here: /questions/what-are-the-differences-between-es6-class-and-es5-function-constructors/en-US.mdx -->
 
@@ -3991,11 +4074,11 @@ It's much more verbose to use inheritance in ES5 and the ES2015 version is easie
 
 <!-- Update here: /questions/what-are-the-differences-between-es6-class-and-es5-function-constructors/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-differences-between-es6-class-and-es5-function-constructors/en-US.mdx)
 
-
+<br>
 
 ### What advantage is there for using the JavaScript arrow syntax for a method in a constructor?
 
@@ -4043,11 +4126,11 @@ The main takeaway here is that `this` can be changed for a normal function, but 
 
 <!-- Update here: /questions/what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-advantage-is-there-for-using-the-arrow-syntax-for-a-method-in-a-constructor/en-US.mdx)
 
-
+<br>
 
 ### Why might you want to create static class members in JavaScript?
 
@@ -4074,13 +4157,13 @@ Static members are useful under the following scenarios:
 
 <!-- Update here: /questions/why-you-might-want-to-create-static-class-members/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/why-you-might-want-to-create-static-class-members/en-US.mdx)
 
+<br>
 
-
-###  a closure in JavaScript, and how/why would you use one?
+### What is a closure in JavaScript, and how/why would you use one?
 
 <!-- Update here: /questions/what-is-a-closure-and-how-why-would-you-use-one/en-US.mdx -->
 
@@ -4115,13 +4198,13 @@ Key points to remember:
 
 <!-- Update here: /questions/what-is-a-closure-and-how-why-would-you-use-one/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-a-closure-and-how-why-would-you-use-one/en-US.mdx)
 
+<br>
 
-
-###  lexical scoping
+### Explain the concept of lexical scoping
 
 <!-- Update here: /questions/explain-the-concept-of-lexical-scoping/en-US.mdx -->
 
@@ -4145,13 +4228,13 @@ In this example, `innerFunction` can access `outerVariable` because of lexical s
 
 <!-- Update here: /questions/explain-the-concept-of-lexical-scoping/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-lexical-scoping/en-US.mdx)
 
+<br>
 
-
-###  scope in JavaScript
+### Explain the concept of scope in JavaScript
 
 <!-- Update here: /questions/explain-the-concept-of-scope-in-javascript/en-US.mdx -->
 
@@ -4188,11 +4271,11 @@ console.log(globalVar); // Accessible
 
 <!-- Update here: /questions/explain-the-concept-of-scope-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-scope-in-javascript/en-US.mdx)
 
-
+<br>
 
 ### How can closures be used to create private variables?
 
@@ -4227,13 +4310,13 @@ console.log(counter.count); // undefined
 
 <!-- Update here: /questions/how-can-closures-be-used-to-create-private-variables/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-closures-be-used-to-create-private-variables/en-US.mdx)
 
+<br>
 
-
-###  potential pitfalls of using closures?
+### What are the potential pitfalls of using closures?
 
 <!-- Update here: /questions/what-are-the-potential-pitfalls-of-using-closures/en-US.mdx -->
 
@@ -4241,13 +4324,13 @@ Closures can lead to memory leaks if not managed properly, especially when they 
 
 <!-- Update here: /questions/what-are-the-potential-pitfalls-of-using-closures/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-potential-pitfalls-of-using-closures/en-US.mdx)
 
+<br>
 
-
-###  global scope, function scope, and block scope
+### Explain the difference between global scope, function scope, and block scope
 
 <!-- Update here: /questions/explain-the-difference-between-global-scope-function-scope-and-block-scope/en-US.mdx -->
 
@@ -4270,11 +4353,11 @@ myFunction();
 
 <!-- Update here: /questions/explain-the-difference-between-global-scope-function-scope-and-block-scope/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-global-scope-function-scope-and-block-scope/en-US.mdx)
 
-
+<br>
 
 ### Explain how `this` works in JavaScript
 
@@ -4296,11 +4379,11 @@ For an in-depth explanation, do check out [Arnav Aggrawal's article on Medium](h
 
 <!-- Update here: /questions/explain-how-this-works-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-how-this-works-in-javascript/en-US.mdx)
 
-
+<br>
 
 ### Explain `Function.prototype.bind` in JavaScript
 
@@ -4316,11 +4399,11 @@ The `bind` method is particularly useful in scenarios where you need to ensure t
 
 <!-- Update here: /questions/explain-function-prototype-bind/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-function-prototype-bind/en-US.mdx)
 
-
+<br>
 
 ### Explain the different ways the `this` keyword can be bound
 
@@ -4336,13 +4419,13 @@ The `this` keyword in JavaScript can be bound in several ways:
 
 <!-- Update here: /questions/explain-the-different-ways-the-this-keyword-can-be-bound/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-different-ways-the-this-keyword-can-be-bound/en-US.mdx)
 
+<br>
 
-
-###  common pitfalls of using the `this` keyword?
+### What are the common pitfalls of using the `this` keyword?
 
 <!-- Update here: /questions/what-are-the-common-pitfalls-of-using-the-this-keyword/en-US.mdx -->
 
@@ -4350,13 +4433,13 @@ The `this` keyword in JavaScript can be tricky because its value depends on how 
 
 <!-- Update here: /questions/what-are-the-common-pitfalls-of-using-the-this-keyword/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-common-pitfalls-of-using-the-this-keyword/en-US.mdx)
 
+<br>
 
-
-###  `this` binding in event handlers
+### Explain the concept of `this` binding in event handlers
 
 <!-- Update here: /questions/explain-the-concept-of-this-binding-in-event-handlers/en-US.mdx -->
 
@@ -4364,13 +4447,13 @@ In JavaScript, the `this` keyword refers to the object that is currently executi
 
 <!-- Update here: /questions/explain-the-concept-of-this-binding-in-event-handlers/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-this-binding-in-event-handlers/en-US.mdx)
 
+<br>
 
-
-### DOM and how is it structured?
+### What is the DOM and how is it structured?
 
 <!-- Update here: /questions/what-is-the-dom-and-how-is-it-structured/en-US.mdx -->
 
@@ -4378,11 +4461,11 @@ The DOM, or Document Object Model, is a programming interface for web documents.
 
 <!-- Update here: /questions/what-is-the-dom-and-how-is-it-structured/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-dom-and-how-is-it-structured/en-US.mdx)
 
-
+<br>
 
 ### What's the difference between an "attribute" and a "property" in the DOM?
 
@@ -4392,13 +4475,13 @@ Attributes are defined in the HTML and provide initial values for properties. Pr
 
 <!-- Update here: /questions/whats-the-difference-between-an-attribute-and-a-property/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-the-difference-between-an-attribute-and-a-property/en-US.mdx)
 
+<br>
 
-
-###  `document.querySelector()` and `document.getElementById()`
+### Explain the difference between `document.querySelector()` and `document.getElementById()`
 
 <!-- Update here: /questions/explain-the-difference-between-documentqueryselector-and-documentgetelementbyid/en-US.mdx -->
 
@@ -4414,11 +4497,11 @@ const elementById = document.getElementById('my-id');
 
 <!-- Update here: /questions/explain-the-difference-between-documentqueryselector-and-documentgetelementbyid/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-documentqueryselector-and-documentgetelementbyid/en-US.mdx)
 
-
+<br>
 
 ### How do you add, remove, and modify HTML elements using JavaScript?
 
@@ -4443,13 +4526,13 @@ elementToModify.innerHTML = 'New Content';
 
 <!-- Update here: /questions/how-do-you-add-remove-and-modify-html-elements-using-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-add-remove-and-modify-html-elements-using-javascript/en-US.mdx)
 
+<br>
 
-
-###  event listeners and how are they used?
+### What are event listeners and how are they used?
 
 <!-- Update here: /questions/what-are-event-listeners-and-how-are-they-used/en-US.mdx -->
 
@@ -4463,11 +4546,11 @@ document.getElementById('myButton').addEventListener('click', function () {
 
 <!-- Update here: /questions/what-are-event-listeners-and-how-are-they-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-event-listeners-and-how-are-they-used/en-US.mdx)
 
-
+<br>
 
 ### Explain the event phases in a browser
 
@@ -4477,11 +4560,11 @@ In a browser, events go through three phases: capturing, target, and bubbling. D
 
 <!-- Update here: /questions/explain-the-event-phases-in-a-browser/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-event-phases-in-a-browser/en-US.mdx)
 
-
+<br>
 
 ### Describe event bubbling in JavaScript and browsers
 
@@ -4493,11 +4576,11 @@ Event bubbling is essential for event delegation, where a single event handler m
 
 <!-- Update here: /questions/describe-event-bubbling/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/describe-event-bubbling/en-US.mdx)
 
-
+<br>
 
 ### Describe event capturing in JavaScript and browsers
 
@@ -4509,11 +4592,11 @@ Event capturing is rarely used as compared to event bubbling, but it can be used
 
 <!-- Update here: /questions/describe-event-capturing/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/describe-event-capturing/en-US.mdx)
 
-
+<br>
 
 ### Explain event delegation in JavaScript
 
@@ -4534,11 +4617,11 @@ However, do note that:
 
 <!-- Update here: /questions/explain-event-delegation/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-event-delegation/en-US.mdx)
 
-
+<br>
 
 ### How do you prevent the default behavior of an event?
 
@@ -4556,13 +4639,13 @@ This method stops the default action associated with the event from occurring.
 
 <!-- Update here: /questions/how-do-you-prevent-the-default-behavior-of-an-event/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-prevent-the-default-behavior-of-an-event/en-US.mdx)
 
+<br>
 
-
-### difference between `event.preventDefault()` and `event.stopPropagation()`?
+### What is the difference between `event.preventDefault()` and `event.stopPropagation()`?
 
 <!-- Update here: /questions/what-is-the-difference-between-eventpreventdefault-and-eventstoppropagation/en-US.mdx -->
 
@@ -4570,13 +4653,13 @@ This method stops the default action associated with the event from occurring.
 
 <!-- Update here: /questions/what-is-the-difference-between-eventpreventdefault-and-eventstoppropagation/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-eventpreventdefault-and-eventstoppropagation/en-US.mdx)
 
+<br>
 
-
-### difference between `mouseenter` and `mouseover` event in JavaScript and browsers?
+### What is the difference between `mouseenter` and `mouseover` event in JavaScript and browsers?
 
 <!-- Update here: /questions/what-is-the-difference-between-mouseenter-and-mouseover-event/en-US.mdx -->
 
@@ -4593,13 +4676,13 @@ The main difference lies in the bubbling behavior of `mouseenter` and `mouseover
 
 <!-- Update here: /questions/what-is-the-difference-between-mouseenter-and-mouseover-event/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-mouseenter-and-mouseover-event/en-US.mdx)
 
+<br>
 
-
-### difference between `innerHTML` and `textContent`?
+### What is the difference between `innerHTML` and `textContent`?
 
 <!-- Update here: /questions/what-is-the-difference-between-innerhtml-and-textcontent/en-US.mdx -->
 
@@ -4615,11 +4698,11 @@ element.textContent = '<strong>Bold Text</strong>'; // Renders as plain text: <s
 
 <!-- Update here: /questions/what-is-the-difference-between-innerhtml-and-textcontent/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-innerhtml-and-textcontent/en-US.mdx)
 
-
+<br>
 
 ### How do you manipulate CSS styles using JavaScript?
 
@@ -4641,11 +4724,11 @@ document.getElementById('myDiv').classList.toggle('toggleClass');
 
 <!-- Update here: /questions/how-do-you-manipulate-css-styles-using-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-manipulate-css-styles-using-javascript/en-US.mdx)
 
-
+<br>
 
 ### Describe the difference between `<script>`, `<script async>` and `<script defer>`
 
@@ -4667,13 +4750,13 @@ Here's a table summarizing the 3 ways of loading `<script>`s in a HTML document.
 
 <!-- Update here: /questions/describe-the-difference-between-script-async-and-script-defer/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/describe-the-difference-between-script-async-and-script-defer/en-US.mdx)
 
+<br>
 
-
-### difference between the Window object and the Document object?
+### What is the difference between the Window object and the Document object?
 
 <!-- Update here: /questions/what-is-the-difference-between-the-window-object-and-the-document-object/en-US.mdx -->
 
@@ -4681,11 +4764,11 @@ The `Window` object represents the browser window and provides methods to contro
 
 <!-- Update here: /questions/what-is-the-difference-between-the-window-object-and-the-document-object/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-the-window-object-and-the-document-object/en-US.mdx)
 
-
+<br>
 
 ### Describe the difference between a cookie, `sessionStorage` and `localStorage` in browsers
 
@@ -4711,11 +4794,11 @@ Here's a table summarizing the 3 client storage mechanisms.
 
 <!-- Update here: /questions/describe-the-difference-between-a-cookie-sessionstorage-and-localstorage/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/describe-the-difference-between-a-cookie-sessionstorage-and-localstorage/en-US.mdx)
 
-
+<br>
 
 ### How do you make an HTTP request using the Fetch API?
 
@@ -4751,13 +4834,13 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
 
 <!-- Update here: /questions/how-do-you-make-an-http-request-using-the-fetch-api/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-make-an-http-request-using-the-fetch-api/en-US.mdx)
 
+<br>
 
-
-###  different ways to make an API call in JavaScript?
+### What are the different ways to make an API call in JavaScript?
 
 <!-- Update here: /questions/what-are-the-different-ways-to-make-an-api-call-in-javascript/en-US.mdx -->
 
@@ -4765,11 +4848,11 @@ In JavaScript, you can make API calls using several methods. The most common one
 
 <!-- Update here: /questions/what-are-the-different-ways-to-make-an-api-call-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-different-ways-to-make-an-api-call-in-javascript/en-US.mdx)
 
-
+<br>
 
 ### Explain AJAX in as much detail as possible
 
@@ -4810,13 +4893,13 @@ fetch('https://jsonplaceholder.typicode.com/todos/1')
 
 <!-- Update here: /questions/explain-ajax-in-as-much-detail-as-possible/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-ajax-in-as-much-detail-as-possible/en-US.mdx)
 
+<br>
 
-
-###  advantages and disadvantages of using AJAX?
+### What are the advantages and disadvantages of using AJAX?
 
 <!-- Update here: /questions/what-are-the-advantages-and-disadvantages-of-using-ajax/en-US.mdx -->
 
@@ -4837,13 +4920,13 @@ AJAX (Asynchronous JavaScript and XML) is a technique in JavaScript that allows 
 
 <!-- Update here: /questions/what-are-the-advantages-and-disadvantages-of-using-ajax/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-advantages-and-disadvantages-of-using-ajax/en-US.mdx)
 
+<br>
 
-
-###  differences between `XMLHttpRequest` and `fetch()` in JavaScript and browsers?
+### What are the differences between `XMLHttpRequest` and `fetch()` in JavaScript and browsers?
 
 <!-- Update here: /questions/what-are-the-differences-between-xmlhttprequest-and-fetch/en-US.mdx -->
 
@@ -4861,11 +4944,11 @@ These days `fetch()` is preferred for its cleaner syntax and modern features.
 
 <!-- Update here: /questions/what-are-the-differences-between-xmlhttprequest-and-fetch/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-differences-between-xmlhttprequest-and-fetch/en-US.mdx)
 
-
+<br>
 
 ### How do you abort a web request using `AbortController` in JavaScript?
 
@@ -4901,9 +4984,11 @@ Aborting web requests is useful for:
 
 <!-- Update here: /questions/how-do-you-abort-a-web-request-using-abortcontrollers/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-abort-a-web-request-using-abortcontrollers/en-US.mdx)
 
+<br>
 
 ### Explain how JSONP works (and how it's not really Ajax)
 
@@ -4913,11 +4998,13 @@ JSONP (JSON with Padding) is a technique used to overcome the same-origin policy
 
 <!-- Update here: /questions/explain-how-jsonp-works-and-how-its-not-really-ajax/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-how-jsonp-works-and-how-its-not-really-ajax/en-US.mdx)
 
+<br>
 
-###  workers in JavaScript used for?
+### What are workers in JavaScript used for?
 
 <!-- Update here: /questions/what-are-workers-in-javascript-used-for/en-US.mdx -->
 
@@ -4945,11 +5032,13 @@ There are three main types of workers in JavaScript:
 
 <!-- Update here: /questions/what-are-workers-in-javascript-used-for/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-workers-in-javascript-used-for/en-US.mdx)
 
+<br>
 
-###  the Web Socket API
+### Explain the concept of the Web Socket API
 
 <!-- Update here: /questions/explain-the-concept-of-the-web-socket-api/en-US.mdx -->
 
@@ -4974,12 +5063,13 @@ socket.addEventListener('message', function (event) {
 
 <!-- Update here: /questions/explain-the-concept-of-the-web-socket-api/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-the-web-socket-api/en-US.mdx)
 
+<br>
 
-
-###  JavaScript polyfills for?
+### What are JavaScript polyfills for?
 
 <!-- Update here: /questions/what-are-javascript-polyfills-for/en-US.mdx -->
 
@@ -5010,9 +5100,11 @@ Libraries and services for polyfills:
 
 <!-- Update here: /questions/what-are-javascript-polyfills-for/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-javascript-polyfills-for/en-US.mdx)
 
+<br>
 
 ### How do you detect if JavaScript is disabled on a page?
 
@@ -5031,12 +5123,13 @@ To detect if JavaScript is disabled on a page, you can use the `<noscript>` HTML
 
 <!-- Update here: /questions/how-do-you-detect-if-javascript-is-disabled-on-a-page/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-detect-if-javascript-is-disabled-on-a-page/en-US.mdx)
 
+<br>
 
-
-### `Intl` namespace object for?
+### What is the `Intl` namespace object for?
 
 <!-- Update here: /questions/what-is-the-intl-namespace-object-for/en-US.mdx -->
 
@@ -5050,9 +5143,11 @@ console.log(formatter.format(date)); // Outputs date in 'MM/DD/YYYY' format
 
 <!-- Update here: /questions/what-is-the-intl-namespace-object-for/en-US.mdx -->
 
+<br>
+    
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-intl-namespace-object-for/en-US.mdx)
 
-
-
+<br>
 
 ### How do you validate form elements using the Constraint Validation API?
 
@@ -5071,8 +5166,11 @@ if (input.checkValidity()) {
 
 <!-- Update here: /questions/how-do-you-validate-form-elements-using-the-constraint-validation-api/en-US.mdx -->
 
+<br>
+    
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-validate-form-elements-using-the-constraint-validation-api/en-US.mdx)
 
-
+<br>
 
 ### How do you use `window.history` API?
 
@@ -5082,10 +5180,11 @@ The `window.history` API allows you to manipulate the browser's session history.
 
 <!-- Update here: /questions/how-do-you-use-windowhistory-api/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-use-windowhistory-api/en-US.mdx)
 
-
+<br>
 
 ### How do `<iframe>` on a page communicate?
 
@@ -5106,10 +5205,11 @@ window.addEventListener('message', (event) => {
 
 <!-- Update here: /questions/how-do-iframe-on-a-page-communicate/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-iframe-on-a-page-communicate/en-US.mdx)
 
-
+<br>
 
 ### Difference between document `load` event and document `DOMContentLoaded` event?
 
@@ -5129,9 +5229,11 @@ window.addEventListener('load', function () {
 
 <!-- Update here: /questions/difference-between-document-load-event-and-document-domcontentloaded-event/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/difference-between-document-load-event-and-document-domcontentloaded-event/en-US.mdx)
 
+<br>
 
 ### How do you redirect to a new page in JavaScript?
 
@@ -5149,9 +5251,11 @@ window.location.replace('https://www.example.com');
 
 <!-- Update here: /questions/how-do-you-redirect-to-a-new-page-in-javascript/en-US.mdx -->
 
+<br>
+    
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-redirect-to-a-new-page-in-javascript/en-US.mdx)
 
-
-
+<br>
 
 ### How do you get the query string values of the current page in JavaScript?
 
@@ -5167,11 +5271,13 @@ console.log(value);
 
 <!-- Update here: /questions/how-do-you-get-the-query-string-values-of-the-current-page-in-javascript/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-get-the-query-string-values-of-the-current-page-in-javascript/en-US.mdx)
 
+<br>
 
-###  server-sent events?
+### What are server-sent events?
 
 <!-- Update here: /questions/what-are-server-sent-events/en-US.mdx -->
 
@@ -5240,10 +5346,13 @@ In this example, the server sends a "Hello from server" message initially, and t
 
 <!-- Update here: /questions/what-are-server-sent-events/en-US.mdx -->
 
+<br>
+    
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-server-sent-events/en-US.mdx)
 
+<br>
 
-
-###  Progressive Web Applications (PWAs)?
+### What are Progressive Web Applications (PWAs)?
 
 <!-- Update here: /questions/what-are-progressive-web-applications-pwas/en-US.mdx -->
 
@@ -5251,12 +5360,13 @@ Progressive Web Applications (PWAs) are web applications that use modern web cap
 
 <!-- Update here: /questions/what-are-progressive-web-applications-pwas/en-US.mdx -->
 
-
+<br>
     
+[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-progressive-web-applications-pwas/en-US.mdx)
 
+<br>
 
-
-###  modules and why are they useful?
+### What are modules and why are they useful?
 
 <!-- Update here: /questions/what-are-modules-and-why-are-they-useful/en-US.mdx -->
 
@@ -5275,11 +5385,11 @@ myFunction(); // Outputs: Hello, World!
 
 <!-- Update here: /questions/what-are-modules-and-why-are-they-useful/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-modules-and-why-are-they-useful/en-US.mdx)
 
-
+<br>
 
 ### Explain the differences between CommonJS modules and ES modules in JavaScript
 
@@ -5325,11 +5435,11 @@ console.log(value); // 42
 
 <!-- Update here: /questions/explain-the-differences-between-commonjs-modules-and-es-modules/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-differences-between-commonjs-modules-and-es-modules/en-US.mdx)
 
-
+<br>
 
 ### How do you import and export modules in JavaScript?
 
@@ -5351,13 +5461,13 @@ import myFunction from './myModule';
 
 <!-- Update here: /questions/how-do-you-import-and-export-modules-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-import-and-export-modules-in-javascript/en-US.mdx)
 
+<br>
 
-
-###  benefits of using a module bundler?
+### What are the benefits of using a module bundler?
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-a-module-bundler/en-US.mdx -->
 
@@ -5365,13 +5475,13 @@ Using a module bundler like Webpack, Rollup, or Parcel helps manage dependencies
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-a-module-bundler/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-benefits-of-using-a-module-bundler/en-US.mdx)
 
+<br>
 
-
-###  tree shaking in module bundling
+### Explain the concept of tree shaking in module bundling
 
 <!-- Update here: /questions/explain-the-concept-of-tree-shaking-in-module-bundling/en-US.mdx -->
 
@@ -5379,13 +5489,13 @@ Tree shaking is a technique used in module bundling to eliminate dead code, whic
 
 <!-- Update here: /questions/explain-the-concept-of-tree-shaking-in-module-bundling/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-tree-shaking-in-module-bundling/en-US.mdx)
 
+<br>
 
-
-###  metadata fields of a module?
+### What are the metadata fields of a module?
 
 <!-- Update here: /questions/what-are-the-metadata-fields-of-a-module/en-US.mdx -->
 
@@ -5406,11 +5516,11 @@ Metadata fields of a module typically include information such as the module's n
 
 <!-- Update here: /questions/what-are-the-metadata-fields-of-a-module/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-metadata-fields-of-a-module/en-US.mdx)
 
-
+<br>
 
 ### What do you think of AMD vs CommonJS?
 
@@ -5420,13 +5530,13 @@ AMD (Asynchronous Module Definition) and CommonJS are two JavaScript module syst
 
 <!-- Update here: /questions/what-do-you-think-of-amd-vs-commonjs/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-do-you-think-of-amd-vs-commonjs/en-US.mdx)
 
+<br>
 
-
-###  different types of errors in JavaScript?
+### What are the different types of errors in JavaScript?
 
 <!-- Update here: /questions/what-are-the-different-types-of-errors-in-javascript/en-US.mdx -->
 
@@ -5434,11 +5544,11 @@ In JavaScript, there are three main types of errors: syntax errors, runtime erro
 
 <!-- Update here: /questions/what-are-the-different-types-of-errors-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-different-types-of-errors-in-javascript/en-US.mdx)
 
-
+<br>
 
 ### How do you handle errors using `try...catch` blocks?
 
@@ -5458,13 +5568,13 @@ try {
 
 <!-- Update here: /questions/how-do-you-handle-errors-using-trycatch-blocks/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-handle-errors-using-trycatch-blocks/en-US.mdx)
 
+<br>
 
-
-### purpose of the `finally` block?
+### What is the purpose of the `finally` block?
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-finally-block/en-US.mdx -->
 
@@ -5482,13 +5592,13 @@ try {
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-finally-block/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-purpose-of-the-finally-block/en-US.mdx)
 
+<br>
 
-
-###  create custom error objects?
+### How can you create custom error objects?
 
 <!-- Update here: /questions/how-can-you-create-custom-error-objects/en-US.mdx -->
 
@@ -5512,13 +5622,13 @@ try {
 
 <!-- Update here: /questions/how-can-you-create-custom-error-objects/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-create-custom-error-objects/en-US.mdx)
 
+<br>
 
-
-###  error propagation in JavaScript
+### Explain the concept of error propagation in JavaScript
 
 <!-- Update here: /questions/explain-the-concept-of-error-propagation-in-javascript/en-US.mdx -->
 
@@ -5542,13 +5652,13 @@ try {
 
 <!-- Update here: /questions/explain-the-concept-of-error-propagation-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-error-propagation-in-javascript/en-US.mdx)
 
+<br>
 
-
-###  currying and how does it work?
+### What is currying and how does it work?
 
 <!-- Update here: /questions/what-is-currying-and-how-does-it-work/en-US.mdx -->
 
@@ -5575,13 +5685,13 @@ console.log(result); // Output: 6
 
 <!-- Update here: /questions/what-is-currying-and-how-does-it-work/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-currying-and-how-does-it-work/en-US.mdx)
 
+<br>
 
-
-###  partial application
+### Explain the concept of partial application
 
 <!-- Update here: /questions/explain-the-concept-of-partial-application/en-US.mdx -->
 
@@ -5598,13 +5708,13 @@ console.log(add5(10)); // Outputs 15
 
 <!-- Update here: /questions/explain-the-concept-of-partial-application/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-partial-application/en-US.mdx)
 
+<br>
 
-
-###  benefits of using currying and partial application?
+### What are the benefits of using currying and partial application?
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-currying-and-partial-application/en-US.mdx -->
 
@@ -5612,11 +5722,11 @@ Currying transforms a function with multiple arguments into a sequence of functi
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-currying-and-partial-application/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-benefits-of-using-currying-and-partial-application/en-US.mdx)
 
-
+<br>
 
 ### Provide some examples of how currying and partial application can be used
 
@@ -5642,11 +5752,11 @@ console.log(addTwo(3)); // 5
 
 <!-- Update here: /questions/provide-some-examples-of-how-currying-and-partial-application-can-be-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/provide-some-examples-of-how-currying-and-partial-application-can-be-used/en-US.mdx)
 
-
+<br>
 
 ### How do currying and partial application differ from each other?
 
@@ -5656,13 +5766,13 @@ Currying transforms a function with multiple arguments into a sequence of functi
 
 <!-- Update here: /questions/how-do-currying-and-partial-application-differ-from-each-other/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-currying-and-partial-application-differ-from-each-other/en-US.mdx)
 
+<br>
 
-
-###  `Set`s and `Map`s and how are they used?
+### What are `Set`s and `Map`s and how are they used?
 
 <!-- Update here: /questions/what-are-sets-and-maps-and-how-are-they-used/en-US.mdx -->
 
@@ -5683,13 +5793,13 @@ console.log(myMap.get('key1')); // 'value1'
 
 <!-- Update here: /questions/what-are-sets-and-maps-and-how-are-they-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-sets-and-maps-and-how-are-they-used/en-US.mdx)
 
+<br>
 
-
-###  differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?
+### What are the differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?
 
 <!-- Update here: /questions/what-are-the-differences-between-map-set-and-weakmap-weakset/en-US.mdx -->
 
@@ -5728,11 +5838,11 @@ On the other hand, `WeakSet` only allows objects as elements, and these object e
 
 <!-- Update here: /questions/what-are-the-differences-between-map-set-and-weakmap-weakset/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-differences-between-map-set-and-weakmap-weakset/en-US.mdx)
 
-
+<br>
 
 ### How do you convert a `Set` to an array in JavaScript?
 
@@ -5750,13 +5860,13 @@ console.log(myArray); // Output: [1, 2, 3]
 
 <!-- Update here: /questions/how-do-you-convert-a-set-to-an-array-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-convert-a-set-to-an-array-in-javascript/en-US.mdx)
 
+<br>
 
-
-### difference between a `Map` object and a plain object in JavaScript?
+### What is the difference between a `Map` object and a plain object in JavaScript?
 
 <!-- Update here: /questions/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/en-US.mdx -->
 
@@ -5774,11 +5884,11 @@ Both `Map` objects and plain objects in JavaScript can store key-value pairs, bu
 
 <!-- Update here: /questions/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript/en-US.mdx)
 
-
+<br>
 
 ### How do `Set`s and `Map`s handle equality checks for objects?
 
@@ -5799,13 +5909,13 @@ console.log(set.size); // Output: 2
 
 <!-- Update here: /questions/how-do-sets-and-maps-handle-equality-checks-for-objects/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-sets-and-maps-handle-equality-checks-for-objects/en-US.mdx)
 
+<br>
 
-
-###  some common performance bottlenecks in JavaScript applications?
+### What are some common performance bottlenecks in JavaScript applications?
 
 <!-- Update here: /questions/what-are-some-common-performance-bottlenecks-in-javascript-applications/en-US.mdx -->
 
@@ -5813,13 +5923,13 @@ Common performance bottlenecks in JavaScript applications include inefficient DO
 
 <!-- Update here: /questions/what-are-some-common-performance-bottlenecks-in-javascript-applications/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-common-performance-bottlenecks-in-javascript-applications/en-US.mdx)
 
+<br>
 
-
-###  debouncing and throttling
+### Explain the concept of debouncing and throttling
 
 <!-- Update here: /questions/explain-the-concept-of-debouncing-and-throttling/en-US.mdx -->
 
@@ -5868,13 +5978,13 @@ let intervalId = setInterval(() => {
 
 <!-- Update here: /questions/explain-the-concept-of-debouncing-and-throttling/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-debouncing-and-throttling/en-US.mdx)
 
+<br>
 
-
-###  optimize DOM manipulation for better performance?
+### How can you optimize DOM manipulation for better performance?
 
 <!-- Update here: /questions/how-can-you-optimize-dom-manipulation-for-better-performance/en-US.mdx -->
 
@@ -5882,13 +5992,13 @@ To optimize DOM manipulation for better performance, minimize direct DOM access 
 
 <!-- Update here: /questions/how-can-you-optimize-dom-manipulation-for-better-performance/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-optimize-dom-manipulation-for-better-performance/en-US.mdx)
 
+<br>
 
-
-###  some techniques for reducing reflows and repaints?
+### What are some techniques for reducing reflows and repaints?
 
 <!-- Update here: /questions/what-are-some-techniques-for-reducing-reflows-and-repaints/en-US.mdx -->
 
@@ -5896,13 +6006,13 @@ To reduce reflows and repaints, you can minimize DOM manipulations, batch DOM ch
 
 <!-- Update here: /questions/what-are-some-techniques-for-reducing-reflows-and-repaints/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-techniques-for-reducing-reflows-and-repaints/en-US.mdx)
 
+<br>
 
-
-###  lazy loading and how it can improve performance
+### Explain the concept of lazy loading and how it can improve performance
 
 <!-- Update here: /questions/explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance/en-US.mdx -->
 
@@ -5914,13 +6024,13 @@ Lazy loading is a design pattern that delays the loading of resources until they
 
 <!-- Update here: /questions/explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-lazy-loading-and-how-it-can-improve-performance/en-US.mdx)
 
+<br>
 
-
-###  Web Workers and how can they be used to improve performance?
+### What are Web Workers and how can they be used to improve performance?
 
 <!-- Update here: /questions/what-are-web-workers-and-how-can-they-be-used-to-improve-performance/en-US.mdx -->
 
@@ -5944,13 +6054,13 @@ onmessage = function (event) {
 
 <!-- Update here: /questions/what-are-web-workers-and-how-can-they-be-used-to-improve-performance/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-web-workers-and-how-can-they-be-used-to-improve-performance/en-US.mdx)
 
+<br>
 
-
-###  caching and how it can be used to improve performance
+### Explain the concept of caching and how it can be used to improve performance
 
 <!-- Update here: /questions/explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance/en-US.mdx -->
 
@@ -5958,13 +6068,13 @@ Caching is a technique used to store copies of files or data in a temporary stor
 
 <!-- Update here: /questions/explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-caching-and-how-it-can-be-used-to-improve-performance/en-US.mdx)
 
+<br>
 
-
-###  some tools that can be used to measure and analyze JavaScript performance?
+### What are some tools that can be used to measure and analyze JavaScript performance?
 
 <!-- Update here: /questions/what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance/en-US.mdx -->
 
@@ -5972,13 +6082,13 @@ To measure and analyze JavaScript performance, you can use tools like Chrome Dev
 
 <!-- Update here: /questions/what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-tools-that-can-be-used-to-measure-and-analyze-javascript-performance/en-US.mdx)
 
+<br>
 
-
-###  optimize network requests for better performance?
+### How can you optimize network requests for better performance?
 
 <!-- Update here: /questions/how-can-you-optimize-network-requests-for-better-performance/en-US.mdx -->
 
@@ -5986,13 +6096,13 @@ To optimize network requests for better performance, you can minimize the number
 
 <!-- Update here: /questions/how-can-you-optimize-network-requests-for-better-performance/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-optimize-network-requests-for-better-performance/en-US.mdx)
 
+<br>
 
-
-###  different types of testing in software development?
+### What are the different types of testing in software development?
 
 <!-- Update here: /questions/what-are-the-different-types-of-testing-in-software-development/en-US.mdx -->
 
@@ -6000,13 +6110,13 @@ In software development, there are several types of testing to ensure the qualit
 
 <!-- Update here: /questions/what-are-the-different-types-of-testing-in-software-development/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-different-types-of-testing-in-software-development/en-US.mdx)
 
+<br>
 
-
-###  unit testing, integration testing, and end-to-end testing
+### Explain the difference between unit testing, integration testing, and end-to-end testing
 
 <!-- Update here: /questions/explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing/en-US.mdx -->
 
@@ -6014,13 +6124,13 @@ Unit testing focuses on testing individual components or functions in isolation 
 
 <!-- Update here: /questions/explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-unit-testing-integration-testing-and-end-to-end-testing/en-US.mdx)
 
+<br>
 
-
-###  some popular JavaScript testing frameworks?
+### What are some popular JavaScript testing frameworks?
 
 <!-- Update here: /questions/what-are-some-popular-javascript-testing-frameworks/en-US.mdx -->
 
@@ -6028,11 +6138,11 @@ Some popular JavaScript testing frameworks include Jest, Mocha, Jasmine, and Cyp
 
 <!-- Update here: /questions/what-are-some-popular-javascript-testing-frameworks/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-popular-javascript-testing-frameworks/en-US.mdx)
 
-
+<br>
 
 ### How do you write unit tests for JavaScript code?
 
@@ -6059,13 +6169,13 @@ test('adds 1 + 2 to equal 3', () => {
 
 <!-- Update here: /questions/how-do-you-write-unit-tests-for-javascript-code/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-write-unit-tests-for-javascript-code/en-US.mdx)
 
+<br>
 
-
-###  test-driven development (TDD)
+### Explain the concept of test-driven development (TDD)
 
 <!-- Update here: /questions/explain-the-concept-of-test-driven-development-tdd/en-US.mdx -->
 
@@ -6073,13 +6183,13 @@ Test-driven development (TDD) is a software development approach where you write
 
 <!-- Update here: /questions/explain-the-concept-of-test-driven-development-tdd/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-test-driven-development-tdd/en-US.mdx)
 
+<br>
 
-
-###  mocks and stubs and how are they used in testing?
+### What are mocks and stubs and how are they used in testing?
 
 <!-- Update here: /questions/what-are-mocks-and-stubs-and-how-are-they-used-in-testing/en-US.mdx -->
 
@@ -6087,13 +6197,13 @@ Mocks and stubs are tools used in testing to simulate the behavior of real objec
 
 <!-- Update here: /questions/what-are-mocks-and-stubs-and-how-are-they-used-in-testing/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-mocks-and-stubs-and-how-are-they-used-in-testing/en-US.mdx)
 
+<br>
 
-
-###  test asynchronous code in JavaScript?
+### How can you test asynchronous code in JavaScript?
 
 <!-- Update here: /questions/how-can-you-test-asynchronous-code-in-javascript/en-US.mdx -->
 
@@ -6110,13 +6220,13 @@ Alternatively, you can use callbacks and the `done` function to signal the end o
 
 <!-- Update here: /questions/how-can-you-test-asynchronous-code-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-test-asynchronous-code-in-javascript/en-US.mdx)
 
+<br>
 
-
-###  some best practices for writing maintainable and effective tests in JavaScript?
+### What are some best practices for writing maintainable and effective tests in JavaScript?
 
 <!-- Update here: /questions/what-are-some-best-practices-for-writing-maintainable-and-effective-tests/en-US.mdx -->
 
@@ -6124,13 +6234,13 @@ To write maintainable and effective tests, ensure they are clear, concise, and f
 
 <!-- Update here: /questions/what-are-some-best-practices-for-writing-maintainable-and-effective-tests/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-best-practices-for-writing-maintainable-and-effective-tests/en-US.mdx)
 
+<br>
 
-
-###  code coverage and how it can be used to assess test quality
+### Explain the concept of code coverage and how it can be used to assess test quality
 
 <!-- Update here: /questions/explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality/en-US.mdx -->
 
@@ -6138,13 +6248,13 @@ Code coverage is a metric that measures the percentage of code that is executed 
 
 <!-- Update here: /questions/explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-code-coverage-and-how-it-can-be-used-to-assess-test-quality/en-US.mdx)
 
+<br>
 
-
-###  some tools that can be used for JavaScript testing?
+### What are some tools that can be used for JavaScript testing?
 
 <!-- Update here: /questions/what-are-some-tools-that-can-be-used-for-javascript-testing/en-US.mdx -->
 
@@ -6152,13 +6262,13 @@ For JavaScript testing, you can use tools like Jest, Mocha, Jasmine, and Cypress
 
 <!-- Update here: /questions/what-are-some-tools-that-can-be-used-for-javascript-testing/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-tools-that-can-be-used-for-javascript-testing/en-US.mdx)
 
+<br>
 
-
-###  design patterns and why are they useful?
+### What are design patterns and why are they useful?
 
 <!-- Update here: /questions/what-are-design-patterns-and-why-are-they-useful/en-US.mdx -->
 
@@ -6166,13 +6276,13 @@ Design patterns are reusable solutions to common problems in software design. Th
 
 <!-- Update here: /questions/what-are-design-patterns-and-why-are-they-useful/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-design-patterns-and-why-are-they-useful/en-US.mdx)
 
+<br>
 
-
-###  the Singleton pattern
+### Explain the concept of the Singleton pattern
 
 <!-- Update here: /questions/explain-the-concept-of-the-singleton-pattern/en-US.mdx -->
 
@@ -6196,13 +6306,13 @@ console.log(instance1 === instance2); // true
 
 <!-- Update here: /questions/explain-the-concept-of-the-singleton-pattern/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-the-singleton-pattern/en-US.mdx)
 
+<br>
 
-
-### Factory pattern and how is it used?
+### What is the Factory pattern and how is it used?
 
 <!-- Update here: /questions/what-is-the-factory-pattern-and-how-is-it-used/en-US.mdx -->
 
@@ -6225,11 +6335,11 @@ const cat = createAnimal('cat');
 
 <!-- Update here: /questions/what-is-the-factory-pattern-and-how-is-it-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-factory-pattern-and-how-is-it-used/en-US.mdx)
 
-
+<br>
 
 ### Explain the Observer pattern and its use cases
 
@@ -6239,13 +6349,13 @@ The Observer pattern is a design pattern where an object, known as the subject, 
 
 <!-- Update here: /questions/explain-the-observer-pattern-and-its-use-cases/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-observer-pattern-and-its-use-cases/en-US.mdx)
 
+<br>
 
-
-### Module pattern and how does it help with encapsulation?
+### What is the Module pattern and how does it help with encapsulation?
 
 <!-- Update here: /questions/what-is-the-module-pattern-and-how-does-it-help-with-encapsulation/en-US.mdx -->
 
@@ -6271,13 +6381,13 @@ myModule.publicMethod(); // Logs: I am private
 
 <!-- Update here: /questions/what-is-the-module-pattern-and-how-does-it-help-with-encapsulation/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-module-pattern-and-how-does-it-help-with-encapsulation/en-US.mdx)
 
+<br>
 
-
-###  the Prototype pattern
+### Explain the concept of the Prototype pattern
 
 <!-- Update here: /questions/explain-the-concept-of-the-prototype-pattern/en-US.mdx -->
 
@@ -6296,13 +6406,13 @@ newObject.greet(); // Outputs: Hello, world!
 
 <!-- Update here: /questions/explain-the-concept-of-the-prototype-pattern/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-the-prototype-pattern/en-US.mdx)
 
+<br>
 
-
-### Decorator pattern and how is it used?
+### What is the Decorator pattern and how is it used?
 
 <!-- Update here: /questions/what-is-the-decorator-pattern-and-how-is-it-used/en-US.mdx -->
 
@@ -6340,13 +6450,13 @@ console.log(myCarWithGPS.drive()); // "Driving with GPS"
 
 <!-- Update here: /questions/what-is-the-decorator-pattern-and-how-is-it-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-decorator-pattern-and-how-is-it-used/en-US.mdx)
 
+<br>
 
-
-###  the Strategy pattern
+### Explain the concept of the Strategy pattern
 
 <!-- Update here: /questions/explain-the-concept-of-the-strategy-pattern/en-US.mdx -->
 
@@ -6384,13 +6494,13 @@ context.executeStrategy('someData'); // Output: Algorithm A was run on someData
 
 <!-- Update here: /questions/explain-the-concept-of-the-strategy-pattern/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-the-strategy-pattern/en-US.mdx)
 
+<br>
 
-
-### Command pattern and how is it used?
+### What is the Command pattern and how is it used?
 
 <!-- Update here: /questions/what-is-the-command-pattern-and-how-is-it-used/en-US.mdx -->
 
@@ -6432,11 +6542,11 @@ lightOnCommand.undo(); // Light is off
 
 <!-- Update here: /questions/what-is-the-command-pattern-and-how-is-it-used/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-command-pattern-and-how-is-it-used/en-US.mdx)
 
-
+<br>
 
 ### Why is extending built-in JavaScript objects not a good idea?
 
@@ -6448,13 +6558,13 @@ The only time you may want to extend a native object is when you want to create 
 
 <!-- Update here: /questions/why-is-extending-built-in-javascript-objects-not-a-good-idea/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/why-is-extending-built-in-javascript-objects-not-a-good-idea/en-US.mdx)
 
+<br>
 
-
-###  Cross-Site Scripting (XSS) and how can you prevent it?
+### What is Cross-Site Scripting (XSS) and how can you prevent it?
 
 <!-- Update here: /questions/what-is-cross-site-scripting-xss-and-how-can-you-prevent-it/en-US.mdx -->
 
@@ -6462,13 +6572,13 @@ Cross-Site Scripting (XSS) is a security vulnerability that allows attackers to 
 
 <!-- Update here: /questions/what-is-cross-site-scripting-xss-and-how-can-you-prevent-it/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-cross-site-scripting-xss-and-how-can-you-prevent-it/en-US.mdx)
 
+<br>
 
-
-###  Cross-Site Request Forgery (CSRF) and its mitigation techniques
+### Explain the concept of Cross-Site Request Forgery (CSRF) and its mitigation techniques
 
 <!-- Update here: /questions/explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques/en-US.mdx -->
 
@@ -6476,13 +6586,13 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious website tricks 
 
 <!-- Update here: /questions/explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-cross-site-request-forgery-csrf-and-its-mitigation-techniques/en-US.mdx)
 
+<br>
 
-
-###  prevent SQL injection vulnerabilities in JavaScript applications?
+### How can you prevent SQL injection vulnerabilities in JavaScript applications?
 
 <!-- Update here: /questions/how-can-you-prevent-sql-injection-vulnerabilities-in-javascript-applications/en-US.mdx -->
 
@@ -6490,13 +6600,13 @@ To prevent SQL injection vulnerabilities in JavaScript applications, always use 
 
 <!-- Update here: /questions/how-can-you-prevent-sql-injection-vulnerabilities-in-javascript-applications/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-prevent-sql-injection-vulnerabilities-in-javascript-applications/en-US.mdx)
 
+<br>
 
-
-###  some best practices for handling sensitive data in JavaScript?
+### What are some best practices for handling sensitive data in JavaScript?
 
 <!-- Update here: /questions/what-are-some-best-practices-for-handling-sensitive-data-in-javascript/en-US.mdx -->
 
@@ -6504,13 +6614,13 @@ Handling sensitive data in JavaScript requires careful attention to security pra
 
 <!-- Update here: /questions/what-are-some-best-practices-for-handling-sensitive-data-in-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-best-practices-for-handling-sensitive-data-in-javascript/en-US.mdx)
 
+<br>
 
-
-###  Content Security Policy (CSP) and how it enhances security
+### Explain the concept of Content Security Policy (CSP) and how it enhances security
 
 <!-- Update here: /questions/explain-the-concept-of-content-security-policy-csp-and-how-it-enhances-security/en-US.mdx -->
 
@@ -6522,13 +6632,13 @@ Content-Security-Policy: script-src 'self'
 
 <!-- Update here: /questions/explain-the-concept-of-content-security-policy-csp-and-how-it-enhances-security/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-content-security-policy-csp-and-how-it-enhances-security/en-US.mdx)
 
+<br>
 
-
-###  some common security headers and their purpose?
+### What are some common security headers and their purpose?
 
 <!-- Update here: /questions/what-are-some-common-security-headers-and-their-purpose/en-US.mdx -->
 
@@ -6543,13 +6653,13 @@ Security headers are HTTP response headers that help protect web applications fr
 
 <!-- Update here: /questions/what-are-some-common-security-headers-and-their-purpose/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-common-security-headers-and-their-purpose/en-US.mdx)
 
+<br>
 
-
-###  prevent clickjacking attacks?
+### How can you prevent clickjacking attacks?
 
 <!-- Update here: /questions/how-can-you-prevent-clickjacking-attacks/en-US.mdx -->
 
@@ -6565,13 +6675,13 @@ Content-Security-Policy: frame-ancestors 'self'
 
 <!-- Update here: /questions/how-can-you-prevent-clickjacking-attacks/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-prevent-clickjacking-attacks/en-US.mdx)
 
+<br>
 
-
-###  input validation and its importance in security
+### Explain the concept of input validation and its importance in security
 
 <!-- Update here: /questions/explain-the-concept-of-input-validation-and-its-importance-in-security/en-US.mdx -->
 
@@ -6579,13 +6689,13 @@ Input validation is the process of ensuring that user input is correct, safe, an
 
 <!-- Update here: /questions/explain-the-concept-of-input-validation-and-its-importance-in-security/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-input-validation-and-its-importance-in-security/en-US.mdx)
 
+<br>
 
-
-###  some tools and techniques for identifying security vulnerabilities in JavaScript code?
+### What are some tools and techniques for identifying security vulnerabilities in JavaScript code?
 
 <!-- Update here: /questions/what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code/en-US.mdx -->
 
@@ -6593,13 +6703,13 @@ To identify security vulnerabilities in JavaScript code, you can use static code
 
 <!-- Update here: /questions/what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-tools-and-techniques-for-identifying-security-vulnerabilities-in-javascript-code/en-US.mdx)
 
+<br>
 
-
-###  implement secure authentication and authorization in JavaScript applications?
+### How can you implement secure authentication and authorization in JavaScript applications?
 
 <!-- Update here: /questions/how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications/en-US.mdx -->
 
@@ -6607,13 +6717,13 @@ To implement secure authentication and authorization in JavaScript applications,
 
 <!-- Update here: /questions/how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-implement-secure-authentication-and-authorization-in-javascript-applications/en-US.mdx)
 
+<br>
 
-
-### Same-Origin Policy in JavaScript:
+### Explain the same-origin policy with regards to JavaScript
 
 <!-- Update here: /questions/explain-the-same-origin-policy-with-regards-to-javascript/en-US.mdx -->
 
@@ -6621,13 +6731,13 @@ The same-origin policy is a security measure implemented in web browsers to prev
 
 <!-- Update here: /questions/explain-the-same-origin-policy-with-regards-to-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-same-origin-policy-with-regards-to-javascript/en-US.mdx)
 
+<br>
 
-
-###  `'use strict';` in JavaScript for?
+### What is `'use strict';` in JavaScript for?
 
 <!-- Update here: /questions/what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it/en-US.mdx -->
 
@@ -6653,11 +6763,11 @@ Overall, the benefits outweigh the disadvantages and there is not really a need 
 
 <!-- Update here: /questions/what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it/en-US.mdx)
 
-
+<br>
 
 ### What tools and techniques do you use for debugging JavaScript code?
 
@@ -6685,13 +6795,13 @@ Some of the most commonly used tools and techniques for debugging JavaScript:
 
 <!-- Update here: /questions/what-tools-and-techniques-do-you-use-for-debugging-javascript-code/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-tools-and-techniques-do-you-use-for-debugging-javascript-code/en-US.mdx)
 
+<br>
 
-
-### JavaScript Garbage Collection Mechanisms?
+### How does JavaScript garbage collection work?
 
 <!-- Update here: /questions/how-does-javascript-garbage-collection-work/en-US.mdx -->
 
@@ -6714,13 +6824,13 @@ Different JavaScript engines (differs according to browsers) implement different
 
 <!-- Update here: /questions/how-does-javascript-garbage-collection-work/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-does-javascript-garbage-collection-work/en-US.mdx)
 
+<br>
 
-
-### SEO Strategies for Single Page Applications (SPAs)
+### Explain what a single page app is and how to make one SEO-friendly
 
 <!-- Update here: /questions/explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly/en-US.mdx -->
 
@@ -6728,13 +6838,13 @@ A single page application (SPA) is a web application that loads a single HTML pa
 
 <!-- Update here: /questions/explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-what-a-single-page-app-is-and-how-to-make-one-seo-friendly/en-US.mdx)
 
+<br>
 
-
-###  share code between JavaScript files?
+### How can you share code between JavaScript files?
 
 <!-- Update here: /questions/how-can-you-share-code-between-files/en-US.mdx -->
 
@@ -6766,13 +6876,13 @@ greet();
 
 <!-- Update here: /questions/how-can-you-share-code-between-files/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-share-code-between-files/en-US.mdx)
 
+<br>
 
-
-### Organizing JavaScript Code for Maintainability?
+### How do you organize your code?
 
 <!-- Update here: /questions/how-do-you-organize-your-code-module-pattern-classical-inheritance/en-US.mdx -->
 
@@ -6780,13 +6890,13 @@ I organize my code by following a modular approach, using a clear folder structu
 
 <!-- Update here: /questions/how-do-you-organize-your-code-module-pattern-classical-inheritance/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-organize-your-code-module-pattern-classical-inheritance/en-US.mdx)
 
+<br>
 
-
-###  some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
+### What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
 
 <!-- Update here: /questions/what-are-some-of-the-advantages-disadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript/en-US.mdx -->
 
@@ -6806,11 +6916,11 @@ Disadvantages:
 
 <!-- Update here: /questions/what-are-some-of-the-advantages-disadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-some-of-the-advantages-disadvantages-of-writing-javascript-code-in-a-language-that-compiles-to-javascript/en-US.mdx)
 
-
+<br>
 
 ### When would you use `document.write()`?
 
@@ -6820,12 +6930,8 @@ Disadvantages:
 
 <!-- Update here: /questions/when-would-you-use-document-write/en-US.mdx -->
 
-
+<br>
     
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/when-would-you-use-document-write/en-US.mdx)
 
-
-
-
-<!-- QUESTIONS:ALL:END -->
-
+<br>

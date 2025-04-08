@@ -19,5 +19,16 @@
 | [`Symbol` Type in JavaScript](#symbol-type-in-javascript) | [Server-Sent Events](#server-sent-events) | [Object Property Flags and Descriptors](#object-property-flags-and-descriptors) |
 | [Getters and Setters](#getters-and-setters) | [JavaScript Proxies](#javascript-proxies) | [Debugging Tools and Techniques](#debugging-tools-and-techniques) |
 | [Web Workers](#web-workers) | [Garbage Collection in JavaScript](#garbage-collection-in-javascript) |  |
+| [Variable Declarations](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const) | [Global Scope](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it) | [String to Number Conversion](#how-do-you-convert-a-string-to-a-number-in-javascript) |
+| [Template Literals](#what-are-template-literals-and-how-are-they-used) | [Tagged Templates](#explain-the-concept-of-tagged-templates) | [Spread Operator](#what-is-the-spread-operator-and-how-is-it-used) |
+| [Symbols](#what-are-symbols-used-for-in-javascript) | [Proxies](#what-are-proxies-in-javascript-used-for) | [Hoisting](#explain-the-concept-of-hoisting-in-javascript) |
+| [Hoisting: var, let, const](#explain-the-difference-in-hoisting-between-var-let-and-const) | [Function Hoisting](#how-does-hoisting-affect-function-declarations-and-expressions) | [Hoisting Issues](#what-are-the-potential-issues-caused-by-hoisting) |
+| [Avoiding Hoisting Problems](#how-can-you-avoid-problems-related-to-hoisting) | [Loose vs Strict Equality](#what-is-the-difference-between--and--in-javascript) | [Object & Array Iteration](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript) |
+| [Break & Continue](#what-is-the-purpose-of-the-break-and-continue-statements) | [Ternary Operator](#what-is-the-ternary-operator-and-how-is-it-used) | [Array Index Access](#how-do-you-access-the-index-of-an-element-in-an-array-during-iteration) |
+| [Switch Statement](#what-is-the-purpose-of-the-switch-statement) | [Rest Parameters](#what-are-rest-parameters-and-how-are-they-used) | [Spread vs Rest Syntax](#explain-the-concept-of-the-spread-operator-and-its-uses) |
+| [Spread Syntax Benefits](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax) |  |  |
+
+
+
 
 <!-- TABLE_OF_CONTENTS:TOP:END -->

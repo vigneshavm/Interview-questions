@@ -5,11 +5,11 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [ JavaScript Data Types?](#JavaScript-Data-Types)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#null-undefined-or-undeclared)  | [let, var, const?](#let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [Template literals](#Template-literals)  | [Tagged Templates in JavaScript](#Tagged-Templates)  | 
-| [Spread operator?](#spread-operator) | [Data Types – Symbol?](#data-types--symbol) | [Proxies](#proxies) | [Hoisting](#hoisting) | [Hoisting - `var`, `let`, and `const`](#hoisting---var-let-and-const) | [Hoisting - function declarations and expressions](#hoisting---function-declarations-and-expressions) | [Hoisting - potential issues](#hoisting---potential-issues) | [Hoisting - avoid problems](#hoisting---avoid-problems) |
-| [`==` and `===`](#-and-) | [Iterating over Object Properties and Array Items in JavaScript](#iterating-over-object-properties-and-array-items-in-javascript) | [`break` and `continue` Statements](#break-and-continue-statements) | [Ternary Operator](#ternary-operator) | [Index of an Element in an Array During Iteration](#index-of-an-element-in-an-array-during-iteration) | [`switch` Statement](#switch-statement) | [Rest Parameters](#rest-parameters) | [Spread Operator](#spread-operator) |
-| [Spread and Rest Syntax](#spread-and-rest-syntax) | [Iterators and Generators](#iterators-and-generators) | [`foo` in `function foo() {}` vs. `var foo = function() {}`](#foo-in-function-foo--vs-var-foo--function) | [Parameter vs. Argument](#parameter-vs-argument) | [Hoisting](#hoisting) | [`.call` and `.apply`](#call-and-apply) | [Arrow Function Syntax](#arrow-function-syntax) | [Function Declaration vs. Function Call vs. Constructor Call](#function-declaration-vs-function-call-vs-constructor-call) |
+| [Spread and Rest operator?](#spread-operator) | [Rest Parameters](#rest-parameters)  | [Data Types – Symbol?](#data-types--symbol) | [Proxies](#proxies) | [Hoisting](#hoisting) | [Hoisting - `var`, `let`, and `const`](#hoisting---var-let-and-const) | [Hoisting - function declarations and expressions](#hoisting---function-declarations-and-expressions) | [Hoisting - potential issues](#hoisting---potential-issues) | [Hoisting - avoid problems](#hoisting---avoid-problems) |
+| [`==` and `===`](#-and-) | [Iterating over Object Properties and Array Items in JavaScript](#iterating-over-object-properties-and-array-items-in-javascript) | [`break` and `continue` Statements](#break-and-continue-statements) | [Ternary Operator](#ternary-operator) | [Index of an Element in an Array During Iteration](#index-of-an-element-in-an-array-during-iteration) | [`switch` Statement](#switch-statement)  |
+| [Iterators and Generators](#iterators-and-generators) | [`foo` in `function foo() {}` vs. `var foo = function() {}`](#foo-in-function-foo--vs-var-foo--function) | [Parameter vs. Argument](#parameter-vs-argument) | [Hoisting](#hoisting) | [`.call` and `.apply`](#call-and-apply) | [Arrow Function Syntax](#arrow-function-syntax) | [Function Declaration vs. Function Call vs. Constructor Call](#function-declaration-vs-function-call-vs-constructor-call) |
 | [Higher-Order Functions](#higher-order-functions) | [Callback Functions](#callback-functions) | [Anonymous Functions - Use Cases](#anonymous-functions---use-cases) | [Recursion](#recursion) | [Default Parameters](#default-parameters) | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions-iife) | [Creating Objects - Various Ways](#creating-objects---various-ways) | [Dot Notation vs. Bracket Notation](#dot-notation-vs-bracket-notation) |
-| [Array Iteration Methods](#array-iteration-methods) | [Managing Array Elements](#managing-array-elements) | [Copying Objects and Arrays](#copying-objects-and-arrays) | [Shallow vs. Deep Copy](#shallow-vs-deep-copy) | [Spread Operator with Arrays and Objects](#spread-operator-with-arrays-and-objects) | [Checking Object Properties](#checking-object-properties) | [Mutable vs. Immutable Objects](#mutable-vs-immutable-objects) | [Destructuring Assignment](#destructuring-assignment) |
+| [Array Iteration Methods](#array-iteration-methods) | [Managing Array Elements](#managing-array-elements) | [Copying Objects and Arrays](#copying-objects-and-arrays) | [Shallow vs. Deep Copy](#shallow-vs-deep-copy)  | [Checking Object Properties](#checking-object-properties) | [Mutable vs. Immutable Objects](#mutable-vs-immutable-objects) | [Destructuring Assignment](#destructuring-assignment) |
 | [Object.freeze()](#objectfreeze) | [Object.seal()](#objectseal) | [Object.preventExtensions()](#objectpreventextensions) | [Getters and Setters](#getters-and-setters) | [Object Property Flags](#object-property-flags) | [Check if Object is Empty](#check-if-object-is-empty) | [Event Loop](#event-loop) | [Synchronous vs Asynchronous Functions](#synchronous-vs-asynchronous-functions) |
 | [Callback Functions](#callback-functions) | [Promises](#promises) | [Promise States](#promise-states) | [Pros and Cons of Promises](#pros-and-cons-of-promises) | [Promise.all()](#promiseall) | [Promise.all() vs Promise.allSettled()](#promiseall-vs-promiseallsettled) | [Async/Await](#asyncawait) | [Handling Errors in Asynchronous Operations](#handling-errors-in-asynchronous-operations) |
 | [Microtask Queue](#microtask-queue) | [`setTimeout()`, `setImmediate()`, and `process.nextTick()`](#settimeout-setimmediate-and-processnexttick) | [Inheritance](#inheritance) | [Prototype Chain](#prototype-chain) | [Classical vs. Prototypal Inheritance](#classical-vs-prototypal-inheritance) | [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes) | [`new` Keyword](#new-keyword) | [Constructor Function](#constructor-function) |
@@ -36,16 +36,267 @@
 
 
 
-## All Questions with Answers
-
-<!-- QUESTIONS:ALL:START -->
 
 
+## JavaScript Data Types
 
+<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
+
+In JavaScript, data types can be categorized into `primitive` and `non-primitive` types:
+
+**Primitive data types**
+
+- **Number**: Represents both integers and floating-point numbers.
+- **String**: Represents sequences of characters.
+- **Boolean**: Represents `true` or `false` values.
+- **Undefined**: A variable that has been declared but not assigned a value.
+- **Null**: Represents the intentional absence of any object value.
+- **Symbol**: A unique and immutable value used as object property keys. Read more in our [deep dive on `Symbol`s](https://greatfrontend.com/questions/quiz/what-are-symbols-used-for)
+- **BigInt**: Represents integers with arbitrary precision.
+
+**Non-primitive (Reference) data types**
+
+- **Object**: Used to store collections of data.
+- **Array**: An ordered collection of data.
+- **Function**: A callable object.
+- **Date**: Represents dates and times.
+- **RegExp**: Represents regular expressions.
+- **Map**: A collection of keyed data items.
+- **Set**: A collection of unique values.
+
+The primitive types store a single value, while non-primitive types can store collections of data or complex entities.
+
+<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
+
+<br>
+
+### How do you check the data type of a variable?
+
+<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
+
+To check the data type of a variable in JavaScript, you can use the `typeof` operator. For example, `typeof variableName` will return a string indicating the type of the variable, such as `"string"`, `"number"`, `"boolean"`, `"object"`, `"function"`, `"undefined"`, or `"symbol"`. For arrays and `null`, you can use `Array.isArray(variableName)` and `variableName === null`, respectively.
+
+<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
+
+<br>
+    
+### `null`, `undefined` or undeclared?
+
+<!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
+
+| Trait | `null` | `undefined` | Undeclared |
+| --- | --- | --- | --- |
+| Meaning | Explicitly set by the developer to indicate that a variable has no value | Variable has been declared but not assigned a value | Variable has not been declared at all |
+| Type (via `typeof` operator) | `'object'` | `'undefined'` | `'undefined'` |
+| Equality Comparison | `null == undefined` is `true` | `undefined == null` is `true` | Throws a `ReferenceError` |
+
+<!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
+
+<br>
+
+
+### `let`, `var` or `const`?
+
+<!-- Update here: /questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx -->
+
+In JavaScript, `let`, `var`, and `const` are all keywords used to declare variables, but they differ significantly in terms of scope, initialization rules, whether they can be redeclared or reassigned and the behavior when they are accessed before declaration:
+
+| Behavior | `var` | `let` | `const` |
+| --- | --- | --- | --- |
+| Scope | Function or Global | Block | Block |
+| Initialization | Optional | Optional | Required |
+| Redeclaration | Yes | No | No |
+| Reassignment | Yes | Yes | No |
+| Accessing before declaration | `undefined` | `ReferenceError` | `ReferenceError` |
+
+<!-- Update here: /questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx -->
+
+<br>
+
+### Why is it, in general, a good idea to leave the global JavaScript scope of a website as-is and never touch it?
+
+<!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
+
+JavaScript that is executed in the browser has access to the global scope (the `window` object). In general it's a good software engineering practice to not pollute the global namespace unless you are working on a feature that truly needs to be global – it is needed by the entire page. Several reasons to avoid touching the global scope:
+
+- **Naming conflicts**: Sharing the global scope across scripts can cause conflicts and bugs when new global variables or changes are introduced.
+- **Cluttered global namespace**: Keeping the global namespace minimal avoids making the codebase hard to manage and maintain.
+- **Scope leaks**: Unintentional references to global variables in closures or event handlers can cause memory leaks and performance issues.
+- **Modularity and encapsulation**: Good design promotes keeping variables and functions within their specific scopes, enhancing organization, reusability, and maintainability.
+- **Security concerns**: Global variables are accessible by all scripts, including potentially malicious ones, posing security risks, especially if sensitive data is stored there.
+- **Compatibility and portability**: Heavy reliance on global variables reduces code portability and integration ease with other libraries or frameworks.
+
+Follow these best practices to avoid global scope pollution:
+
+- **Use local variables**: Declare variables within functions or blocks using `var`, `let`, or `const` to limit their scope.
+- **Pass variables as function parameters**: Maintain encapsulation by passing variables as parameters instead of accessing them globally.
+- **Use immediately invoked function expressions (IIFE)**: Create new scopes with IIFEs to prevent adding variables to the global scope.
+- **Use modules**: Encapsulate code with module systems to maintain separate scopes and manageability.
+
+<!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
+
+<br>
+
+### How do you convert a string to a number in JavaScript?
+
+<!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
+
+In JavaScript, you can convert a string to a number using several methods. The most common ones are `Number()`, `parseInt()`, `parseFloat()`, and the unary plus operator (`+`). For example, `Number("123")` converts the string `"123"` to the number `123`, and `parseInt("123.45")` converts the string `"123.45"` to the integer `123`.
+
+<!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
+
+<br>
+
+
+
+### Template literals
+
+<!-- Update here: /questions/what-are-template-literals-and-how-are-they-used/en-US.mdx -->
+
+Template literals are a feature in JavaScript that allow for easier string interpolation and multi-line strings. They are enclosed by backticks (`` ` ``) instead of single or double quotes. You can embed expressions within template literals using `${expression}` syntax.
+
+Example:
+
+```js live
+const myName = 'John';
+const greeting = `Hello, ${myName}!`;
+console.log(greeting); // Output: Hello, John!
+```
+
+<!-- Update here: /questions/what-are-template-literals-and-how-are-they-used/en-US.mdx -->
+
+<br>
+    
+
+
+<br>
+
+### Tagged Templates
+
+<!-- Update here: /questions/explain-the-concept-of-tagged-templates/en-US.mdx -->
+
+Tagged templates in JavaScript allow you to parse template literals with a function. The function receives the literal strings and the values as arguments, enabling custom processing of the template. For example:
+
+```js live
+function tag(strings, ...values) {
+  return strings[0] + values[0] + strings[1] + values[1] + strings[2];
+}
+
+const result = tag`Hello ${'world'}! How are ${'you'}?`;
+console.log(result); // "Hello world! How are you?"
+```
+
+<!-- Update here: /questions/explain-the-concept-of-tagged-templates/en-US.mdx -->
+
+<br>
+
+    
 
 ## Spread operator
 
-*Content for Spread operator section*
+**Spread syntax** (`...`) allows an iterable (like an array or string) to be expanded into individual elements. This is often used as a convenient and modern way to create new arrays or objects by combining existing ones.
+
+| Operation      | Traditional                     | Spread                 |
+| -------------- | ------------------------------- | ---------------------- |
+| Array cloning  | `arr.slice()`                   | `[...arr]`             |
+| Array merging  | `arr1.concat(arr2)`             | `[...arr1, ...arr2]`   |
+| Object cloning | `Object.assign({}, obj)`        | `{ ...obj }`           |
+| Object merging | `Object.assign({}, obj1, obj2)` | `{ ...obj1, ...obj2 }` |
+
+**Rest syntax** is the opposite of what spread syntax does. It collects a variable number of arguments into an array. This is often used in function parameters to handle a dynamic number of arguments.
+
+```js live
+// Using rest syntax in a function
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(sum(1, 2, 3)); // Output: 6
+```
+
+The spread operator, represented by three dots (`...`), is used in JavaScript to expand iterable objects like arrays or strings into individual elements. It can also be used to spread object properties. For example, you can use it to combine arrays, copy arrays, or pass array elements as arguments to a function.
+
+```js live
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combined = [...arr1, ...arr2];
+console.log(combined); // [1, 2, 3, 4, 5, 6]
+
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3, d: 4 };
+const combinedObj = { ...obj1, ...obj2 };
+console.log(combinedObj); // { a: 1, b: 2, c: 3, d: 4 }
+```
+
+The spread operator (`...`) in JavaScript allows you to expand elements of an iterable (like an array or object) into individual elements. It is commonly used for copying arrays or objects, merging arrays or objects, and passing elements of an array as arguments to a function.
+
+```js live
+// Copying an array
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1];
+console.log(arr2); // Output: [1, 2, 3]
+
+// Merging arrays
+const arr3 = [4, 5, 6];
+const mergedArray = [...arr1, ...arr3];
+console.log(mergedArray); // Output: [1, 2, 3, 4, 5, 6]
+
+// Copying an object
+const obj1 = { a: 1, b: 2 };
+const obj2 = { ...obj1 };
+console.log(obj2); // Output: { a: 1, b: 2 }
+
+// Merging objects
+const obj3 = { c: 3, d: 4 };
+const mergedObject = { ...obj1, ...obj3 };
+console.log(mergedObject); // Output: { a: 1, b: 2, c: 3, d: 4 }
+
+// Passing array elements as function arguments
+const sum = (x, y, z) => x + y + z;
+const numbers = [1, 2, 3];
+console.log(sum(...numbers)); // Output: 6
+```
+
+
+
+**Spread syntax** (`...`) allows an iterable (like an array or string) to be expanded into individual elements. This is often used as a convenient and modern way to create new arrays or objects by combining existing ones.
+
+| Operation      | Traditional                     | Spread                 |
+| -------------- | ------------------------------- | ---------------------- |
+| Array cloning  | `arr.slice()`                   | `[...arr]`             |
+| Array merging  | `arr1.concat(arr2)`             | `[...arr1, ...arr2]`   |
+| Object cloning | `Object.assign({}, obj)`        | `{ ...obj }`           |
+| Object merging | `Object.assign({}, obj1, obj2)` | `{ ...obj1, ...obj2 }` |
+
+**Rest syntax** is the opposite of what spread syntax does. It collects a variable number of arguments into an array. This is often used in function parameters to handle a dynamic number of arguments.
+
+```js live
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(sum(1, 2, 3)); // Output: 6
+```
+
+The spread operator (`...`) in JavaScript allows you to easily copy arrays and objects, merge them, and add new elements or properties. It simplifies syntax and improves readability. For arrays, it can be used to concatenate or clone arrays. For objects, it can be used to merge objects or add new properties.
+
+```js live
+// Arrays
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5];
+console.log(arr2); // [1, 2, 3, 4, 5]
+
+// Objects
+const obj1 = { a: 1, b: 2 };
+const obj2 = { ...obj1, c: 3 };
+console.log(obj2); // { a: 1, b: 2, c: 3 }
+```
+
+
+<br>
+
+
+<br>
 
 ## Data Types – Symbol
 
@@ -104,9 +355,6 @@
 
 *Content for Rest Parameters section*
 
-## Spread Operator
-
-*Content for Spread Operator section*
 
 
 ### Hoisting
@@ -141,24 +389,7 @@ The following behavior summarizes the result of accessing the variables before t
 
 <br>
 
-### `let`, `var` or `const`?
 
-<!-- Update here: /questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx -->
-
-In JavaScript, `let`, `var`, and `const` are all keywords used to declare variables, but they differ significantly in terms of scope, initialization rules, whether they can be redeclared or reassigned and the behavior when they are accessed before declaration:
-
-| Behavior | `var` | `let` | `const` |
-| --- | --- | --- | --- |
-| Scope | Function or Global | Block | Block |
-| Initialization | Optional | Optional | Required |
-| Redeclaration | Yes | No | No |
-| Reassignment | Yes | Yes | No |
-| Accessing before declaration | `undefined` | `ReferenceError` | `ReferenceError` |
-
-<!-- Update here: /questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx -->
-
-<br>
-    
 
 <br>
 
@@ -318,19 +549,7 @@ Here's a table summarizing the 3 ways of loading `<script>`s in a HTML document.
 
 <br>
 
-### `null`, `undefined` or undeclared?
 
-<!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
-
-| Trait | `null` | `undefined` | Undeclared |
-| --- | --- | --- | --- |
-| Meaning | Explicitly set by the developer to indicate that a variable has no value | Variable has been declared but not assigned a value | Variable has not been declared at all |
-| Type (via `typeof` operator) | `'object'` | `'undefined'` | `'undefined'` |
-| Equality Comparison | `null == undefined` is `true` | `undefined == null` is `true` | Throws a `ReferenceError` |
-
-<!-- Update here: /questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx -->
-
-<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
@@ -1176,29 +1395,7 @@ The only time you may want to extend a native object is when you want to create 
 
 <br>
 
-### Why is it, in general, a good idea to leave the global JavaScript scope of a website as-is and never touch it?
 
-<!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
-
-JavaScript that is executed in the browser has access to the global scope (the `window` object). In general it's a good software engineering practice to not pollute the global namespace unless you are working on a feature that truly needs to be global – it is needed by the entire page. Several reasons to avoid touching the global scope:
-
-- **Naming conflicts**: Sharing the global scope across scripts can cause conflicts and bugs when new global variables or changes are introduced.
-- **Cluttered global namespace**: Keeping the global namespace minimal avoids making the codebase hard to manage and maintain.
-- **Scope leaks**: Unintentional references to global variables in closures or event handlers can cause memory leaks and performance issues.
-- **Modularity and encapsulation**: Good design promotes keeping variables and functions within their specific scopes, enhancing organization, reusability, and maintainability.
-- **Security concerns**: Global variables are accessible by all scripts, including potentially malicious ones, posing security risks, especially if sensitive data is stored there.
-- **Compatibility and portability**: Heavy reliance on global variables reduces code portability and integration ease with other libraries or frameworks.
-
-Follow these best practices to avoid global scope pollution:
-
-- **Use local variables**: Declare variables within functions or blocks using `var`, `let`, or `const` to limit their scope.
-- **Pass variables as function parameters**: Maintain encapsulation by passing variables as parameters instead of accessing them globally.
-- **Use immediately invoked function expressions (IIFE)**: Create new scopes with IIFEs to prevent adding variables to the global scope.
-- **Use modules**: Encapsulate code with module systems to maintain separate scopes and manageability.
-
-<!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
-
-<br>
     
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
@@ -1348,34 +1545,7 @@ There are also other inbuilt methods available which are suitable for specific s
 
 <br>
 
-### spread and rest syntax
 
-<!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
-
-**Spread syntax** (`...`) allows an iterable (like an array or string) to be expanded into individual elements. This is often used as a convenient and modern way to create new arrays or objects by combining existing ones.
-
-| Operation      | Traditional                     | Spread                 |
-| -------------- | ------------------------------- | ---------------------- |
-| Array cloning  | `arr.slice()`                   | `[...arr]`             |
-| Array merging  | `arr1.concat(arr2)`             | `[...arr1, ...arr2]`   |
-| Object cloning | `Object.assign({}, obj)`        | `{ ...obj }`           |
-| Object merging | `Object.assign({}, obj1, obj2)` | `{ ...obj1, ...obj2 }` |
-
-**Rest syntax** is the opposite of what spread syntax does. It collects a variable number of arguments into an array. This is often used in function parameters to handle a dynamic number of arguments.
-
-```js live
-// Using rest syntax in a function
-function sum(...numbers) {
-  return numbers.reduce((total, num) => total + num, 0);
-}
-
-console.log(sum(1, 2, 3)); // Output: 6
-```
-
-<!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
-
-<br>
-    
 > Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
 
 [Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx)
@@ -1953,52 +2123,13 @@ Different JavaScript engines (differs according to browsers) implement different
 <br>
 
 
-### JavaScript Data Types
 
-<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
-
-In JavaScript, data types can be categorized into `primitive` and `non-primitive` types:
-
-**Primitive data types**
-
-- **Number**: Represents both integers and floating-point numbers.
-- **String**: Represents sequences of characters.
-- **Boolean**: Represents `true` or `false` values.
-- **Undefined**: A variable that has been declared but not assigned a value.
-- **Null**: Represents the intentional absence of any object value.
-- **Symbol**: A unique and immutable value used as object property keys. Read more in our [deep dive on `Symbol`s](https://greatfrontend.com/questions/quiz/what-are-symbols-used-for)
-- **BigInt**: Represents integers with arbitrary precision.
-
-**Non-primitive (Reference) data types**
-
-- **Object**: Used to store collections of data.
-- **Array**: An ordered collection of data.
-- **Function**: A callable object.
-- **Date**: Represents dates and times.
-- **RegExp**: Represents regular expressions.
-- **Map**: A collection of keyed data items.
-- **Set**: A collection of unique values.
-
-The primitive types store a single value, while non-primitive types can store collections of data or complex entities.
-
-<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
-
-<br>
     
 
 
 <br>
 
-### How do you check the data type of a variable?
 
-<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
-
-To check the data type of a variable in JavaScript, you can use the `typeof` operator. For example, `typeof variableName` will return a string indicating the type of the variable, such as `"string"`, `"number"`, `"boolean"`, `"object"`, `"function"`, `"undefined"`, or `"symbol"`. For arrays and `null`, you can use `Array.isArray(variableName)` and `variableName === null`, respectively.
-
-<!-- Update here: /questions/what-are-the-various-data-types-in-javascript/en-US.mdx -->
-
-<br>
-    
 
 
 <br>
@@ -2070,85 +2201,14 @@ Follow these best practices to avoid global scope pollution:
 
 <br>
 
-### How do you convert a string to a number in JavaScript?
-
-<!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
-
-In JavaScript, you can convert a string to a number using several methods. The most common ones are `Number()`, `parseInt()`, `parseFloat()`, and the unary plus operator (`+`). For example, `Number("123")` converts the string `"123"` to the number `123`, and `parseInt("123.45")` converts the string `"123.45"` to the integer `123`.
-
-<!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
-
-<br>
 
 
 <br>
 
-### Template literals
 
-<!-- Update here: /questions/what-are-template-literals-and-how-are-they-used/en-US.mdx -->
-
-Template literals are a feature in JavaScript that allow for easier string interpolation and multi-line strings. They are enclosed by backticks (`` ` ``) instead of single or double quotes. You can embed expressions within template literals using `${expression}` syntax.
-
-Example:
-
-```js live
-const myName = 'John';
-const greeting = `Hello, ${myName}!`;
-console.log(greeting); // Output: Hello, John!
-```
-
-<!-- Update here: /questions/what-are-template-literals-and-how-are-they-used/en-US.mdx -->
-
-<br>
-    
 
 
 <br>
-
-### Tagged Templates
-
-<!-- Update here: /questions/explain-the-concept-of-tagged-templates/en-US.mdx -->
-
-Tagged templates in JavaScript allow you to parse template literals with a function. The function receives the literal strings and the values as arguments, enabling custom processing of the template. For example:
-
-```js live
-function tag(strings, ...values) {
-  return strings[0] + values[0] + strings[1] + values[1] + strings[2];
-}
-
-const result = tag`Hello ${'world'}! How are ${'you'}?`;
-console.log(result); // "Hello world! How are you?"
-```
-
-<!-- Update here: /questions/explain-the-concept-of-tagged-templates/en-US.mdx -->
-
-<br>
-    
-
-
-<br>
-
-### Spread operator?
-
-
-
-<!-- Update here: /questions/what-is-the-spread-operator-and-how-is-it-used/en-US.mdx -->
-
-The spread operator, represented by three dots (`...`), is used in JavaScript to expand iterable objects like arrays or strings into individual elements. It can also be used to spread object properties. For example, you can use it to combine arrays, copy arrays, or pass array elements as arguments to a function.
-
-```js live
-const arr1 = [1, 2, 3];
-const arr2 = [4, 5, 6];
-const combined = [...arr1, ...arr2];
-console.log(combined); // [1, 2, 3, 4, 5, 6]
-
-const obj1 = { a: 1, b: 2 };
-const obj2 = { c: 3, d: 4 };
-const combinedObj = { ...obj1, ...obj2 };
-console.log(combinedObj); // { a: 1, b: 2, c: 3, d: 4 }
-```
-
-<!-- Update here: /questions/what-is-the-spread-operator-and-how-is-it-used/en-US.mdx -->
 
 
 
@@ -2566,77 +2626,7 @@ console.log(sum(1, 2, 3, 4)); // Output: 10
 
 <br>
 
-### spread operator
 
-<!-- Update here: /questions/explain-the-concept-of-the-spread-operator-and-its-uses/en-US.mdx -->
-
-The spread operator (`...`) in JavaScript allows you to expand elements of an iterable (like an array or object) into individual elements. It is commonly used for copying arrays or objects, merging arrays or objects, and passing elements of an array as arguments to a function.
-
-```js live
-// Copying an array
-const arr1 = [1, 2, 3];
-const arr2 = [...arr1];
-console.log(arr2); // Output: [1, 2, 3]
-
-// Merging arrays
-const arr3 = [4, 5, 6];
-const mergedArray = [...arr1, ...arr3];
-console.log(mergedArray); // Output: [1, 2, 3, 4, 5, 6]
-
-// Copying an object
-const obj1 = { a: 1, b: 2 };
-const obj2 = { ...obj1 };
-console.log(obj2); // Output: { a: 1, b: 2 }
-
-// Merging objects
-const obj3 = { c: 3, d: 4 };
-const mergedObject = { ...obj1, ...obj3 };
-console.log(mergedObject); // Output: { a: 1, b: 2, c: 3, d: 4 }
-
-// Passing array elements as function arguments
-const sum = (x, y, z) => x + y + z;
-const numbers = [1, 2, 3];
-console.log(sum(...numbers)); // Output: 6
-```
-
-<!-- Update here: /questions/explain-the-concept-of-the-spread-operator-and-its-uses/en-US.mdx -->
-
-<br>
-
-
-<br>
-
-### spread and rest syntax
-
-<!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
-
-**Spread syntax** (`...`) allows an iterable (like an array or string) to be expanded into individual elements. This is often used as a convenient and modern way to create new arrays or objects by combining existing ones.
-
-| Operation      | Traditional                     | Spread                 |
-| -------------- | ------------------------------- | ---------------------- |
-| Array cloning  | `arr.slice()`                   | `[...arr]`             |
-| Array merging  | `arr1.concat(arr2)`             | `[...arr1, ...arr2]`   |
-| Object cloning | `Object.assign({}, obj)`        | `{ ...obj }`           |
-| Object merging | `Object.assign({}, obj1, obj2)` | `{ ...obj1, ...obj2 }` |
-
-**Rest syntax** is the opposite of what spread syntax does. It collects a variable number of arguments into an array. This is often used in function parameters to handle a dynamic number of arguments.
-
-```js live
-// Using rest syntax in a function
-function sum(...numbers) {
-  return numbers.reduce((total, num) => total + num, 0);
-}
-
-console.log(sum(1, 2, 3)); // Output: 6
-```
-
-<!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
-
-<br>
-    
-
-
-<br>
 
 ### iterators and generators
 
@@ -3189,27 +3179,7 @@ console.log(obj2.b.c); // Output: 2 (original nested object remains unchanged)
 
 <br>
 
-### spread operator with arrays and objects
 
-<!-- Update here: /questions/what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects/en-US.mdx -->
-
-The spread operator (`...`) in JavaScript allows you to easily copy arrays and objects, merge them, and add new elements or properties. It simplifies syntax and improves readability. For arrays, it can be used to concatenate or clone arrays. For objects, it can be used to merge objects or add new properties.
-
-```js live
-// Arrays
-const arr1 = [1, 2, 3];
-const arr2 = [...arr1, 4, 5];
-console.log(arr2); // [1, 2, 3, 4, 5]
-
-// Objects
-const obj1 = { a: 1, b: 2 };
-const obj2 = { ...obj1, c: 3 };
-console.log(obj2); // { a: 1, b: 2, c: 3 }
-```
-
-<!-- Update here: /questions/what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects/en-US.mdx -->
-
-<br>
 
 
 <br>

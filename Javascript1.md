@@ -9,8 +9,8 @@
 | [ JavaScript Data Types?](#what-are-the-various-data-types-in-javascript)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#whats-the-difference-between-a-javascript-variable-that-is-null-undefined-or-undeclared)  | [let, var, const?](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [What are template literals and how are they used?](#what-are-template-literals-and-how-are-they-used)  | [Tagged Templates in JavaScript](#explain-the-concept-of-tagged-templates)  | 
 | [Spread operator?](#what-is-the-spread-operator-and-how-is-it-used)  | [Data Types – Symbol?](#what-are-symbols-used-for-in-javascript)  | [What are proxies in JavaScript used for?](#what-are-proxies-in-javascript-used-for)  | [Explain the concept of "hoisting" in JavaScript](#explain-the-concept-of-hoisting-in-javascript)  | [Explain the difference in hoisting between `var`, `let`, and `const`](#explain-the-difference-in-hoisting-between-var-let-and-const)  | [How does hoisting affect function declarations and expressions?](#how-does-hoisting-affect-function-declarations-and-expressions)  | [What are the potential issues caused by hoisting?](#what-are-the-potential-issues-caused-by-hoisting)  | [How can you avoid problems related to hoisting?](#how-can-you-avoid-problems-related-to-hoisting)  | 
 | [What is the difference between `==` and `===` in JavaScript?](#what-is-the-difference-between--and--in-javascript)  | [What language constructs do you use for iterating over object properties and array items in JavaScript?](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript)  | [What is the purpose of the `break` and `continue` statements?](#what-is-the-purpose-of-the-break-and-continue-statements)  | [What is the ternary operator and how is it used?](#what-is-the-ternary-operator-and-how-is-it-used)  | [How do you access the index of an element in an array during iteration?](#how-do-you-access-the-index-of-an-element-in-an-array-during-iteration)  | [What is the purpose of the `switch` statement?](#what-is-the-purpose-of-the-switch-statement)  | [What are rest parameters and how are they used?](#what-are-rest-parameters-and-how-are-they-used)  | [Explain the concept of the spread operator and its uses](#explain-the-concept-of-the-spread-operator-and-its-uses)  | 
-| [What are the benefits of using spread syntax in JavaScript and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax)  | [What are iterators and generators in JavaScript and what are they used for?](#what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for)  | [Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}` in JavaScript](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function--in-javascript)  | [What is the difference between a parameter and an argument?](#what-is-the-difference-between-a-parameter-and-an-argument)  | [Explain the concept of hoisting with regards to functions](#explain-the-concept-of-hoisting-with-regards-to-functions)  | [What's the difference between `.call` and `.apply` in JavaScript?](#whats-the-difference-between-call-and-apply-in-javascript)  | [Can you offer a use case for the new arrow => function syntax?](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax)  | [Difference between: `function Person(){}`, `const person = Person()`, and `const person = new Person()` in JavaScript?](#difference-between-function-person-const-person--person-and-const-person--new-person-in-javascript)  | 
-| [What is the definition of a higher-order function in JavaScript?](#what-is-the-definition-of-a-higher-order-function-in-javascript)  | [What are callback functions and how are they used?](#what-are-callback-functions-and-how-are-they-used)  | [What's a typical use case for anonymous functions in JavaScript?](#whats-a-typical-use-case-for-anonymous-functions-in-javascript)  | [What is recursion and how is it used in JavaScript?](#what-is-recursion-and-how-is-it-used-in-javascript)  | [What are default parameters and how are they used?](#what-are-default-parameters-and-how-are-they-used)  | [Explain why the following doesn't work as an IIFE: `function foo(){}();`. What needs to be changed to properly make it an IIFE?](#explain-why-the-following-doesnt-work-as-an-iife-function-foo-what-needs-to-be-changed-to-properly-make-it-an-iife)  | [What are the various ways to create objects in JavaScript?](#what-are-the-various-ways-to-create-objects-in-javascript)  | [Explain the difference between dot notation and bracket notation for accessing object properties](#explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties)  | 
+| [spread and rest syntax](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax)  | [iterators and generators](#what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for)  | [`foo` between `function foo() {}` and `var foo = function() {}`](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function--in-javascript)  | [parameter Vs argument](#what-is-the-difference-between-a-parameter-and-an-argument)  | [hoisting](#explain-the-concept-of-hoisting-with-regards-to-functions)  | [`.call` and `.apply`](#whats-the-difference-between-call-and-apply-in-javascript)  | [new arrow => function syntax](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax)  | [Function declaration | Function call | Constructor call](#difference-between-function-person-const-person--person-and-const-person--new-person-in-javascript)  | 
+| [higher-order function](#what-is-the-definition-of-a-higher-order-function-in-javascript)  | [callback functions](#what-are-callback-functions-and-how-are-they-used)  | [anonymous functions - use case](#whats-a-typical-use-case-for-anonymous-functions-in-javascript)  | [recursion](#what-is-recursion-and-how-is-it-used-in-javascript)  | [default parameters](#what-are-default-parameters-and-how-are-they-used)  | [Immediately Invoked Function Expression](#explain-why-the-following-doesnt-work-as-an-iife-function-foo-what-needs-to-be-changed-to-properly-make-it-an-iife)  | [create objects - various ways](#what-are-the-various-ways-to-create-objects-in-javascript)  | [Explain the difference between dot notation and bracket notation for accessing object properties](#explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties)  | 
 | [array iterating](#what-are-the-different-methods-for-iterating-over-an-array)  | [array -  add, remove, and update elements?](#how-do-you-add-remove-and-update-elements-in-an-array)  | [copy an object or an array](#what-are-the-different-ways-to-copy-an-object-or-an-array)  | [shallow copy Vs deep copy](#explain-the-difference-between-shallow-copy-and-deep-copy)  | [spread operator with arrays and objects](#what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects)  | [Check object has a specific property](#how-do-you-check-if-an-object-has-a-specific-property)  | [mutable Vs immutable objects](#explain-the-difference-between-mutable-and-immutable-objects-in-javascript)  | [destructuring assignment for objects and arrays](#explain-the-concept-of-destructuring-assignment-for-objects-and-arrays)  | 
 | [Object.freeze()](#what-is-objectfreeze-for)  | [Object.seal()](#what-is-objectseal-for)  | [Object.preventExtensions()](#what-is-objectpreventextensions-for)  | [getters and setters](#what-are-javascript-object-getters-and-setters-for)  | [object property flags](#what-are-javascript-object-property-flags-and-descriptors)  | [Check object is empty](#how-do-you-reliably-determine-whether-an-object-is-empty)  | [event loop](#what-is-the-event-loop-in-javascript-runtimes)  | [synchronous Vs asynchronous functions](#explain-the-difference-between-synchronous-and-asynchronous-functions-in-javascript)  | 
 | [callback function](#explain-the-concept-of-a-callback-function-in-asynchronous-operations)  | [Promises](#what-are-promises-and-how-do-they-work)  | [Promises - states](#explain-the-different-states-of-a-promise)  | [Promises - pros and cons](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks-in-javascript)  | [Promise.all()](#what-is-the-use-of-promiseall)  | [`Promise.all()` Vs `Promise.allSettled()`](#how-is-promiseall-different-from-promiseallsettled)  | [async/await ](#what-is-asyncawait-and-how-does-it-simplify-asynchronous-code)  | [handle errors in asynchronous operations](#how-do-you-handle-errors-in-asynchronous-operations)  | 
@@ -285,7 +285,7 @@ Here's a table summarizing the 3 ways of loading `<script>`s in a HTML document.
 
 <br>
 
-### What's the difference between `.call` and `.apply` in JavaScript?
+### `.call` and `.apply`
 
 <!-- Update here: /questions/whats-the-difference-between-call-and-apply/en-US.mdx -->
 
@@ -451,7 +451,7 @@ Things to note are:
 
 <br>
 
-### Difference between: `function Person(){}`, `const person = Person()`, and `const person = new Person()` in JavaScript?
+### Function declaration | Function call | Constructor call
 
 <!-- Update here: /questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx -->
 
@@ -476,7 +476,7 @@ Things to note are:
 
 <br>
 
-### Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}` in JavaScript
+### `foo` between `function foo() {}` and `var foo = function() {}`
 
 <!-- Update here: /questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx -->
 
@@ -525,7 +525,7 @@ console.log(namedFunc); // ReferenceError: namedFunc is not defined
 
 <br>
 
-### What's a typical use case for anonymous functions in JavaScript?
+### anonymous functions - use case
 
 <!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
 
@@ -569,7 +569,7 @@ console.log(double); // [2, 4, 6]
 
 <br>
 
-### What are the various ways to create objects in JavaScript?
+### create objects - various ways
 
 <!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
 
@@ -634,7 +634,7 @@ Key points to remember:
 
 <br>
 
-### What is the definition of a higher-order function in JavaScript?
+### higher-order function
 
 <!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
 
@@ -1332,7 +1332,7 @@ There are also other inbuilt methods available which are suitable for specific s
 
 <br>
 
-### What are the benefits of using spread syntax in JavaScript and how is it different from rest syntax?
+### spread and rest syntax
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
 
@@ -1366,7 +1366,7 @@ console.log(sum(1, 2, 3)); // Output: 6
 
 <br>
 
-### What are iterators and generators in JavaScript and what are they used for?
+### iterators and generators
 
 <!-- Update here: /questions/what-are-iterators-and-generators-and-what-are-they-used-for/en-US.mdx -->
 
@@ -2609,7 +2609,7 @@ console.log(sum(...numbers)); // Output: 6
 
 <br>
 
-### What are the benefits of using spread syntax in JavaScript and how is it different from rest syntax?
+### spread and rest syntax
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx -->
 
@@ -2641,7 +2641,7 @@ console.log(sum(1, 2, 3)); // Output: 6
 
 <br>
 
-### What are iterators and generators in JavaScript and what are they used for?
+### iterators and generators
 
 <!-- Update here: /questions/what-are-iterators-and-generators-and-what-are-they-used-for/en-US.mdx -->
 
@@ -2710,7 +2710,7 @@ Generators are powerful for creating iterators on-demand, especially for infinit
 
 <br>
 
-### Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}` in JavaScript
+### `foo` between `function foo() {}` and `var foo = function() {}`
 
 <!-- Update here: /questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx -->
 
@@ -2757,7 +2757,7 @@ console.log(namedFunc); // ReferenceError: namedFunc is not defined
 
 <br>
 
-### What is the difference between a parameter and an argument?
+### parameter Vs argument
 
 <!-- Update here: /questions/what-is-the-difference-between-a-parameter-and-an-argument/en-US.mdx -->
 
@@ -2771,7 +2771,7 @@ A parameter is a variable in the declaration of a function, while an argument is
 
 <br>
 
-### Explain the concept of hoisting with regards to functions
+### hoisting
 
 <!-- Update here: /questions/explain-the-concept-of-hoisting-with-regards-to-functions/en-US.mdx -->
 
@@ -2799,7 +2799,7 @@ var nonHoistedFunction = function () {
 
 <br>
 
-### What's the difference between `.call` and `.apply` in JavaScript?
+### `.call` and `.apply`
 
 <!-- Update here: /questions/whats-the-difference-between-call-and-apply/en-US.mdx -->
 
@@ -2827,7 +2827,7 @@ console.log(add.apply(null, [1, 2])); // 3
 
 <br>
 
-### Can you offer a use case for the new arrow => function syntax?
+### new arrow => function syntax
 
 <!-- Update here: /questions/can-you-offer-a-use-case-for-the-new-arrow-function-syntax-how-does-this-new-syntax-differ-from-other-functions/en-US.mdx -->
 
@@ -2847,7 +2847,7 @@ console.log(doubled); // [2, 4, 6]
 
 <br>
 
-### Difference between: `function Person(){}`, `const person = Person()`, and `const person = new Person()` in JavaScript?
+### Function declaration | Function call | Constructor call
 
 <!-- Update here: /questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx -->
 
@@ -2870,7 +2870,7 @@ console.log(doubled); // [2, 4, 6]
 
 <br>
 
-### What is the definition of a higher-order function in JavaScript?
+### higher-order function
 
 <!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
 
@@ -2914,7 +2914,7 @@ console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
 
 <br>
 
-### What are callback functions and how are they used?
+### callback functions
 
 <!-- Update here: /questions/what-are-callback-functions-and-how-are-they-used/en-US.mdx -->
 
@@ -2942,7 +2942,7 @@ fetchData(handleData);
 
 <br>
 
-### What's a typical use case for anonymous functions in JavaScript?
+### anonymous functions - use case
 
 <!-- Update here: /questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx -->
 
@@ -2984,7 +2984,7 @@ console.log(double); // [2, 4, 6]
 
 <br>
 
-### What is recursion and how is it used in JavaScript?
+### recursion
 
 <!-- Update here: /questions/what-is-recursion-and-how-is-it-used-in-javascript/en-US.mdx -->
 
@@ -3009,7 +3009,7 @@ console.log(factorial(4)); // Output: 24
 
 <br>
 
-### What are default parameters and how are they used?
+### default parameters
 
 <!-- Update here: /questions/what-are-default-parameters-and-how-are-they-used/en-US.mdx -->
 
@@ -3032,7 +3032,7 @@ greet('Alice'); // Output: Hello, Alice!
 
 <br>
 
-### Explain why the following doesn't work as an IIFE: `function foo(){}();`. What needs to be changed to properly make it an IIFE?
+### Immediately Invoked Function Expression
 
 <!-- Update here: /questions/explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife/en-US.mdx -->
 
@@ -3046,7 +3046,7 @@ The code `function foo(){}();` doesn't work as an Immediately Invoked Function E
 
 <br>
 
-### What are the various ways to create objects in JavaScript?
+### create objects - various ways
 
 <!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
 

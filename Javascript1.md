@@ -1,161 +1,49 @@
+# JavaScript Interview Topics
 
-###  Hoisting in JavaScript
-###  Differences between `let`, `var`, and `const`
-###  Difference between `==` and `===`
-###  Event loop in JavaScript runtimes
-###  Event delegation
-###  How `this` works
-###  Cookies vs `sessionStorage` vs `localStorage`
-###  `<script>`, `<script async>`, `<script defer>` differences
-###  Difference between `null`, `undefined`, and undeclared
-###  Difference between `.call()` and `.apply()`
-###  `Function.prototype.bind`
-###  Arrow functions in constructors
-###  Prototypal inheritance
-###  `function Person() {}`, `const person = Person()`, `const person = new Person()`
-###  `function foo() {}` vs `var foo = function() {}`
-###  Ways to create objects
-
-
-###  Higher-order functions
-###  ES2015 classes vs ES5 constructors
-###  Event bubbling
-###  Event capturing
-###  `mouseenter` vs `mouseover`
-###  Synchronous vs asynchronous functions
-###  Callback functions
-###  Closures & private variables
-###  Debouncing and throttling
-###  Destructuring assignment
-###  Hoisting with functions
-###  Lexical scoping
-###  JavaScript scope (global, function, block)
-###  `this` binding in event handlers
-
-
-###  Inheritance in ES2015 classes
-###  Prototypal vs classical inheritance
-###  Pattern
-**Singleton pattern**
-**Strategy pattern**
-**Factory pattern**
-**Decorator pattern**
-**Command pattern**
-**Module pattern**
-
-## Operators (Spread,Rest,...)
-
-###  Default parameters
-###  Tagged templates
-
-## DOM & Events
-###  `document.querySelector()` vs `document.getElementById()`
-###  Dot notation vs bracket notation
-###  Document load vs DOMContentLoaded
-###  Prevent default behavior of an event
-###  Event phases in browsers
-
-
-###  AJAX (detailed explanation)
-###  Advantages & disadvantages of AJAX
-###  `XMLHttpRequest` vs `fetch()`
-###  `Promise.all()`
-###  `Promise.allSettled()` vs `Promise.all()`
-###  Microtask queue
-###  Async/await
-###  AbortController
-###  JSONP
-###  Web Socket API
-###  Server-sent events
-
-
-###  Error propagation
-###  `try...catch`
-###  `finally` block
-###  Handling errors in async operations
-###  Creating custom error objects
-
-
-###  Cross-Site Scripting (XSS)
-###  Cross-Site Request Forgery (CSRF)
-###  Input validation
-###  Secure authentication & authorization
-###  Prevent SQL injection
-###  Content Security Policy (CSP)
-###  Clickjacking attacks
-
-## Storage & Data Types
-###  JavaScript data types
-###  Symbols
-###  Getters and setters
-###  `Object.freeze()`, `Object.preventExtensions()`, `Object.seal()`
-###  Mutable vs immutable objects
-###  Equality in Sets and Maps
-
-
-###  Iterating over objects and arrays
-###  `for`, `forEach`, `map`, etc.
-###  Accessing array indices
-###  Adding, removing, updating DOM elements
-###  Modifying arrays
-###  Checking object properties
-###  Checking data types
-###  Converting Set to array
-###  String to number conversion
-###  Getting query string values
-###  Empty object detection
-
-
-###  Import/export modules
-###  Code sharing across files
-###  CommonJS vs ES Modules
-###  AMD vs CommonJS
-###  Metadata fields of a module
-###  Tree shaking
-###  Module bundlers
-
-## Performance
-###  Caching
-###  Lazy loading
-###  Code organization
-###  DOM optimization
-###  Network request optimization
-###  Reducing reflows and repaints
-###  Measuring and analyzing JS performance
-###  Garbage collection
-###  Web Workers
-
-## Best Practices & Testing
-###  Using `use strict`
-###  JavaScript polyfills
-###  Testing frameworks
-###  Unit vs integration vs E2E testing
-###  TDD
-###  Mocks and stubs
-###  Maintainable test writing
-###  Handling sensitive data
-###  Identifying security vulnerabilities
-
-
-###  Currying vs partial application
-###  Anonymous functions
-###  Use cases for arrow functions
-###  Partial application examples
-
-
-###  Iterators and generators
-###  Observers
-###  Singleton vs Factory
-###  Same-origin policy
-###  SEO-friendly SPAs
-###  Immutable data structures
-###  Object property flags and descriptors
-###  Proxy objects
-###  Workers
-###  Window vs Document
-###  `setTimeout()`, `setImmediate()`, `process.nextTick()`
-###  JSONP
-###  Using `<iframe>` communication
-###  Detecting JS disabled state
-###  `window.history` API
-###  `document.write()` usage
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Hoisting in JavaScript | Differences between `let`, `var`, and `const` | Difference between `==` and `===` |
+| Event loop in JavaScript runtimes | Event delegation | How `this` works |
+| Cookies vs `sessionStorage` vs `localStorage` | `<script>`, `<script async>`, `<script defer>` | `null`, `undefined`, and undeclared |
+| `.call()` vs `.apply()` | `Function.prototype.bind` | Arrow functions in constructors |
+| Prototypal inheritance | `function Person()` etc. | `function foo()` vs `var foo = function()` |
+| Ways to create objects | Higher-order functions | ES2015 vs ES5 constructors |
+| Event bubbling | Event capturing | `mouseenter` vs `mouseover` |
+| Sync vs async functions | Callback functions | Closures & private variables |
+| Debouncing and throttling | Destructuring assignment | Hoisting with functions |
+| Lexical scoping | JavaScript scope | `this` in event handlers |
+| Inheritance in ES2015 | Prototypal vs classical inheritance | Prototype pattern |
+| Singleton pattern | Strategy pattern | Factory pattern |
+| Decorator pattern | Command pattern | Module pattern |
+| Spread operator | Rest syntax | Ternary operator |
+| Default parameters | Tagged templates | `querySelector()` vs `getElementById()` |
+| Dot vs bracket notation | Load vs DOMContentLoaded | Prevent default event |
+| Event phases in browsers | AJAX explained | AJAX pros & cons |
+| `XMLHttpRequest` vs `fetch()` | `Promise.all()` | `Promise.allSettled()` vs `Promise.all()` |
+| Microtask queue | Async/await | AbortController |
+| JSONP | Web Socket API | Server-sent events |
+| Error propagation | `try...catch` | `finally` block |
+| Async error handling | Custom error objects | XSS |
+| CSRF | Input validation | Secure auth |
+| SQL injection prevention | Content Security Policy | Clickjacking attacks |
+| Data types | Symbols | Getters & setters |
+| `Object.freeze()` etc. | Mutable vs immutable | Set/Map equality |
+| Object/array iteration | Loops & `map()` | DOM manipulation |
+| Array methods | Object property checks | Type checks |
+| Set to array | String to number | Query string parsing |
+| Empty object detection | Import/export modules | Sharing code across files |
+| CommonJS vs ES Modules | AMD vs CommonJS | Module metadata |
+| Tree shaking | Module bundlers | Caching |
+| Lazy loading | Code organization | DOM optimization |
+| Network optimization | Reflow/repaint reduction | Performance analysis |
+| Garbage collection | Web Workers | `use strict` |
+| Polyfills | Testing frameworks | Unit vs integration tests |
+| TDD | Mocks/stubs | Maintainable tests |
+| Sensitive data handling | Finding vulnerabilities | Currying vs partial app |
+| Anonymous functions | Arrow function use | Partial app examples |
+| Iterators & generators | Observers | Singleton vs Factory |
+| Same-origin policy | SEO-friendly SPAs | Immutable data |
+| Property descriptors | Proxy objects | Workers |
+| Window vs Document | `setTimeout()` etc. | JSONP |
+| `<iframe>` communication | Detect JS off | `window.history` |
+| `document.write()` usage |  |  |

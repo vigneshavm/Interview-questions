@@ -35,6 +35,15 @@
 
 
 
+
+
+## All Questions with Answers
+
+<!-- QUESTIONS:ALL:START -->
+
+
+
+
 ### Hoisting
 
 <!-- Update here: /questions/explain-hoisting/en-US.mdx -->
@@ -1878,12 +1887,6 @@ Different JavaScript engines (differs according to browsers) implement different
 
 <br>
 
-
-<!-- QUESTIONS:TOP:END -->
-
-## All Questions with Answers
-
-<!-- QUESTIONS:ALL:START -->
 
 ### JavaScript Data Types
 

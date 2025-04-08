@@ -17,12 +17,12 @@
 | [Global Scope, Function Scope, and Block Scope](#global-scope-function-scope-and-block-scope) | [How `this` Works in JavaScript](#how-this-works-in-javascript) | [`Function.prototype.bind`](#functionprototypebind) | [Different Ways to Bind `this`](#different-ways-to-bind-this) | [Common Pitfalls of the `this` Keyword](#common-pitfalls-of-the-this-keyword) | [`this` Binding in Event Handlers](#this-binding-in-event-handlers) | [What is the DOM and How is it Structured?](#what-is-the-dom-and-how-is-it-structured) | [Difference Between "Attribute" and "Property" in the DOM](#difference-between-attribute-and-property-in-the-dom) |
 | [document.querySelector() and document.getElementById()](#documentqueryselector-and-documentgetelementbyid) | [Add, Remove, and Modify HTML Elements Using JavaScript](#add-remove-and-modify-html-elements-using-javascript) | [Event Listeners](#event-listeners) | [Event Phases](#event-phases) | [Event Bubbling](#event-bubbling) | [Event Capturing](#event-capturing) | [Event Delegation](#event-delegation) | [Preventing the Default Behavior of Events](#preventing-the-default-behavior-of-events) | 
 | [event.preventDefault() vs event.stopPropagation()](#eventpreventdefault-vs-eventstoppropagation) | [mouseenter vs mouseover](#mouseenter-vs-mouseover) | [innerHTML vs textContent](#innerhtml-vs-textcontent) | [Manipulating CSS Styles Using JavaScript](#manipulating-css-styles-using-javascript) | [\<script\>, \<script async\>, and \<script defer\>](#script-script-async-and-script-defer) | [Window Object vs Document Object](#window-object-vs-document-object) | [Cookies, sessionStorage, and localStorage](#cookies-sessionstorage-and-localstorage) | [Making HTTP Requests Using the Fetch API](#making-http-requests-using-the-fetch-api) | 
-| [Different Ways to Make an API Call in JavaScript](#different-ways-to-make-an-api-call-in-javascript) |[AJAX](#ajax) | [Advantages and Disadvantages of Using AJAX](#advantages-and-disadvantages-of-using-ajax) |[Differences Between XMLHttpRequest and fetch()](#differences-between-xmlhttprequest-and-fetch) |[Using AbortController to Abort Web Requests](#using-abortcontroller-to-abort-web-requests)  | [How JSONP Works](#how-jsonp-works) | [Workers in JavaScript](#workers-in-javascript) |[The Web Socket API](#the-web-socket-api) |
+| [Different Ways to Make an API Call in JavaScript](#different-ways-to-make-an-api-call-in-javascript) |[AJAX](#ajax) | [Advantages and Disadvantages of Using AJAX](#advantages-and-disadvantages-of-using-ajax) |[Differences Between XMLHttpRequest and fetch()](#differences-between-xmlhttprequest-and-fetch) |[Using AbortController to Abort Web Requests](#using-abortcontroller-to-abort-web-requests)  | [How JSONP Works](#how-jsonp-works) | [Workers in JavaScript](#workers) |[The Web Socket API](#the-web-socket-api) | [Utilizing Web Workers for Performance Improvement](#utilizing-web-workers-for-performance-improvement) | 
 | [JavaScript Polyfills](#javascript-polyfills) | [Detecting if JavaScript is Disabled on a Page](#detecting-if-javascript-is-disabled-on-a-page) | [The `Intl` Namespace Object](#the-intl-namespace-object) | [Validating Form Elements Using the Constraint Validation API](#validating-form-elements-using-the-constraint-validation-api) | [Using the `window.history` API](#using-the-windowhistory-api) | [Communication Between iframes and Parent Pages](#communication-between-iframes-and-parent-pages) | [Difference Between `load` Event and `DOMContentLoaded` Event](#difference-between-load-event-and-domcontentloaded-event) | [Redirecting to a New Page in JavaScript](#redirecting-to-a-new-page-in-javascript) | 
 | [Retrieving Query String Values in JavaScript](#retrieving-query-string-values-in-javascript) | [Understanding Server-Sent Events](#understanding-server-sent-events) | [An Overview of Progressive Web Applications (PWAs)](#an-overview-of-progressive-web-applications-pwas) | [The Concept and Utility of Modules in JavaScript](#the-concept-and-utility-of-modules-in-javascript) | [Differences Between CommonJS and ES Modules](#differences-between-commonjs-and-es-modules) | [Techniques for Importing and Exporting Modules in JavaScript](#techniques-for-importing-and-exporting-modules-in-javascript) | [Advantages of Using Module Bundlers](#advantages-of-using-module-bundlers) | [Understanding Tree Shaking in Module Bundling](#understanding-tree-shaking-in-module-bundling) | 
 | [Metadata Fields in JavaScript Modules](#metadata-fields-in-javascript-modules) | [Comparison of AMD and CommonJS Module Systems](#comparison-of-amd-and-commonjs-module-systems) | [Types of Errors in JavaScript](#types-of-errors-in-javascript) | [Error Handling with `try...catch` Blocks](#error-handling-with-trycatch-blocks) | [Purpose and Use of the `finally` Block](#purpose-and-use-of-the-finally-block) | [Creating Custom Error Objects in JavaScript](#creating-custom-error-objects-in-javascript) | [Understanding Error Propagation in JavaScript](#understanding-error-propagation-in-javascript) | [Introduction to Currying in JavaScript](#currying)  | 
 | [Understanding Partial Application in JavaScript](#partial-application) | [Overview of Sets and Maps in JavaScript](#overview-of-sets-and-maps-in-javascript) | [Differences Between Map/Set and WeakMap/WeakSet](#differences-between-mapset-and-weakmapweakset) | [Converting a Set to an Array in JavaScript](#converting-a-set-to-an-array-in-javascript) | [Map Object vs. Plain Object in JavaScript](#map-object-vs-plain-object-in-javascript) | 
-| [Equality Checks for Objects in Sets and Maps](#equality-checks-for-objects-in-sets-and-maps) | [Common Performance Bottlenecks in JavaScript Applications](#common-performance-bottlenecks-in-javascript-applications) | [Debouncing and Throttling Techniques](#debouncing-and-throttling) | [Optimizing DOM Manipulation for Better Performance](#optimizing-dom-manipulation-for-better-performance) | [Techniques to Reduce Reflows and Repaints](#techniques-to-reduce-reflows-and-repaints) | [Implementing Lazy Loading to Enhance Performance](#implementing-lazy-loading-to-enhance-performance) | [Utilizing Web Workers for Performance Improvement](#utilizing-web-workers-for-performance-improvement) | [Leveraging Caching Strategies for Performance Optimization](#leveraging-caching-strategies-for-performance-optimization) | 
+| [Equality Checks for Objects in Sets and Maps](#equality-checks-for-objects-in-sets-and-maps) | [Common Performance Bottlenecks in JavaScript Applications](#common-performance-bottlenecks-in-javascript-applications) | [Debouncing and Throttling Techniques](#debouncing-and-throttling) | [Optimizing DOM Manipulation for Better Performance](#optimizing-dom-manipulation-for-better-performance) | [Techniques to Reduce Reflows and Repaints](#techniques-to-reduce-reflows-and-repaints) | [Implementing Lazy Loading to Enhance Performance](#implementing-lazy-loading-to-enhance-performance) | [Leveraging Caching Strategies for Performance Optimization](#leveraging-caching-strategies-for-performance-optimization) | 
 | [Tools for Measuring and Analyzing JavaScript Performance](#tools-for-measuring-and-analyzing-javascript-performance) | [Optimizing Network Requests for Better Performance](#optimizing-network-requests-for-better-performance) | [Types of Testing in Software Development](#types-of-testing-in-software-development) | [Differences Between Unit Testing, Integration Testing, and End-to-End Testing](#differences-between-unit-testing-integration-testing-and-end-to-end-testing) | [Popular JavaScript Testing Frameworks](#popular-javascript-testing-frameworks) | [Writing Unit Tests for JavaScript Code](#writing-unit-tests-for-javascript-code) | [Understanding Test-Driven Development (TDD)](#understanding-test-driven-development-tdd) | [Mocks and Stubs in Testing](#mocks-and-stubs-in-testing) | 
 | [Testing Asynchronous Code in JavaScript](#testing-asynchronous-code-in-javascript) | [Best Practices for Writing Maintainable and Effective Tests](#best-practices-for-writing-maintainable-and-effective-tests) | [Understanding Code Coverage and Assessing Test Quality](#understanding-code-coverage-and-assessing-test-quality) | [Tools for JavaScript Testing](#tools-for-javascript-testing) | [Introduction to Design Patterns and Their Importance](#introduction-to-design-patterns-and-their-importance) | [The Singleton Pattern Explained](#the-singleton-pattern-explained) | [Understanding the Factory Pattern and Its Usage](#understanding-the-factory-pattern-and-its-usage) | [The Observer Pattern and Its Use Cases](#the-observer-pattern-and-its-use-cases) | 
 | [Module Pattern and Encapsulation](#module-pattern-and-encapsulation) | [Prototype Pattern](#prototype-pattern) | [Decorator Pattern](#decorator-pattern) | [Strategy Pattern](#strategy-pattern) | [Command Pattern](#command-pattern) | [Extending Built-in JavaScript Objects](#extending-built-in-javascript-objects) | [Cross-Site Scripting (XSS) and Prevention](#cross-site-scripting-xss-and-prevention) | [Cross-Site Request Forgery (CSRF) and Mitigation Techniques](#cross-site-request-forgery-csrf-and-mitigation-techniques) | 
@@ -4748,7 +4748,7 @@ Libraries and services for polyfills:
 
 <br>
 
-## Detect if JavaScript is disabled on a page?
+## Detecting if JavaScript is Disabled on a Page
 
 <!-- Update here: /questions/how-do-you-detect-if-javascript-is-disabled-on-a-page/en-US.mdx -->
 
@@ -4771,7 +4771,7 @@ To detect if JavaScript is disabled on a page, you can use the `<noscript>` HTML
 
 <br>
 
-##  `Intl` namespace?
+## The `Intl` Namespace Object
 
 <!-- Update here: /questions/what-is-the-intl-namespace-object-for/en-US.mdx -->
 
@@ -4791,7 +4791,7 @@ console.log(formatter.format(date)); // Outputs date in 'MM/DD/YYYY' format
 
 <br>
 
-## Constraint Validation API
+## Validating Form Elements Using the Constraint Validation API
 
 <!-- Update here: /questions/how-do-you-validate-form-elements-using-the-constraint-validation-api/en-US.mdx -->
 
@@ -4814,7 +4814,7 @@ if (input.checkValidity()) {
 
 <br>
 
-## `window.history` API
+## Using the `window.history` API
 
 <!-- Update here: /questions/how-do-you-use-windowhistory-api/en-US.mdx -->
 
@@ -4828,7 +4828,7 @@ The `window.history` API allows you to manipulate the browser's session history.
 
 <br>
 
-## iframe
+## Communication Between iframes and Parent Pages
 
 <!-- Update here: /questions/how-do-iframe-on-a-page-communicate/en-US.mdx -->
 
@@ -4853,7 +4853,7 @@ window.addEventListener('message', (event) => {
 
 <br>
 
-## document `load` event Vs document `DOMContentLoaded` event
+## Difference Between `load` Event and `DOMContentLoaded` Event
 
 <!-- Update here: /questions/difference-between-document-load-event-and-document-domcontentloaded-event/en-US.mdx -->
 
@@ -4877,7 +4877,7 @@ window.addEventListener('load', function () {
 
 <br>
 
-## Redirect to a new page in JavaScript
+## Redirecting to a New Page in JavaScript
 
 <!-- Update here: /questions/how-do-you-redirect-to-a-new-page-in-javascript/en-US.mdx -->
 
@@ -4899,7 +4899,7 @@ window.location.replace('https://www.example.com');
 
 <br>
 
-## Query string values of the current page
+## How do you get the query string values of the current page in JavaScript?
 
 <!-- Update here: /questions/how-do-you-get-the-query-string-values-of-the-current-page-in-javascript/en-US.mdx -->
 
@@ -4919,7 +4919,7 @@ console.log(value);
 
 <br>
 
-## server-sent events?
+## What are server-sent events?
 
 <!-- Update here: /questions/what-are-server-sent-events/en-US.mdx -->
 
@@ -4994,7 +4994,7 @@ In this example, the server sends a "Hello from server" message initially, and t
 
 <br>
 
-## Progressive Web Applications?
+## What are Progressive Web Applications (PWAs)?
 
 <!-- Update here: /questions/what-are-progressive-web-applications-pwas/en-US.mdx -->
 
@@ -5008,7 +5008,7 @@ Progressive Web Applications (PWAs) are web applications that use modern web cap
 
 <br>
 
-## Modules?
+## What are modules and why are they useful?
 
 <!-- Update here: /questions/what-are-modules-and-why-are-they-useful/en-US.mdx -->
 
@@ -5033,7 +5033,8 @@ myFunction(); // Outputs: Hello, World!
 
 <br>
 
-## CommonJS modules Vs ES modules
+
+## Explain the differences between CommonJS modules and ES modules in JavaScript
 
 <!-- Update here: /questions/explain-the-differences-between-commonjs-modules-and-es-modules/en-US.mdx -->
 
@@ -5083,7 +5084,7 @@ console.log(value); // 42
 
 <br>
 
-## import and export modules?
+## How do you import and export modules in JavaScript?
 
 <!-- Update here: /questions/how-do-you-import-and-export-modules-in-javascript/en-US.mdx -->
 
@@ -5109,7 +5110,7 @@ import myFunction from './myModule';
 
 <br>
 
-## module bundler?
+## What are the benefits of using a module bundler?
 
 <!-- Update here: /questions/what-are-the-benefits-of-using-a-module-bundler/en-US.mdx -->
 
@@ -5123,7 +5124,7 @@ Using a module bundler like Webpack, Rollup, or Parcel helps manage dependencies
 
 <br>
 
-## tree shaking in module bundling
+## Explain the concept of tree shaking in module bundling
 
 <!-- Update here: /questions/explain-the-concept-of-tree-shaking-in-module-bundling/en-US.mdx -->
 
@@ -5137,7 +5138,8 @@ Tree shaking is a technique used in module bundling to eliminate dead code, whic
 
 <br>
 
-## metadata fields of a module?
+
+## Metadata Fields in JavaScript Modules
 
 <!-- Update here: /questions/what-are-the-metadata-fields-of-a-module/en-US.mdx -->
 
@@ -5164,7 +5166,7 @@ Metadata fields of a module typically include information such as the module's n
 
 <br>
 
-## AMD vs CommonJS
+## Comparison of AMD and CommonJS Module Systems
 
 <!-- Update here: /questions/what-do-you-think-of-amd-vs-commonjs/en-US.mdx -->
 
@@ -5178,7 +5180,7 @@ AMD (Asynchronous Module Definition) and CommonJS are two JavaScript module syst
 
 <br>
 
-## Types of Errors
+## Types of Errors in JavaScript
 
 <!-- Update here: /questions/what-are-the-different-types-of-errors-in-javascript/en-US.mdx -->
 
@@ -5192,7 +5194,7 @@ In JavaScript, there are three main types of errors: syntax errors, runtime erro
 
 <br>
 
-## `try...catch` blocks
+## Error Handling with `try...catch` Blocks
 
 <!-- Update here: /questions/how-do-you-handle-errors-using-trycatch-blocks/en-US.mdx -->
 
@@ -5216,7 +5218,7 @@ try {
 
 <br>
 
-##  `finally` block
+## Purpose and Use of the `finally` Block
 
 <!-- Update here: /questions/what-is-the-purpose-of-the-finally-block/en-US.mdx -->
 
@@ -5240,7 +5242,7 @@ try {
 
 <br>
 
-## custom error objects
+## Creating Custom Error Objects in JavaScript
 
 <!-- Update here: /questions/how-can-you-create-custom-error-objects/en-US.mdx -->
 
@@ -5270,7 +5272,7 @@ try {
 
 <br>
 
-## Error propagation
+## Understanding Error Propagation in JavaScript
 
 <!-- Update here: /questions/explain-the-concept-of-error-propagation-in-javascript/en-US.mdx -->
 

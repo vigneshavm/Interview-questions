@@ -7,7 +7,7 @@
 | [ JavaScript Data Types?](#JavaScript-Data-Types)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#null-undefined-or-undeclared)  | [let, var, const?](#let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [Template literals](#Template-literals)  | [Tagged Templates in JavaScript](#Tagged-Templates)  | 
 | [Spread and Rest operator?](#spread-operator) | [Rest Parameters](#rest-parameters)  | [Data Types – Symbol?](#data-types--symbol) | [Proxies](#proxies) | [Hoisting](#hoisting) | [Hoisting - `var`, `let`, and `const`](#hoisting---var-let-and-const) | [Hoisting - function declarations and expressions](#hoisting---function-declarations-and-expressions) | [Hoisting - potential issues](#hoisting---potential-issues) | [Hoisting - avoid problems](#hoisting---avoid-problems) |
 | [`==` and `===`](#-and-) | [Iterating over Object Properties and Array Items in JavaScript](#iterating-over-object-properties-and-array-items-in-javascript) | [`break` and `continue` Statements](#break-and-continue-statements) | [Ternary Operator](#ternary-operator) | [Index of an Element in an Array During Iteration](#index-of-an-element-in-an-array-during-iteration) | [`switch` Statement](#switch-statement)  | [Iterators and Generators](#iterators-and-generators) | [`foo` in `function foo() {}` vs. `var foo = function() {}`](#funtiontype-foo) |
-| [Parameter vs. Argument](#parameter-vs-argument) | [Hoisting](#hoisting) | [`.call` and `.apply`](#call-and-apply) | [Arrow Function Syntax](#arrow-function-syntax) | [Function Declaration vs. Function Call vs. Constructor Call](#function-declaration-vs-function-call-vs-constructor-call) | [Higher-Order Functions](#higher-order-functions) | [Callback Functions](#callback-functions) | [Anonymous Functions - Use Cases](#anonymous-functions---use-cases) 
+| [Parameter vs. Argument](#parameter-vs-argument) | [Hoisting](#hoisting) | [`.call` and `.apply`](#call-and-apply) | [Arrow Function Syntax](#arrow-function) | [Function Declaration vs. Function Call vs. Constructor Call](#function-declaration-vs-function-call-vs-constructor-call) | [Higher-Order Functions](#higher-order-functions) | [Callback Functions](#callback-functions) | [Anonymous Functions - Use Cases](#anonymous-functions---use-cases) 
 | [Recursion](#recursion) | [Default Parameters](#default-parameters) | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions-iife) | [Creating Objects - Various Ways](#creating-objects---various-ways) | [Dot Notation vs. Bracket Notation](#dot-notation-vs-bracket-notation) |
 | [Array Iteration Methods](#array-iteration-methods) | [Managing Array Elements](#managing-array-elements) | [Copying Objects and Arrays](#copying-objects-and-arrays) | [Shallow vs. Deep Copy](#shallow-vs-deep-copy)  | [Checking Object Properties](#checking-object-properties) | [Mutable vs. Immutable Objects](#mutable-vs-immutable-objects) | [Destructuring Assignment](#destructuring-assignment) |
 | [Object.freeze()](#objectfreeze) | [Object.seal()](#objectseal) | [Object.preventExtensions()](#objectpreventextensions) | [Getters and Setters](#getters-and-setters) | [Object Property Flags](#object-property-flags) | [Check if Object is Empty](#check-if-object-is-empty) | [Event Loop](#event-loop) | [Synchronous vs Asynchronous Functions](#synchronous-vs-asynchronous-functions) |
@@ -30,6 +30,55 @@
 | [Same-Origin Policy in JavaScript](#same-origin-policy-in-javascript) | ['use strict' Directive in JavaScript](#use-strict-directive-in-javascript) | [Tools and Techniques for Debugging JavaScript Code](#tools-and-techniques-for-debugging-javascript-code) | [JavaScript Garbage Collection Mechanisms](#javascript-garbage-collection-mechanisms) | [SEO Strategies for Single Page Applications (SPAs)](#seo-strategies-for-single-page-applications-spas) | [Sharing Code Between JavaScript Files](#sharing-code-between-javascript-files) | [Organizing JavaScript Code for Maintainability](#organizing-javascript-code-for-maintainability) | [Pros and Cons of Using Languages that Compile to JavaScript](#pros-and-cons-of-using-languages-that-compile-to-javascript) | [When to Use `document.write()`](#when-to-use-documentwrite)  | 
 
 <!-- TABLE_OF_CONTENTS:ALL:END -->
+
+
+
+
+
+### Higher-Order Functions
+
+<!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
+
+A higher-order function is any function that takes one or more functions as arguments, which it uses to operate on some data, and/or returns a function as a result.
+
+Higher-order functions are meant to abstract some operation that is performed repeatedly. The classic example of this is `Array.prototype.map()`, which takes an array and a function as arguments. `Array.prototype.map()` then uses this function to transform each item in the array, returning a new array with the transformed data. Other popular examples in JavaScript are `Array.prototype.forEach()`, `Array.prototype.filter()`, and `Array.prototype.reduce()`. A higher-order function doesn't just need to be manipulating arrays as there are many use cases for returning a function from another function. `Function.prototype.bind()` is an example that returns another function.
+
+Imagine a scenario where we have an array of names that we need to transform to uppercase. The imperative way will be as such:
+
+```js live
+const names = ['irish', 'daisy', 'anna'];
+
+function transformNamesToUppercase(names) {
+  const results = [];
+  for (let i = 0; i < names.length; i++) {
+    results.push(names[i].toUpperCase());
+  }
+  return results;
+}
+
+console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
+```
+
+Using `Array.prototype.map(transformerFn)` makes the code shorter and more declarative.
+
+```js live
+const names = ['irish', 'daisy', 'anna'];
+
+function transformNamesToUppercase(names) {
+  return names.map((name) => name.toUpperCase());
+}
+
+console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
+```
+
+<!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
+
+<br>
+    
+
+
+
+
 
 
 ## funtionType-foo
@@ -1153,32 +1202,6 @@ Things to note are:
 
 <br>
 
-### Function declaration | Function call | Constructor call
-
-<!-- Update here: /questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx -->
-
-- `function Person(){}`: A function declaration in JavaScript. It can be used as a regular function or as a constructor.
-- `const person = Person()`: Calls `Person` as a regular function, not a constructor. If `Person` is intended to be a constructor, this will lead to unexpected behavior.
-- `const person = new Person()`: Creates a new instance of `Person`, correctly utilizing the constructor function to initialize the new object.
-
-| Aspect | `function Person(){}` | `const person = Person()` | `const person = new Person()` |
-| --- | --- | --- | --- |
-| Type | Function declaration | Function call | Constructor call |
-| Usage | Defines a function | Invokes `Person` as a regular function | Creates a new instance of `Person` |
-| Instance Creation | No instance created | No instance created | New instance created |
-| Common Mistake | N/A | Misusing as constructor leading to `undefined` | None (when used correctly) |
-
-<!-- Update here: /questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx -->
-
-<br>
-    
-> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/difference-between-function-person-var-person-person-and-var-person-new-person?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
-
-[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx)
-
-<br>
-
-
 
 
 ### anonymous functions - use case
@@ -1290,51 +1313,6 @@ Key points to remember:
 
 <br>
 
-### higher-order function
-
-<!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
-
-A higher-order function is any function that takes one or more functions as arguments, which it uses to operate on some data, and/or returns a function as a result.
-
-Higher-order functions are meant to abstract some operation that is performed repeatedly. The classic example of this is `Array.prototype.map()`, which takes an array and a function as arguments. `Array.prototype.map()` then uses this function to transform each item in the array, returning a new array with the transformed data. Other popular examples in JavaScript are `Array.prototype.forEach()`, `Array.prototype.filter()`, and `Array.prototype.reduce()`. A higher-order function doesn't just need to be manipulating arrays as there are many use cases for returning a function from another function. `Function.prototype.bind()` is an example that returns another function.
-
-Imagine a scenario where we have an array of names that we need to transform to uppercase. The imperative way will be as such:
-
-```js live
-const names = ['irish', 'daisy', 'anna'];
-
-function transformNamesToUppercase(names) {
-  const results = [];
-  for (let i = 0; i < names.length; i++) {
-    results.push(names[i].toUpperCase());
-  }
-  return results;
-}
-
-console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
-```
-
-Using `Array.prototype.map(transformerFn)` makes the code shorter and more declarative.
-
-```js live
-const names = ['irish', 'daisy', 'anna'];
-
-function transformNamesToUppercase(names) {
-  return names.map((name) => name.toUpperCase());
-}
-
-console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
-```
-
-<!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
-
-<br>
-    
-> Read the [detailed answer](https://www.greatfrontend.com/questions/quiz/what-is-the-definition-of-a-higher-order-function?language=js&tab=quiz) on [GreatFrontEnd](https://greatfrontend.com/) which allows progress tracking, contains more code samples, and useful resources.
-
-[Back to top ↑](#table-of-contents-top-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx)
-
-<br>
 
 ### JavaScript ES2015 classes and ES5 function constructors
 
@@ -2666,10 +2644,7 @@ console.log(doubled); // [2, 4, 6]
 <br>
     
 
-
-<br>
-
-### Function declaration | Function call | Constructor call
+### Function Declaration vs. Function Call vs. Constructor Call
 
 <!-- Update here: /questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx -->
 
@@ -2691,46 +2666,8 @@ console.log(doubled); // [2, 4, 6]
 
 <br>
 
-### higher-order function
 
-<!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
 
-A higher-order function is any function that takes one or more functions as arguments, which it uses to operate on some data, and/or returns a function as a result.
-
-Higher-order functions are meant to abstract some operation that is performed repeatedly. The classic example of this is `Array.prototype.map()`, which takes an array and a function as arguments. `Array.prototype.map()` then uses this function to transform each item in the array, returning a new array with the transformed data. Other popular examples in JavaScript are `Array.prototype.forEach()`, `Array.prototype.filter()`, and `Array.prototype.reduce()`. A higher-order function doesn't just need to be manipulating arrays as there are many use cases for returning a function from another function. `Function.prototype.bind()` is an example that returns another function.
-
-Imagine a scenario where we have an array of names that we need to transform to uppercase. The imperative way will be as such:
-
-```js live
-const names = ['irish', 'daisy', 'anna'];
-
-function transformNamesToUppercase(names) {
-  const results = [];
-  for (let i = 0; i < names.length; i++) {
-    results.push(names[i].toUpperCase());
-  }
-  return results;
-}
-
-console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
-```
-
-Using `Array.prototype.map(transformerFn)` makes the code shorter and more declarative.
-
-```js live
-const names = ['irish', 'daisy', 'anna'];
-
-function transformNamesToUppercase(names) {
-  return names.map((name) => name.toUpperCase());
-}
-
-console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
-```
-
-<!-- Update here: /questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx -->
-
-<br>
-    
 
 <br>
 

@@ -4,7 +4,7 @@
 
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [ JavaScript Data Types?](#JavaScript-Data-Types)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#null-undefined-or-undeclared)  | [let, var, const?](#let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#how-do-you-convert-a-string-to-a-number-in-javascript)  | [Template literals](#Template-literals)  | [Tagged Templates in JavaScript](#Tagged-Templates)  | 
+| [ JavaScript Data Types?](#JavaScript-Data-Types)  | [ JavaScript Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#null-undefined-or-undeclared)  | [let, var, const?](#let-var-or-const)  | [Global JavaScript scop?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it)  | [ Type Conversion – Strings to Numbers?](#convert-a-string-to-a-number)  | [Template literals](#Template-literals)  | [Tagged Templates in JavaScript](#Tagged-Templates)  | 
 | [Spread and Rest operator?](#spread-operator) | [Rest Parameters](#rest-parameters)  | [Data Types – Symbol?](#data-types--symbol) | [Proxies](#proxies) | [Hoisting](#hoisting) | [Hoisting - `var`, `let`, and `const`](#hoisting---var-let-and-const) | [Hoisting - function declarations and expressions](#hoisting---function-declarations-and-expressions) | [Hoisting - potential issues](#hoisting---potential-issues) | [Hoisting - avoid problems](#hoisting---avoid-problems) |
 | [`==` and `===`](#-and-) | [Iterating over Object Properties and Array Items in JavaScript](#iterating-over-object-properties-and-array-items-in-javascript) | [`break` and `continue` Statements](#break-and-continue-statements) | [Ternary Operator](#ternary-operator) | [Index of an Element in an Array During Iteration](#index-of-an-element-in-an-array-during-iteration) | [`switch` Statement](#switch-statement)  | [Iterators and Generators](#iterators-and-generators) | [`foo` in `function foo() {}` vs. `var foo = function() {}`](#funtiontype-foo) |
 | [Parameter vs. Argument](#parameter-vs-argument) | [Hoisting](#hoisting) | [`.call` and `.apply`](#call-and-apply) | [Arrow Function Syntax](#arrow-function) | [Function Declaration vs. Function Call vs. Constructor Call](#function-declaration-vs-function-call-vs-constructor-call) | [Higher-Order Functions](#higher-order-functions) | [Callback Functions](#callback-functions) | [Anonymous Functions - Use Cases](#anonymous-functions---use-cases) 
@@ -32,7 +32,11 @@
 <!-- TABLE_OF_CONTENTS:ALL:END -->
 
 
+## convert a string to a number?
 
+In JavaScript, you can convert a string to a number using several methods. The most common ones are `Number()`, `parseInt()`, `parseFloat()`, and the unary plus operator (`+`). For example, `Number("123")` converts the string `"123"` to the number `123`, and `parseInt("123.45")` converts the string `"123.45"` to the integer `123`.
+
+<br>
 
 
 ## Higher-Order Functions
@@ -224,15 +228,7 @@ Follow these best practices to avoid global scope pollution:
 
 <br>
 
-## How do you convert a string to a number in JavaScript?
 
-<!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
-
-In JavaScript, you can convert a string to a number using several methods. The most common ones are `Number()`, `parseInt()`, `parseFloat()`, and the unary plus operator (`+`). For example, `Number("123")` converts the string `"123"` to the number `123`, and `parseInt("123.45")` converts the string `"123.45"` to the integer `123`.
-
-<!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
-
-<br>
 
 
 

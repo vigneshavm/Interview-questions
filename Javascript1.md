@@ -1140,6 +1140,7 @@ Things to note are:
 
 <br>
 
+
 ### `foo` between `function foo() {}` and `var foo = function() {}`
 
 <!-- Update here: /questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx -->

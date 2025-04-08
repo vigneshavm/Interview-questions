@@ -5,9 +5,9 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Data Types?](#JavaScript-Data-Types)  | [Data Type Checking?](#how-do-you-check-the-data-type-of-a-variable)  | [null, undefined, and undeclared?](#null-undefined-or-undeclared)  | [let, var, const?](#let-var-or-const)  | [Global JavaScript scop?](#global-javascript-scope)  | [ Type Conversion – Strings to Numbers?](#convert-a-string-to-a-number)  | [Template literals](#Template-literals)  | [Tagged Templates](#Tagged-Templates)  | 
-| [Spread and Rest operator?](#spread-operator) | [Rest Parameters](#rest-parameters)  | [Data Types – Symbol?](#data-types--symbol) | [Proxies](#proxies) | [Hoisting](#hoisting) | [Hoisting - `var`, `let`, and `const`](#hoisting---var-let-and-const) | [Hoisting - function declarations and expressions](#hoisting---function-declarations-and-expressions) | [Hoisting - potential issues](#hoisting---potential-issues) | [Hoisting - avoid problems](#hoisting---avoid-problems) |
+| [Spread and Rest operator?](#spread-operator) | [Rest Parameters](#rest-parameters)  | [Data Types – Symbol?](#data-types--symbol) | [Proxies](#proxies) | [Hoisting](#hoisting)  |
 | [`==` and `===`](#-and-) | [Iterating over Object Properties and Array Items in JavaScript](#iterating-over-object-properties-and-array-items-in-javascript) | [`break` and `continue` Statements](#break-and-continue-statements) | [Ternary Operator](#ternary-operator) | [Index of an Element in an Array During Iteration](#index-of-an-element-in-an-array-during-iteration) | [`switch` Statement](#switch-statement)  | [Iterators and Generators](#iterators-and-generators) | [`foo` in `function foo() {}` vs. `var foo = function() {}`](#funtiontype-foo) |
-| [Parameter vs. Argument](#parameter-vs-argument) | [Hoisting](#hoisting) | [`.call` and `.apply`](#call-and-apply) | [Arrow Function Syntax](#arrow-function) | [Function Declaration vs. Function Call vs. Constructor Call](#function-declaration-vs-function-call-vs-constructor-call) | [Higher-Order Functions](#higher-order-functions) | [Callback Functions](#callback-functions) | [Anonymous Functions - Use Cases](#anonymous-functions---use-cases) 
+| [Parameter vs. Argument](#parameter-vs-argument) | [`.call` and `.apply`](#call-and-apply) | [Arrow Function Syntax](#arrow-function) | [Function Declaration vs. Function Call vs. Constructor Call](#function-declaration-vs-function-call-vs-constructor-call) | [Higher-Order Functions](#higher-order-functions) | [Callback Functions](#callback-functions) | [Anonymous Functions - Use Cases](#anonymous-functions---use-cases) 
 | [Recursion](#recursion) | [Default Parameters](#default-parameters) | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions) | [Creating Objects - Various Ways](#creating-objects---various-ways) | [Dot Notation vs. Bracket Notation](#dot-notation-vs-bracket-notation) | [Array Iteration Methods](#array-iteration-methods) | [Managing Array Elements](#managing-array-elements) | [Copying Objects and Arrays](#copying-objects-and-arrays) 
 | [Shallow vs. Deep Copy](#shallow-vs-deep-copy)  | [Checking Object Properties](#checking-object-properties) | [Mutable vs. Immutable Objects](#mutable-vs-immutable-objects) | [Destructuring Assignment](#destructuring-assignment) | [Object.freeze()](#objectfreeze) | [Object.seal()](#objectseal) | [Object.preventExtensions()](#objectpreventextensions) |
 | [Getters and Setters](#getters-and-setters) | [Object Property Flags](#object-property-flags) | [Check if Object is Empty](#check-if-object-is-empty) | [Event Loop](#event-loop) | [Synchronous vs Asynchronous Functions](#synchronous-vs-asynchronous-functions) | [Callback Functions](#callback-functions) | [Promises](#promises) | [Promise States](#promise-states) 
@@ -782,7 +782,7 @@ The following behavior summarizes the result of accessing the variables before t
 
 <br>
 
-## Hoisting - `var`, `let`, and `const`
+**Hoisting - `var`, `let`, and `const`**
 
 <!-- Update here: /questions/explain-the-difference-in-hoisting-between-var-let-and-const/en-US.mdx -->
 
@@ -803,7 +803,7 @@ The following behavior summarizes the result of accessing the variables before t
 
 
 
-## Hoisting - function declarations and expressions
+**Hoisting - function declarations and expressions**
 
 <!-- Update here: /questions/how-does-hoisting-affect-function-declarations-and-expressions/en-US.mdx -->
 
@@ -832,7 +832,7 @@ var bar = function () {
 <br>
 
 
-## Hoisting - potential issues
+**Hoisting - potential issues**
 
 
 
@@ -857,7 +857,7 @@ let b = 10;
 
 <br>
 
-## Hoisting - avoid problems
+**Hoisting - avoid problems**
 
 
 <!-- Update here: /questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx -->

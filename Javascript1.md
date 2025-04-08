@@ -1952,7 +1952,7 @@ To check the data type of a variable in JavaScript, you can use the `typeof` ope
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-check-the-data-type-of-a-variable/en-US.mdx)
+
 
 <br>
 
@@ -1970,7 +1970,7 @@ To check the data type of a variable in JavaScript, you can use the `typeof` ope
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-the-difference-between-a-variable-that-is-null-undefined-or-undeclared-how-would-you-go-about-checking-for-any-of-these-states/en-US.mdx)
+
 
 <br>
 
@@ -1992,7 +1992,7 @@ In JavaScript, `let`, `var`, and `const` are all keywords used to declare variab
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-differences-between-variables-created-using-let-var-or-const/en-US.mdx)
+
 
 <br>
 
@@ -2019,8 +2019,7 @@ Follow these best practices to avoid global scope pollution:
 <!-- Update here: /questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/why-is-it-in-general-a-good-idea-to-leave-the-global-scope-of-a-website-as-is-and-never-touch-it/en-US.mdx)
+
 
 <br>
 
@@ -2033,8 +2032,7 @@ In JavaScript, you can convert a string to a number using several methods. The m
 <!-- Update here: /questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-convert-a-string-to-a-number-in-javascript/en-US.mdx)
+
 
 <br>
 
@@ -2056,7 +2054,7 @@ console.log(greeting); // Output: Hello, John!
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-template-literals-and-how-are-they-used/en-US.mdx)
+
 
 <br>
 
@@ -2079,7 +2077,7 @@ console.log(result); // "Hello world! How are you?"
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-tagged-templates/en-US.mdx)
+
 
 <br>
 
@@ -2132,8 +2130,6 @@ console.log(obj[sym]); // "value"
 <!-- Update here: /questions/what-are-symbols-used-for/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-symbols-used-for/en-US.mdx)
 
 <br>
 
@@ -2184,7 +2180,7 @@ Use cases include:
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-proxies-in-javascript-used-for/en-US.mdx)
+
 
 <br>
 
@@ -2217,7 +2213,6 @@ The following behavior summarizes the result of accessing the variables before t
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-hoisting/en-US.mdx)
 
 <br>
 
@@ -2231,7 +2226,7 @@ The following behavior summarizes the result of accessing the variables before t
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-in-hoisting-between-var-let-and-const/en-US.mdx)
+
 
 <br>
 
@@ -2259,7 +2254,7 @@ var bar = function () {
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-does-hoisting-affect-function-declarations-and-expressions/en-US.mdx)
+
 
 <br>
 
@@ -2281,7 +2276,7 @@ let b = 10;
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-potential-issues-caused-by-hoisting/en-US.mdx)
+
 
 <br>
 
@@ -2308,7 +2303,7 @@ myFunction(); // Output: 'Hello, world!'
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-can-you-avoid-problems-related-to-hoisting/en-US.mdx)
+
 
 <br>
 
@@ -2327,8 +2322,7 @@ myFunction(); // Output: 'Hello, world!'
 <!-- Update here: /questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-double-equal-and-triple-equal/en-US.mdx)
+
 
 <br>
 
@@ -2415,7 +2409,6 @@ There are also other inbuilt methods available which are suitable for specific s
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items/en-US.mdx)
 
 <br>
 
@@ -2440,8 +2433,7 @@ for (let i = 0; i < 10; i++) {
 <!-- Update here: /questions/what-is-the-purpose-of-the-break-and-continue-statements/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-purpose-of-the-break-and-continue-statements/en-US.mdx)
+
 
 <br>
 
@@ -2455,7 +2447,7 @@ The ternary operator is a shorthand for an `if-else` statement in JavaScript. It
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-ternary-operator-and-how-is-it-used/en-US.mdx)
+
 
 <br>
 
@@ -2475,8 +2467,7 @@ array.forEach((element, index) => {
 <!-- Update here: /questions/how-do-you-access-the-index-of-an-element-in-an-array-during-iteration/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-access-the-index-of-an-element-in-an-array-during-iteration/en-US.mdx)
+
 
 <br>
 
@@ -2502,8 +2493,7 @@ switch (expression) {
 <!-- Update here: /questions/what-is-the-purpose-of-the-switch-statement/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-purpose-of-the-switch-statement/en-US.mdx)
+
 
 <br>
 
@@ -2525,7 +2515,7 @@ console.log(sum(1, 2, 3, 4)); // Output: 10
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-rest-parameters-and-how-are-they-used/en-US.mdx)
+
 
 <br>
 
@@ -2565,8 +2555,7 @@ console.log(sum(...numbers)); // Output: 6
 <!-- Update here: /questions/explain-the-concept-of-the-spread-operator-and-its-uses/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-the-spread-operator-and-its-uses/en-US.mdx)
+
 
 <br>
 
@@ -2598,7 +2587,7 @@ console.log(sum(1, 2, 3)); // Output: 6
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-benefits-of-using-spread-syntax-and-how-is-it-different-from-rest-syntax/en-US.mdx)
+
 
 <br>
 
@@ -2667,7 +2656,7 @@ Generators are powerful for creating iterators on-demand, especially for infinit
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-iterators-and-generators-and-what-are-they-used-for/en-US.mdx)
+
 
 <br>
 
@@ -2714,7 +2703,7 @@ console.log(namedFunc); // ReferenceError: namedFunc is not defined
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-differences-on-the-usage-of-foo-between-function-foo-and-var-foo-function/en-US.mdx)
+
 
 <br>
 
@@ -2728,7 +2717,7 @@ A parameter is a variable in the declaration of a function, while an argument is
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-difference-between-a-parameter-and-an-argument/en-US.mdx)
+
 
 <br>
 
@@ -2756,7 +2745,7 @@ var nonHoistedFunction = function () {
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-concept-of-hoisting-with-regards-to-functions/en-US.mdx)
+
 
 <br>
 
@@ -2783,8 +2772,7 @@ console.log(add.apply(null, [1, 2])); // 3
 <!-- Update here: /questions/whats-the-difference-between-call-and-apply/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-the-difference-between-call-and-apply/en-US.mdx)
+
 
 <br>
 
@@ -2804,7 +2792,7 @@ console.log(doubled); // [2, 4, 6]
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/can-you-offer-a-use-case-for-the-new-arrow-function-syntax-how-does-this-new-syntax-differ-from-other-functions/en-US.mdx)
+
 
 <br>
 
@@ -2827,7 +2815,6 @@ console.log(doubled); // [2, 4, 6]
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/difference-between-function-person-var-person-person-and-var-person-new-person/en-US.mdx)
 
 <br>
 
@@ -2871,7 +2858,6 @@ console.log(transformNamesToUppercase(names)); // ['IRISH', 'DAISY', 'ANNA']
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-the-definition-of-a-higher-order-function/en-US.mdx)
 
 <br>
 
@@ -2899,7 +2885,7 @@ fetchData(handleData);
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-callback-functions-and-how-are-they-used/en-US.mdx)
+
 
 <br>
 
@@ -2941,7 +2927,7 @@ console.log(double); // [2, 4, 6]
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/whats-a-typical-use-case-for-anonymous-functions/en-US.mdx)
+
 
 <br>
 
@@ -2966,7 +2952,7 @@ console.log(factorial(4)); // Output: 24
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-is-recursion-and-how-is-it-used-in-javascript/en-US.mdx)
+
 
 <br>
 
@@ -2989,7 +2975,7 @@ greet('Alice'); // Output: Hello, Alice!
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-default-parameters-and-how-are-they-used/en-US.mdx)
+
 
 <br>
 
@@ -3002,8 +2988,7 @@ The code `function foo(){}();` doesn't work as an Immediately Invoked Function E
 <!-- Update here: /questions/explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-why-the-following-doesnt-work-as-an-iife-function-foo--what-needs-to-be-changed-to-properly-make-it-an-iife/en-US.mdx)
+
 
 <br>
 
@@ -3022,8 +3007,7 @@ Creating objects in JavaScript offers several methods:
 <!-- Update here: /questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-various-ways-to-create-objects-in-javascript/en-US.mdx)
+
 
 <br>
 
@@ -3047,7 +3031,7 @@ console.log(obj['favorite color']); // blue
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-dot-notation-and-bracket-notation-for-accessing-object-properties/en-US.mdx)
+
 
 <br>
 
@@ -3061,7 +3045,7 @@ There are several methods to iterate over an array in JavaScript. The most commo
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-different-methods-for-iterating-over-an-array/en-US.mdx)
+
 
 <br>
 
@@ -3094,8 +3078,7 @@ console.log(arr); // Final state: [1, 5, 3]
 <!-- Update here: /questions/how-do-you-add-remove-and-update-elements-in-an-array/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-add-remove-and-update-elements-in-an-array/en-US.mdx)
+
 
 <br>
 
@@ -3125,7 +3108,7 @@ console.log(deepCopyObject); // { a: 1, b: 2 };
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-different-ways-to-copy-an-object-or-an-array/en-US.mdx)
+
 
 <br>
 
@@ -3155,7 +3138,7 @@ console.log(obj2.b.c); // Output: 2 (original nested object remains unchanged)
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-shallow-copy-and-deep-copy/en-US.mdx)
+
 
 <br>
 
@@ -3180,8 +3163,7 @@ console.log(obj2); // { a: 1, b: 2, c: 3 }
 <!-- Update here: /questions/what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects/en-US.mdx -->
 
 <br>
-    
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/what-are-the-advantages-of-using-the-spread-operator-with-arrays-and-objects/en-US.mdx)
+
 
 <br>
 
@@ -3209,7 +3191,6 @@ if (obj.hasOwnProperty('key')) {
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/how-do-you-check-if-an-object-has-a-specific-property/en-US.mdx)
 
 <br>
 
@@ -3253,7 +3234,7 @@ The key difference between mutable and immutable objects is modifiability. Immut
 
 <br>
     
-[Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/explain-the-difference-between-mutable-and-immutable-objects/en-US.mdx)
+
 
 <br>
 

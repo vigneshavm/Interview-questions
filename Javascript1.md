@@ -1,49 +1,23 @@
-# JavaScript Interview Topics
+<!-- TABLE_OF_CONTENTS:TOP:START -->
 
-| Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|
-| Hoisting in JavaScript | Differences between `let`, `var`, and `const` | Difference between `==` and `===` |
-| Event loop in JavaScript runtimes | Event delegation | How `this` works |
-| Cookies vs `sessionStorage` vs `localStorage` | `<script>`, `<script async>`, `<script defer>` | `null`, `undefined`, and undeclared |
-| `.call()` vs `.apply()` | `Function.prototype.bind` | Arrow functions in constructors |
-| Prototypal inheritance | `function Person()` etc. | `function foo()` vs `var foo = function()` |
-| Ways to create objects | Higher-order functions | ES2015 vs ES5 constructors |
-| Event bubbling | Event capturing | `mouseenter` vs `mouseover` |
-| Sync vs async functions | Callback functions | Closures & private variables |
-| Debouncing and throttling | Destructuring assignment | Hoisting with functions |
-| Lexical scoping | JavaScript scope | `this` in event handlers |
-| Inheritance in ES2015 | Prototypal vs classical inheritance | Prototype pattern |
-| Singleton pattern | Strategy pattern | Factory pattern |
-| Decorator pattern | Command pattern | Module pattern |
-| Spread operator | Rest syntax | Ternary operator |
-| Default parameters | Tagged templates | `querySelector()` vs `getElementById()` |
-| Dot vs bracket notation | Load vs DOMContentLoaded | Prevent default event |
-| Event phases in browsers | AJAX explained | AJAX pros & cons |
-| `XMLHttpRequest` vs `fetch()` | `Promise.all()` | `Promise.allSettled()` vs `Promise.all()` |
-| Microtask queue | Async/await | AbortController |
-| JSONP | Web Socket API | Server-sent events |
-| Error propagation | `try...catch` | `finally` block |
-| Async error handling | Custom error objects | XSS |
-| CSRF | Input validation | Secure auth |
-| SQL injection prevention | Content Security Policy | Clickjacking attacks |
-| Data types | Symbols | Getters & setters |
-| `Object.freeze()` etc. | Mutable vs immutable | Set/Map equality |
-| Object/array iteration | Loops & `map()` | DOM manipulation |
-| Array methods | Object property checks | Type checks |
-| Set to array | String to number | Query string parsing |
-| Empty object detection | Import/export modules | Sharing code across files |
-| CommonJS vs ES Modules | AMD vs CommonJS | Module metadata |
-| Tree shaking | Module bundlers | Caching |
-| Lazy loading | Code organization | DOM optimization |
-| Network optimization | Reflow/repaint reduction | Performance analysis |
-| Garbage collection | Web Workers | `use strict` |
-| Polyfills | Testing frameworks | Unit vs integration tests |
-| TDD | Mocks/stubs | Maintainable tests |
-| Sensitive data handling | Finding vulnerabilities | Currying vs partial app |
-| Anonymous functions | Arrow function use | Partial app examples |
-| Iterators & generators | Observers | Singleton vs Factory |
-| Same-origin policy | SEO-friendly SPAs | Immutable data |
-| Property descriptors | Proxy objects | Workers |
-| Window vs Document | `setTimeout()` etc. | JSONP |
-| `<iframe>` communication | Detect JS off | `window.history` |
-| `document.write()` usage |  |  |
+|  |  |  |
+| --- | --- | --- |
+| [Explain the concept of "hoisting" in JavaScript](#explain-the-concept-of-hoisting-in-javascript) | [Describe the difference between `<script>`, `<script async>` and `<script defer>`](#describe-the-difference-between-script-script-async-and-script-defer) | [What is `'use strict';` in JavaScript for?](#what-is-use-strict-in-javascript-for) |
+| [What are the differences between JavaScript variables created using `let`, `var` or `const`?](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const) | [What's the difference between a JavaScript variable that is: `null`, `undefined` or undeclared?](#whats-the-difference-between-a-javascript-variable-that-is-null-undefined-or-undeclared) | [Explain the difference between synchronous and asynchronous functions in JavaScript](#explain-the-difference-between-synchronous-and-asynchronous-functions-in-javascript) |
+| [What is the difference between `==` and `===` in JavaScript?](#what-is-the-difference-between--and--in-javascript) | [What's the difference between `.call` and `.apply` in JavaScript?](#whats-the-difference-between-call-and-apply-in-javascript) | [What are the pros and cons of using Promises instead of callbacks in JavaScript?](#what-are-the-pros-and-cons-of-using-promises-instead-of-callbacks-in-javascript) |
+| [What is the event loop in JavaScript runtimes?](#what-is-the-event-loop-in-javascript-runtimes) | [Explain `Function.prototype.bind` in JavaScript](#explain-functionprototypebind-in-javascript) | [Explain AJAX in as much detail as possible](#explain-ajax-in-as-much-detail-as-possible) |
+| [Explain event delegation in JavaScript](#explain-event-delegation-in-javascript) | [What advantage is there for using the JavaScript arrow syntax for a method in a constructor?](#what-advantage-is-there-for-using-the-javascript-arrow-syntax-for-a-method-in-a-constructor) | [What are the advantages and disadvantages of using AJAX?](#what-are-the-advantages-and-disadvantages-of-using-ajax) |
+| [Explain how `this` works in JavaScript](#explain-how-this-works-in-javascript) | [Explain how prototypal inheritance works in JavaScript](#explain-how-prototypal-inheritance-works-in-javascript) | [What are the differences between `XMLHttpRequest` and `fetch()` in JavaScript and browsers?](#what-are-the-differences-between-xmlhttprequest-and-fetch-in-javascript-and-browsers) |
+| [Describe the difference between a cookie, `sessionStorage` and `localStorage` in browsers](#describe-the-difference-between-a-cookie-sessionstorage-and-localstorage-in-browsers) | [Difference between: `function Person(){}`, `const person = Person()`, and `const person = new Person()` in JavaScript?](#difference-between-function-person-const-person--person-and-const-person--new-person-in-javascript) | [How do you abort a web request using `AbortController` in JavaScript?](#how-do-you-abort-a-web-request-using-abortcontroller-in-javascript) |
+| [Explain the differences on the usage of `foo` between `function foo() {}` and `var foo = function() {}` in JavaScript](#explain-the-differences-on-the-usage-of-foo-between-function-foo--and-var-foo--function--in-javascript) | [What's a typical use case for anonymous functions in JavaScript?](#whats-a-typical-use-case-for-anonymous-functions-in-javascript) | [What are JavaScript polyfills for?](#what-are-javascript-polyfills-for) |
+| [What are the various ways to create objects in JavaScript?](#what-are-the-various-ways-to-create-objects-in-javascript) | [What is a closure in JavaScript, and how/why would you use one?](#what-is-a-closure-in-javascript-and-howwhy-would-you-use-one) | [Why is extending built-in JavaScript objects not a good idea?](#why-is-extending-built-in-javascript-objects-not-a-good-idea) |
+| [What is the definition of a higher-order function in JavaScript?](#what-is-the-definition-of-a-higher-order-function-in-javascript) | [What are the differences between JavaScript ES2015 classes and ES5 function constructors?](#what-are-the-differences-between-javascript-es2015-classes-and-es5-function-constructors) | [Why is it, in general, a good idea to leave the global JavaScript scope of a website as-is and never touch it?](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it) |
+| [Describe event bubbling in JavaScript and browsers](#describe-event-bubbling-in-javascript-and-browsers) | [Describe event capturing in JavaScript and browsers](#describe-event-capturing-in-javascript-and-browsers) | [Explain the differences between CommonJS modules and ES modules in JavaScript](#explain-the-differences-between-commonjs-modules-and-es-modules-in-javascript) |
+| [What is the difference between `mouseenter` and `mouseover` event in JavaScript and browsers?](#what-is-the-difference-between-mouseenter-and-mouseover-event-in-javascript-and-browsers) | [What are the various data types in JavaScript?](#what-are-the-various-data-types-in-javascript) | [What language constructs do you use for iterating over object properties and array items in JavaScript?](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript) |
+| [What are the benefits of using spread syntax in JavaScript and how is it different from rest syntax?](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax) | [What are iterators and generators in JavaScript and what are they used for?](#what-are-iterators-and-generators-in-javascript-and-what-are-they-used-for) | [Explain the difference between mutable and immutable objects in JavaScript](#explain-the-difference-between-mutable-and-immutable-objects-in-javascript) |
+| [What is the difference between a `Map` object and a plain object in JavaScript?](#what-is-the-difference-between-a-map-object-and-a-plain-object-in-javascript) | [What are the differences between `Map`/`Set` and `WeakMap`/`WeakSet` in JavaScript?](#what-are-the-differences-between-mapset-and-weakmapweakset-in-javascript) | [Why might you want to create static class members in JavaScript?](#why-might-you-want-to-create-static-class-members-in-javascript) |
+| [What are `Symbol`s used for in JavaScript?](#what-are-symbols-used-for-in-javascript) | [What are server-sent events?](#what-are-server-sent-events) | [What are JavaScript object property flags and descriptors?](#what-are-javascript-object-property-flags-and-descriptors) |
+| [What are JavaScript object getters and setters for?](#what-are-javascript-object-getters-and-setters-for) | [What are proxies in JavaScript used for?](#what-are-proxies-in-javascript-used-for) | [What tools and techniques do you use for debugging JavaScript code?](#what-tools-and-techniques-do-you-use-for-debugging-javascript-code) |
+| [What are workers in JavaScript used for?](#what-are-workers-in-javascript-used-for) | [How does JavaScript garbage collection work?](#how-does-javascript-garbage-collection-work) |  |
+
+<!-- TABLE_OF_CONTENTS:TOP:END -->

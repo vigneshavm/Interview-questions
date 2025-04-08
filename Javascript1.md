@@ -23,8 +23,7 @@
 | [Web Workers](#web-workers) | [Garbage Collection in JavaScript](#garbage-collection-in-javascript) |  |
 | [Variable Declarations](#what-are-the-differences-between-javascript-variables-created-using-let-var-or-const) | [Global Scope](#why-is-it-in-general-a-good-idea-to-leave-the-global-javascript-scope-of-a-website-as-is-and-never-touch-it) | [String to Number Conversion](#how-do-you-convert-a-string-to-a-number-in-javascript) |
 | [Template Literals](#what-are-template-literals-and-how-are-they-used) | [Tagged Templates](#explain-the-concept-of-tagged-templates) | [Spread Operator](#what-is-the-spread-operator-and-how-is-it-used) |
-| [Symbols](#what-are-symbols-used-for-in-javascript) | [Proxies](#what-are-proxies-in-javascript-used-for) |  |
-
+| [Symbols](#what-are-symbols-used-for-in-javascript) | [Proxies](#what-are-proxies-in-javascript-used-for) |  
 | [Break & Continue](#what-is-the-purpose-of-the-break-and-continue-statements) | [Ternary Operator](#what-is-the-ternary-operator-and-how-is-it-used) | [Array Index Access](#how-do-you-access-the-index-of-an-element-in-an-array-during-iteration) |
 | [Switch Statement](#what-is-the-purpose-of-the-switch-statement) | [Rest Parameters](#what-are-rest-parameters-and-how-are-they-used) | [Spread vs Rest Syntax](#explain-the-concept-of-the-spread-operator-and-its-uses) |
 | [Spread Syntax Benefits](#what-are-the-benefits-of-using-spread-syntax-in-javascript-and-how-is-it-different-from-rest-syntax) |  |  |

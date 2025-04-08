@@ -1,7 +1,10 @@
 <!-- TABLE_OF_CONTENTS:TOP:START -->
 
-|  |  |  |  |  |  |  |  |  |
-| --- | --- | --- |--- |--- |--- |--- |--- |--- |
+
+| Topic Group | Concept 1 | Concept 2 | Concept 3 | Topic Group11 | Concept 111 | Concept 211 | Concept 311 |
+|-------------|-----------|-----------|-----------|-------------|-----------|-----------|-----------|
+
+
 | [Hoisting](#explain-the-concept-of-hoisting-in-javascript) | [Script Loading Strategies: `<script>`, `async`, and `defer`](#script-loading-strategies-script-async-and-defer) | [`'use strict'` Directive in JavaScript](#use-strict-directive-in-javascript) | [Hoisting: var, let, const](#explain-the-difference-in-hoisting-between-var-let-and-const) | [Function Hoisting](#how-does-hoisting-affect-function-declarations-and-expressions) | [Hoisting Issues](#what-are-the-potential-issues-caused-by-hoisting) | [Variable Declarations: `let`, `var`, and `const`](#variable-declarations-let-var-and-const) | [`null`, `undefined`, and Undeclared Variables](#null-undefined-and-undeclared-variables) | [Synchronous vs Asynchronous Functions](#synchronous-vs-asynchronous-functions) 
 | [Function Hoisting](#explain-the-concept-of-hoisting-with-regards-to-functions) | [.call vs .apply](#whats-the-difference-between-call-and-apply-in-javascript) | [Arrow Function Use Cases](#can-you-offer-a-use-case-for-the-new-arrow--function-syntax) | [Avoiding Hoisting Problems](#how-can-you-avoid-problems-related-to-hoisting) | [Loose vs Strict Equality](#what-is-the-difference-between--and--in-javascript) | [Object & Array Iteration](#what-language-constructs-do-you-use-for-iterating-over-object-properties-and-array-items-in-javascript) | [`==` vs `===` Operators](#vs-operators) | [Differences Between `.call` and `.apply`](#differences-between-call-and-apply) | [Promises vs Callbacks](#promises-vs-callbacks) | [JavaScript Event Loop](#javascript-event-loop) | [`Function.prototype.bind`](#functionprototypebind) | [AJAX Explained in Detail](#ajax-explained-in-detail) |
 | [Event Delegation](#event-delegation) | [Using Arrow Functions in Constructors](#using-arrow-functions-in-constructors) | [Advantages and Disadvantages of AJAX](#advantages-and-disadvantages-of-ajax) |

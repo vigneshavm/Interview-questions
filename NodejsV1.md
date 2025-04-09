@@ -654,7 +654,7 @@ Worker threads offload CPU-intensive tasks to separate threads, ensuring the mai
 
 ---
 
-## **CORS Middleware (Cross-Origin Resource Sharing)**
+## **CORS Middleware**
 
 Use **CORS** to manage cross-origin requests, restricting access to certain origins.
 

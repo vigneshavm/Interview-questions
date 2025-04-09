@@ -1122,3 +1122,111 @@ app.get('/profile', authenticateJWT, (req: Request, res: Response) => {
 
 
 
+
+## **Role-Based Access Control (RBAC)**
+
+RBAC allows you to restrict access to routes based on the user's role (e.g., `admin`, `user`, `moderator`).
+
+**Token with role**
+```ts
+const token = jwt.sign(
+  { userId: user.id, role: user.role },
+  JWT_SECRET,
+  { expiresIn: '1h' }
+);
+```
+
+---
+
+### Middleware: Check Role
+```ts
+export const authorizeRoles = (...allowedRoles: string[]) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const user = (req as any).user;
+    if (!user || !allowedRoles.includes(user.role)) {
+      return res.status(403).json({ error: 'Forbidden - Insufficient role' });
+    }
+    next();
+  };
+};
+```
+
+---
+
+**Usage**
+```ts
+app.get('/admin/dashboard',
+  authenticateJWT,
+  authorizeRoles('admin'),
+  (req, res) => {
+    res.json({ message: 'Welcome Admin!' });
+  }
+);
+```
+
+---
+
+## **Refresh Tokens (For Long-Lived Sessions)**
+
+
+Access tokens are short-lived (e.g., 15min). 
+A refresh token is long-lived (e.g., 7d) and used to get a new access token without re-logging in.
+
+---
+
+**Basic Flow:**
+1. User logs in → gets `accessToken` + `refreshToken`
+2. `accessToken` expires → frontend sends `refreshToken` to backend
+3. Server verifies `refreshToken` and returns a new `accessToken`
+
+---
+
+**Generate Tokens**
+```ts
+const accessToken = jwt.sign({ userId }, JWT_SECRET, { expiresIn: '15m' });
+const refreshToken = jwt.sign({ userId }, JWT_REFRESH_SECRET, { expiresIn: '7d' });
+
+// Store refresh token in DB or in-memory store (e.g., Redis)
+```
+
+---
+
+**Refresh Token Endpoint**
+```ts
+export const refreshToken = (req: Request, res: Response) => {
+  const { token } = req.body;
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, JWT_REFRESH_SECRET, (err, payload) => {
+    if (err) return res.sendStatus(403);
+
+    const accessToken = jwt.sign({ userId: payload.userId }, JWT_SECRET, { expiresIn: '15m' });
+    res.json({ accessToken });
+  });
+};
+```
+
+---
+
+## **JWT in Cookies vs Headers**
+
+| Method | ✅ Pros | ❌ Cons |
+|--------|--------|---------|
+| **Authorization Header** | Simple, stateless, widely used in APIs | Exposed to JS (XSS risk) |
+| **HTTP-only Cookie** | More secure against XSS (not accessible via JS) | CSRF protection required |
+
+---
+
+**Example: Set JWT in Cookie**
+```ts
+res.cookie('accessToken', token, {
+  httpOnly: true,
+  secure: true,     // set to true in production
+  sameSite: 'strict',
+  maxAge: 15 * 60 * 1000, // 15 min
+});
+```
+
+
+
+

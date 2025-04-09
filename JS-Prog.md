@@ -7,12 +7,6 @@
 | [Stock Span Problem](#Stock-Span-Problem) | [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) | [Binary Search](#Binary-Search) | [Retry Promise N Times](#retry-promise-n-times)| [Custom `map()` Method](#custom-map-method)
 
 
-
-
-## JavaScript / TypeScript Built-in Functions & Methods
-
-
-
 ## JavaScript / TypeScript Built-in Functions & Methods
 
 | Function| Description| Example Usage| Function| Description| Example Usage|
@@ -25,13 +19,13 @@
 | `Object.values()`         | Returns array of values  | `Object.values({a:1,b:2}) // [1, 2]` | `Object.entries()`        | Returns array of key-value pairs          | `Object.entries({a:1}) // [["a", 1]]`|
 | `Object.assign()`         | Copies properties to target object        | `Object.assign({}, {a:1}) // {a:1}`  | `Object.hasOwn()`         | Checks if object has own property         | `Object.hasOwn(obj, "prop") // true/false`            |
 | `push()` | Adds item(s) to end of array              | `arr.push(4)`       | `pop()`  | Removes last item        | `arr.pop()`         |
-| `shift()`| Removes first item       | `arr.shift()`       |
+| `shift()`| Removes first item       | `arr.shift()`       | `slice()`| Extracts part of string  | `"hello".slice(1, 4) // "ell"`       |
 | `unshift()`               | Adds item(s) to beginning | `arr.unshift(0)`    | `map()`  | Transforms each item      | `arr.map(x => x * 2)`                |
 | `filter()`                | Filters items based on condition           | `arr.filter(x => x > 5)`             | `reduce()`                | Reduces array to a single value            | `arr.reduce((a, b) => a + b)`        |
 | `forEach()`               | Iterates over array       | `arr.forEach(console.log)`           | `find()` | Finds first matching item | `arr.find(x => x > 10)`              |
 | `includes()`              | Checks if array includes a value           | `arr.includes(3)`   | `some()` | Checks if **any** item matches condition   | `arr.some(x => x > 10)`              |
 | `every()`| Checks if **all** items match condition    | `arr.every(x => x > 0)`              | `charAt()`                | Returns character at position             | `"abc".charAt(1) // "b"`             |
-| `slice()`| Extracts part of string  | `"hello".slice(1, 4) // "ell"`       |
+
 | `toUpperCase()`           | Converts string to uppercase              | `"abc".toUpperCase()`                | `toLowerCase()`           | Converts string to lowercase              | `"ABC".toLowerCase()`                |
 | `trim()` | Removes whitespace       | `"  hello ".trim() // "hello"`       | `split()`| Splits string into array | `"a,b".split(",") // ["a", "b"]`     |
 | `includes()`              | Checks if string contains substring       | `"hello".includes("ell") // true`    | `as` keyword              | Type assertion           | `value as string`   |

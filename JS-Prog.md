@@ -25,7 +25,6 @@
 | `forEach()`               | Iterates over array       | `arr.forEach(console.log)`           | `find()` | Finds first matching item | `arr.find(x => x > 10)`              |
 | `includes()`              | Checks if array includes a value           | `arr.includes(3)`   | `some()` | Checks if **any** item matches condition   | `arr.some(x => x > 10)`              |
 | `every()`| Checks if **all** items match condition    | `arr.every(x => x > 0)`              | `charAt()`                | Returns character at position             | `"abc".charAt(1) // "b"`             |
-
 | `toUpperCase()`           | Converts string to uppercase              | `"abc".toUpperCase()`                | `toLowerCase()`           | Converts string to lowercase              | `"ABC".toLowerCase()`                |
 | `trim()` | Removes whitespace       | `"  hello ".trim() // "hello"`       | `split()`| Splits string into array | `"a,b".split(",") // ["a", "b"]`     |
 | `includes()`              | Checks if string contains substring       | `"hello".includes("ell") // true`    | `as` keyword              | Type assertion           | `value as string`   |

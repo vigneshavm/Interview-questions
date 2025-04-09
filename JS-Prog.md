@@ -1,6 +1,6 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [Find Second Largest Element](#find-second-largest-element) | [Remove Duplicates element from array](#remove-duplicates) | [Chunk an Array](#chunk-an-array) | [Merge Sort + Deduplication](#merge-sort--deduplication) | [Flatten Nested Arrays](#flatten-nested-arrays) | [Binary Search](#binary-search) | [Check for Palindrome](#check-for-palindrome)
+| [Find Second Largest Element](#find-second-largest-element) | [Remove Duplicates element from array](#remove-duplicates-element-from-array) |  [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) | [Chunk an Array](#chunk-an-array) | [Merge Sort + Deduplication](#merge-sort--deduplication) | [Flatten Nested Arrays](#flatten-nested-arrays) | [Binary Search](#binary-search) | [Check for Palindrome](#check-for-palindrome)
 | [Reverse Words in a Sentence](#reverse-words-in-a-sentence) | [Count Vowels in a String](#count-vowels-in-a-string)  | [Character Frequency Count](#character-frequency-count) | [Count Frequency of Array Elements](#count-frequency-of-array-elements) | [Anagram Checker](#anagram-checker) | [First Non-Repeating Character](#first-non-repeating-character) | [Group by Category or Class](#group-by-category-or-class) | 
 [Sort Array of Objects by Field](#sort-array-of-objects-by-field) | [Factorial](#factorial) | [Fibonacci](#fibonacci) | [Recursive Sum of Array](#recursive-sum-of-array) | [Power Function](#power-function) | [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) | 
 
@@ -35,26 +35,9 @@ console.log(secondLargest([5, 1, 2, 5, 3])); // 3
 ---
 
 
-#### **Remove Duplicates**
 
 
-**From Array without Set**
-
-```js
-const removeDuplicates = arr => arr.filter(item => arr.indexOf(item) === arr.lastIndexOf(item));
-console.log(removeDuplicates([1, 2, 3, 4, 1, 5, 5, 6])); // [2, 3, 4, 6]
-```
-
-**From Array using Set**
-
-```js
-function removeDuplicates(arr) {
-  return [...new Set(arr)];
-}
-console.log(removeDuplicates([1, 2, 2, 3, 4, 4])); // [1, 2, 3, 4]
-```
-
-**From Object**
+#### **Remove Duplicates element from Object**
 
 ```js
 
@@ -78,6 +61,75 @@ console.log(removeDuplicates(data));
 Output:  [ { id: 1, name: 'A' }, { id: 3, name: 'C' } ]
 
 ```
+
+
+
+#### **Remove Duplicates element from array**
+
+
+**From Array without Set**
+
+```js
+const removeDuplicates = arr => arr.filter(item => arr.indexOf(item) === arr.lastIndexOf(item));
+console.log(removeDuplicates([1, 2, 3, 4, 1, 5, 5, 6])); // [2, 3, 4, 6]
+```
+
+**From Array using Set**
+
+```js
+function removeDuplicates(arr) {
+  return [...new Set(arr)];
+}
+console.log(removeDuplicates([1, 2, 2, 3, 4, 4])); // [1, 2, 3, 4]
+```
+
+
+
+
+**Remove Duplicates Without Predefined Functions**
+```js
+function removeDuplicates(arr) {
+  const result = [];
+  let resultIndex = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    let isDuplicate = false;
+
+    // Check if arr[i] already exists in result[]
+    for (let j = 0; j < resultIndex; j++) {
+      if (arr[i] === result[j]) {
+        isDuplicate = true;
+        break;
+      }
+    }
+
+    // If not found in result[], add it
+    if (!isDuplicate) {
+      result[resultIndex] = arr[i];
+      resultIndex++;
+    }
+  }
+
+  return result;
+}
+
+const array = [4, 2, 5, 3, 4, 2, 1];
+const noDupes = removeDuplicates(array);
+
+for (let i = 0; i < noDupes.length; i++) {
+  console.log(noDupes[i]); // Output: 4 2 5 3 1
+}
+```
+
+**Remove Duplicates from an array without using Set**
+```js
+function removeDuplicates(arr) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!result.includes(arr[i])) {      result.push(arr[i]);    }
+```
+
+
 
 
 #### **Chunk an Array**
@@ -341,49 +393,6 @@ function removeDuplicatesAndSort(arr) {
 
 const array = [4, 2, 5, 3, 4, 2, 1];
 console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
-```
-
-**Remove Duplicates Without Predefined Functions**
-```js
-function removeDuplicates(arr) {
-  const result = [];
-  let resultIndex = 0;
-
-  for (let i = 0; i < arr.length; i++) {
-    let isDuplicate = false;
-
-    // Check if arr[i] already exists in result[]
-    for (let j = 0; j < resultIndex; j++) {
-      if (arr[i] === result[j]) {
-        isDuplicate = true;
-        break;
-      }
-    }
-
-    // If not found in result[], add it
-    if (!isDuplicate) {
-      result[resultIndex] = arr[i];
-      resultIndex++;
-    }
-  }
-
-  return result;
-}
-
-const array = [4, 2, 5, 3, 4, 2, 1];
-const noDupes = removeDuplicates(array);
-
-for (let i = 0; i < noDupes.length; i++) {
-  console.log(noDupes[i]); // Output: 4 2 5 3 1
-}
-```
-
-**Remove Duplicates from an array without using Set**
-```js
-function removeDuplicates(arr) {
-  const result = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (!result.includes(arr[i])) {      result.push(arr[i]);    }
 ```
 
 

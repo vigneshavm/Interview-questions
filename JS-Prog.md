@@ -621,18 +621,102 @@ function isPalindrome(str) {
 console.log(isPalindrome("Racecar")); // true
 ```
 
+
 ---
 
-#### **Reverse Words in a Sentence**
+## **Reverse Words in a Sentence**
 
+> Example input: `"Hello world this is JavaScript"`  
+> Expected output: `"JavaScript is this world Hello"`
+
+---
+
+### ✅ **Using Predefined Functions (`split()`, `reverse()`, `join()`)**
+
+#### **Pseudocode / Algorithm**
+```
+1. Split the sentence into an array of words using space
+2. Reverse the array
+3. Join the words back into a sentence using space
+4. Return the result
+```
+
+#### **Code Example**
 ```js
-function reverseWords(str) {
-  return str.split(' ').reverse().join(' ');
+function reverseWords(sentence) {
+  return sentence.split(' ').reverse().join(' ');
 }
-console.log(reverseWords("Hello world from JS")); // "JS from world Hello"
+
+console.log(reverseWords("Hello world this is JavaScript"));
+```
+
+📤 **Output:**
+```
+JavaScript is this world Hello
 ```
 
 ---
+
+### ❌ **Without Using Predefined Functions**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create an empty array to hold words
+2. Traverse the sentence character by character
+   a. Build a word character by character
+   b. On space or end of string, push word to array and reset it
+3. After collecting all words, reverse the word array manually:
+   a. Swap elements from start and end using loop
+4. Concatenate the reversed words with spaces
+5. Return final string
+```
+
+#### **Code Example**
+```js
+function reverseWordsManual(sentence) {
+  let words = [];
+  let word = "";
+  let wordIndex = 0;
+
+  // Step 1: Split sentence into words manually
+  for (let i = 0; i <= sentence.length; i++) {
+    let char = sentence[i];
+    if (char === " " || i === sentence.length) {
+      words[wordIndex] = word;
+      wordIndex++;
+      word = "";
+    } else {
+      word += char;
+    }
+  }
+
+  // Step 2: Reverse the words array manually
+  for (let i = 0; i < words.length / 2; i++) {
+    let temp = words[i];
+    words[i] = words[words.length - 1 - i];
+    words[words.length - 1 - i] = temp;
+  }
+
+  // Step 3: Join words into sentence manually
+  let reversedSentence = "";
+  for (let i = 0; i < words.length; i++) {
+    reversedSentence += words[i];
+    if (i !== words.length - 1) reversedSentence += " ";
+  }
+
+  return reversedSentence;
+}
+
+console.log(reverseWordsManual("Hello world this is JavaScript"));
+```
+
+📤 **Output:**
+```
+JavaScript is this world Hello
+```
+
+---
+
 
 #### **Count Vowels in a String**
 

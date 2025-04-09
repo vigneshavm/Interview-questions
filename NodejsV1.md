@@ -14,6 +14,11 @@
 - npm init -y
 - npm install express
 - npm install -D typescript ts-node-dev @types/node @types/express
+```bash
+npm init -y
+npm install typescript ts-node @types/node --save-dev
+npx tsc --init
+```
 
 
 ```js
@@ -31,13 +36,25 @@ tsconfig.json
 ```
 ---
 
+## **`.ts` Vs `.d.ts` files?**
+
+- `.ts`: A TypeScript source file.
+- `.d.ts`: A TypeScript declaration file used to describe types of existing JavaScript libraries.
+
+---
+## **`ts-node`?**
+
+`ts-node` is a utility that runs TypeScript code directly without compiling it to JavaScript.
+
+---
 
 ##  **Node.js Architecture**
 
-- Node.js uses a **single-threaded** event loop architecture.
-- Built on **Chrome's V8** JavaScript engine.
-- Uses **libuv** to handle asynchronous I/O.
-- Designed for **non-blocking**, **event-driven** applications.
+- Node.js is a runtime environment that allows JavaScript to run on the server side.
+- Built on Chrome's V8 JavaScript engine.
+- Uses libuv to handle asynchronous I/O.
+- Designed for non-blocking, event-driven, and single-threaded applications.
+- Ideal for scalable network applications.
 
  Code Sample
 ```js
@@ -51,6 +68,13 @@ server.listen(3000, () => {
   console.log('Server running on port 3000');
 });
 ```
+
+---
+
+## **Node.js with TypeScript?**
+
+- TypeScript adds static typing to JavaScript, helping developers catch errors during development, improve code readability, and enable better IDE support.
+- This is particularly helpful in large-scale Node.js projects.
 
 ---
 
@@ -785,7 +809,51 @@ if (error) {
 }
 ```
 
+## **Asynchronous operations with TypeScript?**
 
+- You can use `async/await`, Promises, or callbacks. 
+- TypeScript provides type safety and proper async/await support.
+
+Example:
+```ts
+const fetchData = async (): Promise<string> => {
+  return await Promise.resolve("data");
+};
+```
+
+---
+
+
+##  **Express request/response objects?**
+
+```ts
+import { Request, Response } from 'express';
+
+const handler = (req: Request, res: Response) => {
+  res.send('Hello TypeScript');
+};
+```
+
+---
+
+## 15. **Type safety across layers (controller, service, DB)?**
+
+Define shared interfaces/types and use them consistently across all layers. Use DTOs (Data Transfer Objects) if needed.
+
+---
+
+## 14. **Middleware in Express**
+
+```ts
+import { Request, Response, NextFunction } from 'express';
+
+const logger = (req: Request, res: Response, next: NextFunction) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+};
+```
+
+---
 
 
 ## **Callback Hell** 
@@ -847,6 +915,206 @@ if (error) {
 
 ---
 
+
+
+
+
+
+
+
+## 1. **REST API?**
+
+A REST (Representational State Transfer) API is an architectural style that uses HTTP methods (GET, POST, PUT, DELETE) to perform CRUD operations on resources. Resources are identified by URIs.
+
+---
+
+## 2. **HTTP methods && use cases?**
+| Method | Use Case |
+|--------|----------|
+| `GET` | Retrieve data |
+| `POST` | Create new data |
+| `PUT` | Update/replace existing data |
+| `PATCH` | Partially update data |
+| `DELETE` | Remove data |
+
+---
+
+## 3. **RESTful structure**
+**Example:**
+```ts
+// routes/user.routes.ts
+router.get('/users', getAllUsers);
+router.get('/users/:id', getUserById);
+router.post('/users', createUser);
+router.put('/users/:id', updateUser);
+router.delete('/users/:id', deleteUser);
+```
+
+
+
+---
+
+## 5. **REST API design principles?**
+- Use **nouns**, not verbs in URIs: `/users`, not `/getUsers`
+- Use proper HTTP methods
+- Use **plural nouns** for collections
+- Return appropriate status codes
+- Version your API: `/api/v1/users`
+- Support filtering, pagination, and sorting with query params
+
+---
+
+## 6. **Versioning in REST APIs?**
+
+Via URL versioning:
+```ts
+GET /api/v1/users
+```
+Or via headers (less common):
+```http
+GET /users
+Accept: application/vnd.company.v1+json
+```
+
+---
+
+## 7. **Implement pagination in a REST API?**
+```ts
+GET /users?page=2&limit=10
+```
+
+In controller:
+```ts
+const page = parseInt(req.query.page as string) || 1;
+const limit = parseInt(req.query.limit as string) || 10;
+const skip = (page - 1) * limit;
+
+// use skip and limit in DB query
+```
+
+---
+
+## 8. **Status codes?**
+| Status Code | Meaning |
+|-------------|---------|
+| `200` | OK |
+| `201` | Created |
+| `204` | No Content |
+| `400` | Bad Request |
+| `401` | Unauthorized |
+| `404` | Not Found |
+| `500` | Server Error |
+
+```ts
+res.status(201).json({ message: 'User created' });
+```
+
+---
+
+## 9. **Error handling in REST APIs?**
+- Use a centralized error middleware
+- Send structured error responses
+```ts
+res.status(400).json({ error: 'Email is required' });
+```
+
+Custom Error Handler:
+```ts
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  res.status(500).json({ error: err.message });
+});
+```
+
+---
+
+## 10. **Secure REST APIs?**
+- Use HTTPS
+- Implement authentication (JWT, OAuth)
+- Add rate limiting
+- Sanitize inputs to prevent XSS/SQL injection
+- Use helmet and CORS
+
+Example with JWT:
+```ts
+const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  // Verify token
+  next();
+};
+```
+
+---
+
+## 🧱 Bonus: Clean RESTful Folder Structure
+
+```
+src/
+├── controllers/
+│   └── user.controller.ts
+├── services/
+│   └── user.service.ts
+├── routes/
+│   └── user.routes.ts
+├── middlewares/
+│   └── auth.middleware.ts
+├── dtos/
+│   └── create-user.dto.ts
+├── models/
+│   └── user.model.ts
+```
+
+---
+
+
+
+## JWT (JSON Web Token)?
+JWT is a compact token format used for securely transmitting info between parties. It’s signed and optionally encrypted.
+
+---
+
+## **JWT Auth Works**
+1. User logs in → Server validates credentials
+2. Server generates a token (signed with a secret)
+3. Client sends the token with each request (usually in `Authorization` header)
+4. Server verifies the token before processing the request
+
+---
+
+### Middleware to Protect Routes
+```ts
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = 'yourSecretKey';
+
+export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader?.startsWith('Bearer '))
+    return res.status(401).json({ error: 'Unauthorized' });
+
+  const token = authHeader.split(' ')[1];
+
+  try {
+    const payload = jwt.verify(token, JWT_SECRET);
+    (req as any).user = payload;
+    next();
+  } catch {
+    res.status(403).json({ error: 'Forbidden' });
+  }
+};
+```
+
+---
+
+## Protected Route
+```ts
+app.get('/profile', authenticateJWT, (req: Request, res: Response) => {
+  res.json({ message: 'Secure user data' });
+});
+```
+
+---
 
 
 

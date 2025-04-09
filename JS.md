@@ -10,6 +10,22 @@ Here’s your full content, nicely formatted in **Markdown** with clean hierarch
 - [Shallow vs Deep Copy](#shallow-vs-deep-copy)  
 - [call(), apply(), and bind()](#call-apply-and-bind)
 
+- [Closure](#closure)  
+- [Synchronous vs Asynchronous](#synchronous-vs-asynchronous)  
+- [== vs ===](#==-vs-)  
+- [this keyword](#this-keyword)  
+- [null vs undefined](#null-vs-undefined)  
+- [Event Loop & Call Stack](#event-loop--call-stack)  
+- [async/await vs Promises](#asyncawait-vs-promises)
+
+- [JavaScript Modules (`import/export`)](#javascript-modules-importexport)
+- [Event Propagation](#event-propagation)
+-  [Inheritance](#inheritance)
+-  [Debouncing vs Throttling](#debouncing-vs-throttling)
+-  [Currying](#currying)
+-  [Pure Functions](#pure-functions)
+
+
 ---
 
 ## let, var or const
@@ -189,13 +205,7 @@ boundGreet();                            // Hey, Alice.
 ---
 
 
-- [Closure](#closure)  
-- [Synchronous vs Asynchronous](#synchronous-vs-asynchronous)  
-- [== vs ===](#==-vs-)  
-- [this keyword](#this-keyword)  
-- [null vs undefined](#null-vs-undefined)  
-- [Event Loop & Call Stack](#event-loop--call-stack)  
-- [async/await vs Promises](#asyncawait-vs-promises)
+
 
 ---
 
@@ -319,4 +329,162 @@ async function fetchData() {
 | Error Handling | `.catch()`                   | `try...catch`             |
 
 ---
+
+
+
+---
+
+### **JavaScript Modules (`import/export`)**
+
+Modules **split** code into reusable files.
+
+**Exporting (`math.js`)**  
+```js
+export function add(a, b) {
+  return a + b;
+}
+```
+
+**Importing (`app.js`)**  
+```js
+import { add } from "./math.js";
+console.log(add(2, 3)); // ✅ 5
+```
+
+---
+
+### **Event Propagation**
+
+Event propagation is the way events travel through the DOM tree. It has three phases:
+
+1. **Capturing Phase (Event Capturing)** – Event travels from the root to the target.
+2. **Target Phase** – Event reaches the target element.
+3. **Bubbling Phase (Event Bubbling)** – Event bubbles up from the target to the root.
+
+**Example:**
+```html
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+```
+
+```js
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent clicked");
+}, true); // Capturing phase
+
+document.getElementById("child").addEventListener("click", (event) => {
+  console.log("Child clicked");
+  event.stopPropagation(); // Prevents bubbling
+}, false); // Bubbling phase
+```
+
+- `event.stopPropagation()` prevents the event from moving up (bubbling).
+- `true` in `addEventListener` enables the **capturing phase**.
+
+---
+
+### **Inheritance**
+
+JavaScript supports **prototypal inheritance**, allowing objects to inherit properties and methods from other objects.
+
+**Example:**
+```js
+function Parent(name) {
+  this.name = name;
+}
+Parent.prototype.greet = function () {
+  console.log(`Hello, ${this.name}`);
+};
+
+function Child(name, age) {
+  Parent.call(this, name);
+  this.age = age;
+}
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+
+const kid = new Child("John", 10);
+kid.greet(); // Hello, John
+```
+
+---
+
+### **Debouncing vs Throttling**
+
+| Feature    | Debouncing                                  | Throttling                               |
+|------------|---------------------------------------------|------------------------------------------|
+| Definition | Delays execution until pause in events      | Executes at most once per time interval  |
+| Use Case   | Search input, resize events                 | Scroll events, repeated button clicks    |
+
+**Example:**
+```js
+function debounce(func, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+function throttle(func, limit) {
+  let lastFunc;
+  return function (...args) {
+    if (!lastFunc) {
+      func.apply(this, args);
+      lastFunc = setTimeout(() => (lastFunc = null), limit);
+    }
+  };
+}
+```
+
+---
+
+### **Currying**
+
+Currying is a technique where a function takes multiple arguments **one at a time**.
+
+**Example:**
+```js
+function curry(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(curry(1)(2)(3)); // 6
+```
+
+---
+
+### **Pure Functions**
+
+A **pure function** always:
+
+1. **Returns the same output** for the same input.
+2. **Has no side effects** (doesn’t modify external state).
+
+---
+
+| Feature            | Description                                 |
+|--------------------|---------------------------------------------|
+| ✅ Deterministic    | Same inputs produce same outputs           |
+| ✅ No Side Effects  | Doesn’t rely on or modify external state    |
+| ✅ Testable         | Easy to test, debug, and reason about       |
+| ✅ Composable       | Easily combined with other functions        |
+
+**Example:**
+```js
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3)); // 5
+console.log(add(2, 3)); // 5 (Always the same)
+```
+
+---
+
 

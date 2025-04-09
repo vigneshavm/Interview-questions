@@ -1851,6 +1851,44 @@ function reverseString(str: string): string {
 
 
 ### Find Maximum in an Array
+
+
+
+**No Built-ins**
+
+- Initialize `max` with the first element of the array.
+- Loop through the rest of the elements.
+- If a number is greater than the current `max`, update `max`.
+- Return `max` at the end.
+
+**Example**
+```ts
+const numbers = [45, 3, 67, 89, 12, 99, 34];
+Output : 99
+```
+
+
+```ts
+function findMaxManual(arr: number[]): number {
+  if (arr.length === 0) {
+    throw new Error("Array is empty");
+  }
+
+  let max: number = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+
+  return max;
+}
+```
+
+**Using Built-ins**
+
+
 ```ts
 function findMax(arr: number[]): number {
   return Math.max(...arr);

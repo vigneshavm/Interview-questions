@@ -922,13 +922,13 @@ const logger = (req: Request, res: Response, next: NextFunction) => {
 
 
 
-## 1. **REST API?**
+## **REST API?**
 
 A REST (Representational State Transfer) API is an architectural style that uses HTTP methods (GET, POST, PUT, DELETE) to perform CRUD operations on resources. Resources are identified by URIs.
 
 ---
 
-## 2. **HTTP methods && use cases?**
+## **HTTP methods && use cases?**
 | Method | Use Case |
 |--------|----------|
 | `GET` | Retrieve data |
@@ -939,7 +939,7 @@ A REST (Representational State Transfer) API is an architectural style that uses
 
 ---
 
-## 3. **RESTful structure**
+## **RESTful structure**
 **Example:**
 ```ts
 // routes/user.routes.ts
@@ -954,7 +954,7 @@ router.delete('/users/:id', deleteUser);
 
 ---
 
-## 5. **REST API design principles?**
+## **REST API design principles?**
 - Use **nouns**, not verbs in URIs: `/users`, not `/getUsers`
 - Use proper HTTP methods
 - Use **plural nouns** for collections
@@ -964,7 +964,7 @@ router.delete('/users/:id', deleteUser);
 
 ---
 
-## 6. **Versioning in REST APIs?**
+## **Versioning in REST APIs?**
 
 Via URL versioning:
 ```ts
@@ -978,7 +978,7 @@ Accept: application/vnd.company.v1+json
 
 ---
 
-## 7. **Implement pagination in a REST API?**
+## **Implement pagination in a REST API?**
 ```ts
 GET /users?page=2&limit=10
 ```
@@ -994,7 +994,7 @@ const skip = (page - 1) * limit;
 
 ---
 
-## 8. **Status codes?**
+## **Status codes?**
 | Status Code | Meaning |
 |-------------|---------|
 | `200` | OK |
@@ -1011,7 +1011,7 @@ res.status(201).json({ message: 'User created' });
 
 ---
 
-## 9. **Error handling in REST APIs?**
+## **Error handling in REST APIs?**
 - Use a centralized error middleware
 - Send structured error responses
 ```ts
@@ -1027,7 +1027,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 ---
 
-## 10. **Secure REST APIs?**
+## **Secure REST APIs?**
 - Use HTTPS
 - Implement authentication (JWT, OAuth)
 - Add rate limiting

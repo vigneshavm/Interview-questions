@@ -596,7 +596,7 @@ mongoose.connect('mongodb://localhost:27017/mydb', {
 
 ---
 
-## 3. Mongoose Vs  MongoDB native driver?
+## Mongoose Vs  MongoDB native driver?
 
 
 - **Mongoose** is an ODM (Object Document Mapper) that provides schema, models, and built-in validation.  

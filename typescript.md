@@ -205,3 +205,60 @@ import fs from "fs"; // Works if enabled
 
 ---
 
+
+### **Dependency injection?**
+
+You can use decorators and libraries like `tsyringe` or `inversify`.
+
+```ts
+import { injectable } from 'tsyringe';
+
+@injectable()
+class UserService {
+  getUsers() {}
+}
+```
+
+---
+
+### **`Generics`**
+
+```ts
+function identity<T>(arg: T): T {
+  return arg;
+}
+
+const result = identity<string>("Hello");
+```
+
+---
+
+### **Custom error**
+
+```ts
+class AppError extends Error {
+  constructor(public statusCode: number, message: string) {
+    super(message);
+    this.name = 'AppError';
+  }
+}
+```
+---
+
+### **Request/response types with TypeScript?**
+```ts
+interface CreateUserDTO {
+  name: string;
+  email: string;
+}
+
+const createUser = (req: Request<{}, {}, CreateUserDTO>, res: Response) => {
+  const { name, email } = req.body;
+  // do something
+};
+```
+
+
+
+
+

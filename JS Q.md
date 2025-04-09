@@ -425,13 +425,6 @@ const person = Object.freeze({ name: 'John' });
 person.name = 'Jane'; // Error: Cannot assign to read only property 'name'
 ```
 
---- 
-
-
-
-
-
----
 
 ### ✅ **TypeScript Interview Answers**
 

@@ -4,7 +4,7 @@
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [let, var, const?](#let-var-or-const)  | [Global JavaScript scope?](#global-javascript-scope)  | ['use strict' Directive](#use-strict-directive-in-javascript)  | [Hoisting](#hoisting)  | [Lexical Scoping](#lexical-scoping)  | [Scope](#scope)  | [Global Scope, Function Scope, and Block Scope](#global-scope-function-scope-and-block-scope) | [Event Bubbling](#event-bubbling) 
 | [JavaScript Data Types](#javaScript-data-types)  | [Symbol Data Type](#data-types--symbol)  | [null, undefined, and undeclared?](#null-undefined-or-undeclared)  | [Type Checking](#how-do-you-check-the-data-type-of-a-variable)  | [Convert a String to a Number](#convert-a-string-to-a-number)  | [`==` vs `===`](#-and-)  | [Mutable vs. Immutable Objects](#mutable-vs-immutable-objects)| [Manipulating CSS Styles Using JavaScript](#CSS-styles-manipulate)  |
-| [Function Declaration vs Function Expression vs Constructor](#function-declaration-vs-function-call-vs-constructor-call)  | [Arrow Functions](#arrow-functions)  | [Anonymous Functions](#anonymous-functions---use-cases)  | [Default Parameters](#default-parameters)  | [Using AbortController to Abort Web Requests](#using-abortcontroller-to-abort-web-requests)  | [How JSONP Works](#how-jsonp-works)  | [Async/Await](#asyncawait)  | [Handling Async Errors](#handling-errors-in-asynchronous-operations)  |
+| [Function Declaration vs Function Expression vs Constructor](#function-declaration-vs-function-call-vs-constructor-call)  | [Arrow Functions](#arrow-functions)  | [Anonymous Functions](#anonymous-functions---use-cases)  | [Default Parameters](#default-parameters)  | [Using AbortController to Abort Web Requests](#AbortController)  | [How JSONP Works](#jsonp)  | [Async/Await](#asyncawait)  | [Handling Async Errors](#handling-errors-in-asynchronous-operations)  |
 | [AJAX](#ajax)  | [Advantages and Disadvantages of Using AJAX](#advantages-and-disadvantages-of-using-ajax)  | [Differences Between XMLHttpRequest and fetch()](#differences-between-xmlhttprequest-and-fetch) | [Cookies, sessionStorage, and localStorage](#cookies-sessionstorage-and-localstorage)  | [Making HTTP Requests Using the Fetch API](#making-http-requests-using-the-fetch-api)  | [Different Ways to Make an API Call](#different-ways-to-make-an-api-call-in-javascript)  |[Event Listeners](#event-listeners)  | [Event Phases](#event-phases)  |
 | [Rest Parameters](#rest-parameters)  | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions) | [Higher-Order Functions](#higher-order-functions)  | [Callback Functions](#callback-functions)  | [Recursion](#recursion)  | [Preventing Default Behavior](#preventing-the-default-behavior-of-events)  | [`event.preventDefault()` vs `event.stopPropagation()`](#eventpreventdefault-vs-eventstoppropagation)  | [`mouseenter` vs `mouseover`](#mouseenter-vs-mouseover)  | [`innerHTML` vs `textContent`](#innerhtml-vs-textcontent)  |
 | [Closures and Private Variables](#closures-and-private-variables)  | [Potential Pitfalls of Closures](#potential-pitfalls-of-closures)  | [Creating Objects - Various Ways](#creating-objects---various-ways)  | [Dot vs Bracket Notation](#dot-notation-vs-bracket-notation)  | [Checking Object Properties](#checking-object-properties)  | [Check if Object is Empty](#check-if-object-is-empty)  | [Copying Objects and Arrays](#copying-objects-and-arrays)  | [Event Capturing](#event-capturing)  
@@ -1605,7 +1605,7 @@ These days `fetch()` is preferred for its cleaner syntax and modern features.
 
 <br>
 
-## Using AbortController to Abort Web Requests
+## AbortController
 
 <!-- Update here: /questions/how-do-you-abort-a-web-request-using-abortcontrollers/en-US.mdx -->
 
@@ -4620,7 +4620,7 @@ Aborting web requests is useful for:
 
 <br>
 
-## JSONP works
+## JSONP
 
 <!-- Update here: /questions/explain-how-jsonp-works-and-how-its-not-really-ajax/en-US.mdx -->
 

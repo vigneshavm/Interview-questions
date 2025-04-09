@@ -349,7 +349,7 @@ http.listen(3000);
 
 ---
 
-##  **CORS **
+##  **CORS**
 
  
 
@@ -461,7 +461,7 @@ app.get('/data', async (req, res) => {
 
 
 
-## **Error Handling **
+## **Error Handling**
 
 - **Synchronous**: `try-catch`.
 - **Asynchronous**: `Error-first callback pattern`, `Promises`, `Async/Await`.
@@ -648,7 +648,7 @@ curl http://localhost:4000/protected \
 
 ---
 
-## **Worker Threads **
+## **Worker Threads**
 
 Worker threads offload CPU-intensive tasks to separate threads, ensuring the main thread isn't blocked.
 
@@ -665,7 +665,7 @@ app.use(cors({ origin: "http://example.com" }));
 
 ---
 
-## **Caching Strategies **
+## **Caching Strategies**
 
 - **In-memory Caching**: Use **Redis** for frequently accessed data.
 - **Cache Expiration**: Set TTL (Time to Live) to prevent stale data.
@@ -690,7 +690,7 @@ emitter.on('userCreated', (data) => {
 
 ---
 
-## **Load Balancing **
+## **Load Balancing**
 
 Distribute requests across multiple instances using tools like **PM2**, **Nginx**, or **HAProxy**.
 
@@ -716,7 +716,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 
 ---
 
-## **Dependency Injection **
+## **Dependency Injection**
 
 Dependency Injection (DI) helps manage service dependencies and simplifies testing.
 
@@ -739,7 +739,7 @@ container.bind(UserService).toSelf();
 
 ---
 
-## **Database Transactions **
+## **Database Transactions**
 
 Use ORMs like **Sequelize** or **Mongoose** to handle database transactions and ensure data consistency.
 

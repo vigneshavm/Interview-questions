@@ -1628,12 +1628,84 @@ console.log(groupInputByClass(input));
 
 
 
-#### **Flatten Nested Arrays**
+
+
+
+
+---
+
+## Flatten Nested Arrays  
+Given a nested array, return a new array with all values flattened (one level or deeply).
+
+📌 Example:
 ```js
-function flattenArray(arr: any[]): any[] {
-  return arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flattenArray(val) : val), []);
-  }console.log(flattenArray([1, [2, [3, 4]], 5]));
+Input: [1, [2, [3, [4]], 5]]
+Output: [1, 2, 3, 4, 5]
 ```
+
+---
+
+
+### Using `.flat(Infinity)`
+```js
+function flattenUsingFlat(arr) {
+  return arr.flat(Infinity);
+}
+
+console.log(flattenUsingFlat([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
+```
+
+---
+
+### Using `.reduce()` and `.concat()`
+```js
+function flattenUsingReduce(arr) {
+  return arr.reduce((acc, val) => {
+    return acc.concat(Array.isArray(val) ? flattenUsingReduce(val) : val);
+  }, []);
+}
+
+console.log(flattenUsingReduce([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
+```
+
+---
+
+
+### Without Using Any Predefined Functions (No `.flat()`, `.reduce()`, `.concat()`)
+```js
+function manualFlatten(arr) {
+  let result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] === "object" && arr[i] instanceof Array) {
+      const flatInner = manualFlatten(arr[i]); // recursively flatten
+      for (let j = 0; j < flatInner.length; j++) {
+        result[result.length] = flatInner[j]; // push manually
+      }
+    } else {
+      result[result.length] = arr[i];
+    }
+  }
+
+  return result;
+}
+
+console.log(manualFlatten([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
+```
+
+---
+
+### 🔎 Sample Inputs and Outputs:
+
+| Input                      | Output              |
+|---------------------------|---------------------|
+| `[1, 2, [3]]`              | `[1, 2, 3]`         |
+| `[1, [2, [3, 4]], 5]`      | `[1, 2, 3, 4, 5]`   |
+| `[[[1]], 2, [[3, 4]], 5]`  | `[1, 2, 3, 4, 5]`   |
+
+---
+
+
 #### **Understanding var vs let in Loops and Closures**
 ```js
 for (var i = 0; i < 5; i++) {

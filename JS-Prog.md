@@ -1863,6 +1863,31 @@ function findMax(arr: number[]): number {
 ---
 
 ### Group Array of Objects by Key
+
+**Input**
+const people = [
+  { name: "Alice", city: "New York" },
+  { name: "Bob", city: "Paris" },
+  { name: "Charlie", city: "New York" },
+  { name: "David", city: "London" },
+  { name: "Eve", city: "Paris" },
+];
+
+**Output**
+{
+  "New York": [
+    { name: "Alice", city: "New York" },
+    { name: "Charlie", city: "New York" }
+  ],
+  "Paris": [
+    { name: "Bob", city: "Paris" },
+    { name: "Eve", city: "Paris" }
+  ],
+  "London": [
+    { name: "David", city: "London" }
+  ]
+}
+
 ```ts
 type Grouped<T> = Record<string, T[]>;
 

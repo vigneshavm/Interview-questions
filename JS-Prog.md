@@ -718,16 +718,96 @@ JavaScript is this world Hello
 ---
 
 
-#### **Count Vowels in a String**
 
+---
+
+## **Count Vowels in a String**
+
+> Vowels = `'a', 'e', 'i', 'o', 'u'` (case-insensitive)  
+> Example: `"Hello World"` → **3 vowels** (`e`, `o`, `o`)
+
+---
+
+### ✅ **Using Predefined Functions (`includes()`, `toLowerCase()`, `split()`)**
+
+#### **Pseudocode / Algorithm**
+```
+1. Convert the string to lowercase
+2. Initialize vowel count = 0
+3. Loop through each character using split()
+   a. If the character is in ['a', 'e', 'i', 'o', 'u'], increase count
+4. Return vowel count
+```
+
+#### **Code Example**
 ```js
 function countVowels(str) {
-  return (str.match(/[aeiou]/gi) || []).length;
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  return str
+    .toLowerCase()
+    .split('')
+    .filter(char => vowels.includes(char)).length;
 }
-console.log(countVowels("Hello World")); // 3
+
+console.log(countVowels("Hello World"));
+```
+
+📤 **Output:**
+```
+3
 ```
 
 ---
+
+### ❌ **Without Using Predefined Functions**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create a counter = 0
+2. Loop through the string character by character
+3. Convert each character to lowercase manually
+4. Compare character with vowels using if or switch
+5. If match found, increment count
+6. Return count
+```
+
+#### **Code Example**
+```js
+function countVowelsManual(str) {
+  let count = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    let ch = str[i];
+    // Convert to lowercase manually if uppercase
+    let code = str.charCodeAt(i);
+    if (code >= 65 && code <= 90) {
+      ch = String.fromCharCode(code + 32); // A-Z → a-z
+    }
+
+    if (
+      ch === 'a' ||
+      ch === 'e' ||
+      ch === 'i' ||
+      ch === 'o' ||
+      ch === 'u'
+    ) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+console.log(countVowelsManual("Hello World"));
+```
+
+📤 **Output:**
+```
+3
+```
+
+---
+
 
 #### **First Non-Repeating Character**
 

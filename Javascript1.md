@@ -936,7 +936,7 @@ However, do note that:
 
 <br>
 
-## `this` works in JavaScript
+## how this works in javascript
 
 <!-- Update here: /questions/explain-how-this-works-in-javascript/en-US.mdx -->
 
@@ -1057,7 +1057,7 @@ console.log(add.apply(null, [1, 2])); // 3
 
 <br>
 
-## Function.prototype.bind
+## Function prototype bind
 
 <!-- Update here: /questions/explain-function-prototype-bind/en-US.mdx -->
 
@@ -4016,7 +4016,7 @@ For an in-depth explanation, do check out [Arnav Aggrawal's article on Medium](h
 
 <br>
 
-## Function.prototype.bind
+## Function prototype bind
 
 <!-- Update here: /questions/explain-function-prototype-bind/en-US.mdx -->
 

@@ -1473,6 +1473,247 @@ Here, the `name` property is accessed and updated through getter and setter meth
 
 
 
+---
+
+### ✅ **Design Patterns & Architecture Interview Answers**
+
+---
+
+#### **1. Introduction to Design Patterns**
+
+**Interviewer**: What are design patterns, and why are they important?
+
+**Answer**: 
+Design patterns are proven, reusable solutions to common problems in software design. They are not code templates but rather general solutions that can be adapted to specific needs. Design patterns improve code readability, reusability, maintainability, and scalability. They help developers avoid reinventing the wheel by providing standard approaches to solving design issues.
+
+**Example**:
+For instance, the **Singleton Pattern** ensures that a class has only one instance, which is useful in situations like managing database connections or configuration settings.
+
+---
+
+#### **2. Singleton Pattern**
+
+**Interviewer**: Can you explain the Singleton Pattern?
+
+**Answer**: 
+The **Singleton Pattern** ensures that a class has only one instance and provides a global point of access to that instance. This pattern is particularly useful for scenarios where only one object is needed to coordinate actions (like a logging service or a configuration manager).
+
+**Example**:
+```javascript
+class Singleton {
+  constructor() {
+    if (!Singleton.instance) {
+      Singleton.instance = this;
+    }
+    return Singleton.instance;
+  }
+
+  show() {
+    console.log("Singleton instance");
+  }
+}
+
+const instance1 = new Singleton();
+const instance2 = new Singleton();
+
+instance1.show();  // Outputs: Singleton instance
+console.log(instance1 === instance2);  // Outputs: true
+```
+
+Here, even though we create two instances of `Singleton`, they both point to the same object.
+
+---
+
+#### **3. Factory Pattern**
+
+**Interviewer**: What is the Factory Pattern, and how is it used?
+
+**Answer**: 
+The **Factory Pattern** provides a way to create objects without specifying the exact class of the object that will be created. It defines an interface for creating objects, but the actual creation is deferred to subclasses or methods. It helps in abstracting the instantiation logic and promotes loose coupling.
+
+**Example**:
+```javascript
+class Car {
+  drive() {
+    console.log("Driving a car");
+  }
+}
+
+class Bike {
+  drive() {
+    console.log("Riding a bike");
+  }
+}
+
+class VehicleFactory {
+  static createVehicle(type) {
+    if (type === "car") {
+      return new Car();
+    } else if (type === "bike") {
+      return new Bike();
+    }
+  }
+}
+
+const myCar = VehicleFactory.createVehicle("car");
+myCar.drive();  // Outputs: Driving a car
+```
+
+In this example, `VehicleFactory` abstracts the creation logic of different vehicle types.
+
+---
+
+#### **4. Module Pattern**
+
+**Interviewer**: What is the Module Pattern in JavaScript?
+
+**Answer**: 
+The **Module Pattern** is used to encapsulate code in a self-contained unit, often to maintain a clean global namespace. It allows you to expose only the methods and properties you want to be publicly accessible, keeping other functionality private. This is typically done using closures.
+
+**Example**:
+```javascript
+const counterModule = (function() {
+  let count = 0;
+
+  return {
+    increment: function() {
+      count++;
+      console.log(count);
+    },
+    decrement: function() {
+      count--;
+      console.log(count);
+    },
+    getCount: function() {
+      return count;
+    }
+  };
+})();
+
+counterModule.increment();  // Outputs: 1
+counterModule.increment();  // Outputs: 2
+console.log(counterModule.getCount());  // Outputs: 2
+```
+
+In this example, the `counterModule` encapsulates the `count` variable, exposing only the public methods.
+
+---
+
+#### **5. Observer Pattern**
+
+**Interviewer**: What is the Observer Pattern, and when should you use it?
+
+**Answer**: 
+The **Observer Pattern** is a behavioral design pattern where an object (the **subject**) maintains a list of its dependent objects (the **observers**) and notifies them of any state changes, typically by calling one of their methods. This pattern is useful in scenarios where multiple objects need to be updated when the state of another object changes, like in UI event handling or real-time notifications.
+
+**Example**:
+```javascript
+class Subject {
+  constructor() {
+    this.observers = [];
+  }
+
+  addObserver(observer) {
+    this.observers.push(observer);
+  }
+
+  notifyObservers(data) {
+    this.observers.forEach(observer => observer.update(data));
+  }
+}
+
+class Observer {
+  update(data) {
+    console.log("Received data:", data);
+  }
+}
+
+const subject = new Subject();
+const observer1 = new Observer();
+const observer2 = new Observer();
+
+subject.addObserver(observer1);
+subject.addObserver(observer2);
+
+subject.notifyObservers("New update available!");
+// Outputs:
+// Received data: New update available!
+// Received data: New update available!
+```
+
+Here, when the `Subject` notifies its observers, all registered observers react to the change.
+
+---
+
+#### **6. Prototype Pattern**
+
+**Interviewer**: Can you explain the Prototype Pattern?
+
+**Answer**: 
+The **Prototype Pattern** is a creational design pattern used to create new objects by cloning an existing object (prototype). It is particularly useful when object creation is costly, and you need to produce several identical objects. In JavaScript, this can be implemented using the `Object.create()` method to clone an object.
+
+**Example**:
+```javascript
+const carPrototype = {
+  drive() {
+    console.log("Driving a car");
+  },
+  stop() {
+    console.log("Stopping the car");
+  }
+};
+
+const car1 = Object.create(carPrototype);
+car1.drive();  // Outputs: Driving a car
+
+const car2 = Object.create(carPrototype);
+car2.stop();  // Outputs: Stopping the car
+```
+
+Here, `car1` and `car2` are clones of the `carPrototype`, sharing the same methods.
+
+---
+
+#### **7. Dependency Injection**
+
+**Interviewer**: What is Dependency Injection, and why is it useful?
+
+**Answer**: 
+**Dependency Injection (DI)** is a design pattern used to implement **inversion of control**, where an object’s dependencies (like services or components) are injected into it rather than the object creating them itself. DI promotes loose coupling between classes, making it easier to manage dependencies, test components, and scale applications.
+
+**Example**:
+```javascript
+class Engine {
+  start() {
+    console.log("Engine started");
+  }
+}
+
+class Car {
+  constructor(engine) {
+    this.engine = engine;
+  }
+
+  drive() {
+    this.engine.start();
+    console.log("Car is driving");
+  }
+}
+
+const engine = new Engine();
+const car = new Car(engine);  // Injecting the engine dependency
+car.drive();
+// Outputs:
+// Engine started
+// Car is driving
+```
+
+In this example, `Car` depends on `Engine`. Instead of `Car` creating its own engine, it receives an `Engine` instance via its constructor, making it easier to replace the `Engine` with a mock or a different implementation for testing.
+
+---
+
+
+
 
 
 

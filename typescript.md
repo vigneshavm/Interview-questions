@@ -1,4 +1,6 @@
 
+
+
 ### ✅ **JavaScript Fundamentals**
 - [`let`, `var`, `const`](#let-var-or-const)
 - [Global JavaScript scope](#global-javascript-scope)
@@ -13,7 +15,6 @@
 - [Type Checking](#how-do-you-check-the-data-type-of-a-variable)
 - [Equality: `==` vs `===`](#-and-)
 - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)
-
 ---
 
 ### 💡 **TypeScript**
@@ -28,7 +29,6 @@
 - [Decorators](#decorators)
 - [Duck Typing](#duck-typing)
 - [Module System & Compiler Options](#module-system--compiler-options)
-
 ---
 
 ### 🔁 **Functions & Scope**
@@ -41,7 +41,6 @@
 - [Closures & Private Variables](#closures)
 - [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions)
 - [Potential Pitfalls of Closures](#closures-pitfalls)
-
 ---
 
 ### 🔄 **Asynchronous JavaScript**
@@ -59,7 +58,6 @@
 ---
 
 ### 🔄 **Objects & Classes**
-- [Prototype Chain](#prototype-chain)
 - [Constructor Function](#constructor-function)
 - [`new` Keyword](#new-keyword)
 - [Classical vs Prototypal Inheritance](#classical-inheritance-vs-prototypal-inheritance)
@@ -96,8 +94,8 @@
 - [Event Listeners](#event-listeners)
 - [Event Bubbling vs Capturing](#event-bubbling), [Event Capturing](#event-capturing)
 - [`event.preventDefault()` vs `event.stopPropagation()`](#eventpreventdefault-vs-eventstoppropagation)
-- [innerHTML vs textContent](#innerhtml-vs-textcontent)
 - [Event Delegation](#event-delegation)
+- [innerHTML vs textContent](#innerhtml-vs-textcontent)
 - [Manipulating CSS Styles](#css-styles-manipulate)
 - [Destructuring](#destructuring-assignment-for-objects-and-arrays)
 - [Spread & Rest](#spread-operator), [Rest Parameters](#rest-parameters)
@@ -112,7 +110,6 @@
 - [Mocks and Stubs](#mocks-and-stubs-in-testing)
 - [TDD](#understanding-test-driven-development-tdd)
 - [Testing Async Code](#testing-asynchronous-code-in-javascript)
-
 ---
 
 ### 🔒 **Security**
@@ -134,10 +131,76 @@
 - [Caching Strategies](#leveraging-caching-strategies-for-performance-optimization)
 - [Tools for Measuring JS Performance](#tools-for-measuring-and-analyzing-javascript-performance)
 - [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)
+---
+
+### Execution Context & Event Loop
+- [Call Stack and Execution Context](#call-stack-and-execution-context)
+- [Event Loop Mechanics](#event-loop-mechanics)
+- [Web APIs and Asynchronous Handling](#web-apis-and-asynchronous-handling)
+- [Macro-tasks vs Micro-tasks](#macro-tasks-vs-micro-tasks)
+- [`setTimeout(0)` and Task Queuing](#settimeout0-and-task-queuing)
 
 ---
 
+### Function Behavior and Patterns
+- [`call`, `apply`, and `bind` Methods](#call-apply-and-bind-methods)
+- [Pure Functions and Side Effects](#pure-functions-and-side-effects)
+- [Memoization Techniques](#memoization-techniques)
+- [Debounce and Throttle Functions](#debounce-and-throttle-functions)
+- [Currying in JavaScript](#currying-in-javascript)
+- [Function Composition Patterns](#function-composition-patterns)
 
+---
+
+### Advanced JavaScript Features
+- [Event Delegation and Bubbling](#event-delegation-and-bubbling)
+- [`WeakMap` and `WeakSet` Usage](#weakmap-and-weakset-usage)
+- [Difference Between `Map` and Plain Objects](#difference-between-map-and-plain-objects)
+- [Object Destructuring with Defaults](#object-destructuring-with-defaults)
+- [`this` Keyword Behavior](#this-keyword-behavior)
+- [Usage of `super()` in Classes](#usage-of-super-in-classes)
+
+---
+
+### Modules, Bundling, and Transpiling
+- [CommonJS vs ES Modules](#commonjs-vs-es-modules)
+- [Tree Shaking in Modern Bundlers](#tree-shaking-in-modern-bundlers)
+- [Polyfills and Backward Compatibility](#polyfills-and-backward-compatibility)
+- [Transpiling JavaScript Code](#transpiling-javascript-code)
+- [Role of Babel in Modern Development](#role-of-babel-in-modern-development)
+- [Webpack and Vite Bundling Process](#webpack-and-vite-bundling-process)
+
+---
+
+### Prototypes and Inheritance
+- [Understanding `__proto__` and Prototypes](#understanding-__proto__-and-prototypes)
+- [`Object.create()` and Prototype Chains](#objectcreate-and-prototype-chains)
+- [`Object.assign()` vs Spread Operator](#objectassign-vs-spread-operator)
+- [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance)
+- [Implementing Mixins for Multiple Inheritance](#implementing-mixins-for-multiple-inheritance)
+
+---
+
+### Memory Management
+- [Common Causes of Memory Leaks](#common-causes-of-memory-leaks)
+- [JavaScript Garbage Collection](#javascript-garbage-collection)
+- [Closures and Memory Management](#closures-and-memory-management)
+
+---
+
+### Optional Chaining & Advanced Operators
+- [Optional Chaining (`?.`) Operator](#optional-chaining-operator)
+- [Nullish Coalescing (`??`) Operator](#nullish-coalescing-operator)
+- [`in` Operator vs `hasOwnProperty()`](#in-operator-vs-hasownproperty)
+- [Temporal Dead Zone in `let` and `const`](#temporal-dead-zone-in-let-and-const)
+- [Labeled Statements Usage](#labeled-statements-usage)
+
+---
+
+### Miscellaneous
+- [Type Coercion in Operations (`[] + []`, `{}` + [])](#type-coercion-in-operations)
+- [Map Key References with Objects](#map-key-references-with-objects)
+- [Understanding Unexpected Outputs](#understanding-unexpected-outputs)
 
 
 

@@ -1,5 +1,3 @@
-# **TypeScript Interview Questions & Answers**
----
 
 ### **How does TypeScript improve JavaScript?**  
 ✅ **Static Typing** (`number`, `string`, `boolean`, `any`)  
@@ -16,7 +14,7 @@ console.log(greet("John")); // ✅ Hello, John
 
 
 
-### **1. Interface vs. Type**
+### **Interface vs. Type**
 **Differences:**
 
 | Aspect         | Interface                      | Type                          |
@@ -41,7 +39,7 @@ type ReadOnlyPoint = Readonly<Point>;
 
 ---
 
-### **2. Generics**
+### **Generics**
 Generics provide flexibility while maintaining type safety, making code reusable.
 
 ```typescript
@@ -56,7 +54,7 @@ const stringBox: Box<string> = { content: "TypeScript" };
 
 ---
 
-### **3. Inheritance**
+### **Inheritance**
 - **Extending Classes**:
 
 ```typescript
@@ -78,7 +76,7 @@ const emp: Employee = { name: "John", employeeId: 123 };
 
 ---
 
-### **4. Union Types**
+### **Union Types**
 Union types allow a variable to hold multiple types.
 
 ```typescript
@@ -92,7 +90,7 @@ function display(value: string | number) { console.log(value); }
 
 ---
 
-### **What is Duck Typing in TypeScript?**  
+### **Duck Typing?**  
 If an object has required properties, it's considered compatible (structural typing).  
 
 Example:  
@@ -109,7 +107,7 @@ let person: User = user;  // ✅ Works
 
 ---
 
-### **5. Type Inference**
+### **Type Inference**
 TypeScript infers types based on variable initialization.
 
 ```typescript
@@ -122,7 +120,7 @@ let name: string = "John";
 
 ---
 
-### **6. Mapped Types**
+### **Mapped Types**
 Mapped types allow transforming types dynamically.
 
 ```typescript
@@ -133,7 +131,7 @@ const user: PartialUser = { name: "Alice" };
 
 ---
 
-### **7. Decorators**
+### **Decorators**
 Decorators modify classes, methods, or properties. Enable with `experimentalDecorators: true` in `tsconfig.json`.
 
 ```typescript
@@ -151,7 +149,7 @@ console.log(new UserController().route); // "/api/user"
 
 ---
 
-### **8. Async/Await**
+### **Async/Await**
 Async/await simplifies working with promises and asynchronous code.
 
 ```typescript
@@ -168,7 +166,7 @@ async function fetchData() {
 
 ---
 
-### **9. Utility Types**
+### **Utility Types**
 Common utility types to transform types:
 - **Partial**: Makes all properties optional.
 - **Pick**: Selects specific properties.
@@ -183,7 +181,7 @@ type UserWithoutAge = Omit<User, "age">;
 
 ---
 
-### **10. Module System & Compiler Options**
+### **Module System & Compiler Options**
 Key compiler options:
 - **`esModuleInterop`**: Enables default imports from non-ES modules.
 - **`allowSyntheticDefaultImports`**: Affects only type-checking.

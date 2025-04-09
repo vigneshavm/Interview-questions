@@ -1057,15 +1057,103 @@ console.log(charFrequencyManual("Hello"));
 const users = [  { id: 1, age: 30 },  { id: 2, age: 25 },  { id: 3, age: 35 }];
 users.sort((a, b) => a.age - b.age);
 ```
-#### **Anagram Checker**
-```js
-function isAnagram(a: string, b: string): boolean {
-  const normalize = (str: string) => str.split('').sort().join('');
-    return normalize(a) === normalize(b);
-  }
-console.log(isAnagram("listen", "silent"));  // true
-console.log(isAnagram("abc", "def"));        // false
+
+---
+
+## **Anagram Checker**
+
+> Check if two strings are **anagrams**:  
+> i.e., same characters, same frequency, order doesn't matter.  
+> Example: `"listen"` and `"silent"` → ✅ Anagrams
+
+---
+
+### ✅ **Using Predefined Functions**  
+(using `.split()`, `.sort()`, `.join()`, `.toLowerCase()`)
+
+#### **Pseudocode / Algorithm**
 ```
+1. Convert both strings to lowercase
+2. Split each string into array of characters
+3. Sort both arrays
+4. Join the sorted arrays back into strings
+5. Compare the two resulting strings
+```
+
+#### **Code Example**
+```js
+function isAnagram(str1, str2) {
+  return str1.toLowerCase().split('').sort().join('') ===
+         str2.toLowerCase().split('').sort().join('');
+}
+
+console.log(isAnagram("listen", "silent"));  // true
+console.log(isAnagram("hello", "world"));    // false
+```
+
+📤 **Output:**
+```
+true
+false
+```
+
+---
+
+### ❌ **Without Using Predefined Functions**  
+(manual comparison using frequency count)
+
+#### **Pseudocode / Algorithm**
+```
+1. If lengths of the strings are different → not anagrams
+2. Convert both to lowercase manually
+3. Create frequency counters (objects) for each string
+4. Loop through each string and count characters
+5. Compare both frequency maps:
+   - If all keys and values match → anagram
+   - Else → not anagram
+```
+
+#### **Code Example**
+```js
+function isAnagramManual(str1, str2) {
+  if (str1.length !== str2.length) return false;
+
+  const freq1 = {};
+  const freq2 = {};
+
+  for (let i = 0; i < str1.length; i++) {
+    let ch1 = str1[i];
+    let ch2 = str2[i];
+
+    // Convert to lowercase manually
+    let code1 = str1.charCodeAt(i);
+    let code2 = str2.charCodeAt(i);
+    if (code1 >= 65 && code1 <= 90) ch1 = String.fromCharCode(code1 + 32);
+    if (code2 >= 65 && code2 <= 90) ch2 = String.fromCharCode(code2 + 32);
+
+    freq1[ch1] = (freq1[ch1] || 0) + 1;
+    freq2[ch2] = (freq2[ch2] || 0) + 1;
+  }
+
+  for (let key in freq1) {
+    if (freq1[key] !== freq2[key]) return false;
+  }
+
+  return true;
+}
+
+console.log(isAnagramManual("listen", "silent"));  // true
+console.log(isAnagramManual("hello", "world"));    // false
+```
+
+📤 **Output:**
+```
+true
+false
+```
+
+---
+
 #### **Group by Category or Class**
 ```js
 const products = [

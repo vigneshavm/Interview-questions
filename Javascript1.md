@@ -1,3 +1,5 @@
+<!-- TABLE_OF_CONTENTS:ALL:START -->
+
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [let, var, const?](#let-var-or-const)  | [Global JavaScript scope?](#global-javascript-scope)  | ['use strict' Directive](#use-strict-directive-in-javascript)  | [Hoisting](#hoisting)  | [Lexical Scoping](#lexical-scoping)  | [Scope](#scope)  | [Global Scope, Function Scope, and Block Scope](#global-scope-function-scope-and-block-scope) |
@@ -12,13 +14,35 @@
 | [Ternary Operator](#ternary-operator)  | [`break` and `continue`](#break-and-continue-statements)  | [`switch` Statement](#switch-statement) | [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions)  | [Promises](#promises)  | [Promise States](#promise-states)  | [Pros and Cons of Promises](#pros-and-cons-of-promises)  | [Promise.all()](#promiseall)  |
 | [Promise.all vs Promise.allSettled](#promiseall-vs-promiseallsettled)  | [Async/Await](#asyncawait)  | [Handling Async Errors](#handling-errors-in-asynchronous-operations)  | [Microtask Queue](#microtask-queue)  | [`setTimeout()`, `setImmediate()`, and `process.nextTick()`](#settimeout-setimmediate-and-processnexttick) |
 | [What is the DOM and How is it Structured?](#what-is-the-dom-and-how-is-it-structured)  | [Difference Between Attribute and Property](#difference-between-attribute-and-property-in-the-dom)  | [`document.querySelector()` vs `getElementById()`](#documentqueryselector-and-documentgetelementbyid)  | [Add, Remove, Modify HTML Elements](#add-remove-and-modify-html-elements-using-javascript)  | [Event Listeners](#event-listeners)  | [Event Phases](#event-phases)  
-| [Event Bubbling](#event-bubbling)  | [Event Capturing](#event-capturing)  | [Event Delegation](#event-delegation)  |
+| [Event Bubbling](#event-bubbling)  | [Event Capturing](#event-capturing)  | [Event Delegation](#event-delegation)  |[JavaScript Polyfills](#javascript-polyfills)  | [Detecting if JavaScript is Disabled on a Page](#detecting-if-javascript-is-disabled-on-a-page)  | [The `Intl` Namespace Object](#the-intl-namespace-object)  | [Validating Form Elements Using the Constraint Validation API](#validating-form-elements-using-the-constraint-validation-api) |
 | [Preventing Default Behavior](#preventing-the-default-behavior-of-events)  | [`event.preventDefault()` vs `event.stopPropagation()`](#eventpreventdefault-vs-eventstoppropagation)  | [`mouseenter` vs `mouseover`](#mouseenter-vs-mouseover)  | [`innerHTML` vs `textContent`](#innerhtml-vs-textcontent)  | [Manipulating CSS Styles Using JavaScript](#manipulating-css-styles-using-javascript)  
 | [`<script>`, `<script async>`, and `<script defer>`](#script-script-async-and-script-defer)  | [Window Object vs Document Object](#window-object-vs-document-object)  | [Using the `window.history` API](#using-the-windowhistory-api)  | [Communication Between iframes and Parent Pages](#communication-between-iframes-and-parent-pages)  | [Difference Between `load` Event and `DOMContentLoaded` Event](#difference-between-load-event-and-domcontentloaded-event)  | [Redirecting to a New Page](#redirecting-to-a-new-page-in-javascript) | [The Web Socket API](#the-web-socket-api)  | [Workers](#workers)  | [Utilizing Web Workers for Performance Improvement](#utilizing-web-workers-for-performance-improvement) |
 | [Cookies, sessionStorage, and localStorage](#cookies-sessionstorage-and-localstorage)  | [Making HTTP Requests Using the Fetch API](#making-http-requests-using-the-fetch-api)  | [Different Ways to Make an API Call](#different-ways-to-make-an-api-call-in-javascript)  
 | [AJAX](#ajax)  | [Advantages and Disadvantages of Using AJAX](#advantages-and-disadvantages-of-using-ajax)  | [Differences Between XMLHttpRequest and fetch()](#differences-between-xmlhttprequest-and-fetch)  | [Using AbortController to Abort Web Requests](#using-abortcontroller-to-abort-web-requests)  | [How JSONP Works](#how-jsonp-works)  |
+| [Equality Checks for Objects in Sets and Maps](#equality-checks-for-objects-in-sets-and-maps) | [Common Performance Bottlenecks  Applications](#common-performance-bottlenecks-in-javascript-applications) | [Debouncing and Throttling Techniques](#debouncing-and-throttling) | [Optimizing DOM Manipulation for Better Performance](#optimizing-dom-manipulation-for-better-performance) | [Techniques to Reduce Reflows and Repaints](#techniques-to-reduce-reflows-and-repaints) | [Implementing Lazy Loading to Enhance Performance](#implementing-lazy-loading-to-enhance-performance) | [Leveraging Caching Strategies for Performance Optimization](#leveraging-caching-strategies-for-performance-optimization) | [Mocks and Stubs in Testing](#mocks-and-stubs-in-testing) |
+| [Tools for Measuring and Analyzing JavaScript Performance](#tools-for-measuring-and-analyzing-javascript-performance) | [Optimizing Network Requests for Better Performance](#optimizing-network-requests-for-better-performance) | [Types of Testing in Software Development](#types-of-testing-in-software-development) | [Differences Between Unit Testing, Integration Testing, and End-to-End Testing](#differences-between-unit-testing-integration-testing-and-end-to-end-testing) | [Popular JavaScript Testing Frameworks](#popular-javascript-testing-frameworks) | [Writing Unit Tests for JavaScript Code](#writing-unit-tests-for-javascript-code) | [ Test-Driven Development (TDD)](#understanding-test-driven-development-tdd) |  [The Observer Pattern and Its Use Cases](#the-observer-pattern-and-its-use-cases) | 
+| [Testing Asynchronous Code ](#testing-asynchronous-code-in-javascript) | [Best Practices for Writing Maintainable and Effective Tests](#best-practices-for-writing-maintainable-and-effective-tests) | [ Code Coverage and Assessing Test Quality](#understanding-code-coverage-and-assessing-test-quality) | [Tools for JavaScript Testing](#tools-for-javascript-testing) | [Introduction to Design Patterns and Their Importance](#introduction-to-design-patterns-and-their-importance) | [The Singleton Pattern Explained](#the-singleton-pattern-explained) | [ the Factory Pattern and Its Usage](#understanding-the-factory-pattern-and-its-usage) | [SEO Strategies for Single Page Applications (SPAs)](#seo-strategies-for-single-page-applications-spas) |
+| [Module Pattern and Encapsulation](#module-pattern-and-encapsulation) | [Prototype Pattern](#prototype-pattern)  [Extending Built- Objects](#extending-built-in-javascript-objects) | [Cross-Site Scripting (XSS) and Prevention](#cross-site-scripting-xss-and-prevention) | [Cross-Site Request Forgery (CSRF) and Mitigation Techniques](#cross-site-request-forgery-csrf-and-mitigation-techniques) | [Organizing JavaScript Code for Maintainability](#organizing-javascript-code-for-maintainability) | [Pros and Cons of Using Languages that Compile to JavaScript](#pros-and-cons-of-using-languages-that-compile-to-javascript) | [When to Use `document.write()`](#when-to-use-documentwrite)  | [Sharing Code Between JavaScript Files](#sharing-code-between-javascript-files) 
+| [Preventing SQL Injection Vulnerabilities](#preventing-sql-injection-vulnerabilities) | [Handling Sensitive Data](#handling-sensitive-data) | [Content Security Policy (CSP)](#content-security-policy-csp) | [Common Security Headers and Their Purposes](#common-security-headers-and-their-purposes) | [Preventing Clickjacking Attacks](#preventing-clickjacking-attacks) | [Input Validation and Its Importance](#input-validation-and-its-importance) | [Identifying Security Vulnerabilities](#identifying-security-vulnerabilities) | [Secure Authentication and Authorization](#secure-authentication-and-authorization) | 
 
-<!-- TABLE_OF_CONTENTS:ALL:START -->
+<!-- TABLE_OF_CONTENTS:ALL:END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |

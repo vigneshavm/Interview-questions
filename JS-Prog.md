@@ -2,7 +2,7 @@
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Find Second Largest Element](#find-second-largest-element) | [Remove Duplicates element from array](#remove-duplicates-element-from-array) |  [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) | [Chunk an Array](#chunk-an-array) | [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) |  [Flatten Nested Arrays](#flatten-nested-arrays) | [Binary Search](#binary-search) |
 | [Check for Palindrome](#check-for-palindrome) | [Reverse Words in a Sentence](#reverse-words-in-a-sentence) | [Count Vowels in a String](#count-vowels-in-a-string)  | [Character Frequency Count](#character-frequency-count) | [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) | [Anagram Checker](#anagram-checker) | [First Non-Repeating Character](#first-non-repeating-character) 
-| [Group by Category or Class](#group-by-category-or-class) | [Sort Array of Objects by Field](#sort-array-of-objects-by-field) | [Factorial](#factorial) | [Fibonacci](#fibonacci) | [Recursive Sum of Array](#recursive-sum-of-array) | [Power Function](#power-function) | [Merge Sort + Deduplication](#merge-sort--deduplication)
+| [Group by Category or Class](#group-by-category-or-class) | [Sort Array of Objects by Field](#sort-array-of-objects-by-field) | [Factorial](#factorial) | [Fibonacci](#fibonacci) | [Recursive Sum of Array](#recursive-sum-of-array) | [Power Function](#power-function) | [Merge Sort + Deduplication](#merge-sort)
 
 
 
@@ -1724,7 +1724,7 @@ for (var i = 0; i < 5; i++) {
   (function(i) {    setTimeout(() => console.log(i), 0);  })(i);
 }
 ```
-**Merge Sort + Deduplication**
+**Merge Sort**
 ```js
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;

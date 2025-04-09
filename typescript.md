@@ -1,3 +1,12 @@
+| Q1 | Q2 | Q3 | Q4 | Q5 | Q6 |
+|----|----|----|----|----|----|
+| [How does TypeScript improve JavaScript](#how-does-typescript-improve-javascript) | [Interface vs. Type](#interface-vs-type) | [Generics](#generics) | [Inheritance](#inheritance) | [Union Types](#union-types) | [Duck Typing](#duck-typing) |
+| [Type Inference](#type-inference) | [Mapped Types](#mapped-types) | [Decorators](#decorators) | [Async/Await](#asyncawait) | [Utility Types](#utility-types) | [Module System & Compiler Options](#module-system--compiler-options) |
+| [Dependency Injection](#dependency-injection) | [Custom Error](#custom-error) | [Request/Response Types](#requestresponse-types-with-typescript) | | | |
+
+
+
+
 
 ### **How does TypeScript improve JavaScript?**  
 ✅ **Static Typing** (`number`, `string`, `boolean`, `any`)  

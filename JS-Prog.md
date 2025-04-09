@@ -216,20 +216,104 @@ console.log(removeDuplicatesManual([1, 2, 2, 3, 1, 4]));
 
 
 
-#### **Chunk an Array**
+## **Chunk an Array**
 
+---
+Given:
 ```js
-function chunkArray(arr, size) {
-  let res = [];
-  for (let i = 0; i < arr.length; i += size) {
-    res.push(arr.slice(i, i + size));
-  }
-  return res;
-}
-console.log(chunkArray([1, 2, 3, 4, 5], 2)); // [[1,2],[3,4],[5]]
+array = [1, 2, 3, 4, 5, 6, 7]
+chunk size = 3
+```
+
+Expected Output:
+```js
+[[1, 2, 3], [4, 5, 6], [7]]
 ```
 
 ---
+
+### ✅ **Using Predefined Functions (`slice()`, `push()`)**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create empty result array
+2. Loop i from 0 to array.length in steps of chunk size
+   a. Use slice(i, i + size) to get a subarray
+   b. Push that subarray into result
+3. Return result
+```
+
+#### **Code Example**
+```js
+function chunkArray(arr, size) {
+  const result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size)); // using slice
+  }
+  return result;
+}
+
+console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3));
+```
+
+📤 **Output:**
+```js
+[[1, 2, 3], [4, 5, 6], [7]]
+```
+
+---
+
+### ❌ **Without Using Predefined Functions**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create empty result array
+2. Create temporary empty chunk array
+3. Loop through each element in input array
+   a. Add current element to chunk
+   b. If chunk length equals size:
+       - Push chunk to result
+       - Reset chunk to empty array
+4. After loop, if chunk is not empty, push it to result
+5. Return result
+```
+
+#### **Code Example**
+```js
+function chunkArrayManual(arr, size) {
+  let result = [];
+  let chunk = [];
+  let chunkCount = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    chunk[chunkCount] = arr[i];
+    chunkCount++;
+
+    if (chunkCount === size) {
+      result[result.length] = chunk;
+      chunk = [];
+      chunkCount = 0;
+    }
+  }
+
+  if (chunkCount > 0) {
+    result[result.length] = chunk;
+  }
+
+  return result;
+}
+
+console.log(chunkArrayManual([1, 2, 3, 4, 5, 6, 7], 3));
+```
+
+📤 **Output:**
+```js
+[[1, 2, 3], [4, 5, 6], [7]]
+```
+
+---
+
+
 
 
 ## **Find Second Largest Element**

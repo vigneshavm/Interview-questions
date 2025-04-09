@@ -930,29 +930,110 @@ console.log(firstNonRepeatingCharManual("Teeter")); // 'r'
 
 
 
-#### **Factorial**
+
+## Factorial
+
+### Using Iteration (Loop)
 
 ```js
-function factorial(n) {
-  if (n <= 1) return 1;
-  return n * factorial(n - 1);
+function factorialManual(n) {
+  let result = 1;
+  for (let i = 2; i <= n; i++) {
+    result *= i;
+  }
+  return result;
 }
-console.log(factorial(5)); // 120
+
+console.log(factorialManual(5)); // Output: 120
 ```
 
 ---
 
-#### **Fibonacci**
+### Using Recursion
 
 ```js
-function fibonacci(n) {
-  if (n <= 1) return n;
-  return fibonacci(n - 1) + fibonacci(n - 2);
+function factorialRecursive(n) {
+  if (n === 0 || n === 1) return 1;
+  return n * factorialRecursive(n - 1);
 }
-console.log(fibonacci(6)); // 8
+
+console.log(factorialRecursive(5)); // Output: 120
 ```
 
 ---
+
+### 🔎 Sample Input and Output:
+
+| Input | Output |
+|-------|--------|
+| `0`   | `1`    |
+| `1`   | `1`    |
+| `4`   | `24`   |
+| `5`   | `120`  |
+
+---
+
+
+
+---
+
+
+## Fibonacci
+
+### Iterative Manual Logic (no `.push`, etc.)
+
+```js
+function fibonacciManual(n) {
+  if (n === 0) return 0;
+  if (n === 1) return 1;
+
+  let prev = 0;
+  let curr = 1;
+
+  for (let i = 2; i <= n; i++) {
+    let next = prev + curr;
+    prev = curr;
+    curr = next;
+  }
+
+  return curr;
+}
+
+console.log(fibonacciManual(6)); // Output: 8
+```
+
+---
+
+### Recursive Manual
+
+```js
+function fibonacciRecursive(n) {
+  if (n === 0) return 0;
+  if (n === 1) return 1;
+  return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+}
+
+console.log(fibonacciRecursive(6)); // Output: 8
+```
+
+> ⚠️ Recursive version is simple but **inefficient** for large `n` due to repeated calculations.
+
+---
+
+### 🔎 Sample Inputs and Outputs:
+
+| `n` | Output `F(n)` |
+|-----|---------------|
+| 0   | 0             |
+| 1   | 1             |
+| 2   | 1             |
+| 3   | 2             |
+| 4   | 3             |
+| 5   | 5             |
+| 6   | 8             |
+
+---
+
 
 #### **Recursive Sum of Array**
 

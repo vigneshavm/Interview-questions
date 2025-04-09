@@ -37,7 +37,7 @@ console.log(isPalindrome("madam"));    // true
 console.log(isPalindrome("hello"));    // false
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 true
 false
@@ -91,7 +91,7 @@ console.log(isPalindromeManual("Racecar"));  // true
 console.log(isPalindromeManual("Hello"));    // false
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 true
 false
@@ -159,7 +159,7 @@ const input = [
 console.log(removeDuplicateObjects(input));
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 [
   { id: 1, name: 'A' },
@@ -214,7 +214,7 @@ const input = [
 console.log(removeDuplicateObjectsManual(input));
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 [
   { id: 1, name: 'A' },
@@ -256,7 +256,7 @@ function removeDuplicates(arr) {
 console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 [1, 2, 3, 4]
 ```
@@ -297,7 +297,7 @@ function removeDuplicatesManual(arr) {
 console.log(removeDuplicatesManual([1, 2, 2, 3, 1, 4]));
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 [1, 2, 3, 4]
 ```
@@ -346,7 +346,7 @@ function chunkArray(arr, size) {
 console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3));
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 [[1, 2, 3], [4, 5, 6], [7]]
 ```
@@ -396,7 +396,7 @@ function chunkArrayManual(arr, size) {
 console.log(chunkArrayManual([1, 2, 3, 4, 5, 6, 7], 3));
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 [[1, 2, 3], [4, 5, 6], [7]]
 ```
@@ -444,7 +444,7 @@ function secondLargestUsingSort(arr) {
 console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 20
 ```
@@ -486,7 +486,7 @@ function secondLargestManual(arr) {
 console.log(secondLargestManual([10, 5, 20, 20, 8, 25]));
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 20
 ```
@@ -647,7 +647,7 @@ function reverseWords(sentence) {
 console.log(reverseWords("Hello world this is JavaScript"));
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 JavaScript is this world Hello
 ```
@@ -707,7 +707,7 @@ function reverseWordsManual(sentence) {
 console.log(reverseWordsManual("Hello world this is JavaScript"));
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 JavaScript is this world Hello
 ```
@@ -749,7 +749,7 @@ function countVowels(str) {
 console.log(countVowels("Hello World"));
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 3
 ```
@@ -798,7 +798,7 @@ function countVowelsManual(str) {
 console.log(countVowelsManual("Hello World"));
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 3
 ```
@@ -853,7 +853,7 @@ console.log(firstNonRepeatingChar("swiss"));   // 'w'
 console.log(firstNonRepeatingChar("level"));   // 'v'
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 'w'
 'v'
@@ -917,7 +917,7 @@ console.log(firstNonRepeatingCharManual("swiss"));  // 'w'
 console.log(firstNonRepeatingCharManual("Teeter")); // 'r'
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 'w'
 'r'
@@ -1191,7 +1191,7 @@ function countArrayFreq(arr) {
 console.log(countArrayFreq([1, 2, 2, 3, 1, 4, 2]));
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 { 1: 2, 2: 3, 3: 1, 4: 1 }
 ```
@@ -1231,7 +1231,7 @@ function countArrayFreqManual(arr) {
 console.log(countArrayFreqManual([1, 2, 2, 3, 1, 4, 2]));
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 { 1: 2, 2: 3, 3: 1, 4: 1 }
 ```
@@ -1272,7 +1272,7 @@ function charFrequency(str) {
 console.log(charFrequency("hello"));
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 { h: 1, e: 1, l: 2, o: 1 }
 ```
@@ -1318,7 +1318,7 @@ function charFrequencyManual(str) {
 console.log(charFrequencyManual("Hello"));
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 { h: 1, e: 1, l: 2, o: 1 }
 ```
@@ -1361,7 +1361,7 @@ const sortedByAge = people.sort((a, b) => a.age - b.age);
 console.log(sortedByAge);
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 [
   { name: 'Bob', age: 25 },
@@ -1418,7 +1418,7 @@ const people = [
 console.log(sortByAgeManual(people));
 ```
 
-📤 **Output:**
+ **Output:**
 ```js
 [
   { name: 'Bob', age: 25 },
@@ -1462,7 +1462,7 @@ console.log(isAnagram("listen", "silent"));  // true
 console.log(isAnagram("hello", "world"));    // false
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 true
 false
@@ -1517,7 +1517,7 @@ console.log(isAnagramManual("listen", "silent"));  // true
 console.log(isAnagramManual("hello", "world"));    // false
 ```
 
-📤 **Output:**
+ **Output:**
 ```
 true
 false

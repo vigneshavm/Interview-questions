@@ -1260,7 +1260,8 @@ false
 
 ## **Group by Category or Class**
 
-This involves grouping elements of an array based on a shared property (`category`, `class`, etc.)
+  -  This involves grouping elements of an array based on a shared property (`category`, `class`, etc.)
+  -  
 ---
 
 

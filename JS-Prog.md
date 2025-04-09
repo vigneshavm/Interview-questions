@@ -45,7 +45,7 @@ false
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -170,7 +170,7 @@ console.log(removeDuplicateObjects(input));
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -263,7 +263,7 @@ console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 **Pseudocode / Algorithm**
 ```
 1. Initialize an empty array called result
@@ -353,7 +353,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3));
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -451,7 +451,7 @@ console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -654,7 +654,7 @@ JavaScript is this world Hello
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -756,7 +756,7 @@ console.log(countVowels("Hello World"));
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -861,7 +861,7 @@ console.log(firstNonRepeatingChar("level"));   // 'v'
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -1198,7 +1198,7 @@ console.log(countArrayFreq([1, 2, 2, 3, 1, 4, 2]));
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -1279,7 +1279,7 @@ console.log(charFrequency("hello"));
 
 ---
 
-### ❌ **Without Using Predefined Functions**
+**Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -1372,13 +1372,13 @@ console.log(sortedByAge);
 
 ---
 
-### ❌ 2. **Without Using Predefined Sort** (Manual sorting)
+** 2. **Without Using Predefined Sort** (Manual sorting)
 
 We’ll manually implement a sorting algorithm. Let’s use **Bubble Sort** for simplicity.
 
 ---
 
-### ❌ Pseudocode:
+** Pseudocode:
 ```
 1. Loop over array (outer loop)
 2. Inside loop, compare current object age with next object age
@@ -1388,7 +1388,7 @@ We’ll manually implement a sorting algorithm. Let’s use **Bubble Sort** for 
 
 ---
 
-### ❌ Code Example (Manual Bubble Sort):
+** Code Example (Manual Bubble Sort):
 
 ```js
 function sortByAgeManual(arr) {
@@ -1470,7 +1470,7 @@ false
 
 ---
 
-### ❌ **Without Using Predefined Functions**  
+**Without Using Predefined Functions**  
 (manual comparison using frequency count)
 
 **Pseudocode / Algorithm**

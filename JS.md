@@ -1,32 +1,11 @@
-Here’s your full content, nicely formatted in **Markdown** with clean hierarchy, anchors, and consistent styling for easy readability and navigation:
-
----
-
-- [let, var, const](#let-var-or-const)  
-- [Hoisting](#hoisting)  
-- [Common Hoisting Pitfalls](#common-hoisting-pitfalls)  
-- [Key ES6 Features](#key-es6-features)  
-- [Normal Function vs Arrow Function](#normal-function-vs-arrow-function)  
-- [Shallow vs Deep Copy](#shallow-vs-deep-copy)  
-- [call(), apply(), and bind()](#call-apply-and-bind)
-
-- [Closure](#closure)  
-- [Synchronous vs Asynchronous](#synchronous-vs-asynchronous)  
-- [== vs ===](#==-vs-)  
-- [this keyword](#this-keyword)  
-- [null vs undefined](#null-vs-undefined)  
-- [Event Loop & Call Stack](#event-loop--call-stack)  
-- [async/await vs Promises](#asyncawait-vs-promises)
-
-- [JavaScript Modules (`import/export`)](#javascript-modules-importexport)
-- [Event Propagation](#event-propagation)
--  [Inheritance](#inheritance)
--  [Debouncing vs Throttling](#debouncing-vs-throttling)
--  [Currying](#currying)
--  [Pure Functions](#pure-functions)
 
 
----
+| Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
+| --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| [let, var, const](#let-var-or-const)  | [Hoisting](#hoisting)  | [Common Hoisting Pitfalls](#common-hoisting-pitfalls)  | [Key ES6 Features](#key-es6-features)  | [Normal Function vs Arrow Function](#normal-function-vs-arrow-function)  | [Shallow vs Deep Copy](#shallow-vs-deep-copy)  | [call(), apply(), and bind()](#call-apply-and-bind)
+| [Closure](#closure)  | [Synchronous vs Asynchronous](#synchronous-vs-asynchronous)  | [== vs ===](#==-vs-)  | [this keyword](#this-keyword)  | [null vs undefined](#null-vs-undefined)  | [Event Loop & Call Stack](#event-loop--call-stack)  | [async/await vs Promises](#asyncawait-vs-promises) | [JavaScript Modules (`import/export`)](#javascript-modules-importexport)
+| [Event Propagation](#event-propagation)| [Inheritance](#inheritance)| [Debouncing vs Throttling](#debouncing-vs-throttling)| [Currying](#currying)| [Pure Functions](#pure-functions)
+
 
 ## let, var or const
 

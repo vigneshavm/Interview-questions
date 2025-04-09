@@ -2,8 +2,6 @@ Here’s your full content, nicely formatted in **Markdown** with clean hierarch
 
 ---
 
-# 🟦 1. Variables and Scope
-
 - [let, var, const](#let-var-or-const)  
 - [Hoisting](#hoisting)  
 - [Common Hoisting Pitfalls](#common-hoisting-pitfalls)  
@@ -125,7 +123,7 @@ function sum(...nums) { return nums.reduce((a, b) => a + b); }
 
 ---
 
-## 🔹 Normal Function vs Arrow Function
+##  Normal Function vs Arrow Function
 
 | Aspect              | Normal Function                                   | Arrow Function                              |
 |---------------------|--------------------------------------------------|---------------------------------------------|
@@ -149,7 +147,7 @@ const arrowFunc = () => {
 
 ---
 
-## 🔹 Shallow vs Deep Copy
+##  Shallow vs Deep Copy
 
 - **Shallow Copy** → Only top-level copied.
 - **Deep Copy** → All nested objects copied recursively.
@@ -168,7 +166,7 @@ console.log(obj.b.c); // 3
 
 ---
 
-## 🔹 call(), apply(), and bind()
+##  call(), apply(), and bind()
 
 ```js
 function greet(greeting, punctuation) {
@@ -202,7 +200,7 @@ boundGreet();                            // Hey, Alice.
 
 ---
 
-## 🔹 Closure
+##  Closure
 
 Closure is when a function remembers its lexical scope even after that outer function has finished executing.
 
@@ -222,7 +220,7 @@ counter(); // 2
 
 ---
 
-## 🔹 Synchronous vs Asynchronous
+##  Synchronous vs Asynchronous
 
 | Type         | Description                                       |
 |--------------|---------------------------------------------------|
@@ -239,7 +237,7 @@ async function fetchData() {
 
 ---
 
-## 🔹 == vs ===
+##  == vs ===
 
 ```js
 console.log(5 == "5");   // ✅ true → type coercion
@@ -253,7 +251,7 @@ console.log(5 === "5");  // ❌ false → strict equality
 
 ---
 
-## 🔹 this keyword
+##  this keyword
 
 | Context              | `this` refers to                      |
 |----------------------|--------------------------------------|
@@ -264,7 +262,7 @@ console.log(5 === "5");  // ❌ false → strict equality
 
 ---
 
-## 🔹 null vs undefined
+##  null vs undefined
 
 | Value       | Meaning                        |
 |-------------|--------------------------------|
@@ -281,7 +279,7 @@ console.log(b); // null
 
 ---
 
-## 🔹 Event Loop & Call Stack
+##  Event Loop & Call Stack
 
 - JavaScript is single-threaded, with an **event loop** that manages async operations via the **call stack** and **task queue**.
 
@@ -300,7 +298,7 @@ Async
 
 ---
 
-## 🔹 async/await vs Promises
+##  async/await vs Promises
 
 ```js
 function getData() {

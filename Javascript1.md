@@ -20,6 +20,10 @@
 | [Testing Asynchronous Code ](#testing-asynchronous-code-in-javascript) | [Best Practices for Writing Maintainable and Effective Tests](#best-practices-for-writing-maintainable-and-effective-tests) | [ Code Coverage and Assessing Test Quality](#understanding-code-coverage-and-assessing-test-quality) | [Tools for JavaScript Testing](#tools-for-javascript-testing) | [Introduction to Design Patterns and Their Importance](#introduction-to-design-patterns-and-their-importance) | [Singleton Pattern](#the-singleton-pattern-explained) | [ Factory Pattern](#understanding-the-factory-pattern-and-its-usage) | [SEO Strategies for Single Page Applications](#seo-strategies-for-single-page-applications-spas) |
 | [Module Pattern and Encapsulation](#module-pattern-and-encapsulation) | [Prototype Pattern](#prototype-pattern)  [Extending Built- Objects](#extending-built-in-javascript-objects) | [Cross-Site Scripting and Prevention](#cross-site-scripting-xss-and-prevention) | [Cross-Site Request Forgery and Mitigation Techniques](#cross-site-request-forgery-csrf-and-mitigation-techniques) | [Organizing JavaScript Code for Maintainability](#organizing-javascript-code-for-maintainability) | [Pros and Cons Compile to JavaScript](#pros-and-cons-of-using-languages-that-compile-to-javascript) | [When to Use `document.write()`](#when-to-use-documentwrite)  | [Sharing Code Between JavaScript Files](#sharing-code-between-javascript-files) 
 | [Preventing SQL Injection Vulnerabilities](#preventing-sql-injection-vulnerabilities) | [Handling Sensitive Data](#handling-sensitive-data) | [Content Security Policy (CSP)](#content-security-policy-csp) | [Common Security Headers and Their Purposes](#common-security-headers-and-their-purposes) | [Preventing Clickjacking Attacks](#preventing-clickjacking-attacks) | [Input Validation and Its Importance](#input-validation-and-its-importance) | [Identifying Security Vulnerabilities](#identifying-security-vulnerabilities) | [Authentication and Authorization](#secure-authentication-and-authorization) | 
+| [How does TypeScript improve JavaScript](#how-does-typescript-improve-javascript) | [Interface vs. Type](#interface-vs-type) | [Generics](#generics) | [Inheritance](#inheritance) | [Union Types](#union-types) | [Duck Typing](#duck-typing) |
+| [Type Inference](#type-inference) | [Mapped Types](#mapped-types) | [Decorators](#decorators) | [Async/Await](#asyncawait) | [Utility Types](#utility-types) | [Module System & Compiler Options](#module-system--compiler-options) |
+| [Dependency Injection](#dependency-injection) | [Custom Error](#custom-error) | [Request/Response Types](#requestresponse-types-with-typescript) | | | |
+
 
 <!-- TABLE_OF_CONTENTS:ALL:END -->
 
@@ -6655,3 +6659,267 @@ Disadvantages:
 [Back to top ↑](#table-of-contents-all-questions) &nbsp;&nbsp;/&nbsp;&nbsp; [✏️ Edit answer](https://github.com/yangshun/top-javascript-interview-questions/edit/main/questions/when-would-you-use-document-write/en-US.mdx)
 
 <br>
+
+
+
+
+
+
+
+### **How does TypeScript improve JavaScript?**  
+✅ **Static Typing** (`number`, `string`, `boolean`, `any`)  
+✅ **Interfaces & Types** (`interface User { name: string; age: number }`)  
+✅ **Better Code Completion & Debugging**  
+
+Example:  
+```ts
+function greet(name: string): string {
+    return `Hello, ${name}`;
+}
+console.log(greet("John")); // ✅ Hello, John
+```
+
+
+
+### **Interface vs. Type**
+**Differences:**
+
+| Aspect         | Interface                      | Type                          |
+|----------------|---------------------------------|-------------------------------|
+| **Definition** | Contract for objects            | Alias for types               |
+| **Extensibility** | `extends`, merging allowed      | Uses intersections (`&`)      |
+| **Use Cases**  | Best for objects, classes       | For primitive types, unions   |
+
+**When to Use:**
+- **Interface:** When working with objects or classes (supports declaration merging).
+- **Type:** For unions, tuples, or complex transformations.
+
+```typescript
+// Interface
+interface Person { name: string; age: number; }
+interface Employee extends Person { jobTitle: string; }
+
+// Type Alias
+type Point = { x: number; y: number };
+type ReadOnlyPoint = Readonly<Point>;
+```
+
+---
+
+### **Generics**
+Generics provide flexibility while maintaining type safety, making code reusable.
+
+```typescript
+// Generic Function
+function identity<T>(value: T): T { return value; }
+
+// Generic Interface
+interface Box<T> { content: T; }
+
+const stringBox: Box<string> = { content: "TypeScript" };
+```
+
+---
+
+### **Inheritance**
+- **Extending Classes**:
+
+```typescript
+class Animal { move() { console.log("Moving..."); } }
+class Dog extends Animal { bark() { console.log("Woof!"); } }
+
+const dog = new Dog();
+dog.move(); // Moving...
+dog.bark(); // Woof!
+```
+
+- **Extending Interfaces**:
+
+```typescript
+interface Person { name: string; }
+interface Employee extends Person { employeeId: number; }
+const emp: Employee = { name: "John", employeeId: 123 };
+```
+
+---
+
+### **Union Types**
+Union types allow a variable to hold multiple types.
+
+```typescript
+let id: string | number;
+id = 123; // valid
+id = "ABC"; // valid
+
+function display(value: string | number) { console.log(value); }
+```
+
+
+---
+
+### **Duck Typing?**  
+If an object has required properties, it's considered compatible (structural typing).  
+
+Example:  
+```ts
+interface User {
+    name: string;
+    age: number;
+}
+const user = { name: "Alice", age: 25, city: "NY" }; // Extra props are ignored
+let person: User = user;  // ✅ Works
+```
+
+---
+
+---
+
+### **Type Inference**
+TypeScript infers types based on variable initialization.
+
+```typescript
+// Implicit Inference
+let age = 25; // inferred as number
+
+// Explicit Type
+let name: string = "John";
+```
+
+---
+
+### **Mapped Types**
+Mapped types allow transforming types dynamically.
+
+```typescript
+type User = { name: string; age: number; };
+type PartialUser = { [K in keyof User]?: User[K]; };
+const user: PartialUser = { name: "Alice" };
+```
+
+---
+
+### **Decorators**
+Decorators modify classes, methods, or properties. Enable with `experimentalDecorators: true` in `tsconfig.json`.
+
+```typescript
+import "reflect-metadata";
+
+function Controller(route: string) {
+  return function(target: Function) { target.prototype.route = route; };
+}
+
+@Controller("/api/user")
+class UserController { getUser() { console.log("Fetching User..."); } }
+
+console.log(new UserController().route); // "/api/user"
+```
+
+---
+
+### **Async/Await**
+Async/await simplifies working with promises and asynchronous code.
+
+```typescript
+async function fetchData() {
+  try {
+    const response = await fetch("https://api.example.com/data");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+```
+
+---
+
+### **Utility Types**
+Common utility types to transform types:
+- **Partial**: Makes all properties optional.
+- **Pick**: Selects specific properties.
+- **Omit**: Excludes specific properties.
+
+```typescript
+interface User { name: string; age: number; }
+type PartialUser = Partial<User>;
+type UserName = Pick<User, "name">;
+type UserWithoutAge = Omit<User, "age">;
+```
+
+---
+
+### **Module System & Compiler Options**
+Key compiler options:
+- **`esModuleInterop`**: Enables default imports from non-ES modules.
+- **`allowSyntheticDefaultImports`**: Affects only type-checking.
+
+```json
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
+```
+
+**With `esModuleInterop`, you can import modules like:**
+
+```typescript
+import fs from "fs"; // Works if enabled
+```
+
+---
+
+
+### **Dependency injection?**
+
+You can use decorators and libraries like `tsyringe` or `inversify`.
+
+```ts
+import { injectable } from 'tsyringe';
+
+@injectable()
+class UserService {
+  getUsers() {}
+}
+```
+
+---
+
+### **`Generics`**
+
+```ts
+function identity<T>(arg: T): T {
+  return arg;
+}
+
+const result = identity<string>("Hello");
+```
+
+---
+
+### **Custom error**
+
+```ts
+class AppError extends Error {
+  constructor(public statusCode: number, message: string) {
+    super(message);
+    this.name = 'AppError';
+  }
+}
+```
+---
+
+### **Request/response types with TypeScript?**
+```ts
+interface CreateUserDTO {
+  name: string;
+  email: string;
+}
+
+const createUser = (req: Request<{}, {}, CreateUserDTO>, res: Response) => {
+  const { name, email } = req.body;
+  // do something
+};
+```
+

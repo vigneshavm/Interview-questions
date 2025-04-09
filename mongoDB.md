@@ -392,8 +392,6 @@ db.users.updateMany({ country: "IN" }, { $set: { verified: true } })
 db.users.replaceOne({ _id: 1 }, { name: "Anu", age: 24 }) // full replace
 ```
 
----
-```
 
 
 
@@ -418,7 +416,6 @@ db.collection.find({ $text: { $search: "searchText" } });
 - **MongoDB** is a good fit for unstructured or semi-structured data (large-scale).
 
 
----
 
 ## Sharding and Why is it Used?
 

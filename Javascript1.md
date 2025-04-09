@@ -1,4 +1,23 @@
-<!-- TABLE_OF_CONTENTS:ALL:START -->
+| Questions1 | Questions2 | Questions3 | Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
+|------------|------------|------------|-------------|-------------|-------------|-------------|-------------|
+| [let, var, const?](#let-var-or-const) | [Global JavaScript scope?](#global-javascript-scope) | ['use strict' Directive](#use-strict-directive-in-javascript) | [Hoisting](#hoisting) | [Lexical Scoping](#lexical-scoping) | [Scope](#scope) | [Global Scope, Function Scope, and Block Scope](#global-scope-function-scope-and-block-scope) | [JavaScript Data Types](#javascript-data-types) |
+| [Symbol Data Type](#data-types--symbol) | [null, undefined, and undeclared?](#null-undefined-or-undeclared) | [Type Checking](#how-do-you-check-the-data-type-of-a-variable) | [Convert a String to a Number](#convert-a-string-to-a-number) | [`==` vs `===`](#-and-) | [Mutable vs. Immutable Objects](#mutable-vs-immutable-objects) | [How Does TypeScript Improve JavaScript](#how-does-typescript-improve-javascript) | [Interface vs. Type](#interface-vs-type) |
+| [Generics](#generics) | [Inheritance](#inheritance) | [Union Types](#union-types) | [Duck Typing](#duck-typing) | [Custom Error](#custom-error) | [Request/Response Types with TypeScript](#requestresponse-types-with-typescript) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |
+| [Decorators](#decorators) | [Async/Await](#asyncawait) | [Utility Types](#utility-types) | [Module System & Compiler Options](#module-system--compiler-options) | [Dependency Injection](#dependency-injection) | [Array Iteration Methods](#array-iteration-methods) | [Managing Array Elements](#managing-array-elements) | [Index in Iteration](#index-of-an-element-in-an-array-during-iteration) |
+| [Iterating Object Properties vs Array Items](#iterating-over-object-properties-and-array-items-in-javascript) | [Spread Operator](#spread-operator) | [Rest Parameters](#rest-parameters) | [Event Bubbling](#event-bubbling) | [Manipulating CSS Styles Using JavaScript](#css-styles-manipulate) | [Debouncing and Throttling Techniques](#debouncing-and-throttling) |  |  |
+| [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions) | [Promises](#promises) | [Promise States](#promise-states) | [Pros and Cons of Promises](#pros-and-cons-of-promises) | [Promise.all()](#promiseall) | [Promise.all vs Promise.allSettled](#promiseall-vs-promiseallsettled) | [Microtask Queue](#microtask-queue) | [`setTimeout()`, `setImmediate()`, and `process.nextTick()`](#settimeout-setimmediate-and-processnexttick) |
+| [Introduction to Design Patterns and Their Importance](#introduction-to-design-patterns-and-their-importance) | [Singleton Pattern](#the-singleton-pattern-explained) | [Factory Pattern](#understanding-the-factory-pattern-and-its-usage) | [Module Pattern and Encapsulation](#module-pattern-and-encapsulation) | [Prototype Pattern](#prototype-pattern) | [Observer Pattern](#the-observer-pattern-and-its-use-cases) |  |  |
+| [Shallow vs Deep Copy](#shallow-deep-copy) | [Destructuring Assignment](#destructuring-assignment-for-objects-and-arrays) | [Object.freeze()](#objectfreeze) | [Object.seal()](#objectseal) | [Object.preventExtensions()](#objectpreventextensions) | [Object Property Flags](#object-property-flags) | [Getters and Setters](#getters-and-setters) |  |
+| [Prototype Chain](#prototype-chain) | [Constructor Function](#constructor-function) | [The `new` Keyword](#new-keyword) | [Classical vs Prototypal Inheritance](#classical-inheritance-vs-prototypal-inheritance) | [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes) | [Static Class Members](#static-class-members) | [JavaScript Polyfills](#javascript-polyfills) |  |
+| [Function Declaration vs Function Expression vs Constructor](#function-declaration-vs-function-call-vs-constructor-call) | [Arrow Functions](#arrow-functions) | [Anonymous Functions](#anonymous-functions---use-cases) | [Default Parameters](#default-parameters) | [Async/Await](#asyncawait) | [Cookies, sessionStorage, and localStorage](#cookie-sessionstorage-localstorage) | [Event Listeners](#event-listeners) | [Event Phases](#event-phases) |
+| [Handling Async Errors](#handle-errors-in-asynchronous-operations) | [Rest Parameters](#rest-parameters) | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions) | [Higher-Order Functions](#higher-order-functions) | [Callback Functions](#callback-functions) | [Closures and Private Variables](#closures) | [Potential Pitfalls of Closures](#closures-pitfalls) | [Recursion](#recursion) |
+
+
+
+
+
+
+
 
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |

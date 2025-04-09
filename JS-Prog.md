@@ -882,18 +882,88 @@ console.log(power(2, 4)); // 16
 
 
 
-#### **Count Frequency of Array Elements**
-```js
-const nums = [1, 2, 2, 3, 1, 4, 2];
-function countFrequency(arr: number[]): Record<number, number> {
-  const freq: Record<number, number> = {};
-    for (const num of arr) {    freq[num] = (freq[num] || 0) + 1;  }
-    return freq;
-  }
-```
-
 
 ---
+
+## **Count Frequency of Array Element**
+
+> Given an array like `[1, 2, 2, 3, 1, 4, 2]`, output frequency:  
+> `{ 1: 2, 2: 3, 3: 1, 4: 1 }`
+
+---
+
+### ✅ **Using Predefined Functions (`forEach()`, object access, etc.)**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create an empty object to hold counts
+2. Loop through the array using forEach
+3. For each element:
+   a. If it exists in object, increment
+   b. Else, set to 1
+4. Return the object
+```
+
+#### **Code Example**
+```js
+function countArrayFreq(arr) {
+  const freq = {};
+  arr.forEach(item => {
+    freq[item] = (freq[item] || 0) + 1;
+  });
+  return freq;
+}
+
+console.log(countArrayFreq([1, 2, 2, 3, 1, 4, 2]));
+```
+
+📤 **Output:**
+```js
+{ 1: 2, 2: 3, 3: 1, 4: 1 }
+```
+
+---
+
+### ❌ **Without Using Predefined Functions**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create an empty object for frequency
+2. Use a for loop to go through each element of the array
+3. For each element:
+   a. If it exists in the object, increase count
+   b. Else, set to 1
+4. Return the object
+```
+
+#### **Code Example**
+```js
+function countArrayFreqManual(arr) {
+  const freq = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i];
+
+    if (freq[item]) {
+      freq[item] = freq[item] + 1;
+    } else {
+      freq[item] = 1;
+    }
+  }
+
+  return freq;
+}
+
+console.log(countArrayFreqManual([1, 2, 2, 3, 1, 4, 2]));
+```
+
+📤 **Output:**
+```js
+{ 1: 2, 2: 3, 3: 1, 4: 1 }
+```
+
+---
+
 
 ## **Character Frequency Count**
 

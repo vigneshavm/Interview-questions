@@ -11,55 +11,36 @@
 
 ## JavaScript / TypeScript Built-in Functions & Methods
 
-| Category         | Function / Method        | Description                                                                 | Example Usage                                         |
-|------------------|--------------------------|-----------------------------------------------------------------------------|--------------------------------------------------------|
-| **Global**       | `eval()`                 | Evaluates a string of JS code *(⚠️ avoid use)*                            | `eval("2 + 2") // 4`                                  |
-|                  | `parseInt()`             | Converts string to integer                                                  | `parseInt("10px") // 10`                              |
-|                  | `parseFloat()`           | Converts string to float                                                    | `parseFloat("3.14") // 3.14`                          |
-|                  | `isNaN()`                | Checks if value is NaN                                                      | `isNaN("abc") // true`                                |
-|                  | `isFinite()`             | Checks if value is a finite number                                          | `isFinite(5) // true`                                 |
-|                  | `encodeURI()`            | Encodes a URI                                                               | `encodeURI("https://a.com?q=hello world")`            |
-|                  | `decodeURI()`            | Decodes a URI                                                               | `decodeURI("https%3A%2F%2Fa.com")`                    |
-|                  | `encodeURIComponent()`   | Encodes URI component                                                       | `encodeURIComponent("hello world")`                   |
-|                  | `decodeURIComponent()`   | Decodes URI component                                                       | `decodeURIComponent("hello%20world")`                 |
-| **Object**       | `Object.keys()`           | Returns array of keys                                                       | `Object.keys({a:1,b:2}) // ["a", "b"]`                |
-|                  | `Object.values()`         | Returns array of values                                                     | `Object.values({a:1,b:2}) // [1, 2]`                  |
-|                  | `Object.entries()`        | Returns array of key-value pairs                                            | `Object.entries({a:1}) // [["a", 1]]`                 |
-|                  | `Object.assign()`         | Copies properties to target object                                          | `Object.assign({}, {a:1}) // {a:1}`                   |
-|                  | `Object.hasOwn()`         | Checks if object has own property                                           | `Object.hasOwn(obj, "prop") // true/false`            |
-| **Array**        | `push()`                  | Adds item(s) to end of array                                                | `arr.push(4)`                                         |
-|                  | `pop()`                   | Removes last item                                                           | `arr.pop()`                                           |
-|                  | `shift()`                 | Removes first item                                                          | `arr.shift()`                                         |
-|                  | `unshift()`               | Adds item(s) to beginning                                                    | `arr.unshift(0)`                                      |
-|                  | `map()`                   | Transforms each item                                                         | `arr.map(x => x * 2)`                                 |
-|                  | `filter()`                | Filters items based on condition                                             | `arr.filter(x => x > 5)`                              |
-|                  | `reduce()`                | Reduces array to a single value                                              | `arr.reduce((a, b) => a + b)`                         |
-|                  | `forEach()`               | Iterates over array                                                          | `arr.forEach(console.log)`                            |
-|                  | `find()`                  | Finds first matching item                                                    | `arr.find(x => x > 10)`                               |
-|                  | `includes()`              | Checks if array includes a value                                             | `arr.includes(3)`                                     |
-|                  | `some()`                  | Checks if **any** item matches condition                                     | `arr.some(x => x > 10)`                               |
-|                  | `every()`                 | Checks if **all** items match condition                                      | `arr.every(x => x > 0)`                               |
-| **String**       | `charAt()`                | Returns character at position                                               | `"abc".charAt(1) // "b"`                              |
-|                  | `slice()`                 | Extracts part of string                                                     | `"hello".slice(1, 4) // "ell"`                        |
-|                  | `toUpperCase()`           | Converts string to uppercase                                                | `"abc".toUpperCase()`                                 |
-|                  | `toLowerCase()`           | Converts string to lowercase                                                | `"ABC".toLowerCase()`                                 |
-|                  | `trim()`                  | Removes whitespace                                                          | `"  hello ".trim() // "hello"`                        |
-|                  | `split()`                 | Splits string into array                                                    | `"a,b".split(",") // ["a", "b"]`                      |
-|                  | `includes()`              | Checks if string contains substring                                         | `"hello".includes("ell") // true`                     |
-| **Date**         | `Date.now()`              | Current timestamp in milliseconds                                           | `Date.now()`                                          |
-|                  | `new Date()`              | Creates a new date                                                          | `new Date("2023-01-01")`                              |
-|                  | `getFullYear()`           | Gets year from date                                                         | `new Date().getFullYear()`                            |
-|                  | `getMonth()`              | Gets month (0–11)                                                           | `new Date().getMonth()`                               |
-|                  | `toISOString()`           | Converts to ISO string                                                      | `new Date().toISOString()`                            |
-| **TypeScript**   | `as` keyword              | Type assertion                                                              | `value as string`                                     |
-|                  | `typeof`                 | Type guard                                                                   | `if (typeof x === "string")`                         |
-|                  | `keyof`                  | Gets union of keys from a type                                              | `keyof typeof obj`                                    |
-|                  | `Record<K, T>`           | Creates object type with keys `K` and values `T`                            | `Record<string, number>`                              |
-|                  | `Partial<T>`             | Makes all properties optional                                               | `Partial<User>`                                       |
-|                  | `Pick<T, K>`             | Picks specific keys                                                         | `Pick<User, "name">`                                  |
-|                  | `Omit<T, K>`             | Omits specific keys                                                         | `Omit<User, "password">`                              |
 
----
+
+## JavaScript / TypeScript Built-in Functions & Methods
+
+| Function| Description| Example Usage| Function| Description| Example Usage|
+| --- | :-- | :-- | :-- | :-- | :-- |
+| `eval()`| Evaluates a string of JS code *(⚠️ avoid use)*           | `eval("2 + 2") // 4`| `parseInt()`             | Converts string to integer                | `parseInt("10px") // 10`             |
+| `parseFloat()`           | Converts string to float | `parseFloat("3.14") // 3.14`         | `isNaN()`                | Checks if value is NaN   | `isNaN("abc") // true`               |
+| `isFinite()`             | Checks if value is a finite number        | `isFinite(5) // true`                | `encodeURI()`            | Encodes a URI            | `encodeURI("https://a.com?q=hello world")`            |
+| `decodeURI()`            | Decodes a URI            | `decodeURI("https%3A%2F%2Fa.com")`   | `encodeURIComponent()`   | Encodes URI component    | `encodeURIComponent("hello world")`  |
+| `decodeURIComponent()`   | Decodes URI component    | `decodeURIComponent("hello%20world")`| `Object.keys()`           | Returns array of keys    | `Object.keys({a:1,b:2}) // ["a", "b"]`                |
+| `Object.values()`         | Returns array of values  | `Object.values({a:1,b:2}) // [1, 2]` | `Object.entries()`        | Returns array of key-value pairs          | `Object.entries({a:1}) // [["a", 1]]`|
+| `Object.assign()`         | Copies properties to target object        | `Object.assign({}, {a:1}) // {a:1}`  | `Object.hasOwn()`         | Checks if object has own property         | `Object.hasOwn(obj, "prop") // true/false`            |
+| `push()` | Adds item(s) to end of array              | `arr.push(4)`       | `pop()`  | Removes last item        | `arr.pop()`         |
+| `shift()`| Removes first item       | `arr.shift()`       |
+| `unshift()`               | Adds item(s) to beginning | `arr.unshift(0)`    | `map()`  | Transforms each item      | `arr.map(x => x * 2)`                |
+| `filter()`                | Filters items based on condition           | `arr.filter(x => x > 5)`             | `reduce()`                | Reduces array to a single value            | `arr.reduce((a, b) => a + b)`        |
+| `forEach()`               | Iterates over array       | `arr.forEach(console.log)`           | `find()` | Finds first matching item | `arr.find(x => x > 10)`              |
+| `includes()`              | Checks if array includes a value           | `arr.includes(3)`   | `some()` | Checks if **any** item matches condition   | `arr.some(x => x > 10)`              |
+| `every()`| Checks if **all** items match condition    | `arr.every(x => x > 0)`              | `charAt()`                | Returns character at position             | `"abc".charAt(1) // "b"`             |
+| `slice()`| Extracts part of string  | `"hello".slice(1, 4) // "ell"`       |
+| `toUpperCase()`           | Converts string to uppercase              | `"abc".toUpperCase()`                | `toLowerCase()`           | Converts string to lowercase              | `"ABC".toLowerCase()`                |
+| `trim()` | Removes whitespace       | `"  hello ".trim() // "hello"`       | `split()`| Splits string into array | `"a,b".split(",") // ["a", "b"]`     |
+| `includes()`              | Checks if string contains substring       | `"hello".includes("ell") // true`    | `as` keyword              | Type assertion           | `value as string`   |
+| `typeof`| Type guard                | `if (typeof x === "string")`        | `keyof` | Gets union of keys from a type            | `keyof typeof obj`  |
+| `Record<K, T>`           | Creates object type with keys `K` and values `T`           | `Record<string, number>`             | `Partial<T>`             | Makes all properties optional             | `Partial<User>`     | `Pick<T, K>`             | Picks specific keys      | `Pick<User, "name">`|
+| `Omit<T, K>`             | Omits specific keys      | `Omit<User, "password">`             |
+
+
+
 
 
 ---

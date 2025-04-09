@@ -819,7 +819,7 @@ if (error) {
 
 ---
 
-##  **How do you ensure data consistency across distributed services?**
+##  **Data consistency across distributed services?**
    - Use distributed transaction mechanisms like **two-phase commit**.
    - Implement **event-driven architecture** with message brokers (e.g., Kafka, RabbitMQ) for eventual consistency.
    - Use database strategies like **write-ahead logs** and **saga patterns** for managing consistency.

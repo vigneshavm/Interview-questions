@@ -10,6 +10,99 @@
 
 
 
+---
+
+## **Check for Palindrome**  
+> A palindrome is a string that reads the same forwards and backwards.  
+Example: `"madam"`, `"racecar"` are palindromes.
+
+---
+
+### ✅ **Using Predefined Functions (`split()`, `reverse()`, `join()`)**
+
+#### **Pseudocode / Algorithm**
+```
+1. Convert string to lowercase (optional, to ignore case)
+2. Reverse the string using split → reverse → join
+3. Compare original string with reversed string
+4. If equal, return true; else, false
+```
+
+#### **Code Example**
+```js
+function isPalindrome(str) {
+  str = str.toLowerCase(); // optional
+  const reversed = str.split('').reverse().join('');
+  return str === reversed;
+}
+
+console.log(isPalindrome("madam"));    // true
+console.log(isPalindrome("hello"));    // false
+```
+
+📤 **Output:**
+```
+true
+false
+```
+
+---
+
+### ❌ **Without Using Predefined Functions**
+
+#### **Pseudocode / Algorithm**
+```
+1. Convert string to lowercase
+2. Initialize two pointers:
+   - left = 0
+   - right = length - 1
+3. While left < right:
+   a. If characters at left and right are different, return false
+   b. Move left forward, right backward
+4. If loop completes, return true
+```
+
+#### **Code Example**
+```js
+function isPalindromeManual(str) {
+  let lowerStr = '';
+  // Manual lowercase conversion (optional)
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i);
+    if (code >= 65 && code <= 90) {
+      lowerStr += String.fromCharCode(code + 32); // A-Z to a-z
+    } else {
+      lowerStr += str[i];
+    }
+  }
+
+  let left = 0;
+  let right = lowerStr.length - 1;
+
+  while (left < right) {
+    if (lowerStr[left] !== lowerStr[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+
+  return true;
+}
+
+console.log(isPalindromeManual("Racecar"));  // true
+console.log(isPalindromeManual("Hello"));    // false
+```
+
+📤 **Output:**
+```
+true
+false
+```
+
+---
+
+
 
 ## **Remove Duplicates element from Object**
 For example: remove duplicates based on `id`.

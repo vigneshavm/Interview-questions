@@ -15,9 +15,9 @@ Example: `"madam"`, `"racecar"` are palindromes.
 
 ---
 
-### ✅ **Using Predefined Functions (`split()`, `reverse()`, `join()`)**
+**Using Predefined Functions (`split()`, `reverse()`, `join()`)**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Convert string to lowercase (optional, to ignore case)
 2. Reverse the string using split → reverse → join
@@ -25,7 +25,7 @@ Example: `"madam"`, `"racecar"` are palindromes.
 4. If equal, return true; else, false
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function isPalindrome(str) {
   str = str.toLowerCase(); // optional
@@ -47,7 +47,7 @@ false
 
 ### ❌ **Without Using Predefined Functions**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Convert string to lowercase
 2. Initialize two pointers:
@@ -59,7 +59,7 @@ false
 4. If loop completes, return true
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function isPalindromeManual(str) {
   let lowerStr = '';
@@ -125,9 +125,9 @@ Expected output:
 
 ---
 
-### ✅ **Using Predefined Functions (`.filter()`, `.some()`)**
+**Using Predefined Functions (`.filter()`, `.some()`)**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create empty result array
 2. Loop through each object in original array
@@ -137,7 +137,7 @@ Expected output:
 4. Return result array
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function removeDuplicateObjects(arr) {
   const result = [];
@@ -172,7 +172,7 @@ console.log(removeDuplicateObjects(input));
 
 ### ❌ **Without Using Predefined Functions**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create empty array called result
 2. Loop i from 0 to arr.length
@@ -185,7 +185,7 @@ console.log(removeDuplicateObjects(input));
 3. Return result
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function removeDuplicateObjectsManual(arr) {
   let result = [];
@@ -231,8 +231,8 @@ console.log(removeDuplicateObjectsManual(input));
 
 ---
 
-### ✅ **Using Predefined Functions (e.g., `includes`)**
-#### **Pseudocode / Algorithm**
+**Using Predefined Functions (e.g., `includes`)**
+**Pseudocode / Algorithm**
 ```
 1. Initialize empty result array
 2. Loop through each element in the input array
@@ -241,7 +241,7 @@ console.log(removeDuplicateObjectsManual(input));
 4. Return result array
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function removeDuplicates(arr) {
   let result = [];
@@ -264,7 +264,7 @@ console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
 ---
 
 ### ❌ **Without Using Predefined Functions**
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Initialize an empty array called result
 2. Loop i from 0 to array.length
@@ -275,7 +275,7 @@ console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
 3. Return result
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function removeDuplicatesManual(arr) {
   let result = [];
@@ -322,9 +322,9 @@ Expected Output:
 
 ---
 
-### ✅ **Using Predefined Functions (`slice()`, `push()`)**
+**Using Predefined Functions (`slice()`, `push()`)**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create empty result array
 2. Loop i from 0 to array.length in steps of chunk size
@@ -333,7 +333,7 @@ Expected Output:
 3. Return result
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function chunkArray(arr, size) {
   const result = [];
@@ -355,7 +355,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3));
 
 ### ❌ **Without Using Predefined Functions**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create empty result array
 2. Create temporary empty chunk array
@@ -368,7 +368,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3));
 5. Return result
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function chunkArrayManual(arr, size) {
   let result = [];
@@ -424,16 +424,16 @@ Second Largest: 20
 
 ---
 
-### ✅ **Using Predefined Functions (`sort()`, `filter()`, etc.)**
+**Using Predefined Functions (`sort()`, `filter()`, etc.)**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Sort the array in descending order
 2. Filter out duplicates
 3. Return the second element (index 1) from the result
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function secondLargestUsingSort(arr) {
   const unique = arr.filter((val, index, self) => self.indexOf(val) === index);
@@ -453,7 +453,7 @@ console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
 
 ### ❌ **Without Using Predefined Functions**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Initialize first = -Infinity, second = -Infinity
 2. Loop through each element:
@@ -465,7 +465,7 @@ console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
 3. Return second
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function secondLargestManual(arr) {
   let first = -Infinity;
@@ -497,7 +497,7 @@ console.log(secondLargestManual([10, 5, 20, 20, 8, 25]));
 
 
 
-#### **Remove Duplicates element from Object**
+**Remove Duplicates element from Object**
 
 ```js
 
@@ -524,7 +524,7 @@ Output:  [ { id: 1, name: 'A' }, { id: 3, name: 'C' } ]
 
 
 
-#### **Remove Duplicates element from array**
+**Remove Duplicates element from array**
 
 
 **From Array without Set**
@@ -592,7 +592,7 @@ function removeDuplicates(arr) {
 
 
 
-#### **Chunk an Array**
+**Chunk an Array**
 
 ```js
 function chunkArray(arr, size) {
@@ -608,7 +608,7 @@ console.log(chunkArray([1, 2, 3, 4, 5], 2)); // [[1,2],[3,4],[5]]
 ---
 
 
-#### **Check for Palindrome**
+**Check for Palindrome**
 
 ```js
 function isPalindrome(str) {
@@ -628,9 +628,9 @@ console.log(isPalindrome("Racecar")); // true
 
 ---
 
-### ✅ **Using Predefined Functions (`split()`, `reverse()`, `join()`)**
+**Using Predefined Functions (`split()`, `reverse()`, `join()`)**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Split the sentence into an array of words using space
 2. Reverse the array
@@ -638,7 +638,7 @@ console.log(isPalindrome("Racecar")); // true
 4. Return the result
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function reverseWords(sentence) {
   return sentence.split(' ').reverse().join(' ');
@@ -656,7 +656,7 @@ JavaScript is this world Hello
 
 ### ❌ **Without Using Predefined Functions**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create an empty array to hold words
 2. Traverse the sentence character by character
@@ -668,7 +668,7 @@ JavaScript is this world Hello
 5. Return final string
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function reverseWordsManual(sentence) {
   let words = [];
@@ -725,9 +725,9 @@ JavaScript is this world Hello
 
 ---
 
-### ✅ **Using Predefined Functions (`includes()`, `toLowerCase()`, `split()`)**
+**Using Predefined Functions (`includes()`, `toLowerCase()`, `split()`)**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Convert the string to lowercase
 2. Initialize vowel count = 0
@@ -736,7 +736,7 @@ JavaScript is this world Hello
 4. Return vowel count
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function countVowels(str) {
   const vowels = ['a', 'e', 'i', 'o', 'u'];
@@ -758,7 +758,7 @@ console.log(countVowels("Hello World"));
 
 ### ❌ **Without Using Predefined Functions**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create a counter = 0
 2. Loop through the string character by character
@@ -768,7 +768,7 @@ console.log(countVowels("Hello World"));
 6. Return count
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function countVowelsManual(str) {
   let count = 0;
@@ -816,10 +816,10 @@ console.log(countVowelsManual("Hello World"));
 
 ---
 
-### ✅ **Using Predefined Functions**  
+**Using Predefined Functions**  
 (using `.split()`, `.forEach()`, `.charAt()`, `.toLowerCase()`)
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Convert string to lowercase
 2. Create empty object for frequency counts
@@ -828,7 +828,7 @@ console.log(countVowelsManual("Hello World"));
    a. Return the first char whose count is 1
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function firstNonRepeatingChar(str) {
   const freq = {};
@@ -863,7 +863,7 @@ console.log(firstNonRepeatingChar("level"));   // 'v'
 
 ### ❌ **Without Using Predefined Functions**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create an empty frequency object
 2. Loop through string:
@@ -875,7 +875,7 @@ console.log(firstNonRepeatingChar("level"));   // 'v'
 4. If no non-repeating character, return null
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function firstNonRepeatingCharManual(str) {
   const freq = {};
@@ -1166,9 +1166,9 @@ console.log(powerRecursive(2, 4)); // Output: 16
 
 ---
 
-### ✅ **Using Predefined Functions (`forEach()`, object access, etc.)**
+**Using Predefined Functions (`forEach()`, object access, etc.)**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create an empty object to hold counts
 2. Loop through the array using forEach
@@ -1178,7 +1178,7 @@ console.log(powerRecursive(2, 4)); // Output: 16
 4. Return the object
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function countArrayFreq(arr) {
   const freq = {};
@@ -1200,7 +1200,7 @@ console.log(countArrayFreq([1, 2, 2, 3, 1, 4, 2]));
 
 ### ❌ **Without Using Predefined Functions**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create an empty object for frequency
 2. Use a for loop to go through each element of the array
@@ -1210,7 +1210,7 @@ console.log(countArrayFreq([1, 2, 2, 3, 1, 4, 2]));
 4. Return the object
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function countArrayFreqManual(arr) {
   const freq = {};
@@ -1246,9 +1246,9 @@ console.log(countArrayFreqManual([1, 2, 2, 3, 1, 4, 2]));
 
 ---
 
-### ✅ **Using Predefined Functions (`toLowerCase()`, `split()`, `forEach()` / `reduce()` / object access)**
+**Using Predefined Functions (`toLowerCase()`, `split()`, `forEach()` / `reduce()` / object access)**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Convert string to lowercase
 2. Create an empty object for counts
@@ -1259,7 +1259,7 @@ console.log(countArrayFreqManual([1, 2, 2, 3, 1, 4, 2]));
 5. Return the object
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function charFrequency(str) {
   const freq = {};
@@ -1281,7 +1281,7 @@ console.log(charFrequency("hello"));
 
 ### ❌ **Without Using Predefined Functions**
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Create an empty object for character counts
 2. Loop through each character of the string
@@ -1291,7 +1291,7 @@ console.log(charFrequency("hello"));
 5. Return the object
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function charFrequencyManual(str) {
   const freq = {};
@@ -1343,11 +1343,11 @@ const people = [
 
 ---
 
-### ✅ 1. **Using Predefined Functions**
+** 1. **Using Predefined Functions**
 
 We’ll use the built-in `.sort()` method.
 
-### ✅ Code Example:
+** Code Example:
 
 ```js
 const people = [
@@ -1439,10 +1439,10 @@ console.log(sortByAgeManual(people));
 
 ---
 
-### ✅ **Using Predefined Functions**  
+**Using Predefined Functions**  
 (using `.split()`, `.sort()`, `.join()`, `.toLowerCase()`)
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. Convert both strings to lowercase
 2. Split each string into array of characters
@@ -1451,7 +1451,7 @@ console.log(sortByAgeManual(people));
 5. Compare the two resulting strings
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function isAnagram(str1, str2) {
   return str1.toLowerCase().split('').sort().join('') ===
@@ -1473,7 +1473,7 @@ false
 ### ❌ **Without Using Predefined Functions**  
 (manual comparison using frequency count)
 
-#### **Pseudocode / Algorithm**
+**Pseudocode / Algorithm**
 ```
 1. If lengths of the strings are different → not anagrams
 2. Convert both to lowercase manually
@@ -1484,7 +1484,7 @@ false
    - Else → not anagram
 ```
 
-#### **Code Example**
+**Code Example**
 ```js
 function isAnagramManual(str1, str2) {
   if (str1.length !== str2.length) return false;
@@ -1539,7 +1539,7 @@ false
 
 
 
-### ✅ **Group Products by Category**
+**Group Products by Category**
 
 **Input:**
 ```js
@@ -1580,7 +1580,7 @@ console.log(groupByCategory(products));
 ---
 
 
-### ✅ **Group Names by Class**
+**Group Names by Class**
 
 
 **Input:**
@@ -1704,7 +1704,7 @@ console.log(manualFlatten([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
 ---
 
 
-#### **Understanding var vs let in Loops and Closures**
+**Understanding var vs let in Loops and Closures**
 ```js
 for (var i = 0; i < 5; i++) {
   console.log(i);  setTimeout(() => console.log(i), 0);
@@ -1724,7 +1724,7 @@ for (var i = 0; i < 5; i++) {
   (function(i) {    setTimeout(() => console.log(i), 0);  })(i);
 }
 ```
-#### **Merge Sort + Deduplication**
+**Merge Sort + Deduplication**
 ```js
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;
@@ -1754,7 +1754,7 @@ console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
 
 
 
-#### **Binary Search**
+**Binary Search**
 
 sort the array:
 ```js
@@ -1780,7 +1780,7 @@ console.log("Index of 3:", index);
 console.log(removeDuplicates(array)); // [4, 2, 5, 3, 1]
 ```
 
-#### **Boolean Function to Match Filename Pattern Without Regex**
+**Boolean Function to Match Filename Pattern Without Regex**
 ```js
 function matchPattern(filename, pattern) {
   let i = 0, j = 0, starIdx = -1, match = 0;
@@ -1798,7 +1798,7 @@ function matchPattern(filename, pattern) {
 }
 ```
 
-#### **Stock Span Problem (Optimized Solution)**
+**Stock Span Problem (Optimized Solution)**
 ```js
 class StockSpanner {
   constructor() {
@@ -1818,7 +1818,7 @@ class StockSpanner {
 
 ```
 
-#### **Simulating Wallet Withdrawal Queue**
+**Simulating Wallet Withdrawal Queue**
 ```js
 function withdrawQueue(amounts, maxLimit) {
   let exitOrder = [], queue = [], i = 0;

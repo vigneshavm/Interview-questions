@@ -11,6 +11,131 @@
 
 
 
+## **Remove Duplicates element from Object**
+For example: remove duplicates based on `id`.
+
+Given input:
+```js
+[
+  { id: 1, name: 'A' },
+  { id: 2, name: 'B' },
+  { id: 1, name: 'A2' },
+  { id: 3, name: 'C' },
+]
+```
+
+Expected output:
+```js
+[
+  { id: 1, name: 'A' },
+  { id: 2, name: 'B' },
+  { id: 3, name: 'C' },
+]
+```
+
+---
+
+### ✅ **Using Predefined Functions (`.filter()`, `.some()`)**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create empty result array
+2. Loop through each object in original array
+3. For each object:
+   a. Check if result array already contains object with same id (using some)
+   b. If not, push it to result array
+4. Return result array
+```
+
+#### **Code Example**
+```js
+function removeDuplicateObjects(arr) {
+  const result = [];
+  arr.forEach(obj => {
+    if (!result.some(item => item.id === obj.id)) {
+      result.push(obj);
+    }
+  });
+  return result;
+}
+
+const input = [
+  { id: 1, name: 'A' },
+  { id: 2, name: 'B' },
+  { id: 1, name: 'A2' },
+  { id: 3, name: 'C' }
+];
+
+console.log(removeDuplicateObjects(input));
+```
+
+📤 **Output:**
+```js
+[
+  { id: 1, name: 'A' },
+  { id: 2, name: 'B' },
+  { id: 3, name: 'C' }
+]
+```
+
+---
+
+### ❌ **Without Using Predefined Functions**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create empty array called result
+2. Loop i from 0 to arr.length
+   a. Set found = false
+   b. Loop j from 0 to result.length
+      i. If arr[i].id == result[j].id
+         - found = true, break
+   c. If found == false
+      - Push arr[i] into result
+3. Return result
+```
+
+#### **Code Example**
+```js
+function removeDuplicateObjectsManual(arr) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let exists = false;
+    for (let j = 0; j < result.length; j++) {
+      if (arr[i].id === result[j].id) {
+        exists = true;
+        break;
+      }
+    }
+    if (!exists) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+}
+
+const input = [
+  { id: 1, name: 'A' },
+  { id: 2, name: 'B' },
+  { id: 1, name: 'A2' },
+  { id: 3, name: 'C' }
+];
+
+console.log(removeDuplicateObjectsManual(input));
+```
+
+📤 **Output:**
+```js
+[
+  { id: 1, name: 'A' },
+  { id: 2, name: 'B' },
+  { id: 3, name: 'C' }
+]
+```
+
+---
+
+
 
 ## **Remove Duplicates element from array**
 

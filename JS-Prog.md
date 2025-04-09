@@ -892,17 +892,95 @@ function countFrequency(arr: number[]): Record<number, number> {
   }
 ```
 
-#### **Character Frequency Count**
 
-```js
-const countChars = (str) => {
-  const result = {};
-  for (let char of str.replace(/\s/g, "")) {
-    result[char] = (result[char] || 0) + 1;
-  }
-  return result;
-};
+---
+
+## **Character Frequency Count**
+
+> Count how many times each character appears in a string (including spaces and punctuation unless filtered).  
+> Example: `"hello"` → `{ h: 1, e: 1, l: 2, o: 1 }`
+
+---
+
+### ✅ **Using Predefined Functions (`toLowerCase()`, `split()`, `forEach()` / `reduce()` / object access)**
+
+#### **Pseudocode / Algorithm**
 ```
+1. Convert string to lowercase
+2. Create an empty object for counts
+3. Split string into characters
+4. Loop through characters using forEach
+   a. If char exists in object, increment it
+   b. Else, set it to 1
+5. Return the object
+```
+
+#### **Code Example**
+```js
+function charFrequency(str) {
+  const freq = {};
+  str.toLowerCase().split('').forEach(char => {
+    freq[char] = (freq[char] || 0) + 1;
+  });
+  return freq;
+}
+
+console.log(charFrequency("hello"));
+```
+
+📤 **Output:**
+```js
+{ h: 1, e: 1, l: 2, o: 1 }
+```
+
+---
+
+### ❌ **Without Using Predefined Functions**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create an empty object for character counts
+2. Loop through each character of the string
+3. Convert to lowercase manually
+4. If character exists in object, increment it
+   Else, set to 1
+5. Return the object
+```
+
+#### **Code Example**
+```js
+function charFrequencyManual(str) {
+  const freq = {};
+
+  for (let i = 0; i < str.length; i++) {
+    let ch = str[i];
+    let code = str.charCodeAt(i);
+
+    // Manual toLowerCase
+    if (code >= 65 && code <= 90) {
+      ch = String.fromCharCode(code + 32); // A-Z → a-z
+    }
+
+    if (freq[ch]) {
+      freq[ch] = freq[ch] + 1;
+    } else {
+      freq[ch] = 1;
+    }
+  }
+
+  return freq;
+}
+
+console.log(charFrequencyManual("Hello"));
+```
+
+📤 **Output:**
+```js
+{ h: 1, e: 1, l: 2, o: 1 }
+```
+
+---
+
 
 #### **Sort Array of Objects by Field**
 ```js

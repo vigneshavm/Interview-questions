@@ -1724,7 +1724,7 @@ for (var i = 0; i < 5; i++) {
   (function(i) {    setTimeout(() => console.log(i), 0);  })(i);
 }
 ```
-**Merge Sort**
+## **Merge Sort**
 ```js
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;

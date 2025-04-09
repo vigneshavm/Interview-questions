@@ -1,271 +1,138 @@
-| Q1 | Q2 | Q3 | Q4 | Q5 | Q6 |
-|----|----|----|----|----|----|
-| [How does TypeScript improve JavaScript](#how-does-typescript-improve-javascript) | [Interface vs. Type](#interface-vs-type) | [Generics](#generics) | [Inheritance](#inheritance) | [Union Types](#union-types) | [Duck Typing](#duck-typing) |
-| [Type Inference](#type-inference) | [Mapped Types](#mapped-types) | [Decorators](#decorators) | [Async/Await](#asyncawait) | [Utility Types](#utility-types) | [Module System & Compiler Options](#module-system--compiler-options) |
-| [Dependency Injection](#dependency-injection) | [Custom Error](#custom-error) | [Request/Response Types](#requestresponse-types-with-typescript) | | | |
 
-
-
-
-
-### **How does TypeScript improve JavaScript?**  
-✅ **Static Typing** (`number`, `string`, `boolean`, `any`)  
-✅ **Interfaces & Types** (`interface User { name: string; age: number }`)  
-✅ **Better Code Completion & Debugging**  
-
-Example:  
-```ts
-function greet(name: string): string {
-    return `Hello, ${name}`;
-}
-console.log(greet("John")); // ✅ Hello, John
-```
-
-
-
-### **Interface vs. Type**
-**Differences:**
-
-| Aspect         | Interface                      | Type                          |
-|----------------|---------------------------------|-------------------------------|
-| **Definition** | Contract for objects            | Alias for types               |
-| **Extensibility** | `extends`, merging allowed      | Uses intersections (`&`)      |
-| **Use Cases**  | Best for objects, classes       | For primitive types, unions   |
-
-**When to Use:**
-- **Interface:** When working with objects or classes (supports declaration merging).
-- **Type:** For unions, tuples, or complex transformations.
-
-```typescript
-// Interface
-interface Person { name: string; age: number; }
-interface Employee extends Person { jobTitle: string; }
-
-// Type Alias
-type Point = { x: number; y: number };
-type ReadOnlyPoint = Readonly<Point>;
-```
+### ✅ **JavaScript Fundamentals**
+- [`let`, `var`, `const`](#let-var-or-const)
+- [Global JavaScript scope](#global-javascript-scope)
+- [`'use strict'` Directive](#use-strict-directive-in-javascript)
+- [Hoisting](#hoisting)
+- [Lexical Scoping](#lexical-scoping)
+- [Scope](#scope)
+- [Global, Function, and Block Scope](#global-scope-function-scope-and-block-scope)
+- [Data Types](#javascript-data-types)
+- [Symbol](#data-types--symbol)
+- [null, undefined, and undeclared](#null-undefined-or-undeclared)
+- [Type Checking](#how-do-you-check-the-data-type-of-a-variable)
+- [Equality: `==` vs `===`](#-and-)
+- [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)
 
 ---
 
-### **Generics**
-Generics provide flexibility while maintaining type safety, making code reusable.
-
-```typescript
-// Generic Function
-function identity<T>(value: T): T { return value; }
-
-// Generic Interface
-interface Box<T> { content: T; }
-
-const stringBox: Box<string> = { content: "TypeScript" };
-```
-
----
-
-### **Inheritance**
-- **Extending Classes**:
-
-```typescript
-class Animal { move() { console.log("Moving..."); } }
-class Dog extends Animal { bark() { console.log("Woof!"); } }
-
-const dog = new Dog();
-dog.move(); // Moving...
-dog.bark(); // Woof!
-```
-
-- **Extending Interfaces**:
-
-```typescript
-interface Person { name: string; }
-interface Employee extends Person { employeeId: number; }
-const emp: Employee = { name: "John", employeeId: 123 };
-```
+### 💡 **TypeScript**
+- [How TypeScript Improves JavaScript](#how-does-typescript-improve-javascript)
+- [Interface vs. Type](#interface-vs-type)
+- [Generics](#generics)
+- [Union Types](#union-types)
+- [Type Inference](#type-inference)
+- [Mapped Types](#mapped-types)
+- [Custom Error](#custom-error)
+- [Request/Response Types](#requestresponse-types-with-typescript)
+- [Decorators](#decorators)
+- [Duck Typing](#duck-typing)
+- [Module System & Compiler Options](#module-system--compiler-options)
 
 ---
 
-### **Union Types**
-Union types allow a variable to hold multiple types.
-
-```typescript
-let id: string | number;
-id = 123; // valid
-id = "ABC"; // valid
-
-function display(value: string | number) { console.log(value); }
-```
-
-
----
-
-### **Duck Typing?**  
-If an object has required properties, it's considered compatible (structural typing).  
-
-Example:  
-```ts
-interface User {
-    name: string;
-    age: number;
-}
-const user = { name: "Alice", age: 25, city: "NY" }; // Extra props are ignored
-let person: User = user;  // ✅ Works
-```
+### 🔁 **Functions & Scope**
+- [Function Declaration vs Expression vs Constructor](#function-declaration-vs-function-call-vs-constructor-call)
+- [Arrow Functions](#arrow-functions)
+- [Anonymous Functions](#anonymous-functions---use-cases)
+- [Default Parameters](#default-parameters)
+- [Higher-Order Functions](#higher-order-functions)
+- [Callback Functions](#callback-functions)
+- [Closures & Private Variables](#closures)
+- [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions)
+- [Potential Pitfalls of Closures](#closures-pitfalls)
 
 ---
 
----
-
-### **Type Inference**
-TypeScript infers types based on variable initialization.
-
-```typescript
-// Implicit Inference
-let age = 25; // inferred as number
-
-// Explicit Type
-let name: string = "John";
-```
-
----
-
-### **Mapped Types**
-Mapped types allow transforming types dynamically.
-
-```typescript
-type User = { name: string; age: number; };
-type PartialUser = { [K in keyof User]?: User[K]; };
-const user: PartialUser = { name: "Alice" };
-```
+### 🔄 **Asynchronous JavaScript**
+- [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions)
+- [Promises](#promises)
+- [Promise States](#promise-states)
+- [Pros and Cons of Promises](#pros-and-cons-of-promises)
+- [Promise.all()](#promiseall)
+- [Promise.all vs Promise.allSettled](#promiseall-vs-promiseallsettled)
+- [Async/Await](#asyncawait)
+- [Handling Async Errors](#handle-errors-in-asynchronous-operations)
+- [Microtask Queue](#microtask-queue)
+- [`setTimeout()`, `setImmediate()`, and `process.nextTick()`](#settimeout-setimmediate-and-processnexttick)
 
 ---
 
-### **Decorators**
-Decorators modify classes, methods, or properties. Enable with `experimentalDecorators: true` in `tsconfig.json`.
-
-```typescript
-import "reflect-metadata";
-
-function Controller(route: string) {
-  return function(target: Function) { target.prototype.route = route; };
-}
-
-@Controller("/api/user")
-class UserController { getUser() { console.log("Fetching User..."); } }
-
-console.log(new UserController().route); // "/api/user"
-```
+### 🔄 **Objects & Classes**
+- [Prototype Chain](#prototype-chain)
+- [Constructor Function](#constructor-function)
+- [`new` Keyword](#new-keyword)
+- [Classical vs Prototypal Inheritance](#classical-inheritance-vs-prototypal-inheritance)
+- [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)
+- [Static Class Members](#static-class-members)
+- [Extending Built-in Objects](#extending-built-in-javascript-objects)
+- [Getters and Setters](#getters-and-setters)
+- [Object.freeze / seal / preventExtensions](#objectfreeze), etc.
 
 ---
 
-### **Async/Await**
-Async/await simplifies working with promises and asynchronous code.
-
-```typescript
-async function fetchData() {
-  try {
-    const response = await fetch("https://api.example.com/data");
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-```
+### 🧠 **Design Patterns & Architecture**
+- [Introduction to Design Patterns](#introduction-to-design-patterns-and-their-importance)
+- [Singleton Pattern](#the-singleton-pattern-explained)
+- [Factory Pattern](#understanding-the-factory-pattern-and-its-usage)
+- [Module Pattern](#module-pattern-and-encapsulation)
+- [Observer Pattern](#the-observer-pattern-and-its-use-cases)
+- [Prototype Pattern](#prototype-pattern)
+- [Dependency Injection](#dependency-injection)
 
 ---
 
-### **Utility Types**
-Common utility types to transform types:
-- **Partial**: Makes all properties optional.
-- **Pick**: Selects specific properties.
-- **Omit**: Excludes specific properties.
-
-```typescript
-interface User { name: string; age: number; }
-type PartialUser = Partial<User>;
-type UserName = Pick<User, "name">;
-type UserWithoutAge = Omit<User, "age">;
-```
+### 📦 **Modules, Storage & Browser APIs**
+- [`<script>`, `async`, and `defer`](#script-script-async-and-script-defer)
+- [Cookies, sessionStorage, and localStorage](#cookie-sessionstorage-localstorage)
+- [Window vs Document](#window-object-vs-document-object)
+- [WebSocket API](#the-web-socket-api)
+- [Web Workers](#workers)
+- [Using `window.history`](#using-the-windowhistory-api)
 
 ---
 
-### **Module System & Compiler Options**
-Key compiler options:
-- **`esModuleInterop`**: Enables default imports from non-ES modules.
-- **`allowSyntheticDefaultImports`**: Affects only type-checking.
-
-```json
-{
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
-  }
-}
-```
-
-**With `esModuleInterop`, you can import modules like:**
-
-```typescript
-import fs from "fs"; // Works if enabled
-```
+### 🧰 **DOM, Events & UI**
+- [Event Listeners](#event-listeners)
+- [Event Bubbling vs Capturing](#event-bubbling), [Event Capturing](#event-capturing)
+- [`event.preventDefault()` vs `event.stopPropagation()`](#eventpreventdefault-vs-eventstoppropagation)
+- [innerHTML vs textContent](#innerhtml-vs-textcontent)
+- [Event Delegation](#event-delegation)
+- [Manipulating CSS Styles](#css-styles-manipulate)
+- [Destructuring](#destructuring-assignment-for-objects-and-arrays)
+- [Spread & Rest](#spread-operator), [Rest Parameters](#rest-parameters)
 
 ---
 
-
-### **Dependency injection?**
-
-You can use decorators and libraries like `tsyringe` or `inversify`.
-
-```ts
-import { injectable } from 'tsyringe';
-
-@injectable()
-class UserService {
-  getUsers() {}
-}
-```
+### 🧪 **Testing**
+- [Types of Testing](#types-of-testing-in-software-development)
+- [Unit vs Integration vs E2E](#differences-between-unit-testing-integration-testing-and-end-to-end-testing)
+- [Writing Unit Tests](#writing-unit-tests-for-javascript-code)
+- [Testing Frameworks](#popular-javascript-testing-frameworks)
+- [Mocks and Stubs](#mocks-and-stubs-in-testing)
+- [TDD](#understanding-test-driven-development-tdd)
+- [Testing Async Code](#testing-asynchronous-code-in-javascript)
 
 ---
 
-### **`Generics`**
-
-```ts
-function identity<T>(arg: T): T {
-  return arg;
-}
-
-const result = identity<string>("Hello");
-```
+### 🔒 **Security**
+- [XSS and Prevention](#cross-site-scripting-xss-and-prevention)
+- [CSRF and Mitigation](#cross-site-request-forgery-csrf-and-mitigation-techniques)
+- [SQL Injection](#preventing-sql-injection-vulnerabilities)
+- [Handling Sensitive Data](#handling-sensitive-data)
+- [CSP](#content-security-policy-csp)
+- [Security Headers](#common-security-headers-and-their-purposes)
+- [Clickjacking](#preventing-clickjacking-attacks)
+- [Input Validation](#input-validation-and-its-importance)
 
 ---
 
-### **Custom error**
+### ⚙️ **Performance Optimization**
+- [Common Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)
+- [DOM Optimization](#optimizing-dom-manipulation-for-better-performance)
+- [Lazy Loading](#implementing-lazy-loading-to-enhance-performance)
+- [Caching Strategies](#leveraging-caching-strategies-for-performance-optimization)
+- [Tools for Measuring JS Performance](#tools-for-measuring-and-analyzing-javascript-performance)
+- [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)
 
-```ts
-class AppError extends Error {
-  constructor(public statusCode: number, message: string) {
-    super(message);
-    this.name = 'AppError';
-  }
-}
-```
 ---
-
-### **Request/response types with TypeScript?**
-```ts
-interface CreateUserDTO {
-  name: string;
-  email: string;
-}
-
-const createUser = (req: Request<{}, {}, CreateUserDTO>, res: Response) => {
-  const { name, email } = req.body;
-  // do something
-};
-```
-
-
-
-
-

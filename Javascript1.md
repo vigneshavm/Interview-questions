@@ -11,9 +11,10 @@
 | [Array Iteration Methods](#array-iteration-methods)  | [Managing Array Elements](#managing-array-elements)  | [Spread Operator](#spread-operator)  | [Rest Parameters](#rest-parameters)  | [Index in Iteration](#index-of-an-element-in-an-array-during-iteration) | [Iterating Object Properties vs Array Items](#iterating-over-object-properties-and-array-items-in-javascript) |
 | [Ternary Operator](#ternary-operator)  | [`break` and `continue`](#break-and-continue-statements)  | [`switch` Statement](#switch-statement) | [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions)  | [Promises](#promises)  | [Promise States](#promise-states)  | [Pros and Cons of Promises](#pros-and-cons-of-promises)  | [Promise.all()](#promiseall)  |
 | [Promise.all vs Promise.allSettled](#promiseall-vs-promiseallsettled)  | [Async/Await](#asyncawait)  | [Handling Async Errors](#handling-errors-in-asynchronous-operations)  | [Microtask Queue](#microtask-queue)  | [`setTimeout()`, `setImmediate()`, and `process.nextTick()`](#settimeout-setimmediate-and-processnexttick) |
-
-
-
+| [What is the DOM and How is it Structured?](#what-is-the-dom-and-how-is-it-structured)  | [Difference Between Attribute and Property](#difference-between-attribute-and-property-in-the-dom)  | [`document.querySelector()` vs `getElementById()`](#documentqueryselector-and-documentgetelementbyid)  | [Add, Remove, Modify HTML Elements](#add-remove-and-modify-html-elements-using-javascript)  | [Event Listeners](#event-listeners)  | [Event Phases](#event-phases)  
+| [Event Bubbling](#event-bubbling)  | [Event Capturing](#event-capturing)  | [Event Delegation](#event-delegation)  |
+| [Preventing Default Behavior](#preventing-the-default-behavior-of-events)  | [`event.preventDefault()` vs `event.stopPropagation()`](#eventpreventdefault-vs-eventstoppropagation)  | [`mouseenter` vs `mouseover`](#mouseenter-vs-mouseover)  | [`innerHTML` vs `textContent`](#innerhtml-vs-textcontent)  | [Manipulating CSS Styles Using JavaScript](#manipulating-css-styles-using-javascript)  
+| [`<script>`, `<script async>`, and `<script defer>`](#script-script-async-and-script-defer)  | [Window Object vs Document Object](#window-object-vs-document-object)  | [Using the `window.history` API](#using-the-windowhistory-api)  | [Communication Between iframes and Parent Pages](#communication-between-iframes-and-parent-pages)  | [Difference Between `load` Event and `DOMContentLoaded` Event](#difference-between-load-event-and-domcontentloaded-event)  |
 
 <!-- TABLE_OF_CONTENTS:ALL:START -->
 

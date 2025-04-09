@@ -188,7 +188,6 @@ boundGreet();                            // Hey, Alice.
 
 ---
 
-# 🟨 2. Data Types & Type Handling
 
 - [Closure](#closure)  
 - [Synchronous vs Asynchronous](#synchronous-vs-asynchronous)  

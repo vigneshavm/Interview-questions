@@ -5,13 +5,15 @@
 
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
+| --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [let, var, const?](#let-var-or-const)  | [Global JavaScript scope?](#global-javascript-scope)  | ['use strict' Directive](#use-strict-directive-in-javascript)  | [Hoisting](#hoisting)  | [Lexical Scoping](#lexical-scoping)  | [Scope](#scope)  | [Global Scope, Function Scope, and Block Scope](#global-scope-function-scope-and-block-scope) |
 | [JavaScript Data Types](#javaScript-data-types)  | [Symbol Data Type](#data-types--symbol)  | [null, undefined, and undeclared?](#null-undefined-or-undeclared)  | [Type Checking](#how-do-you-check-the-data-type-of-a-variable)  | [Convert a String to a Number](#convert-a-string-to-a-number)  | [`==` vs `===`](#-and-)  | [Mutable vs. Immutable Objects](#mutable-vs-immutable-objects)
 | [Function Declaration vs Function Expression vs Constructor](#function-declaration-vs-function-call-vs-constructor-call)  | [Arrow Functions](#arrow-functions)  | [Anonymous Functions](#anonymous-functions---use-cases)  | [Default Parameters](#default-parameters)  
 | [Rest Parameters](#rest-parameters)  | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions) | [Higher-Order Functions](#higher-order-functions)  | [Callback Functions](#callback-functions)  | [Recursion](#recursion)  |
 | [Closures and Private Variables](#closures-and-private-variables)  | [Potential Pitfalls of Closures](#potential-pitfalls-of-closures)  | [Creating Objects - Various Ways](#creating-objects---various-ways)  | [Dot vs Bracket Notation](#dot-notation-vs-bracket-notation)  | [Checking Object Properties](#checking-object-properties)  | [Check if Object is Empty](#check-if-object-is-empty)  | [Copying Objects and Arrays](#copying-objects-and-arrays)  |
 | [Shallow vs Deep Copy](#shallow-vs-deep-copy)  | [Destructuring Assignment](#destructuring-assignment)  | [Object.freeze()](#objectfreeze)  | [Object.seal()](#objectseal)  | [Object.preventExtensions()](#objectpreventextensions)  | [Object Property Flags](#object-property-flags)  | [Getters and Setters](#getters-and-setters) |
-
+| [Prototype Chain](#prototype-chain)  | [Constructor Function](#constructor-function)  | [The `new` Keyword](#new-keyword)  | [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance)  | [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)  | [ES2015 Classes vs. ES5 Constructors](#es2015-classes-vs-es5-function-constructors)  | [Static Class Members](#static-class-members) |
 
 
 

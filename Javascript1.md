@@ -7,8 +7,8 @@
 | [Function Declaration vs Function Expression vs Constructor](#function-declaration-vs-function-call-vs-constructor-call)  | [Arrow Functions](#arrow-functions)  | [Anonymous Functions](#anonymous-functions---use-cases)  | [Default Parameters](#default-parameters)  | [Using AbortController to Abort Web Requests](#AbortController)  | [How JSONP Works](#jsonp)  | [Async/Await](#asyncawait)  | [Handling Async Errors](#handle-errors-in-asynchronous-operations)  |
 | [AJAX](#ajax)  | [Advantages and Disadvantages of Using AJAX](#advantages-and-disadvantages-of-using-ajax)  | [Differences Between XMLHttpRequest and fetch()](#differences-between-xmlhttprequest-and-fetch) | [Cookies, sessionStorage, and localStorage](#cookie-sessionstorage-localstorage)  | [Making HTTP Requests Using the Fetch API](#making-http-requests-using-the-fetch-api)  | [Different Ways to Make an API Call](#different-ways-to-make-an-api-call-in-javascript)  |[Event Listeners](#event-listeners)  | [Event Phases](#event-phases)  |
 | [Rest Parameters](#rest-parameters)  | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions) | [Higher-Order Functions](#higher-order-functions)  | [Callback Functions](#callback-functions)  | [Recursion](#recursion)  | [Preventing Default Behavior](#preventing-default-behavior-events)  | [`event.preventDefault()` vs `event.stopPropagation()`](#eventpreventdefault-vs-eventstoppropagation)  | [`mouseenter` vs `mouseover`](#mouseenter-vs-mouseover)  | [`innerHTML` vs `textContent`](#innerhtml-vs-textcontent)  |
-| [Closures and Private Variables](#closures)  | [Potential Pitfalls of Closures](#closures-pitfalls)  | [Creating Objects - Various Ways](#creating-objects---various-ways)  | [Dot vs Bracket Notation](#dot-notation-vs-bracket-notation)  | [Checking Object Properties](#checking-object-properties)  | [Check if Object is Empty](#check-if-object-is-empty)  | [Copying Objects and Arrays](#copying-objects-and-arrays)  | [Event Capturing](#event-capturing)  
-| [Shallow vs Deep Copy](#shallow-vs-deep-copy)  | [Destructuring Assignment](#destructuring-assignment)  | [Object.freeze()](#objectfreeze)  | [Object.seal()](#objectseal)  | [Object.preventExtensions()](#objectpreventextensions)  | [Object Property Flags](#object-property-flags)  | [Getters and Setters](#getters-and-setters) |[Event Delegation](#event-delegation) |
+| [Closures and Private Variables](#closures)  | [Potential Pitfalls of Closures](#closures-pitfalls)  | [Creating Objects - Various Ways](#creating-objects---various-ways)  | [Dot vs Bracket Notation](#dot-notation-vs-bracket-notation)  | [Checking Object Properties](#checking-object-properties)  | [Check if Object is Empty](#check-if-object-is-empty)  | [Copying Objects and Arrays](#copy-object-and-object)  | [Event Capturing](#event-capturing)  
+| [Shallow vs Deep Copy](#shallow-deep-copy)  | [Destructuring Assignment](#destructuring-assignment)  | [Object.freeze()](#objectfreeze)  | [Object.seal()](#objectseal)  | [Object.preventExtensions()](#objectpreventextensions)  | [Object Property Flags](#object-property-flags)  | [Getters and Setters](#getters-and-setters) |[Event Delegation](#event-delegation) |
 | [Prototype Chain](#prototype-chain)  | [Constructor Function](#constructor-function)  | [The `new` Keyword](#new-keyword)  | [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance)  | [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)  | [ES2015 Classes vs. ES5 Constructors](#es2015-classes-vs-es5-function-constructors)  | [Static Class Members](#static-class-members) |[JavaScript Polyfills](#javascript-polyfills) 
 | [How `this` Works in JavaScript](#how-this-works-in-javascript)  | [`Function.prototype.bind`](#functionprototypebind)  | [Different Ways to Bind `this`](#different-ways-to-bind-this)  | [Common Pitfalls of the `this` Keyword](#common-pitfalls-of-the-this-keyword)  | [`this` Binding in Event Handlers](#this-binding-in-event-handlers)  | [Validating Form Elements Using the Constraint Validation API](#validating-form-elements-using-the-constraint-validation-api) |
 | [Array Iteration Methods](#array-iteration-methods)  | [Managing Array Elements](#managing-array-elements)  | [Spread Operator](#spread-operator)  | [Rest Parameters](#rest-parameters)  | [Index in Iteration](#index-of-an-element-in-an-array-during-iteration) | [Iterating Object Properties vs Array Items](#iterating-over-object-properties-and-array-items-in-javascript) | [Detecting if JavaScript is Disabled on a Page](#detecting-if-javascript-is-disabled-on-a-page)  | [The `Intl` Namespace Object](#the-intl-namespace-object)  
@@ -2793,7 +2793,7 @@ console.log(arr); // Final state: [1, 5, 3]
 
 <br>
 
-## copy an object or an array
+## copy object and array
 
 <!-- Update here: /questions/what-are-the-different-ways-to-copy-an-object-or-an-array/en-US.mdx -->
 
@@ -2823,7 +2823,7 @@ console.log(deepCopyObject); // { a: 1, b: 2 };
 
 <br>
 
-## shallow copy Vs deep copy
+## Shallow Deep copy
 
 <!-- Update here: /questions/explain-the-difference-between-shallow-copy-and-deep-copy/en-US.mdx -->
 

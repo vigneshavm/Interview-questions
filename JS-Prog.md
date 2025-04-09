@@ -959,7 +959,7 @@ console.log(factorialRecursive(5)); // Output: 120
 
 ---
 
-### 🔎 Sample Input and Output:
+**Sample Input and Output**
 
 | Input | Output |
 |-------|--------|
@@ -1017,7 +1017,7 @@ console.log(fibonacciRecursive(6)); // Output: 8
 
 ---
 
-### 🔎 Sample Inputs and Outputs:
+**Sample Inputs and Outputs:
 
 | `n` | Output `F(n)` |
 |-----|---------------|
@@ -1072,7 +1072,7 @@ console.log(recursiveSum([1, 2, 3, 4, 5])); // Output: 15
 
 ---
 
-### 🔎 Sample Inputs and Outputs:
+**Sample Inputs and Outputs:
 
 | Input               | Output |
 |--------------------|--------|
@@ -1142,7 +1142,7 @@ console.log(powerRecursive(2, 4)); // Output: 16
 
 ---
 
-### 🔎 Sample Inputs and Outputs:
+**Sample Inputs and Outputs:
 
 | Base | Exponent | Output |
 |------|----------|--------|
@@ -1693,7 +1693,7 @@ console.log(manualFlatten([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
 
 ---
 
-### 🔎 Sample Inputs and Outputs:
+**Sample Inputs and Outputs:
 
 | Input                      | Output              |
 |---------------------------|---------------------|

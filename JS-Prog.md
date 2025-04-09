@@ -1087,18 +1087,76 @@ console.log(recursiveSum([1, 2, 3, 4, 5])); // Output: 15
 ---
 
 
-#### **Power Function**
 
+
+---
+
+## Power Function:  
+Calculate the result of `base` raised to the power of `exponent` → `base^exponent`
+
+📌 Example:
 ```js
-function power(base, exponent) {
-  if (exponent === 0) return 1;
-  return base * power(base, exponent - 1);
-}
-console.log(power(2, 4)); // 16
+Input: base = 2, exponent = 4
+Output: 16 // because 2 * 2 * 2 * 2 = 16
 ```
 
+---
 
+### Using Predefined Function (`Math.pow()`)
 
+```js
+function powerUsingMath(base, exponent) {
+  return Math.pow(base, exponent);
+}
+
+console.log(powerUsingMath(2, 4)); // Output: 16
+```
+
+---
+
+### Without Using Any Predefined Functions
+
+### 💡 A. Iterative Approach
+
+```js
+function powerIterative(base, exponent) {
+  let result = 1;
+  for (let i = 0; i < exponent; i++) {
+    result *= base;
+  }
+  return result;
+}
+
+console.log(powerIterative(2, 4)); // Output: 16
+```
+
+---
+
+### 💡 B. Recursive Approach
+
+```js
+function powerRecursive(base, exponent) {
+  if (exponent === 0) return 1;
+  return base * powerRecursive(base, exponent - 1);
+}
+
+console.log(powerRecursive(2, 4)); // Output: 16
+```
+
+---
+
+### 🔎 Sample Inputs and Outputs:
+
+| Base | Exponent | Output |
+|------|----------|--------|
+| 2    | 0        | 1      |
+| 2    | 3        | 8      |
+| 3    | 2        | 9      |
+| 5    | 4        | 625    |
+
+> Note: These assume **positive integers** for the exponent. Let me know if you'd like to include handling for negative exponents or decimal powers!
+
+---
 
 
 

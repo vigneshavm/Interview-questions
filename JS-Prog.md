@@ -37,6 +37,16 @@ console.log(secondLargest([5, 1, 2, 5, 3])); // 3
 
 #### **Remove Duplicates**
 
+
+**From Array without Set**
+
+```js
+const removeDuplicates = arr => arr.filter(item => arr.indexOf(item) === arr.lastIndexOf(item));
+console.log(removeDuplicates([1, 2, 3, 4, 1, 5, 5, 6])); // [2, 3, 4, 6]
+```
+
+**From Array using Set**
+
 ```js
 function removeDuplicates(arr) {
   return [...new Set(arr)];
@@ -44,22 +54,28 @@ function removeDuplicates(arr) {
 console.log(removeDuplicates([1, 2, 2, 3, 4, 4])); // [1, 2, 3, 4]
 ```
 
+**From Object**
 
 ```js
-const removeDuplicates = arr => arr.filter(item => arr.indexOf(item) === arr.lastIndexOf(item));
-console.log(removeDuplicates([1, 2, 3, 4, 1, 5, 5, 6])); // [2, 3, 4, 6]
-```
 
+Input:   [  
+  { id: 1, name: "A" },  
+  { id: 1, name: "A" },  
+  { id: 3, name: "C" }
+];
 
-```js
-const data = [  { id: 1, name: "A" },   { id: 1, name: "A" },  { id: 3, name: "C" }];
-function removeDuplicates(arr:any) {
-  const seen = new Set<number>();
-    return arr.filter((item:any) => {
-      if (seen.has(item.id)) return false;
-        seen.add(item.id);    return true;
-      });}
+function removeDuplicates(arr) {
+  const seen = new Set();
+  return arr.filter(item => {
+    if (seen.has(item.id)) return false;
+    seen.add(item.id);
+    return true;
+  });
+}
 
+console.log(removeDuplicates(data));
+
+Output:  [ { id: 1, name: 'A' }, { id: 3, name: 'C' } ]
 
 ```
 

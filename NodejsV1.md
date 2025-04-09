@@ -1,7 +1,7 @@
 
 
 ---
-## Create Node App using JS
+## **Create Node App using JS**
 
 - mkdir user-api && cd user-api
 - npm init -y
@@ -9,7 +9,7 @@
 ---
 
 ---
-## Create Node App using Typescript
+## **Create Node App using Typescript**
 - mkdir user-api && cd user-api
 - npm init -y
 - npm install express
@@ -284,7 +284,7 @@ if (cluster.isMaster) {
 
 ---
 
-##  **Streams (Readable, Writable, Duplex, Transform)**
+##  **Streams**
 
  
 
@@ -427,7 +427,7 @@ app.get('/data', async (req, res) => {
 ---
 
 
-## **Difference Between CommonJS and ES Modules**
+## **CommonJS Vs ES Modules**
 
 - **CommonJS** is used in Node.js and uses `require()` and `module.exports`.
 - **ES Modules** (introduced in ES6) use `import` and `export`.
@@ -471,7 +471,7 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 
 ---
 
-## **JWT (JSON Web Token) Flow**
+## **JWT Flow**
 
 - User logs in with credentials
 - User logs in → Server generates JWT.
@@ -612,7 +612,7 @@ curl http://localhost:4000/protected \
 
 ---
 
-## **Securing a Node.js App**
+## **Secure Node.js App**
 
 - Use **HTTPS**.
 - Validate **input data**.
@@ -748,7 +748,7 @@ async function performTransaction() {
 
 ---
 
-## **Data Validation  with TypeScript**
+## **Data Validation**
 
 Use **Joi** or **express-validator** for input validation in APIs.
 
@@ -770,7 +770,7 @@ if (error) {
 }
 ```
 
-## **Asynchronous operations with TypeScript?**
+## **Asynchronous operations?**
 
 - You can use `async/await`, Promises, or callbacks. 
 - TypeScript provides type safety and proper async/await support.
@@ -797,13 +797,13 @@ const handler = (req: Request, res: Response) => {
 
 ---
 
-## **Type safety across layers (controller, service, DB)?**
+## **Type safety across layers?**
 
 Define shared interfaces/types and use them consistently across all layers. Use DTOs (Data Transfer Objects) if needed.
 
 ---
 
-##  **Middleware in Express**
+##  **Middleware**
 
 - Functions that execute during the request-response cycle.
 - Can modify request, response objects.
@@ -1074,7 +1074,7 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
 
 ---
 
-## 🧱 Bonus: Clean RESTful Folder Structure
+## Clean RESTful Folder Structure
 
 ```
 src/
@@ -1166,7 +1166,7 @@ app.get('/admin/dashboard',
 
 ---
 
-## **Refresh Tokens (For Long-Lived Sessions)**
+## **Refresh Tokens**
 
 
 Access tokens are short-lived (e.g., 15min). 

@@ -1706,7 +1706,7 @@ console.log(manualFlatten([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
 ---
 
 
-**Understanding var vs let in Loops and Closures**
+## **Understanding var vs let in Loops and Closures**
 ```js
 for (var i = 0; i < 5; i++) {
   console.log(i);  setTimeout(() => console.log(i), 0);

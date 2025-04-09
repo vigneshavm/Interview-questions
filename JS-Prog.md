@@ -1255,38 +1255,28 @@ false
 
 ---
 
-## **Group by Category or Class**
-
-This involves grouping elements of an array based on a shared property (`category`, `class`, etc.)
 
 ---
 
-### ✅ **Example 1: Group Products by Category**
-### ✅ **Example 2: Group Names by Class**
+## **Group by Category or Class**
 
-## 1️⃣ ✅ **Using Predefined Functions** (e.g., `.reduce()`, `.find()`, `.push()`)
+This involves grouping elements of an array based on a shared property (`category`, `class`, etc.)
+---
+
+
 
 ### ✅ **Group Products by Category**
 
+**Input:**
 ```js
 const products = [
   { id: 1, name: "Apple", category: "Fruits" },
   { id: 2, name: "Carrot", category: "Vegetables" },
   { id: 3, name: "Banana", category: "Fruits" },
 ];
-
-function groupByCategory(products) {
-  return products.reduce((acc, curr) => {
-    acc[curr.category] = acc[curr.category] || [];
-    acc[curr.category].push(curr);
-    return acc;
-  }, {});
-}
-
-console.log(groupByCategory(products));
 ```
 
-📤 **Output:**
+**Output:**
 ```js
 {
   Fruits: [
@@ -1299,10 +1289,27 @@ console.log(groupByCategory(products));
 }
 ```
 
+```js
+function groupByCategory(products) {
+  return products.reduce((acc, curr) => {
+    acc[curr.category] = acc[curr.category] || [];
+    acc[curr.category].push(curr);
+    return acc;
+  }, {});
+}
+
+console.log(groupByCategory(products));
+```
+
+
+
 ---
+
 
 ### ✅ **Group Names by Class**
 
+
+**Input:**
 ```js
 const input = [
   { name: "one", class: 1 },
@@ -1311,7 +1318,18 @@ const input = [
   { name: "four", class: 1 },
   { name: "five", class: 2 },
 ];
+```
 
+**Output:**
+```js
+[
+  { class: 1, names: [ 'one', 'four' ] },
+  { class: 2, names: [ 'two', 'five' ] },
+  { class: 3, names: [ 'three' ] }
+]
+```
+
+```js
 function groupInputByClass(inputArray) {
   return inputArray.reduce((acc, curr) => {
     let group = acc.find(g => g.class === curr.class);
@@ -1326,110 +1344,11 @@ function groupInputByClass(inputArray) {
 
 console.log(groupInputByClass(input));
 ```
-
-📤 **Output:**
-```js
-[
-  { class: 1, names: [ 'one', 'four' ] },
-  { class: 2, names: [ 'two', 'five' ] },
-  { class: 3, names: [ 'three' ] }
-]
-```
-
 ---
 
-## 2️⃣ ❌ **Without Using Predefined Functions** (manual implementation only)
 
-### ❌ **Pseudocode**
-```
-1. Initialize empty array or object for grouped result
-2. Loop through input array
-3. For each item:
-   a. Check if group for the item's category/class already exists
-   b. If yes, add to it
-   c. If no, create new group
-```
 
----
 
-### ❌ **Example 1: Group by Category (Manual)**
-
-```js
-function groupByCategoryManual(products) {
-  const result = {};
-
-  for (let i = 0; i < products.length; i++) {
-    const item = products[i];
-    const cat = item.category;
-
-    if (!result[cat]) {
-      result[cat] = [];
-    }
-
-    result[cat].push(item);
-  }
-
-  return result;
-}
-
-const products = [
-  { id: 1, name: "Apple", category: "Fruits" },
-  { id: 2, name: "Carrot", category: "Vegetables" },
-  { id: 3, name: "Banana", category: "Fruits" },
-];
-
-console.log(groupByCategoryManual(products));
-```
-
----
-
-### ❌ **Example 2: Group Names by Class (Manual)**
-
-```js
-function groupByClassManual(input) {
-  const result = [];
-
-  for (let i = 0; i < input.length; i++) {
-    const current = input[i];
-    let found = false;
-
-    for (let j = 0; j < result.length; j++) {
-      if (result[j].class === current.class) {
-        result[j].names.push(current.name);
-        found = true;
-        break;
-      }
-    }
-
-    if (!found) {
-      result.push({ class: current.class, names: [current.name] });
-    }
-  }
-
-  return result;
-}
-
-const input = [
-  { name: "one", class: 1 },
-  { name: "two", class: 2 },
-  { name: "three", class: 3 },
-  { name: "four", class: 1 },
-  { name: "five", class: 2 },
-];
-
-console.log(groupByClassManual(input));
-```
-
-📤 **Output:**
-```js
-[
-  { class: 1, names: [ 'one', 'four' ] },
-  { class: 2, names: [ 'two', 'five' ] },
-  { class: 3, names: [ 'three' ] }
-]
-```
-
----
 
 
 

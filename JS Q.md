@@ -1242,6 +1242,236 @@ process.nextTick(() => console.log('Next Tick')); // First
 
 
 
+---
+
+### ✅ **Objects & Classes Interview Answers**
+
+---
+
+#### **1. Constructor Function**
+
+**Interviewer**: What is a constructor function in JavaScript?
+
+**Answer**: 
+A **constructor function** in JavaScript is a special type of function that is used to create and initialize objects. When a function is called using the `new` keyword, it acts as a constructor. The constructor function allows you to define properties and methods for the newly created object.
+
+**Example**:
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const person1 = new Person("Alice", 25);
+console.log(person1.name); // Outputs: Alice
+console.log(person1.age);  // Outputs: 25
+```
+
+In this example, `Person` is a constructor function that initializes an object with properties `name` and `age`.
+
+---
+
+#### **2. `new` Keyword**
+
+**Interviewer**: How does the `new` keyword work in JavaScript?
+
+**Answer**: 
+The `new` keyword is used to create an instance of an object that is defined by a constructor function or a class. When used with a constructor function, it performs the following steps:
+1. Creates a new empty object.
+2. Sets the `this` value within the constructor to the new object.
+3. Sets up inheritance so that the new object has access to the constructor's prototype.
+4. Returns the newly created object.
+
+**Example**:
+```javascript
+function Car(make, model) {
+  this.make = make;
+  this.model = model;
+}
+
+const myCar = new Car("Toyota", "Corolla");
+console.log(myCar.make); // Outputs: Toyota
+```
+
+---
+
+#### **3. Classical vs Prototypal Inheritance**
+
+**Interviewer**: What is the difference between classical and prototypal inheritance?
+
+**Answer**: 
+- **Classical Inheritance** (found in languages like Java and C++) involves defining a class, and then objects are created based on that class, inheriting its properties and methods. JavaScript, however, does not have traditional class-based inheritance (until ES6 introduced classes).
+  
+- **Prototypal Inheritance** in JavaScript allows objects to directly inherit from other objects. Every object has a `prototype` property, which can be used to inherit methods and properties from other objects.
+
+**Example (Prototypal Inheritance)**:
+```javascript
+const animal = {
+  speak: function() {
+    console.log("Animal speaks");
+  }
+};
+
+const dog = Object.create(animal);  // dog inherits from animal
+dog.speak();  // Outputs: Animal speaks
+```
+
+With **prototypal inheritance**, the `dog` object inherits methods from the `animal` object.
+
+---
+
+#### **4. Inheritance in ES2015 Classes**
+
+**Interviewer**: How is inheritance handled in ES2015 (ES6) classes?
+
+**Answer**: 
+In ES2015, JavaScript introduced the `class` syntax, which provides a clearer and more structured way to define inheritance. Classes use the `extends` keyword to inherit from another class, and the `super()` function is used to call the parent class's constructor.
+
+**Example**:
+```javascript
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} makes a sound`);
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name);  // Call the parent class constructor
+    this.breed = breed;
+  }
+
+  speak() {
+    console.log(`${this.name} barks`);
+  }
+}
+
+const dog = new Dog("Rex", "German Shepherd");
+dog.speak();  // Outputs: Rex barks
+```
+
+In this example, `Dog` inherits from `Animal` using `extends`, and the `super()` function calls the constructor of `Animal`.
+
+---
+
+#### **5. Static Class Members**
+
+**Interviewer**: What are static members in JavaScript classes?
+
+**Answer**: 
+Static members are properties and methods that belong to the class itself, rather than to instances of the class. These members are accessed using the class name, not through an instance.
+
+**Example**:
+```javascript
+class MyClass {
+  static greet() {
+    console.log("Hello from the class!");
+  }
+}
+
+MyClass.greet(); // Outputs: Hello from the class!
+```
+
+Here, `greet()` is a static method of `MyClass`, and it is called directly on the class, not an instance of it.
+
+---
+
+#### **6. Extending Built-in Objects**
+
+**Interviewer**: Can you extend built-in objects in JavaScript? If yes, how?
+
+**Answer**: Yes, you can extend built-in objects in JavaScript. This is done by adding custom properties or methods to the prototype of the built-in object, or by subclassing it (using `class` syntax in ES6).
+
+**Example (Extending Array)**:
+```javascript
+class CustomArray extends Array {
+  last() {
+    return this[this.length - 1];
+  }
+}
+
+const arr = new CustomArray(1, 2, 3);
+console.log(arr.last());  // Outputs: 3
+```
+
+In this example, `CustomArray` extends the built-in `Array` class, adding a custom method `last()`.
+
+---
+
+#### **7. Getters and Setters**
+
+**Interviewer**: What are getters and setters in JavaScript?
+
+**Answer**: 
+Getters and setters are special methods in JavaScript that allow you to access and update the properties of an object in a controlled way. They are used to define custom behavior when getting or setting a property.
+
+- **Getter**: A method that gets the value of a property.
+- **Setter**: A method that sets the value of a property.
+
+**Example**:
+```javascript
+class Person {
+  constructor(name) {
+    this._name = name;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    this._name = value;
+  }
+}
+
+const person = new Person("Alice");
+console.log(person.name);  // Outputs: Alice
+person.name = "Bob";
+console.log(person.name);  // Outputs: Bob
+```
+
+Here, the `name` property is accessed and updated through getter and setter methods.
+
+---
+
+#### **8. `Object.freeze()`, `seal()`, `preventExtensions()`**
+
+**Interviewer**: What is the difference between `Object.freeze()`, `seal()`, and `preventExtensions()`?
+
+**Answer**: These methods are used to control the mutability of objects in JavaScript.
+
+1. **`Object.freeze()`**: Makes an object immutable. You cannot add, remove, or modify any of its properties.
+   ```javascript
+   const obj = { name: "Alice" };
+   Object.freeze(obj);
+   obj.name = "Bob";  // This will not work
+   console.log(obj.name);  // Outputs: Alice
+   ```
+
+2. **`Object.seal()`**: Prevents adding or removing properties, but existing properties can still be modified (unless they are marked as non-writable).
+   ```javascript
+   const obj = { name: "Alice" };
+   Object.seal(obj);
+   obj.name = "Bob";  // This will work
+   delete obj.name;   // This will not work
+   console.log(obj.name);  // Outputs: Bob
+   ```
+
+3. **`Object.preventExtensions()`**: Prevents new properties from being added to the object but allows existing properties to be modified or deleted.
+   ```javascript
+   const obj = { name: "Alice" };
+   Object.preventExtensions(obj);
+   obj.age = 25;  // This will not work
+   console.log(obj.age);  // Outputs: undefined
+   ```
+
+---
+
+
 
 
 

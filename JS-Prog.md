@@ -809,27 +809,125 @@ console.log(countVowelsManual("Hello World"));
 ---
 
 
-#### **First Non-Repeating Character**
 
+---
+
+## **First Non-Repeating Character**
+
+> Given a string, find the **first character** that doesn't repeat.  
+> Example: `"swiss"` → `'w'` (since `'s'` appears 3 times and `'w'` appears only once and first)
+
+---
+
+### ✅ **Using Predefined Functions**  
+(using `.split()`, `.forEach()`, `.charAt()`, `.toLowerCase()`)
+
+#### **Pseudocode / Algorithm**
+```
+1. Convert string to lowercase
+2. Create empty object for frequency counts
+3. Split string into characters and count each one
+4. Loop through string again:
+   a. Return the first char whose count is 1
+```
+
+#### **Code Example**
 ```js
-function firstUniqueChar(str) {
-  for (let char of str) {
-    if (str.indexOf(char) === str.lastIndexOf(char)) return char;
+function firstNonRepeatingChar(str) {
+  const freq = {};
+  const lower = str.toLowerCase();
+
+  // Count frequency
+  lower.split('').forEach(char => {
+    freq[char] = (freq[char] || 0) + 1;
+  });
+
+  // Find first non-repeating character
+  for (let i = 0; i < lower.length; i++) {
+    if (freq[lower[i]] === 1) {
+      return str[i]; // return original-case char
+    }
   }
+
+  return null; // If none found
+}
+
+console.log(firstNonRepeatingChar("swiss"));   // 'w'
+console.log(firstNonRepeatingChar("level"));   // 'v'
+```
+
+📤 **Output:**
+```
+'w'
+'v'
+```
+
+---
+
+### ❌ **Without Using Predefined Functions**
+
+#### **Pseudocode / Algorithm**
+```
+1. Create an empty frequency object
+2. Loop through string:
+   a. Convert each character to lowercase manually
+   b. Count frequency
+3. Loop again through string:
+   a. Convert to lowercase again
+   b. If frequency is 1, return original character
+4. If no non-repeating character, return null
+```
+
+#### **Code Example**
+```js
+function firstNonRepeatingCharManual(str) {
+  const freq = {};
+
+  // First pass: count characters
+  for (let i = 0; i < str.length; i++) {
+    let ch = str[i];
+    let code = str.charCodeAt(i);
+
+    // Manual toLowerCase
+    if (code >= 65 && code <= 90) {
+      ch = String.fromCharCode(code + 32);
+    }
+
+    if (freq[ch]) {
+      freq[ch] = freq[ch] + 1;
+    } else {
+      freq[ch] = 1;
+    }
+  }
+
+  // Second pass: find first non-repeating
+  for (let i = 0; i < str.length; i++) {
+    let ch = str[i];
+    let code = str.charCodeAt(i);
+    if (code >= 65 && code <= 90) {
+      ch = String.fromCharCode(code + 32);
+    }
+
+    if (freq[ch] === 1) {
+      return str[i]; // return original-case character
+    }
+  }
+
   return null;
 }
-console.log(firstUniqueChar("swiss")); // "w"
+
+console.log(firstNonRepeatingCharManual("swiss"));  // 'w'
+console.log(firstNonRepeatingCharManual("Teeter")); // 'r'
 ```
 
-**Using TS**
-```js
-function firstNonRepeatingChar(str: string): string | null {
-  const count: Record<string, number> = {};
-    for (const ch of str) {    count[ch] = (count[ch] || 0) + 1;  }  
-    for (const ch of str) {    if (count[ch] === 1) return ch;  }  
-    return null;
-  }console.log(firstNonRepeatingChar("swiss")); // "w"
+📤 **Output:**
 ```
+'w'
+'r'
+```
+
+---
+
 
 
 #### **Factorial**

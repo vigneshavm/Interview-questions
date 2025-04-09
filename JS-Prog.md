@@ -232,18 +232,93 @@ console.log(chunkArray([1, 2, 3, 4, 5], 2)); // [[1,2],[3,4],[5]]
 ---
 
 
-#### **Find Second Largest Element**
+## **Find Second Largest Element**
 
+
+
+
+
+Given input:
 ```js
-function secondLargest(arr) {
-  const unique = [...new Set(arr)];
-  unique.sort((a, b) => b - a);
-  return unique[1];
-}
-console.log(secondLargest([5, 1, 2, 5, 3])); // 3
+[10, 5, 20, 20, 8, 25]
+```
+
+Expected output:
+```
+Second Largest: 20
 ```
 
 ---
+
+### ✅ **Using Predefined Functions (`sort()`, `filter()`, etc.)**
+
+#### **Pseudocode / Algorithm**
+```
+1. Sort the array in descending order
+2. Filter out duplicates
+3. Return the second element (index 1) from the result
+```
+
+#### **Code Example**
+```js
+function secondLargestUsingSort(arr) {
+  const unique = arr.filter((val, index, self) => self.indexOf(val) === index);
+  unique.sort((a, b) => b - a); // descending
+  return unique[1];
+}
+
+console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
+```
+
+📤 **Output:**
+```
+20
+```
+
+---
+
+### ❌ **Without Using Predefined Functions**
+
+#### **Pseudocode / Algorithm**
+```
+1. Initialize first = -Infinity, second = -Infinity
+2. Loop through each element:
+   a. If element > first:
+       - second = first
+       - first = element
+   b. Else if element > second AND element != first:
+       - second = element
+3. Return second
+```
+
+#### **Code Example**
+```js
+function secondLargestManual(arr) {
+  let first = -Infinity;
+  let second = -Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > first) {
+      second = first;
+      first = arr[i];
+    } else if (arr[i] > second && arr[i] !== first) {
+      second = arr[i];
+    }
+  }
+
+  return second;
+}
+
+console.log(secondLargestManual([10, 5, 20, 20, 8, 25]));
+```
+
+📤 **Output:**
+```
+20
+```
+
+---
+
 
 
 

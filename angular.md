@@ -1,20 +1,9 @@
 
 
 
-1. [What is Angular?](#1-what-is-angular) | 2. [Lifecycle Hooks](#2-lifecycle-hooks)
-3. [Modules (`@NgModule`)](#3-modules-ngmodule)
-4. [HTTP Interceptor](#4-http-interceptor)
-5. [Routing & Child Routes](#5-routing--child-routes)
-6. [Input & Output Decorators](#6-input--output-decorators)
-7. [Directives](#7-directives)
-8. [Data Binding](#8-data-binding)
-9. [Route Protection (`AuthGuard`)](#9-route-protection-authguard)
-10. [Promise vs Observable](#10-promise-vs-observable)
-11. [RxJS Operators](#11-rxjs-operators)
-12. [ViewChild & ViewChildren](#12-viewchild--viewchildren)
-13. [Lazy Loading](#13-lazy-loading)
-14. [Dependency Injection (DI)](#14-dependency-injection-di)
-15. [Forms](#15-forms)
+1. [What is Angular?](#1-what-is-angular) | 2. [Lifecycle Hooks](#2-lifecycle-hooks) | 3. [Modules (`@NgModule`)](#3-modules-ngmodule) | 4. [HTTP Interceptor](#4-http-interceptor) | 5. [Routing & Child Routes](#5-routing--child-routes) | 6. [Input & Output Decorators](#6-input--output-decorators)|
+7. [Directives](#7-directives) | 8. [Data Binding](#8-data-binding) |
+9. 9. [Route Protection (`AuthGuard`)](#9-route-protection-authguard) | 10. [Promise vs Observable](#10-promise-vs-observable) | 11. [RxJS Operators](#11-rxjs-operators) | 12. [ViewChild & ViewChildren](#12-viewchild--viewchildren) | 13. [Lazy Loading](#13-lazy-loading) | 14. [Dependency Injection (DI)](#14-dependency-injection-di) | 15. [Forms](#15-forms)
 
 
 

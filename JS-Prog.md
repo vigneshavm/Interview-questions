@@ -7,8 +7,6 @@
 | [Stock Span Problem](#Stock-Span-Problem) | [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) | [Binary Search](#Binary-Search) | [Retry Promise N Times](#retry-promise-n-times)| [Custom `map()` Method](#custom-map-method)
 
 
-## JavaScript / TypeScript Built-in Functions & Methods
-
 | Function| Description| Example Usage| Function| Description| Example Usage|
 | --- | :-- | :-- | :-- | :-- | :-- |
 | `eval()`| Evaluates a string of JS code *(⚠️ avoid use)*           | `eval("2 + 2") // 4`| `parseInt()`             | Converts string to integer                | `parseInt("10px") // 10`             |

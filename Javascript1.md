@@ -9,7 +9,7 @@
 | [Rest Parameters](#rest-parameters)  | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions) | [Higher-Order Functions](#higher-order-functions)  | [Callback Functions](#callback-functions)  | [Recursion](#recursion)  | [Preventing Default Behavior](#preventing-default-behavior-events)  | [`event.preventDefault()` vs `event.stopPropagation()`](#eventpreventdefault-vs-eventstoppropagation)  | [`mouseenter` vs `mouseover`](#mouseenter-vs-mouseover)  | [`innerHTML` vs `textContent`](#innerhtml-vs-textcontent)  |
 | [Closures and Private Variables](#closures)  | [Potential Pitfalls of Closures](#closures-pitfalls)  | [Creating Objects - Various Ways](#creating-objects---various-ways)  | [Dot vs Bracket Notation](#dot-notation-vs-bracket-notation)  | [Checking Object Properties](#checking-object-properties)  | [Check if Object is Empty](#check-if-object-is-empty)  | [Copying Objects and Arrays](#copy-object-and-array)  | [Event Capturing](#event-capturing)  
 | [Shallow vs Deep Copy](#shallow-deep-copy)  | [Destructuring Assignment](#destructuring-assignment-for-objects-and-arrays)  | [Object.freeze()](#objectfreeze)  | [Object.seal()](#objectseal)  | [Object.preventExtensions()](#objectpreventextensions)  | [Object Property Flags](#object-property-flags)  | [Getters and Setters](#getters-and-setters) |[Event Delegation](#event-delegation) |
-| [Prototype Chain](#prototype-chain)  | [Constructor Function](#constructor-function)  | [The `new` Keyword](#new-keyword)  | [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance)  | [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)  | [ES2015 Classes vs. ES5 Constructors](#es2015-classes-vs-es5-function-constructors)  | [Static Class Members](#static-class-members) |[JavaScript Polyfills](#javascript-polyfills) 
+| [Prototype Chain](#prototype-chain)  | [Constructor Function](#constructor-function)  | [The `new` Keyword](#new-keyword)  | [Classical vs Prototypal Inheritance](#classical-inheritance-Vs-prototypal-inheritance)  | [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)  | [Static Class Members](#static-class-members) |[JavaScript Polyfills](#javascript-polyfills) 
 | [How `this` Works in JavaScript](#how-this-works-in-javascript)  | [`Function.prototype.bind`](#functionprototypebind)  | [Different Ways to Bind `this`](#different-ways-to-bind-this)  | [Common Pitfalls of the `this` Keyword](#common-pitfalls-of-the-this-keyword)  | [`this` Binding in Event Handlers](#this-binding-in-event-handlers)  | [Validating Form Elements Using the Constraint Validation API](#validating-form-elements-using-the-constraint-validation-api) |
 | [Array Iteration Methods](#array-iteration-methods)  | [Managing Array Elements](#managing-array-elements)  | [Spread Operator](#spread-operator)  | [Rest Parameters](#rest-parameters)  | [Index in Iteration](#index-of-an-element-in-an-array-during-iteration) | [Iterating Object Properties vs Array Items](#iterating-over-object-properties-and-array-items-in-javascript) | [Detecting if JavaScript is Disabled on a Page](#detecting-if-javascript-is-disabled-on-a-page)  | [The `Intl` Namespace Object](#the-intl-namespace-object)  
 | [Ternary Operator](#ternary-operator)  | [`break` and `continue`](#break-and-continue-statements)  | [`switch` Statement](#switch-statement) | [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions)  | [Promises](#promises)  | [Promise States](#promise-states)  | [Pros and Cons of Promises](#pros-and-cons-of-promises)  | [Promise.all()](#promiseall)  |
@@ -1958,7 +1958,7 @@ On the other hand, `WeakSet` only allows objects as elements, and these object e
 
 <br>
 
-## create static class members
+## static class members
 
 <!-- Update here: /questions/why-you-might-want-to-create-static-class-members/en-US.mdx -->
 
@@ -3763,7 +3763,7 @@ The main takeaway here is that `this` can be changed for a normal function, but 
 
 <br>
 
-## create static class members
+## static class members
 
 <!-- Update here: /questions/why-you-might-want-to-create-static-class-members/en-US.mdx -->
 

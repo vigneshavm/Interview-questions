@@ -1754,7 +1754,7 @@ console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
 
 
 
-**Binary Search**
+## **Binary Search**
 
 sort the array:
 ```js
@@ -1780,7 +1780,7 @@ console.log("Index of 3:", index);
 console.log(removeDuplicates(array)); // [4, 2, 5, 3, 1]
 ```
 
-**Boolean Function to Match Filename Pattern Without Regex**
+## **Boolean Function to Match Filename Pattern Without Regex**
 ```js
 function matchPattern(filename, pattern) {
   let i = 0, j = 0, starIdx = -1, match = 0;
@@ -1798,7 +1798,7 @@ function matchPattern(filename, pattern) {
 }
 ```
 
-**Stock Span Problem (Optimized Solution)**
+## **Stock Span Problem (Optimized Solution)**
 ```js
 class StockSpanner {
   constructor() {
@@ -1818,7 +1818,7 @@ class StockSpanner {
 
 ```
 
-**Simulating Wallet Withdrawal Queue**
+## **Simulating Wallet Withdrawal Queue**
 ```js
 function withdrawQueue(amounts, maxLimit) {
   let exitOrder = [], queue = [], i = 0;

@@ -349,7 +349,7 @@ http.listen(3000);
 
 ---
 
-##  **CORS in Node.js**
+##  **CORS **
 
  
 
@@ -461,7 +461,7 @@ app.get('/data', async (req, res) => {
 
 
 
-## **Error Handling in Node.js**
+## **Error Handling **
 
 - **Synchronous**: `try-catch`.
 - **Asynchronous**: `Error-first callback pattern`, `Promises`, `Async/Await`.
@@ -648,7 +648,7 @@ curl http://localhost:4000/protected \
 
 ---
 
-## **Worker Threads in Node.js**
+## **Worker Threads **
 
 Worker threads offload CPU-intensive tasks to separate threads, ensuring the main thread isn't blocked.
 
@@ -665,7 +665,7 @@ app.use(cors({ origin: "http://example.com" }));
 
 ---
 
-## **Caching Strategies in Node.js**
+## **Caching Strategies **
 
 - **In-memory Caching**: Use **Redis** for frequently accessed data.
 - **Cache Expiration**: Set TTL (Time to Live) to prevent stale data.
@@ -690,7 +690,7 @@ emitter.on('userCreated', (data) => {
 
 ---
 
-## **Load Balancing in Node.js**
+## **Load Balancing **
 
 Distribute requests across multiple instances using tools like **PM2**, **Nginx**, or **HAProxy**.
 
@@ -716,7 +716,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 
 ---
 
-## **Dependency Injection in Node.js**
+## **Dependency Injection **
 
 Dependency Injection (DI) helps manage service dependencies and simplifies testing.
 
@@ -739,7 +739,7 @@ container.bind(UserService).toSelf();
 
 ---
 
-## **Database Transactions in Node.js**
+## **Database Transactions **
 
 Use ORMs like **Sequelize** or **Mongoose** to handle database transactions and ensure data consistency.
 
@@ -763,7 +763,7 @@ async function performTransaction() {
 
 ---
 
-## **Data Validation in Node.js with TypeScript**
+## **Data Validation  with TypeScript**
 
 Use **Joi** or **express-validator** for input validation in APIs.
 
@@ -810,7 +810,7 @@ if (error) {
 - **`Promise.race()`**: Resolves when **the first** promise resolves or rejects.
 
 
-##  **Scalability issues in Node.js applications?**
+##  **Scalability issues ?**
    - **Clustering**: Use the `cluster` module to utilize multi-core systems by spawning worker processes.
    - **Load Balancing**: Distribute incoming requests across multiple servers using NGINX, HAProxy, or AWS Elastic Load Balancer.
    - **Horizontal Scaling**: Deploy multiple instances of the application using containers (e.g., Docker) and orchestration tools like Kubernetes.

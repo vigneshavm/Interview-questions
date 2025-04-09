@@ -1150,13 +1150,110 @@ console.log(charFrequencyManual("Hello"));
 ---
 
 
-#### **Sort Array of Objects by Field**
+
+---
+
+## **Sort Array of Objects by Field**  
+We’ll use the field `age` for clarity, but this approach works for any field like `name`, `price`, etc.
+
+Sample input:
 ```js
-const users = [  { id: 1, age: 30 },  { id: 2, age: 25 },  { id: 3, age: 35 }];
-users.sort((a, b) => a.age - b.age);
+const people = [
+  { name: "Alice", age: 32 },
+  { name: "Bob", age: 25 },
+  { name: "Charlie", age: 30 }
+];
 ```
 
 ---
+
+### ✅ 1. **Using Predefined Functions**
+
+We’ll use the built-in `.sort()` method.
+
+### ✅ Code Example:
+
+```js
+const people = [
+  { name: "Alice", age: 32 },
+  { name: "Bob", age: 25 },
+  { name: "Charlie", age: 30 }
+];
+
+const sortedByAge = people.sort((a, b) => a.age - b.age);
+
+console.log(sortedByAge);
+```
+
+📤 **Output:**
+```js
+[
+  { name: 'Bob', age: 25 },
+  { name: 'Charlie', age: 30 },
+  { name: 'Alice', age: 32 }
+]
+```
+
+---
+
+### ❌ 2. **Without Using Predefined Sort** (Manual sorting)
+
+We’ll manually implement a sorting algorithm. Let’s use **Bubble Sort** for simplicity.
+
+---
+
+### ❌ Pseudocode:
+```
+1. Loop over array (outer loop)
+2. Inside loop, compare current object age with next object age
+3. If current > next, swap the two objects
+4. Repeat until array is sorted
+```
+
+---
+
+### ❌ Code Example (Manual Bubble Sort):
+
+```js
+function sortByAgeManual(arr) {
+  const people = [...arr]; // copy to avoid mutating original
+  const n = people.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (people[j].age > people[j + 1].age) {
+        // Swap
+        const temp = people[j];
+        people[j] = people[j + 1];
+        people[j + 1] = temp;
+      }
+    }
+  }
+
+  return people;
+}
+
+const people = [
+  { name: "Alice", age: 32 },
+  { name: "Bob", age: 25 },
+  { name: "Charlie", age: 30 }
+];
+
+console.log(sortByAgeManual(people));
+```
+
+📤 **Output:**
+```js
+[
+  { name: 'Bob', age: 25 },
+  { name: 'Charlie', age: 30 },
+  { name: 'Alice', age: 32 }
+]
+```
+
+---
+
+
 
 ## **Anagram Checker**
 

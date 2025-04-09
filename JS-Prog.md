@@ -5,6 +5,92 @@
 | [Group by Category or Class](#group-by-category-or-class) | [Sort Array of Objects by Field](#sort-array-of-objects-by-field) | [Factorial](#factorial) | [Fibonacci](#fibonacci) | [Recursive Sum of Array](#recursive-sum-of-array) | [Power Function](#power-function) | [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) | 
 
 
+
+
+
+
+
+
+
+## **Remove Duplicates element from array**
+
+---
+
+### ✅ **Using Predefined Functions (e.g., `includes`)**
+#### **Pseudocode / Algorithm**
+```
+1. Initialize empty result array
+2. Loop through each element in the input array
+3. If element is not in result array (using includes)
+    - Add it to result array
+4. Return result array
+```
+
+#### **Code Example**
+```js
+function removeDuplicates(arr) {
+  let result = [];
+  arr.forEach(item => {
+    if (!result.includes(item)) {
+      result.push(item);
+    }
+  });
+  return result;
+}
+
+console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
+```
+
+📤 **Output:**
+```
+[1, 2, 3, 4]
+```
+
+---
+
+### ❌ **Without Using Predefined Functions**
+#### **Pseudocode / Algorithm**
+```
+1. Initialize an empty array called result
+2. Loop i from 0 to array.length
+   a. Initialize found as false
+   b. Loop j from 0 to result.length
+      i. If arr[i] == result[j], set found = true and break
+   c. If found == false, push arr[i] to result
+3. Return result
+```
+
+#### **Code Example**
+```js
+function removeDuplicatesManual(arr) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let found = false;
+    for (let j = 0; j < result.length; j++) {
+      if (arr[i] === result[j]) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+}
+
+console.log(removeDuplicatesManual([1, 2, 2, 3, 1, 4]));
+```
+
+📤 **Output:**
+```
+[1, 2, 3, 4]
+```
+
+---
+
+
+
 #### **Chunk an Array**
 
 ```js

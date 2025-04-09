@@ -810,7 +810,7 @@ if (error) {
 - **`Promise.race()`**: Resolves when **the first** promise resolves or rejects.
 
 
-##  **How do you handle scalability issues in Node.js applications?**
+##  **Scalability issues in Node.js applications?**
    - **Clustering**: Use the `cluster` module to utilize multi-core systems by spawning worker processes.
    - **Load Balancing**: Distribute incoming requests across multiple servers using NGINX, HAProxy, or AWS Elastic Load Balancer.
    - **Horizontal Scaling**: Deploy multiple instances of the application using containers (e.g., Docker) and orchestration tools like Kubernetes.

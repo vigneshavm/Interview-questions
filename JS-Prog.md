@@ -1113,7 +1113,7 @@ console.log(powerUsingMath(2, 4)); // Output: 16
 
 ### Without Using Any Predefined Functions
 
-### 💡 A. Iterative Approach
+###  A. Iterative Approach
 
 ```js
 function powerIterative(base, exponent) {
@@ -1129,7 +1129,7 @@ console.log(powerIterative(2, 4)); // Output: 16
 
 ---
 
-### 💡 B. Recursive Approach
+###  B. Recursive Approach
 
 ```js
 function powerRecursive(base, exponent) {

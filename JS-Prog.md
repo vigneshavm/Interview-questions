@@ -1035,17 +1035,57 @@ console.log(fibonacciRecursive(6)); // Output: 8
 ---
 
 
-#### **Recursive Sum of Array**
 
+
+---
+
+## 	Recursive Sum of Array:  
+Given an array of numbers, compute the sum using recursion.
+
+📌 Example:
 ```js
-function recursiveSum(arr) {
-  if (arr.length === 0) return 0;
-  return arr[0] + recursiveSum(arr.slice(1));
-}
-console.log(recursiveSum([1, 2, 3, 4])); // 10
+Input: [1, 2, 3, 4, 5]
+Output: 15
 ```
 
 ---
+
+## Using Predefined Function (`.reduce()`)
+
+```js
+function sumUsingReduce(arr) {
+  return arr.reduce((acc, val) => acc + val, 0);
+}
+
+console.log(sumUsingReduce([1, 2, 3, 4, 5])); // Output: 15
+```
+
+---
+
+## Without Using Any Predefined Functions (Pure Recursion)
+
+```js
+function recursiveSum(arr, index = 0) {
+  if (index >= arr.length) return 0;
+  return arr[index] + recursiveSum(arr, index + 1);
+}
+
+console.log(recursiveSum([1, 2, 3, 4, 5])); // Output: 15
+```
+
+---
+
+### 🔎 Sample Inputs and Outputs:
+
+| Input               | Output |
+|--------------------|--------|
+| `[1, 2, 3]`         | 6      |
+| `[10, 20, 30, 40]`  | 100    |
+| `[]`                | 0      |
+| `[7]`               | 7      |
+
+---
+
 
 #### **Power Function**
 

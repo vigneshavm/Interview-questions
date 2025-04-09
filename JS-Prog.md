@@ -1860,8 +1860,6 @@ function findMax(arr: number[]): number {
 
 ---
 
----
-
 ### Group Array of Objects by Key
 
 **Input**

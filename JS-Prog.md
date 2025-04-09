@@ -1836,3 +1836,124 @@ function withdrawQueue(amounts, maxLimit) {
 }
 console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
 ```
+
+
+
+## Reverse a String
+```ts
+function reverseString(str: string): string {
+  return str.split('').reverse().join('');
+}
+```
+> Splits the string into characters, reverses them, and joins them back.
+
+---
+
+
+### Find Maximum in an Array
+```ts
+function findMax(arr: number[]): number {
+  return Math.max(...arr);
+}
+```
+> Uses ES6 spread with `Math.max`.
+
+---
+
+---
+
+### Group Array of Objects by Key
+```ts
+type Grouped<T> = Record<string, T[]>;
+
+function groupBy<T>(arr: T[], key: keyof T): Grouped<T> {
+  return arr.reduce((acc: Grouped<T>, item) => {
+    const groupKey = String(item[key]);
+    (acc[groupKey] ||= []).push(item);
+    return acc;
+  }, {});
+}
+```
+
+---
+
+
+
+### Debounce Function
+```ts
+function debounce<T extends (...args: any[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+}
+```
+
+---
+
+### Throttle Function
+```ts
+function throttle<T extends (...args: any[]) => void>(fn: T, limit: number): (...args: Parameters<T>) => void {
+  let lastRun = 0;
+  return (...args: Parameters<T>) => {
+    const now = Date.now();
+    if (now - lastRun >= limit) {
+      lastRun = now;
+      fn(...args);
+    }
+  };
+}
+```
+
+---
+
+### Retry Promise N Times
+```ts
+async function retry<T>(fn: () => Promise<T>, retries: number): Promise<T> {
+  try {
+    return await fn();
+  } catch (error) {
+    if (retries <= 0) throw error;
+    return retry(fn, retries - 1);
+  }
+}
+```
+
+---
+
+### Custom `map()` Method
+```ts
+declare global {
+  interface Array<T> {
+    myMap<U>(callback: (value: T, index: number, array: T[]) => U): U[];
+  }
+}
+
+Array.prototype.myMap = function<T, U>(this: T[], callback: (value: T, index: number, array: T[]) => U): U[] {
+  const result: U[] = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(callback(this[i], i, this));
+  }
+  return result;
+};
+```
+
+---
+
+### Deep Clone an Object
+```ts
+function deepClone<T>(obj: T): T {
+  return structuredClone(obj); // Native browser/Node 17+
+}
+```
+
+> For older environments:
+```ts
+function deepCloneLegacy<T>(obj: T): T {
+  return JSON.parse(JSON.stringify(obj));
+}
+```
+
+---
+

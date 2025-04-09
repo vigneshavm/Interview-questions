@@ -163,45 +163,6 @@ console.log(buf.toString()); // Hello
 
 
 
-##  **Middleware in Express**
-
-- Functions that execute during the request-response cycle.
-- Can modify request, response objects.
-- Middleware functions execute before route handlers. They can perform tasks like logging, authentication, and error handling.
-
- Code Sample
-```js
-const express = require('express');
-const app = express();
-
-// General middleware
-app.use((req, res, next) => {
-  console.log("Middleware running");
-  next();  // Pass control to the next middleware
-});
-
-// Logger middleware
-const logger = (req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next(); // Pass control to the next middleware
-};
-
-app.use(logger);
-
-// Route
-app.get('/', (req, res) => {
-  res.send('Home');
-});
-
-// Start server with callback
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-
-```
-
----
 
 ##  **Process Object**
 
@@ -836,13 +797,53 @@ const handler = (req: Request, res: Response) => {
 
 ---
 
-## 15. **Type safety across layers (controller, service, DB)?**
+## **Type safety across layers (controller, service, DB)?**
 
 Define shared interfaces/types and use them consistently across all layers. Use DTOs (Data Transfer Objects) if needed.
 
 ---
 
-## 14. **Middleware in Express**
+##  **Middleware in Express**
+
+- Functions that execute during the request-response cycle.
+- Can modify request, response objects.
+- Middleware functions execute before route handlers. They can perform tasks like logging, authentication, and error handling.
+
+ Code Sample
+```js
+const express = require('express');
+const app = express();
+
+// General middleware
+app.use((req, res, next) => {
+  console.log("Middleware running");
+  next();  // Pass control to the next middleware
+});
+
+// Logger middleware
+const logger = (req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next(); // Pass control to the next middleware
+};
+
+app.use(logger);
+
+// Route
+app.get('/', (req, res) => {
+  res.send('Home');
+});
+
+// Start server with callback
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+```
+
+---
+
+**Middleware in Express**
 
 ```ts
 import { Request, Response, NextFunction } from 'express';
@@ -853,6 +854,34 @@ const logger = (req: Request, res: Response, next: NextFunction) => {
 };
 ```
 
+
+
+**Middleware to Protect Routes**
+```ts
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = 'yourSecretKey';
+
+export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader?.startsWith('Bearer '))
+    return res.status(401).json({ error: 'Unauthorized' });
+
+  const token = authHeader.split(' ')[1];
+
+  try {
+    const payload = jwt.verify(token, JWT_SECRET);
+    (req as any).user = payload;
+    next();
+  } catch {
+    res.status(403).json({ error: 'Forbidden' });
+  }
+};
+```
+
+---
 ---
 
 
@@ -1080,32 +1109,7 @@ JWT is a compact token format used for securely transmitting info between partie
 
 ---
 
-### Middleware to Protect Routes
-```ts
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = 'yourSecretKey';
-
-export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader?.startsWith('Bearer '))
-    return res.status(401).json({ error: 'Unauthorized' });
-
-  const token = authHeader.split(' ')[1];
-
-  try {
-    const payload = jwt.verify(token, JWT_SECRET);
-    (req as any).user = payload;
-    next();
-  } catch {
-    res.status(403).json({ error: 'Forbidden' });
-  }
-};
-```
-
----
 
 ## Protected Route
 ```ts

@@ -1050,7 +1050,7 @@ Output: 15
 
 ---
 
-## Using Predefined Function (`.reduce()`)
+### Using Predefined Function (`.reduce()`)
 
 ```js
 function sumUsingReduce(arr) {
@@ -1062,7 +1062,7 @@ console.log(sumUsingReduce([1, 2, 3, 4, 5])); // Output: 15
 
 ---
 
-## Without Using Any Predefined Functions (Pure Recursion)
+### Without Using Any Predefined Functions (Pure Recursion)
 
 ```js
 function recursiveSum(arr, index = 0) {

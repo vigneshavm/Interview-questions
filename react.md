@@ -1,11 +1,10 @@
 
-# React Interview Guide
-
 ---
 
 ## Create React App using Typescript
 
 - npx create-react-app@latest sample-app --template typescript
+
 ---
 
 ## React Overview 

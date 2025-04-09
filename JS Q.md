@@ -1713,6 +1713,176 @@ In this example, `Car` depends on `Engine`. Instead of `Car` creating its own en
 ---
 
 
+---
+
+### ✅ **Modules, Storage & Browser APIs Interview Answers**
+
+---
+
+#### **1. `<script>`, `async`, and `defer`**
+
+**Interviewer**: What is the difference between `<script>`, `async`, and `defer` attributes in HTML?
+
+**Answer**:
+The `<script>` tag is used to include JavaScript files in an HTML document. By default, when a `<script>` is encountered, the HTML parsing is paused until the script is loaded and executed, which can lead to delays in rendering. The `async` and `defer` attributes help optimize script loading behavior.
+
+- **`async`**: The script is fetched asynchronously (in parallel with the HTML parsing) and executed as soon as it is available, without waiting for the HTML parsing to finish. This can cause the script to execute before the HTML parsing is complete.
+  
+  **Example**:
+  ```html
+  <script src="script.js" async></script>
+  ```
+
+- **`defer`**: The script is fetched asynchronously, but it is executed only after the HTML document has been completely parsed. It ensures that scripts are executed in the order they appear in the document.
+
+  **Example**:
+  ```html
+  <script src="script.js" defer></script>
+  ```
+
+**Key Difference**:
+- `async` is ideal for scripts that don’t depend on other scripts.
+- `defer` is better for scripts that rely on the DOM being fully loaded before executing.
+
+---
+
+#### **2. Cookies, sessionStorage, and localStorage**
+
+**Interviewer**: What are the differences between cookies, sessionStorage, and localStorage?
+
+**Answer**:
+These are all web storage mechanisms, but they have different lifespans and uses:
+
+- **Cookies**: Data stored in cookies is sent to the server with every HTTP request. Cookies have an expiration date and can be set with a specific domain, path, and security attributes. They are limited to 4KB of data.
+
+  **Use case**: Storing authentication tokens, tracking sessions.
+
+  **Example**:
+  ```javascript
+  document.cookie = "username=John; expires=Fri, 31 Dec 2025 12:00:00 UTC; path=/";
+  ```
+
+- **sessionStorage**: Data stored in `sessionStorage` is specific to a single browser session. The data is available as long as the browser is open, but it is cleared when the tab or window is closed.
+
+  **Use case**: Storing temporary data that is only needed for the duration of a session (like a multi-step form).
+
+  **Example**:
+  ```javascript
+  sessionStorage.setItem("user", "John");
+  let user = sessionStorage.getItem("user");
+  ```
+
+- **localStorage**: Data stored in `localStorage` persists even when the browser is closed and reopened. It is specific to the domain and accessible in future sessions until explicitly removed. It has a storage limit of about 5MB.
+
+  **Use case**: Storing user preferences, app settings, or data that should persist across sessions.
+
+  **Example**:
+  ```javascript
+  localStorage.setItem("theme", "dark");
+  let theme = localStorage.getItem("theme");
+  ```
+
+---
+
+#### **3. Window vs Document**
+
+**Interviewer**: What is the difference between `window` and `document` in JavaScript?
+
+**Answer**:
+- **`window`**: The `window` object represents the global environment or the browser window itself. It provides methods for controlling the browser window (like `window.open()`, `window.alert()`) and properties like `window.innerWidth` (viewport width).
+  
+  **Example**:
+  ```javascript
+  console.log(window.innerWidth);  // Prints the width of the window
+  ```
+
+- **`document`**: The `document` object is a property of the `window` object and represents the DOM (Document Object Model) of the web page. It is used for interacting with the content of the web page (like selecting elements or modifying the DOM).
+
+  **Example**:
+  ```javascript
+  document.getElementById("myElement").innerText = "Hello World!";
+  ```
+
+**Key Difference**: The `window` object represents the browser window, while `document` represents the content of the web page.
+
+---
+
+#### **4. WebSocket API**
+
+**Interviewer**: Can you explain the WebSocket API?
+
+**Answer**:
+The **WebSocket API** provides a way to open a two-way interactive communication session between the user's browser and a server. This allows for real-time communication, such as chat applications or live updates, by maintaining a persistent connection.
+
+- WebSockets are different from HTTP requests because once the connection is established, it remains open, and both the client and server can send messages anytime.
+
+**Example**:
+```javascript
+const socket = new WebSocket("ws://example.com/socket");
+
+socket.onopen = function(event) {
+  socket.send("Hello Server");
+};
+
+socket.onmessage = function(event) {
+  console.log("Message from server: " + event.data);
+};
+```
+
+**Use case**: Real-time applications like stock tickers, live chat, or multiplayer games.
+
+---
+
+#### **5. Web Workers**
+
+**Interviewer**: What are Web Workers and how are they useful?
+
+**Answer**:
+**Web Workers** allow you to run JavaScript code in the background, on a separate thread, without blocking the main execution thread. This is especially useful for tasks that involve heavy computation or long-running processes, preventing the UI from freezing.
+
+**Example**:
+```javascript
+// worker.js
+self.onmessage = function(e) {
+  console.log("Message from main thread: " + e.data);
+  self.postMessage("Hello from worker");
+};
+
+// In main thread
+const worker = new Worker('worker.js');
+worker.onmessage = function(e) {
+  console.log("Message from worker: " + e.data);
+};
+worker.postMessage("Start working");
+```
+
+**Use case**: Performing calculations, data processing, or file reading without freezing the UI.
+
+---
+
+#### **6. Using `window.history` API**
+
+**Interviewer**: How does the `window.history` API work in JavaScript?
+
+**Answer**:
+The **`window.history` API** provides access to the browser's session history, allowing you to navigate between pages in the session history stack, modify the browser's URL, and even change the current state without causing a page reload.
+
+**Key Methods**:
+- `history.pushState()`: Adds a new entry to the browser history stack.
+- `history.replaceState()`: Modifies the current entry in the history stack without creating a new entry.
+- `history.back()`: Navigates to the previous page.
+- `history.forward()`: Navigates to the next page.
+
+**Example**:
+```javascript
+history.pushState({ page: 1 }, "title 1", "?page=1");
+history.replaceState({ page: 2 }, "title 2", "?page=2");
+```
+
+This can be useful in single-page applications (SPAs) for updating the URL without refreshing the page.
+
+---
+
 
 
 

@@ -14,7 +14,7 @@ Here’s your full content, nicely formatted in **Markdown** with clean hierarch
 
 ---
 
-## 🔹 let, var or const
+## let, var or const
 
 | Feature      | `var`            | `let`            | `const`                  |
 |--------------|------------------|------------------|---------------------------|
@@ -35,7 +35,7 @@ console.log(x); // ✅ 10
 
 ---
 
-## 🔹 Hoisting
+## Hoisting
 
 ### Variable Hoisting
 - `var` is hoisted and initialized to `undefined`.
@@ -76,7 +76,7 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
-## 🔹 Common Hoisting Pitfalls
+## Common Hoisting Pitfalls
 
 1. **Unexpected `undefined` values**
    ```js
@@ -104,7 +104,7 @@ var notHoisted = function () { console.log("Expression not hoisted"); };
 
 ---
 
-## 🔹 Key ES6 Features
+## Key ES6 Features
 
 - ✅ `let` and `const`
 - ✅ Arrow functions  

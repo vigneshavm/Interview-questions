@@ -79,49 +79,13 @@
 ---
 
 
-| **Prototypes and Inheritance**                                                              | **Memory Management**                                         | **Optional Chaining & Advanced Operators**                                   |**Miscellaneous**                                   |
-|---------------------------------------------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------------------|
-------------------------------------------------------------------------|
-| [Understanding `__proto__` and Prototypes](#understanding-__proto__-and-prototypes) | [Common Causes of Memory Leaks](#common-causes-of-memory-leaks)| [Optional Chaining (`?.`) Operator](#optional-chaining-operator)| [Type Coercion in Operations (`[] + [] and {}` + [])](#Type-Coercion-in-Operations)
-| [Object.create() and Prototype Chains](#Object-create-and-Prototype-Chains)| [JavaScript Garbage Collection](#javascript-garbage-collection)| [Nullish Coalescing (`??`) Operator](#nullish-coalescing-operator)| [Map Key References with Objects](#map-key-references-with-objects)
-| [Object.assign()` vs Spread Operator](#objectassign-vs-spread-operator)| [Closures and Memory Management](#closures-and-memory-management)| [in` Operator vs `hasOwnProperty()](#in-operator-vs-hasownproperty)| [Understanding Unexpected Outputs](#understanding-unexpected-outputs)
-| [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance) | | [Temporal Dead Zone in `let` and const](#temporal-dead-zone-in-let-and-const)
-| [Implementing Mixins for Multiple Inheritance](#implementing-mixins-for-multiple-inheritance) | | [Labeled Statements Usage](#labeled-statements-usage)
-
-
-
-
-
-
-### Prototypes and Inheritance
-- [Understanding `__proto__` and Prototypes](#understanding-__proto__-and-prototypes)
-- [Object.create() and Prototype Chains](#Object-create-and-Prototype-Chains)
-- [Object.assign()` vs Spread Operator](#objectassign-vs-spread-operator)
-- [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance)
-- [Implementing Mixins for Multiple Inheritance](#implementing-mixins-for-multiple-inheritance)
-
----
-
-### Memory Management
-- [Common Causes of Memory Leaks](#common-causes-of-memory-leaks)
-- [JavaScript Garbage Collection](#javascript-garbage-collection)
-- [Closures and Memory Management](#closures-and-memory-management)
-
----
-
-### Optional Chaining & Advanced Operators
-- [Optional Chaining (`?.`) Operator](#optional-chaining-operator)
-- [Nullish Coalescing (`??`) Operator](#nullish-coalescing-operator)
-- [in` Operator vs `hasOwnProperty()](#in-operator-vs-hasownproperty)
-- [Temporal Dead Zone in `let` and const](#temporal-dead-zone-in-let-and-const)
-- [Labeled Statements Usage](#labeled-statements-usage)
-
----
-
-### Miscellaneous
-- [Type Coercion in Operations (`[] + [] and {}` + [])](#Type-Coercion-in-Operations)
-- [Map Key References with Objects](#map-key-references-with-objects)
-- [Understanding Unexpected Outputs](#understanding-unexpected-outputs)
+| **Prototypes and Inheritance**                                                              | **Memory Management**                                         | **Optional Chaining & Advanced Operators**                                   | **Miscellaneous**                                   |
+|---------------------------------------------------------------------------------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------|-----------------------------------------------------|
+| [Understanding `__proto__` and Prototypes](#understanding-__proto__-and-prototypes)         | [Common Causes of Memory Leaks](#common-causes-of-memory-leaks) | [Optional Chaining (`?.`) Operator](#optional-chaining-operator)              | [Type Coercion in Operations (`[] + [] and {}` + [])](#type-coercion-in-operations) |
+| [Object.create() and Prototype Chains](#object-create-and-prototype-chains)                 | [JavaScript Garbage Collection](#javascript-garbage-collection) | [Nullish Coalescing (`??`) Operator](#nullish-coalescing-operator)            | [Map Key References with Objects](#map-key-references-with-objects)           |
+| [Object.assign()` vs Spread Operator](#objectassign-vs-spread-operator)                     | [Closures and Memory Management](#closures-and-memory-management) | [in` Operator vs `hasOwnProperty()](#in-operator-vs-hasownproperty)           | [Understanding Unexpected Outputs](#understanding-unexpected-outputs)         |
+| [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance)           |                                                                | [Temporal Dead Zone in `let` and const](#temporal-dead-zone-in-let-and-const) |                                                      |
+| [Implementing Mixins for Multiple Inheritance](#implementing-mixins-for-multiple-inheritance) |                                                              | [Labeled Statements Usage](#labeled-statements-usage)                         |                                                      |
 
 
 

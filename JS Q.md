@@ -1,4 +1,8 @@
 
+
+
+---
+
 | **JavaScript Fundamentals**                                      | **TypeScript**                                              | **Functions & Scope**                                           |
 |------------------------------------------------------------------|--------------------------------------------------------------|------------------------------------------------------------------|
 | [let and var and const](#let-and-var-and-const)                  | [How TypeScript Improves JavaScript](#how-typescript-improves-javascript) | [Function Declaration vs Expression vs Constructor](#function-declaration-vs-Expression-vs-Constructor) |
@@ -15,135 +19,79 @@
 | [== vs ===](#Loose-Equality-Vs-Strict-Equality)                  |                                                              |                                                                  |
 | [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    |                                                              |                                                                  |
 
+---
 
-### **Asynchronous JavaScript**
-- [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions)
-- [Promises](#promises)
-- [Promise States](#promise-states)
-- [Pros and Cons of Promises](#pros-and-cons-of-promises)
-- [Promise.all()](#promiseall)
-- [Promise.all vs Promise.allSettled](#promiseall-vs-promiseallsettled)
-- [Async/Await](#asyncawait)
-- [Handling Async Errors](#Handling-Async-Errors)
-- [Microtask Queue](#microtask-queue)
-- [setTimeout() and setImmediate() and  processnextTick()](#setTimeout-and-setImmediate-and-processnextTick)
+| **Asynchronous JavaScript**                                                  | **Objects & Classes**                                             | **Design Patterns & Architecture**                        |
+|------------------------------------------------------------------------------|-------------------------------------------------------------------|------------------------------------------------------------|
+| [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions)        | [Constructor Function](#constructor-function)                     | [Introduction to Design Patterns](#introduction-to-design-patterns) |
+| [Promises](#promises)                                                        | [new Keyword](#new-keyword)                                       | [Singleton Pattern](#singleton-pattern)                   |
+| [Promise States](#promise-states)                                            | [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance) | [Factory Pattern](#factory-pattern)                       |
+| [Pros and Cons of Promises](#pros-and-cons-of-promises)                      | [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)   | [Module Pattern](#module-pattern)                         |
+| [Promise.all()](#promiseall)                                                 | [Static Class Members](#static-class-members)                     | [Observer Pattern](#observer-pattern)                     |
+| [Promise.all vs Promise.allSettled](#promiseall-vs-promiseallsettled)       | [Extending Built-in Objects](#extending-built-in-objects)         | [Prototype Pattern](#prototype-pattern)                   |
+| [Async/Await](#asyncawait)                                                  | [Getters and Setters](#getters-and-setters)                       | [Dependency Injection](#dependency-injection)             |
+| [Handling Async Errors](#Handling-Async-Errors)                              | [Object.freeze and seal and preventExtensions](#objectfreeze-and-seal-and-preventExtensions) |                                                            |
+| [Microtask Queue](#microtask-queue)                                          |                                                                   |                                                            |
+| [setTimeout() and setImmediate() and processnextTick()](#setTimeout-and-setImmediate-and-processnextTick) |                                                                   |                                                            |
 
 ---
 
-### **Objects & Classes**
-- [Constructor Function](#constructor-function)
-- [new` Keyword](#new-keyword)
-- [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance)
-- [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)
-- [Static Class Members](#static-class-members)
-- [Extending Built-in Objects](#extending-built-in-objects)
-- [Getters and Setters](#getters-and-setters)
-- [Object.freeze and seal and preventExtensions](#objectfreeze-and-seal-and-preventExtensions), etc.
+| **Modules, Storage & Browser APIs**                                         | **DOM, Events & UI**                                             | **Testing**                                                |
+|-----------------------------------------------------------------------------|------------------------------------------------------------------|-------------------------------------------------------------|
+| [\<script\> and async and defer](#script-and-async-and-defer)               | [Event Listeners](#event-listeners)                              | [Types of Testing](#types-of-testing-in-software-development) |
+| [Cookies and sessionStorage and localStorage](#Cookies-and-sessionStorage-and-localStorage) | [Event Bubbling vs Capturing](#event-bubbling), [Event Capturing](#Event-Capturing) | [Unit vs Integration vs E2E](#Unit-Testing-vs-Integration-Testing-vs-E2E) |
+| [Window vs Document](#Window-vs-Document)                                   | [event.preventDefault() vs event.stopPropagation()](#eventpreventdefault-vs-eventstoppropagation) | [Writing Unit Tests](#writing-unit-tests)                  |
+| [WebSocket API](#WebSocket-API)                                             | [Event Delegation](#event-delegation)                            | [Testing Frameworks](#popular-javascript-testing-frameworks) |
+| [Web Workers](#Web-Workers)                                                 | [innerHTML vs textContent](#innerhtml-vs-textcontent)            | [Mocks and Stubs](#mocks-and-stubs-in-testing)             |
+| [Using window.history](#Using-window-history-API)                           | [Manipulating CSS Styles](#Manipulating-css-styles)              | [TDD](#Test-Driven-Development)                            |
+|                                                                             | [Destructuring](#Destructuring)                                  | [Testing Async Code](#testing-asynchronous-code-in-javascript) |
+|                                                                             | [Spread operator](#spread-operator), [Rest Parameters](#rest-parameters) |                                                             |
 
 ---
 
-### **Design Patterns & Architecture**
-- [Introduction to Design Patterns](#introduction-to-design-patterns)
-- [Singleton Pattern](#singleton-pattern)
-- [Factory Pattern](#factory-pattern)
-- [Module Pattern](#module-pattern)
-- [Observer Pattern](#observer-pattern)
-- [Prototype Pattern](#prototype-pattern)
-- [Dependency Injection](#dependency-injection)
+
+
 
 ---
 
-### **Modules, Storage & Browser APIs**
-- [<script> and async and  defer](#script-and-async-and-defer)
-- [Cookies and sessionStorage and localStorage](#Cookies-and-sessionStorage-and-localStorage)
-- [Window vs Document](#Window-vs-Document)
-- [WebSocket API](#WebSocket-API)
-- [Web Workers](#Web-Workers)
-- [Using window.history](#Using-window-history-API)
+| **Security**                                                              | **Performance Optimization**                                         | **Execution Context & Event Loop**                                   |
+|---------------------------------------------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------------------|
+| [XSS and Prevention](#cross-site-scripting-xss-and-prevention)            | [Common Bottlenecks](#common-performance-bottlenecks-in-javascript-applications) | [Call Stack and Execution Context](#call-stack-and-execution-context) |
+| [CSRF and Mitigation](#cross-site-request-forgery-csrf-and-mitigation-techniques) | [DOM Optimization](#optimizing-dom-manipulation-for-better-performance) | [Event Loop Mechanics](#event-loop-mechanics)                         |
+| [SQL Injection](#preventing-sql-injection-vulnerabilities)                | [Lazy Loading](#Lazy-Loading)                                         | [Web APIs and Asynchronous Handling](#web-apis-and-asynchronous-handling) |
+| [Handling Sensitive Data](#handling-sensitive-data)                       | [Caching Strategies](#leveraging-caching-strategies-for-performance-optimization) | [Macro-tasks vs Micro-tasks](#macro-tasks-vs-micro-tasks)            |
+| [CSP](#content-security-policy-csp)                                       | [Tools for Measuring JS Performance](#tools-for-measuring-and-analyzing-javascript-performance) | [setTimeout(0) and Task Queuing](#settimeout0-and-task-queuing)     |
+| [Security Headers](#common-security-headers-and-their-purposes)          | [Optimizing Network Requests](#optimizing-network-requests-for-better-performance) |                                                                        |
+| [Clickjacking](#preventing-clickjacking-attacks)                         |                                                                        |                                                                        |
+| [Input Validation](#input-validation-and-its-importance)                 |                                                                        |                                                                        |
 
 ---
 
-### **DOM, Events & UI**
-- [Event Listeners](#event-listeners)
-- [Event Bubbling vs Capturing](#event-bubbling), [Event Capturing](#Event-Capturing)
-- [event.preventDefault()` vs `event.stopPropagation()](#eventpreventdefault-vs-eventstoppropagation)
-- [Event Delegation](#event-delegation)
-- [innerHTML vs textContent](#innerhtml-vs-textcontent)
-- [Manipulating CSS Styles](#Manipulating-css-styles)
-- [Destructuring](#Destructuring)
-- [Spread operator](#spread-operator), [Rest Parameters](#rest-parameters)
+| **Function Behavior and Patterns**                                     | **Advanced JavaScript Features**                             | **Modules, Bundling, and Transpiling**                             |
+|------------------------------------------------------------------------|----------------------------------------------------------------|--------------------------------------------------------------------|
+| [call and apply and bind Methods](#call-and-apply-and-bind-Methods)    | [Event Delegation and Bubbling](#event-delegation-and-bubbling) | [CommonJS vs ES Modules](#commonjs-vs-es-modules)                  |
+| [Pure Functions and Side Effects](#pure-functions-and-side-effects)    | [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)         | [Tree Shaking in Modern Bundlers](#tree-shaking-in-modern-bundlers)|
+| [Memoization Techniques](#memoization-techniques)                      | [Difference Between Map and Plain Objects](#difference-between-map-and-plain-objects) | [Polyfills and Backward Compatibility](#polyfills-and-backward-compatibility) |
+| [Debounce and Throttle Functions](#debounce-and-throttle-functions)    | [Object Destructuring with Defaults](#object-destructuring-with-defaults) | [Transpiling JavaScript Code](#transpiling-javascript-code)       |
+| [Currying in JavaScript](#currying-in-javascript)                      | [this Keyword Behavior](#this-keyword-behavior)                | [Role of Babel in Modern Development](#role-of-babel-in-modern-development) |
+| [Function Composition Patterns](#function-composition-patterns)        | [Usage of super() in Classes](#usage-of-super-in-classes)      | [Webpack and Vite Bundling Process](#webpack-and-vite-bundling-process) |
 
 ---
 
-### **Testing**
-- [Types of Testing](#types-of-testing-in-software-development)
-- [Unit vs Integration vs E2E](#Unit-Testing-vs-Integration-Testing-vs-E2E)
-- [Writing Unit Tests](#writing-unit-tests)
-- [Testing Frameworks](#popular-javascript-testing-frameworks)
-- [Mocks and Stubs](#mocks-and-stubs-in-testing)
-- [TDD](#Test-Driven-Development)
-- [Testing Async Code](#testing-asynchronous-code-in-javascript)
----
 
-### **Security**
-- [XSS and Prevention](#cross-site-scripting-xss-and-prevention)
-- [CSRF and Mitigation](#cross-site-request-forgery-csrf-and-mitigation-techniques)
-- [SQL Injection](#preventing-sql-injection-vulnerabilities)
-- [Handling Sensitive Data](#handling-sensitive-data)
-- [CSP](#content-security-policy-csp)
-- [Security Headers](#common-security-headers-and-their-purposes)
-- [Clickjacking](#preventing-clickjacking-attacks)
-- [Input Validation](#input-validation-and-its-importance)
+| **Prototypes and Inheritance**                                                              | **Memory Management**                                         | **Optional Chaining & Advanced Operators**                                   |**Miscellaneous**                                   |
+|---------------------------------------------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------------------|
+------------------------------------------------------------------------|
+| [Understanding `__proto__` and Prototypes](#understanding-__proto__-and-prototypes) | [Common Causes of Memory Leaks](#common-causes-of-memory-leaks)| [Optional Chaining (`?.`) Operator](#optional-chaining-operator)| [Type Coercion in Operations (`[] + [] and {}` + [])](#Type-Coercion-in-Operations)
+| [Object.create() and Prototype Chains](#Object-create-and-Prototype-Chains)| [JavaScript Garbage Collection](#javascript-garbage-collection)| [Nullish Coalescing (`??`) Operator](#nullish-coalescing-operator)| [Map Key References with Objects](#map-key-references-with-objects)
+| [Object.assign()` vs Spread Operator](#objectassign-vs-spread-operator)| [Closures and Memory Management](#closures-and-memory-management)| [in` Operator vs `hasOwnProperty()](#in-operator-vs-hasownproperty)| [Understanding Unexpected Outputs](#understanding-unexpected-outputs)
+| [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance) | | [Temporal Dead Zone in `let` and const](#temporal-dead-zone-in-let-and-const)
+| [Implementing Mixins for Multiple Inheritance](#implementing-mixins-for-multiple-inheritance) | | [Labeled Statements Usage](#labeled-statements-usage)
 
----
 
-### **Performance Optimization**
-- [Common Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)
-- [DOM Optimization](#optimizing-dom-manipulation-for-better-performance)
-- [Lazy Loading](#Lazy-Loading)
-- [Caching Strategies](#leveraging-caching-strategies-for-performance-optimization)
-- [Tools for Measuring JS Performance](#tools-for-measuring-and-analyzing-javascript-performance)
-- [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)
----
 
-### Execution Context & Event Loop
-- [Call Stack and Execution Context](#call-stack-and-execution-context)
-- [Event Loop Mechanics](#event-loop-mechanics)
-- [Web APIs and Asynchronous Handling](#web-apis-and-asynchronous-handling)
-- [Macro-tasks vs Micro-tasks](#macro-tasks-vs-micro-tasks)
-- [setTimeout(0)` and Task Queuing](#settimeout0-and-task-queuing)
 
----
 
-### Function Behavior and Patterns
-- [call and apply and  bind` Methods](#call-and-apply-and-bind-Methods)
-- [Pure Functions and Side Effects](#pure-functions-and-side-effects)
-- [Memoization Techniques](#memoization-techniques)
-- [Debounce and Throttle Functions](#debounce-and-throttle-functions)
-- [Currying in JavaScript](#currying-in-javascript)
-- [Function Composition Patterns](#function-composition-patterns)
-
----
-
-### Advanced JavaScript Features
-- [Event Delegation and Bubbling](#event-delegation-and-bubbling)
-- [WeakMap` and WeakSet` Usage](#weakmap-and-weakset-usage)
-- [Difference Between `Map` and Plain Objects](#difference-between-map-and-plain-objects)
-- [Object Destructuring with Defaults](#object-destructuring-with-defaults)
-- [this` Keyword Behavior](#this-keyword-behavior)
-- [Usage of `super()` in Classes](#usage-of-super-in-classes)
-
----
-
-### Modules, Bundling, and Transpiling
-- [CommonJS vs ES Modules](#commonjs-vs-es-modules)
-- [Tree Shaking in Modern Bundlers](#tree-shaking-in-modern-bundlers)
-- [Polyfills and Backward Compatibility](#polyfills-and-backward-compatibility)
-- [Transpiling JavaScript Code](#transpiling-javascript-code)
-- [Role of Babel in Modern Development](#role-of-babel-in-modern-development)
-- [Webpack and Vite Bundling Process](#webpack-and-vite-bundling-process)
-
----
 
 ### Prototypes and Inheritance
 - [Understanding `__proto__` and Prototypes](#understanding-__proto__-and-prototypes)

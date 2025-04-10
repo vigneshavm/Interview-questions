@@ -3,7 +3,7 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
  [Key ES6 Features](#key-es6-features)  | [Normal Function vs Arrow Function](#normal-function-vs-arrow-function)  | [Shallow vs Deep Copy](#shallow-vs-deep-copy)  |  [Pure Functions](#pure-functions) | [Event Propagation](#event-propagation)| [Inheritance](#inheritance)| 
-| [Closure](#closure)  | [Synchronous vs Asynchronous](#synchronous-vs-asynchronous)  | [this keyword](#this-keyword)  | [null vs undefined](#null-vs-undefined)  | [Event Loop & Call Stack](#event-loop--call-stack)  | [async/await vs Promises](#asyncawait-vs-promises) | [JavaScript Modules (`import/export`)](#javascript-modules-importexport)
+| [Synchronous vs Asynchronous](#synchronous-vs-asynchronous)  | [this keyword](#this-keyword)  | [null vs undefined](#null-vs-undefined)  | [Event Loop & Call Stack](#event-loop--call-stack)  | [async/await vs Promises](#asyncawait-vs-promises) | [JavaScript Modules (`import/export`)](#javascript-modules-importexport)
 
 
 

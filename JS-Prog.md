@@ -34,14 +34,11 @@
 
 ### 🧠 TypeScript Utilities (Bonus)
 
-| Utility            | Description                             | Example                         | Returns       |
-|--------------------|-----------------------------------------|----------------------------------|---------------|
-| `as`               | Type assertion                          | `value as string`               | `T` (type-casted) |
-| `typeof`           | Gets variable type                      | `typeof x === "string"`         | `"string"` etc. |
-| `keyof`            | Gets union of keys from type            | `keyof typeof obj`              | `'a' | 'b' | ...` |
-| `Record<K, T>`     | Object type with keys `K` and values `T`| `Record<string, number>`        | `{ [k: string]: number }` |
-| `Partial<T>`       | All properties optional                 | `Partial<User>`                 | `{ name?: string, ... }` |
-| `Pick<T, K>`       | Picks specific keys                     | `Pick<User, "name">`            | `{ name: string }` |
+| Utility            | Description                             | Example                         | Returns       | Utility            | Description                             | Example                         | Returns       |
+|--------------------|-----------------------------------------|----------------------------------|---------------|--------------------|-----------------------------------------|----------------------------------|---------------|
+| `as`               | Type assertion                          | `value as string`               | `T` (type-casted) | `typeof`           | Gets variable type                      | `typeof x === "string"`         | `"string"` etc. |
+| `keyof`            | Gets union of keys from type            | `keyof typeof obj`              | `'a' | 'b' | ...` | `Record<K, T>`     | Object type with keys `K` and values `T`| `Record<string, number>`        | `{ [k: string]: number }` |
+| `Partial<T>`       | All properties optional                 | `Partial<User>`                 | `{ name?: string, ... }` | `Pick<T, K>`       | Picks specific keys                     | `Pick<User, "name">`            | `{ name: string }` |
 | `Omit<T, K>`       | Omits specific keys                     | `Omit<User, "password">`        | All except `password` |
 
 ---

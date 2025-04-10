@@ -18,40 +18,7 @@
 
 
 
----
 
-| **JavaScript Fundamentals**                                      | **TypeScript**                                              | **Functions & Scope**                                           |
-|------------------------------------------------------------------|--------------------------------------------------------------|------------------------------------------------------------------|
-| [let and var and const](#let-and-var-and-const)                  | [How TypeScript Improves JavaScript](#how-typescript-improves-javascript) | [Function Declaration vs Expression vs Constructor](#function-declaration-vs-Expression-vs-Constructor) |
-| [Global JavaScript scope](#global-javascript-scope)              | [Interface vs. Type](#interface-vs-type)                     | [Arrow Functions](#arrow-functions)                             |
-| [use strict Directive](#use-strict-directive)                    | [Generics](#generics)                                       | [Anonymous Functions](#anonymous-functions---use-cases)         |
-| [Hoisting](#hoisting)                                            | [Union Types](#union-types)                                 | [Default Parameters](#default-parameters)                       |
-| [Lexical Scoping](#lexical-scoping)                              | [Type Inference](#type-inference)                           | [Higher-Order Functions](#higher-order-functions)               |
-| [Scope](#scope)                                                  | [Mapped Types](#mapped-types)                               | [Callback Functions](#callback-functions)                       |
-| [Global and Function and Block Scope](#global-and-function-and-block-scope) | [Custom Error](#custom-error)                               | [Closures & Private Variables](#Closures)                       |
-| [Data Types](#data-types)                                        | [Request/Response Types](#requestresponse-types-with-typescript) | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions) |
-| [Symbol](#symbol)                                                | [Decorators](#decorators)                                   | [Potential Pitfalls of Closures](#Potential-Pitfalls-of-closures) |
-| [null and undefined and undeclared](#null-and-undefined-and-undeclared) | [Duck Typing](#duck-typing)                                 |                                                                  |
-| [Type Checking](#Type-Checking)                                  | [Module System & Compiler Options](#module-system--compiler-options) |                                                                  |
-| [== vs ===](#Loose-Equality-Vs-Strict-Equality)                  |                                                              |                                                                  |
-| [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    |                                                              |                                                                  |
-
----
-
-| **Asynchronous JavaScript**                                                  | **Objects & Classes**                                             | **Design Patterns & Architecture**                        |
-|------------------------------------------------------------------------------|-------------------------------------------------------------------|------------------------------------------------------------|
-| [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions)        | [Constructor Function](#constructor-function)                     | [Introduction to Design Patterns](#introduction-to-design-patterns) |
-| [Promises](#promises)                                                        | [new Keyword](#new-keyword)                                       | [Singleton Pattern](#singleton-pattern)                   |
-| [Promise States](#promise-states)                                            | [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance) | [Factory Pattern](#factory-pattern)                       |
-| [Pros and Cons of Promises](#pros-and-cons-of-promises)                      | [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)   | [Module Pattern](#module-pattern)                         |
-| [Promise.all()](#promiseall)                                                 | [Static Class Members](#static-class-members)                     | [Observer Pattern](#observer-pattern)                     |
-| [Promise.all vs Promise.allSettled](#promiseall-vs-promiseallsettled)       | [Extending Built-in Objects](#extending-built-in-objects)         | [Prototype Pattern](#prototype-pattern)                   |
-| [Async/Await](#asyncawait)                                                  | [Getters and Setters](#getters-and-setters)                       | [Dependency Injection](#dependency-injection)             |
-| [Handling Async Errors](#Handling-Async-Errors)                              | [Object.freeze and seal and preventExtensions](#objectfreeze-and-seal-and-preventExtensions) |                                                            |
-| [Microtask Queue](#microtask-queue)                                          |                                                                   |                                                            |
-| [setTimeout() and setImmediate() and processnextTick()](#setTimeout-and-setImmediate-and-processnextTick) |                                                                   |                                                            |
-
----
 
 | **Modules, Storage & Browser APIs**                                         | **DOM, Events & UI**                                             | **Testing**                                                |
 |-----------------------------------------------------------------------------|------------------------------------------------------------------|-------------------------------------------------------------|

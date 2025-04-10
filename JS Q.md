@@ -1,44 +1,20 @@
-### **JavaScript Fundamentals**
-- [let and var and const](#let-and-var-and-const)
-- [Global JavaScript scope](#global-javascript-scope)
-- [use strict Directive](#use-strict-directive)
-- [Hoisting](#hoisting)
-- [Lexical Scoping](#lexical-scoping)
-- [Scope](#scope)
-- [Global and Function and Block Scope](#global-and-function-and-block-scope)
-- [Data Types](#data-types)
-- [Symbol](#symbol)
-- [null and undefined and undeclared](#null-and-undefined-and-undeclared)
-- [Type Checking](#Type-Checking)
-- [== vs ===](#Loose-Equality-Vs-Strict-Equality)
-- [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)
----
 
-### **TypeScript**
-- [How TypeScript Improves JavaScript](#how-typescript-improves-javascript)
-- [Interface vs. Type](#interface-vs-type)
-- [Generics](#generics)
-- [Union Types](#union-types)
-- [Type Inference](#type-inference)
-- [Mapped Types](#mapped-types)
-- [Custom Error](#custom-error)
-- [Request/Response Types](#requestresponse-types-with-typescript)
-- [Decorators](#decorators)
-- [Duck Typing](#duck-typing)
-- [Module System & Compiler Options](#module-system--compiler-options)
----
+| **JavaScript Fundamentals**                                      | **TypeScript**                                              | **Functions & Scope**                                           |
+|------------------------------------------------------------------|--------------------------------------------------------------|------------------------------------------------------------------|
+| [let and var and const](#let-and-var-and-const)                  | [How TypeScript Improves JavaScript](#how-typescript-improves-javascript) | [Function Declaration vs Expression vs Constructor](#function-declaration-vs-Expression-vs-Constructor) |
+| [Global JavaScript scope](#global-javascript-scope)              | [Interface vs. Type](#interface-vs-type)                     | [Arrow Functions](#arrow-functions)                             |
+| [use strict Directive](#use-strict-directive)                    | [Generics](#generics)                                       | [Anonymous Functions](#anonymous-functions---use-cases)         |
+| [Hoisting](#hoisting)                                            | [Union Types](#union-types)                                 | [Default Parameters](#default-parameters)                       |
+| [Lexical Scoping](#lexical-scoping)                              | [Type Inference](#type-inference)                           | [Higher-Order Functions](#higher-order-functions)               |
+| [Scope](#scope)                                                  | [Mapped Types](#mapped-types)                               | [Callback Functions](#callback-functions)                       |
+| [Global and Function and Block Scope](#global-and-function-and-block-scope) | [Custom Error](#custom-error)                               | [Closures & Private Variables](#Closures)                       |
+| [Data Types](#data-types)                                        | [Request/Response Types](#requestresponse-types-with-typescript) | [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions) |
+| [Symbol](#symbol)                                                | [Decorators](#decorators)                                   | [Potential Pitfalls of Closures](#Potential-Pitfalls-of-closures) |
+| [null and undefined and undeclared](#null-and-undefined-and-undeclared) | [Duck Typing](#duck-typing)                                 |                                                                  |
+| [Type Checking](#Type-Checking)                                  | [Module System & Compiler Options](#module-system--compiler-options) |                                                                  |
+| [== vs ===](#Loose-Equality-Vs-Strict-Equality)                  |                                                              |                                                                  |
+| [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    |                                                              |                                                                  |
 
-### **Functions & Scope**
-- [Function Declaration vs Expression vs Constructor](#function-declaration-vs-Expression-vs-Constructor)
-- [Arrow Functions](#arrow-functions)
-- [Anonymous Functions](#anonymous-functions---use-cases)
-- [Default Parameters](#default-parameters)
-- [Higher-Order Functions](#higher-order-functions)
-- [Callback Functions](#callback-functions)
-- [Closures & Private Variables](#Closures)
-- [Immediately Invoked Function Expressions (IIFE)](#immediately-invoked-function-expressions)
-- [Potential Pitfalls of Closures](#Potential-Pitfalls-of-closures)
----
 
 ### **Asynchronous JavaScript**
 - [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions)

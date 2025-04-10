@@ -4,7 +4,7 @@
 | [Create React App using TypeScript](#create-react-app-using-typescript) | [React Overview](#react-overview) | [Single Page Applications (SPA)](#single-page-applications-spa) | [JSX vs HTML](#jsx-vs-html) | [Class vs Functional Components](#class-vs-functional-components) | [Stateless vs Stateful Components](#stateless-vs-stateful-components) |
 | [Props in React](#props-in-react) | [Props vs State](#props-vs-state) | [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components) | [Keys in Lists](#keys-in-lists) | [React Fragments](#react-fragments) | [Virtual DOM](#virtual-dom) |
 | [Lifecycle Methods](#lifecycle-methods) | [Props Drilling](#props-drilling) | [Context API](#context-api) | [Higher-Order Components (HOCs)](#higher-order-components-hocs) | [Reconciliation Process](#reconciliation-process) | [React Portals](#react-portals) |
-| [React Router Navigation](#react-router-navigation) | [Error Handling in Components](#error-handling-in-components) | [Performance Optimization](#performance-optimization) | [Redux – Predictable State Management](#redux--predictable-state-management) | [Lazy Loading Components](#lazy-loading-components) | [Strict Mode in React](#strict-mode-in-react) |
+| [React Router Navigation](#react-router-navigation) | [Error Handling in Components](#error-handling-in-components) | [Performance Optimization](#performance-optimization) | [Redux](#redux--predictable-state-management) | [Lazy Loading Components](#lazy-loading-components) | [Strict Mode in React](#strict-mode-in-react) |
 | [React Router](#react-router) | [Higher-Order Component (HOC)](#higher-order-component-hoc) | [Lifting State Up](#lifting-state-up) | [Error Boundaries](#error-boundaries) | [React Hooks](#react-hooks) | 
 
 

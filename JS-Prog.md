@@ -10,40 +10,24 @@
 
 ---
 
-| **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       |
-|------------------------|---------------------------------------------|-------------------------------------------------------|-------------------|
-| `eval()`               | Executes a string as JS code *(⚠️ avoid)*   | `eval("2 + 2")`                                       | Result of eval    |
-| `parseInt()`           | Converts string to integer                  | `parseInt("10px")`                                    | `number`          |
-| `parseFloat()`         | Converts string to float                    | `parseFloat("3.14")`                                  | `number`          |
-| `isNaN()`              | Checks if value is NaN                      | `isNaN("abc")`                                        | `boolean`         |
-| `isFinite()`           | Checks if value is a finite number          | `isFinite(5)`                                         | `boolean`         |
-| `encodeURI()`          | Encodes entire URI                          | `encodeURI("https://a.com?q=hello world")`            | `string`          |
-| `decodeURI()`          | Decodes an encoded URI                      | `decodeURI("https%3A%2F%2Fa.com")`                    | `string`          |
-| `encodeURIComponent()` | Encodes URI component                       | `encodeURIComponent("hello world")`                   | `string`          |
-| `decodeURIComponent()` | Decodes URI component                       | `decodeURIComponent("hello%20world")`                 | `string`          |
-| `Object.keys()`        | Gets object’s keys                          | `Object.keys({a:1,b:2})`                              | `string[]`        |
-| `Object.values()`      | Gets object’s values                        | `Object.values({a:1,b:2})`                            | `any[]`           |
-| `Object.entries()`     | Gets key-value pairs as arrays              | `Object.entries({a:1})`                               | `[string, any][]` |
-| `Object.assign()`      | Copies properties to another object         | `Object.assign({}, {a:1})`                            | `object`          |
-| `Object.hasOwn()`      | Checks if object has a property             | `Object.hasOwn(obj, "prop")`                          | `boolean`         |
-| `push()`               | Adds item(s) to end of array                | `arr.push(4)`                                         | `number` (new length) |
-| `pop()`                | Removes last item from array                | `arr.pop()`                                           | `any`             |
-| `shift()`              | Removes first item from array               | `arr.shift()`                                         | `any`             |
-| `unshift()`            | Adds item(s) to start of array              | `arr.unshift(0)`                                      | `number` (new length) |
-| `slice()`              | Extracts part of string/array               | `"hello".slice(1, 4)`                                 | `string` / `array` |
-| `map()`                | Transforms array items                      | `arr.map(x => x * 2)`                                 | `any[]`           |
-| `filter()`             | Filters array based on condition            | `arr.filter(x => x > 5)`                              | `any[]`           |
-| `reduce()`             | Reduces array to single value               | `arr.reduce((a, b) => a + b)`                         | `any`             |
-| `forEach()`            | Iterates over array                         | `arr.forEach(console.log)`                            | `void`            |
-| `find()`               | Finds first item matching condition         | `arr.find(x => x > 10)`                               | `any`             |
-| `includes()` (array)   | Checks if array contains value              | `arr.includes(3)`                                     | `boolean`         |
-| `some()`               | Checks if **any** item matches condition    | `arr.some(x => x > 10)`                               | `boolean`         |
-| `every()`              | Checks if **all** items match condition     | `arr.every(x => x > 0)`                               | `boolean`         |
-| `charAt()`             | Gets character at index                     | `"abc".charAt(1)`                                     | `string`          |
-| `toUpperCase()`        | Converts string to uppercase                | `"abc".toUpperCase()`                                 | `string`          |
-| `toLowerCase()`        | Converts string to lowercase                | `"ABC".toLowerCase()`                                 | `string`          |
-| `trim()`               | Removes whitespace from ends                | `"  hello ".trim()`                                   | `string`          |
-| `split()`              | Splits string into array                    | `"a,b".split(",")`                                    | `string[]`        |
+| **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       |
+|------------------------|---------------------------------------------|-------------------------------------------------------|-------------------|------------------------|---------------------------------------------|-------------------------------------------------------|-------------------|
+| `eval()`               | Executes a string as JS code *(⚠️ avoid)*   | `eval("2 + 2")`                                       | Result of eval    | `parseInt()`           | Converts string to integer                  | `parseInt("10px")`                                    | `number`          |
+| `parseFloat()`         | Converts string to float                    | `parseFloat("3.14")`                                  | `number`          | `isNaN()`              | Checks if value is NaN                      | `isNaN("abc")`                                        | `boolean`         |
+| `isFinite()`           | Checks if value is a finite number          | `isFinite(5)`                                         | `boolean`         | `encodeURI()`          | Encodes entire URI                          | `encodeURI("https://a.com?q=hello world")`            | `string`          |
+| `decodeURI()`          | Decodes an encoded URI                      | `decodeURI("https%3A%2F%2Fa.com")`                    | `string`          | `encodeURIComponent()` | Encodes URI component                       | `encodeURIComponent("hello world")`                   | `string`          |
+| `decodeURIComponent()` | Decodes URI component                       | `decodeURIComponent("hello%20world")`                 | `string`          | `Object.keys()`        | Gets object’s keys                          | `Object.keys({a:1,b:2})`                              | `string[]`        |
+| `Object.values()`      | Gets object’s values                        | `Object.values({a:1,b:2})`                            | `any[]`           | `Object.entries()`     | Gets key-value pairs as arrays              | `Object.entries({a:1})`                               | `[string, any][]` |
+| `Object.assign()`      | Copies properties to another object         | `Object.assign({}, {a:1})`                            | `object`          | `Object.hasOwn()`      | Checks if object has a property             | `Object.hasOwn(obj, "prop")`                          | `boolean`         |
+| `push()`               | Adds item(s) to end of array                | `arr.push(4)`                                         | `number` (new length) | `pop()`                | Removes last item from array                | `arr.pop()`                                           | `any`             |
+| `shift()`              | Removes first item from array               | `arr.shift()`                                         | `any`             | `unshift()`            | Adds item(s) to start of array              | `arr.unshift(0)`                                      | `number` (new length) |
+| `slice()`              | Extracts part of string/array               | `"hello".slice(1, 4)`                                 | `string` / `array` | `map()`                | Transforms array items                      | `arr.map(x => x * 2)`                                 | `any[]`           |
+| `filter()`             | Filters array based on condition            | `arr.filter(x => x > 5)`                              | `any[]`           | `reduce()`             | Reduces array to single value               | `arr.reduce((a, b) => a + b)`                         | `any`             |
+| `forEach()`            | Iterates over array                         | `arr.forEach(console.log)`                            | `void`            | `find()`               | Finds first item matching condition         | `arr.find(x => x > 10)`                               | `any`             |
+| `includes()` (array)   | Checks if array contains value              | `arr.includes(3)`                                     | `boolean`         | `some()`               | Checks if **any** item matches condition    | `arr.some(x => x > 10)`                               | `boolean`         |
+| `every()`              | Checks if **all** items match condition     | `arr.every(x => x > 0)`                               | `boolean`         | `charAt()`             | Gets character at index                     | `"abc".charAt(1)`                                     | `string`          |
+| `toUpperCase()`        | Converts string to uppercase                | `"abc".toUpperCase()`                                 | `string`          | `toLowerCase()`        | Converts string to lowercase                | `"ABC".toLowerCase()`                                 | `string`          |
+| `trim()`               | Removes whitespace from ends                | `"  hello ".trim()`                                   | `string`          | `split()`              | Splits string into array                    | `"a,b".split(",")`                                    | `string[]`        |
 | `includes()` (string)  | Checks if substring exists in string        | `"hello".includes("ell")`                             | `boolean`         |
 
 ---
@@ -737,7 +721,7 @@ function reverseWordsManual(sentence) {
   // Step 1: Split sentence into words manually
   for (let i = 0; i <= sentence.length; i++) {
     let char = sentence[i];
-    if (char === " " || i === sentence.length) {
+    if (char === " " | i === sentence.length) {
       words[wordIndex] = word;
       wordIndex++;
       word = "";
@@ -841,10 +825,10 @@ function countVowelsManual(str) {
     }
 
     if (
-      ch === 'a' ||
-      ch === 'e' ||
-      ch === 'i' ||
-      ch === 'o' ||
+      ch === 'a' |
+      ch === 'e' |
+      ch === 'i' |
+      ch === 'o' |
       ch === 'u'
     ) {
       count++;
@@ -895,7 +879,7 @@ function firstNonRepeatingChar(str) {
 
   // Count frequency
   lower.split('').forEach(char => {
-    freq[char] = (freq[char] || 0) + 1;
+    freq[char] = (freq[char] | 0) + 1;
   });
 
   // Find first non-repeating character
@@ -1009,7 +993,7 @@ console.log(factorialManual(5)); // Output: 120
 
 ```js
 function factorialRecursive(n) {
-  if (n === 0 || n === 1) return 1;
+  if (n === 0 | n === 1) return 1;
   return n * factorialRecursive(n - 1);
 }
 
@@ -1242,7 +1226,7 @@ console.log(powerRecursive(2, 4)); // Output: 16
 function countArrayFreq(arr) {
   const freq = {};
   arr.forEach(item => {
-    freq[item] = (freq[item] || 0) + 1;
+    freq[item] = (freq[item] | 0) + 1;
   });
   return freq;
 }
@@ -1323,7 +1307,7 @@ console.log(countArrayFreqManual([1, 2, 2, 3, 1, 4, 2]));
 function charFrequency(str) {
   const freq = {};
   str.toLowerCase().split('').forEach(char => {
-    freq[char] = (freq[char] || 0) + 1;
+    freq[char] = (freq[char] | 0) + 1;
   });
   return freq;
 }
@@ -1561,8 +1545,8 @@ function isAnagramManual(str1, str2) {
     if (code1 >= 65 && code1 <= 90) ch1 = String.fromCharCode(code1 + 32);
     if (code2 >= 65 && code2 <= 90) ch2 = String.fromCharCode(code2 + 32);
 
-    freq1[ch1] = (freq1[ch1] || 0) + 1;
-    freq2[ch2] = (freq2[ch2] || 0) + 1;
+    freq1[ch1] = (freq1[ch1] | 0) + 1;
+    freq2[ch2] = (freq2[ch2] | 0) + 1;
   }
 
   for (let key in freq1) {
@@ -1625,7 +1609,7 @@ const products = [
 ```js
 function groupByCategory(products) {
   return products.reduce((acc, curr) => {
-    acc[curr.category] = acc[curr.category] || [];
+    acc[curr.category] = acc[curr.category] | [];
     acc[curr.category].push(curr);
     return acc;
   }, {});
@@ -1844,7 +1828,7 @@ console.log(removeDuplicates(array)); // [4, 2, 5, 3, 1]
 function matchPattern(filename, pattern) {
   let i = 0, j = 0, starIdx = -1, match = 0;
   while (i < filename.length) {
-    if (j < pattern.length && (pattern[j] === "?" || pattern[j] === filename[i])) {
+    if (j < pattern.length && (pattern[j] === "?" | pattern[j] === filename[i])) {
       i++; j++;
     } else if (j < pattern.length && pattern[j] === "*") {
       starIdx = j++; match = i;
@@ -1991,7 +1975,7 @@ type Grouped<T> = Record<string, T[]>;
 function groupBy<T>(arr: T[], key: keyof T): Grouped<T> {
   return arr.reduce((acc: Grouped<T>, item) => {
     const groupKey = String(item[key]);
-    (acc[groupKey] ||= []).push(item);
+    (acc[groupKey] |= []).push(item);
     return acc;
   }, {});
 }

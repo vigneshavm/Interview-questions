@@ -1,7 +1,7 @@
 
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook)
+| [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | React Form API Call(#React-Form-API-Call) | 
 
 
 ## Grid View
@@ -191,8 +191,79 @@ export default SearchInput;
 
 ---
 
-### 🧪 Result:
-As the user types, the API (or console log here) will only be triggered **after 500ms** of no typing — reducing unnecessary calls.
+## React Form API Call:
+```jsx
+import React, { useState } from "react";
+
+function ContactForm() {
+  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setFormData({ name: "", email: "" });
+        setSuccess(true);
+        setTimeout(() => setSuccess(false), 3000); // hide after 3s
+      } else {
+        console.error("Failed to submit contact.");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  };
+
+  return (
+    <div style={{ maxWidth: 400, margin: "2rem auto" }}>
+      <form onSubmit={handleSubmit}>
+        <h2>Contact Us</h2>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          style={{ display: "block", marginBottom: 10, width: "100%" }}
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          style={{ display: "block", marginBottom: 10, width: "100%" }}
+        />
+
+        <button type="submit">Submit</button>
+      </form>
+
+      {success && <p style={{ color: "green" }}>Contact submitted successfully!</p>}
+    </div>
+  );
+}
+
+export default ContactForm;
+```
+
 
 ---
 

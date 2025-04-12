@@ -448,7 +448,7 @@ npm run dev
 
 
 
-## 🔐 JWT Auth Flow Overview
+## JWT Auth Flow Overview
 
 1. **User Signup/Login** on React frontend  
 2. **API request** to backend (Node.js + Express + MongoDB)  

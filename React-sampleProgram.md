@@ -1,7 +1,7 @@
 
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) | [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)
+| [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) | [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) | [Rate Limiter Middleware](#Rate-Limiter-Middleware)
 
 
 ## Grid View
@@ -676,6 +676,23 @@ export const ProtectedRoute = ({ children }) => {
 - Use Signup/Login form → store token → send to protected API
 
 ---
+
+## Rate Limiter Middleware
+```tsx
+import rateLimit from "express-rate-limit";
+
+// Apply to all requests
+export const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,                 // Limit each IP to 100 requests per windowMs
+  message: {
+    status: 429,
+    message: "Too many requests, please try again later.",
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false,  // Disable `X-RateLimit-*` headers
+});
+```
 
 
 

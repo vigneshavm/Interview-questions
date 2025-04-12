@@ -266,6 +266,3 @@ export default ContactForm;
 
 
 ---
-
-### ✨ Bonus Suggestion:
-Want me to help integrate this with a mock API (like `jsonplaceholder`) or hook it into a real-time suggestion dropdown UI?

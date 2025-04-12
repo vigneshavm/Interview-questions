@@ -1,7 +1,7 @@
 
 | Q1 | Q2 | Q3 | Q4 | Q5 | Q6 |
 |----|----|----|----|----|----|
-| [MongoDB vs Relational Databases](#mongodb-vs--relational-databases) | [MongoDB Document](#mongodb-document) | [Collection](#collection) | [Data Storage Format in MongoDB](#data-storage-format-in-mongodb) | [_id Field](#id-field) | [find() vs findOne()](#find-vs-findone) |
+| [MongoDB vs Relational Databases](#mongodb-vs--relational-databases) | [MongoDB Document](#mongodb-document) | [Collection](#collection) | [Data Storage Format](#data-storage-format-in-mongodb) | [_id Field](#id-field) | [find() vs findOne()](#find-vs-findone) |
 | [Supported Data Types](#supported-data-types) | [BSON vs JSON](#bson-vs-json) | [Index](#creating-an-index-in-mongodb) | [Aggregations](#aggregations-in-mongodb) | [Model Relationships](#model-relationships) | [Replica Set](#replica-set) |
 | [Sharding](#sharding-and-why-is-it-used)  | [upsert](#upsert) | [Update Multiple Documents](#update-multiple-documents-in-mongodb) | [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone) | [Scaling MongoDB](#scaling-mongodb) | [Clustering & Replication](#clustering--replication) |
 | [$in Vs $all](#difference-between-in-and-all-in-mongodb) | [Searching in MongoDB](#searching-in-mongodb) | [Databases for a Social Media App](#databases-for-a-social-media-app) | [Capped Collection in MongoDB](#capped-collection-in-mongodb)  | [Replication & Failover](#replication-and-how-failover-works-in-mongodb) |  |

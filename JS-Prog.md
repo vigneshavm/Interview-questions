@@ -4,7 +4,7 @@
 | [Binary Search](#binary-search) | [Check for Palindrome](#check-for-palindrome) | [Reverse Words in a Sentence](#reverse-words-in-a-sentence) | [Reverse a String](#reverse-a-string)| [Count Vowels in a String](#count-vowels-in-a-string)  | [Character Frequency Count](#character-frequency-count) | [Deep Clone an Object](#deep-clone-an-object)
 | [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) | [Anagram Checker](#anagram-checker) | [First Non-Repeating Character](#first-non-repeating-character) | [Group by Category or Class](#group-by-category-or-class) | [Group Array of Objects by Key](#group-array-of-objects-by-key)| [Sort Array of Objects by Field](#sort-array-of-objects-by-field) | [Factorial](#factorial) 
 | [Fibonacci](#fibonacci) | [Debounce Function](#debounce-function)| [Throttle Function](#throttle-function)| [Recursive Sum of Array](#recursive-sum-of-array) | [Power Function](#power-function) | [Merge Sort + Deduplication](#merge-sort)| [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
-| [Stock Span Problem](#Stock-Span-Problem) | [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) | [Binary Search](#Binary-Search) | [Retry Promise N Times](#retry-promise-n-times)| [Custom `map()` Method](#custom-map-method) | [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String)
+| [Stock Span Problem](#Stock-Span-Problem) | [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) | [Binary Search](#Binary-Search) | [Retry Promise N Times](#retry-promise-n-times)| [Custom `map()` Method](#custom-map-method) | [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) | [sort an array of objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
 
 
 
@@ -2111,6 +2111,31 @@ console.log(getMaxOccurringChar("xyz"));           // x (all are 1, returns firs
 - We loop through each character and build a **frequency map** (`freqMap`).
 - While building it, we **track the character** with the highest frequency in `maxChar`.
 - Finally, return `maxChar`.
+
+---
+
+
+## Sort array of nexted object
+
+```js
+const users = [
+  { name: "John", address: { city: "Mumbai" } },
+  { name: "Sara", address: { city: "Delhi" } },
+  { name: "Alex", address: { city: "Bangalore" } }
+];
+
+const ascending = [...users].sort((a, b) => {
+  const cityA = a.address.city.toLowerCase();
+  const cityB = b.address.city.toLowerCase();
+  
+  if (cityA < cityB) return -1;
+  if (cityA > cityB) return 1;
+  return 0;
+});
+
+console.log("Ascending:");
+console.log(ascending);
+```
 
 ---
 

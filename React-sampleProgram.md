@@ -1,7 +1,7 @@
 
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) | 
+| [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) | [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)
 
 
 ## Grid View
@@ -444,4 +444,234 @@ npm run dev
 ```
 
 ---
+
+
+
+
+## 🔐 JWT Auth Flow Overview
+
+1. **User Signup/Login** on React frontend  
+2. **API request** to backend (Node.js + Express + MongoDB)  
+3. Backend issues a **JWT token** (access token)  
+4. Token stored in **HTTP-only cookie** or **localStorage** (based on security needs)  
+5. On every request, frontend **sends token**  
+6. Backend **verifies token** before processing
+
+---
+
+### 📦 Backend – Node.js + Express + TypeScript
+
+### 1. Install Required Packages
+
+```bash
+npm install express mongoose bcryptjs jsonwebtoken cors cookie-parser
+npm install -D typescript ts-node-dev @types/node @types/express @types/jsonwebtoken @types/cookie-parser
+```
+
+---
+
+### 2. Backend Directory Structure
+
+```
+/server
+  ├── controllers/
+  ├── middleware/
+  ├── models/
+  ├── routes/
+  ├── utils/
+  ├── app.ts
+  ├── server.ts
+```
+
+---
+
+### 3. JWT Auth Functions – `utils/jwt.ts`
+
+```ts
+import jwt from "jsonwebtoken";
+
+const JWT_SECRET = process.env.JWT_SECRET || "secret";
+
+export const generateToken = (userId: string) => {
+  return jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: "1h" });
+};
+
+export const verifyToken = (token: string) => {
+  return jwt.verify(token, JWT_SECRET);
+};
+```
+
+---
+
+### 4. Middleware to Protect Routes – `middleware/auth.ts`
+
+```ts
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+
+export const authenticate = (req: Request, res: Response, next: NextFunction) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.status(401).json({ message: "Unauthorized" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    (req as any).user = decoded;
+    next();
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+};
+```
+
+---
+
+### 5. Auth Controller – `controllers/authController.ts`
+
+```ts
+import { Request, Response } from "express";
+import bcrypt from "bcryptjs";
+import User from "../models/User";
+import { generateToken } from "../utils/jwt";
+
+export const signup = async (req: Request, res: Response) => {
+  const { name, email, password } = req.body;
+  const existing = await User.findOne({ email });
+  if (existing) return res.status(400).json({ message: "User exists" });
+
+  const hashed = await bcrypt.hash(password, 10);
+  const user = await User.create({ name, email, password: hashed });
+
+  const token = generateToken(user._id);
+  res.json({ token, user });
+};
+
+export const login = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (!user || !(await bcrypt.compare(password, user.password)))
+    return res.status(400).json({ message: "Invalid credentials" });
+
+  const token = generateToken(user._id);
+  res.json({ token, user });
+};
+```
+
+---
+
+### 6. User Model – `models/User.ts`
+
+```ts
+import mongoose from "mongoose";
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: { type: String, unique: true },
+  password: String
+});
+
+export default mongoose.model("User", userSchema);
+```
+
+---
+
+### 7. Routes – `routes/auth.ts`
+
+```ts
+import express from "express";
+import { signup, login } from "../controllers/authController";
+const router = express.Router();
+
+router.post("/signup", signup);
+router.post("/login", login);
+
+export default router;
+```
+
+---
+
+### 🧑‍🎨 Frontend – React (with Axios & Context)
+
+### 1. Axios Setup with JWT
+
+```tsx
+// utils/axios.ts
+import axios from "axios";
+
+const instance = axios.create({
+  baseURL: "http://localhost:5000/api",
+});
+
+instance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
+export default instance;
+```
+
+---
+
+### 2. Auth Context – `context/AuthContext.tsx`
+
+```tsx
+import React, { createContext, useState, useEffect } from "react";
+import axios from "../utils/axios";
+
+export const AuthContext = createContext(null);
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+
+  const login = async (email, password) => {
+    const res = await axios.post("/auth/login", { email, password });
+    localStorage.setItem("token", res.data.token);
+    setUser(res.data.user);
+  };
+
+  const signup = async (name, email, password) => {
+    const res = await axios.post("/auth/signup", { name, email, password });
+    localStorage.setItem("token", res.data.token);
+    setUser(res.data.user);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, signup, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+```
+
+---
+
+### 3. Protected Route (Frontend)
+
+```tsx
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
+export const ProtectedRoute = ({ children }) => {
+  const { user } = useContext(AuthContext);
+  if (!user) return <div>Login required</div>;
+  return children;
+};
+```
+
+---
+
+### 🧪 Try It Out
+
+- Run backend: `npm run dev`
+- Run frontend: `npm start`
+- Use Signup/Login form → store token → send to protected API
+
+---
+
+
 

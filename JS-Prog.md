@@ -2115,7 +2115,7 @@ console.log(getMaxOccurringChar("xyz"));           // x (all are 1, returns firs
 ---
 
 
-## Sort array of nexted object
+## sort an array of objects by a nested value
 
 ```js
 const users = [

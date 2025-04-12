@@ -1,6 +1,13 @@
 
-## App.tsx
+| Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
+| --- | :-- | :-- | :-- | :-- | :-- | :-- |
+| [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook)
+
+
+## Grid View
+
 ```js
+ App.tsx
 import UserTable from './components/tableview';
 import Grid from './components/Grid';
 import './App.css';
@@ -23,8 +30,9 @@ export default App;
 ```
 
 
-## Tabview.tsx
+##  Table View
 ```js
+Tabview.tsx
 import React, { useEffect, useState } from 'react';
 
 type User = { name: string; age: number; profilePic: string; };
@@ -89,12 +97,8 @@ const UserTable: React.FC = () => {
 export default UserTable;
 ```
 
-
-
-
-
-## Grid.tsx
 ```js
+Grid.tsx
 import React from 'react';
 import '../App.css';
 
@@ -121,3 +125,76 @@ const Grid: React.FC<GridProps> = ({ items, columns = 3 }) => {
 export default Grid;
 ```
 
+
+
+## **search input with debouncing using a custom useDebounce hook**.
+
+---
+
+### ✅ Step 1: Create `useDebounce` Hook
+
+```js
+import { useEffect, useState } from "react";
+
+export function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    // Cleanup the timeout if value changes
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+```
+
+---
+
+### ✅ Step 2: Create the Search Component
+
+```js
+import React, { useState, useEffect } from "react";
+import { useDebounce } from "./useDebounce"; // adjust path as needed
+
+function SearchInput() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      // Replace this with your actual API call
+      console.log("Calling API with:", debouncedSearchTerm);
+      // fetchData(debouncedSearchTerm)
+    }
+  }, [debouncedSearchTerm]);
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
+      />
+    </div>
+  );
+}
+
+export default SearchInput;
+```
+
+---
+
+### 🧪 Result:
+As the user types, the API (or console log here) will only be triggered **after 500ms** of no typing — reducing unnecessary calls.
+
+---
+
+### ✨ Bonus Suggestion:
+Want me to help integrate this with a mock API (like `jsonplaceholder`) or hook it into a real-time suggestion dropdown UI?

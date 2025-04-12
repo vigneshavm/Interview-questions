@@ -6,7 +6,7 @@
 | [Capped Collection in MongoDB](#capped-collection-in-mongodb) | [Schema Enforcement](#mongodb-handle-schema-enforcement) | [Update Multiple Documents](#update-multiple-documents-in-mongodb) | [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone) | [Scaling MongoDB](#scaling-mongodb) | [Clustering & Replication](#clustering--replication) |
 | [$in Vs $all](#difference-between-in-and-all-in-mongodb) | [Searching in MongoDB](#searching-in-mongodb) | [Databases for a Social Media App](#databases-for-a-social-media-app) | [Sharding](#sharding-and-why-is-it-used) | [Replication & Failover](#replication-and-how-failover-works-in-mongodb) | [Replica Set](#replica-set) |
 | [Handle Transactions](#handle-transactions-in-mongodb) | [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) | [Performance Tuning Techniques](#performance-tuning-techniques-in-mongodb) | [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) | [Durability & Consistency](#mongodb-ensure-durability-and-consistency) | [CAP Theorem](#cap-theorem-in-mongodb-context) |
-| [Limitations of MongoDB](#limitations-of-mongodb-and-how-to-overcome-them) | [MongoDB with Node.js](#mongodb-with-nodejs) | [useNewUrlParser & useUnifiedTopology](#usenewurlparser-and-useunifiedtopology-in-mongoose) | [Mongoose vs Native Driver](#mongoose-vs--mongodb-native-driver) | | |
+| [Limitations of MongoDB](#limitations-of-mongodb-and-how-to-overcome-them) | [MongoDB with Node.js](#mongodb-with-nodejs) | [useNewUrlParser & useUnifiedTopology](#usenewurlparser-and-useunifiedtopology-in-mongoose) | [Mongoose vs Native Driver](#mongoose-vs--mongodb-native-driver) | [upsert](#upsert)| |
 
 ##  MongoDB vs  Relational Databases
 
@@ -598,4 +598,52 @@ mongoose.connect('mongodb://localhost:27017/mydb', {
 
 - **Mongoose** is an ODM (Object Document Mapper) that provides schema, models, and built-in validation.  
 - **MongoDB native driver** is low-level, offering direct access to the database. It is more flexible but less structured.
+
+
+
+
+
+## upsert
+
+In **MongoDB**, an **upsert** is a combination of **update** and **insert**:
+
+> If the document **exists**, it gets **updated**.  
+> If it **doesn't exist**, a **new document** is **inserted**.
+
+
+
+### ✅ Example using Native MongoDB Driver
+
+```js
+await db.collection("users").updateOne(
+  { email: "user@example.com" },
+  { $set: { name: "John Doe" } },
+  { upsert: true }
+);
+```
+
+---
+
+### ✅ `findOneAndUpdate` with Upsert (Mongoose)
+
+If you want to return the **new or updated document**:
+
+```js
+const result = await User.findOneAndUpdate(
+  { email: "user@example.com" },
+  { $set: { name: "John Doe" } },
+  { upsert: true, new: true }
+);
+```
+
+---
+
+### 🔁 Common Use Case:
+Saving user profile on login/registration:
+```js
+await User.updateOne(
+  { googleId: profile.id },
+  { $set: { name: profile.name, email: profile.email } },
+  { upsert: true }
+);
 ```

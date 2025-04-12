@@ -2,7 +2,7 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | 
-| [Node.js API using TypeScript for CRUD operations](#Node.js-API-using-TypeScript-for-CRUD-operations) | 
+| [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) | 
 
 
 ## Grid View
@@ -269,7 +269,7 @@ export default ContactForm;
 ---
 
 
-## Node.js API using TypeScript for CRUD operations
+## Nodejs API using TypeScript for CRUD operations
 
 ### 📁 Project Structure
 ```

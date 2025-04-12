@@ -583,6 +583,10 @@ const router = express.Router();
 
 router.post("/signup", signup);
 router.post("/login", login);
+router.get("/verify-token", authenticate, (req, res) => {
+  const user = (req as any).user;
+  res.json({ message: "Token is valid", user });
+});
 
 export default router;
 ```

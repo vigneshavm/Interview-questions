@@ -2,6 +2,7 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | 
+| [Node.js API using TypeScript for CRUD operations](#Node.js-API-using-TypeScript-for-CRUD-operations) | 
 
 
 ## Grid View
@@ -266,3 +267,182 @@ export default ContactForm;
 
 
 ---
+
+
+## Node.js API using TypeScript for CRUD operations
+
+### 📁 Project Structure
+```
+my-api/
+├── src/
+│   ├── models/
+│   │   └── Contact.ts
+│   ├── routes/
+│   │   └── contactRoutes.ts
+│   ├── controllers/
+│   │   └── contactController.ts
+│   ├── app.ts
+│   └── server.ts
+├── tsconfig.json
+├── package.json
+```
+
+---
+
+### 1️⃣ `package.json` dependencies
+
+```bash
+npm init -y
+npm install express mongoose
+npm install -D typescript ts-node-dev @types/express @types/node
+```
+
+---
+
+### 2️⃣ `tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
+```
+
+---
+
+### 3️⃣ MongoDB Model – `src/models/Contact.ts`
+
+```ts
+import mongoose from "mongoose";
+
+const contactSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true }
+});
+
+export const Contact = mongoose.model("Contact", contactSchema);
+```
+
+---
+
+### 4️⃣ Controller – `src/controllers/contactController.ts`
+
+```ts
+import { Request, Response } from "express";
+import { Contact } from "../models/Contact";
+
+export const createContact = async (req: Request, res: Response) => {
+  try {
+    const contact = await Contact.create(req.body);
+    res.status(201).json(contact);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to create contact" });
+  }
+};
+
+export const getContacts = async (_req: Request, res: Response) => {
+  const contacts = await Contact.find();
+  res.json(contacts);
+};
+
+export const getContact = async (req: Request, res: Response) => {
+  const contact = await Contact.findById(req.params.id);
+  if (!contact) return res.status(404).json({ error: "Not found" });
+  res.json(contact);
+};
+
+export const updateContact = async (req: Request, res: Response) => {
+  const contact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  if (!contact) return res.status(404).json({ error: "Not found" });
+  res.json(contact);
+};
+
+export const deleteContact = async (req: Request, res: Response) => {
+  const contact = await Contact.findByIdAndDelete(req.params.id);
+  if (!contact) return res.status(404).json({ error: "Not found" });
+  res.json({ message: "Contact deleted" });
+};
+```
+
+---
+
+### 5️⃣ Routes – `src/routes/contactRoutes.ts`
+
+```ts
+import express from "express";
+import {
+  createContact,
+  getContacts,
+  getContact,
+  updateContact,
+  deleteContact
+} from "../controllers/contactController";
+
+const router = express.Router();
+
+router.post("/", createContact);
+router.get("/", getContacts);
+router.get("/:id", getContact);
+router.put("/:id", updateContact);
+router.delete("/:id", deleteContact);
+
+export default router;
+```
+
+---
+
+### 6️⃣ App – `src/app.ts`
+
+```ts
+import express from "express";
+import mongoose from "mongoose";
+import contactRoutes from "./routes/contactRoutes";
+
+const app = express();
+app.use(express.json());
+
+mongoose.connect("mongodb://localhost:27017/contactDB")
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB error:", err));
+
+app.use("/api/contacts", contactRoutes);
+
+export default app;
+```
+
+---
+
+### 7️⃣ Start Server – `src/server.ts`
+
+```ts
+import app from "./app";
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
+```
+
+---
+
+### 🧪 Run the API
+In `package.json`, add:
+```json
+"scripts": {
+  "dev": "ts-node-dev src/server.ts"
+}
+```
+
+Then run:
+```bash
+npm run dev
+```
+
+---
+

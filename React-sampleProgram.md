@@ -2,6 +2,7 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) | [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) | [Rate Limiter Middleware](#Rate-Limiter-Middleware)
+|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)|[Location based IP-based restrictions](#Location-based-IP-based-restrictions)
 
 
 ## Grid View
@@ -695,4 +696,56 @@ export const apiLimiter = rateLimit({
 ```
 
 
+ ## Whitelist IPs in Rate Limiter
 
+```tsx
+import rateLimit from "express-rate-limit";
+import { Request } from "express";
+
+// Add the IPs you want to whitelist
+const WHITELISTED_IPS = ["127.0.0.1", "::1", "192.168.1.100"];
+
+export const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  message: {
+    status: 429,
+    message: "Too many requests, please try again later.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+
+  // 🛡️ Skip function for whitelisting
+  skip: (req: Request): boolean => {
+    const ip = req.ip || req.connection.remoteAddress;
+    return WHITELISTED_IPS.includes(ip);
+  },
+});
+
+```
+
+
+ ## Location based IP-based restrictions
+```tsx
+ import { Request, Response, NextFunction } from "express";
+import geoip from "geoip-lite";
+
+// Set of allowed countries (ISO Alpha-2 codes)
+const ALLOWED_COUNTRIES = new Set(["IN", "US", "CA"]); // Example: India, USA, Canada
+
+export const geoBlocker = (req: Request, res: Response, next: NextFunction) => {
+  const ip = req.headers["x-forwarded-for"]?.toString().split(",")[0] || req.socket.remoteAddress;
+
+  const geo = geoip.lookup(ip || "");
+
+  if (geo && ALLOWED_COUNTRIES.has(geo.country)) {
+    return next(); // Allow
+  }
+
+  return res.status(403).json({
+    message: "Access denied: Your region is not allowed",
+    ip,
+    country: geo?.country || "Unknown"
+  });
+};
+```

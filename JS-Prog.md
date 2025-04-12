@@ -4,7 +4,7 @@
 | [Binary Search](#binary-search) | [Check for Palindrome](#check-for-palindrome) | [Reverse Words in a Sentence](#reverse-words-in-a-sentence) | [Reverse a String](#reverse-a-string)| [Count Vowels in a String](#count-vowels-in-a-string)  | [Character Frequency Count](#character-frequency-count) | [Deep Clone an Object](#deep-clone-an-object)
 | [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) | [Anagram Checker](#anagram-checker) | [First Non-Repeating Character](#first-non-repeating-character) | [Group by Category or Class](#group-by-category-or-class) | [Group Array of Objects by Key](#group-array-of-objects-by-key)| [Sort Array of Objects by Field](#sort-array-of-objects-by-field) | [Factorial](#factorial) 
 | [Fibonacci](#fibonacci) | [Debounce Function](#debounce-function)| [Throttle Function](#throttle-function)| [Recursive Sum of Array](#recursive-sum-of-array) | [Power Function](#power-function) | [Merge Sort + Deduplication](#merge-sort)| [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
-| [Stock Span Problem](#Stock-Span-Problem) | [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) | [Binary Search](#Binary-Search) | [Retry Promise N Times](#retry-promise-n-times)| [Custom `map()` Method](#custom-map-method)
+| [Stock Span Problem](#Stock-Span-Problem) | [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) | [Binary Search](#Binary-Search) | [Retry Promise N Times](#retry-promise-n-times)| [Custom `map()` Method](#custom-map-method) | Finding the Most Frequent Character in a String 
 
 
 
@@ -2057,6 +2057,60 @@ function deepCloneLegacy<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
 ```
+
+---
+
+
+
+
+---
+
+## **Most Frequent Character in a String**.
+
+### 🔁 Example:
+```js
+Input: "abbcccddddeee"
+Output: "d"
+```
+
+---
+
+### ✅ Solution (with Explanation):
+
+```js
+function getMaxOccurringChar(str) {
+  const freqMap = {};
+  let maxChar = '';
+  let maxCount = 0;
+
+  for (let char of str) {
+    freqMap[char] = (freqMap[char] || 0) + 1;
+
+    if (freqMap[char] > maxCount) {
+      maxCount = freqMap[char];
+      maxChar = char;
+    }
+  }
+
+  return maxChar;
+}
+```
+
+---
+
+### 🧪 Test the Function:
+```js
+console.log(getMaxOccurringChar("abbcccddddeee")); // d
+console.log(getMaxOccurringChar("aabbbccde"));     // b
+console.log(getMaxOccurringChar("xyz"));           // x (all are 1, returns first)
+```
+
+---
+
+### 🧠 How it Works:
+- We loop through each character and build a **frequency map** (`freqMap`).
+- While building it, we **track the character** with the highest frequency in `maxChar`.
+- Finally, return `maxChar`.
 
 ---
 

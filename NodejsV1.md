@@ -5,19 +5,18 @@
 | **Node.js Basics**                         | [Create Node App using JS](#create-node-app-using-js), [Create Node App using TypeScript](#create-node-app-using-typescript), [Node.js with TypeScript](#nodejs-with-typescript) |
 | **Node.js Architecture**                   | [Node.js Architecture](#nodejs-architecture), [Node.js handle multiple requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature), [Scalability issues](#scalability-issues)                                       |
 | **Concurrency & Processes**                | [Event Loop](#event-loop), [Worker Threads](#worker-threads), [Child Processes](#child-processes), [Cluster Module](#cluster-module)                                            |
-| **Event Handling**                         | [Event Emitters](#event-emitters), [Process Object](#process-object), [Event Emitters](#event-emitters)                                                                         |
-| **REST API & Security**                    | [Secure Node.js App](#secure-nodejs-app), [REST API](#rest-api), [HTTP methods & use cases](#http-methods--use-cases), [CORS](#cors), [Secure REST APIs](#secure-rest-apis), [JWT](#jwt), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                  |
+| **Event Handling**                         | [Event Emitters](#event-emitters), [Process Object](#process-object)                                                                       |
+| **REST API & Security**                    | [Secure Node.js App](#secure-nodejs-app), [REST API](#rest-api), [HTTP methods & use cases](#http-methods--use-cases), [CORS](#cors), [Secure REST APIs](#secure-rest-apis), [JWT](#jwt), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers) , [Manage security](#manage-security), [Secure REST APIs](#secure-rest-apis), [Authentication vs Authorization](#authentication-vs-authorization), [Refresh Tokens](#refresh-tokens) |
 | **Authentication & Authorization**         | [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers), [Protected Route](#protected-route), [Role-Based Access Control](#role-based-access-control-rbac)                    |
 | **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
 | **API Design & Development**               | [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure), [Status codes](#status-codes)                   |
 | **Error Handling & Validation**            | [Error handling in REST APIs](#error-handling-in-rest-apis), [Error Handling](#error-handling), [Data Validation](#data-validation)                                            |
-| **Security & Authentication**              | [Manage security](#manage-security), [Secure REST APIs](#secure-rest-apis), [Authentication vs Authorization](#authentication-vs-authorization), [Refresh Tokens](#refresh-tokens) |
+| **Security & Authentication**              
 | **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis)                                                                           |
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
 | **Asynchronous Programming**               | [Promise vs Async/Await](#promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise.all() vs Promise.race()](#promiseall-vs-promiserace)                               |
 | **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                           |
-| **Microservices & Communication**          | [Microservices Communication](#microservices-communication),                                                                    |
-
+| **Microservices & Communication**          | [Microservices Communication](#microservices-communication),            
 
 
 ---

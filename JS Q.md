@@ -271,7 +271,8 @@ console.log(add(2, 3)); // ✅ 5
 ---
 
 #### **let and var and const**
-- **`let`**: Introduced in ES6, `let` allows you to declare variables that can be reassigned and is block-scoped. This means the variable exists within the block, statement, or expression where it’s declared. `let` helps avoid issues with variable redeclaration that arise with `var`.
+- **`let`**: Introduced in ES6, `let` allows you to declare variables that can be reassigned and is block-scoped. 
+- This means the variable exists within the block, statement, or expression where it’s declared. - `let` helps avoid issues with variable redeclaration that arise with `var`.
 
 **Example:**
 ```javascript
@@ -283,7 +284,9 @@ console.log(x); // ReferenceError: x is not defined
 ```
 In this example, `x` is scoped to the `if` block and cannot be accessed outside it.
 
-- **`var`**: `var` is function-scoped (or globally scoped if declared outside a function), meaning it can be accessed even outside the block where it's declared. This leads to some unexpected behavior, especially when used in loops or conditional blocks.
+- **`var`**: `var` is function-scoped (or globally scoped if declared outside a function), 
+- meaning it can be accessed even outside the block where it's declared. 
+- This leads to some unexpected behavior, especially when used in loops or conditional blocks.
 
 **Example:**
 ```javascript
@@ -294,7 +297,9 @@ console.log(y); // 20
 ```
 Here, `y` is accessible outside the block because `var` is function-scoped.
 
-- **`const`**: `const` is also block-scoped, but it is used to declare variables whose values cannot be reassigned after initialization. It is useful when you want to create constants.
+- **`const`**: `const` is also block-scoped, 
+- but it is used to declare variables whose values cannot be reassigned after initialization.
+- It is useful when you want to create constants.
 
 **Example:**
 ```javascript
@@ -306,7 +311,8 @@ You cannot reassign a value to a constant variable once it's initialized.
 ---
 
 #### **Global JavaScript Scope**
-The global scope refers to the top level of your JavaScript code where variables and functions are accessible throughout the entire program. If a variable is declared in the global scope, it can be accessed from any part of the code. However, global variables can lead to conflicts and bugs, especially in large applications.
+- The global scope refers to the top level of your JavaScript code where variables and functions are accessible throughout the entire program. 
+- If a variable is declared in the global scope, it can be accessed from any part of the code. - - However, global variables can lead to conflicts and bugs, especially in large applications.
 
 **Example:**
 ```javascript
@@ -492,9 +498,8 @@ person.name = 'Jane'; // Error: Cannot assign to read only property 'name'
 
 #### **How TypeScript Improves JavaScript**
 
-**Interviewer**: How does TypeScript improve JavaScript?
 
-**Answer**: TypeScript is a superset of JavaScript that introduces static typing to help catch errors during development, before the code runs. While JavaScript is dynamically typed and relies on runtime checks, TypeScript allows you to declare variable types, which provides several benefits:
+ TypeScript is a superset of JavaScript that introduces static typing to help catch errors during development, before the code runs. While JavaScript is dynamically typed and relies on runtime checks, TypeScript allows you to declare variable types, which provides several benefits:
 - **Early Error Detection**: With TypeScript, errors related to type mismatches can be caught at compile time.
 - **Better Tooling**: IDEs and editors offer enhanced autocompletion, refactoring, and error-checking features.
 - **Improved Code Readability**: Explicit types make the code more understandable, especially in large projects.
@@ -512,9 +517,8 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 
 #### **Interface vs. Type**
 
-**Interviewer**: Can you explain the difference between `interface` and `type` in TypeScript?
 
-**Answer**: Both `interface` and `type` are used for defining shapes of objects, but they have subtle differences:
+ Both `interface` and `type` are used for defining shapes of objects, but they have subtle differences:
 - **Interface**: Primarily used to define object shapes and can be extended or implemented.
 - **Type**: More flexible than `interface` and can define primitive types, union types, intersection types, and more.
 
@@ -546,9 +550,8 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
 
 #### **Generics**
 
-**Interviewer**: What are generics in TypeScript, and why are they useful?
 
-**Answer**: Generics allow you to write functions, classes, or interfaces that work with any data type. By using generics, you can create reusable components that maintain type safety while being flexible. This helps avoid the need for multiple versions of the same function or class for different data types.
+ Generics allow you to write functions, classes, or interfaces that work with any data type. By using generics, you can create reusable components that maintain type safety while being flexible. This helps avoid the need for multiple versions of the same function or class for different data types.
 
 **Example**:  
 ```typescript
@@ -564,9 +567,8 @@ Generics allow you to write flexible yet type-safe code.
 
 #### **Union Types**
 
-**Interviewer**: What are union types in TypeScript?
 
-**Answer**: Union types in TypeScript allow a variable to hold one of several types. It’s useful when a variable could accept different types of values, and we want to ensure type safety while maintaining flexibility.
+ Union types in TypeScript allow a variable to hold one of several types. It’s useful when a variable could accept different types of values, and we want to ensure type safety while maintaining flexibility.
 
 **Example**:  
 ```typescript
@@ -584,9 +586,8 @@ With union types, TypeScript ensures that only valid types are passed.
 
 #### **Type Inference**
 
-**Interviewer**: What is type inference in TypeScript?
 
-**Answer**: TypeScript has a powerful type inference system that automatically determines the type of a variable based on its initial value. This reduces the need for explicit type annotations and makes code more concise without losing type safety.
+ TypeScript has a powerful type inference system that automatically determines the type of a variable based on its initial value. This reduces the need for explicit type annotations and makes code more concise without losing type safety.
 
 **Example**:  
 ```typescript
@@ -599,9 +600,8 @@ Type inference helps improve the developer experience by reducing boilerplate wh
 
 #### **Mapped Types**
 
-**Interviewer**: What are mapped types in TypeScript?
 
-**Answer**: Mapped types allow you to create new types by transforming properties of an existing type. For example, you can make all properties of a type `readonly`, `optional`, or change their types.
+ Mapped types allow you to create new types by transforming properties of an existing type. For example, you can make all properties of a type `readonly`, `optional`, or change their types.
 
 **Example**:  
 ```typescript
@@ -623,9 +623,8 @@ Mapped types are useful for creating reusable and flexible transformations of ty
 
 #### **Custom Error**
 
-**Interviewer**: How would you define a custom error in TypeScript?
 
-**Answer**: You can define a custom error in TypeScript by extending the built-in `Error` class. This allows you to add additional information or customize error handling in your applications.
+ You can define a custom error in TypeScript by extending the built-in `Error` class. This allows you to add additional information or customize error handling in your applications.
 
 **Example**:  
 ```typescript
@@ -654,9 +653,8 @@ Custom errors make error handling more specific and manageable in larger applica
 
 #### **Request/Response Types with TypeScript**
 
-**Interviewer**: How would you use TypeScript for defining request and response types in an API?
 
-**Answer**: TypeScript is very useful for defining the types of data sent and received in an API. By defining request and response types, we can ensure that the data structure adheres to expectations, preventing issues such as incorrect data being passed to or from the API.
+ TypeScript is very useful for defining the types of data sent and received in an API. By defining request and response types, we can ensure that the data structure adheres to expectations, preventing issues such as incorrect data being passed to or from the API.
 
 **Example**:  
 ```typescript
@@ -687,9 +685,8 @@ By using these types, TypeScript provides type safety and improves the maintaina
 
 #### **Decorators**
 
-**Interviewer**: What are decorators in TypeScript?
 
-**Answer**: Decorators in TypeScript are special functions that can be applied to classes, methods, properties, or parameters to add behavior or metadata. They are commonly used in frameworks like Angular to handle things like dependency injection.
+ Decorators in TypeScript are special functions that can be applied to classes, methods, properties, or parameters to add behavior or metadata. They are commonly used in frameworks like Angular to handle things like dependency injection.
 
 **Example**:  
 ```typescript
@@ -731,9 +728,8 @@ Decorators help add reusable logic without modifying the core structure of the c
 
 #### **Duck Typing**
 
-**Interviewer**: What is Duck Typing in TypeScript?
 
-**Answer**: Duck typing is a concept where an object is considered to be of a certain type if it has the properties or methods expected of that type, regardless of its actual class or interface. In TypeScript, this is common when we use interfaces to define the shape of objects.
+ Duck typing is a concept where an object is considered to be of a certain type if it has the properties or methods expected of that type, regardless of its actual class or interface. In TypeScript, this is common when we use interfaces to define the shape of objects.
 
 **Example**:  
 ```typescript
@@ -769,9 +765,8 @@ In TypeScript, objects are accepted based on their structure (duck typing), rath
 
 #### **Module System & Compiler Options**
 
-**Interviewer**: How does TypeScript handle modules, and what are the key compiler options?
 
-**Answer**: TypeScript uses the ES6 module system, which relies on `import` and `export` statements to modularize code. You can define modules and specify how they should be compiled using the `tsconfig.json` file.
+ TypeScript uses the ES6 module system, which relies on `import` and `export` statements to modularize code. You can define modules and specify how they should be compiled using the `tsconfig.json` file.
 
 **Key Compiler Options**:
 - **`module`**: Specifies the module system (`commonjs`, `es6`, `amd`).
@@ -810,9 +805,8 @@ In `tsconfig.json`:
 
 #### **Function Declaration vs Expression vs Constructor**
 
-**Interviewer**: Can you explain the difference between a function declaration, function expression, and constructor?
 
-**Answer**: 
+ 
 - **Function Declaration**: This defines a function in the standard way and is hoisted, meaning it can be called before it is defined in the code.
   ```javascript
   function add(a, b) {
@@ -842,9 +836,8 @@ The primary difference between declaration and expression lies in hoisting, whil
 
 #### **Arrow Functions**
 
-**Interviewer**: What are arrow functions in JavaScript, and how do they differ from traditional function expressions?
 
-**Answer**: Arrow functions, introduced in ES6, offer a more concise syntax for writing functions and have the key difference of **lexical scoping** for `this`. Unlike regular functions, they do not have their own `this`, `arguments`, `super`, or `new.target`.
+ Arrow functions, introduced in ES6, offer a more concise syntax for writing functions and have the key difference of **lexical scoping** for `this`. Unlike regular functions, they do not have their own `this`, `arguments`, `super`, or `new.target`.
 
 **Example**:
 ```javascript
@@ -872,9 +865,8 @@ obj.greet(); // Outputs: Alice
 
 #### **Anonymous Functions - Use Cases**
 
-**Interviewer**: What are anonymous functions, and where would you use them?
 
-**Answer**: Anonymous functions are functions without a name. They are often used as arguments to other functions, or for short tasks where a function doesn’t need to be reused elsewhere.
+ Anonymous functions are functions without a name. They are often used as arguments to other functions, or for short tasks where a function doesn’t need to be reused elsewhere.
 
 **Example**:
 ```javascript
@@ -892,9 +884,8 @@ setTimeout(function() {
 
 #### **Default Parameters**
 
-**Interviewer**: How do default parameters work in JavaScript functions?
 
-**Answer**: Default parameters allow you to specify a default value for a function parameter if no value is provided during the function call.
+ Default parameters allow you to specify a default value for a function parameter if no value is provided during the function call.
 
 **Example**:
 ```javascript
@@ -912,9 +903,8 @@ This is useful for handling cases where arguments may be missing and helps avoid
 
 #### **Higher-Order Functions**
 
-**Interviewer**: Can you explain higher-order functions?
 
-**Answer**: A **higher-order function** is a function that either:
+ A **higher-order function** is a function that either:
 Takes one or more functions as arguments.
 Returns a function as its result.
 
@@ -939,9 +929,8 @@ In this case, `applyOperation` is a higher-order function because it accepts `ad
 
 #### **Callback Functions**
 
-**Interviewer**: What are callback functions, and when would you use them?
 
-**Answer**: A **callback function** is a function passed into another function as an argument that is executed at a later time. They are often used for **asynchronous operations** like handling API responses, timers, or events.
+ A **callback function** is a function passed into another function as an argument that is executed at a later time. They are often used for **asynchronous operations** like handling API responses, timers, or events.
 
 **Example**:
 ```javascript
@@ -964,9 +953,8 @@ Callbacks allow us to handle asynchronous operations in a non-blocking way.
 
 #### **Closures**
 
-**Interviewer**: What are closures, and how are they used to create private variables?
 
-**Answer**: A **closure** is a function that "remembers" its lexical scope, even when the function is executed outside that scope. Closures are useful for creating **private variables** by enclosing them inside a function and providing controlled access through closures.
+ A **closure** is a function that "remembers" its lexical scope, even when the function is executed outside that scope. Closures are useful for creating **private variables** by enclosing them inside a function and providing controlled access through closures.
 
 **Example**:
 ```javascript
@@ -995,9 +983,8 @@ Here, `count` is private, and the `increment` and `decrement` methods form a clo
 
 #### **Immediately Invoked Function Expressions**
 
-**Interviewer**: What is an Immediately Invoked Function Expression (IIFE)?
 
-**Answer**: An **IIFE** is a function expression that is defined and immediately invoked (called) right after its declaration. It is used to create a new scope, often to avoid polluting the global namespace.
+ An **IIFE** is a function expression that is defined and immediately invoked (called) right after its declaration. It is used to create a new scope, often to avoid polluting the global namespace.
 
 **Example**:
 ```javascript
@@ -1013,9 +1000,8 @@ IIFEs are often used for **module patterns** or **self-contained logic** in Java
 
 #### **Potential Pitfalls of Closures**
 
-**Interviewer**: What are some common pitfalls of closures?
 
-**Answer**: Closures are powerful, but they can introduce some pitfalls:
+ Closures are powerful, but they can introduce some pitfalls:
 **Memory Leaks**: Closures can keep references to variables, which may cause memory issues if not handled carefully.
 **Unintended Variable Retention**: Because closures "remember" variables from their lexical scope, it can be easy to unintentionally retain references to large data structures.
 **Async Issues**: Closures can sometimes cause confusion when working with asynchronous code, as they may use values that change over time.
@@ -1049,9 +1035,8 @@ for (let i = 0; i < 3; i++) {
 
 #### **Synchronous vs Asynchronous Functions**
 
-**Interviewer**: What is the difference between synchronous and asynchronous functions?
 
-**Answer**: 
+ 
 - **Synchronous functions** are executed one after another, blocking further execution until the current function completes. This can cause delays if a task takes time (e.g., reading a file or making a network request).
   
   **Example**:
@@ -1076,9 +1061,8 @@ for (let i = 0; i < 3; i++) {
 
 #### **Promises**
 
-**Interviewer**: Can you explain what a Promise is in JavaScript?
 
-**Answer**: A **Promise** is an object that represents the eventual completion (or failure) of an asynchronous operation. Promises allow us to handle asynchronous operations in a more manageable way than using callbacks (callback hell).
+ A **Promise** is an object that represents the eventual completion (or failure) of an asynchronous operation. Promises allow us to handle asynchronous operations in a more manageable way than using callbacks (callback hell).
 
 A promise has three states:
 **Pending**: The promise is neither fulfilled nor rejected.
@@ -1105,9 +1089,8 @@ promise
 
 #### **Promise States**
 
-**Interviewer**: Can you elaborate on the different states of a promise?
 
-**Answer**: A Promise can exist in one of the following states:
+ A Promise can exist in one of the following states:
 
 **Pending**: The initial state, where the Promise is waiting to be resolved or rejected.
 **Fulfilled**: The Promise has completed successfully and has returned a value.
@@ -1133,9 +1116,8 @@ myPromise
 
 #### **Pros and Cons of Promises**
 
-**Interviewer**: What are the pros and cons of using Promises in JavaScript?
 
-**Answer**:
+
 - **Pros**:
   - **Avoid Callback Hell**: Promises allow chaining with `.then()` and `.catch()`, which makes the code more readable than nested callbacks.
   - **Improved error handling**: With promises, errors can be caught at any point in the chain using `.catch()`.
@@ -1150,9 +1132,8 @@ myPromise
 
 #### **Promise.all()**
 
-**Interviewer**: What does `Promise.all()` do, and when would you use it?
 
-**Answer**: `Promise.all()` takes an array of promises and returns a single promise that resolves when all the input promises have resolved or rejects as soon as one of the promises is rejected.
+ `Promise.all()` takes an array of promises and returns a single promise that resolves when all the input promises have resolved or rejects as soon as one of the promises is rejected.
 
 **Example**:
 ```javascript
@@ -1169,9 +1150,8 @@ Use `Promise.all()` when you want to wait for multiple asynchronous operations t
 
 #### **Promise.all vs Promise.allSettled**
 
-**Interviewer**: How does `Promise.all()` differ from `Promise.allSettled()`?
 
-**Answer**: 
+ 
 - **`Promise.all()`**: Returns a single promise that resolves when all promises in the array resolve. If any of the promises is rejected, the entire promise chain is rejected immediately.
   
   **Example**:
@@ -1200,9 +1180,8 @@ Use `Promise.all()` when you want to wait for multiple asynchronous operations t
 
 #### **Async/Await**
 
-**Interviewer**: What are `async` and `await`, and how do they simplify working with promises?
 
-**Answer**: 
+ 
 - **`async`** is a keyword used to define a function as asynchronous, which means it will always return a promise. Inside an `async` function, you can use `await` to pause the execution of the function until the promise resolves or rejects.
   
 - **`await`** pauses the execution of the `async` function until the promise resolves or rejects. It only works inside an `async` function.
@@ -1223,9 +1202,8 @@ fetchData();
 
 #### **Handling Async Errors**
 
-**Interviewer**: How do you handle errors in asynchronous functions?
 
-**Answer**: Errors in asynchronous code can be handled using `try/catch` blocks when using `async/await`, or `.catch()` when using promises.
+ Errors in asynchronous code can be handled using `try/catch` blocks when using `async/await`, or `.catch()` when using promises.
 
 - **With async/await**:
   ```javascript
@@ -1253,9 +1231,8 @@ Both approaches allow you to catch and handle errors in a clean and structured w
 
 #### **Microtask Queue**
 
-**Interviewer**: What is the microtask queue in JavaScript?
 
-**Answer**: The **microtask queue** is a queue where JavaScript places promises and `async/await` operations. It is processed after the current execution context and before any rendering tasks or `setTimeout` calls.
+ The **microtask queue** is a queue where JavaScript places promises and `async/await` operations. It is processed after the current execution context and before any rendering tasks or `setTimeout` calls.
 
 - Microtasks are given higher priority than tasks in the event loop, which ensures that promises are always resolved as soon as possible.
 
@@ -1272,9 +1249,8 @@ console.log('End');
 
 #### **setTimeout and setImmediate and processnextTick**
 
-**Interviewer**: Can you explain the difference between `setTimeout()`, `setImmediate()`, and `process.nextTick()` in Node.js?
 
-**Answer**: These are methods in Node.js that deal with asynchronous scheduling but differ in when they are executed:
+ These are methods in Node.js that deal with asynchronous scheduling but differ in when they are executed:
 
 - **`setTimeout()`**: Executes the callback after a specified delay, typically used for scheduling a task in the event loop after a given period.
   ```javascript
@@ -1310,9 +1286,8 @@ process.nextTick(() => console.log('Next Tick')); // First
 
 #### **Constructor Function**
 
-**Interviewer**: What is a constructor function in JavaScript?
 
-**Answer**: 
+ 
 A **constructor function** in JavaScript is a special type of function that is used to create and initialize objects. When a function is called using the `new` keyword, it acts as a constructor. The constructor function allows you to define properties and methods for the newly created object.
 
 **Example**:
@@ -1333,9 +1308,8 @@ In this example, `Person` is a constructor function that initializes an object w
 
 #### **`new` Keyword**
 
-**Interviewer**: How does the `new` keyword work in JavaScript?
 
-**Answer**: 
+ 
 The `new` keyword is used to create an instance of an object that is defined by a constructor function or a class. When used with a constructor function, it performs the following steps:
 Creates a new empty object.
 Sets the `this` value within the constructor to the new object.
@@ -1357,9 +1331,8 @@ console.log(myCar.make); // Outputs: Toyota
 
 #### **Classical vs Prototypal Inheritance**
 
-**Interviewer**: What is the difference between classical and prototypal inheritance?
 
-**Answer**: 
+ 
 - **Classical Inheritance** (found in languages like Java and C++) involves defining a class, and then objects are created based on that class, inheriting its properties and methods. JavaScript, however, does not have traditional class-based inheritance (until ES6 introduced classes).
   
 - **Prototypal Inheritance** in JavaScript allows objects to directly inherit from other objects. Every object has a `prototype` property, which can be used to inherit methods and properties from other objects.
@@ -1382,9 +1355,8 @@ With **prototypal inheritance**, the `dog` object inherits methods from the `ani
 
 #### **Inheritance in ES2015 Classes**
 
-**Interviewer**: How is inheritance handled in ES2015 (ES6) classes?
 
-**Answer**: 
+ 
 In ES2015, JavaScript introduced the `class` syntax, which provides a clearer and more structured way to define inheritance. Classes use the `extends` keyword to inherit from another class, and the `super()` function is used to call the parent class's constructor.
 
 **Example**:
@@ -1420,9 +1392,8 @@ In this example, `Dog` inherits from `Animal` using `extends`, and the `super()`
 
 #### **Static Class Members**
 
-**Interviewer**: What are static members in JavaScript classes?
 
-**Answer**: 
+ 
 Static members are properties and methods that belong to the class itself, rather than to instances of the class. These members are accessed using the class name, not through an instance.
 
 **Example**:
@@ -1442,9 +1413,8 @@ Here, `greet()` is a static method of `MyClass`, and it is called directly on th
 
 #### **Extending Built-in Objects**
 
-**Interviewer**: Can you extend built-in objects in JavaScript? If yes, how?
 
-**Answer**: Yes, you can extend built-in objects in JavaScript. This is done by adding custom properties or methods to the prototype of the built-in object, or by subclassing it (using `class` syntax in ES6).
+ Yes, you can extend built-in objects in JavaScript. This is done by adding custom properties or methods to the prototype of the built-in object, or by subclassing it (using `class` syntax in ES6).
 
 **Example (Extending Array)**:
 ```javascript
@@ -1464,9 +1434,8 @@ In this example, `CustomArray` extends the built-in `Array` class, adding a cust
 
 #### **Getters and Setters**
 
-**Interviewer**: What are getters and setters in JavaScript?
 
-**Answer**: 
+ 
 Getters and setters are special methods in JavaScript that allow you to access and update the properties of an object in a controlled way. They are used to define custom behavior when getting or setting a property.
 
 - **Getter**: A method that gets the value of a property.
@@ -1500,9 +1469,8 @@ Here, the `name` property is accessed and updated through getter and setter meth
 
 #### **Object.freeze() and seal() and preventExtensions()**
 
-**Interviewer**: What is the difference between `Object.freeze()`, `seal()`, and `preventExtensions()`?
 
-**Answer**: These methods are used to control the mutability of objects in JavaScript.
+ These methods are used to control the mutability of objects in JavaScript.
 
 **`Object.freeze()`**: Makes an object immutable. You cannot add, remove, or modify any of its properties.
    ```javascript
@@ -1541,9 +1509,8 @@ Here, the `name` property is accessed and updated through getter and setter meth
 
 #### **Introduction to Design Patterns**
 
-**Interviewer**: What are design patterns, and why are they important?
 
-**Answer**: 
+ 
 Design patterns are proven, reusable solutions to common problems in software design. They are not code templates but rather general solutions that can be adapted to specific needs. Design patterns improve code readability, reusability, maintainability, and scalability. They help developers avoid reinventing the wheel by providing standard approaches to solving design issues.
 
 **Example**:
@@ -1553,9 +1520,8 @@ For instance, the **Singleton Pattern** ensures that a class has only one instan
 
 #### **Singleton Pattern**
 
-**Interviewer**: Can you explain the Singleton Pattern?
 
-**Answer**: 
+ 
 The **Singleton Pattern** ensures that a class has only one instance and provides a global point of access to that instance. This pattern is particularly useful for scenarios where only one object is needed to coordinate actions (like a logging service or a configuration manager).
 
 **Example**:
@@ -1586,9 +1552,8 @@ Here, even though we create two instances of `Singleton`, they both point to the
 
 #### **Factory Pattern**
 
-**Interviewer**: What is the Factory Pattern, and how is it used?
 
-**Answer**: 
+ 
 The **Factory Pattern** provides a way to create objects without specifying the exact class of the object that will be created. It defines an interface for creating objects, but the actual creation is deferred to subclasses or methods. It helps in abstracting the instantiation logic and promotes loose coupling.
 
 **Example**:
@@ -1625,9 +1590,8 @@ In this example, `VehicleFactory` abstracts the creation logic of different vehi
 
 #### **Module Pattern**
 
-**Interviewer**: What is the Module Pattern in JavaScript?
 
-**Answer**: 
+ 
 The **Module Pattern** is used to encapsulate code in a self-contained unit, often to maintain a clean global namespace. It allows you to expose only the methods and properties you want to be publicly accessible, keeping other functionality private. This is typically done using closures.
 
 **Example**:
@@ -1661,9 +1625,8 @@ In this example, the `counterModule` encapsulates the `count` variable, exposing
 
 #### **Observer Pattern**
 
-**Interviewer**: What is the Observer Pattern, and when should you use it?
 
-**Answer**: 
+ 
 The **Observer Pattern** is a behavioral design pattern where an object (the **subject**) maintains a list of its dependent objects (the **observers**) and notifies them of any state changes, typically by calling one of their methods. This pattern is useful in scenarios where multiple objects need to be updated when the state of another object changes, like in UI event handling or real-time notifications.
 
 **Example**:
@@ -1707,9 +1670,8 @@ Here, when the `Subject` notifies its observers, all registered observers react 
 
 #### **Prototype Pattern**
 
-**Interviewer**: Can you explain the Prototype Pattern?
 
-**Answer**: 
+ 
 The **Prototype Pattern** is a creational design pattern used to create new objects by cloning an existing object (prototype). It is particularly useful when object creation is costly, and you need to produce several identical objects. In JavaScript, this can be implemented using the `Object.create()` method to clone an object.
 
 **Example**:
@@ -1736,9 +1698,8 @@ Here, `car1` and `car2` are clones of the `carPrototype`, sharing the same metho
 
 #### **Dependency Injection**
 
-**Interviewer**: What is Dependency Injection, and why is it useful?
 
-**Answer**: 
+ 
 **Dependency Injection (DI)** is a design pattern used to implement **inversion of control**, where an object’s dependencies (like services or components) are injected into it rather than the object creating them itself. DI promotes loose coupling between classes, making it easier to manage dependencies, test components, and scale applications.
 
 **Example**:
@@ -1781,9 +1742,8 @@ In this example, `Car` depends on `Engine`. Instead of `Car` creating its own en
 
 #### **script and async and defer**
 
-**Interviewer**: What is the difference between `<script>`, `async`, and `defer` attributes in HTML?
 
-**Answer**:
+
 The `<script>` tag is used to include JavaScript files in an HTML document. By default, when a `<script>` is encountered, the HTML parsing is paused until the script is loaded and executed, which can lead to delays in rendering. The `async` and `defer` attributes help optimize script loading behavior.
 
 - **`async`**: The script is fetched asynchronously (in parallel with the HTML parsing) and executed as soon as it is available, without waiting for the HTML parsing to finish. This can cause the script to execute before the HTML parsing is complete.
@@ -1808,9 +1768,8 @@ The `<script>` tag is used to include JavaScript files in an HTML document. By d
 
 #### **Cookies and sessionStorage and localStorage**
 
-**Interviewer**: What are the differences between cookies, sessionStorage, and localStorage?
 
-**Answer**:
+
 These are all web storage mechanisms, but they have different lifespans and uses:
 
 - **Cookies**: Data stored in cookies is sent to the server with every HTTP request. Cookies have an expiration date and can be set with a specific domain, path, and security attributes. They are limited to 4KB of data.
@@ -1846,9 +1805,8 @@ These are all web storage mechanisms, but they have different lifespans and uses
 
 #### **Window vs Document**
 
-**Interviewer**: What is the difference between `window` and `document` in JavaScript?
 
-**Answer**:
+
 - **`window`**: The `window` object represents the global environment or the browser window itself. It provides methods for controlling the browser window (like `window.open()`, `window.alert()`) and properties like `window.innerWidth` (viewport width).
   
   **Example**:
@@ -1869,9 +1827,8 @@ These are all web storage mechanisms, but they have different lifespans and uses
 
 #### **WebSocket API**
 
-**Interviewer**: Can you explain the WebSocket API?
 
-**Answer**:
+
 The **WebSocket API** provides a way to open a two-way interactive communication session between the user's browser and a server. This allows for real-time communication, such as chat applications or live updates, by maintaining a persistent connection.
 
 - WebSockets are different from HTTP requests because once the connection is established, it remains open, and both the client and server can send messages anytime.
@@ -1895,9 +1852,8 @@ socket.onmessage = function(event) {
 
 #### **Web Workers**
 
-**Interviewer**: What are Web Workers and how are they useful?
 
-**Answer**:
+
 **Web Workers** allow you to run JavaScript code in the background, on a separate thread, without blocking the main execution thread. This is especially useful for tasks that involve heavy computation or long-running processes, preventing the UI from freezing.
 
 **Example**:
@@ -1922,9 +1878,8 @@ worker.postMessage("Start working");
 
 #### **Using window history API**
 
-**Interviewer**: How does the `window.history` API work in JavaScript?
 
-**Answer**:
+
 The **`window.history` API** provides access to the browser's session history, allowing you to navigate between pages in the session history stack, modify the browser's URL, and even change the current state without causing a page reload.
 
 **Key Methods**:
@@ -1952,9 +1907,8 @@ This can be useful in single-page applications (SPAs) for updating the URL witho
 
 #### **Event Listeners**
 
-**Interviewer**: Can you explain how event listeners work in JavaScript?
 
-**Answer**:
+
 In JavaScript, **event listeners** are used to listen for specific events (like clicks, keypresses, etc.) on DOM elements and trigger a function when that event occurs.
 
 You can add an event listener to an element using the `addEventListener()` method. This method allows you to specify the event type and a callback function that will be executed when the event occurs.
@@ -1973,7 +1927,7 @@ This will display an alert when the user clicks the button with `id="myButton"`.
 #### **Event Bubbling**
 
 
-**Answer**:
+
 In JavaScript, events can propagate through the DOM in two phases: **bubbling** and **capturing**.
 
 - **Event Bubbling**: The event starts at the target element (where the event occurred) and bubbles up through the ancestors (parent elements) in the DOM hierarchy. This is the default behavior in most cases.
@@ -2009,9 +1963,8 @@ In JavaScript, events can propagate through the DOM in two phases: **bubbling** 
 
 #### **`event.preventDefault()` vs `event.stopPropagation()`**
 
-**Interviewer**: What is the difference between `event.preventDefault()` and `event.stopPropagation()`?
 
-**Answer**:
+
 Both methods are used in event handling, but they serve different purposes:
 
 - **`event.preventDefault()`**: Prevents the default action associated with the event from occurring. This is useful for actions like stopping form submissions or disabling anchor tags' default navigation.
@@ -2040,9 +1993,8 @@ Both methods are used in event handling, but they serve different purposes:
 
 #### **Event Delegation**
 
-**Interviewer**: What is event delegation and why is it useful?
 
-**Answer**:
+
 **Event delegation** is a technique where you attach a single event listener to a parent element instead of adding listeners to individual child elements. When an event is triggered on a child element, it bubbles up to the parent, where the parent can catch the event and handle it.
 
 This technique is particularly useful when dealing with dynamically added elements (i.e., elements that are created after the initial page load).
@@ -2066,9 +2018,8 @@ In this example, the parent element listens for clicks on its child buttons, eve
 
 #### **`innerHTML` vs `textContent`**
 
-**Interviewer**: What is the difference between `innerHTML` and `textContent`?
 
-**Answer**:
+
 - **`innerHTML`**: Allows you to get or set the HTML content inside an element. It includes any HTML tags that are inside the element.
 
   **Example**:
@@ -2093,9 +2044,8 @@ In this example, the parent element listens for clicks on its child buttons, eve
 
 #### **Manipulating CSS Styles**
 
-**Interviewer**: How can you manipulate CSS styles using JavaScript?
 
-**Answer**:
+
 In JavaScript, you can manipulate the styles of an element by using the `style` property or by modifying the `classList`.
 
 - **Using `style` property**:
@@ -2114,9 +2064,8 @@ In JavaScript, you can manipulate the styles of an element by using the `style` 
 
 #### **Destructuring**
 
-**Interviewer**: Can you explain destructuring in JavaScript?
 
-**Answer**:
+
 **Destructuring** is a convenient way of extracting multiple properties from an object or elements from an array and assigning them to variables.
 
 - **Object Destructuring**:
@@ -2139,9 +2088,8 @@ Destructuring makes the code more concise and readable, especially when working 
 
 #### **spread operator**
 
-**Interviewer**: What is the difference between the spread and rest operators?
 
-**Answer**:
+
 The **spread** (`...`) and **rest** (`...`) operators have similar syntax but serve different purposes depending on the context.
 
 - **Spread Operator**: Used to spread elements of an array or object into individual elements. It’s typically used when calling functions or combining arrays/objects.
@@ -2179,9 +2127,8 @@ The **spread** (`...`) and **rest** (`...`) operators have similar syntax but se
 
 #### **Types of Testing in Software Development**
 
-**Interviewer**: What are the different types of testing in software development?
 
-**Answer**:
+
 There are several types of testing that help ensure the quality and functionality of the software:
 
 - **Unit Testing**: Focuses on testing individual units or components of code, typically functions or methods, in isolation from the rest of the application.
@@ -2204,9 +2151,8 @@ Each type of testing serves a specific purpose in the software development lifec
 
 #### **Unit Testing vs Integration Testing vs E2E**
 
-**Interviewer**: What is the difference between Unit Testing, Integration Testing, and End-to-End (E2E) Testing?
 
-**Answer**:
+
 - **Unit Testing**: Involves testing individual units or functions of the code in isolation from the rest of the application. Unit tests ensure that each unit behaves as expected.
 
   **Example**: Testing a function that calculates the sum of two numbers.
@@ -2236,9 +2182,8 @@ Each type of testing serves a specific purpose in the software development lifec
 
 #### **Writing Unit Tests**
 
-**Interviewer**: How do you write unit tests for JavaScript code?
 
-**Answer**:
+
 Writing unit tests for JavaScript involves creating tests that validate individual functions or units of code. The goal is to isolate the unit being tested to ensure it performs correctly in various scenarios.
 
 A typical unit test includes:
@@ -2269,9 +2214,8 @@ This is a simple test using the **Jest** testing framework. It asserts that mult
 
 #### **Popular JavaScript Testing Frameworks**
 
-**Interviewer**: What are some popular JavaScript testing frameworks?
 
-**Answer**:
+
 Some of the most popular JavaScript testing frameworks are:
 
 - **Jest**: A comprehensive testing framework often used for React applications. It includes features like assertions, mocks, and snapshots, and is known for its simplicity and ease of use.
@@ -2295,9 +2239,8 @@ Some of the most popular JavaScript testing frameworks are:
 
 #### **Mocks and Stubs in Testing**
 
-**Interviewer**: What are mocks and stubs, and when do you use them in testing?
 
-**Answer**:
+
 Mocks and stubs are used in unit testing to simulate parts of the system, isolate the unit under test, and avoid making real API calls or database queries.
 
 - **Stub**: A function that replaces another function and provides a controlled response. Stubs are usually used for functions that return specific values.
@@ -2322,9 +2265,6 @@ Mocks and stubs allow you to test the logic of your functions without invoking e
 
 #### **Test-Driven Development**
 
-**Interviewer**: Can you explain Test-Driven Development (TDD)?
-
-**Answer**:
 Test-Driven Development (TDD) is a software development methodology in which tests are written before the code itself. It follows the **Red-Green-Refactor** cycle:
 
 **Red**: Write a failing test for the new functionality.
@@ -2355,9 +2295,7 @@ Write code to pass the test:
 
 #### **Testing Asynchronous Code in JavaScript**
 
-**Interviewer**: How do you test asynchronous code in JavaScript?
 
-**Answer**:
 Testing asynchronous code involves handling promises or callbacks and ensuring that the code executes correctly.
 
 - **With Promises**: You can use `async/await` and `assertions` to wait for promises to resolve.
@@ -2395,9 +2333,8 @@ Testing async code ensures that the asynchronous operations are correctly handle
 
 #### **Cross-Site Scripting (XSS) and Prevention**
 
-**Interviewer**: What is Cross-Site Scripting (XSS), and how do you prevent it?
 
-**Answer**:
+
 Cross-Site Scripting (XSS) is a security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts can steal sensitive information, manipulate content, or hijack user sessions.
 
 **Prevention**:
@@ -2429,9 +2366,8 @@ By sanitizing inputs and escaping outputs, you minimize the risk of XSS attacks.
 
 #### **Cross-Site Request Forgery (CSRF) and Mitigation Techniques**
 
-**Interviewer**: What is CSRF, and how do you mitigate it?
 
-**Answer**:
+
 Cross-Site Request Forgery (CSRF) is an attack where a malicious actor tricks a user into making an unwanted request to a web application where they are authenticated.
 
 **Mitigation Techniques**:
@@ -2455,9 +2391,8 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious actor tricks a 
 
 #### **Preventing SQL Injection Vulnerabilities**
 
-**Interviewer**: What is SQL Injection, and how do you prevent it?
 
-**Answer**:
+
 SQL Injection is a technique where an attacker can manipulate SQL queries by injecting malicious SQL code into user inputs, potentially allowing them to access, modify, or delete data from the database.
 
 **Prevention**:
@@ -2477,9 +2412,8 @@ SQL Injection is a technique where an attacker can manipulate SQL queries by inj
 
 #### **Handling Sensitive Data**
 
-**Interviewer**: How do you handle sensitive data securely?
 
-**Answer**:
+
 Handling sensitive data requires encryption, proper access control, and secure storage mechanisms to protect user information.
 
 **Best Practices**:
@@ -2507,9 +2441,8 @@ Handling sensitive data requires encryption, proper access control, and secure s
 
 #### **Content Security Policy (CSP)**
 
-**Interviewer**: What is Content Security Policy (CSP), and how does it enhance security?
 
-**Answer**:
+
 CSP is a security mechanism that helps prevent various types of attacks like XSS and data injection attacks by specifying which content sources are allowed to load on a webpage.
 
 **How it works**:
@@ -2526,9 +2459,8 @@ By using CSP, you prevent attackers from injecting malicious scripts or other re
 
 #### **Common Security Headers and Their Purposes**
 
-**Interviewer**: What are some common security headers, and what are their purposes?
 
-**Answer**:
+
 Some common security headers are:
 
 - **Strict-Transport-Security (HSTS)**: Instructs browsers to only use HTTPS for communication, protecting against downgrade attacks.
@@ -2562,9 +2494,8 @@ These headers improve the security posture of a web application by enforcing pro
 
 #### **Preventing Clickjacking Attacks**
 
-**Interviewer**: What is clickjacking, and how do you prevent it?
 
-**Answer**:
+
 Clickjacking is a malicious technique where a user is tricked into clicking on a hidden button or link by rendering it behind an iframe.
 
 **Prevention**:
@@ -2586,9 +2517,8 @@ These headers prevent attackers from tricking users into clicking on elements th
 
 #### **Input Validation and Its Importance**
 
-**Interviewer**: Why is input validation important, and how do you perform it?
 
-**Answer**:
+
 Input validation is crucial for ensuring that user input is safe, expected, and meets the application's requirements. It helps prevent injection attacks, data corruption, and crashes.
 
 **How to Perform Input Validation**:
@@ -2634,9 +2564,8 @@ By validating inputs, you ensure data integrity and reduce the risk of malicious
 
 #### **Common Performance Bottlenecks in JavaScript Applications**
 
-**Interviewer**: What are some common performance bottlenecks in JavaScript applications?
 
-**Answer**:
+
 Common performance bottlenecks in JavaScript applications include:
 
 - **Blocking the Main Thread**: Long-running synchronous JavaScript code can block the UI thread, making the application feel slow or unresponsive. This happens when heavy computations or synchronous AJAX calls are performed.
@@ -2657,9 +2586,8 @@ Common performance bottlenecks in JavaScript applications include:
 
 #### **Optimizing DOM Manipulation for Better Performance**
 
-**Interviewer**: How would you optimize DOM manipulation for better performance?
 
-**Answer**:
+
 Optimizing DOM manipulation is critical to maintaining fast web applications, especially when frequently updating the DOM. Here are some strategies:
 
 - **Batch DOM Updates**: Manipulating the DOM multiple times in a loop can be inefficient. Instead, batch all updates and perform them in a single operation.
@@ -2685,9 +2613,8 @@ Optimizing DOM manipulation is critical to maintaining fast web applications, es
 
 #### **Lazy Loading**
 
-**Interviewer**: What is lazy loading, and how can it improve performance?
 
-**Answer**:
+
 Lazy loading is a technique where resources (like images, scripts, or components) are only loaded when they are required, rather than all at once during the initial page load. This reduces the initial load time and improves perceived performance.
 
 **How to Implement Lazy Loading**:
@@ -2732,9 +2659,8 @@ Lazy loading reduces unnecessary initial load, improving both performance and us
 
 #### **Leveraging Caching Strategies for Performance Optimization**
 
-**Interviewer**: How would you leverage caching strategies to improve performance?
 
-**Answer**:
+
 Caching strategies are essential for reducing load times, especially for frequently accessed resources. Some effective caching strategies include:
 
 - **Browser Caching**: Use HTTP headers like `Cache-Control` and `ETag` to instruct browsers to cache resources, so they don't need to be fetched on every request.
@@ -2765,9 +2691,8 @@ Caching strategies are essential for reducing load times, especially for frequen
 
 #### **Tools for Measuring and Analyzing JavaScript Performance**
 
-**Interviewer**: What tools can you use to measure and analyze JavaScript performance?
 
-**Answer**:
+
 There are several tools available to measure and analyze JavaScript performance:
 
 - **Chrome DevTools**: Offers a suite of tools for analyzing performance, including the **Performance tab** for recording and analyzing runtime performance, the **Memory tab** for detecting memory leaks, and the **Network tab** for tracking network requests.
@@ -2784,9 +2709,8 @@ There are several tools available to measure and analyze JavaScript performance:
 
 #### **Optimizing Network Requests for Better Performance**
 
-**Interviewer**: How do you optimize network requests for better performance?
 
-**Answer**:
+
 Optimizing network requests is crucial to improve the loading speed and overall performance of a web application. Here are some strategies:
 
 - **Minimize HTTP Requests**: Reduce the number of requests by combining files (e.g., CSS, JavaScript) into a single file and using image sprites.
@@ -2823,9 +2747,8 @@ Here are **interview-style answers** for **Execution Context & Event Loop** conc
 
 #### **Call Stack and Execution Context**
 
-**Interviewer**: What is the call stack and execution context in JavaScript?
 
-**Answer**:
+
 The **call stack** is a data structure that keeps track of the function calls in JavaScript. When a function is called, it is added to the stack, and when it finishes executing, it is removed. It follows a **Last In, First Out (LIFO)** order.
 
 **Execution context** is an environment where JavaScript code is evaluated and executed. Each function invocation has its own execution context, and there are three main types:
@@ -2842,9 +2765,8 @@ The **execution context** has three key components:
 
 #### **Event Loop Mechanics**
 
-**Interviewer**: How does the event loop work in JavaScript?
 
-**Answer**:
+
 The **event loop** in JavaScript is responsible for executing code, collecting and processing events, and executing sub-tasks from the message queue. It allows JavaScript to perform non-blocking asynchronous operations by handling events and messages in the queue.
 
 Here's how it works:
@@ -2859,9 +2781,8 @@ The event loop allows JavaScript to handle asynchronous operations while maintai
 
 #### **Web APIs and Asynchronous Handling**
 
-**Interviewer**: What are Web APIs, and how does JavaScript handle asynchronous operations using them?
 
-**Answer**:
+
 **Web APIs** are browser-provided APIs that allow JavaScript to interact with the browser or external systems (like the DOM, `setTimeout`, `fetch`, etc.). These APIs are **not part of JavaScript itself** but are provided by the browser environment to enable features like DOM manipulation, network requests, and timers.
 
 JavaScript handles asynchronous operations by leveraging Web APIs for long-running tasks. When an asynchronous function is called (like `setTimeout`, AJAX, or `fetch`), the operation is handed off to the Web API, which will execute it in the background without blocking the main thread. Once the task completes, the callback function (associated with the task) is moved to the callback queue, and the event loop will eventually execute it.
@@ -2877,9 +2798,8 @@ setTimeout(() => {
 
 #### **Macro-tasks vs Micro-tasks**
 
-**Interviewer**: What is the difference between macro-tasks and micro-tasks in JavaScript?
 
-**Answer**:
+
 **Macro-tasks** and **micro-tasks** are two types of tasks handled by the event loop, and they have different priorities.
 
 - **Macro-tasks**: These are tasks that include operations like `setTimeout`, `setInterval`, `I/O tasks`, and rendering updates. When an asynchronous operation is completed, it places the callback in the macro-task queue.
@@ -2921,9 +2841,8 @@ Even though `setTimeout` is set to 0 ms, the **micro-task** from the Promise run
 
 #### **`setTimeout(0)` and Task Queuing**
 
-**Interviewer**: How does `setTimeout(0)` work and how does it relate to task queuing?
 
-**Answer**:
+
 When you call `setTimeout(0)`, the callback function is placed in the **macro-task queue** to be executed after the current call stack is empty. Even though `0` milliseconds is passed as the delay, JavaScript doesn't immediately execute the callback; instead, it waits until the current code finishes executing and any micro-tasks in the queue are completed.
 
 This demonstrates that `setTimeout(0)` is **not executed immediately** but rather after the current execution context, micro-tasks, and other tasks in the event loop have been processed.
@@ -2961,9 +2880,8 @@ This shows that `setTimeout(0)` is placed in the macro-task queue and is execute
 
 #### **call and apply and bind Methods**
 
-**Interviewer**: What are the differences between `call`, `apply`, and `bind` methods in JavaScript?
 
-**Answer**:
+
 In JavaScript, `call`, `apply`, and `bind` are methods that allow you to control the `this` context within functions, and they all are used to invoke a function with a specific `this` value.
 
 - **`call()`**: Immediately invokes the function and allows you to pass arguments one by one.
@@ -3004,9 +2922,8 @@ In JavaScript, `call`, `apply`, and `bind` are methods that allow you to control
 
 #### **Pure Functions and Side Effects**
 
-**Interviewer**: What are pure functions and side effects? Can you give examples?
 
-**Answer**:
+
 - **Pure Functions**:
   - A pure function is a function that always produces the same output for the same input and has no side effects (does not modify any external state).
   - **Key Characteristics**:
@@ -3033,9 +2950,8 @@ In JavaScript, `call`, `apply`, and `bind` are methods that allow you to control
 
 #### **Memoization Techniques**
 
-**Interviewer**: What is memoization and how can it optimize functions?
 
-**Answer**:
+
 **Memoization** is an optimization technique that involves caching the results of expensive function calls and reusing the cached result when the same inputs occur again. It is particularly useful in functions where the output is deterministic and depends on the inputs.
 
 - **How it works**:
@@ -3070,9 +2986,8 @@ console.log(factorial(5)); // Returns cached result
 
 #### **Debounce and Throttle Functions**
 
-**Interviewer**: What are debounce and throttle functions, and when would you use them?
 
-**Answer**:
+
 Both **debounce** and **throttle** are techniques to control the frequency of function calls, typically used with events like scrolling, resizing, or typing.
 
 - **Debounce**:
@@ -3114,9 +3029,8 @@ Both **debounce** and **throttle** are techniques to control the frequency of fu
 
 #### **Currying in JavaScript**
 
-**Interviewer**: What is currying in JavaScript, and how does it work?
 
-**Answer**:
+
 **Currying** is a technique where a function that takes multiple arguments is transformed into a sequence of functions, each taking a single argument. It allows for partial function application, where you can fix some arguments ahead of time.
 
 - **Example**:
@@ -3137,9 +3051,8 @@ In this example, the `multiply` function is curried, and we create a new functio
 
 #### **Function Composition Patterns**
 
-**Interviewer**: Can you explain function composition patterns in JavaScript?
 
-**Answer**:
+
 **Function composition** refers to the technique of combining two or more functions to create a new function. The output of one function is passed as the input to the next. It allows for creating more modular, reusable functions.
 
 - **Example**:
@@ -3163,9 +3076,8 @@ In this example, we composed `add` and `multiply` functions, which means `multip
 
 #### **Event Delegation and Bubbling**
 
-**Interviewer**: Can you explain **event delegation** and **event bubbling** in JavaScript?
 
-**Answer**:
+
 - **Event Bubbling**:
   - **Event bubbling** is a mechanism where events propagate from the target element to the root element of the DOM. This means that when an event occurs on an element, it will first trigger on that element, and then the event will bubble up to its parent elements, and so on, until it reaches the root of the document.
   - **Example**:
@@ -3190,11 +3102,10 @@ In this example, we composed `add` and `multiply` functions, which means `multip
 
 ---
 
-#### **`WeakMap` and WeakSet` Usage**
+#### **WeakMap and WeakSet Usage**
 
-**Interviewer**: What is the difference between **`WeakMap`** and **`WeakSet`**, and when would you use them?
 
-**Answer**:
+
 - **`WeakMap`**:
   - A **`WeakMap`** is a collection of key-value pairs where the keys are objects and the values can be any data type. What makes it "weak" is that the keys are held **weakly** (i.e., they do not prevent garbage collection). If the key object is garbage collected, the corresponding entry is also removed from the `WeakMap`.
   - **Use Case**: `WeakMap` is useful when you want to associate data with an object without preventing that object from being garbage collected.
@@ -3221,11 +3132,10 @@ In this example, we composed `add` and `multiply` functions, which means `multip
 
 ---
 
-#### **Difference Between `Map` and Plain Objects**
+#### **Difference Between Map and Plain Objects**
 
-**Interviewer**: What are the differences between a **`Map`** and a plain JavaScript **Object**?
 
-**Answer**:
+
 - **Key Types**:
   - A **`Map`** allows keys of any type (objects, functions, primitive types), while **objects** only allow strings (or symbols) as keys.
   
@@ -3245,9 +3155,8 @@ In this example, we composed `add` and `multiply` functions, which means `multip
 
 #### **Object Destructuring with Defaults**
 
-**Interviewer**: How does object destructuring work with default values in JavaScript?
 
-**Answer**:
+
 In **object destructuring**, you can assign **default values** for variables in case the property is `undefined`. If the property exists on the object, the value will be used; otherwise, the default value will be assigned.
 
 **Example**:
@@ -3264,9 +3173,8 @@ In this case, `age` was not defined on the `user` object, so the default value `
 
 #### **`this` Keyword Behavior**
 
-**Interviewer**: How does the `this` keyword behave in JavaScript?
 
-**Answer**:
+
 - **Global Context**: 
   - When `this` is used in the global execution context, it refers to the global object. In browsers, `this` will refer to the `window` object.
 
@@ -3317,9 +3225,8 @@ In this case, `age` was not defined on the `user` object, so the default value `
 
 #### **Usage of `super()` in Classes**
 
-**Interviewer**: How do you use `super()` in JavaScript classes?
 
-**Answer**:
+
 The `super()` function is used in a subclass to call methods on the parent class. It is required when a subclass needs to invoke a constructor or methods from the parent class.
 
 - **In a Constructor**:
@@ -3376,9 +3283,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **CommonJS vs ES Modules**
 
-**Interviewer**: Can you explain the differences between **CommonJS** and **ES Modules**?
 
-**Answer**:
+
 - **CommonJS**:
   - **CommonJS** is a module system traditionally used in Node.js. It uses `require()` to import modules and `module.exports` or `exports` to export modules.
   - **Example**:
@@ -3417,9 +3323,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Tree Shaking in Modern Bundlers**
 
-**Interviewer**: What is **tree shaking** in modern bundlers?
 
-**Answer**:
+
 - **Tree shaking** is a feature of modern JavaScript bundlers (like Webpack and Rollup) that eliminates unused code from the final bundle. It works by statically analyzing the code to determine which exports are used and which can be safely removed.
 
 - **How it Works**:
@@ -3446,9 +3351,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Polyfills and Backward Compatibility**
 
-**Interviewer**: How do **polyfills** help with **backward compatibility** in JavaScript?
 
-**Answer**:
+
 - **Polyfills** are scripts that add support for features not natively available in older browsers or environments. They ensure that modern JavaScript features (like `Promise`, `fetch`, or `Array.prototype.includes`) work on older platforms by providing implementations of those features.
 
 - **How Polyfills Work**:
@@ -3471,9 +3375,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Transpiling JavaScript Code**
 
-**Interviewer**: What does **transpiling** JavaScript code mean?
 
-**Answer**:
+
 - **Transpiling** is the process of converting modern JavaScript (ES6+) code into an older version of JavaScript (such as ES5) that is compatible with older browsers or environments. This is usually done to ensure compatibility with older browsers that don’t support new JavaScript features.
 
 - **Example**:
@@ -3498,9 +3401,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Role of Babel in Modern Development**
 
-**Interviewer**: What is the role of **Babel** in modern JavaScript development?
 
-**Answer**:
+
 - **Babel** is a widely used JavaScript transpiler that converts modern JavaScript code (ES6 and beyond) into backward-compatible versions (usually ES5) for use in older browsers. Babel also provides plugins for transforming syntax (like JSX for React) or even polyfilling missing features.
 
 - **Why Use Babel?**:
@@ -3527,9 +3429,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Webpack and Vite Bundling Process**
 
-**Interviewer**: Can you explain the **bundling process** in **Webpack** and **Vite**?
 
-**Answer**:
+
 - **Webpack**:
   - **Webpack** is a powerful and flexible bundler for JavaScript applications. It bundles all your assets (JS, CSS, images, etc.) and optimizes them for production.
   - **Process**:
@@ -3557,9 +3458,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Understanding `__proto__` and Prototypes**
 
-**Interviewer**: Can you explain the role of `__proto__` and prototypes in JavaScript?
 
-**Answer**:
+
 - In JavaScript, every object has a **prototype** from which it can inherit properties and methods. The **prototype** is itself an object that provides a blueprint for the object, and it is linked to the object via the internal property `[[Prototype]]`.
 - `__proto__` is a reference to the prototype of an object, meaning it points to the object from which it inherits. It is a way to access the prototype of an object directly.
 
@@ -3582,9 +3482,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Object create and Prototype Chains**
 
-**Interviewer**: How does `Object.create()` work and what is its role in prototype chains?
 
-**Answer**:
+
 - `Object.create()` creates a new object with a specified prototype object and optional properties. The new object’s `[[Prototype]]` (i.e., its prototype chain) is set to the object passed as an argument.
 
   **Example**:
@@ -3606,9 +3505,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **`Object.assign()` vs Spread Operator**
 
-**Interviewer**: What's the difference between `Object.assign()` and the spread operator (`...`)?
 
-**Answer**:
+
 - Both `Object.assign()` and the spread operator can be used to copy the properties of one object into another, but there are some differences:
 
   - **`Object.assign()`**:
@@ -3645,9 +3543,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **ES6 Classes and Prototypal Inheritance**
 
-**Interviewer**: How do **ES6 classes** relate to **prototypal inheritance** in JavaScript?
 
-**Answer**:
+
 - **ES6 classes** are a **syntactic sugar** over JavaScript's existing prototype-based inheritance. While classes provide a more familiar syntax for object-oriented programming (OOP), they still rely on **prototypes** under the hood.
 - An ES6 class is essentially a function, and its instances inherit from the class's prototype.
 
@@ -3676,9 +3573,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Implementing Mixins for Multiple Inheritance**
 
-**Interviewer**: How can you implement **mixins** in JavaScript to mimic multiple inheritance?
 
-**Answer**:
+
 - JavaScript doesn’t natively support **multiple inheritance**, but you can mimic it using **mixins**. A mixin is a pattern that allows objects to share functionality without using inheritance. You can create a function that copies methods from one or more source objects to a target object.
 
 - **Example** of mixins:
@@ -3723,9 +3619,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Common Causes of Memory Leaks**
 
-**Interviewer**: Can you explain some common causes of memory leaks in JavaScript?
 
-**Answer**:
+
 - **Memory leaks** occur when memory that is no longer needed is not released, leading to a gradual increase in memory usage. In JavaScript, memory leaks can happen for various reasons:
 
   - **Global Variables**: Accidentally declaring variables globally (without `var`, `let`, or `const`) can cause them to persist throughout the lifetime of the application.
@@ -3783,9 +3678,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **JavaScript Garbage Collection**
 
-**Interviewer**: How does JavaScript's **garbage collection** work?
 
-**Answer**:
+
 - JavaScript uses **automatic garbage collection** to manage memory. The JavaScript engine tracks all objects created during runtime and frees up memory when objects are no longer in use.
 
   **Key concepts**:
@@ -3811,9 +3705,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Closures and Memory Management**
 
-**Interviewer**: How do **closures** impact memory management in JavaScript?
 
-**Answer**:
+
 - **Closures** in JavaScript occur when a function retains access to variables from its lexical scope, even after that scope has finished executing. While closures are powerful and widely used, they can also affect memory management if not handled carefully.
 
   **How Closures Impact Memory**:
@@ -3862,9 +3755,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Optional Chaining Operator**
 
-**Interviewer**: What is the **Optional Chaining (`?.`) Operator** in JavaScript and when should we use it?
 
-**Answer**:
+
 - The **Optional Chaining (`?.`) Operator** allows us to access deeply nested properties of an object without having to explicitly check if each level of the object exists, preventing errors like `TypeError: Cannot read property 'x' of undefined`.
 
   **How it Works**:
@@ -3885,9 +3777,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Nullish Coalescing Operator**
 
-**Interviewer**: Can you explain the **Nullish Coalescing (`??`) Operator** and how it differs from the logical OR (`||`) operator?
 
-**Answer**:
+
 - The **Nullish Coalescing (`??`) Operator** is used to return the right-hand operand when the left-hand operand is either `null` or `undefined`. It is often used to provide a fallback value when dealing with potentially missing or uninitialized values.
 
   **Key Difference from `||`**:
@@ -3913,9 +3804,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **`in` Operator vs `hasOwnProperty()`**
 
-**Interviewer**: What's the difference between the **`in` Operator** and **`hasOwnProperty()`** method in JavaScript?
 
-**Answer**:
+
 - The **`in` Operator** checks if a property exists in an object (including properties inherited from the prototype chain).
 
   **Example**:
@@ -3942,9 +3832,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Temporal Dead Zone in `let` and const`**
 
-**Interviewer**: What is the **Temporal Dead Zone (TDZ)** in JavaScript and how does it relate to `let` and const`?
 
-**Answer**:
+
 - The **Temporal Dead Zone (TDZ)** is the time between the entering of the scope and the initialization of variables declared with `let` or `const`. During this period, the variable cannot be accessed, and attempting to do so will result in a **ReferenceError**.
 
   **Why does it happen?**
@@ -3963,9 +3852,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Labeled Statements Usage**
 
-**Interviewer**: What are **labeled statements** in JavaScript and when would you use them?
 
-**Answer**:
+
 - **Labeled statements** in JavaScript allow you to assign a label to a block of code (like a loop or a function), which can then be referenced by control flow statements (like `break` or `continue`). They are typically used in conjunction with nested loops to control the flow of execution in a more readable way.
 
   **Syntax**:
@@ -3990,9 +3878,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Type Coercion in Operations**
 
-**Interviewer**: Can you explain **type coercion** in JavaScript, particularly with the operations like `[] + []` and `{}` + []`?
 
-**Answer**:
+
 - **Type coercion** refers to JavaScript's automatic conversion of one data type to another when performing operations. This can lead to unexpected results, especially when using operators like `+`.
 
   **Examples**:
@@ -4026,9 +3913,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Map Key References with Objects**
 
-**Interviewer**: How do **map key references** work with objects in JavaScript?
 
-**Answer**:
+
 - In JavaScript, **`Map`** objects allow you to use any type of value as a key, including objects. Unlike regular objects, **`Map`** uses the **object’s reference**, not its value, as the key.
 
   **Example**:
@@ -4060,9 +3946,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 #### **Understanding Unexpected Outputs**
 
-**Interviewer**: Can you explain some common cases of **unexpected outputs** in JavaScript?
 
-**Answer**:
+
 - JavaScript’s dynamic typing and implicit type coercion can lead to some surprising behavior. Here are a few examples of unexpected outputs:
 
   - **Comparing `null` and `undefined`**:

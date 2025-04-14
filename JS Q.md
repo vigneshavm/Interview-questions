@@ -14,7 +14,6 @@
 | **Testing**                      | [Testing Types](#types-of-testing-in-software-development), [Unit vs Integration vs E2E](#Unit-Testing-vs-Integration-Testing-vs-E2E), [Writing Unit Tests](#writing-unit-tests), [Mocks and Stubs](#mocks-and-stubs-in-testing), [Testing Frameworks](#popular-javascript-testing-frameworks), [TDD](#Test-Driven-Development), [Testing Async Code](#testing-asynchronous-code-in-javascript) |
 | **Security**                    | [XSS](#cross-site-scripting-xss-and-prevention), [SQL Injection](#preventing-sql-injection-vulnerabilities), [Sensitive Data Handling](#handling-sensitive-data), [CSP](#content-security-policy-csp), [Security Headers](#common-security-headers-and-their-purposes), [Clickjacking](#preventing-clickjacking-attacks), [Input Validation](#input-validation-and-its-importance) |
 | **Performance Optimization**     | [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications), [Lazy Loading](#Lazy-Loading), [Caching](#leveraging-caching-strategies-for-performance-optimization), [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance), [Optimizing Network Requests](#optimizing-network-requests-for-better-performance), [Polyfills](#polyfills-and-backward-compatibility) , [Mixins for Inheritance](#implementing-mixins-for-multiple-inheritance)      |
-                                                                    |
 
 ---
 

@@ -520,7 +520,7 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
 
 ---
 
-### ✅ **Why Use Generics?**
+##### ✅ **Why Use Generics?**
 
 - To **write flexible and reusable code**.
 - To ensure **type safety** without having to duplicate code for different types.
@@ -528,7 +528,7 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
 
 ---
 
-### 🧪 **Generic Function Example:**
+##### 🧪 **Generic Function Example:**
 
 ```typescript
 function identity<T>(arg: T): T {
@@ -544,7 +544,7 @@ let output2 = identity<number>(100);
 
 ---
 
-### 📦 **Generic Interface Example:**
+##### 📦 **Generic Interface Example:**
 
 ```typescript
 interface Box<T> {
@@ -557,7 +557,7 @@ const numberBox: Box<number> = { value: 123 };
 
 ---
 
-### 🧱 **Generic Class Example:**
+##### 🧱 **Generic Class Example:**
 
 ```typescript
 class DataHolder<T> {

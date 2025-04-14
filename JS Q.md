@@ -288,8 +288,16 @@ Without `'use strict'`, the variable `x` would be implicitly created as a global
 ---
 
 #### **Hoisting**
-Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their containing scope during the compile phase. 
-It’s important to note that while function declarations and `var` declarations are hoisted, their values or initializations are not hoisted.
+
+- **Hoisting** is a JavaScript mechanism where:
+  - Variable and function **declarations** are moved to the **top of their containing scope** during the compile phase.
+- Key points to remember:
+  - **Function declarations** are hoisted **with their definitions**, so you can call them before they appear in the code.
+  - **`var` declarations** are hoisted, **but their initial values are not**.
+    - This means variables declared with `var` are initialized as `undefined` at the top.
+  - Variables declared with **`let`** and **`const`** are **not initialized during hoisting**.
+    - They exist in a **Temporal Dead Zone (TDZ)** until their declaration is evaluated. Accessing them before declaration results in a **ReferenceError**.
+
 
 **Example:**
 ```javascript

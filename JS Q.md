@@ -1180,7 +1180,7 @@ fetchData();
 ---
 
 
-##  async/await vs Promises
+####  async/await vs Promises
 
 ```js
 function getData() {

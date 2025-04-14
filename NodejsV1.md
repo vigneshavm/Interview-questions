@@ -11,12 +11,13 @@
 | **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
 | **API Design & Development**               | [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure), [Status codes](#status-codes)                   |
 | **Error Handling & Validation**            | [Error handling in REST APIs](#error-handling-in-rest-apis), [Error Handling](#error-handling), [Data Validation](#data-validation)                                            |
-| **Security & Authentication**              
 | **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis)                                                                           |
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
 | **Asynchronous Programming**               | [Promise vs Async/Await](#promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise.all() vs Promise.race()](#promiseall-vs-promiserace)                               |
 | **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                           |
-| **Microservices & Communication**          | [Microservices Communication](#microservices-communication),            
+| **Microservices & Communication**          | [Microservices Communication](#microservices-communication),                                                                    |
+
+
 
 
 ---

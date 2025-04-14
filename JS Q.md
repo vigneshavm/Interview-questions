@@ -217,6 +217,8 @@ console.log(add(2, 3)); // ✅ 5
 
 ### **JavaScript Fundamentals**
 
+#### **let and var and const**
+
 ---
 
 

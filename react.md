@@ -252,6 +252,7 @@ const theme = useContext(ThemeContext);
 ## Higher-Order Components (HOCs) 
 
 A Higher-Order Component is a function that **takes a component and returns a new component** with added features.
+A HOC is a function that takes a component and returns a new one with added behavior.
 
 ```jsx
 function withLogger(WrappedComponent) {

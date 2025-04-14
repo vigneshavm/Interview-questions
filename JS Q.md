@@ -314,23 +314,28 @@ In this example, `a` is hoisted but only the declaration (`var a;`) is hoisted, 
 ---
 
 #### **Lexical Scoping**
-Lexical scoping refers to the fact that in JavaScript, the scope of a variable is determined by its location in the source code, i.e., where it was declared. Inner functions have access to the outer function’s variables, but the reverse is not true.
+- **Lexical scoping** means that the scope of a variable is determined by its **position in the source code** (i.e., where it is written).
+- Inner functions have access to variables **defined in their outer (parent) scopes**.
+- This behavior is fixed **at the time of writing code**, not during execution.
+- JavaScript uses **lexical scoping** to resolve variable references.
 
-**Example:**
+---
+
+### ✅ **Example:**
 ```javascript
 function outer() {
-    let outerVar = "I am outside!";
-    
-    function inner() {
-        console.log(outerVar); // I can access outerVar
-    }
-    
-    inner();
-}
+  let name = "Lexical";
 
-outer(); // Outputs: I am outside!
+  function inner() {
+    console.log(name); // Has access to 'name' from outer scope
+  }
+
+  inner();
+}
+outer();
 ```
-In this case, `inner()` is able to access `outerVar` because it is lexically scoped to the `outer` function.
+
+In the example above, `inner()` can access `name` because it's **lexically inside** `outer()`.
 
 ---
 

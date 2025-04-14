@@ -581,19 +581,85 @@ console.log(holder.getData()); // 42
 #### **Union Types**
 
 
- Union types in TypeScript allow a variable to hold one of several types. It’s useful when a variable could accept different types of values, and we want to ensure type safety while maintaining flexibility.
+ 
+In TypeScript, **Union Types** allow a variable or parameter to hold **multiple types**. This gives you more flexibility in the types a variable can accept while still maintaining type safety.
 
-**Example**:  
+---
+
+### ✅ **Why Use Union Types?**
+
+- To specify that a variable can accept multiple types, which is useful when you expect different types of values but still want to enforce certain constraints.
+- Helps with **flexibility** while avoiding the use of `any`.
+
+---
+
+### 📦 **Union Types Syntax:**
+
+- The **pipe symbol (`|`)** is used to define Union Types.
+
 ```typescript
-function printId(id: number | string): void {
-  console.log(id);
+let id: string | number;
+
+id = "123"; // Valid
+id = 123;   // Valid
+id = true;  // Error: Type 'boolean' is not assignable to type 'string | number'.
+```
+
+---
+
+### 🧪 **Union Types with Functions:**
+
+```typescript
+function printId(id: string | number): void {
+  console.log(`ID: ${id}`);
 }
 
-printId(123); // OK
-printId("abc"); // OK
-printId(true); // Error: Argument of type 'boolean' is not assignable to parameter of type 'string | number'
+printId("abc");  // Valid
+printId(123);    // Valid
+printId(true);   // Error: Type 'boolean' is not assignable to type 'string | number'.
 ```
-With union types, TypeScript ensures that only valid types are passed.
+
+---
+
+### 📦 **Union Types with Arrays:**
+
+You can use Union Types with arrays to specify that the elements of the array can be of different types.
+
+```typescript
+let items: (string | number)[] = ["apple", 10, "banana", 20];
+items.push(30); // Valid
+items.push(true); // Error: Argument of type 'boolean' is not assignable to parameter of type 'string | number'.
+```
+
+---
+
+### 🧱 **Type Narrowing with Union Types:**
+
+TypeScript allows you to narrow down the type of a variable using **type guards** (like `typeof` or `instanceof`).
+
+```typescript
+function printLength(value: string | string[]): void {
+  if (typeof value === "string") {
+    console.log(value.length);  // `value` is now narrowed to `string`
+  } else {
+    console.log(value.length);  // `value` is now narrowed to `string[]`
+  }
+}
+
+printLength("Hello");   // Valid
+printLength(["Hello"]); // Valid
+```
+
+---
+
+### 💡 **Common Use Cases for Union Types:**
+
+- Accepting **multiple possible types** for function parameters (e.g., strings or numbers).
+- **Working with data** that might be in different formats or types (e.g., API responses).
+- Handling **optional values** (e.g., `string | undefined`).
+
+---
+
 
 ---
 

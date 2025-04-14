@@ -371,6 +371,17 @@ app.listen(3000);
 
 ---
 
+## **CORS Middleware**
+
+Use **CORS** to manage cross-origin requests, restricting access to certain origins.
+
+```js
+const cors = require('cors');
+app.use(cors({ origin: "http://example.com" }));
+```
+
+---
+
 ##  **Environment Variables and dotenv**
 
  
@@ -654,16 +665,7 @@ Worker threads offload CPU-intensive tasks to separate threads, ensuring the mai
 
 ---
 
-## **CORS Middleware**
 
-Use **CORS** to manage cross-origin requests, restricting access to certain origins.
-
-```js
-const cors = require('cors');
-app.use(cors({ origin: "http://example.com" }));
-```
-
----
 
 ## **Caching Strategies**
 

@@ -446,20 +446,7 @@ React Router is used for navigation in React apps, enabling multi-page experienc
 
 ---
 
-## Higher-Order Component (HOC)
-**Interview Answer:**  
-A HOC is a function that takes a component and returns a new one with added behavior.
 
-```jsx
-function withLogger(WrappedComponent) {
-  return function Enhanced(props) {
-    console.log("Props: ", props);
-    return <WrappedComponent {...props} />;
-  };
-}
-```
-
----
 
 ## Lifting State Up
 **Interview Answer:**  

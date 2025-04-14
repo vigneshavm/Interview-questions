@@ -219,23 +219,15 @@ console.log(add(2, 3)); // ✅ 5
 
 ---
 
-#### **let and var and const**
-- **`let`**: Introduced in ES6, `let` allows you to declare variables that can be reassigned and is block-scoped. 
-- This means the variable exists within the block, statement, or expression where it’s declared. - `let` helps avoid issues with variable redeclaration that arise with `var`.
 
-**Example:**
-```javascript
-if (true) {
-    let x = 10;
-    console.log(x); // 10
-}
-console.log(x); // ReferenceError: x is not defined
-```
-In this example, `x` is scoped to the `if` block and cannot be accessed outside it.
+| **Keyword** | **Scope**              | **Reassignment Allowed** | **Hoisted**                  | **Common Use Case**                                  | **Example Behavior**                                 |
+|-------------|------------------------|---------------------------|------------------------------|-------------------------------------------------------|------------------------------------------------------|
+| `var`       | Function/global scope  | ✅ Yes                    | ✅ Yes (initialized as `undefined`) | Legacy code, but prone to scope-related bugs          | `console.log(y)` outside block prints **20**         |
+| `let`       | Block-scoped           | ✅ Yes                    | ⚠️ Yes (but not initialized)   | Mutable variables within a specific block             | `console.log(x)` outside block gives **ReferenceError** |
+| `const`     | Block-scoped           | ❌ No                     | ⚠️ Yes (but not initialized)   | Constants — values that shouldn’t change              | `z = 40` gives **TypeError**                         |
 
-- **`var`**: `var` is function-scoped (or globally scoped if declared outside a function), 
-- meaning it can be accessed even outside the block where it's declared. 
-- This leads to some unexpected behavior, especially when used in loops or conditional blocks.
+
+
 
 **Example:**
 ```javascript
@@ -246,9 +238,15 @@ console.log(y); // 20
 ```
 Here, `y` is accessible outside the block because `var` is function-scoped.
 
-- **`const`**: `const` is also block-scoped, 
-- but it is used to declare variables whose values cannot be reassigned after initialization.
-- It is useful when you want to create constants.
+**Example:**
+```javascript
+if (true) {
+    let x = 10;
+    console.log(x); // 10
+}
+console.log(x); // ReferenceError: x is not defined
+```
+In this example, `x` is scoped to the `if` block and cannot be accessed outside it.
 
 **Example:**
 ```javascript

@@ -497,6 +497,23 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 
 ---
 
+
+
+
+## JWT
+JWT is a compact token format used for securely transmitting info between parties. It’s signed and optionally encrypted.
+
+---
+
+## **JWT Auth Works**
+1. User logs in → Server validates credentials
+2. Server generates a token (signed with a secret)
+3. Client sends the token with each request (usually in `Authorization` header)
+4. Server verifies the token before processing the request
+
+---
+
+
 ## **JWT Flow**
 
 - User logs in with credentials
@@ -1111,20 +1128,6 @@ src/
 
 ---
 
-
-
-## JWT
-JWT is a compact token format used for securely transmitting info between parties. It’s signed and optionally encrypted.
-
----
-
-## **JWT Auth Works**
-1. User logs in → Server validates credentials
-2. Server generates a token (signed with a secret)
-3. Client sends the token with each request (usually in `Authorization` header)
-4. Server verifies the token before processing the request
-
----
 
 
 

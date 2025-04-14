@@ -16,7 +16,7 @@
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
 | **Asynchronous Programming**               | [Promise vs Async/Await](#promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise.all() vs Promise.race()](#promiseall-vs-promiserace)                               |
 | **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                           |
-| **Microservices & Communication**          | [Microservices Communication](#microservices-communication), [Scalability issues](#scalability-issues)                                                                         |
+| **Microservices & Communication**          | [Microservices Communication](#microservices-communication),                                                                    |
 | **Security Features**                      | [CORS](#cors), [Secure REST APIs](#secure-rest-apis), [JWT](#jwt), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                     |
 
 
@@ -966,7 +966,7 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
 - **`Promise.race()`**: Resolves when **the first** promise resolves or rejects.
 
 
-##  **Scalability issues ?**
+##  **Scalability issues**
    - **Clustering**: Use the `cluster` module to utilize multi-core systems by spawning worker processes.
    - **Load Balancing**: Distribute incoming requests across multiple servers using NGINX, HAProxy, or AWS Elastic Load Balancer.
    - **Horizontal Scaling**: Deploy multiple instances of the application using containers (e.g., Docker) and orchestration tools like Kubernetes.

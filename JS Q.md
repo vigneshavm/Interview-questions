@@ -6,7 +6,7 @@
 | [Hoisting](#hoisting)                                            | [Union Types](#union-types)                                 | [Default Parameters](#default-parameters)                       | [Pros and Cons of Promises](#pros-and-cons-of-promises)                      | [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)   | [Module Pattern](#module-pattern)                         |
 | [Lexical Scoping](#lexical-scoping)                              | [Type Inference](#type-inference)                           | [Higher-Order Functions](#higher-order-functions)               | [Promise.all()](#promiseall)                                                 | [Static Class Members](#static-class-members)                     | [Observer Pattern](#observer-pattern)                     |
 | [Scope](#scope)                                                  | [Mapped Types](#mapped-types)                               | [Callback Functions](#callback-functions)                    |   [Event Propagation](#event-propagation)| [Inheritance](#inheritance) | [Dependency Injection](#dependency-injection)             |
-| [Global and Function and Block Scope](#global-and-function-and-block-scope) | [Custom Error](#custom-error)                               | [Closures & Private Variables](#Closures)                       | [Extending Built-in Objects](#extending-built-in-objects)         | [Prototype Pattern](#prototype-pattern)                   | [Event Loop & Call Stack](#event-loop--call-stack)  |
+| [Global and Function and Block Scope](#global-and-function-and-block-scope) | [Custom Error](#custom-error)                               | [Closures](#Closures)                       | [Extending Built-in Objects](#extending-built-in-objects)         | [Prototype Pattern](#prototype-pattern)                   | [Event Loop & Call Stack](#event-loop--call-stack)  |
 | [Data Types](#data-types)                                        | [Request/Response Types](#requestresponse-types-with-typescript) | [Immediately Invoked Function Expressions](#immediately-invoked-function-expressions) | [Async/Await](#asyncawait)                                                  | [Getters and Setters](#getters-and-setters)                       | [call and apply and bind Methods](#call-and-apply-and-bind-Methods)    | 
 | [Symbol](#symbol)                                                | [Decorators](#decorators)                                   | [JavaScript Modules (`import/export`)](#javascript-modules-importexport) | [Handling Async Errors](#Handling-Async-Errors)                              | [Object.freeze and seal and preventExtensions](#objectfreeze-and-seal-and-preventExtensions) | [Pure Functions and Side Effects](#pure-functions-and-side-effects)    |                                                            |
 | [null and undefined and undeclared](#null-and-undefined-and-undeclared) | [Duck Typing](#duck-typing)                                  | [Normal Function vs Arrow Function](#normal-function-vs-arrow-function)  | [Microtask Queue](#microtask-queue)                                          |                                                                 | [Memoization Techniques](#memoization-techniques)                      |                                                                 |
@@ -34,7 +34,7 @@
 |----------------------------------------------------------------|-------------------------------------------------------------------- |---------------------------------------------------------------------------------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------|-----------------------------------------------------|
 | [Event Delegation and Bubbling](#event-delegation-and-bubbling) | [CommonJS vs ES Modules](#commonjs-vs-es-modules)                   | [Understanding `__proto__` and Prototypes](#understanding-__proto__-and-prototypes)         | [Common Causes of Memory Leaks](#common-causes-of-memory-leaks) | [Optional Chaining (`?.`) Operator](#optional-chaining-operator)              | [Type Coercion in Operations (`[] + [] and {}` + [])](#type-coercion-in-operations) |
  | [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)         | [Tree Shaking in Modern Bundlers](#tree-shaking-in-modern-bundlers) | [Object.create() and Prototype Chains](#object-create-and-prototype-chains)      | [JavaScript Garbage Collection](#javascript-garbage-collection) | [Nullish Coalescing (`??`) Operator](#nullish-coalescing-operator)            | [Map Key References with Objects](#map-key-references-with-objects)           |
-| [Difference Between Map and Plain Objects](#difference-between-map-and-plain-objects) | [Polyfills and Backward Compatibility](#polyfills-and-backward-compatibility)  | [Object.assign()` vs Spread Operator](#objectassign-vs-spread-operator)                     | [Closures and Memory Management](#closures-and-memory-management) | [in` Operator vs `hasOwnProperty()](#in-operator-vs-hasownproperty)           | [Understanding Unexpected Outputs](#understanding-unexpected-outputs)         |
+| [Difference Between Map and Plain Objects](#difference-between-map-and-plain-objects) | [Polyfills and Backward Compatibility](#polyfills-and-backward-compatibility)  | [Object.assign()` vs Spread Operator](#objectassign-vs-spread-operator)                     |  | [in` Operator vs `hasOwnProperty()](#in-operator-vs-hasownproperty)           | [Understanding Unexpected Outputs](#understanding-unexpected-outputs)         |
 | [Object Destructuring with Defaults](#object-destructuring-with-defaults) | [Transpiling JavaScript Code](#transpiling-javascript-code)        | [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance)           |                                                                | [Temporal Dead Zone in `let` and const](#temporal-dead-zone-in-let-and-const) |                                                      |
  | [this Keyword Behavior](#this-keyword-behavior)                | [Role of Babel in Modern Development](#role-of-babel-in-modern-development)  | [Implementing Mixins for Multiple Inheritance](#implementing-mixins-for-multiple-inheritance) |                                                              | [Labeled Statements Usage](#labeled-statements-usage)                         |                                                      |
  | [Usage of super() in Classes](#usage-of-super-in-classes)      | [Webpack and Vite Bundling Process](#webpack-and-vite-bundling-process) |
@@ -960,6 +960,52 @@ Here, `count` is private, and the `increment` and `decrement` methods form a clo
 
 ---
 
+
+#### **Closures and Memory Management**
+
+
+
+- **Closures** in JavaScript occur when a function retains access to variables from its lexical scope, even after that scope has finished executing. While closures are powerful and widely used, they can also affect memory management if not handled carefully.
+
+  **How Closures Impact Memory**:
+  - **Retention of Variables**: When a function creates a closure, it retains access to the variables from its outer scope, even after the outer function has returned. This means that as long as the closure exists, the variables it references will remain in memory.
+  
+  - **Potential Memory Leaks**: If closures accidentally hold references to large objects, DOM elements, or data that is no longer needed, it can prevent those objects from being garbage collected, leading to memory leaks.
+  
+  **Example** of Closure:
+  ```javascript
+  function createCounter() {
+    let count = 0;
+    return function() {
+      count++;
+      console.log(count);
+    };
+  }
+
+  const counter = createCounter();
+  counter(); // Output: 1
+  counter(); // Output: 2
+  // Even though `createCounter` has finished execution, the `count` variable is still retained by the closure.
+  ```
+
+  **Memory Leak Example with Closure**:
+  ```javascript
+  function createLargeObject() {
+    const largeObject = new Array(1000000).fill(0);
+    return function() {
+      console.log(largeObject);
+    };
+  }
+
+  const leak = createLargeObject();
+  // The `largeObject` is still referenced by the closure, preventing it from being garbage collected.
+  ```
+
+  - **Best Practices**:
+    - Avoid unnecessary closures that keep large objects or resources in memory.
+    - If closures are used to encapsulate functionality, ensure that references to unused objects or variables are cleared when no longer needed.
+
+---
 
 
 #### **Potential Pitfalls of Closures**
@@ -3706,51 +3752,7 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 ---
 
-#### **Closures and Memory Management**
 
-
-
-- **Closures** in JavaScript occur when a function retains access to variables from its lexical scope, even after that scope has finished executing. While closures are powerful and widely used, they can also affect memory management if not handled carefully.
-
-  **How Closures Impact Memory**:
-  - **Retention of Variables**: When a function creates a closure, it retains access to the variables from its outer scope, even after the outer function has returned. This means that as long as the closure exists, the variables it references will remain in memory.
-  
-  - **Potential Memory Leaks**: If closures accidentally hold references to large objects, DOM elements, or data that is no longer needed, it can prevent those objects from being garbage collected, leading to memory leaks.
-  
-  **Example** of Closure:
-  ```javascript
-  function createCounter() {
-    let count = 0;
-    return function() {
-      count++;
-      console.log(count);
-    };
-  }
-
-  const counter = createCounter();
-  counter(); // Output: 1
-  counter(); // Output: 2
-  // Even though `createCounter` has finished execution, the `count` variable is still retained by the closure.
-  ```
-
-  **Memory Leak Example with Closure**:
-  ```javascript
-  function createLargeObject() {
-    const largeObject = new Array(1000000).fill(0);
-    return function() {
-      console.log(largeObject);
-    };
-  }
-
-  const leak = createLargeObject();
-  // The `largeObject` is still referenced by the closure, preventing it from being garbage collected.
-  ```
-
-  - **Best Practices**:
-    - Avoid unnecessary closures that keep large objects or resources in memory.
-    - If closures are used to encapsulate functionality, ensure that references to unused objects or variables are cleared when no longer needed.
-
----
 
 ### Optional Chaining & Advanced Operators
 

@@ -43,6 +43,14 @@
 | [Usage of super() in Classes](#usage-of-super-in-classes)         | [Webpack and Vite Bundling Process](#webpack-and-vite-bundling-process) |  | &nbsp;                                                                | &nbsp;                                                  |
 
 
+| **Advanced JavaScript Features**                                  | **Modules, Bundling, and Transpiling**                           | **Prototypes and Inheritance**                                               | **Optional Chaining & Advanced Operators**                                 | **Miscellaneous**                                      |
+|-------------------------------------------------------------------|------------------------------------------------------------------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------|--------------------------------------------------------|
+| [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)           | [CommonJS vs ES Modules](#commonjs-vs-es-modules)               | [Understanding `__proto__` and Prototypes](#understanding-__proto__-and-prototypes) | [Type Coercion in Operations (`[] + [] and {}` + [])](#type-coercion-in-operations) | [Map Key References with Objects](#map-key-references-with-objects) |
+| [Tree Shaking in Modern Bundlers](#tree-shaking-in-modern-bundlers) |    | [Difference Between Map and Plain Objects](#difference-between-map-and-plain-objects) | [Polyfills and Backward Compatibility](#polyfills-and-backward-compatibility) |
+| [Transpiling JavaScript Code](#transpiling-javascript-code)     | [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance) | [Temporal Dead Zone in `let` and const](#temporal-dead-zone-in-let-and-const) | [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty) |
+| [Role of Babel in Modern Development](#role-of-babel-in-modern-development) | [Implementing Mixins for Multiple Inheritance](#implementing-mixins-for-multiple-inheritance) | [Labeled Statements Usage](#labeled-statements-usage)                         | [Understanding Unexpected Outputs](#understanding-unexpected-outputs) |
+| [Usage of super() in Classes](#usage-of-super-in-classes)         | [Webpack and Vite Bundling Process](#webpack-and-vite-bundling-process) |  | &nbsp;                                                                | &nbsp;                                                  |
+
 
 
 

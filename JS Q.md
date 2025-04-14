@@ -586,14 +586,14 @@ In TypeScript, **Union Types** allow a variable or parameter to hold **multiple 
 
 ---
 
-### ✅ **Why Use Union Types?**
+##### ✅ **Why Use Union Types?**
 
 - To specify that a variable can accept multiple types, which is useful when you expect different types of values but still want to enforce certain constraints.
 - Helps with **flexibility** while avoiding the use of `any`.
 
 ---
 
-### 📦 **Union Types Syntax:**
+##### 📦 **Union Types Syntax:**
 
 - The **pipe symbol (`|`)** is used to define Union Types.
 
@@ -607,7 +607,7 @@ id = true;  // Error: Type 'boolean' is not assignable to type 'string | number'
 
 ---
 
-### 🧪 **Union Types with Functions:**
+##### 🧪 **Union Types with Functions:**
 
 ```typescript
 function printId(id: string | number): void {
@@ -621,7 +621,7 @@ printId(true);   // Error: Type 'boolean' is not assignable to type 'string | nu
 
 ---
 
-### 📦 **Union Types with Arrays:**
+##### 📦 **Union Types with Arrays:**
 
 You can use Union Types with arrays to specify that the elements of the array can be of different types.
 
@@ -633,7 +633,7 @@ items.push(true); // Error: Argument of type 'boolean' is not assignable to para
 
 ---
 
-### 🧱 **Type Narrowing with Union Types:**
+##### 🧱 **Type Narrowing with Union Types:**
 
 TypeScript allows you to narrow down the type of a variable using **type guards** (like `typeof` or `instanceof`).
 
@@ -652,7 +652,7 @@ printLength(["Hello"]); // Valid
 
 ---
 
-### 💡 **Common Use Cases for Union Types:**
+##### 💡 **Common Use Cases for Union Types:**
 
 - Accepting **multiple possible types** for function parameters (e.g., strings or numbers).
 - **Working with data** that might be in different formats or types (e.g., API responses).

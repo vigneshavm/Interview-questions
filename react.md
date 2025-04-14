@@ -432,7 +432,7 @@ const LazyComponent = React.lazy(() => import("./Component"));
 
 
 ## React Router
-**Interview Answer:**  
+****  
 React Router is used for navigation in React apps, enabling multi-page experiences in SPAs.
 
 ```jsx
@@ -449,7 +449,7 @@ React Router is used for navigation in React apps, enabling multi-page experienc
 
 
 ## Lifting State Up
-**Interview Answer:**  
+****  
 Lifting state up means moving state to the nearest common ancestor of two or more components to share it.
 
 ```jsx
@@ -468,7 +468,7 @@ function Parent() {
 ---
 
 ## Error Boundaries
-**Interview Answer:**  
+****  
 Error boundaries catch JavaScript errors in child components and display a fallback UI instead of crashing the whole app.
 
 ```jsx

@@ -6,7 +6,7 @@
 | **Node.js Architecture**                   | [Node.js Architecture](#nodejs-architecture), [Node.js handle multiple requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature), [Scalability issues](#scalability-issues)                                       |
 | **Concurrency & Processes**                | [Event Loop](#event-loop), [Worker Threads](#worker-threads), [Child Processes](#child-processes), [Cluster Module](#cluster-module)                                            |
 | **Event Handling**                         | [Event Emitters](#event-emitters), [Process Object](#process-object), [Event Emitters](#event-emitters)                                                                         |
-| **REST API & Security**                    | [Secure Node.js App](#secure-nodejs-app), [REST API](#rest-api), [HTTP methods & use cases](#http-methods--use-cases), [JWT](#jwt)                                               |
+| **REST API & Security**                    | [Secure Node.js App](#secure-nodejs-app), [REST API](#rest-api), [HTTP methods & use cases](#http-methods--use-cases), [JWT](#jwt) , [CORS](#cors), [Secure REST APIs](#secure-rest-apis), [JWT](#jwt), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                  |
 | **Authentication & Authorization**         | [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers), [Protected Route](#protected-route), [Role-Based Access Control](#role-based-access-control-rbac)                    |
 | **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
 | **API Design & Development**               | [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure), [Status codes](#status-codes)                   |
@@ -17,7 +17,6 @@
 | **Asynchronous Programming**               | [Promise vs Async/Await](#promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise.all() vs Promise.race()](#promiseall-vs-promiserace)                               |
 | **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                           |
 | **Microservices & Communication**          | [Microservices Communication](#microservices-communication),                                                                    |
-| **Security Features**                      | [CORS](#cors), [Secure REST APIs](#secure-rest-apis), [JWT](#jwt), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                     |
 
 
 

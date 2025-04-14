@@ -8,8 +8,8 @@
 | [Single-Threaded Nature](#single-threaded-nature) | [Handling CPU-Intensive Tasks](#handling-cpu-intensive-tasks) | [Event Loop](#event-loop) | [Event Emitters](#event-emitters)  [Process Object](#process-object) | [Child Processes](#child-processes) | [Cluster Module](#cluster-module) | [Process & Threads](#process--threads) | [Middleware](#middleware) |
 | [Worker Threads](#worker-threads) | [Scalability issues](#scalability-issues) | [Data consistency across distributed services](#data-consistency-across-distributed-services) | [Performance Optimization](#performance-optimization) | [Load Balancing](#load-balancing) | [Manage security](#manage-security) | [Secure REST APIs](#secure-rest-apis) |[Type safety across layers](#type-safety-across-layers) |
 | [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers) | [Secure Node.js App](#secure-nodejs-app) | [REST API](#rest-api) | [HTTP methods & use cases](#http-methods--use-cases) | [RESTful structure](#restful-structure) | [REST API design principles](#rest-api-design-principles) | [Versioning in REST APIs](#versioning-in-rest-apis) | [Handling Large File Uploads](#handling-large-file-uploads) |
-| [Pagination REST API](#implement-pagination-in-a-rest-api)| [Status codes](#status-codes) | [Error handling in REST APIs](#error-handling-in-rest-apis) | [Clean RESTful Folder Structure](#clean-restful-folder-structure) | [JWT](#jwt) | [JWT Auth Works](#jwt-auth-works) | [Protected Route](#protected-route) | [Role-Based Access Control](#role-based-access-control-rbac) | [Refresh Tokens](#refresh-tokens) |
-| [Authentication vs Authorization](#authentication-vs-authorization) | [JWT Flow](#jwt-flow)| [WebSockets](#websockets-socketio-basics) | [CORS](#cors) | [Rate Limiting APIs](#rate-limiting-apis) | [Environment Variables and dotenv](#environment-variables-and-dotenv)| [Node.js with Redis (Caching)](#nodejs-with-redis-caching) | [Caching Strategies](#caching-strategies)| [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
+| [Pagination REST API](#implement-pagination-in-a-rest-api)| [Status codes](#status-codes) | [Error handling in REST APIs](#error-handling-in-rest-apis) | [Clean RESTful Folder Structure](#clean-restful-folder-structure) | [JWT](#jwt) |  [Protected Route](#protected-route) | [Role-Based Access Control](#role-based-access-control-rbac) | [Refresh Tokens](#refresh-tokens) |
+| [Authentication vs Authorization](#authentication-vs-authorization) | [WebSockets](#websockets-socketio-basics) | [CORS](#cors) | [Rate Limiting APIs](#rate-limiting-apis) | [Environment Variables and dotenv](#environment-variables-and-dotenv)| [Node.js with Redis (Caching)](#nodejs-with-redis-caching) | [Caching Strategies](#caching-strategies)| [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
 | [Error Handling](#error-handling)| [Dependency Injection](#dependency-injection) | [Microservices Communication](#microservices-communication)| [Database Transactions](#database-transactions) | [Data Validation](#data-validation) | [Asynchronous operations](#asynchronous-operations) | [Callback Hell](#callback-hell) | [Promise vs Async/Await](#promise-vs-asyncawait) | [Promise.all() vs Promise.race()](#promiseall-vs-promiserace) | [Express request/response objects](#express-requestresponse-objects) 
   
 
@@ -652,7 +652,24 @@ curl http://localhost:4000/protected \
 -H "Authorization: Bearer <your_token_here>"
 ```
 
+## **JWT in Cookies vs Headers**
 
+| Method | ✅ Pros | ❌ Cons |
+|--------|--------|---------|
+| **Authorization Header** | Simple, stateless, widely used in APIs | Exposed to JS (XSS risk) |
+| **HTTP-only Cookie** | More secure against XSS (not accessible via JS) | CSRF protection required |
+
+---
+
+**Example: Set JWT in Cookie**
+```ts
+res.cookie('accessToken', token, {
+  httpOnly: true,
+  secure: true,     // set to true in production
+  sameSite: 'strict',
+  maxAge: 15 * 60 * 1000, // 15 min
+});
+```
 ---
 
 ## **Secure Node.js App**
@@ -1228,24 +1245,6 @@ export const refreshToken = (req: Request, res: Response) => {
 
 ---
 
-## **JWT in Cookies vs Headers**
-
-| Method | ✅ Pros | ❌ Cons |
-|--------|--------|---------|
-| **Authorization Header** | Simple, stateless, widely used in APIs | Exposed to JS (XSS risk) |
-| **HTTP-only Cookie** | More secure against XSS (not accessible via JS) | CSRF protection required |
-
----
-
-**Example: Set JWT in Cookie**
-```ts
-res.cookie('accessToken', token, {
-  httpOnly: true,
-  secure: true,     // set to true in production
-  sameSite: 'strict',
-  maxAge: 15 * 60 * 1000, // 15 min
-});
-```
 
 
 

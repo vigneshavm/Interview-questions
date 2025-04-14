@@ -3,7 +3,7 @@
 | **Category**                               | **Topics**                                                                                                                                                                        |
 |--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Node.js Basics**                         | [Create Node App using JS](#create-node-app-using-js), [Create Node App using TypeScript](#create-node-app-using-typescript), [Node.js with TypeScript](#nodejs-with-typescript) |
-| **Node.js Architecture**                   | [Node.js Architecture](#nodejs-architecture), [Single-Threaded Nature](#single-threaded-nature), [Scalability issues](#scalability-issues)                                       |
+| **Node.js Architecture**                   | [Node.js Architecture](#nodejs-architecture), [Node.js handle multiple requests](nodejs-handle-multiple-requests) [Single-Threaded Nature](#single-threaded-nature), [Scalability issues](#scalability-issues)                                       |
 | **Concurrency & Processes**                | [Event Loop](#event-loop), [Worker Threads](#worker-threads), [Child Processes](#child-processes), [Cluster Module](#cluster-module)                                            |
 | **Event Handling**                         | [Event Emitters](#event-emitters), [Process Object](#process-object), [Event Emitters](#event-emitters)                                                                         |
 | **REST API & Security**                    | [Secure Node.js App](#secure-nodejs-app), [REST API](#rest-api), [HTTP methods & use cases](#http-methods--use-cases), [JWT](#jwt)                                               |
@@ -79,7 +79,77 @@ tsconfig.json
 - Designed for non-blocking, event-driven, and single-threaded applications.
 - Ideal for scalable network applications.
 
- Code Sample
+Node.js is **event-driven, single-threaded, and asynchronous**, built on top of:
+
+- **Chrome's V8 engine** – executes JavaScript code.
+- **libuv** – handles the event loop, thread pool, and asynchronous I/O.
+- **C/C++ bindings** – for low-level system operations.
+
+---
+
+### 🧠 **Core Components**
+
+| Component         | Role                                                                 |
+|------------------|----------------------------------------------------------------------|
+| **V8 Engine**     | Converts JS to machine code (Just-in-Time compilation)               |
+| **Event Loop**    | Orchestrates execution, handles non-blocking I/O using events/callbacks |
+| **libuv**         | Provides multi-threaded support for I/O tasks, timers, etc.          |
+| **Thread Pool**   | Background worker threads to offload blocking I/O operations         |
+| **Callback Queue**| Stores callbacks ready for execution                                 |
+| **Microtask Queue**| Promises, process.nextTick tasks                                     |
+| **Node APIs**     | HTTP, fs, crypto, etc. expose native functionality to JS layer       |
+
+---
+
+### 🔄 **Node.js Execution Flow (In Detail)**
+
+#### 1. **Incoming Request**
+   - Client sends an HTTP request to the server.
+
+#### 2. **Call Stack Execution**
+   - If the code is synchronous, it runs immediately on the **call stack**.
+
+#### 3. **Asynchronous Code Delegation**
+   - For async tasks (e.g., file system access, DB calls, timers, crypto), Node.js delegates them to:
+     - `libuv` thread pool (for file I/O, DNS, crypto, etc.)
+     - OS kernel (e.g., TCP sockets) for network operations.
+
+#### 4. **Event Loop Phases**
+Node.js Event Loop runs in **phases**, executing tasks based on their type:
+
+| Phase                 | Handles                                 |
+|----------------------|------------------------------------------|
+| **1. Timers**        | `setTimeout`, `setInterval` callbacks     |
+| **2. Pending Callbacks** | Some system-level operations              |
+| **3. Idle/Prepare**  | Internal use                             |
+| **4. Poll**          | Checks I/O (file, network, etc.)         |
+| **5. Check**         | Executes `setImmediate()` callbacks       |
+| **6. Close Callbacks** | Handles things like `socket.on('close')` |
+
+💡 **Microtasks queue** (`Promise.then`, `process.nextTick`) is handled **after every phase**, giving them high priority.
+
+#### 5. **Callback Execution**
+   - Once an async task completes, its callback is queued in the **Callback Queue** (or Microtask Queue).
+   - Event Loop picks it up when the call stack is clear.
+
+#### 6. **Response Sent**
+   - The callback logic eventually sends a response back to the client.
+
+---
+
+### 🎯 Example: File Read API
+
+```js
+const fs = require('fs');
+
+fs.readFile('data.txt', 'utf8', (err, data) => {
+  console.log('File content:', data);
+});
+
+console.log('Request received!');
+```
+
+### 🎯 Example: HTTP Server
 ```js
 const http = require('http');
 
@@ -91,6 +161,51 @@ server.listen(3000, () => {
   console.log('Server running on port 3000');
 });
 ```
+
+#### Behind the scenes:
+
+1. `fs.readFile` is async → delegated to thread pool via libuv.
+2. `console.log('Request received!')` runs immediately.
+3. Once file is read, callback is pushed to Event Queue.
+4. Event Loop picks it up and executes `console.log('File content:', data)`.
+
+---
+
+### 🧵 Thread Pool (libuv – 4 threads by default)
+
+Used for:
+
+- File system operations
+- DNS (without cache)
+- Some crypto operations
+- Compression
+
+You can configure it via:
+```bash
+UV_THREADPOOL_SIZE=8 node app.js
+```
+
+---
+
+### 🚀 Why Node.js is Fast (Even Though It's Single-threaded):
+
+- It doesn't block the main thread.
+- It offloads heavy tasks.
+- It handles **10,000+ concurrent connections** using async callbacks, not threads per request like Java/Apache.
+
+---
+
+### 🧩 Real-World Use Cases
+
+| Use Case                  | Why Node.js is Ideal                                 |
+|---------------------------|------------------------------------------------------|
+| Real-time apps (chat, games) | Event-driven, WebSocket support                     |
+| REST APIs                  | Lightweight, fast response with async I/O           |
+| Microservices              | Easy to scale, non-blocking                         |
+| Proxy servers              | Handle high concurrency with minimal resources      |
+| Streaming services         | Built-in Stream API for reading/writing in chunks   |
+
+---
 
 ---
 
@@ -304,6 +419,14 @@ if (cluster.isMaster) {
   }).listen(3000);
 }
 ```
+---
+
+##  **Node.js handle multiple requests**
+- Node.js uses a single-threaded event loop to handle all incoming requests. 
+- It uses a background thread pool via libuv to offload I/O-heavy tasks, and schedules their completion using callbacks. 
+- This allows Node to handle thousands of requests concurrently without spawning new threads for each request.
+
+
 
 ---
 

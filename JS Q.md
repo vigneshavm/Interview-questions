@@ -600,7 +600,7 @@ Custom errors make error handling more specific and manageable in larger applica
 
 ---
 
-#### **Request/Response Types with TypeScript**
+#### **Request/Response Types**
 
 
  TypeScript is very useful for defining the types of data sent and received in an API. By defining request and response types, we can ensure that the data structure adheres to expectations, preventing issues such as incorrect data being passed to or from the API.

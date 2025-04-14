@@ -960,22 +960,7 @@ Here, `count` is private, and the `increment` and `decrement` methods form a clo
 
 ---
 
-#### **Immediately Invoked Function Expressions**
 
-
- An **IIFE** is a function expression that is defined and immediately invoked (called) right after its declaration. It is used to create a new scope, often to avoid polluting the global namespace.
-
-**Example**:
-```javascript
-(function() {
-  const message = "Hello, world!";
-  console.log(message);
-})(); // Outputs: Hello, world!
-```
-
-IIFEs are often used for **module patterns** or **self-contained logic** in JavaScript.
-
----
 
 #### **Potential Pitfalls of Closures**
 
@@ -1005,6 +990,21 @@ for (let i = 0; i < 3; i++) {
 
 ---
 
+
+#### **Immediately Invoked Function Expressions**
+
+
+ An **IIFE** is a function expression that is defined and immediately invoked (called) right after its declaration. It is used to create a new scope, often to avoid polluting the global namespace.
+
+**Example**:
+```javascript
+(function() {
+  const message = "Hello, world!";
+  console.log(message);
+})(); // Outputs: Hello, world!
+```
+
+IIFEs are often used for **module patterns** or **self-contained logic** in JavaScript.
 
 ---
 

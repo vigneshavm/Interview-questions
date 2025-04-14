@@ -514,17 +514,67 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
 #### **Generics**
 
 
- Generics allow you to write functions, classes, or interfaces that work with any data type. By using generics, you can create reusable components that maintain type safety while being flexible. This helps avoid the need for multiple versions of the same function or class for different data types.
 
-**Example**:  
+- **Generics** allow you to create **reusable components** or functions that work with **multiple data types** without losing type safety.
+- Think of them as **type variables** that can be passed to functions, interfaces, or classes.
+
+---
+
+### ✅ **Why Use Generics?**
+
+- To **write flexible and reusable code**.
+- To ensure **type safety** without having to duplicate code for different types.
+- They help avoid using `any`, which removes type safety.
+
+---
+
+### 🧪 **Generic Function Example:**
+
 ```typescript
 function identity<T>(arg: T): T {
   return arg;
 }
-let num = identity(10); // inferred as number
-let str = identity("hello"); // inferred as string
+
+let output1 = identity<string>("Hello");
+let output2 = identity<number>(100);
 ```
-Generics allow you to write flexible yet type-safe code.
+
+- `T` is a **placeholder type**.
+- TypeScript infers the type from the passed argument, or you can explicitly declare it.
+
+---
+
+### 📦 **Generic Interface Example:**
+
+```typescript
+interface Box<T> {
+  value: T;
+}
+
+const stringBox: Box<string> = { value: "Hello" };
+const numberBox: Box<number> = { value: 123 };
+```
+
+---
+
+### 🧱 **Generic Class Example:**
+
+```typescript
+class DataHolder<T> {
+  private data: T;
+
+  constructor(value: T) {
+    this.data = value;
+  }
+
+  getData(): T {
+    return this.data;
+  }
+}
+
+const holder = new DataHolder<number>(42);
+console.log(holder.getData()); // 42
+```
 
 ---
 

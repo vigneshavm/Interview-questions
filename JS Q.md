@@ -17,6 +17,9 @@
 
 ---
 
+| **JavaScript Fundamentals** | 
+|-----------------------------|
+| • [let and var and const](#let-and-var-and-const) <br> • [Global JavaScript scope](#global-javascript-scope) <br> • [use strict Directive](#use-strict-directive) <br> • [Hoisting](#hoisting) <br> • [Lexical Scoping](#lexical-scoping) <br> • [Scope](#scope) <br> • [Global and Function and Block Scope](#global-and-function-and-block-scope) <br> • [Data Types](#data-types) <br> • [Symbol](#symbol) <br> • [null and undefined and undeclared](#null-and-undefined-and-undeclared) <br> • [Type Checking](#type-checking) <br> • [== vs ===](#loose-equality-vs-strict-equality) <br> • [Mutable vs Immutable Objects](#mutable-vs-immutable-objects) <br> • [Destructuring](#destructuring) <br> • [Spread operator](#spread-operator) <br> • [Rest Parameters](#rest-parameters) <br> • [Usage of `super()`](#usage-of-super-in-classes) <br> • [Understanding `__proto__`](#understanding-__proto__-and-prototypes) <br> • [Labeled Statements](#labeled-statements-usage) |
 
 
 

@@ -517,8 +517,39 @@ React Hooks are functions that let you "hook into" React state and lifecycle fea
 
 ---
 
+###  Example: Using `useEffect` to Fetch Data from an API
 
----
+```jsx
+import React, { useEffect, useState } from 'react';
+
+function UserProfile() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // This effect runs once when the component mounts
+    fetch('https://api.example.com/user/123')
+      .then(response => response.json())
+      .then(data => setUser(data))
+      .catch(error => console.error('Error fetching user:', error));
+  }, []); // empty dependency array means this runs only on mount
+
+  if (!user) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h2>User Profile</h2>
+      <p><strong>Name:</strong> {user.name}</p>
+      <p><strong>Email:</strong> {user.email}</p>
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+###  Explanation:
+- `useEffect` is used here to **fetch user data** when the component mounts.
+- The empty dependency array `[]` ensures this side effect runs only **once**, like `componentDidMount`.
 
 ###  `useContext` – Share global data across components
 ```jsx

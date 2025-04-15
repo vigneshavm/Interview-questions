@@ -2694,3 +2694,94 @@ export const LoginForm = () => (
 - Helps enforce **consistency** and makes large projects easier to manage.
 - Natural fit for **React's component-based** architecture.
 
+---
+
+### **Component Reusability**
+
+**Component Reusability** is the practice of creating components in a way that they can be reused across multiple parts of an application — reducing duplication, improving maintainability, and speeding up development.
+
+---
+
+### ✅ **Why Is Reusability Important?**
+
+- **Consistency**: One source of truth for UI elements (like buttons, inputs).
+- **Maintainability**: Update once, reflect everywhere.
+- **Scalability**: Easily compose new features with existing blocks.
+- **Faster Development**: Build with Lego blocks instead of starting from scratch.
+
+---
+
+### 💡 **Best Practices for Reusable Components**
+
+| Principle                    | Description                                                                 |
+|-----------------------------|-----------------------------------------------------------------------------|
+| **Props-Driven Design**      | Accept data & behavior via props to adapt the component dynamically.        |
+| **Avoid Hardcoding**         | Don't hardcode labels, content, or styles; use props or context.           |
+| **Composition over Inheritance** | Nest reusable components using `children` and wrapper components.      |
+| **Generic Naming**           | Use names like `Card`, `Modal`, `ListItem` instead of `ProductCard`.       |
+| **Limit Side Effects**       | Keep them pure — don’t tie them to global states unless necessary.         |
+
+---
+
+### 🧱 **Reusable vs Non-Reusable Comparison**
+
+| Non-Reusable Component                       | Reusable Component                                     |
+|---------------------------------------------|--------------------------------------------------------|
+| `<RedSubmitButton text="Save" />`           | `<Button variant="primary" text="Save" />`             |
+| `<ProductListItem title="Book" price={20} />`| `<ListItem title="..." subtitle="..." icon="..." />`  |
+
+---
+
+### 🧪 **Example: Reusable Button Component**
+
+```tsx
+// Button.tsx
+import React from 'react';
+
+interface ButtonProps {
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary';
+  children: React.ReactNode;
+}
+
+export const Button = ({ onClick, variant = 'primary', children }: ButtonProps) => {
+  const styles = {
+    primary: 'bg-blue-500 text-white',
+    secondary: 'bg-gray-300 text-black',
+  };
+
+  return (
+    <button className={`px-4 py-2 rounded ${styles[variant]}`} onClick={onClick}>
+      {children}
+    </button>
+  );
+};
+```
+
+```tsx
+// Usage in different components
+<Button onClick={handleSave}>Save</Button>
+<Button variant="secondary" onClick={handleCancel}>Cancel</Button>
+```
+
+---
+
+### 👩‍💻 Other Reusable Component Ideas
+
+- **InputField** → with label, validation, and error message support.
+- **Modal** → generic modal that accepts header, body, and footer as children.
+- **Card** → reusable for product cards, user profiles, etc.
+- **Table** → dynamic columns and rows with actions.
+
+---
+
+### 🛠️ Tips
+
+- Use **TypeScript** for reusable components — helps define props and reduces bugs.
+- Use **Storybook** for isolated component development and testing.
+- Use design tokens or a style guide for consistent styling.
+
+---
+
+
+

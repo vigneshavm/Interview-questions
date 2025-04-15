@@ -1412,3 +1412,70 @@ function MyForm() {
 
 
 
+---
+
+### **Handling multiple inputs**
+
+🟩 **Answer:**
+
+In React, handling multiple inputs involves:
+1. Using a **single state object** to store all input values.
+2. Using the input's `name` attribute to dynamically update the corresponding value in state.
+3. Managing form submission through a handler function.
+
+---
+
+### 🧪 **Example using Controlled Components:**
+
+```jsx
+import { useState } from 'react';
+
+function SignupForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData); // Submit data here
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
+      <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
+      <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder="Password" />
+      <button type="submit">Sign Up</button>
+    </form>
+  );
+}
+```
+
+---
+
+### 🔍 Key Concepts:
+
+- ✅ **State structure**: All form inputs are stored in one object (e.g., `formData`).
+- ✅ **Dynamic updating**: `[name]: value` uses the input’s `name` to update the correct field.
+- ✅ **Reusability**: This approach works for **any number of inputs** with a single `handleChange` function.
+
+---
+
+### 🧠 Bonus Tip (Interview Insight):
+
+> *"Why use a single `handleChange`?"*  
+Because it **scales well**, keeps your code DRY (Don't Repeat Yourself), and works seamlessly for both small and large forms.
+
+---
+

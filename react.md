@@ -9,7 +9,7 @@
 | **Performance Optimization**          | •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [React Profiler](#react-profiler) |
 | **Testing React**          | •  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) •  [Unit vs Integration vs E2E ](#Unit-Tests) •  [Testing Hooks](#Testing-Hooks) •  [Mocking APIs Tests](#Mocking-APIs-Tests) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript) •  [Error Boundaries](#error-boundaries) •  [Strict Mode](#strict-mode-in-react) |
-| **API Integration**          | •  [Fetching Data with Axios / Fetch](#fetching-data) •  [Handling Loading, Error States](#handling-api-states) •  [Using useEffect for Data Fetching](#useeffect-fetching) •  [React Query / SWR – What and Why?](#react-query-swr) |
+| **API Integration**          | •  [Fetching Data with Axios / Fetch](#fetching-data) •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Using useEffect for Data Fetching](#useeffect-fetching) •  [React Query / SWR – What and Why?](#react-query-swr) |
 
 
 | Q1 | Q2 | Q3 | Q4 | Q5 | Q6 |
@@ -2981,3 +2981,106 @@ useEffect(() => {
 ```
 
 ---
+
+
+
+### Handling Loading and Error States
+
+Managing **loading** and **error** states is essential when fetching data in React. It improves user experience by showing appropriate feedback while waiting for or failing to receive data.
+
+---
+
+### ✅ **Basic Example (Using `useEffect` + `axios`)**
+
+```jsx
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+function UserList() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);  // loading state
+  const [error, setError] = useState(null);       // error state
+
+  useEffect(() => {
+    axios.get('https://api.example.com/users')
+      .then(res => {
+        setUsers(res.data);
+        setError(null);       // clear any previous error
+      })
+      .catch(err => {
+        setError(err.message || 'Something went wrong!');
+        setUsers([]);         // clear data on error
+      })
+      .finally(() => {
+        setLoading(false);    // done loading either way
+      });
+  }, []);
+
+  if (loading) return <p>Loading users...</p>;
+  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
+
+  return (
+    <ul>
+      {users.map(user => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+---
+
+### 🔄 **Best Practices**
+
+| Concept                 | Tip                                                                 |
+|------------------------|----------------------------------------------------------------------|
+| **Initial state**      | Start with `loading = true`, `error = null`                          |
+| **Set `loading` early**| Set `loading` before API call, reset it in `.finally()`              |
+| **Show feedback**      | Display a spinner or "Loading..." message                           |
+| **Display error info** | Show user-friendly message and optionally a "Retry" button           |
+| **Clear old data**     | Reset or handle stale data if needed                                 |
+
+---
+
+### 🔁 **With Retry Button**
+
+```jsx
+{error && (
+  <>
+    <p style={{ color: 'red' }}>Error: {error}</p>
+    <button onClick={() => window.location.reload()}>Retry</button>
+  </>
+)}
+```
+
+---
+
+### 🔧 Want It Cleaner?
+
+For cleaner state handling, you could use a **custom hook**:
+
+```jsx
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios.get(url)
+      .then((res) => setData(res.data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, [url]);
+
+  return { data, loading, error };
+};
+```
+
+Then just call it in a component:
+```jsx
+const { data, loading, error } = useFetch('https://api.example.com/users');
+```
+
+---
+

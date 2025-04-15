@@ -11,7 +11,7 @@
 | **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
 | **API Design & Development**               | [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure), [Status codes](#status-codes)                   |
 | **Error Handling & Validation**            | [Error handling in REST APIs](#error-handling-in-rest-apis), [Error Handling](#error-handling), [Data Validation](#data-validation)                                            |
-| **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis)    , [package.json vs package-lock.json](#package.json-vs-package-lock.json)                                                                         |
+| **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis)    , [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                         |
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
 | **Asynchronous Programming**               | [Promise vs Async/Await](#promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise.all() vs Promise.race()](#promiseall-vs-promiserace)                               |
 | **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                           |
@@ -1423,7 +1423,7 @@ export const refreshToken = (req: Request, res: Response) => {
 
 ---
 
-## **package.json vs package-lock.json**
+## **packagejson vs package lockjson**
 
 - package.json defines the metadata and dependencies of a Node.js project — it tells npm what packages are needed and can include version ranges. 
 - package-lock.json records the exact versions of those packages and all nested dependencies. It's auto-generated and ensures reproducible builds across environments. 

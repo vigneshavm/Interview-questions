@@ -1483,7 +1483,7 @@ Because it **scales well**, keeps your code DRY (Don't Repeat Yourself), and wor
 
 ---
 
-### **Refs**
+### **Refs in React**
 
 
 In React, a **Ref** (short for reference) is used to **access a DOM element or React component instance directly** — bypassing the typical data flow.

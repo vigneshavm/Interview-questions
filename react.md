@@ -173,6 +173,22 @@ const Greeting = ({ name }) => <h1>Hello, {name}</h1>;
 
 ## Controlled vs Uncontrolled Components 
 
+| Feature                        | **Controlled Component**                                                | **Uncontrolled Component**                                               |
+|-------------------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| **Data source**               | React state                                                              | DOM (via `ref`)                                                           |
+| **Accessing value**           | From state variable (`useState`)                                         | From `ref` using `ref.current.value`                                     |
+| **On change handling**        | Requires `onChange` handler to update state                              | No need for `onChange` unless needed manually                            |
+| **Real-time validation**      | Easy to implement                                                        | Requires extra effort                                                     |
+| **React control**             | Full control over input value                                            | Minimal React control                                                     |
+| **Performance**               | Rerenders on every input change                                          | More performant for large forms (less rerenders)                         |
+| **Use case**                  | Dynamic forms, validation, conditional rendering                         | Simple forms, file uploads, legacy forms, third-party libs               |
+| **Setup complexity**          | Slightly more boilerplate                                                | Less code, quicker setup                                                  |
+
+### 🧠 TL;DR
+
+- Use **Controlled Components** when you need to **track, validate, or manipulate input data in real-time**.
+- Use **Uncontrolled Components** when you need a **simpler, performant, or third-party-friendly** form solution.
+
 - **Controlled Components**: Form inputs are controlled via React's **state**
 
 ```jsx

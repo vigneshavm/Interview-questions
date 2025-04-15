@@ -23,22 +23,19 @@
 
 ## Key ES6 Features
 
-- ✅ `let` and `const`
-- ✅ Arrow functions  
-- ✅ Template literals  
-- ✅ Default parameters  
-- ✅ Destructuring  
-- ✅ Spread & Rest  
-- ✅ Promises & async/await  
-- ✅ Modules (`import/export`)  
-- ✅ Optional chaining (`?.`)
+| 🔧 **Feature**           | ✅ **Example Code**                                                                                  | 📝 **Description**                                         |
+|-------------------------|------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
+| **`let` & `const`**     | `let count = 0;` <br> `const name = "React";`                                                        | `let` = reassignable, `const` = read-only                 |
+| **Arrow Functions**     | `const add = (a, b) => a + b;`                                                                        | Concise function syntax with `this` binding               |
+| **Template Literals**   | `` `Hello, ${name}!` ``                                                                               | Multi-line strings & expressions inside `` `${}` ``        |
+| **Default Parameters**  | `function greet(name = "Guest") { return "Hi " + name; }`                                             | Provides fallback values for missing args                |
+| **Destructuring**       | `const { title, year } = movie;` <br> `const [first, second] = items;`                                | Unpacks values from objects/arrays                       |
+| **Spread & Rest**       | `const newArr = [...arr1, ...arr2];` <br> `function logAll(...args) {}`                               | Spread: expands, Rest: collects values                   |
+| **Promises / async/await** | `const fetchData = async () => { const res = await fetch(url); };`                                 | Handle async operations cleanly                          |
+| **Modules (import/export)** | `import React from 'react';` <br> `export const add = (a, b) => a + b;`                            | Use reusable code across files                           |
+| **Optional Chaining (`?.`)** | `const username = user?.profile?.name;`                                                          | Avoid errors when accessing nested properties             |
 
-```js
-const greet = name => `Hello, ${name}`;
-const arr = [1, 2, 3];
-const newArr = [...arr, 4];
-function sum(...nums) { return nums.reduce((a, b) => a + b); }
-```
+---
 
 ---
 

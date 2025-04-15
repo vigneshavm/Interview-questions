@@ -2860,4 +2860,124 @@ const Greeting: React.FC<GreetingProps> = ({ name, age }) => (
 - TypeScript = ✅ Comprehensive static type-checking, IDE support, better for larger projects.
 
 If you're starting fresh or scaling up, **TypeScript is the way to go**.
+---
 
+---
+### 📡 **Fetching Data with Axios / Fetch **
+
+Fetching data is a core part of most React apps. You can use either the built-in `fetch()` API or third-party libraries like **Axios**.
+
+---
+
+### 🔍 **1. Using `fetch()` (Native API)**
+
+```jsx
+useEffect(() => {
+  fetch('https://api.example.com/users')
+    .then(res => res.json())
+    .then(data => setUsers(data))
+    .catch(err => console.error('Error:', err));
+}, []);
+```
+
+✅ Pros:
+- Built into the browser (no extra package)
+- Simple for basic requests
+
+❌ Cons:
+- No request/response interceptors
+- Doesn't auto-transform JSON in all cases
+- Limited error handling (no automatic HTTP error rejection)
+
+---
+
+### 🔧 **2. Using Axios (3rd Party Library)**
+
+```bash
+npm install axios
+```
+
+```jsx
+import axios from 'axios';
+
+useEffect(() => {
+  axios.get('https://api.example.com/users')
+    .then(response => setUsers(response.data))
+    .catch(error => console.error('Error:', error));
+}, []);
+```
+
+✅ Pros:
+- Automatic JSON parsing
+- Request/response interceptors
+- Better error handling
+- Supports older browsers
+
+❌ Cons:
+- Requires installation
+- Slightly larger bundle size
+
+---
+
+### 🛠️ **Handling Loading & Error States**
+
+```jsx
+const [users, setUsers] = useState([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const res = await axios.get('https://api.example.com/users');
+      setUsers(res.data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchData();
+}, []);
+```
+
+---
+
+### 🤔 **When to Choose What?**
+
+| Feature                     | `fetch()`       | `axios`        |
+|----------------------------|------------------|----------------|
+| JSON Parsing               | Manual           | Auto           |
+| Interceptors               | ❌               | ✅              |
+| Older Browser Support      | Limited          | Good           |
+| File Uploads / Multipart   | Verbose          | Easy           |
+| Built-in                   | ✅               | ❌ (needs install) |
+
+---
+
+### 📦 Bonus: Using Axios with a Custom Instance
+
+```js
+// api.js
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: 'https://api.example.com',
+  headers: {
+    Authorization: `Bearer YOUR_TOKEN`,
+  },
+});
+
+export default api;
+```
+
+```js
+// In component
+import api from './api';
+
+useEffect(() => {
+  api.get('/users').then(res => setUsers(res.data));
+}, []);
+```
+
+---

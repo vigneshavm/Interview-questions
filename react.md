@@ -407,7 +407,7 @@ const LazyComponent = React.lazy(() => import("./Component"));
 
 `<React.StrictMode>` is a tool for highlighting potential problems in an app during development.
 
-✅ Detects:
+ Detects:
 
 - Unsafe lifecycle methods  
 - Legacy API usage  
@@ -517,116 +517,236 @@ React Hooks are functions that let you "hook into" React state and lifecycle fea
 
 ---
 
-### `useState` 
-– For Managing State
-
-```jsx
-const [count, setCount] = useState(0);
-```
-
-- Adds state to functional components  
-- Returns a stateful value and a function to update it
-
-```jsx
-import { useState } from 'react';
-
-function Counter() {
-  const [count, setCount] = useState(0);
-  return <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>;
-}
-```
 
 ---
 
-### `useEffect`
-– For Side Effects (Data Fetch, Subscriptions, Timers)
-
+###  `useContext` – Share global data across components
 ```jsx
-useEffect(() => {
-  // Code to run on mount/update
-}, [dependencies]);
-```
-
-- Without dependencies: runs on every render  
-- With empty array `[]`: runs only once  
-- With `[count]`: runs when `count` changes
-
-```jsx
-useEffect(() => {
-  console.log("Component rendered or updated");
-  return () => console.log("Cleanup");
-}, []);
-```
-
----
-
-### `useRef` 
-– For Persistent Values & Accessing DOM
-
-```jsx
-const inputRef = useRef();
-
-function focusInput() {
-  inputRef.current.focus();
-}
-
-return <input ref={inputRef} />;
-```
-
-- Accesses DOM elements directly  
-- Stores mutable values that do not cause re-renders
-
----
-
-### `useContext` 
-– For Global State (Avoid Prop Drilling)
-
-```jsx
-const ThemeContext = React.createContext();
+const ThemeContext = React.createContext('light');
 
 function App() {
   return (
     <ThemeContext.Provider value="dark">
-      <Child />
+      <Toolbar />
     </ThemeContext.Provider>
   );
 }
 
-function Child() {
-  const theme = useContext(ThemeContext);
-  return <div>Theme: {theme}</div>;
+function Toolbar() {
+  const theme = React.useContext(ThemeContext);
+  return <div>Current theme: {theme}</div>;
 }
 ```
 
 ---
 
-### `useCallback` 
-– Memoize Functions
-
+###  `useReducer` – Complex state logic (like a mini Redux)
 ```jsx
-const handleClick = useCallback(() => {
-  console.log("Clicked");
-}, []);
-```
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment': return { count: state.count + 1 };
+    case 'decrement': return { count: state.count - 1 };
+    default: return state;
+  }
+}
 
-- Prevents unnecessary re-creation of functions on re-renders  
-- Useful when passing callbacks to memoized child components
+function Counter() {
+  const [state, dispatch] = React.useReducer(reducer, { count: 0 });
+  return (
+    <>
+      <p>{state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+    </>
+  );
+}
+```
 
 ---
 
-### `useMemo` – Memoize Expensive Calculations
-
+###  `useCallback` – Memoize callback functions
 ```jsx
-const expensiveValue = useMemo(() => {
-  return computeHeavyFunction(num);
-}, [num]);
-```
+const Button = React.memo(({ onClick }) => {
+  console.log('Button rendered');
+  return <button onClick={onClick}>Click me</button>;
+});
 
-- Avoids recalculating expensive values on every render  
-- Runs only when dependencies change
+function App() {
+  const [count, setCount] = React.useState(0);
+  const handleClick = React.useCallback(() => setCount(c => c + 1), []);
+  return (
+    <>
+      <Button onClick={handleClick} />
+      <p>Count: {count}</p>
+    </>
+  );
+}
+```
 
 ---
 
+###  `useMemo` – Memoize expensive computations
+```jsx
+function App({ number }) {
+  const double = React.useMemo(() => {
+    console.log('Calculating...');
+    return number * 2;
+  }, [number]);
+  return <p>Double: {double}</p>;
+}
+```
+
+---
+
+###  `useRef` – Persist value between renders or access DOM
+```jsx
+function App() {
+  const inputRef = React.useRef();
+
+  const focusInput = () => inputRef.current.focus();
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={focusInput}>Focus</button>
+    </>
+  );
+}
+```
+
+---
+
+###  `useImperativeHandle` – Customize instance value for parent ref
+```jsx
+const Input = React.forwardRef((props, ref) => {
+  const inputRef = React.useRef();
+  React.useImperativeHandle(ref, () => ({
+    focus: () => inputRef.current.focus()
+  }));
+  return <input ref={inputRef} />;
+});
+
+function Parent() {
+  const ref = React.useRef();
+  return (
+    <>
+      <Input ref={ref} />
+      <button onClick={() => ref.current.focus()}>Focus from Parent</button>
+    </>
+  );
+}
+```
+
+---
+
+###  `useLayoutEffect` – Run *before* paint (sync, like `componentDidMount`)
+```jsx
+function Box() {
+  const ref = React.useRef();
+
+  React.useLayoutEffect(() => {
+    ref.current.style.transform = 'translateX(100px)';
+  }, []);
+
+  return <div ref={ref} style={{ width: 100, height: 100, background: 'red' }} />;
+}
+```
+
+---
+
+###  `useDebugValue` – Add debug label for custom hooks
+```jsx
+function useUserStatus(userID) {
+  const [isOnline] = React.useState(true);
+  React.useDebugValue(isOnline ? 'Online' : 'Offline');
+  return isOnline;
+}
+```
+
+---
+
+###  `useDeferredValue` – Defer updating non-urgent values
+```jsx
+function Search({ query }) {
+  const deferredQuery = React.useDeferredValue(query);
+  const results = useSearch(deferredQuery); // some custom hook
+  return <ResultsList results={results} />;
+}
+```
+
+---
+
+###  `useTransition` – Mark state updates as non-blocking
+```jsx
+function App() {
+  const [isPending, startTransition] = React.useTransition();
+  const [value, setValue] = React.useState('');
+
+  const handleChange = e => {
+    const newValue = e.target.value;
+    startTransition(() => setValue(newValue));
+  };
+
+  return (
+    <>
+      <input onChange={handleChange} />
+      {isPending ? <p>Loading...</p> : <List filter={value} />}
+    </>
+  );
+}
+```
+
+---
+
+###  `useId` – Unique, server-safe IDs
+```jsx
+function Form() {
+  const id = React.useId();
+  return (
+    <>
+      <label htmlFor={id}>Name</label>
+      <input id={id} />
+    </>
+  );
+}
+```
+
+---
+
+###  `useSyncExternalStore` – Read from external state stores (React 18+)
+```jsx
+// A basic external store
+let listeners = [];
+let theme = 'light';
+
+const subscribe = (callback) => {
+  listeners.push(callback);
+  return () => listeners = listeners.filter(cb => cb !== callback);
+};
+
+const getSnapshot = () => theme;
+
+function useTheme() {
+  return React.useSyncExternalStore(subscribe, getSnapshot);
+}
+```
+
+---
+
+###  `useInsertionEffect` – Inject styles before DOM mutations (rare use case)
+```jsx
+function StyledComponent() {
+  React.useInsertionEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `.injected { color: hotpink; }`;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
+  
+  return <div className="injected">Styled with useInsertionEffect</div>;
+}
+```
+
+---
 ### `React.memo` vs `useMemo`
 
 ```jsx

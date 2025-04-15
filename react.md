@@ -3193,3 +3193,106 @@ useEffect(() => {
 
 ---
 
+### 🔁 React Query vs SWR – What and Why?
+
+React Query and SWR are powerful **data-fetching libraries** for React that help you manage remote data with ease. They go **beyond `useEffect` and `useState`**, handling caching, revalidation, background updates, and more.
+
+---
+
+## 🆚 React Query vs SWR – Quick Comparison Table
+
+| Feature                     | **React Query**                              | **SWR** (Stale-While-Revalidate)         |
+|-----------------------------|----------------------------------------------|------------------------------------------|
+| Developed By               | TanStack                                     | Vercel                                   |
+| Caching                    | ✅ Yes                                        | ✅ Yes                                    |
+| Revalidation               | ✅ Yes                                        | ✅ Yes                                    |
+| Background Fetching        | ✅ Yes                                        | ✅ Yes                                    |
+| Pagination / Infinite Scroll | ✅ Built-in                                 | ❌ Not built-in                           |
+| Mutation Support           | ✅ Yes                                        | ⚠️ Limited / manual                       |
+| DevTools                   | ✅ Awesome browser devtools                   | ⚠️ Limited devtools                       |
+| Learning Curve             | Medium                                       | Very Easy                                |
+| Ecosystem                  | Rich (e.g., `TanStack Query`, `Table`, etc.) | Smaller                                   |
+| Use Case                   | Complex apps with mutations/state mgmt       | Simple data-fetching (mostly GET requests) |
+
+---
+
+## 🔍 Why Use React Query?
+
+React Query is best for:
+
+- Complex apps
+- Data that needs background refetching
+- Managing loading, error, stale states
+- Updating data with **mutations**
+- Pagination / infinite scroll
+- Built-in DevTools for debugging
+
+### 👉 Example
+
+```jsx
+import { useQuery } from '@tanstack/react-query';
+
+const fetchPosts = async () =>
+  fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json());
+
+function Posts() {
+  const { data, error, isLoading } = useQuery(['posts'], fetchPosts);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
+
+  return (
+    <ul>{data.slice(0, 5).map(post => <li key={post.id}>{post.title}</li>)}</ul>
+  );
+}
+```
+
+---
+
+## 🌐 Why Use SWR?
+
+SWR is great for:
+
+- Simpler apps
+- Static or infrequently-changing data
+- Blog content, public API content
+- Leaner bundles
+
+### 👉 Example
+
+```jsx
+import useSWR from 'swr';
+
+const fetcher = url => fetch(url).then(res => res.json());
+
+function Profile() {
+  const { data, error, isLoading } = useSWR('https://api.example.com/user', fetcher);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
+
+  return <h1>Hello, {data.name}</h1>;
+}
+```
+
+---
+
+## 🧠 Shared Benefits
+
+- Auto-caching
+- Background revalidation
+- Avoids duplication of fetch logic
+- Easy to use with TypeScript
+- Great DX (Developer Experience)
+
+---
+
+### 🗣️ TL;DR
+
+| Use this if...                           | Choose...       |
+|------------------------------------------|-----------------|
+| You want **mutations, pagination, devtools** | React Query     |
+| You want **lightweight, fast setup**     | SWR             |
+
+---
+

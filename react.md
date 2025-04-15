@@ -283,6 +283,115 @@ useEffect(() => {
 }, [dependencies]);
 ```
 
+
+
+---
+
+## 📚 **Class Component Lifecycle Methods vs Hook Equivalents**
+
+| **Class Lifecycle Method** | **Purpose** | **Hook Equivalent** |
+|---------------------------|-------------|----------------------|
+| `componentDidMount()` | Run code once **after the component mounts** | `useEffect(() => { ... }, [])` |
+| `componentDidUpdate(prevProps, prevState)` | Run code **after props or state change** | `useEffect(() => { ... }, [dependencies])` |
+| `componentWillUnmount()` | Run code **before component unmounts** (e.g., cleanup) | `useEffect(() => { return () => { ... } }, [])` |
+
+---
+
+### 🔍 1. `componentDidMount`  
+👉 **Class version**
+```jsx
+componentDidMount() {
+  console.log('Mounted!');
+}
+```
+
+👉 **Hooks version**
+```jsx
+useEffect(() => {
+  console.log('Mounted!');
+}, []);
+```
+✅ Empty dependency array (`[]`) = run only once after mount.
+
+---
+
+### 🔍 2. `componentDidUpdate`  
+👉 **Class version**
+```jsx
+componentDidUpdate(prevProps, prevState) {
+  if (this.props.count !== prevProps.count) {
+    console.log('Updated!');
+  }
+}
+```
+
+👉 **Hooks version**
+```jsx
+useEffect(() => {
+  console.log('Updated!');
+}, [count]);
+```
+✅ Add the specific dependency (`count` here). It runs whenever `count` changes.
+
+---
+
+### 🔍 3. `componentWillUnmount`  
+👉 **Class version**
+```jsx
+componentWillUnmount() {
+  console.log('Cleaning up...');
+}
+```
+
+👉 **Hooks version**
+```jsx
+useEffect(() => {
+  return () => {
+    console.log('Cleaning up...');
+  };
+}, []);
+```
+✅ The cleanup function is returned inside `useEffect`.
+
+---
+
+### 🧪 Example: All Together in Functional Component
+```jsx
+import React, { useEffect, useState } from 'react';
+
+function ExampleComponent() {
+  const [count, setCount] = useState(0);
+
+  // componentDidMount
+  useEffect(() => {
+    console.log('Component mounted');
+
+    // componentWillUnmount
+    return () => {
+      console.log('Component will unmount');
+    };
+  }, []);
+
+  // componentDidUpdate
+  useEffect(() => {
+    console.log('Count updated:', count);
+  }, [count]);
+
+  return <button onClick={() => setCount(count + 1)}>Increment</button>;
+}
+```
+
+---
+
+## ✅ Summary
+
+| Lifecycle | Class Component | Functional Hook |
+|-----------|-----------------|-----------------|
+| Mount     | `componentDidMount` | `useEffect(() => {}, [])` |
+| Update    | `componentDidUpdate` | `useEffect(() => {}, [deps])` |
+| Unmount   | `componentWillUnmount` | `useEffect(() => { return () => {} }, [])` |
+
+
 ---
 
 

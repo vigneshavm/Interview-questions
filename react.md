@@ -3193,7 +3193,7 @@ useEffect(() => {
 
 ---
 
-### 🔁 React Query vs SWR – What and Why?
+### React Query Swr?
 
 React Query and SWR are powerful **data-fetching libraries** for React that help you manage remote data with ease. They go **beyond `useEffect` and `useState`**, handling caching, revalidation, background updates, and more.
 

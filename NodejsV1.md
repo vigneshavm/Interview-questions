@@ -11,7 +11,8 @@
 | **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
 | **API Design & Development**               | [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure), [Status codes](#status-codes)                   |
 | **Error Handling & Validation**            | [Error handling in REST APIs](#error-handling-in-rest-apis), [Error Handling](#error-handling), [Data Validation](#data-validation)                                            |
-| **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis)                                                                           |
+| **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis)    , [package.json vs package-lock.json
+](#package.json-vs-package-lock.json)                                                                         |
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
 | **Asynchronous Programming**               | [Promise vs Async/Await](#promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise.all() vs Promise.race()](#promiseall-vs-promiserace)                               |
 | **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                           |
@@ -1423,7 +1424,73 @@ export const refreshToken = (req: Request, res: Response) => {
 
 ---
 
+## **package.json vs package-lock.json**
 
+- package.json defines the metadata and dependencies of a Node.js project — it tells npm what packages are needed and can include version ranges. 
+- package-lock.json records the exact versions of those packages and all nested dependencies. It's auto-generated and ensures reproducible builds across environments. 
+- Both files work together: `package.json` is for humans, `package-lock.json` is for the system."
+- package-lock.json guarantees that **everyone** will install `express@4.18.2` even if `package.json` allows a range.
+
+### 🔹 **1. `package.json`** – _The Project Manifest_
+
+- **Purpose**: Lists your project’s dependencies and metadata.
+- **Created by**: `npm init`
+- **Used for**:
+  - Describing the project (name, version, scripts)
+  - Listing dependencies with **version ranges** (`^`, `~`, etc.)
+  - Ensuring everyone knows _which_ packages are needed.
+
+**Example:**
+```json
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
+```
+
+- `^4.18.0` means any minor/patch update like `4.18.1`, `4.19.0` is acceptable.
+
+---
+
+### 🔹 **2. `package-lock.json`** – _The Dependency Snapshot_
+
+- **Purpose**: Locks exact versions of installed packages and their dependencies.
+- **Created by**: Automatically by `npm install`
+- **Used for**:
+  - Ensuring **exact versions** across all environments (dev/staging/prod)
+  - Faster installs with caching
+  - Security audit tools rely on this
+
+**Example:**
+```json
+{
+  "name": "my-app",
+  "lockfileVersion": 2,
+  "dependencies": {
+    "express": {
+      "version": "4.18.2"
+    }
+  }
+}
+```
+
+
+---
+
+## 🆚 Key Differences
+
+| Feature                | `package.json`                         | `package-lock.json`                      |
+|------------------------|----------------------------------------|------------------------------------------|
+| Human editable?        | ✅ Yes                                  | ❌ No (auto-generated)                   |
+| Version flexibility    | ✅ Allows version ranges                | ❌ Uses exact versions                   |
+| Purpose                | Project definition & top-level deps    | Lock exact dependency tree              |
+| Used in deployment?    | ✅ Yes                                  | ✅ Yes                                   |
+| Required in Git repo?  | ✅ Yes                                  | ✅ Yes (for consistent builds)           |
+
+---
 
 
 

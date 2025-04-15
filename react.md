@@ -1332,7 +1332,7 @@ function ProtectedRoute({ children }) {
 ```
 
 ---
-### **Form Validation using Formik**
+### **Form Validation with Formik**
 
 🟩 **Answer:**
 

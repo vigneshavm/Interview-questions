@@ -1217,4 +1217,58 @@ React provides utilities like:
 The `children` prop lets you **pass nested JSX content** to components, enabling powerful and flexible UI composition patterns.
 
 ---
+---
 
+### **Dynamic Routing**
+
+
+**Dynamic Routing** in React (especially with **React Router**) means creating routes that can handle **variable segments** in the URL — such as user IDs, product slugs, or blog post titles — and render different content based on the value.
+
+---
+
+
+
+🧠 In this example:
+- `:userId` is a **dynamic segment**.
+- `useParams()` is used to extract it.
+
+---
+
+### 🚀 Use Cases:
+- **User profiles** → `/user/123`
+- **Blog posts** → `/blog/my-first-post`
+- **Product details** → `/products/shoe-42`
+
+---
+
+### 🔍 Key Benefits:
+- Enables **clean and semantic URLs**.
+- Makes your app feel more like a traditional website.
+- Easy to match routes with backend APIs (e.g., `GET /user/:id`).
+
+---
+
+### ✅ **Summary**:  
+Dynamic Routing allows React apps to respond to URL changes with **dynamic values**, enabling powerful and scalable navigation structures.
+
+### 🔸 **Example with `react-router-dom` v6:**
+
+```jsx
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
+
+function UserProfile() {
+  const { userId } = useParams(); // Access dynamic part of the URL
+  return <h2>User ID: {userId}</h2>;
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/user/:userId" element={<UserProfile />} />
+      </Routes>
+    </Router>
+  );
+}
+```
+---

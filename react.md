@@ -6,20 +6,11 @@
 | **Routing**          | •  [React Router Introduction](#react-router) •  [Navigation Methods](#react-router-navigation) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
 | **Lists and DOM**          | •  [Keys in Lists](#keys-in-lists) •  [Virtual DOM](#virtual-dom) •  [Reconciliation Process](#reconciliation-process) •  [Refs ](#refs-in-react) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals) |
-| **Performance Optimization**          | •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [React Profiler](#react-profiler) |
+| **Performance Optimization**          | •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [React Profiler](#react-profiler) •  [Lifecycle Methods](#lifecycle-methods) •  [Props Drilling](#props-drilling) •  [Context API](#context-api)|
 | **Testing React**          | •  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) •  [Unit vs Integration vs E2E ](#Unit-Tests) •  [Testing Hooks](#Testing-Hooks) •  [Mocking APIs Tests](#Mocking-APIs-Tests) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript) •  [Error Boundaries](#error-boundaries) •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **API Integration**          | •  [Fetching Data with Axios / Fetch](#fetching-data) •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) •  [React Query / SWR – What and Why?](#react-query-swr) |
-
-
-| Q1 | Q2 | Q3 | Q4 | Q5 | Q6 |
-|----|----|----|----|----|----|
-| [Create React App using TypeScript](#create-react-app-using-typescript) | [React Overview](#react-overview) | [Single Page Applications (SPA)](#single-page-applications-spa) | [JSX vs HTML](#jsx-vs-html) | [Why Use React](#Why-Use-React)
-|[Class vs Functional Components](#class-vs-functional-components) | [Stateless vs Stateful Components](#stateless-vs-stateful-components) |
-| [Props in React](#props-in-react) | [Props vs State](#props-vs-state) | [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components) | [Keys in Lists](#keys-in-lists) | [React Fragments](#react-fragments) | [Virtual DOM](#virtual-dom) |
-| [Lifecycle Methods](#lifecycle-methods) | [Props Drilling](#props-drilling) | [Context API](#context-api) | [Higher-Order Components (HOCs)](#higher-order-components-hocs) | [Reconciliation Process](#reconciliation-process) | [React Portals](#react-portals) |
-| [React Router Navigation](#react-router-navigation) | [Error Handling in Components](#error-handling-in-components) | [Performance Optimization](#performance-optimization) | [Redux](#redux--predictable-state-management) | [Lazy Loading Components](#lazy-loading-components) | [Strict Mode in React](#strict-mode-in-react) |
-| [React Router](#react-router) | [Lifting State Up](#lifting-state-up) | [Error Boundaries](#error-boundaries) | [React Hooks](#react-hooks) | [Custom Hook](#Custom-Hook) |
+| **API Integration**          | •  [Higher-Order Components (HOCs)](#higher-order-components-hocs) •  [React Router Navigation](#react-router-navigation) •  [Error Handling in Components](#error-handling-in-components) •  [Performance Optimization](#performance-optimization) •  [Lazy Loading Components](#lazy-loading-components) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) |
 
 
 ---

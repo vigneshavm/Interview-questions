@@ -11,7 +11,7 @@
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript) •  [Error Boundaries](#error-boundaries) •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data) •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) •  [React Query / SWR – What and Why?](#react-query-swr) |
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Higher-Order Components (HOCs)](#higher-order-components-hocs)  •  [Error Handling in Components](#error-handling-in-components) •  [Lazy Loading Components](#lazy-loading-components) 
-| **Performance Optimization**          | •  [Performance Optimization](#performance-optimization) •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [React Profiler](#react-profiler) 
+| **Performance Optimization**          | •  [Performance Optimization](#performance-optimization) •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) 
 
 
 
@@ -3593,3 +3593,74 @@ Use high contrast for text & backgrounds. Check contrast ratios:
 
 
 
+## React Fiber
+
+
+**React Fiber** is the complete rewrite of React’s reconciliation algorithm, introduced in **React 16**. It improves how React handles updates, especially in terms of **performance**, **interruptibility**, and **granular control** over rendering.
+
+---
+
+### 🔄 What is Reconciliation?
+
+Reconciliation is the process React uses to:
+- Compare the **previous virtual DOM tree** with the **new one**,
+- And determine the **minimum number of changes** needed to update the real DOM.
+
+---
+
+## ⚡ React Fiber: The New Reconciliation Engine
+
+Fiber replaces the **stack-based** reconciliation from React 15 and earlier with a **linked list** structure.
+
+---
+
+### 🚫 Previous Algorithm (Stack Reconciler)
+
+- **Synchronous and non-interruptible**: Once rendering started, React had to go through the entire component tree before it could do anything else.
+- **Recursive call stack**: It used the JS call stack for recursion.
+- Large updates could **block the main thread**, making apps feel sluggish.
+- No fine-grained control over priority — all updates were treated equally.
+
+---
+
+### ✅ Fiber: What Changed?
+
+React Fiber introduced a **work loop** with these features:
+
+| Feature | Description |
+|--------|-------------|
+| **Interruptible rendering** | Work can be paused, resumed, or aborted. Useful for keeping apps responsive during large updates. |
+| **Prioritization** | Updates can have different **priorities** (e.g., animations vs. user input). |
+| **Incremental rendering** | Large component trees can be broken into **chunks** and processed over multiple frames. |
+| **Concurrency-ready** | It's the foundation for **Concurrent React** (e.g., `startTransition`, `Suspense`, `useDeferredValue`). |
+| **Linked list tree structure** | Each Fiber node points to its **child**, **sibling**, and **return** (parent), allowing React to traverse and manipulate the tree in small units of work. |
+| **Better error handling** | Introduced **error boundaries** with proper support to catch errors during rendering. |
+
+---
+
+### 🧠 Visual: Fiber Node (simplified)
+```js
+{
+  type: 'div',
+  child: <FiberNode>,      // First child
+  sibling: <FiberNode>,    // Next sibling
+  return: <FiberNode>,     // Parent node
+  alternate: <FiberNode>,  // Link to the old fiber
+  effectTag: 'PLACEMENT',  // What kind of update is needed
+}
+```
+
+---
+
+### 🔁 Summary – Fiber vs Old Reconciler
+
+| Feature | Stack Reconciler | React Fiber |
+|--------|------------------|-------------|
+| Execution | Synchronous | Asynchronous & interruptible |
+| Data Structure | Recursion on JS stack | Custom linked list |
+| Priority Support | No | Yes |
+| Animation & Input Handling | Sluggish under load | Much smoother |
+| Error Boundaries | No | Yes |
+| Foundation for Concurrent Features | ❌ | ✅ |
+
+---

@@ -2785,3 +2785,79 @@ export const Button = ({ onClick, variant = 'primary', children }: ButtonProps) 
 
 
 
+### **PropTypes vs TypeScript**
+
+Both **PropTypes** and **TypeScript** are used to ensure your components receive correct props — but they do it in very different ways.
+
+---
+
+### 📋 **What Are They?**
+
+| Feature        | PropTypes                                  | TypeScript                                   |
+|----------------|---------------------------------------------|----------------------------------------------|
+| **Type Checking** | Runtime (during app execution)              | Compile-time (before code runs)               |
+| **Scope**         | Only checks React props                   | Full app: props, state, functions, variables |
+| **Tooling**       | Minimal editor support                    | Strong autocompletion and IntelliSense       |
+| **Error Detection**| Errors caught while app is running       | Errors caught during development             |
+
+---
+
+### 🔧 **Usage Comparison**
+
+#### ✅ With **PropTypes**:
+```jsx
+import PropTypes from 'prop-types';
+
+const Greeting = ({ name, age }) => (
+  <div>Hello {name}, you are {age} years old</div>
+);
+
+Greeting.propTypes = {
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number,
+};
+```
+
+#### ✅ With **TypeScript**:
+```tsx
+type GreetingProps = {
+  name: string;
+  age?: number;
+};
+
+const Greeting: React.FC<GreetingProps> = ({ name, age }) => (
+  <div>Hello {name}, you are {age} years old</div>
+);
+```
+
+---
+
+### ✅ **Pros & Cons**
+
+| Feature                  | PropTypes                            | TypeScript                               |
+|--------------------------|--------------------------------------|------------------------------------------|
+| ✅ Easy to use           | ✔️ Yes                               | ❌ Learning curve                        |
+| ✅ Catches bugs early    | ❌ No (only at runtime)               | ✔️ Yes (during development)              |
+| ✅ Supports full app typing | ❌ Only React props                 | ✔️ Yes (whole codebase)                  |
+| ✅ Better tooling        | ❌ Basic                             | ✔️ IDE autocomplete & type safety       |
+| ✅ File size impact      | ❌ Slightly increases bundle size     | ✔️ Stripped after compilation           |
+
+---
+
+### 🧠 **Which One Should You Use?**
+
+| Scenario                                 | Recommendation          |
+|------------------------------------------|--------------------------|
+| Small project or legacy code             | Use **PropTypes**        |
+| Mid to large scale project               | Prefer **TypeScript**    |
+| Want full static typing, not just props | Definitely **TypeScript**|
+
+---
+
+### 📝 Conclusion
+
+- PropTypes = ✅ Quick prop validation, ❌ limited and runtime-only.
+- TypeScript = ✅ Comprehensive static type-checking, IDE support, better for larger projects.
+
+If you're starting fresh or scaling up, **TypeScript is the way to go**.
+

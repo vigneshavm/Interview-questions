@@ -11,7 +11,7 @@
 | **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
 | **API Design & Development**               | [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure), [Status codes](#status-codes)                   |
 | **Error Handling & Validation**            | [Error handling in REST APIs](#error-handling-in-rest-apis), [Error Handling](#error-handling), [Data Validation](#data-validation)                                            |
-| **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis)    , [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                         |
+| **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis) , [package json](#package-json)   , [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                         |
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
 | **Asynchronous Programming**               | [Promise vs Async/Await](#promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise.all() vs Promise.race()](#promiseall-vs-promiserace)                               |
 | **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                           |
@@ -1488,6 +1488,114 @@ export const refreshToken = (req: Request, res: Response) => {
 | Purpose                | Project definition & top-level deps    | Lock exact dependency tree              |
 | Used in deployment?    | ✅ Yes                                  | ✅ Yes                                   |
 | Required in Git repo?  | ✅ Yes                                  | ✅ Yes (for consistent builds)           |
+
+---
+
+
+
+---
+
+## **package json**
+
+---
+
+### 1. **What is `package.json` and why is it important?**
+
+📌 *Answer*: It’s the manifest file for a Node.js project. It contains metadata (like name, version, author), dependencies, devDependencies, and scripts. It ensures consistent project setup and makes it easy to share the project.
+
+---
+
+### 2. **How do dependencies differ from devDependencies in `package.json`?**
+
+📌 *Answer*:  
+- `dependencies`: Required to run the app (e.g., Express, Mongoose)  
+- `devDependencies`: Only needed during development/testing (e.g., Jest, Nodemon)  
+Use `--save-dev` or `-D` to install devDependencies.
+
+---
+
+### 3. **What is the difference between `^`, `~`, and no symbol in versioning?**
+
+📌 *Answer*:
+- `^1.2.3` → Allows updates that do not change the first digit (e.g., `1.x.x`)
+- `~1.2.3` → Allows patch updates only (e.g., `1.2.x`)
+- No symbol → Only that exact version is allowed (`1.2.3`)
+
+---
+
+### 4. **What is the `scripts` section in `package.json` used for?**
+
+📌 *Answer*: Defines shortcut commands to automate tasks like:
+```json
+"scripts": {
+  "start": "node app.js",
+  "dev": "nodemon app.js",
+  "test": "jest"
+}
+```
+You run them with `npm run dev`, `npm start`, etc.
+
+---
+
+### 5. **What is the difference between `npm install` and `npm ci`?**
+
+📌 *Answer*:
+- `npm install`: Installs packages based on `package.json` and updates `package-lock.json`
+- `npm ci`: Installs **exact versions** from `package-lock.json`. It’s faster and ideal for CI/CD.
+
+---
+
+### 6. **Can we publish a package without all dependencies listed in `package.json`?**
+
+📌 *Answer*: No. All external packages your code uses must be declared in `package.json` under `dependencies` or `peerDependencies`.
+
+---
+
+### 7. **What are `peerDependencies` and when should you use them?**
+
+📌 *Answer*: Used when your package relies on another package, but expects the consuming project to install it.  
+👉 Useful for plugins or libraries (e.g., `react-dom` peer for `react`).
+
+---
+
+### 8. **What does the `main` field do in `package.json`?**
+
+📌 *Answer*: Specifies the entry point of your module when it’s `require()`d by another file.
+
+```json
+"main": "index.js"
+```
+
+---
+
+### 9. **How do you prevent a package from being published to npm?**
+
+📌 *Answer*:
+- Add `"private": true` to `package.json`  
+- Or use `.npmignore` to control what files are excluded
+
+---
+
+### 10. **What is the `engines` field used for?**
+
+📌 *Answer*: To specify the required Node.js or npm version.
+
+```json
+"engines": {
+  "node": ">=14.0.0"
+}
+```
+
+---
+
+## 🧪 Bonus Practical Questions
+
+| Question | Purpose |
+|---------|---------|
+| How do you create a `package.json` file? | Use `npm init` or `npm init -y` |
+| How to install a package as an exact version? | `npm install express@4.18.1` |
+| How to update a dependency? | `npm update` or manually edit `package.json` |
+| How to remove a dependency? | `npm uninstall package-name` |
 
 ---
 

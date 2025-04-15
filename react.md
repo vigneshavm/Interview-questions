@@ -1027,4 +1027,37 @@ function Counter() {
 
 ---
 
+## **Component Composition vs Inheritance**
 
+🟩 **Answer:**
+
+In React, **component composition** is favored over **inheritance** as the primary method for code reuse and building complex UIs.
+
+- **Composition** means combining simple components to build more complex ones. You pass data and behavior to children using **props** or special props like `children`.  
+  → It promotes flexibility and reuse without tightly coupling components.
+
+- **Inheritance**, in contrast, is a traditional OOP approach where a class extends another to inherit behavior. React avoids this pattern because it can lead to rigid and complex hierarchies.
+
+🔸 **Why React prefers Composition**:
+- Easier to manage and understand
+- More flexible and modular
+- Encourages functional design
+
+🎯 **Summary**:  
+React promotes **composition** for sharing behavior and building components, because it's **simpler, more maintainable, and aligns better with React’s declarative model**, unlike inheritance which introduces tight coupling and complexity.
+🔸 **Example – Composition**:
+```jsx
+function Card({ title, children }) {
+  return (
+    <div className="card">
+      <h2>{title}</h2>
+      {children}
+    </div>
+  );
+}
+
+// Usage
+<Card title="Welcome">
+  <p>This is a composed paragraph inside the card.</p>
+</Card>
+```

@@ -1263,6 +1263,78 @@ const skip = (page - 1) * limit;
 | `404` | Not Found |
 | `500` | Server Error |
 
+
+---
+
+### 🔹 **1xx – Informational**
+
+| Code | When to Return                                     |
+|------|----------------------------------------------------|
+| 100  | Used internally by some HTTP clients (rarely used manually) |
+| 101  | When switching protocols (e.g., HTTP → WebSocket)  |
+
+---
+
+### 🔹 **2xx – Success**
+
+| Code | When to Return | Example |
+|------|----------------|---------|
+| **200 OK** | Standard response for successful GET, PUT, or PATCH request | `GET /users/5` returns user info |
+| **201 Created** | Resource successfully created | `POST /users` to add a new user |
+| **202 Accepted** | Request accepted but processing happens asynchronously | Upload processing |
+| **204 No Content** | Successful request but no content to return | `DELETE /users/5` or `PUT` with no change |
+
+---
+
+### 🔹 **3xx – Redirection**
+
+| Code | When to Return | Example |
+|------|----------------|---------|
+| **301 Moved Permanently** | Resource has permanently moved to a new URL | Redirecting from old domain |
+| **302 Found** | Temporarily redirect to another URL | Login redirects temporarily |
+| **304 Not Modified** | Use cached version, no update since last fetch | Used with ETags or `If-Modified-Since` header |
+
+---
+
+### 🔹 **4xx – Client Errors**
+
+| Code | When to Return | Example |
+|------|----------------|---------|
+| **400 Bad Request** | Invalid data from client | Missing required fields, bad JSON |
+| **401 Unauthorized** | No or invalid authentication token | User not logged in (User isn’t authenticated) |
+| **403 Forbidden** | Authenticated but not allowed to access the resource | User role not allowed(User is authenticated, but doesn’t have permission) |
+| **404 Not Found** | Requested resource doesn’t exist | `GET /products/999` where product doesn’t exist |
+| **409 Conflict** | Request conflicts with current state of server | Creating user with already-used email |
+| **422 Unprocessable Entity** | Validation failed | Name too short, invalid email format |
+
+---
+
+### 🔹 **5xx – Server Errors**
+
+| Code | When to Return | Example |
+|------|----------------|---------|
+| **500 Internal Server Error** | Unexpected exception or failure | Database crashes, unhandled error |
+| **502 Bad Gateway** | Server acting as proxy got invalid response from upstream | API gateway problem |
+| **503 Service Unavailable** | Server is down or overloaded | During maintenance |
+| **504 Gateway Timeout** | Server didn’t respond in time | Timeout waiting for microservice/API |
+
+---
+
+## 🎯 RESTful API Status Code Guide (Cheat Sheet)
+
+| Action              | Method | Status |
+|---------------------|--------|--------|
+| Fetch all users     | GET    | 200 OK |
+| Get specific user   | GET    | 200 or 404 |
+| Create user         | POST   | 201 or 400/422 |
+| Update user         | PUT    | 200/204 or 404 |
+| Delete user         | DELETE | 204 or 404 |
+| Login failed        | POST   | 401 or 403 |
+| Duplicate request   | POST   | 409 Conflict |
+
+---
+
+
 ```ts
 res.status(201).json({ message: 'User created' });
 ```

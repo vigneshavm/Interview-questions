@@ -3298,7 +3298,8 @@ function Profile() {
 
 ### accessibility a11y
 
-Ensuring **accessibility (a11y)** in a React app means making your app usable by as many people as possible—including those with disabilities. Below is a practical checklist and examples to help you make your app more accessible:
+ - Ensuring **accessibility (a11y)** in a React app means making your app usable by as many people as possible—including those with disabilities. 
+ - Below is a practical checklist and examples to help you make your app more accessible
 ---
 ## 🔍 Tools for Testing A11y
 

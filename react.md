@@ -3664,3 +3664,51 @@ React Fiber introduced a **work loop** with these features:
 | Foundation for Concurrent Features | ❌ | ✅ |
 
 ---
+
+---
+
+## **Redux vs Context API**
+
+| Feature | **Redux** | **Context API** |
+|--------|-----------|----------------|
+| 🔁 **Purpose** | Global state management with predictable updates | Pass data through the component tree without prop drilling |
+| ⚙️ **State Management** | Uses **reducers**, **actions**, **store** | Uses **React.createContext()** and **useContext** |
+| 📦 **Installation** | Requires installing packages (`redux`, `react-redux`, `@reduxjs/toolkit`) | Built into React |
+| 🧠 **Learning Curve** | Steeper (concepts like reducers, actions, middleware) | Very easy to get started |
+| 🔍 **Debugging** | Excellent dev tools support | Limited debugging |
+| 🧩 **Boilerplate Code** | More boilerplate (less with Redux Toolkit) | Minimal |
+| 🎯 **Performance** | Fine-grained updates via `connect()` | Can cause unnecessary re-renders if not used carefully |
+| ⚡ **Scalability** | Designed for large, complex apps | Best for small-to-medium state sharing |
+| 🌐 **Middleware/Async** | Powerful middleware like **redux-thunk**, **redux-saga** for async | Manual handling of async (e.g., `useEffect`) |
+| 💬 **Community & Ecosystem** | Huge community, battle-tested | Simpler, smaller use case |
+
+---
+
+## 🧠 When to Use **Context API**
+
+✅ For:
+- Theme toggling (light/dark)
+- Auth user info (token, user ID)
+- Language/locale
+- Simple app-wide settings
+
+❌ Avoid:
+- Frequently changing or large states (can trigger too many re-renders)
+
+---
+
+## 💪 When to Use **Redux**
+
+✅ For:
+- Complex apps with **deeply nested components**
+- Large-scale state needs (e.g., cart, filters, forms, API data)
+- Need for **time-travel debugging**, middleware, or **persistent state**
+- When **multiple components** at different levels need access and updates to shared state
+
+---
+
+## 🧩 Tip: Combine Both
+Use **Context API** for app-wide "static" values (like theme or auth), and **Redux** for complex, dynamic, and deeply shared state (like API data or cart logic).
+
+---
+

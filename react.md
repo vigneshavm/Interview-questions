@@ -254,6 +254,23 @@ ReactDOM.render(virtualDOM, document.getElementById('root'));
 
 Lifecycle methods let you run code at specific **stages of a component’s life** (Mount, Update, Unmount).
 Lifecycle methods are special methods in class components. Hooks like `useEffect` replicate them in functional components.
+
+### **Class Component Lifecycle Methods vs Hook Equivalents**
+
+| **Class Lifecycle Method** | **Purpose** | **Hook Equivalent** |
+|---------------------------|-------------|----------------------|
+| `componentDidMount()` | Run code once **after the component mounts** | `useEffect(() => { ... }, [])` |
+| `componentDidUpdate(prevProps, prevState)` | Run code **after props or state change** | `useEffect(() => { ... }, [dependencies])` |
+| `componentWillUnmount()` | Run code **before component unmounts** (e.g., cleanup) | `useEffect(() => { return () => { ... } }, [])` |
+
+### ✅ Summary
+
+| Lifecycle | Class Component | Functional Hook |
+|-----------|-----------------|-----------------|
+| Mount     | `componentDidMount` | `useEffect(() => {}, [])` |
+| Update    | `componentDidUpdate` | `useEffect(() => {}, [deps])` |
+| Unmount   | `componentWillUnmount` | `useEffect(() => { return () => {} }, [])` |
+
 ### In class components:
 
 ```jsx
@@ -287,13 +304,6 @@ useEffect(() => {
 
 ---
 
-## 📚 **Class Component Lifecycle Methods vs Hook Equivalents**
-
-| **Class Lifecycle Method** | **Purpose** | **Hook Equivalent** |
-|---------------------------|-------------|----------------------|
-| `componentDidMount()` | Run code once **after the component mounts** | `useEffect(() => { ... }, [])` |
-| `componentDidUpdate(prevProps, prevState)` | Run code **after props or state change** | `useEffect(() => { ... }, [dependencies])` |
-| `componentWillUnmount()` | Run code **before component unmounts** (e.g., cleanup) | `useEffect(() => { return () => { ... } }, [])` |
 
 ---
 
@@ -383,13 +393,7 @@ function ExampleComponent() {
 
 ---
 
-## ✅ Summary
 
-| Lifecycle | Class Component | Functional Hook |
-|-----------|-----------------|-----------------|
-| Mount     | `componentDidMount` | `useEffect(() => {}, [])` |
-| Update    | `componentDidUpdate` | `useEffect(() => {}, [deps])` |
-| Unmount   | `componentWillUnmount` | `useEffect(() => { return () => {} }, [])` |
 
 
 ---

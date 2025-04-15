@@ -1,7 +1,7 @@
 | **Category**                          | **Topics**                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **React Basics** | • [Create React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) • [Single Page Applications (SPA)](#single-page-applications-spa) • [JSX vs HTML](#jsx-vs-html) • [Why Use React](#why-use-react) |
-| **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components) •  [Stateless vs Stateful Components](#stateless-vs-stateful-components) •  [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components) •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance) •  [Controlled Components](#controlled-components) |
+| **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components) •  [Stateless vs Stateful Components](#stateless-vs-stateful-components) •  [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components) •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance) •  [Controlled Components](#controlled-components) | •  [Uncontrolled Components over Controlled Components](#Uncontrolled-Components-over-Controlled-Components)
 | **Props, State & Context**          | •  [Props ](#props-in-react) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) •  [Redux](#redux--predictable-state-management) || 24 | [React Context API](#context-api) •  [Props Drilling Problem](#props-drilling) •  [Higher-Order Components (HOCs)](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api) •  [Zustand, Recoil, or Jotai?](#zustand-or-other-lightweight-state-libs) |
 | **Routing**          | •  [React Router Introduction](#react-router) •  [Navigation Methods](#react-router-navigation) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#form-validation-tools) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
@@ -1111,4 +1111,46 @@ function NameForm() {
 }
 ```
 ---
+---
+
+## **Uncontrolled Components over Controlled Components**
+
+You might choose **Uncontrolled Components** when:
+
+1. **You don’t need to track the input value in real-time**  
+   — e.g., when you're only accessing the value **on form submission**.
+
+2. **You want quick and minimal setup**  
+   — useful for **simple forms**, legacy integrations, or when porting plain HTML forms into React.
+
+3. **Performance is a concern**  
+   — controlled components rerender on every keystroke. Uncontrolled components avoid that by letting the DOM handle the state internally.
+
+4. **Using third-party libraries**  
+   — some libraries manage their own form inputs and work better with uncontrolled components (e.g., file uploads).
+
+---
+
+### ✅ **Summary**:  
+Use **Uncontrolled Components** for **simple, non-dynamic forms** where performance matters or form data isn’t needed until submission. Use **Controlled Components** when you need real-time updates, validation, or tighter control.
+
+---
+🔸 **Example – Uncontrolled Input:**
+```jsx
+function LoginForm() {
+  const inputRef = React.useRef();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert(inputRef.current.value);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" ref={inputRef} />
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+```
 

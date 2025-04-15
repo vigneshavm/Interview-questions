@@ -58,7 +58,7 @@ const element = <h1>Hello, {user.name}</h1>;
 
 ---
 
-## 🚀 **Why Use React?**
+## **Why Use React**
 
 | Reason | Description |
 |--------|-------------|

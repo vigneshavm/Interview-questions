@@ -2,7 +2,7 @@
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **React Basics** | • [Create React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) • [Single Page Applications (SPA)](#single-page-applications-spa) • [JSX vs HTML](#jsx-vs-html) • [Why Use React](#why-use-react) |
 | **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components) •  [Stateless vs Stateful Components](#stateless-vs-stateful-components) •  [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components) •  [Controlled Components](#controlled-components)  •  [Uncontrolled Components over Controlled Components](#Uncontrolled-Components-over-Controlled-Components) •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
-| **Props, State & Context**          | •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) 
+| **Props, State & Context**          | •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) •  [Conditional Rendering](#Conditional-Rendering) |
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Props Drilling Problem](#props-drilling) •  [Higher-Order Components (HOCs)](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api) •  [Zustand, Recoil, or Jotai?](#zustand-or-other-lightweight-state-libs) |
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Higher-Order Components (HOCs)](#higher-order-components-hocs)  •  [Error Handling in Components](#error-handling-in-components) •  [Lazy Loading Components](#lazy-loading-components) 
 | **Routing**          | •  [React Router Introduction](#react-router) •  [Navigation Methods](#react-router-navigation) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
@@ -3825,3 +3825,74 @@ Use **Context API** for app-wide "static" values (like theme or auth), and **Red
 
 ---
 
+
+---
+
+## **Conditional Rendering**
+
+**Conditional Rendering** means showing different UI elements based on some condition, like user login status, loading state, error, etc.
+
+It’s like using `if/else` in JavaScript — but inside JSX.
+
+---
+
+### ✅ **1. Using `if` Statements (Outside JSX)**
+
+```jsx
+function Greeting({ isLoggedIn }) {
+  if (isLoggedIn) {
+    return <h1>Welcome back!</h1>;
+  } else {
+    return <h1>Please sign in.</h1>;
+  }
+}
+```
+
+---
+
+### ✅ **2. Using Ternary Operator (Inline in JSX)**
+
+```jsx
+function Greeting({ isLoggedIn }) {
+  return (
+    <div>
+      {isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please sign in.</h1>}
+    </div>
+  );
+}
+```
+
+---
+
+### ✅ **3. Using Logical `&&` Operator**
+
+Only renders the component if the condition is `true`.
+
+```jsx
+function Message({ unreadCount }) {
+  return (
+    <div>
+      {unreadCount > 0 && <p>You have {unreadCount} unread messages.</p>}
+    </div>
+  );
+}
+```
+
+---
+
+### ✅ **4. Storing JSX in a Variable**
+
+```jsx
+function Dashboard({ isAdmin }) {
+  let content;
+  if (isAdmin) {
+    content = <AdminPanel />;
+  } else {
+    content = <UserPanel />;
+  }
+
+  return <div>{content}</div>;
+}
+```
+
+---

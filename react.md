@@ -2863,7 +2863,7 @@ If you're starting fresh or scaling up, **TypeScript is the way to go**.
 ---
 
 ---
-### 📡 **Fetching Data with Axios / Fetch **
+### 📡 **Fetching Data**
 
 Fetching data is a core part of most React apps. You can use either the built-in `fetch()` API or third-party libraries like **Axios**.
 

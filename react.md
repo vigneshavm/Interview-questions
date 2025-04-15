@@ -1,7 +1,7 @@
 
 | Q1 | Q2 | Q3 | Q4 | Q5 | Q6 |
 |----|----|----|----|----|----|
-| [Create React App using TypeScript](#create-react-app-using-typescript) | [React Overview](#react-overview) | [Single Page Applications (SPA)](#single-page-applications-spa) | [JSX vs HTML](#jsx-vs-html) | Why Use React[#Why-Use-React]
+| [Create React App using TypeScript](#create-react-app-using-typescript) | [React Overview](#react-overview) | [Single Page Applications (SPA)](#single-page-applications-spa) | [JSX vs HTML](#jsx-vs-html) | [Why Use React](#Why-Use-React])
 |[Class vs Functional Components](#class-vs-functional-components) | [Stateless vs Stateful Components](#stateless-vs-stateful-components) |
 | [Props in React](#props-in-react) | [Props vs State](#props-vs-state) | [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components) | [Keys in Lists](#keys-in-lists) | [React Fragments](#react-fragments) | [Virtual DOM](#virtual-dom) |
 | [Lifecycle Methods](#lifecycle-methods) | [Props Drilling](#props-drilling) | [Context API](#context-api) | [Higher-Order Components (HOCs)](#higher-order-components-hocs) | [Reconciliation Process](#reconciliation-process) | [React Portals](#react-portals) |

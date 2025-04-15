@@ -9,7 +9,7 @@
 | **Performance Optimization**          | •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [React Profiler](#react-profiler) |
 | **Testing React**          | •  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) •  [Unit vs Integration vs E2E ](#Unit-Tests) •  [Testing Hooks](#Testing-Hooks) •  [Mocking APIs Tests](#Mocking-APIs-Tests) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript) •  [Error Boundaries](#error-boundaries) •  [Strict Mode](#strict-mode-in-react) |
-| **API Integration**          | •  [Fetching Data with Axios / Fetch](#fetching-data) •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Using useEffect for Data Fetching](#useeffect-fetching) •  [React Query / SWR – What and Why?](#react-query-swr) |
+| **API Integration**          | •  [Fetching Data with Axios / Fetch](#fetching-data) •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) •  [React Query / SWR – What and Why?](#react-query-swr) |
 
 
 | Q1 | Q2 | Q3 | Q4 | Q5 | Q6 |
@@ -3080,6 +3080,115 @@ const useFetch = (url) => {
 Then just call it in a component:
 ```jsx
 const { data, loading, error } = useFetch('https://api.example.com/users');
+```
+
+---
+
+
+
+###  Using useEffect for Data Fetching
+
+In React, `useEffect` is commonly used to **fetch data** when the component mounts. This hook helps you run side-effects, like making API calls.
+
+---
+
+### ✅ Basic Syntax
+
+```jsx
+useEffect(() => {
+  // your side-effect (e.g., fetch)
+}, []);
+```
+
+The empty dependency array `[]` ensures the code runs **only once** after the initial render.
+
+---
+
+### 🧪 Example: Fetching Data from an API
+
+```jsx
+import React, { useEffect, useState } from 'react';
+
+function Posts() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((res) => res.json())
+      .then((data) => {
+        setPosts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching posts:', err);
+        setLoading(false);
+      });
+  }, []); // run once when component mounts
+
+  if (loading) return <p>Loading posts...</p>;
+
+  return (
+    <ul>
+      {posts.slice(0, 5).map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+---
+
+### 🔁 Reactivity with Dependencies
+
+You can also add **dependencies** to run the effect whenever values change:
+
+```jsx
+useEffect(() => {
+  // fetch data when `userId` changes
+}, [userId]);
+```
+
+---
+
+### 🧼 Cleanup (e.g., for intervals or subscriptions)
+
+```jsx
+useEffect(() => {
+  const interval = setInterval(() => console.log('ping'), 1000);
+  return () => clearInterval(interval); // clean up on unmount
+}, []);
+```
+
+---
+
+### 🧠 Best Practices
+
+| Tip                                 | Why It Matters                                                                 |
+|-------------------------------------|---------------------------------------------------------------------------------|
+| Use `async` functions **inside** `useEffect` | `useEffect` itself can’t be `async` — define an `async` function inside it     |
+| Handle loading and error states     | For good UX and debugging                                                       |
+| Use cleanup when needed             | Avoid memory leaks with subscriptions or intervals                             |
+| Use AbortController (optional)      | To cancel fetch requests on unmount (especially in large apps)                 |
+
+---
+
+### 🧪 Using `async/await` in `useEffect`
+
+```jsx
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const res = await fetch('https://api.example.com/data');
+      const result = await res.json();
+      setData(result);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  fetchData();
+}, []);
 ```
 
 ---

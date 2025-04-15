@@ -1061,3 +1061,54 @@ function Card({ title, children }) {
   <p>This is a composed paragraph inside the card.</p>
 </Card>
 ```
+---
+
+## **Controlled Components**
+
+🟩 **Answer:**
+
+A **Controlled Component** in React is a form element (like an `<input>`, `<textarea>`, or `<select>`) whose **value is controlled by React state**.
+
+In other words, the input's value is **bound to a state variable**, and any change to it is handled via a callback like `onChange`.
+
+---
+
+🧠 In this case:
+- `value={name}` → makes it a **controlled input**.
+- `onChange` updates state → keeping React in full control.
+
+---
+
+### 🔍 **Why use Controlled Components?**
+- React has full control over the form data.
+- Enables validation, formatting, conditional rendering, etc.
+- Helps in syncing UI with application logic.
+
+---
+
+### ❗ Uncontrolled Components (for contrast):
+- Manage their own state via the DOM (e.g., using refs).
+- Less code but harder to validate or control dynamically.
+
+---
+
+### ✅ **Summary**:
+Controlled components let React manage the input state, making them more predictable and powerful for building interactive forms.
+
+
+🔸 **Example:**
+```jsx
+function NameForm() {
+  const [name, setName] = React.useState("");
+
+  return (
+    <input
+      type="text"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
+  );
+}
+```
+---
+

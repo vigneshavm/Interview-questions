@@ -99,6 +99,53 @@ Node.js is **event-driven, single-threaded, and asynchronous**, built on top of:
 | **Microtask Queue**| Promises, process.nextTick tasks                                     |
 | **Node APIs**     | HTTP, fs, crypto, etc. expose native functionality to JS layer       |
 
+
+---
+
+## **Node.js Request Handling Flow**
+
+
+---
+### **1️⃣ Client Sends an HTTP Request**
+### **2️⃣ Node.js Accepts the Request (via HTTP Module or Express)**
+Express handles this using Node's internal HTTP module.
+### **3️⃣ Request Goes Through Middleware**
+### **4️⃣ Route Handler is Matched**
+### **5️⃣ If Synchronous → Executes on the Call Stack**
+```js
+app.get('/ping', (req, res) => {
+  res.send('pong'); // Simple sync response
+});
+```
+- Quick code runs directly on the **call stack**
+- Response is sent immediately
+---
+### **6️⃣ If Asynchronous → Delegated to libuv**
+```js
+app.get('/users', async (req, res) => {
+  const users = await db.getAllUsers();  // Async DB call
+  res.json(users);
+});
+```
+- `db.getAllUsers()` is an async operation (e.g., DB query)
+- Node offloads it to the **libuv thread pool**
+- Doesn’t block other incoming requests
+- When ready, the result is sent to the **callback queue**
+---
+### **7️⃣ Event Loop Watches Call Stack and Callback Queue**
+- Event loop keeps checking:
+  - Is the call stack empty?
+  - Are there callbacks ready to run?
+- If yes, it pushes them into the **call stack**
+This is how non-blocking works.
+---
+### **8️⃣ Callback Runs → Response is Sent**
+Once the async operation is ready:
+```js
+res.json(users); // Sends JSON response back to client
+```
+The event loop pushes this function onto the stack, and Node.js sends the response.
+---
 ---
 
 ### 🔄 **Node.js Execution Flow (In Detail)**

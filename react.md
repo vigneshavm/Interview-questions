@@ -5,7 +5,7 @@
 | [Props in React](#props-in-react) | [Props vs State](#props-vs-state) | [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components) | [Keys in Lists](#keys-in-lists) | [React Fragments](#react-fragments) | [Virtual DOM](#virtual-dom) |
 | [Lifecycle Methods](#lifecycle-methods) | [Props Drilling](#props-drilling) | [Context API](#context-api) | [Higher-Order Components (HOCs)](#higher-order-components-hocs) | [Reconciliation Process](#reconciliation-process) | [React Portals](#react-portals) |
 | [React Router Navigation](#react-router-navigation) | [Error Handling in Components](#error-handling-in-components) | [Performance Optimization](#performance-optimization) | [Redux](#redux--predictable-state-management) | [Lazy Loading Components](#lazy-loading-components) | [Strict Mode in React](#strict-mode-in-react) |
-| [React Router](#react-router) | [Lifting State Up](#lifting-state-up) | [Error Boundaries](#error-boundaries) | [React Hooks](#react-hooks) | 
+| [React Router](#react-router) | [Lifting State Up](#lifting-state-up) | [Error Boundaries](#error-boundaries) | [React Hooks](#react-hooks) | [Custom Hook](#Custom-Hook) |
 
 
 ---
@@ -846,5 +846,126 @@ Use when:
 - Component re-renders cause performance hits
 
 
+
+---
+
+### Custom Hook
+
+A custom hook is just a **JavaScript function** that starts with the word `use` and **can call other hooks** inside it.
+
+```jsx
+function useCustomThing() {
+  // You can use any hook here
+  const [state, setState] = useState(null);
+  useEffect(() => { /*...*/ }, []);
+  return state;
+}
+```
+
+---
+
+### Example 1: `useWindowWidth` – Track window width
+```jsx
+import { useState, useEffect } from 'react';
+
+function useWindowWidth() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return width;
+}
+
+// Usage:
+function App() {
+  const width = useWindowWidth();
+  return <p>Window width: {width}px</p>;
+}
+```
+
+---
+
+### Example 2: `useFetch` – Generic fetch logic
+```jsx
+import { useState, useEffect } from 'react';
+
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        if (isMounted) {
+          setData(data);
+          setLoading(false);
+        }
+      });
+
+    return () => { isMounted = false };
+  }, [url]);
+
+  return { data, loading };
+}
+
+// Usage:
+function Posts() {
+  const { data, loading } = useFetch('https://jsonplaceholder.typicode.com/posts');
+  if (loading) return <p>Loading...</p>;
+  return <ul>{data.slice(0, 5).map(post => <li key={post.id}>{post.title}</li>)}</ul>;
+}
+```
+
+---
+
+### Example 3: `useToggle` – Toggle a boolean
+```jsx
+function useToggle(initial = false) {
+  const [value, setValue] = useState(initial);
+  const toggle = () => setValue(v => !v);
+  return [value, toggle];
+}
+
+// Usage:
+function ToggleExample() {
+  const [on, toggle] = useToggle();
+  return <button onClick={toggle}>{on ? 'ON' : 'OFF'}</button>;
+}
+```
+
+---
+
+### Example 4: `usePrevious` – Track previous value
+```jsx
+import { useRef, useEffect } from 'react';
+
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+}
+
+// Usage:
+function Counter() {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+  return (
+    <>
+      <p>Now: {count}, Before: {prevCount}</p>
+      <button onClick={() => setCount(c => c + 1)}>+1</button>
+    </>
+  );
+}
+```
+
+---
 
 

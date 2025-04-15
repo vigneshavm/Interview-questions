@@ -1,3 +1,13 @@
+| **JavaScript Fundamentals**          | •  [Class vs Functional Components](#class-vs-functional-components) •  [Stateless vs Stateful Components](#stateless-vs-stateful-components) •  [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components) •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#composition-vs-inheritance) •  [Controlled Components](#controlled-components) |
+| **JavaScript Fundamentals**          | •  [Props ](#props-in-react) •  [Props vs State](#props-vs-state) || 13 | [React Children Prop](#react-children-prop) •  [Redux](#redux--predictable-state-management) || 24 | [React Context API](#context-api) •  [Props Drilling Problem](#props-drilling) •  [Higher-Order Components (HOCs)](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api) •  [Zustand, Recoil, or Jotai?](#zustand-or-other-lightweight-state-libs) |
+| **Routing**          | •  [React Router Introduction](#react-router) •  [Navigation Methods](#react-router-navigation) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection) |
+| **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#form-validation-tools) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
+| **Lists and DOM**          | •  [Keys in Lists](#keys-in-lists) •  [Virtual DOM](#virtual-dom) •  [Reconciliation Process](#reconciliation-process) •  [Refs ](#refs-in-reacReact Fragments](#react-fragments) •  [React Portals](#react-portals) |
+| **Performance Optimization**          | •  [Avoiding Unnecessary Rerenders](#avoid-unnecessary-renders) •  [React Profiler](#react-profiler) |
+| **Testing React**          | •  [Testing Libraries (Jest, React Testing Library)](#testing-librariest) •  [Unit vs Integration vs E2E ](#unit-vs-integration-testingt) •  [Testing Hooks](#testing-hookst) •  [Mocking APIs  Tests](#mocking-apis-react-tests) |
+| **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design-principles) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript) •  [Error Boundaries](#error-boundaries) •  [Strict Mode](#strict-mode-in-react) |
+| **API Integration**          | •  [Fetching Data with Axios / Fetch](#fetching-data) •  [Handling Loading, Error States](#handling-api-states) •  [Using useEffect for Data Fetching](#useeffect-fetching) •  [React Query / SWR – What and Why?](#react-query-swr) |
+
 
 | Q1 | Q2 | Q3 | Q4 | Q5 | Q6 |
 |----|----|----|----|----|----|

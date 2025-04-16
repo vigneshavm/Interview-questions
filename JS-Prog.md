@@ -12,7 +12,7 @@
 | Sorting & Searching | • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort)
 | Graph Problems | • [BFS Traversal](#bfs) • [DFS Traversal](#dfs) • [Number of Islands (Matrix BFS/DFS)](#number-of-islands) • [Detect Cycle in Graph (#Detect-Cycle-in-Graph)](#detect-cycle-in-graph) • [Topological Sort (Kahn’s Algorithm)](#topological-sort) • [Clone Graph](#clone-graph) • [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix) • [Word Ladder](#word-ladder) • [Dijkstra’s Algorithm](#dijkstras-algorithm) 
 | Binary Tree | • [Inorder / Preorder / Postorder Traversal](#inorder-preorder-postorder-traversal) • [Level Order Traversal](#level-order-traversal) • [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree) • [Symmetric Tree](#symmetric-tree) • [Diameter of Binary Tree](#diameter-of-binary-tree) • [Lowest Common Ancestor (BST & Binary Tree)](#lowest-common-ancestor) • [Serialize and Deserialize Binary Tree](#serialize-and-deserialize-binary-tree) • [Path Sum](#path-sum) • [Convert Sorted Array to BST](#convert-sorted-array-to-bst)
-
+| Arrays & Strings | • [Two Sum](#two-sum)  • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock) • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array) • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)      • [Rotate Array](#rotate-array)         • [Contains Duplicate](#contains-duplicate)    • [Missing Number](#missing-number)      • [Reverse a String / Array](#reverse-a-string--array) • [Palindrome Check](#check-if-a-string-is-a-palindrome)
 
 ---
 
@@ -3466,5 +3466,208 @@ function sortedArrayToBST(nums) {
     return node;
 }
 ```
+
+---
+
+### 1. **Two Sum**
+**Approach**: Hash Map for constant-time lookup.
+
+```javascript
+function twoSum(nums, target) {
+    const map = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        let complement = target - nums[i];
+        if (map.has(complement)) return [map.get(complement), i];
+        map.set(nums[i], i);
+    }
+}
+```
+
+ **Example**: `twoSum([2, 7, 11, 15], 9)` → `[0, 1]`
+
+---
+
+### 2. **Best Time to Buy and Sell Stock**
+**Approach**: Track minimum price, and calculate max profit on the go.
+
+```javascript
+function maxProfit(prices) {
+    let minPrice = Infinity;
+    let maxProfit = 0;
+    for (let price of prices) {
+        minPrice = Math.min(minPrice, price);
+        maxProfit = Math.max(maxProfit, price - minPrice);
+    }
+    return maxProfit;
+}
+```
+
+ **Example**: `maxProfit([7, 1, 5, 3, 6, 4])` → `5`
+
+---
+
+### 3. **Remove Duplicates from Sorted Array**
+**Approach**: Use two pointers to overwrite duplicates in-place.
+
+```javascript
+function removeDuplicates(nums) {
+    if (nums.length === 0) return 0;
+    let i = 0;
+    for (let j = 1; j < nums.length; j++) {
+        if (nums[i] !== nums[j]) nums[++i] = nums[j];
+    }
+    return i + 1;
+}
+```
+
+ **Example**: `removeDuplicates([1, 1, 2])` → `2`
+
+---
+
+### 4. **Move Zeros**
+**Approach**: Use pointer to track insert position, fill rest with 0.
+
+```javascript
+function moveZeroes(nums) {
+    let insertPos = 0;
+    for (let num of nums) {
+        if (num !== 0) nums[insertPos++] = num;
+    }
+    while (insertPos < nums.length) nums[insertPos++] = 0;
+}
+```
+
+ **Example**: `moveZeroes([0, 1, 0, 3, 12])` → `[1, 3, 12, 0, 0]`
+
+---
+
+### 5. **Maximum Subarray (Kadane’s Algorithm)**
+**Approach**: Dynamic programming to track current and max sum.
+
+```javascript
+function maxSubArray(nums) {
+    let curr = nums[0], max = nums[0];
+    for (let i = 1; i < nums.length; i++) {
+        curr = Math.max(nums[i], curr + nums[i]);
+        max = Math.max(max, curr);
+    }
+    return max;
+}
+```
+
+ **Example**: `maxSubArray([-2,1,-3,4,-1,2,1,-5,4])` → `6`
+
+---
+
+### 6. **Merge Sorted Arrays**
+**Approach**: Merge from the end to avoid overwriting.
+
+```javascript
+function merge(nums1, m, nums2, n) {
+    let i = m - 1, j = n - 1, k = m + n - 1;
+    while (j >= 0) {
+        nums1[k--] = (i >= 0 && nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--];
+    }
+}
+```
+
+ **Example**: `merge([1,2,3,0,0,0], 3, [2,5,6], 3)` → `[1,2,2,3,5,6]`
+
+---
+
+### 7. **Rotate Array**
+**Approach**: Reverse the whole array, then reverse parts.
+
+```javascript
+function rotate(nums, k) {
+    k %= nums.length;
+    nums.reverse();
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, nums.length - 1);
+
+    function reverse(arr, left, right) {
+        while (left < right) {
+            [arr[left], arr[right]] = [arr[right], arr[left]];
+            left++;
+            right--;
+        }
+    }
+}
+```
+
+ **Example**: `rotate([1,2,3,4,5,6,7], 3)` → `[5,6,7,1,2,3,4]`
+
+---
+
+### 8. **Contains Duplicate**
+**Approach**: Use a Set to track visited elements.
+
+```javascript
+function containsDuplicate(nums) {
+    const seen = new Set();
+    for (let num of nums) {
+        if (seen.has(num)) return true;
+        seen.add(num);
+    }
+    return false;
+}
+```
+
+ **Example**: `containsDuplicate([1,2,3,1])` → `true`
+
+---
+
+### 9. **Missing Number**
+**Approach**: Math formula to find sum difference.
+
+```javascript
+function missingNumber(nums) {
+    let n = nums.length;
+    let expectedSum = (n * (n + 1)) / 2;
+    let actualSum = nums.reduce((a, b) => a + b, 0);
+    return expectedSum - actualSum;
+}
+```
+
+ **Example**: `missingNumber([3, 0, 1])` → `2`
+
+---
+
+### 10. **Reverse a String / Array**
+**Approach**: Two-pointer swap.
+
+```javascript
+function reverseString(s) {
+    let left = 0, right = s.length - 1;
+    while (left < right) {
+        [s[left], s[right]] = [s[right], s[left]];
+        left++;
+        right--;
+    }
+    return s;
+}
+```
+
+ **Example**: `reverseString(["h","e","l","l","o"])` → `["o","l","l","e","h"]`
+
+---
+
+### 11. **Check if a String is a Palindrome**
+**Approach**: Clean string + two-pointer check.
+
+```javascript
+function isPalindrome(s) {
+    s = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+    let left = 0, right = s.length - 1;
+    while (left < right) {
+        if (s[left++] !== s[right--]) return false;
+    }
+    return true;
+}
+```
+
+ **Example**: `isPalindrome("A man, a plan, a canal: Panama")` → `true`
+
+---
 
 

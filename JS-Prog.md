@@ -11,6 +11,8 @@
 | **Searching Problems** | • [Binary Search (Recursive/Iterative)](#Binary-Search) • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array) • [Find Peak Element](#find-peak-element) • [Kth Largest Element in Array](#kth-largest-element-in-an-array) • [First and Last Position of Element](#first-and-last-position-of-element) • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
 | **Sorting & Searching** | • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort)
 | **Graph Problems** | • [**BFS Traversal**](#bfs) • [**DFS Traversal**](#dfs) • [**Number of Islands (Matrix BFS/DFS)**](#number-of-islands) • [**Detect Cycle in Graph (#Detect-Cycle-in-Graph)**](#detect-cycle-in-graph) • [**Topological Sort (Kahn’s Algorithm)**](#topological-sort) • [**Clone Graph**](#clone-graph) • [**Shortest Path in Binary Matrix**](#shortest-path-in-binary-matrix) • [**Word Ladder**](#word-ladder) • [**Dijkstra’s Algorithm**](#dijkstras-algorithm) 
+| **Binary Tree** | • [**Inorder / Preorder / Postorder Traversal**](#inorder-preorder-postorder-traversal) • [**Level Order Traversal**](#level-order-traversal) • [**Maximum Depth of Binary Tree**](#maximum-depth-of-binary-tree) • [**Symmetric Tree**](#symmetric-tree) • [**Diameter of Binary Tree**](#diameter-of-binary-tree) • [**Lowest Common Ancestor (BST & Binary Tree)**](#lowest-common-ancestor) • [**Serialize and Deserialize Binary Tree**](#serialize-and-deserialize-binary-tree) • [**Path Sum**](#path-sum) • [**Convert Sorted Array to BST**](#convert-sorted-array-to-bst)
+
 
 ---
 

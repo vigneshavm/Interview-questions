@@ -3,7 +3,7 @@
 | Array Operations | • [Find Maximum in an Array](#find-maximum-in-an-array) • [Find Second Largest Element](#find-second-largest-element)  • [Remove Duplicates element from array](#remove-duplicates-element-from-array) • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)• [Chunk an Array](#chunk-an-array) • [Flatten Nested Arrays](#flatten-nested-arrays) • [Reverse Words in a Sentence](#reverse-words-in-a-sentence) • [Recursive Sum of Array](#recursive-sum-of-array) • [Merge Sort + Deduplication](#merge-sort) • [Sort Array of Objects by Field](#sort-array-of-objects-by-field) • [sort an array of objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
 | Arrays & Strings | • [Two Sum](#two-sum)  • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)      • [Rotate Array](#rotate-array)         • [Contains Duplicate](#contains-duplicate)    • [Missing Number](#missing-number)      • [Reverse a String / Array](#reverse-a-string--array) • [Palindrome Check](#check-if-a-string-is-a-palindrome)
 | Arrays & Strings Adv |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
-| Hashmaps & Sets |• [Two Sum using HashMap](#two-sum-using-hashmap)  • [Group Anagrams](#group-anagrams)  • [Anagram Checker](#anagram-checker) • [Top K Frequent Elements](#top-k-frequent-elements)  • [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  • [First Non-Repeating Character](#first-non-repeating-character)  
+| Hashmaps & Sets |• [Group Anagrams](#group-anagrams)  • [Anagram Checker](#anagram-checker) • [Top K Frequent Elements](#top-k-frequent-elements)  • [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  • [First Non-Repeating Character](#first-non-repeating-character)  
 | String Problems | • [Check for Palindrome](#check-for-palindrome) • [Reverse a String](#reverse-a-string) • [Count Vowels in a String](#count-vowels-in-a-string) • [Character Frequency Count](#character-frequency-count) • [First Non-Repeating Character](#first-non-repeating-character) • [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) • [Permutation in String](#Permutation-in-String) 
 | Object Manipulation | • [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) • [Group by Category or Class](#group-by-category-or-class) • [Group Array of Objects by Key](#group-array-of-objects-by-key) • [Deep Clone an Object](#deep-clone-an-object) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
 | Recursion & Math | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
@@ -3393,25 +3393,77 @@ function sortedArrayToBST(nums) {
 }
 ```
 
+
 ---
 
-### **Two Sum**
-**Approach**: Hash Map for constant-time lookup.
+## **Two Sum**
+> Given an array `nums` and a `target`, return the **indices** of the two numbers that add up to the target.
 
-```javascript
+Example:
+```js
+Input: nums = [2, 7, 11, 15], target = 9  
+Output: [0, 1] // because nums[0] + nums[1] == 2 + 7 == 9
+```
+
+---
+
+### ✅ Approach 1: **Using Map (Optimized)**  
+⏱ Time: O(n)  
+📦 Space: O(n)
+
+```js
 function twoSum(nums, target) {
-    const map = new Map();
+    const map = new Map(); // store number → index
+
     for (let i = 0; i < nums.length; i++) {
-        let complement = target - nums[i];
-        if (map.has(complement)) return [map.get(complement), i];
+        const diff = target - nums[i];
+        if (map.has(diff)) {
+            return [map.get(diff), i];
+        }
         map.set(nums[i], i);
     }
 }
 ```
 
- **Example**: `twoSum([2, 7, 11, 15], 9)` → `[0, 1]`
+### 🔍 How It Works:
+- Loop through array once
+- For each `nums[i]`, calculate the difference `target - nums[i]`
+- If that difference is **already in the map**, return its index and current index.
+- Else, store the current number and its index in the map.
 
 ---
+
+### ✅ Approach 2: **Without Map (Brute Force)**  
+⏱ Time: O(n²)  
+📦 Space: O(1)
+
+```js
+function twoSum(nums, target) {
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] + nums[j] === target) {
+                return [i, j];
+            }
+        }
+    }
+}
+```
+
+### 🔍 How It Works:
+- Two nested loops: try **every pair** of elements.
+- Return the pair of indices that add up to the target.
+
+---
+
+### 💡 Summary:
+
+| Approach         | Time Complexity | Space Complexity | Notes                    |
+|------------------|------------------|--------------------|---------------------------|
+| Using Map        | O(n)             | O(n)               | Most efficient, 1-pass    |
+| Without Map      | O(n²)            | O(1)               | Simpler but slower        |
+
+---
+
 
 ### **Best Time to Buy and Sell Stock**
 **Approach**: Track minimum price, and calculate max profit on the go.
@@ -3762,24 +3814,7 @@ function subarraySum(nums, k) {
 
 
 
----
 
-### **Two Sum using HashMap**
-```javascript
-function twoSum(nums, target) {
-    const map = new Map(); // stores number → index
-
-    for (let i = 0; i < nums.length; i++) {
-        const diff = target - nums[i];
-        if (map.has(diff)) return [map.get(diff), i];
-        map.set(nums[i], i);
-    }
-}
-```
-**Input**: `[2, 7, 11, 15], target = 9`  
-**Output**: `[0, 1]`
-
----
 
 
 

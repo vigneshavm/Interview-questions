@@ -2622,4 +2622,219 @@ Final Answer: 3
 
 
 
+### ✅ **Binary Search (Recursive and Iterative)**
+
+#### 🔁 **Iterative Approach**
+
+```js
+function binarySearchIterative(arr, target) {
+  let left = 0, right = arr.length - 1;
+
+  // Keep narrowing the search range
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) return mid;
+    else if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+
+  return -1; // Not found
+}
+
+// Example:
+console.log(binarySearchIterative([1, 3, 5, 7, 9], 5)); // Output: 2
+```
+
+**Approach**: Use a loop to divide the search range in half until the target is found or the range is empty.
+
+---
+
+#### 🔁 **Recursive Approach**
+
+```js
+function binarySearchRecursive(arr, target, left = 0, right = arr.length - 1) {
+  if (left > right) return -1;
+
+  let mid = Math.floor((left + right) / 2);
+
+  if (arr[mid] === target) return mid;
+  else if (arr[mid] < target)
+    return binarySearchRecursive(arr, target, mid + 1, right);
+  else
+    return binarySearchRecursive(arr, target, left, mid - 1);
+}
+
+// Example:
+console.log(binarySearchRecursive([2, 4, 6, 8, 10], 8)); // Output: 3
+```
+
+**Approach**: Same idea as iterative, but it uses function calls instead of a loop.
+
+---
+
+### ✅ **Search in Rotated Sorted Array**
+
+```js
+function searchRotatedArray(nums, target) {
+  let left = 0, right = nums.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] === target) return mid;
+
+    // Determine which side is sorted
+    if (nums[left] <= nums[mid]) {
+      // Left part is sorted
+      if (target >= nums[left] && target < nums[mid]) right = mid - 1;
+      else left = mid + 1;
+    } else {
+      // Right part is sorted
+      if (target > nums[mid] && target <= nums[right]) left = mid + 1;
+      else right = mid - 1;
+    }
+  }
+
+  return -1;
+}
+
+// Example:
+console.log(searchRotatedArray([4, 5, 6, 7, 0, 1, 2], 0)); // Output: 4
+```
+
+**Approach**: Modified binary search. Find which half is sorted and decide which direction to move.
+
+---
+
+### ✅ **Find Peak Element**
+
+```js
+function findPeakElement(nums) {
+  let left = 0, right = nums.length - 1;
+
+  while (left < right) {
+    let mid = Math.floor((left + right) / 2);
+
+    // If mid is greater than next, peak lies to the left
+    if (nums[mid] > nums[mid + 1]) right = mid;
+    else left = mid + 1;
+  }
+
+  return left; // or right, both point to a peak
+}
+
+// Example:
+console.log(findPeakElement([1, 2, 3, 1])); // Output: 2 (index of 3)
+```
+
+**Approach**: Binary search on slope. Always move toward the greater side since a peak exists there.
+
+---
+
+### ✅ **Kth Largest Element in an Array**
+
+```js
+function findKthLargest(nums, k) {
+  nums.sort((a, b) => b - a); // Descending order
+  return nums[k - 1];
+}
+
+
+// Example:
+console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
+```
+
+**Approach**: Sort the array in descending order and pick the (k-1)th element.
+
+🧠 *Optimized solution can use Min Heap or QuickSelect for O(n) average time.*
+
+---
+
+### ✅ **First and Last Position of Element in Sorted Array**
+
+```js
+function searchRange(nums, target) {
+  function findBound(isFirst) {
+    let left = 0, right = nums.length - 1, result = -1;
+
+    while (left <= right) {
+      let mid = Math.floor((left + right) / 2);
+
+      if (nums[mid] === target) {
+        result = mid;
+        if (isFirst) right = mid - 1; // Keep going left
+        else left = mid + 1;          // Keep going right
+      } else if (nums[mid] < target) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+
+    return result;
+  }
+
+  return [findBound(true), findBound(false)];
+}
+
+// Example:
+console.log(searchRange([5, 7, 7, 8, 8, 10], 8)); // Output: [3, 4]
+```
+
+**Approach**: Use two binary searches – one for first occurrence, one for last.
+
+---
+
+### ✅ **Median of Two Sorted Arrays**
+
+```js
+function findMedianSortedArrays(nums1, nums2) {
+  if (nums1.length > nums2.length) [nums1, nums2] = [nums2, nums1];
+
+  let x = nums1.length, y = nums2.length;
+  let low = 0, high = x;
+
+  while (low <= high) {
+    let partitionX = Math.floor((low + high) / 2);
+    let partitionY = Math.floor((x + y + 1) / 2) - partitionX;
+
+    let maxLeftX = partitionX === 0 ? -Infinity : nums1[partitionX - 1];
+    let minRightX = partitionX === x ? Infinity : nums1[partitionX];
+
+    let maxLeftY = partitionY === 0 ? -Infinity : nums2[partitionY - 1];
+    let minRightY = partitionY === y ? Infinity : nums2[partitionY];
+
+    // Correct partition found
+    if (maxLeftX <= minRightY && maxLeftY <= minRightX) {
+      if ((x + y) % 2 === 0) {
+        return (Math.max(maxLeftX, maxLeftY) + Math.min(minRightX, minRightY)) / 2;
+      } else {
+        return Math.max(maxLeftX, maxLeftY);
+      }
+    } else if (maxLeftX > minRightY) {
+      high = partitionX - 1; // move left
+    } else {
+      low = partitionX + 1;  // move right
+    }
+  }
+
+  return 0;
+}
+
+// Example:
+console.log(findMedianSortedArrays([1, 3], [2])); // Output: 2
+console.log(findMedianSortedArrays([1, 2], [3, 4])); // Output: 2.5
+```
+
+**Approach**: Binary search the smaller array to find the correct partition between the two arrays.  
+📌 Time Complexity: `O(log(min(n, m)))`
+
+
+
+
+
+
+
+
 

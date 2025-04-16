@@ -3579,6 +3579,23 @@ function containsDuplicate(nums) {
 }
 ```
 
+```javascript
+function containsDuplicate(nums) {
+    const map = {}; // empty object to track occurrences
+
+    for (let i = 0; i < nums.length; i++) {
+        if (map[nums[i]]) {
+            return true; // duplicate found
+        } else {
+            map[nums[i]] = true; // mark the number as seen
+        }
+    }
+
+    return false; // no duplicates
+}
+
+```
+
  **Example**: `containsDuplicate([1,2,3,1])` → `true`
 
 ---

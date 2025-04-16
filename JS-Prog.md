@@ -3853,3 +3853,179 @@ function subarraySum(nums, k) {
 ---
 
 
+
+---
+
+### **Two Sum using HashMap**
+```javascript
+function twoSum(nums, target) {
+    const map = new Map(); // stores number → index
+
+    for (let i = 0; i < nums.length; i++) {
+        const diff = target - nums[i];
+        if (map.has(diff)) return [map.get(diff), i];
+        map.set(nums[i], i);
+    }
+}
+```
+**Input**: `[2, 7, 11, 15], target = 9`  
+**Output**: `[0, 1]`
+
+---
+
+### **Group Anagrams**
+```javascript
+function groupAnagrams(strs) {
+    const map = new Map();
+
+    for (let str of strs) {
+        const key = str.split('').sort().join('');
+        if (!map.has(key)) map.set(key, []);
+        map.get(key).push(str);
+    }
+
+    return Array.from(map.values());
+}
+```
+**Input**: `["eat","tea","tan","ate","nat","bat"]`  
+**Output**: `[["eat","tea","ate"],["tan","nat"],["bat"]]`
+
+---
+
+### **Top K Frequent Elements**
+```javascript
+function topKFrequent(nums, k) {
+    const map = new Map();
+    for (let n of nums) map.set(n, (map.get(n) || 0) + 1);
+
+    const buckets = Array(nums.length + 1).fill().map(() => []);
+    for (let [num, freq] of map.entries()) {
+        buckets[freq].push(num);
+    }
+
+    const res = [];
+    for (let i = buckets.length - 1; i >= 0 && res.length < k; i--) {
+        res.push(...buckets[i]);
+    }
+
+    return res.slice(0, k);
+}
+```
+**Input**: `[1,1,1,2,2,3], k = 2`  
+**Output**: `[1,2]`
+
+---
+
+### **Valid Anagram**
+```javascript
+function isAnagram(s, t) {
+    if (s.length !== t.length) return false;
+    
+    const count = new Map();
+    for (let c of s) count.set(c, (count.get(c) || 0) + 1);
+    for (let c of t) {
+        if (!count.has(c)) return false;
+        count.set(c, count.get(c) - 1);
+        if (count.get(c) === 0) count.delete(c);
+    }
+    
+    return count.size === 0;
+}
+```
+**Input**: `s = "anagram", t = "nagaram"`  
+**Output**: `true`
+
+---
+
+### **Intersection of Two Arrays**
+```javascript
+function intersection(nums1, nums2) {
+    const set1 = new Set(nums1);
+    const set2 = new Set(nums2);
+    return [...set1].filter(x => set2.has(x));
+}
+```
+**Input**: `[1,2,2,1], [2,2]`  
+**Output**: `[2]`
+
+---
+
+### **Longest Substring Without Repeating Characters**
+```javascript
+function lengthOfLongestSubstring(s) {
+    const map = new Map();
+    let left = 0, maxLen = 0;
+
+    for (let right = 0; right < s.length; right++) {
+        if (map.has(s[right])) {
+            left = Math.max(map.get(s[right]) + 1, left);
+        }
+        map.set(s[right], right);
+        maxLen = Math.max(maxLen, right - left + 1);
+    }
+
+    return maxLen;
+}
+```
+**Input**: `"abcabcbb"`  
+**Output**: `3`
+
+---
+
+### **Isomorphic Strings**
+```javascript
+function isIsomorphic(s, t) {
+    const mapST = new Map();
+    const mapTS = new Map();
+
+    for (let i = 0; i < s.length; i++) {
+        const a = s[i], b = t[i];
+        if ((mapST.has(a) && mapST.get(a) !== b) || (mapTS.has(b) && mapTS.get(b) !== a)) {
+            return false;
+        }
+        mapST.set(a, b);
+        mapTS.set(b, a);
+    }
+
+    return true;
+}
+```
+**Input**: `"egg", "add"`  
+**Output**: `true`
+
+---
+
+### **Count Number of Unique Elements in an Array**
+```javascript
+function countUnique(nums) {
+    return new Set(nums).size;
+}
+```
+**Input**: `[1, 2, 2, 3, 4, 4]`  
+**Output**: `4`
+
+---
+
+### **First Non-Repeating Character**
+```javascript
+function firstUniqChar(s) {
+    const map = new Map();
+
+    for (let i = 0; i < s.length; i++) {
+        map.set(s[i], (map.get(s[i]) || 0) + 1);
+    }
+
+    for (let i = 0; i < s.length; i++) {
+        if (map.get(s[i]) === 1) return i;
+    }
+
+    return -1;
+}
+```
+**Input**: `"leetcode"`  
+**Output**: `0`
+
+---
+
+
+

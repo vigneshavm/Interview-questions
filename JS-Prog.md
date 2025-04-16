@@ -6,7 +6,7 @@
 | **Recursion & Math** | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | **Algorithms & Patterns** | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | **Functional JavaScript & Concepts** | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) 
-| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) | Retry API failures gracefully |
+| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) | [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K)
 
 
 
@@ -2140,4 +2140,71 @@ console.log(ascending);
 ```
 
 ---
+
+##  **Maximum Sum Subarray of Size K** 
+---
+
+###  Pseudocode:
+
+```
+Function MaxSumSubarray(arr, k):
+    Initialize windowSum to 0
+    Initialize maxSum to 0
+
+    // Step 1: Calculate the sum of the first 'k' elements
+    For i from 0 to k - 1:
+        windowSum = windowSum + arr[i]
+    
+    Set maxSum = windowSum
+
+    // Step 2: Slide the window through the rest of the array
+    For i from k to length of arr - 1:
+        // Add the new element and remove the old one
+        windowSum = windowSum + arr[i] - arr[i - k]
+
+        // Update maxSum if needed
+        If windowSum > maxSum:
+            maxSum = windowSum
+
+    Return maxSum
+```
+
+---
+
+###  Example (Dry Run):
+For `arr = [2, 1, 5, 1, 3, 2]` and `k = 3`:
+- First window: `2 + 1 + 5 = 8`
+- Slide:
+  - Add 1, remove 2 → windowSum = 7
+  - Add 3, remove 1 → windowSum = 9 (new max)
+  - Add 2, remove 5 → windowSum = 6
+- Result: **maxSum = 9**
+
+
+###  Program:
+  ```javascript
+function maxSumSubarray(arr, k) {
+  let maxSum = 0;
+  let windowSum = 0;
+
+  // First window sum
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
+  }
+
+  maxSum = windowSum;
+
+  // Slide the window
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i] - arr[i - k];
+    maxSum = Math.max(maxSum, windowSum);
+  }
+
+  return maxSum;
+}
+  ```
+---
+
+
+
 

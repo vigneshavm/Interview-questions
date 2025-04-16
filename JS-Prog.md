@@ -1,3 +1,12 @@
+| **Category**                          | **Topics**                                                                                                                                                                                                                                                                                                                                                                                                             |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Array Operations** | • [Find Maximum in an Array](#find-maximum-in-an-array) • [Find Second Largest Element](#find-second-largest-element)  • [Remove Duplicates element from array](#remove-duplicates-element-from-array) • [Chunk an Array](#chunk-an-array) 
+• [Flatten Nested Arrays](#flatten-nested-arrays) • [Reverse Words in a Sentence](#reverse-words-in-a-sentence) • [Recursive Sum of Array](#recursive-sum-of-array) 
+• [Merge Sort + Deduplication](#merge-sort) • [Sort Array of Objects by Field](#sort-array-of-objects-by-field) • [sort an array of objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
+
+
+
+
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Find Maximum in an Array](#find-maximum-in-an-array) | [Find Second Largest Element](#find-second-largest-element) | [Remove Duplicates element from array](#remove-duplicates-element-from-array) | [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) | [Chunk an Array](#chunk-an-array) | [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) | [Flatten Nested Arrays](#flatten-nested-arrays)

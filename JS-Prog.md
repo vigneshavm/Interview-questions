@@ -1,6 +1,6 @@
 | Category                          | Topics                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Array Operations | • [Find Maximum in an Array](#find-maximum-in-an-array) • [Find Second Largest Element](#find-second-largest-element)  • [Remove Duplicates element from array](#remove-duplicates-element-from-array) • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)• [Chunk an Array](#chunk-an-array) • [Flatten Nested Arrays](#flatten-nested-arrays)  • [Recursive Sum of Array](#recursive-sum-of-array) • [Merge Sort + Deduplication](#merge-sort) • [Sort Array of Objects by Field](#sort-array-of-objects-by-field) • [Sort Array of Objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
+| Array Operations | • [Find Maximum in an Array](#find-maximum-in-an-array) • [Find Second Largest Element](#find-second-largest-element)  • [Remove Duplicates element from array](#remove-duplicates-element-from-array) • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)• [Chunk an Array](#chunk-an-array) • [Flatten Nested Arrays](#flatten-nested-arrays)  • [Recursive Sum of Array](#recursive-sum-of-array) • [Sort Array of Objects by Field](#sort-array-of-objects-by-field) • [Sort Array of Objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
 | Arrays & Strings | • [Two Sum](#two-sum)  • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)      • [Rotate Array](#rotate-array)         • [Contains Duplicate](#contains-duplicate)    • [Missing Number](#missing-number)       
 | Arrays & Strings Adv |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hashmaps & Sets |• [Top K Frequent Elements](#top-k-frequent-elements)  • [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  • [First Non-Repeating Character](#first-non-repeating-character)  
@@ -1736,38 +1736,6 @@ for (var i = 0; i < 5; i++) {
   (function(i) {    setTimeout(() => console.log(i), 0);  })(i);
 }
 ```
-## **Merge Sort**
-```js
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
-  const mid = Math.floor(arr.length / 2);
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
-  
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  let result = [], i = 0, j = 0;
-
-  while (i < left.length && j < right.length) {
-    result.push(left[i] < right[j] ? left[i++] : right[j++]);
-  }
-  return result.concat(left.slice(i), right.slice(j));
-}
-
-function removeDuplicatesAndSort(arr) {
-  return mergeSort([...new Set(arr)]); // Using Set to remove duplicates
-}
-
-const array = [4, 2, 5, 3, 4, 2, 1];
-console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
-```
-
-
-
-
-
 ## **Boolean Function to Match Filename Pattern Without Regex**
 ```js
 function matchPattern(filename, pattern) {
@@ -2808,27 +2776,28 @@ console.log(findMedianSortedArrays([1, 2], [3, 4])); // Output: 2.5
 ```js
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;
-
-  const mid = arr.length >> 1;
+  const mid = Math.floor(arr.length / 2);
   const left = mergeSort(arr.slice(0, mid));
   const right = mergeSort(arr.slice(mid));
-
+  
   return merge(left, right);
 }
 
 function merge(left, right) {
-  const merged = [];
-  let i = 0, j = 0;
+  let result = [], i = 0, j = 0;
 
   while (i < left.length && j < right.length) {
-    merged.push(left[i] <= right[j] ? left[i++] : right[j++]);
+    result.push(left[i] < right[j] ? left[i++] : right[j++]);
   }
-
-  return merged.concat(left.slice(i), right.slice(j));
+  return result.concat(left.slice(i), right.slice(j));
 }
 
-// Example
-console.log(mergeSort([6, 3, 7, 1, 9])); // [1, 3, 6, 7, 9]
+function removeDuplicatesAndSort(arr) {
+  return mergeSort([...new Set(arr)]); // Using Set to remove duplicates
+}
+
+const array = [4, 2, 5, 3, 4, 2, 1];
+console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
 ```
 
 ---

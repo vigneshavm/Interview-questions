@@ -6,7 +6,7 @@
 | **Recursion & Math** | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | **Algorithms & Patterns** | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | **Functional JavaScript & Concepts** | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) 
-| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)
+| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters)
 
 
 
@@ -2298,3 +2298,78 @@ Function LongestSubstringWithKDistinct(s, k):
 - **O(k)** — Space for storing up to `k` distinct characters.
 
 ---
+
+---
+
+## Longest Substring Without Repeating Characters
+
+> Given a string `s`, find the **length** of the **longest substring without repeating characters**.
+
+---
+
+### ✅ Example:
+
+```txt
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with length 3.
+```
+
+---
+
+## 📄 Pseudocode
+
+```
+Function LengthOfLongestSubstring(s):
+    Initialize start = 0
+    Initialize maxLen = 0
+    Initialize map = empty
+
+    For end from 0 to len(s) - 1:
+        If s[end] is in map and map[s[end]] >= start:
+            Move start to map[s[end]] + 1
+
+        Update map[s[end]] = end
+        maxLen = max(maxLen, end - start + 1)
+
+    Return maxLen
+```
+
+---
+## ✅ JavaScript Code:
+
+```js
+function lengthOfLongestSubstring(s) {
+  let start = 0;
+  let maxLen = 0;
+  const seen = new Map();
+
+  for (let end = 0; end < s.length; end++) {
+    const char = s[end];
+
+    // If char already exists in map and is in current window
+    if (seen.has(char) && seen.get(char) >= start) {
+      start = seen.get(char) + 1; // Move start to one after last occurrence
+    }
+
+    seen.set(char, end); // Update or add current char index
+    maxLen = Math.max(maxLen, end - start + 1);
+  }
+
+  return maxLen;
+}
+```
+
+---
+## 🔍 Dry Run (Input: "abcabcbb")
+
+```
+Window: a → ab → abc (max = 3)
+Next: a → 'a' is duplicate, move start → bc → bca → bcab (skip)
+Keep updating max as you go
+```
+
+---
+
+
+

@@ -8,7 +8,7 @@
 | **Functional JavaScript & Concepts** | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) 
 | **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
 | **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
-| **Searching Problems** | • [Binary Search (Recursive/Iterative)](#binary-search-recursiveiterative) • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array) • [Find Peak Element](#find-peak-element) • [Kth Largest Element in Array](#kth-largest-element-in-array) • [First and Last Position of Element](#first-and-last-position-of-element) • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
+| **Searching Problems** | • [Binary Search (Recursive/Iterative)](#Binary-Search) • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array) • [Find Peak Element](#find-peak-element) • [Kth Largest Element in Array](#kth-largest-element-in-array) • [First and Last Position of Element](#first-and-last-position-of-element) • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
 
 ---
 
@@ -2622,7 +2622,7 @@ Final Answer: 3
 
 
 
-###  **Binary Search (Recursive and Iterative)**
+###  **Binary Search**
 
 #### 🔁 **Iterative Approach**
 

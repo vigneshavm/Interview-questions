@@ -6,7 +6,7 @@
 | **Recursion & Math** | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | **Algorithms & Patterns** | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | **Functional JavaScript & Concepts** | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) 
-| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring)
+| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
 
 
 
@@ -2545,6 +2545,79 @@ function checkInclusion(s1, s2) {
 
   ```
 
+---
+
+## Max Number of Vowels in Substring
+
+> Given a string `s` and an integer `k`, return the maximum number of vowels in any substring of length `k`.
+
+---
+
+### ✅ Key Idea – Sliding Window:
+
+Instead of checking **every substring of length `k`**, we can use a sliding window of size `k` to **keep track of how many vowels are in the current window**, and just **update the count** as the window slides.
+
+---
+
+### ✅ Optimized Approach:
+
+1. Use a **sliding window** of size `k`.
+2. Maintain a `vowelCount` as you move the window.
+3. For every character entering the window, check if it's a vowel — if yes, increment the count.
+4. For every character exiting the window, check if it's a vowel — if yes, decrement the count.
+5. Keep track of the `maxVowels` seen so far.
+
+---
+
+### ✅ JavaScript Code (Clean & Easy to Understand):
+
+```js
+function maxVowels(s, k) {
+  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+  let count = 0;
+  let maxCount = 0;
+
+  // Initial window of size k
+  for (let i = 0; i < k; i++) {
+    if (vowels.has(s[i])) count++;
+  }
+
+  maxCount = count;
+
+  // Slide the window
+  for (let i = k; i < s.length; i++) {
+    if (vowels.has(s[i - k])) count--; // remove left char
+    if (vowels.has(s[i])) count++;     // add right char
+    maxCount = Math.max(maxCount, count);
+  }
+
+  return maxCount;
+}
+```
+
+---
+
+### 🔍 Example:
+
+```js
+s = "abciiidef", k = 3
+
+Window: "abc" → 1 vowel  
+Window: "bci" → 1 vowel  
+Window: "cii" → 2 vowels  
+Window: "iii" → 3 vowels ✅  
+...
+Final Answer: 3
+```
+
+---
+
+### ⏱️ Time and Space Complexity:
+
+- **Time:** O(n) – each character is processed once as the window slides.
+- **Space:** O(1) – only fixed space is used (for the set of vowels).
+
+---
 
 
 

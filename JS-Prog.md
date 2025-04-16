@@ -1477,7 +1477,7 @@ console.log(sortByAgeManual(people));
 
 > Check if two strings are **anagrams**:  
 > i.e., same characters, same frequency, order doesn't matter.  
-> Example: `"listen"` and `"silent"` → ✅ Anagrams
+> Example: `"listen"` and `"silent"` →  Anagrams
 
 ---
 
@@ -2077,7 +2077,7 @@ Output: "d"
 
 ---
 
-### ✅ Solution (with Explanation):
+###  Solution (with Explanation):
 
 ```js
 function getMaxOccurringChar(str) {
@@ -2215,7 +2215,7 @@ function maxSumSubarray(arr, k) {
 
 ---
 
-### ✅ Example:
+###  Example:
 
 ```text
 Input: s = "eceba", k = 2  
@@ -2234,7 +2234,7 @@ Explanation: The longest substring with at most 2 distinct characters is `"ece"`
 
 ---
 
-## ✅ JavaScript Code:
+##  JavaScript Code:
 
 ```js
 function longestSubstringWithKDistinct(s, k) {
@@ -2307,7 +2307,7 @@ Function LongestSubstringWithKDistinct(s, k):
 
 ---
 
-### ✅ Example:
+###  Example:
 
 ```txt
 Input: s = "abcabcbb"
@@ -2336,7 +2336,7 @@ Function LengthOfLongestSubstring(s):
 ```
 
 ---
-## ✅ JavaScript Code:
+##  JavaScript Code:
 
 ```js
 function lengthOfLongestSubstring(s) {
@@ -2553,13 +2553,13 @@ function checkInclusion(s1, s2) {
 
 ---
 
-### ✅ Key Idea – Sliding Window:
+###  Key Idea – Sliding Window:
 
 Instead of checking **every substring of length `k`**, we can use a sliding window of size `k` to **keep track of how many vowels are in the current window**, and just **update the count** as the window slides.
 
 ---
 
-### ✅ Optimized Approach:
+###  Optimized Approach:
 
 1. Use a **sliding window** of size `k`.
 2. Maintain a `vowelCount` as you move the window.
@@ -2569,7 +2569,7 @@ Instead of checking **every substring of length `k`**, we can use a sliding wind
 
 ---
 
-### ✅ JavaScript Code (Clean & Easy to Understand):
+###  JavaScript Code (Clean & Easy to Understand):
 
 ```js
 function maxVowels(s, k) {
@@ -2605,7 +2605,7 @@ s = "abciiidef", k = 3
 Window: "abc" → 1 vowel  
 Window: "bci" → 1 vowel  
 Window: "cii" → 2 vowels  
-Window: "iii" → 3 vowels ✅  
+Window: "iii" → 3 vowels   
 ...
 Final Answer: 3
 ```
@@ -2622,7 +2622,7 @@ Final Answer: 3
 
 
 
-### ✅ **Binary Search (Recursive and Iterative)**
+###  **Binary Search (Recursive and Iterative)**
 
 #### 🔁 **Iterative Approach**
 
@@ -2673,7 +2673,7 @@ console.log(binarySearchRecursive([2, 4, 6, 8, 10], 8)); // Output: 3
 
 ---
 
-### ✅ **Search in Rotated Sorted Array**
+###  **Search in Rotated Sorted Array**
 
 ```js
 function searchRotatedArray(nums, target) {
@@ -2707,7 +2707,7 @@ console.log(searchRotatedArray([4, 5, 6, 7, 0, 1, 2], 0)); // Output: 4
 
 ---
 
-### ✅ **Find Peak Element**
+###  **Find Peak Element**
 
 ```js
 function findPeakElement(nums) {
@@ -2732,7 +2732,7 @@ console.log(findPeakElement([1, 2, 3, 1])); // Output: 2 (index of 3)
 
 ---
 
-### ✅ **Kth Largest Element in an Array**
+###  **Kth Largest Element in an Array**
 
 ```js
 function findKthLargest(nums, k) {
@@ -2751,7 +2751,7 @@ console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
 
 ---
 
-### ✅ **First and Last Position of Element in Sorted Array**
+###  **First and Last Position of Element in Sorted Array**
 
 ```js
 function searchRange(nums, target) {
@@ -2786,7 +2786,7 @@ console.log(searchRange([5, 7, 7, 8, 8, 10], 8)); // Output: [3, 4]
 
 ---
 
-### ✅ **Median of Two Sorted Arrays**
+###  **Median of Two Sorted Arrays**
 
 ```js
 function findMedianSortedArrays(nums1, nums2) {

@@ -4,15 +4,10 @@
 | **String Problems** | • [Check for Palindrome](#check-for-palindrome) • [Reverse a String](#reverse-a-string) • [Count Vowels in a String](#count-vowels-in-a-string) • [Character Frequency Count](#character-frequency-count) • [Anagram Checker](#anagram-checker) • [First Non-Repeating Character](#first-non-repeating-character) • [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) 
 | **Object Manipulation** | • [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) • [Group by Category or Class](#group-by-category-or-class) • [Group Array of Objects by Key](#group-array-of-objects-by-key) • [Deep Clone an Object](#deep-clone-an-object) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
 | **Recursion & Math** | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
-
-
-| Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
-| --- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [Find Maximum in an Array](#find-maximum-in-an-array) | [Find Second Largest Element](#find-second-largest-element) | [Remove Duplicates element from array](#remove-duplicates-element-from-array) | [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) | [Chunk an Array](#chunk-an-array) | [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) | [Flatten Nested Arrays](#flatten-nested-arrays)
-| [Binary Search](#binary-search) | [Check for Palindrome](#check-for-palindrome) | [Reverse Words in a Sentence](#reverse-words-in-a-sentence) | [Reverse a String](#reverse-a-string)| [Count Vowels in a String](#count-vowels-in-a-string)  | [Character Frequency Count](#character-frequency-count) | [Deep Clone an Object](#deep-clone-an-object)
-| [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) | [Anagram Checker](#anagram-checker) | [First Non-Repeating Character](#first-non-repeating-character) | [Group by Category or Class](#group-by-category-or-class) | [Group Array of Objects by Key](#group-array-of-objects-by-key)| [Sort Array of Objects by Field](#sort-array-of-objects-by-field) | [Factorial](#factorial) 
-| [Fibonacci](#fibonacci) | [Debounce Function](#debounce-function)| [Throttle Function](#throttle-function)| [Recursive Sum of Array](#recursive-sum-of-array) | [Power Function](#power-function) | [Merge Sort + Deduplication](#merge-sort)| [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
-| [Stock Span Problem](#Stock-Span-Problem) | [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) | [Binary Search](#Binary-Search) | [Retry Promise N Times](#retry-promise-n-times)| [Custom `map()` Method](#custom-map-method) | [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) | [sort an array of objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
+| **Algorithms & Patterns** | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) 
+• [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
+| **Functional JavaScript & Concepts** | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) 
+| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) | Retry API failures gracefully |
 
 
 

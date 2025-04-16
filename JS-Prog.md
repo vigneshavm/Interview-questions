@@ -6,7 +6,7 @@
 | **Recursion & Math** | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | **Algorithms & Patterns** | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | **Functional JavaScript & Concepts** | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) 
-| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters)
+| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring)
 
 
 
@@ -2370,6 +2370,78 @@ Keep updating max as you go
 ```
 
 ---
+
+
+**Minimum Window Substring**
+  ```javascript
+function minWindow(s, t) {
+  // Edge case: if either string is empty, return ""
+  if (s.length === 0 || t.length === 0) return "";
+
+  // Step 1: Create a frequency map for characters in `t`
+  const tMap = new Map();
+  for (let char of t) {
+    tMap.set(char, (tMap.get(char) || 0) + 1);
+  }
+
+  // `required` = number of unique characters in `t` that must be present in window
+  let required = tMap.size;
+
+  // `formed` = how many of those required characters (with exact frequency) are currently satisfied in the window
+  let formed = 0;
+
+  // Frequency map for the current window
+  const windowCounts = new Map();
+
+  // Sliding window pointers and result tracking
+  let left = 0, right = 0;
+  let minLen = Infinity; // Smallest length found so far
+  let minStart = 0;      // Start index of the minimum window
+
+  // Step 2: Start expanding the right pointer of the window
+  while (right < s.length) {
+    const char = s[right];
+
+    // Add current character to window frequency map
+    windowCounts.set(char, (windowCounts.get(char) || 0) + 1);
+
+    // If this character is in `tMap` and its required count is now matched
+    if (tMap.has(char) && windowCounts.get(char) === tMap.get(char)) {
+      formed++;
+    }
+
+    // Step 3: Try to shrink the window from the left as long as it is valid
+    while (left <= right && formed === required) {
+      // Update the result if this window is smaller
+      const windowSize = right - left + 1;
+      if (windowSize < minLen) {
+        minLen = windowSize;
+        minStart = left;
+      }
+
+      // Remove the leftmost character from the window
+      const leftChar = s[left];
+      windowCounts.set(leftChar, windowCounts.get(leftChar) - 1);
+
+      // If the character was required and its count drops below needed, reduce `formed`
+      if (tMap.has(leftChar) && windowCounts.get(leftChar) < tMap.get(leftChar)) {
+        formed--;
+      }
+
+      // Shrink the window from the left
+      left++;
+    }
+
+    // Expand window from the right
+    right++;
+  }
+
+  // Step 4: Return the minimum window substring found, or "" if none found
+  return minLen === Infinity ? "" : s.substring(minStart, minStart + minLen);
+}
+  ```
+
+
 
 
 

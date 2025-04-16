@@ -349,6 +349,28 @@ console.log(removeDuplicatesManual([1, 2, 2, 3, 1, 4]));
 [1, 2, 3, 4]
 ```
 
+
+### **Remove Duplicates from Sorted Array**
+**Approach**: Use two pointers to overwrite duplicates in-place.
+
+```javascript
+function removeDuplicates(nums) {
+    if (nums.length === 0) return 0;
+    let i = 0;
+    for (let j = 1; j < nums.length; j++) {
+        if (nums[i] !== nums[j]) nums[++i] = nums[j];
+    }
+    return i + 1;
+}
+```
+
+ **Example**: let nums = [0,0,1,1,1,2,2,3,3,4];
+let len = removeDuplicates(nums); // returns 5
+console.log(nums);               // [0,1,2,3,4,2,2,3,3,4] ← in-place modified, extra values remain
+console.log(nums.slice(0, len)); // [0,1,2,3,4] ← clean version with only unique values
+
+
+
 ---
 
 
@@ -3507,23 +3529,7 @@ function maxProfit(prices) {
 
 ---
 
-### **Remove Duplicates from Sorted Array**
-**Approach**: Use two pointers to overwrite duplicates in-place.
 
-```javascript
-function removeDuplicates(nums) {
-    if (nums.length === 0) return 0;
-    let i = 0;
-    for (let j = 1; j < nums.length; j++) {
-        if (nums[i] !== nums[j]) nums[++i] = nums[j];
-    }
-    return i + 1;
-}
-```
-
- **Example**: `removeDuplicates([1, 1, 2])` → `2`
-
----
 
 ### **Move Zeros**
 **Approach**: Use pointer to track insert position, fill rest with 0.

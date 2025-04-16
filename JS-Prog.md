@@ -2988,5 +2988,24 @@ console.log(selectionSort([29, 10, 14, 37, 13])); // [10, 13, 14, 29, 37]
 | Selection Sort | Minimum swaps required               | O(n²)      | O(1)   |
 
 
+### 🧠 Summary: Which Sort to Use? (with **Real-Time Scenarios**)
 
+| Sort           | Best Use Case                                 | Time (Avg) | Space | Real-Time Scenario |
+|----------------|-----------------------------------------------|------------|--------|--------------------|
+| **Merge Sort**     | Large datasets, guaranteed speed              | O(n log n) | O(n)   | Used in **databases**, **file sorting**, and **external sorting** where stability and consistency are key. Eg: Sorting logs on disk. |
+| **Quick Sort**     | General-purpose, fast in practice             | O(n log n) | O(log n) | Ideal for **in-memory sorting** with good pivot strategy. Used in frameworks like **V8 (Chrome engine)** for `.sort()`. |
+| **Insertion Sort** | Small/nearly sorted arrays                   | O(n²)      | O(1)   | Used in **online ticket booking systems** or **real-time dashboards** where elements come in real-time and list is nearly sorted. |
+| **Bubble Sort**    | Educational/sorted check                     | O(n²)      | O(1)   | Great for teaching and debugging. Sometimes used for **simple embedded systems** or where code simplicity > performance. |
+| **Selection Sort** | Minimum swaps required                       | O(n²)      | O(1)   | Used in **microcontrollers** or **memory-constrained** devices where swap operations are costly but comparisons are cheap. |
+
+---
+
+### 🧩 Visual Analogy:
+- **Merge Sort**: Like merging two sorted lines of people into one.
+- **Quick Sort**: Like picking a leader (pivot), then organizing people shorter and taller around them.
+- **Insertion Sort**: Like sorting cards in your hand while playing.
+- **Bubble Sort**: Like repeatedly bubbling up the heaviest item to the end.
+- **Selection Sort**: Like selecting the lightest item and placing it at the front each round.
+
+---
 

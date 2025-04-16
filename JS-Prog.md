@@ -2372,7 +2372,7 @@ Keep updating max as you go
 ---
 
 
-**Minimum Window Substring**
+## **Minimum Window Substring**##
   ```javascript
 function minWindow(s, t) {
   // Edge case: if either string is empty, return ""

@@ -3280,3 +3280,191 @@ function dijkstra(graph, start) {
 ```
 
 ---
+
+
+### Inorder Preorder Postorder Traversal
+
+**Inorder Traversal:**
+```javascript
+function inorderTraversal(root) {
+    const result = [];
+    if (!root) return result;
+    result.push(...inorderTraversal(root.left));
+    result.push(root.val);
+    result.push(...inorderTraversal(root.right));
+    return result;
+}
+```
+
+**Preorder Traversal:**
+```javascript
+function preorderTraversal(root) {
+    const result = [];
+    if (!root) return result;
+    result.push(root.val);
+    result.push(...preorderTraversal(root.left));
+    result.push(...preorderTraversal(root.right));
+    return result;
+}
+```
+
+**Postorder Traversal:**
+```javascript
+function postorderTraversal(root) {
+    const result = [];
+    if (!root) return result;
+    result.push(...postorderTraversal(root.left));
+    result.push(...postorderTraversal(root.right));
+    result.push(root.val);
+    return result;
+}
+```
+
+### Level Order Traversal
+
+```javascript
+function levelOrder(root) {
+    if (!root) return [];
+    const result = [];
+    const queue = [root];
+
+    while (queue.length) {
+        const level = [];
+        const levelSize = queue.length;
+
+        for (let i = 0; i < levelSize; i++) {
+            const node = queue.shift();
+            level.push(node.val);
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+        }
+
+        result.push(level);
+    }
+
+    return result;
+}
+```
+
+### Maximum Depth of Binary Tree
+
+```javascript
+function maxDepth(root) {
+    if (!root) return 0;
+    const leftDepth = maxDepth(root.left);
+    const rightDepth = maxDepth(root.right);
+    return Math.max(leftDepth, rightDepth) + 1;
+}
+```
+
+### Symmetric Tree
+
+```javascript
+function isSymmetric(root) {
+    if (!root) return true;
+
+    function isMirror(t1, t2) {
+        if (!t1 && !t2) return true;
+        if (!t1 || !t2) return false;
+        return t1.val === t2.val &&
+            isMirror(t1.left, t2.right) &&
+            isMirror(t1.right, t2.left);
+    }
+
+    return isMirror(root.left, root.right);
+}
+```
+
+### Diameter of Binary Tree
+
+```javascript
+function diameterOfBinaryTree(root) {
+    let diameter = 0;
+
+    function depth(node) {
+        if (!node) return 0;
+        const left = depth(node.left);
+        const right = depth(node.right);
+        diameter = Math.max(diameter, left + right);
+        return Math.max(left, right) + 1;
+    }
+
+    depth(root);
+    return diameter;
+}
+```
+
+### Lowest Common Ancestor
+
+```javascript
+// For Binary Search Tree (BST)
+function lowestCommonAncestorBST(root, p, q) {
+    if (root.val > p.val && root.val > q.val) {
+        return lowestCommonAncestorBST(root.left, p, q);
+    } else if (root.val < p.val && root.val < q.val) {
+        return lowestCommonAncestorBST(root.right, p, q);
+    }
+    return root;
+}
+
+// For Binary Tree (non-BST)
+function lowestCommonAncestor(root, p, q) {
+    if (!root || root === p || root === q) return root;
+    const left = lowestCommonAncestor(root.left, p, q);
+    const right = lowestCommonAncestor(root.right, p, q);
+    if (left && right) return root;
+    return left ? left : right;
+}
+```
+
+### Serialize and Deserialize Binary Tree
+
+```javascript
+// Serialize
+function serialize(root) {
+    if (!root) return 'null';
+    return root.val + ',' + serialize(root.left) + ',' + serialize(root.right);
+}
+
+// Deserialize
+function deserialize(data) {
+    const list = data.split(',');
+    function buildTree() {
+        const val = list.shift();
+        if (val === 'null') return null;
+        const node = new TreeNode(Number(val));
+        node.left = buildTree();
+        node.right = buildTree();
+        return node;
+    }
+    return buildTree();
+}
+```
+
+### Path Sum
+
+```javascript
+function hasPathSum(root, sum) {
+    if (!root) return false;
+    if (!root.left && !root.right) return root.val === sum;
+    return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+}
+```
+
+### Convert Sorted Array to BST
+
+```javascript
+function sortedArrayToBST(nums) {
+    if (nums.length === 0) return null;
+
+    const mid = Math.floor(nums.length / 2);
+    const node = new TreeNode(nums[mid]);
+
+    node.left = sortedArrayToBST(nums.slice(0, mid));
+    node.right = sortedArrayToBST(nums.slice(mid + 1));
+
+    return node;
+}
+```
+
+

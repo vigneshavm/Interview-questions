@@ -1,7 +1,7 @@
 | **Category**                          | **Topics**                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Array Operations** | • [Find Maximum in an Array](#find-maximum-in-an-array) • [Find Second Largest Element](#find-second-largest-element)  • [Remove Duplicates element from array](#remove-duplicates-element-from-array) • [Chunk an Array](#chunk-an-array) • [Flatten Nested Arrays](#flatten-nested-arrays) • [Reverse Words in a Sentence](#reverse-words-in-a-sentence) • [Recursive Sum of Array](#recursive-sum-of-array) • [Merge Sort + Deduplication](#merge-sort) • [Sort Array of Objects by Field](#sort-array-of-objects-by-field) • [sort an array of objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
-| **String Problems** | • [Check for Palindrome](#check-for-palindrome) • [Reverse a String](#reverse-a-string) • [Count Vowels in a String](#count-vowels-in-a-string) • [Character Frequency Count](#character-frequency-count) • [Anagram Checker](#anagram-checker) • [First Non-Repeating Character](#first-non-repeating-character) • [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) 
+| **String Problems** | • [Check for Palindrome](#check-for-palindrome) • [Reverse a String](#reverse-a-string) • [Count Vowels in a String](#count-vowels-in-a-string) • [Character Frequency Count](#character-frequency-count) • [Anagram Checker](#anagram-checker) • [First Non-Repeating Character](#first-non-repeating-character) • [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) • [Permutation in String](#Permutation-in-String) 
 | **Object Manipulation** | • [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) • [Group by Category or Class](#group-by-category-or-class) • [Group Array of Objects by Key](#group-array-of-objects-by-key) • [Deep Clone an Object](#deep-clone-an-object) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
 | **Recursion & Math** | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | **Algorithms & Patterns** | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
@@ -2440,6 +2440,111 @@ function minWindow(s, t) {
   return minLen === Infinity ? "" : s.substring(minStart, minStart + minLen);
 }
   ```
+
+
+## **Permutation in String**
+
+**(non optimize)Sliding Window + Frequency Count**
+
+  ```javascript
+function checkInclusion(s1, s2) {
+  if (s1.length > s2.length) return false;
+
+  const s1Map = new Array(26).fill(0);
+  const s2Map = new Array(26).fill(0);
+
+  // Fill initial frequency map for s1 and the first window of s2
+  for (let i = 0; i < s1.length; i++) {
+    s1Map[s1.charCodeAt(i) - 97]++;
+    s2Map[s2.charCodeAt(i) - 97]++;
+  }
+
+  // Helper function to compare frequency arrays
+  const matches = (a, b) => a.every((val, idx) => val === b[idx]);
+
+  // Slide the window across s2
+  for (let i = s1.length; i < s2.length; i++) {
+    if (matches(s1Map, s2Map)) return true;
+
+    // Slide window: remove left char, add right char
+    s2Map[s2.charCodeAt(i) - 97]++;
+    s2Map[s2.charCodeAt(i - s1.length) - 97]--;
+  }
+
+  // Final window check
+  return matches(s1Map, s2Map);
+}
+  ```
+
+**(optimize)Hash Map**
+
+  ```javascript
+function checkInclusion(s1, s2) {
+  if (s1.length > s2.length) return false; // Edge case: s1 is longer than s2
+
+  // Frequency map for s1
+  const s1Map = new Map();
+  for (let char of s1) {
+    s1Map.set(char, (s1Map.get(char) || 0) + 1);
+  }
+
+  // Sliding window on s2: initialize the first window
+  const windowMap = new Map();
+  let matchCount = 0;
+  const requiredMatches = s1Map.size;  // We need all characters of s1 to match
+
+  for (let i = 0; i < s1.length; i++) {
+    const char = s2[i];
+    windowMap.set(char, (windowMap.get(char) || 0) + 1);
+
+    // Check if we have a perfect match of the current character in the window
+    if (windowMap.get(char) === s1Map.get(char)) {
+      matchCount++;
+    }
+  }
+
+  // If the initial window has a match, return true
+  if (matchCount === requiredMatches) {
+    return true;
+  }
+
+  // Now slide the window across s2
+  for (let i = s1.length; i < s2.length; i++) {
+    const newChar = s2[i];
+    const oldChar = s2[i - s1.length];
+
+    // Add new character to window map
+    windowMap.set(newChar, (windowMap.get(newChar) || 0) + 1);
+
+    // Check if the new character matches the frequency in s1
+    if (windowMap.get(newChar) === s1Map.get(newChar)) {
+      matchCount++;
+    } else if (windowMap.get(newChar) === s1Map.get(newChar) + 1) {
+      matchCount--;
+    }
+
+    // Remove the old character from the window map
+    windowMap.set(oldChar, windowMap.get(oldChar) - 1);
+
+    // Check if removing the old character makes it unmatch
+    if (windowMap.get(oldChar) === s1Map.get(oldChar) - 1) {
+      matchCount--;
+    } else if (windowMap.get(oldChar) === s1Map.get(oldChar)) {
+      matchCount++;
+    }
+
+    // If all characters match, return true
+    if (matchCount === requiredMatches) {
+      return true;
+    }
+  }
+
+  // No match found
+  return false;
+}
+
+  ```
+
 
 
 

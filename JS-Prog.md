@@ -10,7 +10,7 @@
 | **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
 | **Searching Problems** | • [Binary Search (Recursive/Iterative)](#Binary-Search) • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array) • [Find Peak Element](#find-peak-element) • [Kth Largest Element in Array](#kth-largest-element-in-an-array) • [First and Last Position of Element](#first-and-last-position-of-element) • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
 | **Sorting & Searching** | • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort)
-| **Graph Problems** | • [**BFS Traversal**](#bfs) • [**DFS Traversal**](#dfs) • [**Number of Islands (Matrix BFS/DFS)**](#number-of-islands) • [**Detect Cycle in Graph (DFS + Union-Find)**](#detect-cycle-in-graph) • [**Topological Sort (Kahn’s Algorithm)**](#topological-sort) • [**Clone Graph**](#clone-graph) • [**Shortest Path in Binary Matrix**](#shortest-path-in-binary-matrix) • [**Word Ladder**](#word-ladder) • [**Dijkstra’s Algorithm**](#dijkstras-algorithm) 
+| **Graph Problems** | • [**BFS Traversal**](#bfs) • [**DFS Traversal**](#dfs) • [**Number of Islands (Matrix BFS/DFS)**](#number-of-islands) • [**Detect Cycle in Graph (#Detect-Cycle-in-Graph)**](#detect-cycle-in-graph) • [**Topological Sort (Kahn’s Algorithm)**](#topological-sort) • [**Clone Graph**](#clone-graph) • [**Shortest Path in Binary Matrix**](#shortest-path-in-binary-matrix) • [**Word Ladder**](#word-ladder) • [**Dijkstra’s Algorithm**](#dijkstras-algorithm) 
 
 ---
 
@@ -3009,3 +3009,272 @@ console.log(selectionSort([29, 10, 14, 37, 13])); // [10, 13, 14, 29, 37]
 
 ---
 
+---
+
+
+###  BFS 
+
+**Approach**: Use a queue, visit neighbors level by level.
+
+```js
+function bfs(graph, start) {
+  const visited = new Set();
+  const queue = [start];
+
+  while (queue.length) {
+    const node = queue.shift();
+    if (!visited.has(node)) {
+      console.log(node); // process
+      visited.add(node);
+      for (let neighbor of graph[node]) {
+        queue.push(neighbor);
+      }
+    }
+  }
+}
+```
+
+###  DFS 
+
+**Approach**: Use recursion or a stack to go deep.
+
+```js
+function dfs(graph, node, visited = new Set()) {
+  if (visited.has(node)) return;
+  console.log(node); // process
+  visited.add(node);
+  for (let neighbor of graph[node]) {
+    dfs(graph, neighbor, visited);
+  }
+}
+```
+
+---
+
+##  **Number of Islands**
+
+```js
+function numIslands(grid) {
+  const rows = grid.length, cols = grid[0].length;
+  let count = 0;
+
+  function dfs(r, c) {
+    if (
+      r < 0 || c < 0 || r >= rows || c >= cols ||
+      grid[r][c] === '0'
+    ) return;
+    grid[r][c] = '0';
+    dfs(r + 1, c); dfs(r - 1, c);
+    dfs(r, c + 1); dfs(r, c - 1);
+  }
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (grid[r][c] === '1') {
+        count++;
+        dfs(r, c);
+      }
+    }
+  }
+
+  return count;
+}
+```
+
+**Input**:  
+```js
+numIslands([
+  ["1","1","0"],
+  ["0","1","0"],
+  ["1","0","1"]
+]); // Output: 3
+```
+
+---
+
+
+##  Detect Cycle in Graph
+
+```js
+function hasCycle(edges, n) {
+  const parent = Array(n).fill(0).map((_, i) => i);
+
+  function find(x) {
+    if (x !== parent[x]) parent[x] = find(parent[x]);
+    return parent[x];
+  }
+
+  function union(x, y) {
+    const rootX = find(x), rootY = find(y);
+    if (rootX === rootY) return false;
+    parent[rootX] = rootY;
+    return true;
+  }
+
+  for (let [u, v] of edges) {
+    if (!union(u, v)) return true;
+  }
+  return false;
+}
+```
+
+---
+
+## **Topological Sort**
+
+```js
+function topologicalSort(graph) {
+  const inDegree = {}, result = [], queue = [];
+
+  for (let node in graph) {
+    inDegree[node] = 0;
+  }
+
+  for (let node in graph) {
+    for (let neighbor of graph[node]) {
+      inDegree[neighbor]++;
+    }
+  }
+
+  for (let node in inDegree) {
+    if (inDegree[node] === 0) queue.push(node);
+  }
+
+  while (queue.length) {
+    const node = queue.shift();
+    result.push(node);
+    for (let neighbor of graph[node]) {
+      inDegree[neighbor]--;
+      if (inDegree[neighbor] === 0) queue.push(neighbor);
+    }
+  }
+
+  return result.length === Object.keys(graph).length ? result : [];
+}
+```
+
+---
+
+## **Clone Graph**
+
+```js
+function cloneGraph(node) {
+  if (!node) return null;
+
+  const map = new Map();
+
+  function dfs(n) {
+    if (map.has(n)) return map.get(n);
+
+    const clone = { val: n.val, neighbors: [] };
+    map.set(n, clone);
+
+    for (let neighbor of n.neighbors) {
+      clone.neighbors.push(dfs(neighbor));
+    }
+
+    return clone;
+  }
+
+  return dfs(node);
+}
+```
+
+---
+
+## **Shortest Path in Binary Matrix**
+
+```js
+function shortestPathBinaryMatrix(grid) {
+  const n = grid.length;
+  if (grid[0][0] === 1 || grid[n - 1][n - 1] === 1) return -1;
+
+  const queue = [[0, 0, 1]];
+  const dirs = [[0,1],[1,0],[1,1],[0,-1],[-1,0],[-1,-1],[1,-1],[-1,1]];
+  const visited = Array(n).fill().map(() => Array(n).fill(false));
+  visited[0][0] = true;
+
+  while (queue.length) {
+    const [r, c, dist] = queue.shift();
+    if (r === n - 1 && c === n - 1) return dist;
+
+    for (let [dr, dc] of dirs) {
+      const nr = r + dr, nc = c + dc;
+      if (
+        nr >= 0 && nc >= 0 && nr < n && nc < n &&
+        grid[nr][nc] === 0 && !visited[nr][nc]
+      ) {
+        visited[nr][nc] = true;
+        queue.push([nr, nc, dist + 1]);
+      }
+    }
+  }
+
+  return -1;
+}
+```
+
+---
+
+## **Word Ladder**
+
+```js
+function ladderLength(beginWord, endWord, wordList) {
+  const wordSet = new Set(wordList);
+  if (!wordSet.has(endWord)) return 0;
+
+  const queue = [[beginWord, 1]];
+
+  while (queue.length) {
+    const [word, level] = queue.shift();
+
+    for (let i = 0; i < word.length; i++) {
+      for (let c of 'abcdefghijklmnopqrstuvwxyz') {
+        const next = word.slice(0, i) + c + word.slice(i + 1);
+        if (next === endWord) return level + 1;
+
+        if (wordSet.has(next)) {
+          queue.push([next, level + 1]);
+          wordSet.delete(next);
+        }
+      }
+    }
+  }
+
+  return 0;
+}
+```
+
+---
+
+## **Dijkstras Algorithm**
+
+```js
+function dijkstra(graph, start) {
+  const dist = {};
+  const visited = new Set();
+  const pq = [[0, start]];
+
+  for (let node in graph) dist[node] = Infinity;
+  dist[start] = 0;
+
+  while (pq.length) {
+    pq.sort((a, b) => a[0] - b[0]);
+    const [cost, node] = pq.shift();
+    if (visited.has(node)) continue;
+    visited.add(node);
+
+    for (let [neighbor, weight] of graph[node]) {
+      const newDist = cost + weight;
+      if (newDist < dist[neighbor]) {
+        dist[neighbor] = newDist;
+        pq.push([newDist, neighbor]);
+      }
+    }
+  }
+
+  return dist;
+}
+```
+
+---

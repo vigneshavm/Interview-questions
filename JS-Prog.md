@@ -3,8 +3,8 @@
 | Array Operations | • [Find Maximum in an Array](#find-maximum-in-an-array) • [Find Second Largest Element](#find-second-largest-element)  • [Remove Duplicates element from array](#remove-duplicates-element-from-array) • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)• [Chunk an Array](#chunk-an-array) • [Flatten Nested Arrays](#flatten-nested-arrays) • [Reverse Words in a Sentence](#reverse-words-in-a-sentence) • [Recursive Sum of Array](#recursive-sum-of-array) • [Merge Sort + Deduplication](#merge-sort) • [Sort Array of Objects by Field](#sort-array-of-objects-by-field) • [sort an array of objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
 | Arrays & Strings | • [Two Sum](#two-sum)  • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)      • [Rotate Array](#rotate-array)         • [Contains Duplicate](#contains-duplicate)    • [Missing Number](#missing-number)      • [Reverse a String / Array](#reverse-a-string--array) • [Palindrome Check](#check-if-a-string-is-a-palindrome)
 | Arrays & Strings Adv |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
-| Hashmaps & Sets |• [Two Sum using HashMap](#two-sum-using-hashmap)  • [Group Anagrams](#group-anagrams)  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Valid Anagram](#valid-anagram)  • [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  • [First Non-Repeating Character](#first-non-repeating-character)  
-| String Problems | • [Check for Palindrome](#check-for-palindrome) • [Reverse a String](#reverse-a-string) • [Count Vowels in a String](#count-vowels-in-a-string) • [Character Frequency Count](#character-frequency-count) • [Anagram Checker](#anagram-checker) • [First Non-Repeating Character](#first-non-repeating-character) • [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) • [Permutation in String](#Permutation-in-String) 
+| Hashmaps & Sets |• [Two Sum using HashMap](#two-sum-using-hashmap)  • [Group Anagrams](#group-anagrams)  • [Anagram Checker](#anagram-checker) • [Valid Anagram](#valid-anagram)  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  • [First Non-Repeating Character](#first-non-repeating-character)  
+| String Problems | • [Check for Palindrome](#check-for-palindrome) • [Reverse a String](#reverse-a-string) • [Count Vowels in a String](#count-vowels-in-a-string) • [Character Frequency Count](#character-frequency-count) • [First Non-Repeating Character](#first-non-repeating-character) • [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) • [Permutation in String](#Permutation-in-String) 
 | Object Manipulation | • [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) • [Group by Category or Class](#group-by-category-or-class) • [Group Array of Objects by Key](#group-array-of-objects-by-key) • [Deep Clone an Object](#deep-clone-an-object) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
 | Recursion & Math | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | Algorithms & Patterns | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
@@ -1499,103 +1499,6 @@ console.log(sortByAgeManual(people));
 ---
 
 
-
-## **Anagram Checker**
-
-> Check if two strings are **anagrams**:  
-> i.e., same characters, same frequency, order doesn't matter.  
-> Example: `"listen"` and `"silent"` →  Anagrams
-
----
-
-**Using Predefined Functions**  
-(using `.split()`, `.sort()`, `.join()`, `.toLowerCase()`)
-
-**Pseudocode / Algorithm**
-```
-1. Convert both strings to lowercase
-2. Split each string into array of characters
-3. Sort both arrays
-4. Join the sorted arrays back into strings
-5. Compare the two resulting strings
-```
-
-**Code Example**
-```js
-function isAnagram(str1, str2) {
-  return str1.toLowerCase().split('').sort().join('') ===
-         str2.toLowerCase().split('').sort().join('');
-}
-
-console.log(isAnagram("listen", "silent"));  // true
-console.log(isAnagram("hello", "world"));    // false
-```
-
- **Output:**
-```
-true
-false
-```
-
----
-
-**Without Using Predefined Functions**  
-(manual comparison using frequency count)
-
-**Pseudocode / Algorithm**
-```
-1. If lengths of the strings are different → not anagrams
-2. Convert both to lowercase manually
-3. Create frequency counters (objects) for each string
-4. Loop through each string and count characters
-5. Compare both frequency maps:
-   - If all keys and values match → anagram
-   - Else → not anagram
-```
-
-**Code Example**
-```js
-function isAnagramManual(str1, str2) {
-  if (str1.length !== str2.length) return false;
-
-  const freq1 = {};
-  const freq2 = {};
-
-  for (let i = 0; i < str1.length; i++) {
-    let ch1 = str1[i];
-    let ch2 = str2[i];
-
-    // Convert to lowercase manually
-    let code1 = str1.charCodeAt(i);
-    let code2 = str2.charCodeAt(i);
-    if (code1 >= 65 && code1 <= 90) ch1 = String.fromCharCode(code1 + 32);
-    if (code2 >= 65 && code2 <= 90) ch2 = String.fromCharCode(code2 + 32);
-
-    freq1[ch1] = (freq1[ch1] | 0) + 1;
-    freq2[ch2] = (freq2[ch2] | 0) + 1;
-  }
-
-  for (let key in freq1) {
-    if (freq1[key] !== freq2[key]) return false;
-  }
-
-  return true;
-}
-
-console.log(isAnagramManual("listen", "silent"));  // true
-console.log(isAnagramManual("hello", "world"));    // false
-```
-
- **Output:**
-```
-true
-false
-```
-
----
-
-
----
 
 
 ---
@@ -3878,24 +3781,7 @@ function twoSum(nums, target) {
 
 ---
 
-### **Group Anagrams**
-```javascript
-function groupAnagrams(strs) {
-    const map = new Map();
 
-    for (let str of strs) {
-        const key = str.split('').sort().join('');
-        if (!map.has(key)) map.set(key, []);
-        map.get(key).push(str);
-    }
-
-    return Array.from(map.values());
-}
-```
-**Input**: `["eat","tea","tan","ate","nat","bat"]`  
-**Output**: `[["eat","tea","ate"],["tan","nat"],["bat"]]`
-
----
 
 ### **Top K Frequent Elements**
 ```javascript
@@ -3921,26 +3807,7 @@ function topKFrequent(nums, k) {
 
 ---
 
-### **Valid Anagram**
-```javascript
-function isAnagram(s, t) {
-    if (s.length !== t.length) return false;
-    
-    const count = new Map();
-    for (let c of s) count.set(c, (count.get(c) || 0) + 1);
-    for (let c of t) {
-        if (!count.has(c)) return false;
-        count.set(c, count.get(c) - 1);
-        if (count.get(c) === 0) count.delete(c);
-    }
-    
-    return count.size === 0;
-}
-```
-**Input**: `s = "anagram", t = "nagaram"`  
-**Output**: `true`
 
----
 
 ### **Intersection of Two Arrays**
 ```javascript
@@ -4032,5 +3899,145 @@ function firstUniqChar(s) {
 
 ---
 
+
+
+
+
+## **Anagram Checker**
+
+> Check if two strings are **anagrams**:  
+> i.e., same characters, same frequency, order doesn't matter.  
+> Example: `"listen"` and `"silent"` →  Anagrams
+
+---
+
+### **Anagram Using Predefined Functions**
+(using `.split()`, `.sort()`, `.join()`, `.toLowerCase()`)
+
+**Pseudocode / Algorithm**
+```
+1. Convert both strings to lowercase
+2. Split each string into array of characters
+3. Sort both arrays
+4. Join the sorted arrays back into strings
+5. Compare the two resulting strings
+```
+
+**Code Example**
+```js
+function isAnagram(str1, str2) {
+  return str1.toLowerCase().split('').sort().join('') ===
+         str2.toLowerCase().split('').sort().join('');
+}
+
+console.log(isAnagram("listen", "silent"));  // true
+console.log(isAnagram("hello", "world"));    // false
+```
+
+ **Output:**
+```
+true
+false
+```
+
+---
+
+### **Anagram Without Using Predefined Functions**
+(manual comparison using frequency count)
+
+**Pseudocode / Algorithm**
+```
+1. If lengths of the strings are different → not anagrams
+2. Convert both to lowercase manually
+3. Create frequency counters (objects) for each string
+4. Loop through each string and count characters
+5. Compare both frequency maps:
+   - If all keys and values match → anagram
+   - Else → not anagram
+```
+
+**Code Example**
+```js
+function isAnagramManual(str1, str2) {
+  if (str1.length !== str2.length) return false;
+
+  const freq1 = {};
+  const freq2 = {};
+
+  for (let i = 0; i < str1.length; i++) {
+    let ch1 = str1[i];
+    let ch2 = str2[i];
+
+    // Convert to lowercase manually
+    let code1 = str1.charCodeAt(i);
+    let code2 = str2.charCodeAt(i);
+    if (code1 >= 65 && code1 <= 90) ch1 = String.fromCharCode(code1 + 32);
+    if (code2 >= 65 && code2 <= 90) ch2 = String.fromCharCode(code2 + 32);
+
+    freq1[ch1] = (freq1[ch1] | 0) + 1;
+    freq2[ch2] = (freq2[ch2] | 0) + 1;
+  }
+
+  for (let key in freq1) {
+    if (freq1[key] !== freq2[key]) return false;
+  }
+
+  return true;
+}
+
+console.log(isAnagramManual("listen", "silent"));  // true
+console.log(isAnagramManual("hello", "world"));    // false
+```
+
+ **Output:**
+```
+true
+false
+```
+
+---
+
+
+
+### **Anagram using Map**
+```javascript
+function isAnagram(s, t) {
+    if (s.length !== t.length) return false;
+    
+    const count = new Map();
+    for (let c of s) count.set(c, (count.get(c) || 0) + 1);
+    for (let c of t) {
+        if (!count.has(c)) return false;
+        count.set(c, count.get(c) - 1);
+        if (count.get(c) === 0) count.delete(c);
+    }
+    
+    return count.size === 0;
+}
+```
+**Input**: `s = "anagram", t = "nagaram"`  
+**Output**: `true`
+
+---
+
+
+## **Group Anagrams**
+```javascript
+function groupAnagrams(strs) {
+    const map = new Map();
+
+    for (let str of strs) {
+        const key = str.split('').sort().join('');
+        if (!map.has(key)) map.set(key, []);
+        map.get(key).push(str);
+    }
+
+    return Array.from(map.values());
+}
+```
+**Input**: `["eat","tea","tan","ate","nat","bat"]`  
+**Output**: `[["eat","tea","ate"],["tan","nat"],["bat"]]`
+
+---
 
 

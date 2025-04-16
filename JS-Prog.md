@@ -13,7 +13,7 @@
 | Graph Problems | • [BFS Traversal](#bfs) • [DFS Traversal](#dfs) • [Number of Islands (Matrix BFS/DFS)](#number-of-islands) • [Detect Cycle in Graph (#Detect-Cycle-in-Graph)](#detect-cycle-in-graph) • [Topological Sort (Kahn’s Algorithm)](#topological-sort) • [Clone Graph](#clone-graph) • [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix) • [Word Ladder](#word-ladder) • [Dijkstra’s Algorithm](#dijkstras-algorithm) 
 | Binary Tree | • [Inorder / Preorder / Postorder Traversal](#inorder-preorder-postorder-traversal) • [Level Order Traversal](#level-order-traversal) • [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree) • [Symmetric Tree](#symmetric-tree) • [Diameter of Binary Tree](#diameter-of-binary-tree) • [Lowest Common Ancestor (BST & Binary Tree)](#lowest-common-ancestor) • [Serialize and Deserialize Binary Tree](#serialize-and-deserialize-binary-tree) • [Path Sum](#path-sum) • [Convert Sorted Array to BST](#convert-sorted-array-to-bst)
 | Arrays & Strings | • [Two Sum](#two-sum)  • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock) • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array) • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)      • [Rotate Array](#rotate-array)         • [Contains Duplicate](#contains-duplicate)    • [Missing Number](#missing-number)      • [Reverse a String / Array](#reverse-a-string--array) • [Palindrome Check](#check-if-a-string-is-a-palindrome)
-
+| Arrays & Strings Adv |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 ---
 
 | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       |
@@ -3667,6 +3667,186 @@ function isPalindrome(s) {
 ```
 
  **Example**: `isPalindrome("A man, a plan, a canal: Panama")` → `true`
+
+---
+
+
+
+
+---
+
+###  **Trapping Rain Water**
+**Approach**: Two-pointer + track left/right max height.
+
+```javascript
+function trap(height) {
+    let left = 0, right = height.length - 1;
+    let leftMax = 0, rightMax = 0, water = 0;
+
+    while (left < right) {
+        if (height[left] < height[right]) {
+            height[left] >= leftMax ? leftMax = height[left] : water += leftMax - height[left];
+            left++;
+        } else {
+            height[right] >= rightMax ? rightMax = height[right] : water += rightMax - height[right];
+            right--;
+        }
+    }
+
+    return water;
+}
+```
+
+ **Example**: `trap([0,1,0,2,1,0,1,3,2,1,2,1])` → `6`
+
+---
+
+###  **Maximum Product Subarray**
+**Approach**: Track max/min product to handle negatives.
+
+```javascript
+function maxProduct(nums) {
+    let maxProd = nums[0], minProd = nums[0], result = nums[0];
+
+    for (let i = 1; i < nums.length; i++) {
+        const curr = nums[i];
+        const tempMax = Math.max(curr, maxProd * curr, minProd * curr);
+        minProd = Math.min(curr, maxProd * curr, minProd * curr);
+        maxProd = tempMax;
+        result = Math.max(result, maxProd);
+    }
+
+    return result;
+}
+```
+
+ **Example**: `maxProduct([2,3,-2,4])` → `6`
+
+---
+
+###  **Longest Consecutive Sequence**
+**Approach**: Use a Set and check only starts of sequences.
+
+```javascript
+function longestConsecutive(nums) {
+    const set = new Set(nums);
+    let maxLen = 0;
+
+    for (let num of set) {
+        if (!set.has(num - 1)) {
+            let current = num;
+            let streak = 1;
+            while (set.has(current + 1)) {
+                current++;
+                streak++;
+            }
+            maxLen = Math.max(maxLen, streak);
+        }
+    }
+
+    return maxLen;
+}
+```
+
+ **Example**: `longestConsecutive([100,4,200,1,3,2])` → `4`
+
+---
+
+###  **Set Matrix Zeroes**
+**Approach**: Use first row/col as flags to mark zeros.
+
+```javascript
+function setZeroes(matrix) {
+    const m = matrix.length, n = matrix[0].length;
+    let firstRowZero = false, firstColZero = false;
+
+    for (let i = 0; i < m; i++) if (matrix[i][0] === 0) firstColZero = true;
+    for (let j = 0; j < n; j++) if (matrix[0][j] === 0) firstRowZero = true;
+
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            if (matrix[i][j] === 0) {
+                matrix[i][0] = 0;
+                matrix[0][j] = 0;
+            }
+        }
+    }
+
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            if (matrix[i][0] === 0 || matrix[0][j] === 0) matrix[i][j] = 0;
+        }
+    }
+
+    if (firstRowZero) for (let j = 0; j < n; j++) matrix[0][j] = 0;
+    if (firstColZero) for (let i = 0; i < m; i++) matrix[i][0] = 0;
+}
+```
+
+ **Example**:
+```js
+Input: [[1,1,1],[1,0,1],[1,1,1]]
+Output: [[1,0,1],[0,0,0],[1,0,1]]
+```
+
+---
+
+###  **Spiral Matrix**
+**Approach**: Use boundaries and traverse layer-by-layer.
+
+```javascript
+function spiralOrder(matrix) {
+    const res = [];
+    let top = 0, bottom = matrix.length - 1;
+    let left = 0, right = matrix[0].length - 1;
+
+    while (top <= bottom && left <= right) {
+        for (let i = left; i <= right; i++) res.push(matrix[top][i]);
+        top++;
+        for (let i = top; i <= bottom; i++) res.push(matrix[i][right]);
+        right--;
+        if (top <= bottom) {
+            for (let i = right; i >= left; i--) res.push(matrix[bottom][i]);
+            bottom--;
+        }
+        if (left <= right) {
+            for (let i = bottom; i >= top; i--) res.push(matrix[i][left]);
+            left++;
+        }
+    }
+
+    return res;
+}
+```
+
+ **Example**:
+```js
+Input: [[1,2,3],[4,5,6],[7,8,9]]
+Output: [1,2,3,6,9,8,7,4,5]
+```
+
+---
+
+### **Subarray Sum Equals K**
+**Approach**: Prefix sum + hash map to track sum counts.
+
+```javascript
+function subarraySum(nums, k) {
+    const map = new Map();
+    map.set(0, 1);
+    let count = 0, sum = 0;
+
+    for (let num of nums) {
+        sum += num;
+        if (map.has(sum - k)) count += map.get(sum - k);
+        map.set(sum, (map.get(sum) || 0) + 1);
+    }
+
+    return count;
+}
+```
+
+ **Example**: `subarraySum([1,1,1], 2)` → `2`
 
 ---
 

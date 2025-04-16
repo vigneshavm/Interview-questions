@@ -7,7 +7,7 @@
 | String Problems | • [Palindrome](#palindrome) • [Reverse a String](#reverse-a-string) • [Group Anagrams](#group-anagrams)  • [Anagram Checker](#anagram-checker) • [Count Vowels in a String](#count-vowels-in-a-string) • [Character Frequency Count](#character-frequency-count) • [First Non-Repeating Character](#first-non-repeating-character) • [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) • [Permutation in String](#Permutation-in-String) 
 | Object Manipulation | • [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) • [Group by Category or Class](#group-by-category-or-class) • [Group Array of Objects by Key](#group-array-of-objects-by-key) • [Deep Clone an Object](#deep-clone-an-object) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
 | Recursion & Math | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
-| Algorithms & Patterns | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
+| Algorithms & Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | Functional JavaScript & Concepts | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) 
 | Promise | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
 | Searching Problems | • [Binary Search (Recursive/Iterative)](#Binary-Search) • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array) • [Find Peak Element](#find-peak-element) • [Kth Largest Element in Array](#kth-largest-element-in-an-array) • [First and Last Position of Element](#first-and-last-position-of-element) • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
@@ -1766,31 +1766,7 @@ console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
 
 
 
-## **Binary Search**
 
-sort the array:
-```js
-let arr = [1, 6, 2, 9, 4, 5, 7, 3];
-arr.sort((a, b) => a - b); // Ascending sort
-// arr = [1, 2, 3, 4, 5, 6, 7, 9]
-```
-binary search to find index of value `3`:
-```js
-function binarySearch(arr, target) {
-  let left = 0, right = arr.length - 1;
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
-        if (arr[mid] === target) return mid;
-    else if (arr[mid] < target) left = mid + 1;
-    else right = mid - 1;
-  }
-  return -1; // Not found
-}
-const index = binarySearch(arr, 3);
-console.log("Sorted Array:", arr);
-console.log("Index of 3:", index);
-console.log(removeDuplicates(array)); // [4, 2, 5, 3, 1]
-```
 
 ## **Boolean Function to Match Filename Pattern Without Regex**
 ```js
@@ -2584,6 +2560,34 @@ Final Answer: 3
 
 
 ###  **Binary Search**
+
+
+
+## **Binary Search**
+
+sort the array:
+```js
+let arr = [1, 6, 2, 9, 4, 5, 7, 3];
+arr.sort((a, b) => a - b); // Ascending sort
+// arr = [1, 2, 3, 4, 5, 6, 7, 9]
+```
+binary search to find index of value `3`:
+```js
+function binarySearch(arr, target) {
+  let left = 0, right = arr.length - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+        if (arr[mid] === target) return mid;
+    else if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+  return -1; // Not found
+}
+const index = binarySearch(arr, 3);
+console.log("Sorted Array:", arr);
+console.log("Index of 3:", index);
+console.log(removeDuplicates(array)); // [4, 2, 5, 3, 1]
+```
 
 #### 🔁 **Iterative Approach**
 

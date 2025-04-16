@@ -3469,7 +3469,7 @@ function sortedArrayToBST(nums) {
 
 ---
 
-### 1. **Two Sum**
+### **Two Sum**
 **Approach**: Hash Map for constant-time lookup.
 
 ```javascript
@@ -3487,7 +3487,7 @@ function twoSum(nums, target) {
 
 ---
 
-### 2. **Best Time to Buy and Sell Stock**
+### **Best Time to Buy and Sell Stock**
 **Approach**: Track minimum price, and calculate max profit on the go.
 
 ```javascript
@@ -3506,7 +3506,7 @@ function maxProfit(prices) {
 
 ---
 
-### 3. **Remove Duplicates from Sorted Array**
+### **Remove Duplicates from Sorted Array**
 **Approach**: Use two pointers to overwrite duplicates in-place.
 
 ```javascript
@@ -3524,7 +3524,7 @@ function removeDuplicates(nums) {
 
 ---
 
-### 4. **Move Zeros**
+### **Move Zeros**
 **Approach**: Use pointer to track insert position, fill rest with 0.
 
 ```javascript
@@ -3541,7 +3541,7 @@ function moveZeroes(nums) {
 
 ---
 
-### 5. **Maximum Subarray (Kadane’s Algorithm)**
+### **Maximum Subarray (Kadane’s Algorithm)**
 **Approach**: Dynamic programming to track current and max sum.
 
 ```javascript
@@ -3559,7 +3559,7 @@ function maxSubArray(nums) {
 
 ---
 
-### 6. **Merge Sorted Arrays**
+### **Merge Sorted Arrays**
 **Approach**: Merge from the end to avoid overwriting.
 
 ```javascript
@@ -3575,7 +3575,7 @@ function merge(nums1, m, nums2, n) {
 
 ---
 
-### 7. **Rotate Array**
+### **Rotate Array**
 **Approach**: Reverse the whole array, then reverse parts.
 
 ```javascript
@@ -3599,7 +3599,7 @@ function rotate(nums, k) {
 
 ---
 
-### 8. **Contains Duplicate**
+### **Contains Duplicate**
 **Approach**: Use a Set to track visited elements.
 
 ```javascript
@@ -3617,7 +3617,7 @@ function containsDuplicate(nums) {
 
 ---
 
-### 9. **Missing Number**
+### **Missing Number**
 **Approach**: Math formula to find sum difference.
 
 ```javascript
@@ -3633,7 +3633,7 @@ function missingNumber(nums) {
 
 ---
 
-### 10. **Reverse a String / Array**
+### **Reverse a String / Array**
 **Approach**: Two-pointer swap.
 
 ```javascript
@@ -3652,7 +3652,7 @@ function reverseString(s) {
 
 ---
 
-### 11. **Check if a String is a Palindrome**
+### **Check if a String is a Palindrome**
 **Approach**: Clean string + two-pointer check.
 
 ```javascript

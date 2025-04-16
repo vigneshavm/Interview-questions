@@ -9,7 +9,7 @@
 | **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
 | **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
 | **Searching Problems** | • [Binary Search (Recursive/Iterative)](#Binary-Search) • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array) • [Find Peak Element](#find-peak-element) • [Kth Largest Element in Array](#kth-largest-element-in-an-array) • [First and Last Position of Element](#first-and-last-position-of-element) • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
-
+| **Sorting & Searching** | • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort)
 
 
 ---
@@ -2836,6 +2836,156 @@ console.log(findMedianSortedArrays([1, 2], [3, 4])); // Output: 2.5
 
 
 
+---
+
+###  **Merge Sort**  
+- Best for large datasets.  
+- Uses extra space but gives guaranteed `O(n log n)` performance.
+
+```js
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const mid = arr.length >> 1;
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  const merged = [];
+  let i = 0, j = 0;
+
+  while (i < left.length && j < right.length) {
+    merged.push(left[i] <= right[j] ? left[i++] : right[j++]);
+  }
+
+  return merged.concat(left.slice(i), right.slice(j));
+}
+
+// Example
+console.log(mergeSort([6, 3, 7, 1, 9])); // [1, 3, 6, 7, 9]
+```
+
+---
+
+###  **Quick Sort**  
+- Choose a **random pivot** to reduce worst-case risk (`O(n²)` becomes rare).  
+- Tail recursion removed via slicing.
+
+```js
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const pivot = arr[Math.floor(Math.random() * arr.length)];
+  const left = [], right = [], equal = [];
+
+  for (let num of arr) {
+    if (num < pivot) left.push(num);
+    else if (num > pivot) right.push(num);
+    else equal.push(num);
+  }
+
+  return [...quickSort(left), ...equal, ...quickSort(right)];
+}
+
+// Example
+console.log(quickSort([9, 4, 6, 2, 8, 3])); // [2, 3, 4, 6, 8, 9]
+```
+
+---
+
+### **Bubble Sort**  
+- Early exit if the array is already sorted.
+
+```js
+function bubbleSort(arr) {
+  let n = arr.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    let swapped = false;
+
+    for (let j = 0; j < n - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        swapped = true;
+      }
+    }
+
+    if (!swapped) break; // Optimization: already sorted
+  }
+
+  return arr;
+}
+
+// Example
+console.log(bubbleSort([5, 1, 4, 2, 8])); // [1, 2, 4, 5, 8]
+```
+
+---
+
+###  **Insertion Sort**  
+- Great for small or nearly sorted arrays.  
+- Reduced assignments when shifting.
+
+```js
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let key = arr[i], j = i - 1;
+
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j]; // Shift
+      j--;
+    }
+
+    arr[j + 1] = key; // Insert
+  }
+
+  return arr;
+}
+
+// Example
+console.log(insertionSort([9, 5, 1, 4, 3])); // [1, 3, 4, 5, 9]
+```
+
+---
+
+###  **Selection Sort**  
+- Always does `n-1` swaps at most.
+
+```js
+function selectionSort(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    let minIdx = i;
+
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[minIdx]) minIdx = j;
+    }
+
+    if (i !== minIdx) {
+      [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+    }
+  }
+
+  return arr;
+}
+
+// Example
+console.log(selectionSort([29, 10, 14, 37, 13])); // [10, 13, 14, 29, 37]
+```
+
+---
+
+### 🧠 Summary: Which to Use?
+
+| Sort           | Best Use Case                        | Time (Avg) | Space |
+|----------------|--------------------------------------|------------|--------|
+| Merge Sort     | Large datasets, guaranteed speed     | O(n log n) | O(n)   |
+| Quick Sort     | General-purpose, fast in practice    | O(n log n) | O(log n) |
+| Insertion Sort | Small/nearly sorted arrays           | O(n²)      | O(1)   |
+| Bubble Sort    | Educational/sorted check             | O(n²)      | O(1)   |
+| Selection Sort | Minimum swaps required               | O(n²)      | O(1)   |
 
 
 

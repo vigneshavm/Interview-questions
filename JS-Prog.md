@@ -4,8 +4,7 @@
 | **String Problems** | • [Check for Palindrome](#check-for-palindrome) • [Reverse a String](#reverse-a-string) • [Count Vowels in a String](#count-vowels-in-a-string) • [Character Frequency Count](#character-frequency-count) • [Anagram Checker](#anagram-checker) • [First Non-Repeating Character](#first-non-repeating-character) • [Finding the Most Frequent Character in a String](#Finding-the-Most-Frequent-Character-in-a-String) 
 | **Object Manipulation** | • [Remove Duplicates element from Object](#remove-duplicates-element-from-Object) • [Group by Category or Class](#group-by-category-or-class) • [Group Array of Objects by Key](#group-array-of-objects-by-key) • [Deep Clone an Object](#deep-clone-an-object) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
 | **Recursion & Math** | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
-| **Algorithms & Patterns** | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) 
-• [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
+| **Algorithms & Patterns** | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | **Functional JavaScript & Concepts** | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) 
 | **Promise** | • [Retry Promise N Times](#retry-promise-n-times) | Retry API failures gracefully |
 

@@ -6,7 +6,7 @@
 | **Recursion & Math** | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | **Algorithms & Patterns** | • [Binary Search](#binary-search) • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | **Functional JavaScript & Concepts** | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [Understanding `var` vs `let` in Loops and Closures](#understanding-var-vs-let-in-loops-and-closures) 
-| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K)
+| **Promise** | • [Retry Promise N Times](#retry-promise-n-times) • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)
 
 
 
@@ -2207,4 +2207,94 @@ function maxSumSubarray(arr, k) {
 
 
 
+---
 
+## Longest Substring with K Distinct Characters
+
+**Given** a string `s` and an integer `k`, **return the length of the longest substring** that contains **at most `k` distinct characters**.
+
+---
+
+### ✅ Example:
+
+```text
+Input: s = "eceba", k = 2  
+Output: 3  
+Explanation: The longest substring with at most 2 distinct characters is `"ece"`.
+```
+
+---
+
+## 💡 Approach: Sliding Window + HashMap (or JS object)
+
+- Use two pointers (`start`, `end`) to define the window.
+- Use a HashMap (or JS object) to count the frequency of characters.
+- If the number of unique characters > `k`, **shrink** the window from the left.
+- Track the **max window size** throughout.
+
+---
+
+## ✅ JavaScript Code:
+
+```js
+function longestSubstringWithKDistinct(s, k) {
+  if (s.length === 0 || k === 0) return 0;
+
+  let start = 0;
+  let maxLength = 0;
+  let charMap = new Map();
+
+  for (let end = 0; end < s.length; end++) {
+    const endChar = s[end];
+    charMap.set(endChar, (charMap.get(endChar) || 0) + 1);
+
+    while (charMap.size > k) {
+      const startChar = s[start];
+      charMap.set(startChar, charMap.get(startChar) - 1);
+      if (charMap.get(startChar) === 0) {
+        charMap.delete(startChar);
+      }
+      start++; // shrink window
+    }
+
+    maxLength = Math.max(maxLength, end - start + 1);
+  }
+
+  return maxLength;
+}
+```
+
+---
+
+## 📄 Pseudocode:
+
+```
+Function LongestSubstringWithKDistinct(s, k):
+    If s is empty or k is 0:
+        Return 0
+
+    Initialize start = 0
+    Initialize maxLength = 0
+    Initialize charMap as empty map
+
+    For end in range 0 to length of s:
+        Add s[end] to charMap with count
+
+        While charMap size > k:
+            Decrease count of s[start]
+            If count becomes 0:
+                Remove s[start] from charMap
+            Move start pointer forward
+
+        Update maxLength = max(maxLength, end - start + 1)
+
+    Return maxLength
+```
+
+---
+
+## 🧠 Time Complexity:
+- **O(n)** — Each character is visited at most twice.
+- **O(k)** — Space for storing up to `k` distinct characters.
+
+---

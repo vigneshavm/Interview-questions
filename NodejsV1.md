@@ -7,7 +7,7 @@
 | **Asynchronous Programming**               | [Callback Hell](#callback-hell), [Promise](#promise), [Promise vs Async/Await](#promise-vs-asyncawait),  [Promise Type](#Promise-Type)           |
 | **Concurrency & Processes**                | [Event Loop](#event-loop), [Worker Threads](#worker-threads), [Child Processes](#child-processes), [Cluster Module](#cluster-module)                                            |
 | **Event Handling**                         | [Event Emitters](#event-emitters), [Process Object](#process-object)           [WebSockets](#websockets-socketio-basics),                                                             |
-| **Security**                    | [Secure Node.js App](#secure-nodejs-app),  [HTTP Methods](#http-methods--use-cases), [HTTP Status Codes](#status-codes)   ,                [CORS](#cors) , [Middleware](#middleware) ,[Rate Limiting APIs](#rate-limiting-apis)  |
+| **Security**                    | [Secure Node.js App](#secure-nodejs-app),  [HTTP Methods](#http-methods--use-cases), [HTTP Status Codes](#status-codes)   ,                [CORS](#cors) , [Middleware](#middleware), [Helmet](#Helmet)  ,[Rate Limiting APIs](#rate-limiting-apis)  |
 | **Authentication & Authorization**         | [Authentication vs Authorization](#authentication-vs-authorization), [JWT](#jwt),[Refresh Tokens](#refresh-tokens), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers), [Protected Route](#protected-route), [Role-Based Access Control](#role-based-access-control-rbac)                    |
 | **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
 | **API Design & Development**               | [REST API](#rest-api),[Secure REST APIs](#secure-rest-apis), [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure)|
@@ -1815,4 +1815,51 @@ You run them with `npm run dev`, `npm start`, etc.
 ---
 
 
+
+
+---
+
+## Helmet
+
+ - Helmet is a middleware for Express.js that helps secure your app by setting various HTTP headers.
+ - It’s one layer of defense
+```bash
+npm install helmet
+```
+
+### 📦 Usage:
+
+```js
+const express = require('express');
+const helmet = require('helmet');
+
+const app = express();
+
+app.use(helmet()); // Apply security headers to all responses
+```
+
+### 🔐 What Does Helmet Do?
+
+| 🛡️ **Header**                | 🔍 **Purpose**                                                  |
+|-----------------------------|------------------------------------------------------------------|
+| `Content-Security-Policy`   | Prevents XSS by restricting sources of content                  |
+| `X-Frame-Options`           | Prevents clickjacking by disallowing iframe embedding           |
+| `Strict-Transport-Security` | Enforces HTTPS connections only                                 |
+| `X-Content-Type-Options`    | Prevents browsers from MIME-type sniffing                       |
+| `Referrer-Policy`           | Controls the amount of referrer info sent                       |
+| `Cross-Origin-Embedder-Policy` | Required for using SharedArrayBuffer securely               |
+
+---
+
+### 🧪 Customizing Helmet:
+
+You can selectively enable/disable headers like this:
+
+```js
+app.use(helmet({
+  contentSecurityPolicy: false, // disable if you're using inline scripts for now
+}));
+```
+
+---
 

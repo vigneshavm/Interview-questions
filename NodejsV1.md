@@ -7,14 +7,14 @@
 | **Asynchronous Programming**               | [Callback Hell](#callback-hell), [Promise](#promise), [Promise vs Async/Await](#promise-vs-asyncawait),  [Promise Type](#Promise-Type)           |
 | **Concurrency & Processes**                | [Event Loop](#event-loop), [Worker Threads](#worker-threads), [Child Processes](#child-processes), [Cluster Module](#cluster-module)                                            |
 | **Event Handling**                         | [Event Emitters](#event-emitters), [Process Object](#process-object)                                                                       |
-| **Security**                    | [Secure Node.js App](#secure-nodejs-app), [REST API](#rest-api),[Secure REST APIs](#secure-rest-apis),  [HTTP Methods](#http-methods--use-cases), [HTTP Status Codes](#status-codes)   ,                [CORS](#cors) |
+| **Security**                    | [Secure Node.js App](#secure-nodejs-app), [REST API](#rest-api),[Secure REST APIs](#secure-rest-apis),  [HTTP Methods](#http-methods--use-cases), [HTTP Status Codes](#status-codes)   ,                [CORS](#cors) , [Middleware](#middleware) ,[Rate Limiting APIs](#rate-limiting-apis)  |
 | **Authentication & Authorization**         | [Authentication vs Authorization](#authentication-vs-authorization), [JWT](#jwt),[Refresh Tokens](#refresh-tokens), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers), [Protected Route](#protected-route), [Role-Based Access Control](#role-based-access-control-rbac)                    |
 | **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
 | **API Design & Development**               | [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure)|
 | **Error Handling & Validation**            | [Error handling in REST APIs](#error-handling-in-rest-apis), [Error Handling](#error-handling), [Data Validation](#data-validation)                                            |
-| **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis) , [package json](#package-json)   , [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                         |
+| **Web Development**                        | [WebSockets](#websockets-socketio-basics),  [package json](#package-json)   , [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                         |
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
-| **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware) , [Microservices Communication](#microservices-communication)        |
+| **Deployment & Scaling**                   | [Load Balancing](#load-balancing),  [Microservices Communication](#microservices-communication)        |
 
 
 

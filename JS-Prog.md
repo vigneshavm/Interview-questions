@@ -2,7 +2,7 @@
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Array 1 | • [Find Largest value](#find-maximum-in-an-array) • [Find Second Largest value](#find-second-largest-element)  • [Kth Largest value](#kth-largest-element-in-an-array) • [Remove Duplicates element from array](#remove-duplicates-element-from-array) • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array) • [Remove Duplicates element from Object](#remove-duplicates-element-from-Object)
 | Array 2 |  • [Recursive Sum of Array](#recursive-sum-of-array)  • [Flatten Nested Arrays](#flatten-nested-arrays)  • [Chunk an Array](#chunk-an-array) • [Array Contains Duplicate Value](#Array-Contains-Duplicate-Value) • [Missing Number](#missing-number)
-| Sort |   • [Sort Array of Objects by Field](#sort-array-of-objects-by-field) • [Sort Array of Objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort)
+| Sort |   • [Sort an array of objects](#Sort-an-array-of-objects) [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort)
 | Arrays & Strings | • [Two Sum](#two-sum)  • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)  • [Rotate Array](#rotate-array)      • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) 
 | Advance |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hash & Sets |• [Top K Frequent Elements](#top-k-frequent-elements)  • [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  
@@ -1458,14 +1458,39 @@ console.log(charFrequencyManual("Hello"));
 { h: 1, e: 1, l: 2, o: 1 }
 ```
 
+
+## Sort an array of objects 
+
+• [Sort Array of Objects by Field](#sort-array-of-objects-by-field) 
+• [Sort Array of Objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
+
 ---
 
+## Sort an array of objects by a nested value
 
+```js
+const users = [
+  { name: "John", address: { city: "Mumbai" } },
+  { name: "Sara", address: { city: "Delhi" } },
+  { name: "Alex", address: { city: "Bangalore" } }
+];
+
+const ascending = [...users].sort((a, b) => {
+  const cityA = a.address.city.toLowerCase();
+  const cityB = b.address.city.toLowerCase();
+  
+  if (cityA < cityB) return -1;
+  if (cityA > cityB) return 1;
+  return 0;
+});
+
+console.log("Ascending:");
+console.log(ascending);
+```
 
 ---
 
 ## **Sort Array of Objects by Field**  
-We’ll use the field `age` for clarity, but this approach works for any field like `name`, `price`, etc.
 
 Sample input:
 ```js
@@ -2048,29 +2073,7 @@ console.log(getMaxOccurringChar("xyz"));           // x (all are 1, returns firs
 ---
 
 
-## sort an array of objects by a nested value
 
-```js
-const users = [
-  { name: "John", address: { city: "Mumbai" } },
-  { name: "Sara", address: { city: "Delhi" } },
-  { name: "Alex", address: { city: "Bangalore" } }
-];
-
-const ascending = [...users].sort((a, b) => {
-  const cityA = a.address.city.toLowerCase();
-  const cityB = b.address.city.toLowerCase();
-  
-  if (cityA < cityB) return -1;
-  if (cityA > cityB) return 1;
-  return 0;
-});
-
-console.log("Ascending:");
-console.log(ascending);
-```
-
----
 
 ##  **Maximum Sum Subarray of Size K** 
 ---

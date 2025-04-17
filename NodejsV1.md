@@ -15,6 +15,7 @@
 | **Package Json**                        |  [package json](#package-json)   , [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                         |
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
 | **Deployment & Scaling**                   | [Load Balancing](#load-balancing),  [Microservices Communication](#microservices-communication)        |
+| **Garbage Collection**                   | [Garbage Collection](#Garbage-Collection)|
 
 
 
@@ -1862,4 +1863,110 @@ app.use(helmet({
 ```
 
 ---
+
+
+
+---
+
+### Garbage Collection ### 
+
+- **Definition**: Automatic memory management feature in JavaScript.
+- **Purpose**: Frees up memory no longer in use or referenced by the program.
+- **Process**:
+  1. **Mark Phase**: Garbage collector marks all reachable objects starting from root objects (global objects, function scopes).
+  2. **Sweep Phase**: Unreachable objects (not marked) are deallocated.
+
+---
+
+### Different types of Garbage Collection ### 
+
+- **Mark-and-Sweep** (Most Common):
+  - Marks reachable objects.
+  - Sweeps away unreachable objects.
+  
+- **Reference Counting** (Less Common):
+  - Tracks reference count of each object.
+  - Deletes object when reference count reaches zero.
+  - **Issue**: Circular references prevent proper collection.
+
+---
+
+### optimize garbage collection ###
+
+- **Minimize Global Variables**:
+  - Global variables persist, affecting memory cleanup. Use local variables.
+
+- **Avoid Circular References**:
+  - Circular references prevent proper collection, so break them when possible.
+
+- **Use `let` and `const` instead of `var`**:
+  - `let` and `const` are block-scoped and easier for garbage collection to clean up.
+
+- **Nullify Unused References**:
+  - Set variables to `null` when no longer needed.
+  ```js
+  let user = { name: "John", age: 30 };
+  user = null; // Eligible for garbage collection
+  ```
+
+- **Use Weak References**:
+  - Use `WeakMap` or `WeakSet` for objects that can be garbage collected when no longer in use.
+  ```js
+  const weakMap = new WeakMap();
+  let obj = { key: "value" };
+  weakMap.set(obj, "data");
+  obj = null; // Eligible for garbage collection
+  ```
+
+- **Monitoring Tools**:
+  - **Chrome DevTools**:
+    - Use **Memory** tab to analyze memory usage and garbage collection behavior.
+    - Take **heap snapshots** to identify memory leaks.
+    - Trigger manual garbage collection.
+  - **Node.js Tools**:
+    - Use tools like **`clinic.js`**, **`node-inspect`**, or **`heapdump`** for memory profiling.
+
+- **Optimizing Garbage Collection**:
+  - Minimize object creation and remove unnecessary references.
+  - Regularly profile memory to spot inefficiencies.
+
+---
+
+### Handle memory management  ###
+
+- **Memory Management**:
+  - JavaScript uses **automatic memory management** with garbage collection.
+  - Objects are stored in the **heap**, while local variables are stored in the **stack**.
+  
+- **Unreachable Objects**:
+  - When an object becomes unreachable, it is eligible for garbage collection.
+  - The garbage collector marks and sweeps unreachable objects.
+
+---
+
+
+### Memory Leak
+
+- **Definition of Memory Leak**:
+  - Memory leaks occur when objects are no longer needed but still referenced, preventing garbage collection.
+
+- **Common Causes**:
+  1. **Global Variables**: Persistent references.
+  2. **Event Listeners**: Not removed after use.
+  3. **Circular References**: Objects referencing each other.
+  4. **Closures**: Retaining references unintentionally.
+
+- **Fixing Memory Leaks**:
+  - Use **weak references** (`WeakMap`, `WeakSet`).
+  - **Remove event listeners** when no longer needed.
+  - **Break circular references** and set variables to `null`.
+
+- **Identifying Memory Leaks**:
+  - Use **Chrome DevTools** or **Node.js memory profiling** to track memory consumption.
+  - Look for objects in heap snapshots that should have been collected but aren’t.
+
+---
+
+
+
 

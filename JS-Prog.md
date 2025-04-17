@@ -1,14 +1,14 @@
 | Category                          | Topics                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Array 1 | • [Find Largest value](#find-maximum-in-an-array) • [Find Second Largest value](#find-second-largest-element)  • [Kth Largest value](#kth-largest-element-in-an-array) • [Remove Duplicates element](#Remove-Duplicates-element) 
-| Array 2 |  • [Recursive Sum of Array](#recursive-sum-of-array)  • [Flatten Nested Arrays](#flatten-nested-arrays)  • [Chunk an Array](#chunk-an-array) • [Array Contains Duplicate Value](#Array-Contains-Duplicate-Value) • [Missing Number](#missing-number)
+| Array 1 | • [Find Largest value](#find-maximum-in-an-array) • [Find Second Largest value](#find-second-largest-element)  • [Kth Largest value](#kth-largest-element-in-an-array) • [Remove Duplicates element](#Remove-Duplicates-element) • [Group Array of Objects](#Group-Array-of-Objects)
+| Array 2 |  • [Recursive Sum of Array](#recursive-sum-of-array)  • [Flatten Nested Arrays](#flatten-nested-arrays)  • [Chunk an Array](#chunk-an-array) • [Array Contains Duplicate Value](#Array-Contains-Duplicate-Value) • [Missing Number](#missing-number) 
 | Sort |   • [Sort an array of objects](#Sort-an-array-of-objects) • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort)
 | Arrays & Strings | • [Two Sum](#two-sum)  • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)  • [Rotate Array](#rotate-array)      • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) 
 | Advance |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hash & Sets |• [Top K Frequent Elements](#top-k-frequent-elements)  • [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  
 | String 1 | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Group Anagrams](#group-anagrams)  • [Anagram Checker](#anagram-checker) • [Count Vowels](#count-vowels-in-a-string) • [Character Frequency Count](#character-frequency-count) • [First Non-Repeating Character](#first-non-repeating-character) • [Most Frequent Character](#Most-Frequent-Character-in-a-String) • [Permutation](#Permutation-in-String) 
 | String 2 | • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
-| Object Manipulation |  • [Group by Category or Class](#group-by-category-or-class) • [Group Array of Objects by Key](#group-array-of-objects-by-key) • [Deep Clone an Object](#deep-clone-an-object) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
+| Object Manipulation |  • [Deep Clone an Object](#deep-clone-an-object) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
 | Recursion & Math | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | Algorithms & Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | JS Concepts | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [`var` vs `let` in Loops](#understanding-var-vs-let-in-loops-and-closures)  • [Retry Promise N Times](#retry-promise-n-times) 
@@ -503,8 +503,10 @@ console.log(chunkArrayManual([1, 2, 3, 4, 5, 6, 7], 3));
 
 ---
 
+## Group Array of Objects ##
 
-
+• [Group by Category or Class](#group-by-category-or-class) 
+• [Group Array of Objects by Key](#group-array-of-objects-by-key) 
 
 ## **Find Second Largest Element**
 

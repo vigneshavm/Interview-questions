@@ -14,7 +14,7 @@
 | **Error Handling & Validation**            | [Error handling in REST APIs](#error-handling-in-rest-apis), [Error Handling](#error-handling), [Data Validation](#data-validation)                                            |
 | **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis) , [package json](#package-json)   , [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                         |
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
-| **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                           |
+| **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware)                                                         |
 | **Microservices & Communication**          | [Microservices Communication](#microservices-communication),                                                                    |
 
 

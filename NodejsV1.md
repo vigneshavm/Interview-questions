@@ -7,7 +7,7 @@
 | **Asynchronous Programming**               | [Callback Hell](#callback-hell), [Promise](#promise), [Promise vs Async/Await](#promise-vs-asyncawait),  [Promise Type](#Promise-Type)           |
 | **Concurrency & Processes**                | [Event Loop](#event-loop), [Worker Threads](#worker-threads), [Child Processes](#child-processes), [Cluster Module](#cluster-module)                                            |
 | **Event Handling**                         | [Event Emitters](#event-emitters), [Process Object](#process-object)                                                                       |
-| **Security**                    | [Secure Node.js App](#secure-nodejs-app), [REST API](#rest-api),[Secure REST APIs](#secure-rest-apis),  [HTTP methods & use cases](#http-methods--use-cases), [CORS](#cors),  [Manage security](#manage-security)   |
+| **Security**                    | [Secure Node.js App](#secure-nodejs-app), [REST API](#rest-api),[Secure REST APIs](#secure-rest-apis),  [HTTP methods & use cases](#http-methods--use-cases), [CORS](#cors) |
 | **Authentication & Authorization**         | [Authentication vs Authorization](#authentication-vs-authorization), [JWT](#jwt),[Refresh Tokens](#refresh-tokens), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers), [Protected Route](#protected-route), [Role-Based Access Control](#role-based-access-control-rbac)                    |
 | **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
 | **API Design & Development**               | [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure), [Status codes](#status-codes)                   |
@@ -852,12 +852,19 @@ res.cookie('accessToken', token, {
 
 ## **Secure Node.js App**
 
-- Use **HTTPS**.
-- Validate **input data**.
-- Use **Helmet** for HTTP headers security.
-- Prevent **SQL injection** with ORMs.
-- Enable **rate limiting**.
-- Run **npm audit** for vulnerabilities.
+| ✅ **Practice** | 📋 **Explanation** | 🛠️ **Example / Tool** |
+|----------------|--------------------|------------------------|
+| **HTTPS** | Ensures data is encrypted in transit. | Use [Let's Encrypt](https://letsencrypt.org/) or a certificate provider. |
+| **Input Validation** | Prevents malicious or malformed data from reaching your logic layer. | Use `Joi`, `express-validator`. |
+| **Sanitize Data** | Removes harmful code (like scripts) from input. | Use libraries like `xss-clean`, `express-mongo-sanitize`. |
+| **SQL Injection Prevention** | Attackers can inject SQL via input fields. Use parameterized queries or ORM. | Use Sequelize, Prisma, or Mongoose (for MongoDB). |
+| **Authentication** | Validates user identity. Tokens ensure sessionless security. | Use `JWT`, `Passport.js`, `OAuth2`. |
+| **Environment Variables** | Keeps secrets/config outside code. | Use `dotenv` in development, `AWS Secrets Manager` in production. |
+| **Rate Limiting** | Blocks excessive requests (helps prevent DDoS attacks). | `express-rate-limit` middleware. |
+| **Helmet** | Secures HTTP headers. Protects against common web vulnerabilities. | `app.use(helmet())` |
+| **NPM Audit** | Scans your dependencies for vulnerabilities. | Run `npm audit fix` regularly. |
+
+---
 
 ---
 
@@ -1297,15 +1304,7 @@ Promise.any([p1, p2]).then(console.log); // "Success!"
 
 ---
 
-##  **Manage security**
-   - **Input Validation**: Use libraries like Joi or Express-validator to validate inputs.
-   - **Sanitize Data**: Prevent SQL injections and XSS attacks.
-   - **Authentication**: Use JWT or OAuth for secure authentication.
-   - **Environment Variables**: Store secrets securely using `dotenv` or AWS Secrets Manager.
-   - **Rate Limiting**: Use middleware to limit requests (e.g., `express-rate-limit`).
-   - **Helmet**: Protect HTTP headers for Express apps.
 
----
 
 ## **Single-Threaded Nature**
 - Node.js runs in a **single-threaded environment** using a single thread, allowing it to handle concurrent I/O operations effectively due to its **non-blocking asynchronous execution model**.

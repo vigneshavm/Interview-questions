@@ -13,7 +13,7 @@
 | **Error Handling & Validation**            | [Error handling in REST APIs](#error-handling-in-rest-apis), [Error Handling](#error-handling), [Data Validation](#data-validation)                                            |
 | **Web Development**                        | [WebSockets](#websockets-socketio-basics), [Rate Limiting APIs](#rate-limiting-apis) , [package json](#package-json)   , [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                         |
 | **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
-| **Asynchronous Programming**               | [Promise vs Async/Await](#promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise.all() vs Promise.race()](#promiseall-vs-promiserace)                               |
+| **Asynchronous Programming**               | [Callback Hell](#callback-hell), [Promise](#promise), [Promise vs Async/Await](#promise-vs-asyncawait),  [Promise Type](#Promise-Type)           |
 | **Deployment & Scaling**                   | [Load Balancing](#load-balancing), [Middleware](#middleware), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)                                                           |
 | **Microservices & Communication**          | [Microservices Communication](#microservices-communication),                                                                    |
 
@@ -1124,6 +1124,84 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
   - **Promises**: Handles asynchronous behavior more cleanly with `.then()`, `.catch()`.
   - **Async/Await**: Allows asynchronous code to be written in a synchronous style, improving readability.
 
+## Promise
+
+A **Promise** is an object that represents the **eventual completion (or failure)** of an asynchronous operation and its resulting value.
+
+It has **3 states**:
+
+| State        | Description                            |
+|--------------|----------------------------------------|
+| `pending`    | Initial state, operation not complete  |
+| `fulfilled`  | Operation completed successfully        |
+| `rejected`   | Operation failed with an error          |
+
+---
+
+### Promise Basic Syntax
+
+```js
+const myPromise = new Promise((resolve, reject) => {
+  // Async task here (e.g., API call)
+  const success = true;
+
+  if (success) {
+    resolve("It worked!");
+  } else {
+    reject("It failed!");
+  }
+});
+```
+
+---
+
+### Consuming a Promise
+
+```js
+myPromise
+  .then(result => {
+    console.log(result); // Output: It worked!
+  })
+  .catch(error => {
+    console.error(error); // If rejected
+  })
+  .finally(() => {
+    console.log("Done"); // Runs always
+  });
+```
+
+---
+
+### Promise Real-world Example (Fake API)
+
+```js
+function getUserData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const success = true;
+      success ? resolve({ name: "Alice" }) : reject("Error!");
+    }, 1000);
+  });
+}
+
+getUserData()
+  .then(user => console.log(user.name))
+  .catch(err => console.log(err));
+```
+
+---
+
+## Promises vs Callbacks
+
+| Callbacks                  | Promises                       |
+|----------------------------|--------------------------------|
+| Error-prone (callback hell) | Cleaner syntax                 |
+| Difficult to debug         | Better error handling          |
+| Nested structure           | Chainable (`.then`)            |
+
+---
+
+
 ## **Promise vs Async/Await**:
 - **Promises**: Use `.then()` and `.catch()` for chaining async calls.
 - **Async/Await**: More readable and concise for handling asynchronous operations.
@@ -1131,9 +1209,76 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
 - **Async/await** allows writing asynchronous code like synchronous code, improving readability.
 - Async/await works on top of promises and eliminates `.then()` chains.
 
-## **`Promise.all()` vs `Promise.race()`**:
-- **`Promise.all()`**: Resolves when **all** promises are completed.
-- **`Promise.race()`**: Resolves when **the first** promise resolves or rejects.
+## **Promise Type**:
+
+| Function             | Description                                                                 | Use Case |
+|----------------------|-----------------------------------------------------------------------------|----------|
+| `Promise.resolve()`  | Creates a **fulfilled** promise with a value                                | Simulating success |
+| `Promise.reject()`   | Creates a **rejected** promise with a reason                                | Simulating error |
+| `Promise.all()`      | Waits for **all** promises to resolve (or one to reject)                    | Run multiple tasks together |
+| `Promise.allSettled()` | Waits for all promises to settle (fulfilled or rejected)                  | Get results of all, including errors |
+| `Promise.race()`     | Resolves/rejects as soon as **one** promise(resolves or rejects) settles    | Timeout or fastest response |
+| `Promise.any()`      | Resolves as soon as **any one succeeds** (ignores rejections)              | Get first successful result |
+
+
+
+
+#### ✅ `Promise.resolve()`
+
+```js
+const p = Promise.resolve("Hello"); p.then(console.log); // "Hello"
+```
+
+#### ❌ `Promise.reject()`
+
+```js
+const p = Promise.reject("Something went wrong"); p.catch(console.error);
+```
+
+---
+
+#### 🔗 `Promise.all()`
+
+```js
+const p1 = Promise.resolve(1); const p2 = Promise.resolve(2);
+Promise.all([p1, p2]).then(results => console.log(results)); // [1, 2]
+```
+
+#### ⚠️ `Promise.allSettled()`
+
+```js
+const p1 = Promise.resolve("Done"); const p2 = Promise.reject("Failed");
+Promise.allSettled([p1, p2]).then(results => console.log(results));
+```
+
+✅ Output:
+```js
+[  { status: 'fulfilled', value: 'Done' },  { status: 'rejected', reason: 'Failed' }]
+```
+
+---
+
+#### ⚡ `Promise.race()`
+
+```js
+const slow = new Promise(res => setTimeout(() => res("Slow"), 1000));
+const fast = new Promise(res => setTimeout(() => res("Fast"), 100));
+
+Promise.race([slow, fast]).then(console.log); // "Fast"
+```
+
+---
+
+#### 🌟 `Promise.any()`
+
+```js
+const p1 = Promise.reject("Fail 1");
+const p2 = Promise.resolve("Success!");
+
+Promise.any([p1, p2]).then(console.log); // "Success!"
+```
+
+---
 
 
 ##  **Scalability issues**

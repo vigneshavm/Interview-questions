@@ -495,11 +495,10 @@ console.log(chunkArrayManual([1, 2, 3, 4, 5, 6, 7], 3));
 
 ---
 
-## Group Array of Objects ##
+## Group Array of Objects
 
 • [Group Products by key](#Group-Products-by-key) 
 • [Group into array](#Group-into-array) 
----
 
 ### Group Products by key
 

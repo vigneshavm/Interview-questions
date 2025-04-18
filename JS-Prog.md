@@ -1,6 +1,6 @@
 | Category                          | Topics                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Array 1 | • [Find Largest value](#find-maximum-in-an-array) • [Find Second Largest value](#find-second-largest-element)  • [Kth Largest value](#kth-largest-element-in-an-array) • [Remove Duplicates element](#Remove-Duplicates-element) • [Group Array of Objects](#Group-Array-of-Objects)
+| Array 1 | • [Find Largest value](#Find-Largest-value)  • [Remove Duplicates element](#Remove-Duplicates-element) • [Group Array of Objects](#Group-Array-of-Objects)
 | Array 2 |  • [Recursive Sum of Array](#recursive-sum-of-array)  • [Flatten Nested Arrays](#flatten-nested-arrays)  • [Chunk an Array](#chunk-an-array) • [Array Contains Duplicate Value](#Array-Contains-Duplicate-Value) • [Missing Number](#missing-number) 
 | Sort |   • [Sort an array of objects](#Sort-an-array-of-objects) • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort)
 | Arrays & Strings | • [Two Sum](#two-sum)  • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)  • [Rotate Array](#rotate-array)      • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) 
@@ -1852,12 +1852,12 @@ console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
 ```
 
 
-
-
+## Find Largest value
+• [Find Largest value](#find-maximum-in-an-array) 
+• [Find Second Largest value](#find-second-largest-element)  
+• [Kth Largest value](#kth-largest-element-in-an-array)
 
 ### Find Maximum in an Array
-
-
 
 **No Built-ins**
 

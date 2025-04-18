@@ -53,26 +53,6 @@
 ---
 
 
-<details>
-  <summary><strong>Find Largest value</strong></summary>
-
-  - [Find Largest value](#find-maximum-in-an-array)
-
-</details>
-
-<details>
-  <summary><strong>Find Second Largest value</strong></summary>
-
-  - [Find Second Largest value](#find-second-largest-element)
-
-</details>
-
-<details>
-  <summary><strong>Kth Largest value</strong></summary>
-
-  - [Kth Largest value](#kth-largest-element-in-an-array)
-
-</details>
 
 
 
@@ -1877,7 +1857,10 @@ console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
 • [Find Second Largest value](#find-second-largest-element)  
 • [Kth Largest value](#kth-largest-element-in-an-array)
 
-### Find Maximum in an Array
+<details>
+  <summary><strong>Find Largest value</strong></summary>
+
+  ### Find Maximum in an Array
 
 **No Built-ins**
 
@@ -1923,6 +1906,26 @@ function findMax(arr: number[]): number {
 
 ---
 
+
+
+
+</details>
+
+<details>
+  <summary><strong>Find Second Largest value</strong></summary>
+
+  - [Find Second Largest value](#find-second-largest-element)
+
+</details>
+
+<details>
+  <summary><strong>Kth Largest value</strong></summary>
+
+  - [Kth Largest value](#kth-largest-element-in-an-array)
+
+</details>
+
+
 ### Group Array of Objects by Key
 
 **Input**
@@ -1966,7 +1969,6 @@ function groupBy<T>(arr: T[], key: keyof T): Grouped<T> {
 ```
 
 ---
-
 
 
 ### Debounce Function

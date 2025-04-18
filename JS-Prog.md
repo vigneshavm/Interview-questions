@@ -7,8 +7,8 @@
 | Frequent |  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Character Frequency Count](#character-frequency-count) • [Most Frequent Character](#Most-Frequent-Character-in-a-String) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
 | Advance |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hash & Sets |• [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  
-| String 1 | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagrams)  • [Count Vowels](#count-vowels-in-a-string)  • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) 
-| String 2 | • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
+| String 1 | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagrams)  • [Vowels](#vowels)   • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) 
+| String 2 | • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) 
 | Object Manipulation |  • [Deep Clone an Object](#deep-clone-an-object) 
 | Recursion & Math | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | Algorithms & Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
@@ -706,14 +706,22 @@ JavaScript is this world Hello
 
 ---
 
-## **Count Vowels in a String**
+
+## **Vowels**
 
 > Vowels = `'a', 'e', 'i', 'o', 'u'` (case-insensitive)  
-> Example: `"Hello World"` → **3 vowels** (`e`, `o`, `o`)
+
+
+
+- [Count Vowels Using Predefined Functions](#count-vowels-using-predefined-functions)
+- [Count Vowels Without Using Predefined Functions](#count-vowels-without-using-predefined-functions)
+- [Max Number of Vowels in Substring](#max-number-of-vowels-in-substring)
+
+
 
 ---
 
-**Using Predefined Functions (`includes()`, `toLowerCase()`, `split()`)**
+### **Count Vowels Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -744,7 +752,7 @@ console.log(countVowels("Hello World"));
 
 ---
 
-**Without Using Predefined Functions**
+### **Count Vowels Without Using Predefined Functions**
 
 **Pseudocode / Algorithm**
 ```
@@ -795,7 +803,77 @@ console.log(countVowelsManual("Hello World"));
 
 
 
+### Max Number of Vowels in Substring
+
+> Given a string `s` and an integer `k`, return the maximum number of vowels in any substring of length `k`.
+
 ---
+> Instead of checking **every substring of length `k`**, we can use a sliding window of size `k` to **keep track of how many vowels are in the current window**, and just **update the count** as the window slides.
+
+---
+
+**Optimized Approach**
+
+1. Use a **sliding window** of size `k`.
+2. Maintain a `vowelCount` as you move the window.
+3. For every character entering the window, check if it's a vowel — if yes, increment the count.
+4. For every character exiting the window, check if it's a vowel — if yes, decrement the count.
+5. Keep track of the `maxVowels` seen so far.
+
+---
+
+**JavaScript Code**
+
+```js
+function maxVowels(s, k) {
+  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+  let count = 0;
+  let maxCount = 0;
+
+  // Initial window of size k
+  for (let i = 0; i < k; i++) {
+    if (vowels.has(s[i])) count++;
+  }
+
+  maxCount = count;
+
+  // Slide the window
+  for (let i = k; i < s.length; i++) {
+    if (vowels.has(s[i - k])) count--; // remove left char
+    if (vowels.has(s[i])) count++;     // add right char
+    maxCount = Math.max(maxCount, count);
+  }
+
+  return maxCount;
+}
+```
+
+---
+
+**Example**
+
+```js
+s = "abciiidef", k = 3
+
+Window: "abc" → 1 vowel  
+Window: "bci" → 1 vowel  
+Window: "cii" → 2 vowels  
+Window: "iii" → 3 vowels   
+...
+Final Answer: 3
+```
+
+---
+
+**Time and Space Complexity**
+
+- **Time:** O(n) – each character is processed once as the window slides.
+- **Space:** O(1) – only fixed space is used (for the set of vowels).
+
+---
+
+
+
 
 ## **First Non-Repeating Character**
 
@@ -2358,77 +2436,6 @@ function checkInclusion(s1, s2) {
 
 ---
 
-## Max Number of Vowels in Substring
-
-> Given a string `s` and an integer `k`, return the maximum number of vowels in any substring of length `k`.
-
----
-
-###  Key Idea – Sliding Window:
-
-Instead of checking **every substring of length `k`**, we can use a sliding window of size `k` to **keep track of how many vowels are in the current window**, and just **update the count** as the window slides.
-
----
-
-###  Optimized Approach:
-
-1. Use a **sliding window** of size `k`.
-2. Maintain a `vowelCount` as you move the window.
-3. For every character entering the window, check if it's a vowel — if yes, increment the count.
-4. For every character exiting the window, check if it's a vowel — if yes, decrement the count.
-5. Keep track of the `maxVowels` seen so far.
-
----
-
-###  JavaScript Code (Clean & Easy to Understand):
-
-```js
-function maxVowels(s, k) {
-  const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
-  let count = 0;
-  let maxCount = 0;
-
-  // Initial window of size k
-  for (let i = 0; i < k; i++) {
-    if (vowels.has(s[i])) count++;
-  }
-
-  maxCount = count;
-
-  // Slide the window
-  for (let i = k; i < s.length; i++) {
-    if (vowels.has(s[i - k])) count--; // remove left char
-    if (vowels.has(s[i])) count++;     // add right char
-    maxCount = Math.max(maxCount, count);
-  }
-
-  return maxCount;
-}
-```
-
----
-
-### 🔍 Example:
-
-```js
-s = "abciiidef", k = 3
-
-Window: "abc" → 1 vowel  
-Window: "bci" → 1 vowel  
-Window: "cii" → 2 vowels  
-Window: "iii" → 3 vowels   
-...
-Final Answer: 3
-```
-
----
-
-### ⏱️ Time and Space Complexity:
-
-- **Time:** O(n) – each character is processed once as the window slides.
-- **Space:** O(1) – only fixed space is used (for the set of vowels).
-
----
 
 
 
@@ -3810,7 +3817,7 @@ function countUnique(nums) {
 
 
 
-## Anagrams
+## Anagram
 
 > Check if two strings are **anagrams**:  
 > i.e., same characters, same frequency, order doesn't matter.  

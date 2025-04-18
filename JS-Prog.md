@@ -3450,6 +3450,9 @@ function merge(nums1, m, nums2, n) {
 
 ### **Rotate Array**
 **Approach**: Reverse the whole array, then reverse parts.
+ - Reverse the whole array.
+ - Reverse the first k elements.
+ - Reverse the remaining elements.
 
 ```javascript
 function rotate(nums, k) {

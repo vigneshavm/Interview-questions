@@ -8,7 +8,7 @@
 | Advance |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hash & Sets |• [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  
 | String 1 | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagrams)  • [Vowels](#vowels)   • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) 
-| String 2 | • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) 
+| String 2 | • [Longest Substring](#Longest-Substring)  • [Minimum Window Substring](#Minimum-Window-Substring) 
 | Object Manipulation |  • [Deep Clone an Object](#deep-clone-an-object) 
 | Recursion & Math | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | Algorithms & Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
@@ -2096,15 +2096,19 @@ function maxSumSubarray(arr, k) {
 
 
 
----
+### Longest Substring
 
-## Longest Substring with K Distinct Characters
+ - [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  
+ - [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters)
+
+
+### Longest Substring with K Distinct Characters
 
 **Given** a string `s` and an integer `k`, **return the length of the longest substring** that contains **at most `k` distinct characters**.
 
 ---
 
-###  Example:
+**Example**
 
 ```text
 Input: s = "eceba", k = 2  
@@ -2114,7 +2118,7 @@ Explanation: The longest substring with at most 2 distinct characters is `"ece"`
 
 ---
 
-## 💡 Approach: Sliding Window + HashMap (or JS object)
+**Approach: Sliding Window + HashMap (or JS object)**
 
 - Use two pointers (`start`, `end`) to define the window.
 - Use a HashMap (or JS object) to count the frequency of characters.
@@ -2123,7 +2127,7 @@ Explanation: The longest substring with at most 2 distinct characters is `"ece"`
 
 ---
 
-##  JavaScript Code:
+**JavaScript Code**
 
 ```js
 function longestSubstringWithKDistinct(s, k) {
@@ -2155,7 +2159,7 @@ function longestSubstringWithKDistinct(s, k) {
 
 ---
 
-## 📄 Pseudocode:
+**Pseudocode**
 
 ```
 Function LongestSubstringWithKDistinct(s, k):
@@ -2182,7 +2186,7 @@ Function LongestSubstringWithKDistinct(s, k):
 
 ---
 
-## 🧠 Time Complexity:
+**Time Complexity**
 - **O(n)** — Each character is visited at most twice.
 - **O(k)** — Space for storing up to `k` distinct characters.
 
@@ -2190,13 +2194,13 @@ Function LongestSubstringWithKDistinct(s, k):
 
 ---
 
-## Longest Substring Without Repeating Characters
+### Longest Substring Without Repeating Characters
 
 > Given a string `s`, find the **length** of the **longest substring without repeating characters**.
 
 ---
 
-###  Example:
+**Example**
 
 ```txt
 Input: s = "abcabcbb"
@@ -2206,7 +2210,7 @@ Explanation: The answer is "abc", with length 3.
 
 ---
 
-## 📄 Pseudocode
+**Pseudocode**
 
 ```
 Function LengthOfLongestSubstring(s):
@@ -2225,7 +2229,7 @@ Function LengthOfLongestSubstring(s):
 ```
 
 ---
-##  JavaScript Code:
+**JavaScript Code**
 
 ```js
 function lengthOfLongestSubstring(s) {
@@ -2250,7 +2254,7 @@ function lengthOfLongestSubstring(s) {
 ```
 
 ---
-## 🔍 Dry Run (Input: "abcabcbb")
+**Dry Run (Input: "abcabcbb")**
 
 ```
 Window: a → ab → abc (max = 3)
@@ -2258,8 +2262,27 @@ Next: a → 'a' is duplicate, move start → bc → bca → bcab (skip)
 Keep updating max as you go
 ```
 
----
 
+```javascript
+function lengthOfLongestSubstring(s) {
+    const map = new Map();
+    let left = 0, maxLen = 0;
+
+    for (let right = 0; right < s.length; right++) {
+        if (map.has(s[right])) {
+            left = Math.max(map.get(s[right]) + 1, left);
+        }
+        map.set(s[right], right);
+        maxLen = Math.max(maxLen, right - left + 1);
+    }
+
+    return maxLen;
+}
+```
+**Input**: `"abcabcbb"`  
+**Output**: `3`
+
+---
 
 ## **Minimum Window Substring**##
   ```javascript
@@ -3758,27 +3781,6 @@ function intersection(nums1, nums2) {
 
 ---
 
-### **Longest Substring Without Repeating Characters**
-```javascript
-function lengthOfLongestSubstring(s) {
-    const map = new Map();
-    let left = 0, maxLen = 0;
-
-    for (let right = 0; right < s.length; right++) {
-        if (map.has(s[right])) {
-            left = Math.max(map.get(s[right]) + 1, left);
-        }
-        map.set(s[right], right);
-        maxLen = Math.max(maxLen, right - left + 1);
-    }
-
-    return maxLen;
-}
-```
-**Input**: `"abcabcbb"`  
-**Output**: `3`
-
----
 
 ### **Isomorphic Strings**
 ```javascript

@@ -3810,7 +3810,7 @@ function countUnique(nums) {
 
 
 
-## Anagram
+## Anagrams
 
 > Check if two strings are **anagrams**:  
 > i.e., same characters, same frequency, order doesn't matter.  

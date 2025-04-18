@@ -40,7 +40,7 @@
 
 ---
 
-### 🧠 TypeScript Utilities (Bonus)
+**TypeScript Utilities (Bonus)**
 
 | Utility            | Description                             | Example                         | Returns       | Utility            | Description                             | Example                         | Returns       |
 |--------------------|-----------------------------------------|----------------------------------|---------------|--------------------|-----------------------------------------|----------------------------------|---------------|
@@ -51,60 +51,95 @@
 
 ---
 
-## **Palindrome**  
-> A palindrome is a string that reads the same forwards and backwards.  
-Example: `"madam"`, `"racecar"` are palindromes.
+
+## Find Largest value
+- [Find Largest value](#find-maximum-in-an-array) 
+- [Find Second Largest value](#find-second-largest-element)
+- [Kth Largest value](#kth-largest-element-in-an-array)
+
+### Find Maximum in an Array
+
+**No Built-ins**
+
+- Initialize `max` with the first element of the array.
+- Loop through the rest of the elements.
+- If a number is greater than the current `max`, update `max`.
+- Return `max` at the end.
+
+**Example**
+```ts
+const numbers = [45, 3, 67, 89, 12, 99, 34];
+Output : 99
+```
+
+
+```ts
+function findMaxManual(arr: number[]): number {
+  if (arr.length === 0) {
+    throw new Error("Array is empty");
+  }
+
+  let max: number = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+
+  return max;
+}
+```
+
+**Using Built-ins**
+
+
+```ts
+function findMax(arr: number[]): number {
+  return Math.max(...arr);
+}
+```
+> Uses ES6 spread with `Math.max`.
 
 ---
 
-**Using Predefined Functions (`split()`, `reverse()`, `join()`)**
+### Find Second Largest Element
+
+Given input:
+```js
+[10, 5, 20, 20, 8, 25]
+```
+
+Expected output:
+```
+Second Largest: 20
+```
+
+---
+
+**Using Predefined Functions (`sort()`, `filter()`, etc.)**
 
 **Pseudocode / Algorithm**
 ```
-1. Convert string to lowercase (optional, to ignore case)
-2. Reverse the string using split → reverse → join
-3. Compare original string with reversed string
-4. If equal, return true; else, false
+1. Sort the array in descending order
+2. Filter out duplicates
+3. Return the second element (index 1) from the result
 ```
 
 **Code Example**
-
-```javascript
-function isPalindrome(s) {
-    s = s.toLowerCase().replace(/[^a-z0-9]/g, '');
-    let left = 0, right = s.length - 1;
-    while (left < right) {
-        if (s[left++] !== s[right--]) return false;
-    }
-    return true;
-}
-```
-
- **Example**: `isPalindrome("A man, a plan, a canal: Panama")` → `true`
-
 ```js
-function isPalindrome(str) {
-  const clean = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-  return clean === clean.split('').reverse().join('');
-}
-console.log(isPalindrome("Racecar")); // true
-```
-
-```js
-function isPalindrome(str) {
-  str = str.toLowerCase(); // optional
-  const reversed = str.split('').reverse().join('');
-  return str === reversed;
+function secondLargestUsingSort(arr) {
+  const unique = arr.filter((val, index, self) => self.indexOf(val) === index);
+  unique.sort((a, b) => b - a); // descending
+  return unique[1];
 }
 
-console.log(isPalindrome("madam"));    // true
-console.log(isPalindrome("hello"));    // false
+console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
 ```
 
  **Output:**
 ```
-true
-false
+20
 ```
 
 ---
@@ -113,55 +148,185 @@ false
 
 **Pseudocode / Algorithm**
 ```
-1. Convert string to lowercase
-2. Initialize two pointers:
-   - left = 0
-   - right = length - 1
-3. While left < right:
-   a. If characters at left and right are different, return false
-   b. Move left forward, right backward
-4. If loop completes, return true
+1. Initialize first = -Infinity, second = -Infinity
+2. Loop through each element:
+   a. If element > first:
+       - second = first
+       - first = element
+   b. Else if element > second AND element != first:
+       - second = element
+3. Return second
 ```
 
 **Code Example**
 ```js
-function isPalindromeManual(str) {
-  let lowerStr = '';
-  // Manual lowercase conversion (optional)
-  for (let i = 0; i < str.length; i++) {
-    const code = str.charCodeAt(i);
-    if (code >= 65 && code <= 90) {
-      lowerStr += String.fromCharCode(code + 32); // A-Z to a-z
-    } else {
-      lowerStr += str[i];
+function secondLargestManual(arr) {
+  let first = -Infinity;
+  let second = -Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > first) {
+      second = first;
+      first = arr[i];
+    } else if (arr[i] > second && arr[i] !== first) {
+      second = arr[i];
     }
   }
 
-  let left = 0;
-  let right = lowerStr.length - 1;
-
-  while (left < right) {
-    if (lowerStr[left] !== lowerStr[right]) {
-      return false;
-    }
-    left++;
-    right--;
-  }
-
-  return true;
+  return second;
 }
 
-console.log(isPalindromeManual("Racecar"));  // true
-console.log(isPalindromeManual("Hello"));    // false
+console.log(secondLargestManual([10, 5, 20, 20, 8, 25]));
 ```
 
  **Output:**
 ```
-true
-false
+20
 ```
 
 ---
+
+### Kth Largest Element in an Array
+
+**Non-Optimized**
+```js
+function findKthLargest(nums, k) {
+  nums.sort((a, b) => b - a); // Descending order
+  return nums[k - 1];
+}
+console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
+```
+
+**Approach**: Sort the array in descending order and pick the (k-1)th element.
+
+🧠 *Optimized solution can use Min Heap or QuickSelect for O(n) average time.*
+
+**Optimized**
+
+```js
+function findKthLargest(nums, k) {
+    const target = nums.length - k;
+
+    function quickSelect(left, right) {
+        const pivotIndex = partition(left, right);
+
+        if (pivotIndex === target) {
+            return nums[pivotIndex];
+        } else if (pivotIndex < target) {
+            return quickSelect(pivotIndex + 1, right);
+        } else {
+            return quickSelect(left, pivotIndex - 1);
+        }
+    }
+
+    function partition(left, right) {
+        const pivot = nums[right];
+        let i = left;
+
+        for (let j = left; j < right; j++) {
+            if (nums[j] <= pivot) {
+                [nums[i], nums[j]] = [nums[j], nums[i]];
+                i++;
+            }
+        }
+        [nums[i], nums[right]] = [nums[right], nums[i]];
+        return i;
+    }
+
+    return quickSelect(0, nums.length - 1);
+}
+```
+
+---
+
+
+
+
+
+### Debounce Function
+```ts
+function debounce<T extends (...args: any[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+}
+```
+
+---
+
+### Throttle Function
+```ts
+function throttle<T extends (...args: any[]) => void>(fn: T, limit: number): (...args: Parameters<T>) => void {
+  let lastRun = 0;
+  return (...args: Parameters<T>) => {
+    const now = Date.now();
+    if (now - lastRun >= limit) {
+      lastRun = now;
+      fn(...args);
+    }
+  };
+}
+```
+
+---
+
+### Retry Promise N Times
+```ts
+async function retry<T>(fn: () => Promise<T>, retries: number): Promise<T> {
+  try {
+    return await fn();
+  } catch (error) {
+    if (retries <= 0) throw error;
+    return retry(fn, retries - 1);
+  }
+}
+```
+
+---
+
+### Custom `map()` Method
+```ts
+declare global {
+  interface Array<T> {
+    myMap<U>(callback: (value: T, index: number, array: T[]) => U): U[];
+  }
+}
+
+Array.prototype.myMap = function<T, U>(this: T[], callback: (value: T, index: number, array: T[]) => U): U[] {
+  const result: U[] = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(callback(this[i], i, this));
+  }
+  return result;
+};
+```
+
+---
+
+### Deep Clone an Object
+```ts
+function deepClone<T>(obj: T): T {
+  return structuredClone(obj); // Native browser/Node 17+
+}
+```
+
+> For older environments:
+```ts
+function deepCloneLegacy<T>(obj: T): T {
+  return JSON.parse(JSON.stringify(obj));
+}
+```
+
+---
+
+
+
+
+---
+
+
 
 ## Remove Duplicates element ##
 
@@ -397,6 +562,206 @@ console.log(removeDuplicateObjectsManual(input));
 
 
 
+
+
+## Group Array of Objects
+
+• [Group Products by key](#Group-Products-by-key) 
+• [Group into array](#Group-into-array) 
+
+### Group Products by key
+
+
+**Input:**
+```js
+const products = [   { id: 1, name: "Apple", category: "Fruits" },
+  { id: 2, name: "Carrot", category: "Vegetables" },
+  { id: 3, name: "Banana", category: "Fruits" },
+];
+```
+
+**Output:**
+```js
+{
+  Fruits: [
+    { id: 1, name: 'Apple', category: 'Fruits' },
+    { id: 3, name: 'Banana', category: 'Fruits' }
+  ],
+  Vegetables: [
+    { id: 2, name: 'Carrot', category: 'Vegetables' }
+  ]
+}
+```
+
+```js
+function groupByCategory(products) {
+  return products.reduce((acc, curr) => {
+    acc[curr.category] = acc[curr.category] | [];
+    acc[curr.category].push(curr);
+    return acc;
+  }, {});
+}
+
+console.log(groupByCategory(products));
+```
+
+
+
+---
+### Group into array
+
+
+
+**Input:**
+```js
+const input = [
+  { name: "one", class: 1 },
+  { name: "two", class: 2 },
+  { name: "three", class: 3 },
+  { name: "four", class: 1 },
+  { name: "five", class: 2 },
+];
+```
+
+**Output:**
+```js
+[
+  { class: 1, names: [ 'one', 'four' ] },
+  { class: 2, names: [ 'two', 'five' ] },
+  { class: 3, names: [ 'three' ] }
+]
+```
+
+```js
+function groupInputByClass(inputArray) {
+  return inputArray.reduce((acc, curr) => {
+    let group = acc.find(g => g.class === curr.class);
+    if (group) {
+      group.names.push(curr.name);
+    } else {
+      acc.push({ class: curr.class, names: [curr.name] });
+    }
+    return acc;
+  }, []);
+}
+
+console.log(groupInputByClass(input));
+```
+---
+
+
+## **Palindrome**  
+> A palindrome is a string that reads the same forwards and backwards.  
+Example: `"madam"`, `"racecar"` are palindromes.
+
+---
+
+**Using Predefined Functions (`split()`, `reverse()`, `join()`)**
+
+**Pseudocode / Algorithm**
+```
+1. Convert string to lowercase (optional, to ignore case)
+2. Reverse the string using split → reverse → join
+3. Compare original string with reversed string
+4. If equal, return true; else, false
+```
+
+**Code Example**
+
+```javascript
+function isPalindrome(s) {
+    s = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+    let left = 0, right = s.length - 1;
+    while (left < right) {
+        if (s[left++] !== s[right--]) return false;
+    }
+    return true;
+}
+```
+
+ **Example**: `isPalindrome("A man, a plan, a canal: Panama")` → `true`
+
+```js
+function isPalindrome(str) {
+  const clean = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  return clean === clean.split('').reverse().join('');
+}
+console.log(isPalindrome("Racecar")); // true
+```
+
+```js
+function isPalindrome(str) {
+  str = str.toLowerCase(); // optional
+  const reversed = str.split('').reverse().join('');
+  return str === reversed;
+}
+
+console.log(isPalindrome("madam"));    // true
+console.log(isPalindrome("hello"));    // false
+```
+
+ **Output:**
+```
+true
+false
+```
+
+---
+
+**Without Using Predefined Functions**
+
+**Pseudocode / Algorithm**
+```
+1. Convert string to lowercase
+2. Initialize two pointers:
+   - left = 0
+   - right = length - 1
+3. While left < right:
+   a. If characters at left and right are different, return false
+   b. Move left forward, right backward
+4. If loop completes, return true
+```
+
+**Code Example**
+```js
+function isPalindromeManual(str) {
+  let lowerStr = '';
+  // Manual lowercase conversion (optional)
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i);
+    if (code >= 65 && code <= 90) {
+      lowerStr += String.fromCharCode(code + 32); // A-Z to a-z
+    } else {
+      lowerStr += str[i];
+    }
+  }
+
+  let left = 0;
+  let right = lowerStr.length - 1;
+
+  while (left < right) {
+    if (lowerStr[left] !== lowerStr[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+
+  return true;
+}
+
+console.log(isPalindromeManual("Racecar"));  // true
+console.log(isPalindromeManual("Hello"));    // false
+```
+
+ **Output:**
+```
+true
+false
+```
+
+---
+
 ## **Chunk an Array**
 
 ---
@@ -492,91 +857,6 @@ console.log(chunkArrayManual([1, 2, 3, 4, 5, 6, 7], 3));
 [[1, 2, 3], [4, 5, 6], [7]]
 ```
 
----
-
-## Group Array of Objects
-
-• [Group Products by key](#Group-Products-by-key) 
-• [Group into array](#Group-into-array) 
-
-### Group Products by key
-
-
-**Input:**
-```js
-const products = [   { id: 1, name: "Apple", category: "Fruits" },
-  { id: 2, name: "Carrot", category: "Vegetables" },
-  { id: 3, name: "Banana", category: "Fruits" },
-];
-```
-
-**Output:**
-```js
-{
-  Fruits: [
-    { id: 1, name: 'Apple', category: 'Fruits' },
-    { id: 3, name: 'Banana', category: 'Fruits' }
-  ],
-  Vegetables: [
-    { id: 2, name: 'Carrot', category: 'Vegetables' }
-  ]
-}
-```
-
-```js
-function groupByCategory(products) {
-  return products.reduce((acc, curr) => {
-    acc[curr.category] = acc[curr.category] | [];
-    acc[curr.category].push(curr);
-    return acc;
-  }, {});
-}
-
-console.log(groupByCategory(products));
-```
-
-
-
----
-### Group into array
-
-
-
-**Input:**
-```js
-const input = [
-  { name: "one", class: 1 },
-  { name: "two", class: 2 },
-  { name: "three", class: 3 },
-  { name: "four", class: 1 },
-  { name: "five", class: 2 },
-];
-```
-
-**Output:**
-```js
-[
-  { class: 1, names: [ 'one', 'four' ] },
-  { class: 2, names: [ 'two', 'five' ] },
-  { class: 3, names: [ 'three' ] }
-]
-```
-
-```js
-function groupInputByClass(inputArray) {
-  return inputArray.reduce((acc, curr) => {
-    let group = acc.find(g => g.class === curr.class);
-    if (group) {
-      group.names.push(curr.name);
-    } else {
-      acc.push({ class: curr.class, names: [curr.name] });
-    }
-    return acc;
-  }, []);
-}
-
-console.log(groupInputByClass(input));
-```
 ---
 
 
@@ -1703,279 +1983,6 @@ console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
 ```
 
 
-## Find Largest value
-- [Find Largest value](#find-maximum-in-an-array) 
-- [Find Second Largest value](#find-second-largest-element)
-- [Kth Largest value](#kth-largest-element-in-an-array)
-
-### Find Maximum in an Array
-
-**No Built-ins**
-
-- Initialize `max` with the first element of the array.
-- Loop through the rest of the elements.
-- If a number is greater than the current `max`, update `max`.
-- Return `max` at the end.
-
-**Example**
-```ts
-const numbers = [45, 3, 67, 89, 12, 99, 34];
-Output : 99
-```
-
-
-```ts
-function findMaxManual(arr: number[]): number {
-  if (arr.length === 0) {
-    throw new Error("Array is empty");
-  }
-
-  let max: number = arr[0];
-
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] > max) {
-      max = arr[i];
-    }
-  }
-
-  return max;
-}
-```
-
-**Using Built-ins**
-
-
-```ts
-function findMax(arr: number[]): number {
-  return Math.max(...arr);
-}
-```
-> Uses ES6 spread with `Math.max`.
-
----
-
-### Find Second Largest Element
-
-Given input:
-```js
-[10, 5, 20, 20, 8, 25]
-```
-
-Expected output:
-```
-Second Largest: 20
-```
-
----
-
-**Using Predefined Functions (`sort()`, `filter()`, etc.)**
-
-**Pseudocode / Algorithm**
-```
-1. Sort the array in descending order
-2. Filter out duplicates
-3. Return the second element (index 1) from the result
-```
-
-**Code Example**
-```js
-function secondLargestUsingSort(arr) {
-  const unique = arr.filter((val, index, self) => self.indexOf(val) === index);
-  unique.sort((a, b) => b - a); // descending
-  return unique[1];
-}
-
-console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
-```
-
- **Output:**
-```
-20
-```
-
----
-
-**Without Using Predefined Functions**
-
-**Pseudocode / Algorithm**
-```
-1. Initialize first = -Infinity, second = -Infinity
-2. Loop through each element:
-   a. If element > first:
-       - second = first
-       - first = element
-   b. Else if element > second AND element != first:
-       - second = element
-3. Return second
-```
-
-**Code Example**
-```js
-function secondLargestManual(arr) {
-  let first = -Infinity;
-  let second = -Infinity;
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > first) {
-      second = first;
-      first = arr[i];
-    } else if (arr[i] > second && arr[i] !== first) {
-      second = arr[i];
-    }
-  }
-
-  return second;
-}
-
-console.log(secondLargestManual([10, 5, 20, 20, 8, 25]));
-```
-
- **Output:**
-```
-20
-```
-
----
-
-### Kth Largest Element in an Array
-
-**Non-Optimized**
-```js
-function findKthLargest(nums, k) {
-  nums.sort((a, b) => b - a); // Descending order
-  return nums[k - 1];
-}
-console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
-```
-
-**Approach**: Sort the array in descending order and pick the (k-1)th element.
-
-🧠 *Optimized solution can use Min Heap or QuickSelect for O(n) average time.*
-
-**Optimized**
-
-```js
-function findKthLargest(nums, k) {
-    const target = nums.length - k;
-
-    function quickSelect(left, right) {
-        const pivotIndex = partition(left, right);
-
-        if (pivotIndex === target) {
-            return nums[pivotIndex];
-        } else if (pivotIndex < target) {
-            return quickSelect(pivotIndex + 1, right);
-        } else {
-            return quickSelect(left, pivotIndex - 1);
-        }
-    }
-
-    function partition(left, right) {
-        const pivot = nums[right];
-        let i = left;
-
-        for (let j = left; j < right; j++) {
-            if (nums[j] <= pivot) {
-                [nums[i], nums[j]] = [nums[j], nums[i]];
-                i++;
-            }
-        }
-        [nums[i], nums[right]] = [nums[right], nums[i]];
-        return i;
-    }
-
-    return quickSelect(0, nums.length - 1);
-}
-```
-
----
-
-
-
-
-
-### Debounce Function
-```ts
-function debounce<T extends (...args: any[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
-  let timeoutId: ReturnType<typeof setTimeout>;
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn(...args), delay);
-  };
-}
-```
-
----
-
-### Throttle Function
-```ts
-function throttle<T extends (...args: any[]) => void>(fn: T, limit: number): (...args: Parameters<T>) => void {
-  let lastRun = 0;
-  return (...args: Parameters<T>) => {
-    const now = Date.now();
-    if (now - lastRun >= limit) {
-      lastRun = now;
-      fn(...args);
-    }
-  };
-}
-```
-
----
-
-### Retry Promise N Times
-```ts
-async function retry<T>(fn: () => Promise<T>, retries: number): Promise<T> {
-  try {
-    return await fn();
-  } catch (error) {
-    if (retries <= 0) throw error;
-    return retry(fn, retries - 1);
-  }
-}
-```
-
----
-
-### Custom `map()` Method
-```ts
-declare global {
-  interface Array<T> {
-    myMap<U>(callback: (value: T, index: number, array: T[]) => U): U[];
-  }
-}
-
-Array.prototype.myMap = function<T, U>(this: T[], callback: (value: T, index: number, array: T[]) => U): U[] {
-  const result: U[] = [];
-  for (let i = 0; i < this.length; i++) {
-    result.push(callback(this[i], i, this));
-  }
-  return result;
-};
-```
-
----
-
-### Deep Clone an Object
-```ts
-function deepClone<T>(obj: T): T {
-  return structuredClone(obj); // Native browser/Node 17+
-}
-```
-
-> For older environments:
-```ts
-function deepCloneLegacy<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj));
-}
-```
-
----
-
-
-
-
----
 
 ## **Most Frequent Character in a String**.
 

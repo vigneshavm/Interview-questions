@@ -53,6 +53,26 @@
 ---
 
 
+<details>
+  <summary><strong>Find Largest value</strong></summary>
+
+  - [Find Largest value](#find-maximum-in-an-array)
+
+</details>
+
+<details>
+  <summary><strong>Find Second Largest value</strong></summary>
+
+  - [Find Second Largest value](#find-second-largest-element)
+
+</details>
+
+<details>
+  <summary><strong>Kth Largest value</strong></summary>
+
+  - [Kth Largest value](#kth-largest-element-in-an-array)
+
+</details>
 
 
 

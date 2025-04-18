@@ -1847,9 +1847,9 @@ console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
 
 
 ## Find Largest value
-• [Find Largest value](#find-maximum-in-an-array) 
-• [Find Second Largest value](#find-second-largest-element)  
-• [Kth Largest value](#kth-largest-element-in-an-array)
+- [Find Largest value](#find-maximum-in-an-array) 
+- [Find Second Largest value](#find-second-largest-element)
+- [Kth Largest value](#kth-largest-element-in-an-array)
 
 
 ### Find Maximum in an Array

@@ -53,7 +53,23 @@
 ---
 
 
+<details>
+  <summary><strong>Kth Largest value</strong></summary>
+  ```js
+  function findKthLargest(nums, k) {
+  nums.sort((a, b) => b - a); // Descending order
+  return nums[k - 1];
+  }
 
+// Example
+  console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
+  ```
+
+  **Approach**: Sort the array in descending order and pick the (k-1)th element.
+
+  > 🧠 Optimized solutions can use Min Heap or QuickSelect for average **O(n)** time.
+
+</details>
 
 
 ---

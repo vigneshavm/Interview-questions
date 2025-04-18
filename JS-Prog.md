@@ -243,91 +243,6 @@ function findKthLargest(nums, k) {
 
 
 
-### Debounce Function
-```ts
-function debounce<T extends (...args: any[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
-  let timeoutId: ReturnType<typeof setTimeout>;
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn(...args), delay);
-  };
-}
-```
-
----
-
-### Throttle Function
-```ts
-function throttle<T extends (...args: any[]) => void>(fn: T, limit: number): (...args: Parameters<T>) => void {
-  let lastRun = 0;
-  return (...args: Parameters<T>) => {
-    const now = Date.now();
-    if (now - lastRun >= limit) {
-      lastRun = now;
-      fn(...args);
-    }
-  };
-}
-```
-
----
-
-### Retry Promise N Times
-```ts
-async function retry<T>(fn: () => Promise<T>, retries: number): Promise<T> {
-  try {
-    return await fn();
-  } catch (error) {
-    if (retries <= 0) throw error;
-    return retry(fn, retries - 1);
-  }
-}
-```
-
----
-
-### Custom `map()` Method
-```ts
-declare global {
-  interface Array<T> {
-    myMap<U>(callback: (value: T, index: number, array: T[]) => U): U[];
-  }
-}
-
-Array.prototype.myMap = function<T, U>(this: T[], callback: (value: T, index: number, array: T[]) => U): U[] {
-  const result: U[] = [];
-  for (let i = 0; i < this.length; i++) {
-    result.push(callback(this[i], i, this));
-  }
-  return result;
-};
-```
-
----
-
-### Deep Clone an Object
-```ts
-function deepClone<T>(obj: T): T {
-  return structuredClone(obj); // Native browser/Node 17+
-}
-```
-
-> For older environments:
-```ts
-function deepCloneLegacy<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj));
-}
-```
-
----
-
-
-
-
----
-
-
-
 ## Remove Duplicates element
 
 • [Remove Duplicates element from array](#remove-duplicates-element-from-array) 
@@ -648,6 +563,91 @@ function groupInputByClass(inputArray) {
 console.log(groupInputByClass(input));
 ```
 ---
+
+
+
+
+### Debounce Function
+```ts
+function debounce<T extends (...args: any[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+}
+```
+
+---
+
+### Throttle Function
+```ts
+function throttle<T extends (...args: any[]) => void>(fn: T, limit: number): (...args: Parameters<T>) => void {
+  let lastRun = 0;
+  return (...args: Parameters<T>) => {
+    const now = Date.now();
+    if (now - lastRun >= limit) {
+      lastRun = now;
+      fn(...args);
+    }
+  };
+}
+```
+
+---
+
+### Retry Promise N Times
+```ts
+async function retry<T>(fn: () => Promise<T>, retries: number): Promise<T> {
+  try {
+    return await fn();
+  } catch (error) {
+    if (retries <= 0) throw error;
+    return retry(fn, retries - 1);
+  }
+}
+```
+
+---
+
+### Custom `map()` Method
+```ts
+declare global {
+  interface Array<T> {
+    myMap<U>(callback: (value: T, index: number, array: T[]) => U): U[];
+  }
+}
+
+Array.prototype.myMap = function<T, U>(this: T[], callback: (value: T, index: number, array: T[]) => U): U[] {
+  const result: U[] = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(callback(this[i], i, this));
+  }
+  return result;
+};
+```
+
+---
+
+### Deep Clone an Object
+```ts
+function deepClone<T>(obj: T): T {
+  return structuredClone(obj); // Native browser/Node 17+
+}
+```
+
+> For older environments:
+```ts
+function deepCloneLegacy<T>(obj: T): T {
+  return JSON.parse(JSON.stringify(obj));
+}
+```
+
+---
+
+
+
+
 
 
 ## **Palindrome**  

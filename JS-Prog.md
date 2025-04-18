@@ -1692,148 +1692,6 @@ console.log(charFrequencyManual("Hello"));
 ```
 
 
-## Sort an array of objects 
-
-• [Sort Array of Objects by Field](#sort-array-of-objects-by-field) 
-• [Sort Array of Objects by a nested value](#sort-an-array-of-objects-by-a-nested-value) 
-
----
-
-## Sort an array of objects by a nested value
-
-```js
-const users = [
-  { name: "John", address: { city: "Mumbai" } },
-  { name: "Sara", address: { city: "Delhi" } },
-  { name: "Alex", address: { city: "Bangalore" } }
-];
-
-const ascending = [...users].sort((a, b) => {
-  const cityA = a.address.city.toLowerCase();
-  const cityB = b.address.city.toLowerCase();
-  
-  if (cityA < cityB) return -1;
-  if (cityA > cityB) return 1;
-  return 0;
-});
-
-console.log("Ascending:");
-console.log(ascending);
-```
-
----
-
-## **Sort Array of Objects by Field**  
-
-Sample input:
-```js
-const people = [
-  { name: "Alice", age: 32 },
-  { name: "Bob", age: 25 },
-  { name: "Charlie", age: 30 }
-];
-```
-
----
-
-** 1. **Using Predefined Functions**
-
-We’ll use the built-in `.sort()` method.
-
-** Code Example:
-
-```js
-const people = [
-  { name: "Alice", age: 32 },
-  { name: "Bob", age: 25 },
-  { name: "Charlie", age: 30 }
-];
-
-const sortedByAge = people.sort((a, b) => a.age - b.age);
-
-console.log(sortedByAge);
-```
-
- **Output:**
-```js
-[
-  { name: 'Bob', age: 25 },
-  { name: 'Charlie', age: 30 },
-  { name: 'Alice', age: 32 }
-]
-```
-
----
-
-** 2. **Without Using Predefined Sort** (Manual sorting)
-
-We’ll manually implement a sorting algorithm. Let’s use **Bubble Sort** for simplicity.
-
----
-
-** Pseudocode:
-```
-1. Loop over array (outer loop)
-2. Inside loop, compare current object age with next object age
-3. If current > next, swap the two objects
-4. Repeat until array is sorted
-```
-
----
-
-** Code Example (Manual Bubble Sort):
-
-```js
-function sortByAgeManual(arr) {
-  const people = [...arr]; // copy to avoid mutating original
-  const n = people.length;
-
-  for (let i = 0; i < n - 1; i++) {
-    for (let j = 0; j < n - i - 1; j++) {
-      if (people[j].age > people[j + 1].age) {
-        // Swap
-        const temp = people[j];
-        people[j] = people[j + 1];
-        people[j + 1] = temp;
-      }
-    }
-  }
-
-  return people;
-}
-
-const people = [
-  { name: "Alice", age: 32 },
-  { name: "Bob", age: 25 },
-  { name: "Charlie", age: 30 }
-];
-
-console.log(sortByAgeManual(people));
-```
-
- **Output:**
-```js
-[
-  { name: 'Bob', age: 25 },
-  { name: 'Charlie', age: 30 },
-  { name: 'Alice', age: 32 }
-]
-```
-
----
-
-
-
-
-
-
-
-
-
-
-
-
----
 
 ## Flatten Nested Arrays  
 Given a nested array, return a new array with all values flattened (one level or deeply).
@@ -2711,6 +2569,126 @@ console.log(findMedianSortedArrays([1, 2], [3, 4])); // Output: 2.5
 
 ---
 
+
+
+### Sort an array of objects
+
+- [Sort Array of Objects Using Predefined Functions](#sort-array-of-objects-using-predefined-functions)  
+- [Sort Array of Objects Without Using Predefined Sort](#sort-array-of-objects-without-using-predefined-sort)  
+- [Sort Array of Objects by a Nested Value](#sort-array-of-objects-by-a-nested-value)
+
+
+#### Sort Array of Objects Using Predefined Functions
+
+We’ll use the built-in `.sort()` method.
+
+** Code Example:
+
+```js
+const people = [
+  { name: "Alice", age: 32 },
+  { name: "Bob", age: 25 },
+  { name: "Charlie", age: 30 }
+];
+
+const sortedByAge = people.sort((a, b) => a.age - b.age);
+
+console.log(sortedByAge);
+```
+
+ **Output:**
+```js
+[
+  { name: 'Bob', age: 25 },
+  { name: 'Charlie', age: 30 },
+  { name: 'Alice', age: 32 }
+]
+```
+
+---
+#### Sort Array of Objects Without Using Predefined Sort
+#### Sort an array of objects by a nested value
+
+```js
+const users = [
+  { name: "John", address: { city: "Mumbai" } },
+  { name: "Sara", address: { city: "Delhi" } },
+  { name: "Alex", address: { city: "Bangalore" } }
+];
+
+const ascending = [...users].sort((a, b) => {
+  const cityA = a.address.city.toLowerCase();
+  const cityB = b.address.city.toLowerCase();
+  
+  if (cityA < cityB) return -1;
+  if (cityA > cityB) return 1;
+  return 0;
+});
+
+console.log("Ascending:");
+console.log(ascending);
+```
+
+---
+
+
+
+We’ll manually implement a sorting algorithm. Let’s use **Bubble Sort** for simplicity.
+
+---
+
+**Pseudocode**
+```
+1. Loop over array (outer loop)
+2. Inside loop, compare current object age with next object age
+3. If current > next, swap the two objects
+4. Repeat until array is sorted
+```
+
+---
+
+** Code Example (Manual Bubble Sort):
+
+```js
+function sortByAgeManual(arr) {
+  const people = [...arr]; // copy to avoid mutating original
+  const n = people.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (people[j].age > people[j + 1].age) {
+        // Swap
+        const temp = people[j];
+        people[j] = people[j + 1];
+        people[j + 1] = temp;
+      }
+    }
+  }
+
+  return people;
+}
+
+const people = [
+  { name: "Alice", age: 32 },
+  { name: "Bob", age: 25 },
+  { name: "Charlie", age: 30 }
+];
+
+console.log(sortByAgeManual(people));
+```
+
+ **Output:**
+```js
+[
+  { name: 'Bob', age: 25 },
+  { name: 'Charlie', age: 30 },
+  { name: 'Alice', age: 32 }
+]
+```
+
+---
+
+
 ###  **Merge Sort**  
 - Best for large datasets.  
 - Uses extra space but gives guaranteed `O(n log n)` performance.
@@ -2851,7 +2829,7 @@ console.log(selectionSort([29, 10, 14, 37, 13])); // [10, 13, 14, 29, 37]
 
 ---
 
-### 🧠 Summary: Which to Use?
+###  **Sort Which to Use**
 
 | Sort           | Best Use Case                        | Time (Avg) | Space |
 |----------------|--------------------------------------|------------|--------|
@@ -2862,7 +2840,6 @@ console.log(selectionSort([29, 10, 14, 37, 13])); // [10, 13, 14, 29, 37]
 | Selection Sort | Minimum swaps required               | O(n²)      | O(1)   |
 
 
-### 🧠 Summary: Which Sort to Use? (with **Real-Time Scenarios**)
 
 | Sort           | Best Use Case                                 | Time (Avg) | Space | Real-Time Scenario |
 |----------------|-----------------------------------------------|------------|--------|--------------------|
@@ -2874,14 +2851,12 @@ console.log(selectionSort([29, 10, 14, 37, 13])); // [10, 13, 14, 29, 37]
 
 ---
 
-### 🧩 Visual Analogy:
+### **Sort Visual Analogy**
 - **Merge Sort**: Like merging two sorted lines of people into one.
 - **Quick Sort**: Like picking a leader (pivot), then organizing people shorter and taller around them.
 - **Insertion Sort**: Like sorting cards in your hand while playing.
 - **Bubble Sort**: Like repeatedly bubbling up the heaviest item to the end.
 - **Selection Sort**: Like selecting the lightest item and placing it at the front each round.
-
----
 
 ---
 

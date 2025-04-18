@@ -7,9 +7,10 @@
 | Frequent |  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Character Frequency Count](#character-frequency-count) • [Most Frequent Character](#Most-Frequent-Character-in-a-String) • [Count Frequency of Array Elements](#Count-Frequency-of-Array-Element) 
 | Advance |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hash & Sets |• [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Isomorphic Strings](#isomorphic-strings)  • [Count Number of Unique Elements in an Array](#count-number-of-unique-elements-in-an-array)  
-| String 1 | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Group Anagrams](#group-anagrams)  • [Anagram Checker](#anagram-checker) • [Count Vowels](#count-vowels-in-a-string)  • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) 
+| String 1 | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagrams)  • [Count Vowels](#count-vowels-in-a-string)  • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) 
 | String 2 | • [Longest Substring with K Distinct Characters](#Longest-Substring-with-K-Distinct-Characters)  • [Longest Substring Without Repeating Characters](#Longest-Substring-Without-Repeating-Characters) • [Minimum Window Substring](#Minimum-Window-Substring) • [Max Number of Vowels in Substring](#Max-Number-of-Vowels-in-Substring)
-| Object Manipulation |  • [Deep Clone an Object](#deep-clone-an-object) • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
+| Object Manipulation |  • [Deep Clone an Object](#deep-clone-an-object) 
+| Recursion & Math | • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) 
 | Algorithms & Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | JS Concepts | • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Custom `map()` Method](#custom-map-method) • [`var` vs `let` in Loops](#understanding-var-vs-let-in-loops-and-closures)  • [Retry Promise N Times](#retry-promise-n-times) 
 | Searching | • [Binary Search (Recursive/Iterative)](#Binary-Search) • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array) • [Find Peak Element](#find-peak-element)  • [First and Last Position of Element](#first-and-last-position-of-element) • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
@@ -3809,16 +3810,17 @@ function countUnique(nums) {
 
 
 
-
-
-
-## **Anagram Checker**
+## Anagram
 
 > Check if two strings are **anagrams**:  
 > i.e., same characters, same frequency, order doesn't matter.  
 > Example: `"listen"` and `"silent"` →  Anagrams
 
----
+- [Anagram Using Predefined Functions](#anagram-using-predefined-functions)
+- [Anagram Without Using Predefined Functions](#anagram-without-using-predefined-functions)
+- [Anagram using Map](#anagram-using-map)
+- [Group Anagrams](#group-anagrams)
+
 
 ### **Anagram Using Predefined Functions**
 (using `.split()`, `.sort()`, `.join()`, `.toLowerCase()`)
@@ -3930,7 +3932,7 @@ function isAnagram(s, t) {
 ---
 
 
-## **Group Anagrams**
+### **Group Anagrams**
 ```javascript
 function groupAnagrams(strs) {
     const map = new Map();

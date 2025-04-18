@@ -505,8 +505,7 @@ console.log(chunkArrayManual([1, 2, 3, 4, 5, 6, 7], 3));
 
 **Input:**
 ```js
-const products = [
-  { id: 1, name: "Apple", category: "Fruits" },
+const products = [   { id: 1, name: "Apple", category: "Fruits" },
   { id: 2, name: "Carrot", category: "Vegetables" },
   { id: 3, name: "Banana", category: "Fruits" },
 ];
@@ -1775,6 +1774,7 @@ console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
 **Approach**: Sort the array in descending order and pick the (k-1)th element.
 
 🧠 *Optimized solution can use Min Heap or QuickSelect for O(n) average time.*
+
 **Optimized**
 
 ```js

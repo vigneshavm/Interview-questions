@@ -8,7 +8,7 @@
 | Hash & Sets |• [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Deep Clone an Object](#deep-clone-an-object) • [Custom `map()` Method](#custom-map-method) • [`var` vs `let` in Loops](#understanding-var-vs-let-in-loops-and-closures)  • [Retry Promise N Times](#retry-promise-n-times) 
 | String 1 | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagrams)  • [Vowels](#vowels)   • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) • [Isomorphic Strings](#isomorphic-strings)  • [Longest Substring](#Longest-Substring) 
 | Frequent |  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Character Frequency Count](#character-frequency-count) • [Most Frequent Character](#Most-Frequent-Character-in-a-String) • [Count Frequency - Array](#Count-Frequency-of-Array-Element) • [Minimum Window Substring](#Minimum-Window-Substring) 
-| Functions |   • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Binary Search (Recursive/Iterative)](#Binary-Search) 
+| Functions |   • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Binary Search](#Binary-Search) 
 | Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | Searching |  • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)    • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
 | Graph Problems | • [BFS Traversal](#bfs) • [DFS Traversal](#dfs) • [Number of Islands (Matrix BFS/DFS)](#number-of-islands) • [Detect Cycle in Graph](#detect-cycle-in-graph)  • [Clone Graph](#clone-graph) • [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix) • [Word Ladder](#word-ladder) • [Dijkstra’s Algorithm](#dijkstras-algorithm) 
@@ -2321,14 +2321,6 @@ function checkInclusion(s1, s2) {
 
 ---
 
-
-
-
-
-###  **Binary Search**
-
-
-
 ## **Binary Search**
 
 sort the array:
@@ -2355,7 +2347,7 @@ console.log("Index of 3:", index);
 console.log(removeDuplicates(array)); // [4, 2, 5, 3, 1]
 ```
 
-#### 🔁 **Iterative Approach**
+### **Iterative Approach**
 
 ```js
 function binarySearchIterative(arr, target) {
@@ -2381,7 +2373,7 @@ console.log(binarySearchIterative([1, 3, 5, 7, 9], 5)); // Output: 2
 
 ---
 
-#### 🔁 **Recursive Approach**
+### **Recursive Approach**
 
 ```js
 function binarySearchRecursive(arr, target, left = 0, right = arr.length - 1) {

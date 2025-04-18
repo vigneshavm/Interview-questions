@@ -170,9 +170,109 @@ false
 • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array) 
 • [Remove Duplicates element from Object](#remove-duplicates-element-from-Object)
 
+### Remove Duplicates element from array
+
+---
+
+**Using Predefined Functions (e.g., `includes`)**
+**Pseudocode / Algorithm**
+```
+1. Initialize empty result array
+2. Loop through each element in the input array
+3. If element is not in result array (using includes)
+    - Add it to result array
+4. Return result array
+```
+
+**Code Example**
+```js
+function removeDuplicates(arr) {
+  let result = [];
+  arr.forEach(item => {
+    if (!result.includes(item)) {
+      result.push(item);
+    }
+  });
+  return result;
+}
+
+console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
+```
+
+ **Output:**
+```
+[1, 2, 3, 4]
+```
+
+---
+
+**Without Using Predefined Functions**
+**Pseudocode / Algorithm**
+```
+1. Initialize an empty array called result
+2. Loop i from 0 to array.length
+   a. Initialize found as false
+   b. Loop j from 0 to result.length
+      i. If arr[i] == result[j], set found = true and break
+   c. If found == false, push arr[i] to result
+3. Return result
+```
+
+**Code Example**
+```js
+function removeDuplicatesManual(arr) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let found = false;
+    for (let j = 0; j < result.length; j++) {
+      if (arr[i] === result[j]) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+}
+
+console.log(removeDuplicatesManual([1, 2, 2, 3, 1, 4]));
+```
+
+ **Output:**
+```
+[1, 2, 3, 4]
+```
 
 
-## **Remove Duplicates element from Object**
+### Remove Duplicates from Sorted Array
+**Approach**: Use two pointers to overwrite duplicates in-place.
+
+```javascript
+function removeDuplicates(nums) {
+    if (nums.length === 0) return 0;
+    let i = 0;
+    for (let j = 1; j < nums.length; j++) {
+        if (nums[i] !== nums[j]) nums[++i] = nums[j];
+    }
+    return i + 1;
+}
+```
+
+ **Example**: 
+ ```
+let nums = [0,0,1,1,1,2,2,3,3,4];
+let len = removeDuplicates(nums); // returns 5
+console.log(nums);               // [0,1,2,3,4,2,2,3,3,4] ← in-place modified, extra values remain
+console.log(nums.slice(0, len)); // [0,1,2,3,4] ← clean version with only unique values
+```
+
+
+---
+
+
+### Remove Duplicates element from Object
 For example: remove duplicates based on `id`.
 
 Given input:
@@ -298,109 +398,6 @@ console.log(removeDuplicateObjectsManual(input));
 
 
 
-## **Remove Duplicates element from array**
-
----
-
-**Using Predefined Functions (e.g., `includes`)**
-**Pseudocode / Algorithm**
-```
-1. Initialize empty result array
-2. Loop through each element in the input array
-3. If element is not in result array (using includes)
-    - Add it to result array
-4. Return result array
-```
-
-**Code Example**
-```js
-function removeDuplicates(arr) {
-  let result = [];
-  arr.forEach(item => {
-    if (!result.includes(item)) {
-      result.push(item);
-    }
-  });
-  return result;
-}
-
-console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
-```
-
- **Output:**
-```
-[1, 2, 3, 4]
-```
-
----
-
-**Without Using Predefined Functions**
-**Pseudocode / Algorithm**
-```
-1. Initialize an empty array called result
-2. Loop i from 0 to array.length
-   a. Initialize found as false
-   b. Loop j from 0 to result.length
-      i. If arr[i] == result[j], set found = true and break
-   c. If found == false, push arr[i] to result
-3. Return result
-```
-
-**Code Example**
-```js
-function removeDuplicatesManual(arr) {
-  let result = [];
-  for (let i = 0; i < arr.length; i++) {
-    let found = false;
-    for (let j = 0; j < result.length; j++) {
-      if (arr[i] === result[j]) {
-        found = true;
-        break;
-      }
-    }
-    if (!found) {
-      result.push(arr[i]);
-    }
-  }
-  return result;
-}
-
-console.log(removeDuplicatesManual([1, 2, 2, 3, 1, 4]));
-```
-
- **Output:**
-```
-[1, 2, 3, 4]
-```
-
-
-### **Remove Duplicates from Sorted Array**
-**Approach**: Use two pointers to overwrite duplicates in-place.
-
-```javascript
-function removeDuplicates(nums) {
-    if (nums.length === 0) return 0;
-    let i = 0;
-    for (let j = 1; j < nums.length; j++) {
-        if (nums[i] !== nums[j]) nums[++i] = nums[j];
-    }
-    return i + 1;
-}
-```
-
- **Example**: 
- ```
-let nums = [0,0,1,1,1,2,2,3,3,4];
-let len = removeDuplicates(nums); // returns 5
-console.log(nums);               // [0,1,2,3,4,2,2,3,3,4] ← in-place modified, extra values remain
-console.log(nums.slice(0, len)); // [0,1,2,3,4] ← clean version with only unique values
-```
-
-
----
-
-
-
 ## **Chunk an Array**
 
 ---
@@ -500,212 +497,90 @@ console.log(chunkArrayManual([1, 2, 3, 4, 5, 6, 7], 3));
 
 ## Group Array of Objects ##
 
-• [Group by Category or Class](#group-by-category-or-class) 
-• [Group Array of Objects by Key](#group-array-of-objects-by-key) 
-
-## **Find Second Largest Element**
-
-
-
-
-
-Given input:
-```js
-[10, 5, 20, 20, 8, 25]
-```
-
-Expected output:
-```
-Second Largest: 20
-```
-
+• [Group Products by key](#Group-Products-by-key) 
+• [Group into array](#Group-into-array) 
 ---
 
-**Using Predefined Functions (`sort()`, `filter()`, etc.)**
+### Group Products by key
 
-**Pseudocode / Algorithm**
-```
-1. Sort the array in descending order
-2. Filter out duplicates
-3. Return the second element (index 1) from the result
-```
 
-**Code Example**
+**Input:**
 ```js
-function secondLargestUsingSort(arr) {
-  const unique = arr.filter((val, index, self) => self.indexOf(val) === index);
-  unique.sort((a, b) => b - a); // descending
-  return unique[1];
-}
-
-console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
-```
-
- **Output:**
-```
-20
-```
-
----
-
-**Without Using Predefined Functions**
-
-**Pseudocode / Algorithm**
-```
-1. Initialize first = -Infinity, second = -Infinity
-2. Loop through each element:
-   a. If element > first:
-       - second = first
-       - first = element
-   b. Else if element > second AND element != first:
-       - second = element
-3. Return second
-```
-
-**Code Example**
-```js
-function secondLargestManual(arr) {
-  let first = -Infinity;
-  let second = -Infinity;
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > first) {
-      second = first;
-      first = arr[i];
-    } else if (arr[i] > second && arr[i] !== first) {
-      second = arr[i];
-    }
-  }
-
-  return second;
-}
-
-console.log(secondLargestManual([10, 5, 20, 20, 8, 25]));
-```
-
- **Output:**
-```
-20
-```
-
----
-
-
-
-
-
-**Remove Duplicates element from Object**
-
-```js
-
-Input:   [  
-  { id: 1, name: "A" },  
-  { id: 1, name: "A" },  
-  { id: 3, name: "C" }
+const products = [
+  { id: 1, name: "Apple", category: "Fruits" },
+  { id: 2, name: "Carrot", category: "Vegetables" },
+  { id: 3, name: "Banana", category: "Fruits" },
 ];
-
-function removeDuplicates(arr) {
-  const seen = new Set();
-  return arr.filter(item => {
-    if (seen.has(item.id)) return false;
-    seen.add(item.id);
-    return true;
-  });
-}
-
-console.log(removeDuplicates(data));
-
-Output:  [ { id: 1, name: 'A' }, { id: 3, name: 'C' } ]
-
 ```
 
-
-
-**Remove Duplicates element from array**
-
-
-**From Array without Set**
-
+**Output:**
 ```js
-const removeDuplicates = arr => arr.filter(item => arr.indexOf(item) === arr.lastIndexOf(item));
-console.log(removeDuplicates([1, 2, 3, 4, 1, 5, 5, 6])); // [2, 3, 4, 6]
-```
-
-**From Array using Set**
-
-```js
-function removeDuplicates(arr) {
-  return [...new Set(arr)];
-}
-console.log(removeDuplicates([1, 2, 2, 3, 4, 4])); // [1, 2, 3, 4]
-```
-
-
-
-
-**Remove Duplicates Without Predefined Functions**
-```js
-function removeDuplicates(arr) {
-  const result = [];
-  let resultIndex = 0;
-
-  for (let i = 0; i < arr.length; i++) {
-    let isDuplicate = false;
-
-    // Check if arr[i] already exists in result[]
-    for (let j = 0; j < resultIndex; j++) {
-      if (arr[i] === result[j]) {
-        isDuplicate = true;
-        break;
-      }
-    }
-
-    // If not found in result[], add it
-    if (!isDuplicate) {
-      result[resultIndex] = arr[i];
-      resultIndex++;
-    }
-  }
-
-  return result;
-}
-
-const array = [4, 2, 5, 3, 4, 2, 1];
-const noDupes = removeDuplicates(array);
-
-for (let i = 0; i < noDupes.length; i++) {
-  console.log(noDupes[i]); // Output: 4 2 5 3 1
+{
+  Fruits: [
+    { id: 1, name: 'Apple', category: 'Fruits' },
+    { id: 3, name: 'Banana', category: 'Fruits' }
+  ],
+  Vegetables: [
+    { id: 2, name: 'Carrot', category: 'Vegetables' }
+  ]
 }
 ```
 
-**Remove Duplicates from an array without using Set**
 ```js
-function removeDuplicates(arr) {
-  const result = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (!result.includes(arr[i])) {      result.push(arr[i]);    }
-```
-
-
-
-
-**Chunk an Array**
-
-```js
-function chunkArray(arr, size) {
-  let res = [];
-  for (let i = 0; i < arr.length; i += size) {
-    res.push(arr.slice(i, i + size));
-  }
-  return res;
+function groupByCategory(products) {
+  return products.reduce((acc, curr) => {
+    acc[curr.category] = acc[curr.category] | [];
+    acc[curr.category].push(curr);
+    return acc;
+  }, {});
 }
-console.log(chunkArray([1, 2, 3, 4, 5], 2)); // [[1,2],[3,4],[5]]
+
+console.log(groupByCategory(products));
 ```
+
+
 
 ---
+### Group into array
 
 
 
+**Input:**
+```js
+const input = [
+  { name: "one", class: 1 },
+  { name: "two", class: 2 },
+  { name: "three", class: 3 },
+  { name: "four", class: 1 },
+  { name: "five", class: 2 },
+];
+```
+
+**Output:**
+```js
+[
+  { class: 1, names: [ 'one', 'four' ] },
+  { class: 2, names: [ 'two', 'five' ] },
+  { class: 3, names: [ 'three' ] }
+]
+```
+
+```js
+function groupInputByClass(inputArray) {
+  return inputArray.reduce((acc, curr) => {
+    let group = acc.find(g => g.class === curr.class);
+    if (group) {
+      group.names.push(curr.name);
+    } else {
+      acc.push({ class: curr.class, names: [curr.name] });
+    }
+    return acc;
+  }, []);
+}
+
+console.log(groupInputByClass(input));
+```
+---
 
 
 ## **Reverse a String**
@@ -1595,99 +1470,6 @@ console.log(sortByAgeManual(people));
 
 
 
----
-
-## **Group by Category or Class**
-
-  -  This involves grouping elements of an array based on a shared property (`category`, `class`, etc.)
-  -  
----
-
-
-
-**Group Products by Category**
-
-**Input:**
-```js
-const products = [
-  { id: 1, name: "Apple", category: "Fruits" },
-  { id: 2, name: "Carrot", category: "Vegetables" },
-  { id: 3, name: "Banana", category: "Fruits" },
-];
-```
-
-**Output:**
-```js
-{
-  Fruits: [
-    { id: 1, name: 'Apple', category: 'Fruits' },
-    { id: 3, name: 'Banana', category: 'Fruits' }
-  ],
-  Vegetables: [
-    { id: 2, name: 'Carrot', category: 'Vegetables' }
-  ]
-}
-```
-
-```js
-function groupByCategory(products) {
-  return products.reduce((acc, curr) => {
-    acc[curr.category] = acc[curr.category] | [];
-    acc[curr.category].push(curr);
-    return acc;
-  }, {});
-}
-
-console.log(groupByCategory(products));
-```
-
-
-
----
-
-
-**Group Names by Class**
-
-
-**Input:**
-```js
-const input = [
-  { name: "one", class: 1 },
-  { name: "two", class: 2 },
-  { name: "three", class: 3 },
-  { name: "four", class: 1 },
-  { name: "five", class: 2 },
-];
-```
-
-**Output:**
-```js
-[
-  { class: 1, names: [ 'one', 'four' ] },
-  { class: 2, names: [ 'two', 'five' ] },
-  { class: 3, names: [ 'three' ] }
-]
-```
-
-```js
-function groupInputByClass(inputArray) {
-  return inputArray.reduce((acc, curr) => {
-    let group = acc.find(g => g.class === curr.class);
-    if (group) {
-      group.names.push(curr.name);
-    } else {
-      acc.push({ class: curr.class, names: [curr.name] });
-    }
-    return acc;
-  }, []);
-}
-
-console.log(groupInputByClass(input));
-```
----
-
-
-
 
 
 
@@ -1851,7 +1633,6 @@ console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
 - [Find Second Largest value](#find-second-largest-element)
 - [Kth Largest value](#kth-largest-element-in-an-array)
 
-
 ### Find Maximum in an Array
 
 **No Built-ins**
@@ -1898,7 +1679,7 @@ function findMax(arr: number[]): number {
 
 ---
 
-## **Find Second Largest Element**
+### Find Second Largest Element
 
 Given input:
 ```js
@@ -1981,7 +1762,7 @@ console.log(secondLargestManual([10, 5, 20, 20, 8, 25]));
 
 ---
 
-###  **Kth Largest Element in an Array**
+### Kth Largest Element in an Array
 
 **Non-Optimized**
 ```js
@@ -2034,49 +1815,7 @@ function findKthLargest(nums, k) {
 ---
 
 
-### Group Array of Objects by Key
 
-**Input**
-```
-const people = [
-  { name: "Alice", city: "New York" },
-  { name: "Bob", city: "Paris" },
-  { name: "Charlie", city: "New York" },
-  { name: "David", city: "London" },
-  { name: "Eve", city: "Paris" },
-];
-```
-
-**Output**
-```
-{
-  "New York": [
-    { name: "Alice", city: "New York" },
-    { name: "Charlie", city: "New York" }
-  ],
-  "Paris": [
-    { name: "Bob", city: "Paris" },
-    { name: "Eve", city: "Paris" }
-  ],
-  "London": [
-    { name: "David", city: "London" }
-  ]
-}
-```
-
-```ts
-type Grouped<T> = Record<string, T[]>;
-
-function groupBy<T>(arr: T[], key: keyof T): Grouped<T> {
-  return arr.reduce((acc: Grouped<T>, item) => {
-    const groupKey = String(item[key]);
-    (acc[groupKey] |= []).push(item);
-    return acc;
-  }, {});
-}
-```
-
----
 
 
 ### Debounce Function

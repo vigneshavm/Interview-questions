@@ -52,28 +52,6 @@
 
 ---
 
-
-<details>
-  <summary><strong>Kth Largest value</strong></summary>
-  ```js
-  function findKthLargest(nums, k) {
-  nums.sort((a, b) => b - a); // Descending order
-  return nums[k - 1];
-  }
-
-// Example
-  console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
-  ```
-
-  **Approach**: Sort the array in descending order and pick the (k-1)th element.
-
-  > 🧠 Optimized solutions can use Min Heap or QuickSelect for average **O(n)** time.
-
-</details>
-
-
----
-
 ## **Palindrome**  
 > A palindrome is a string that reads the same forwards and backwards.  
 Example: `"madam"`, `"racecar"` are palindromes.
@@ -1873,10 +1851,8 @@ console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
 • [Find Second Largest value](#find-second-largest-element)  
 • [Kth Largest value](#kth-largest-element-in-an-array)
 
-<details>
-  <summary><strong>Find Largest value</strong></summary>
 
-  ### Find Maximum in an Array
+### Find Maximum in an Array
 
 **No Built-ins**
 
@@ -1922,24 +1898,140 @@ function findMax(arr: number[]): number {
 
 ---
 
+## **Find Second Largest Element**
 
+Given input:
+```js
+[10, 5, 20, 20, 8, 25]
+```
 
+Expected output:
+```
+Second Largest: 20
+```
 
-</details>
+---
 
-<details>
-  <summary><strong>Find Second Largest value</strong></summary>
+**Using Predefined Functions (`sort()`, `filter()`, etc.)**
 
-  - [Find Second Largest value](#find-second-largest-element)
+**Pseudocode / Algorithm**
+```
+1. Sort the array in descending order
+2. Filter out duplicates
+3. Return the second element (index 1) from the result
+```
 
-</details>
+**Code Example**
+```js
+function secondLargestUsingSort(arr) {
+  const unique = arr.filter((val, index, self) => self.indexOf(val) === index);
+  unique.sort((a, b) => b - a); // descending
+  return unique[1];
+}
 
-<details>
-  <summary><strong>Kth Largest value</strong></summary>
+console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
+```
 
-  - [Kth Largest value](#kth-largest-element-in-an-array)
+ **Output:**
+```
+20
+```
 
-</details>
+---
+
+**Without Using Predefined Functions**
+
+**Pseudocode / Algorithm**
+```
+1. Initialize first = -Infinity, second = -Infinity
+2. Loop through each element:
+   a. If element > first:
+       - second = first
+       - first = element
+   b. Else if element > second AND element != first:
+       - second = element
+3. Return second
+```
+
+**Code Example**
+```js
+function secondLargestManual(arr) {
+  let first = -Infinity;
+  let second = -Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > first) {
+      second = first;
+      first = arr[i];
+    } else if (arr[i] > second && arr[i] !== first) {
+      second = arr[i];
+    }
+  }
+
+  return second;
+}
+
+console.log(secondLargestManual([10, 5, 20, 20, 8, 25]));
+```
+
+ **Output:**
+```
+20
+```
+
+---
+
+###  **Kth Largest Element in an Array**
+
+**Non-Optimized**
+```js
+function findKthLargest(nums, k) {
+  nums.sort((a, b) => b - a); // Descending order
+  return nums[k - 1];
+}
+console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
+```
+
+**Approach**: Sort the array in descending order and pick the (k-1)th element.
+
+🧠 *Optimized solution can use Min Heap or QuickSelect for O(n) average time.*
+**Optimized**
+
+```js
+function findKthLargest(nums, k) {
+    const target = nums.length - k;
+
+    function quickSelect(left, right) {
+        const pivotIndex = partition(left, right);
+
+        if (pivotIndex === target) {
+            return nums[pivotIndex];
+        } else if (pivotIndex < target) {
+            return quickSelect(pivotIndex + 1, right);
+        } else {
+            return quickSelect(left, pivotIndex - 1);
+        }
+    }
+
+    function partition(left, right) {
+        const pivot = nums[right];
+        let i = left;
+
+        for (let j = left; j < right; j++) {
+            if (nums[j] <= pivot) {
+                [nums[i], nums[j]] = [nums[j], nums[i]];
+                i++;
+            }
+        }
+        [nums[i], nums[right]] = [nums[right], nums[i]];
+        return i;
+    }
+
+    return quickSelect(0, nums.length - 1);
+}
+```
+
+---
 
 
 ### Group Array of Objects by Key

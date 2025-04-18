@@ -328,7 +328,7 @@ function deepCloneLegacy<T>(obj: T): T {
 
 
 
-## Remove Duplicates element ##
+## Remove Duplicates element
 
 • [Remove Duplicates element from array](#remove-duplicates-element-from-array) 
 • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array) 

@@ -2607,7 +2607,7 @@ console.log(sortedByAge);
 
 ---
 #### Sort Array of Objects Without Using Predefined Sort
-#### Sort an array of objects by a nested value
+#### Sort Array of Objects by a Nested Value
 
 ```js
 const users = [

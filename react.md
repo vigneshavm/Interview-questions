@@ -205,7 +205,8 @@ Alternative syntax:
 
 ## Virtual DOM 
 
-- The Virtual DOM is a lightweight, in-memory representation of the real DOM. React uses it to optimize performance by minimizing direct DOM manipulations.
+- The Virtual DOM is a lightweight, in-memory representation of the real DOM.
+- React uses it to optimize performance by minimizing direct DOM manipulations.
 - React updates the Virtual DOM first, then uses a diffing algorithm to compare it with the previous version.
 - It identifies and updates only the parts that changed in the actual DOM — a process known as reconciliation.
 - This results in faster rendering and improved performance.

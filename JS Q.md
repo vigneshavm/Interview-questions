@@ -2250,52 +2250,47 @@ Both methods are used in event handling, but they serve different purposes:
 
 #### **Event Delegation and Bubbling**
 
+---
 
-**Event delegation** is a technique where you attach a single event listener to a parent element instead of adding listeners to individual child elements. When an event is triggered on a child element, it bubbles up to the parent, where the parent can catch the event and handle it.
+#### 🔸 **What is Event Delegation?**
+- Event delegation is a technique where a **single event listener** is attached to a **parent element** to handle events for its **child elements**.
+- It leverages **event bubbling**, where events propagate up the DOM tree.
+- Useful for handling **dynamically added elements** (e.g., added after DOM load).
+- ✅ **Benefits**:
+  - Fewer event listeners = better performance.
+  - Handles new child elements automatically.
 
-This technique is particularly useful when dealing with dynamically added elements (i.e., elements that are created after the initial page load).
-
-**Example**:
+> **Example:**
 ```javascript
 document.getElementById("parent").addEventListener("click", function(event) {
-  if (event.target && event.target.matches("button.className")) {
+  if (event.target.matches("button.className")) {
     alert("Button clicked!");
   }
 });
 ```
 
-In this example, the parent element listens for clicks on its child buttons, even if the buttons are dynamically added later.
+---
 
-**Benefits**:
-- Reduces the number of event listeners.
-- Works for dynamically added elements.
+#### 🔸 **What is Event Bubbling?**
+- Event bubbling is the process where an event starts from the **target element** and **bubbles up** to its ancestors (parent → grandparent → root).
+- Enables parent elements to catch events from children.
+- Happens by default in the DOM unless `stopPropagation()` is used.
+
+> **Example:**
+```javascript
+document.querySelector('button').addEventListener('click', () => {
+  console.log('Button clicked!');
+});
+```
 
 ---
 
-
-- **Event Bubbling**:
-  - **Event bubbling** is a mechanism where events propagate from the target element to the root element of the DOM. This means that when an event occurs on an element, it will first trigger on that element, and then the event will bubble up to its parent elements, and so on, until it reaches the root of the document.
-  - **Example**:
-    ```javascript
-    document.querySelector('button').addEventListener('click', () => {
-      console.log('Button clicked!');
-    });
-
-    // Even if the button is clicked inside a div, the event will bubble up to the document root
-    ```
-
-- **Event Delegation**:
-  - **Event delegation** is a technique that uses the event bubbling behavior to handle events on a parent element rather than on each individual child element. It’s efficient because it reduces the number of event listeners, especially when dealing with many child elements.
-  - **Example**:
-    ```javascript
-    document.querySelector('#parent').addEventListener('click', function(event) {
-      if (event.target && event.target.matches('button')) {
-        console.log('Button clicked!');
-      }
-    });
-    ```
+#### 🔸 **How Are Event Delegation and Bubbling Related?**
+- **Event delegation** relies on **event bubbling** to work.
+- Without bubbling, parent elements wouldn’t be able to handle child events.
 
 ---
+
 
 #### **`innerHTML` vs `textContent`**
 

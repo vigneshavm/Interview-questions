@@ -798,25 +798,29 @@ React Hooks are functions that let you "hook into" React state and lifecycle fea
 | **Hook**                   | **Purpose**                                                                 | **When to Use**                                                          | **Example Use Case**                                 |
 |----------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------|------------------------------------------------------|
 | `useState`                 | Store and update local state                                                | Any dynamic value inside a component                                     | Form inputs, counters, toggles                      |
-| `useEffect`                | Perform side effects                                                        | Fetching data, setting timers, subscriptions                             | API calls, local storage, DOM listeners             |
-| `useContext`               | Consume data from a context provider                                        | Access global values without prop drilling                               | Theme, user auth, language preference               |
-| `useReducer`              | Complex state logic with actions                                            | When state updates depend on previous state                              | Forms, shopping carts, toggle reducers              |
+| [useEffect](#useEffect)                | Perform side effects                                                        | Fetching data, setting timers, subscriptions                             | API calls, local storage, DOM listeners             |
+| [useContext](#useContext)             | Consume data from a context provider                                        | Access global values without prop drilling                               | Theme, user auth, language preference               |
+|[useReducer](#useReducer)                | Complex state logic with actions                                            | When state updates depend on previous state                              | Forms, shopping carts, toggle reducers              |
 | `useCallback`              | Memoize a callback function                                                 | Prevent re-renders of children receiving functions as props              | Event handlers, expensive calculations              |
-| `useMemo`                 | Memoize an expensive computed value                                         | Heavy calculations that depend on specific inputs                        | Filtering/sorting lists, derived state              |
-| `useRef`                   | Store mutable values or DOM refs                                            | When value shouldn't trigger re-render                                   | Accessing input fields, tracking previous values    |
-| `useImperativeHandle`      | Expose methods from child component using `ref`                            | Parent needs to call child functions directly                            | Custom modals, form controls                        |
-| `useLayoutEffect`          | Like `useEffect` but fires before painting                                 | DOM reads/measurements to avoid flicker                                  | Animations, layout adjustments                      |
-| `useDebugValue`            | Show custom hook info in React DevTools                                     | Inside custom hooks                                                      | Debugging user login status                         |
-| `useDeferredValue`         | Delay rendering a value (concurrent-friendly)                              | Heavy UI renders based on fast input                                    | Real-time search filter                             |
-| `useTransition`            | Mark non-urgent updates for smoother UI                                     | Updating large UI without blocking input                                | Tab switching, background state changes             |
-| `useId`                    | Generate unique IDs for accessibility & SSR                                 | Generate stable IDs for input-label, list keys                           | Forms with server-rendered markup                   |
-| `useSyncExternalStore`     | Subscribe to external data stores                                           | For state libraries, global stores                                       | Zustand, Redux, or any custom external store        |
-| `useInsertionEffect`       | Inject styles before layout/render                                          | With CSS-in-JS libraries                                                 | Emotion, styled-components                          |
+|     [useMemo](#useMemo)              | Memoize an expensive computed value                                         | Heavy calculations that depend on specific inputs                        | Filtering/sorting lists, derived state              |
+|         [useRef](#useRef)              | Store mutable values or DOM refs                                            | When value shouldn't trigger re-render                                   | Accessing input fields, tracking previous values    |
+|   [useImperativeHandle](#useImperativeHandle)     | Expose methods from child component using `ref`                            | Parent needs to call child functions directly                            | Custom modals, form controls                        |
+|    [useLayoutEffect](#useLayoutEffect)      | Like `useEffect` but fires before painting                                 | DOM reads/measurements to avoid flicker                                  | Animations, layout adjustments                      |
+|    [useDebugValue](#useDebugValue)           | Show custom hook info in React DevTools                                     | Inside custom hooks                                                      | Debugging user login status                         |
+|      [useDeferredValue](#useDeferredValue)      | Delay rendering a value (concurrent-friendly)                              | Heavy UI renders based on fast input                                    | Real-time search filter                             |
+|      [useTransition](#useTransition)       | Mark non-urgent updates for smoother UI                                     | Updating large UI without blocking input                                | Tab switching, background state changes             |
+|             [useId](#useId)            | Generate unique IDs for accessibility & SSR                                 | Generate stable IDs for input-label, list keys                           | Forms with server-rendered markup                   |
+|             [useSyncExternalStore](#useSyncExternalStore)      | Subscribe to external data stores                                           | For state libraries, global stores                                       | Zustand, Redux, or any custom external store        |
+|             [useInsertionEffect](#useInsertionEffect)     | Inject styles before layout/render                                          | With CSS-in-JS libraries                                                 | Emotion, styled-components                          |
+|             [useCallback vs useMemo](#useCallback-vs-useMemo)     | [React.memo-vs-useMemo](#React.memo-vs-useMemo)    |  Emotion, styled-components                          |
 
 
 ---
 
-###  Example: Using `useEffect` to Fetch Data from an API
+
+
+### useEffect
+  - to Fetch Data from an API
 
 ```jsx
 import React, { useEffect, useState } from 'react';
@@ -846,11 +850,12 @@ function UserProfile() {
 export default UserProfile;
 ```
 
-###  Explanation:
+####  Explanation:
 - `useEffect` is used here to **fetch user data** when the component mounts.
 - The empty dependency array `[]` ensures this side effect runs only **once**, like `componentDidMount`.
 
-###  `useContext` – Share global data across components
+###  useContext 
+– Share global data across components
 ```jsx
 const ThemeContext = React.createContext('light');
 
@@ -870,7 +875,8 @@ function Toolbar() {
 
 ---
 
-###  `useReducer` – Complex state logic (like a mini Redux)
+###  useReducer
+ – Complex state logic (like a mini Redux)
 ```jsx
 function reducer(state, action) {
   switch (action.type) {
@@ -893,7 +899,8 @@ function Counter() {
 
 ---
 
-###  `useCallback` – Memoize callback functions
+###  useCallback
+ – Memoize callback functions
 ```jsx
 const Button = React.memo(({ onClick }) => {
   console.log('Button rendered');
@@ -914,7 +921,8 @@ function App() {
 
 ---
 
-###  `useMemo` – Memoize expensive computations
+###  useMemo
+ – Memoize expensive computations
 ```jsx
 function App({ number }) {
   const double = React.useMemo(() => {
@@ -927,7 +935,8 @@ function App({ number }) {
 
 ---
 
-###  `useRef` – Persist value between renders or access DOM
+###  useRef
+ – Persist value between renders or access DOM
 ```jsx
 function App() {
   const inputRef = React.useRef();
@@ -945,7 +954,8 @@ function App() {
 
 ---
 
-###  `useImperativeHandle` – Customize instance value for parent ref
+###  useImperativeHandle
+ – Customize instance value for parent ref
 ```jsx
 const Input = React.forwardRef((props, ref) => {
   const inputRef = React.useRef();
@@ -968,7 +978,8 @@ function Parent() {
 
 ---
 
-###  `useLayoutEffect` – Run *before* paint (sync, like `componentDidMount`)
+###  useLayoutEffect
+ – Run *before* paint (sync, like `componentDidMount`)
 ```jsx
 function Box() {
   const ref = React.useRef();
@@ -983,7 +994,8 @@ function Box() {
 
 ---
 
-###  `useDebugValue` – Add debug label for custom hooks
+###  useDebugValue
+ – Add debug label for custom hooks
 ```jsx
 function useUserStatus(userID) {
   const [isOnline] = React.useState(true);
@@ -994,7 +1006,8 @@ function useUserStatus(userID) {
 
 ---
 
-###  `useDeferredValue` – Defer updating non-urgent values
+###  useDeferredValue
+ – Defer updating non-urgent values
 ```jsx
 function Search({ query }) {
   const deferredQuery = React.useDeferredValue(query);
@@ -1005,7 +1018,8 @@ function Search({ query }) {
 
 ---
 
-###  `useTransition` – Mark state updates as non-blocking
+###  useTransition
+ – Mark state updates as non-blocking
 ```jsx
 function App() {
   const [isPending, startTransition] = React.useTransition();
@@ -1027,7 +1041,8 @@ function App() {
 
 ---
 
-###  `useId` – Unique, server-safe IDs
+###  useId
+ – Unique, server-safe IDs
 ```jsx
 function Form() {
   const id = React.useId();
@@ -1042,7 +1057,8 @@ function Form() {
 
 ---
 
-###  `useSyncExternalStore` – Read from external state stores (React 18+)
+###  useSyncExternalStore
+ – Read from external state stores (React 18+)
 ```jsx
 // A basic external store
 let listeners = [];
@@ -1062,7 +1078,8 @@ function useTheme() {
 
 ---
 
-###  `useInsertionEffect` – Inject styles before DOM mutations (rare use case)
+###  useInsertionEffect
+ – Inject styles before DOM mutations (rare use case)
 ```jsx
 function StyledComponent() {
   React.useInsertionEffect(() => {
@@ -1077,7 +1094,7 @@ function StyledComponent() {
 ```
 
 ---
-### `React.memo` vs `useMemo`
+### React.memo vs useMemo
 
 ```jsx
 const MyComponent = React.memo(function ({ name }) {
@@ -1090,7 +1107,7 @@ const MyComponent = React.memo(function ({ name }) {
 
 ---
 
-### `useCallback` vs `useMemo`
+### useCallback vs useMemo
 
 ---
 

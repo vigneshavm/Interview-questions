@@ -1,7 +1,7 @@
 | **Category**                          | **Topics**                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **React Basics** | • [Create React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) •  [Virtual DOM](#virtual-dom) • [Single Page Applications (SPA)](#single-page-applications-spa) • [JSX vs HTML](#jsx-vs-html) • [Why Use React](#why-use-react) |
-| **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components) •  [Stateless vs Stateful Components](#stateless-vs-stateful-components) •  [Controlled Components](#controlled-components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
+| **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components) •  [Stateless vs Stateful Components](#stateless-vs-stateful-components) •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  |
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Error Handling in Components](#error-handling-in-components) •  [Lazy Loading](#lazy-loading-components) 
@@ -1321,8 +1321,12 @@ function Card({ title, children }) {
 ```
 ---
 
-## **Controlled Components**
+## **Components**
 
+
+- [Controlled Components](#controlled-components)  
+- [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components)  
+- [Uncontrolled Components](#uncontrolled-components)
 
 
 A **Controlled Component** in React is a form element (like an `<input>`, `<textarea>`, or `<select>`) whose **value is controlled by React state**.

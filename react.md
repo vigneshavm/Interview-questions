@@ -812,7 +812,7 @@ React Hooks are functions that let you "hook into" React state and lifecycle fea
 |             [useId](#useId)            | Generate unique IDs for accessibility & SSR                                 | Generate stable IDs for input-label, list keys                           | Forms with server-rendered markup                   |
 |             [useSyncExternalStore](#useSyncExternalStore)      | Subscribe to external data stores                                           | For state libraries, global stores                                       | Zustand, Redux, or any custom external store        |
 |             [useInsertionEffect](#useInsertionEffect)     | Inject styles before layout/render                                          | With CSS-in-JS libraries                                                 | Emotion, styled-components                          |
-|             [useCallback vs useMemo](#useCallback-vs-useMemo)     | [React.memo-vs-useMemo](#React.memo-vs-useMemo)    |  Emotion, styled-components                          |
+|             [useCallback vs useMemo](#useCallback-vs-useMemo)     | [Reactmemo vs useMemo](#Reactmemo-vs-useMemo)    |  Emotion, styled-components                          |
 
 
 ---
@@ -1094,7 +1094,7 @@ function StyledComponent() {
 ```
 
 ---
-### React.memo vs useMemo
+### Reactmemo vs useMemo
 
 ```jsx
 const MyComponent = React.memo(function ({ name }) {

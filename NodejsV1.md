@@ -71,324 +71,151 @@ tsconfig.json
 `ts-node` is a utility that runs TypeScript code directly without compiling it to JavaScript.
 
 ---
-
-##  **Node.js Architecture**
-
-- Node.js is a runtime environment that allows JavaScript to run on the server side.
-- Built on Chrome's V8 JavaScript engine.
-- Uses libuv to handle asynchronous I/O.
-- Designed for non-blocking, event-driven, and single-threaded applications.
-- Ideal for scalable network applications.
-
-Node.js is **event-driven, single-threaded, and asynchronous**, built on top of:
-
-- **Chrome's V8 engine** – executes JavaScript code.
-- **libuv** – handles the event loop, thread pool, and asynchronous I/O.
-- **C/C++ bindings** – for low-level system operations.
-
----
-
-### 🧠 **Core Components**
-
-| Component         | Role                                                                 |
-|------------------|----------------------------------------------------------------------|
-| **V8 Engine**     | Converts JS to machine code (Just-in-Time compilation)               |
-| **Event Loop**    | Orchestrates execution, handles non-blocking I/O using events/callbacks |
-| **libuv**         | Provides multi-threaded support for I/O tasks, timers, etc.          |
-| **Thread Pool**   | Background worker threads to offload blocking I/O operations         |
-| **Callback Queue**| Stores callbacks ready for execution                                 |
-| **Microtask Queue**| Promises, process.nextTick tasks                                     |
-| **Node APIs**     | HTTP, fs, crypto, etc. expose native functionality to JS layer       |
-
-
-
-
----
-
-### ✅ **Step-by-Step: How the JS Event Loop Works**
-
----
-
-#### **1. Start Executing Main Code**
-- JavaScript starts executing **synchronously**.
-- Each line runs **top to bottom** in the **Call Stack**.
-
-```js
-console.log("Start");
-```
-➡️ Added to the call stack → executed → logs “Start” → removed from the stack.
-
----
-
-#### **2. Handle Asynchronous Code**
-
-```js
-setTimeout(() => console.log("setTimeout"), 0);
-```
-
-- `setTimeout` is a **Web API**, so:
-  - The **callback function** (`() => console.log(...)`) is passed to the browser timer.
-  - It **does NOT block** the call stack.
-  - After 0ms, the callback is moved to the **Macro-task Queue**.
-
----
-
-#### **3. Handle Promises (Micro-task)**
-
-```js
-Promise.resolve().then(() => console.log("Promise"));
-```
-
-- A resolved Promise is a **Micro-task**.
-- Its `.then()` callback is placed into the **Micro-task Queue**.
-
----
-
-#### **4. Continue Synchronous Code**
-```js
-console.log("End");
-```
-➡️ This runs immediately and logs “End”.
-
----
-
-#### **5. Finish Current Call Stack**
-- Now that all **synchronous code** has run, the call stack is **empty**.
-
----
-
-#### **6. Event Loop Takes Over**
-- **Event Loop** checks the queues:
-  - 🔍 **Are there micro-tasks?** Yes → execute **all micro-tasks** first.
-    - `console.log("Promise")` runs.
-  - 🔁 Then, **1 macro-task** is taken from the Macro-task Queue.
-    - `console.log("setTimeout")` runs.
-
----
-
-#### ✅ **Final Output (from this example)**
-
-```js
-console.log("Start");
-setTimeout(() => console.log("setTimeout"), 0);
-Promise.resolve().then(() => console.log("Promise"));
-console.log("End");
-```
-
-**Output:**
-```
-Start
-End
-Promise
-setTimeout
-```
-
----
-
-### 🔄 In Short:
-1. **Main code runs** line-by-line.
-2. **Async tasks** are offloaded to Web APIs.
-3. **Promises (micro-tasks)** are queued.
-4. After main code: **event loop clears micro-tasks first**, then macro-tasks.
-5. **Single-threaded** but **asynchronous-capable** thanks to the event loop!
-
----
-
----
-
-## **Node.js Request Handling Flow**
-
-
----
-### **1️⃣ Client Sends an HTTP Request**
-### **2️⃣ Node.js Accepts the Request (via HTTP Module or Express)**
-Express handles this using Node's internal HTTP module.
-### **3️⃣ Request Goes Through Middleware**
-### **4️⃣ Route Handler is Matched**
-### **5️⃣ If Synchronous → Executes on the Call Stack**
-```js
-app.get('/ping', (req, res) => {
-  res.send('pong'); // Simple sync response
-});
-```
-- Quick code runs directly on the **call stack**
-- Response is sent immediately
----
-### **6️⃣ If Asynchronous → Delegated to libuv**
-```js
-app.get('/users', async (req, res) => {
-  const users = await db.getAllUsers();  // Async DB call
-  res.json(users);
-});
-```
-- `db.getAllUsers()` is an async operation (e.g., DB query)
-- Node offloads it to the **libuv thread pool**
-- Doesn’t block other incoming requests
-- When ready, the result is sent to the **callback queue**
----
-### **7️⃣ Event Loop Watches Call Stack and Callback Queue**
-- Event loop keeps checking:
-  - Is the call stack empty?
-  - Are there callbacks ready to run?
-- If yes, it pushes them into the **call stack**
-This is how non-blocking works.
----
-### **8️⃣ Callback Runs → Response is Sent**
-Once the async operation is ready:
-```js
-res.json(users); // Sends JSON response back to client
-```
-The event loop pushes this function onto the stack, and Node.js sends the response.
----
-
-
-
-
----
-
-### 🔄 **Node.js Execution Flow (In Detail)**
-
-#### 1. **Incoming Request**
-   - Client sends an HTTP request to the server.
-
-#### 2. **Call Stack Execution**
-   - If the code is synchronous, it runs immediately on the **call stack**.
-
-#### 3. **Asynchronous Code Delegation**
-   - For async tasks (e.g., file system access, DB calls, timers, crypto), Node.js delegates them to:
-     - `libuv` thread pool (for file I/O, DNS, crypto, etc.)
-     - OS kernel (e.g., TCP sockets) for network operations.
-
-#### 4. **Event Loop Phases**
-Node.js Event Loop runs in **phases**, executing tasks based on their type:
-
-| Phase                 | Handles                                 |
-|----------------------|------------------------------------------|
-| **1. Timers**        | `setTimeout`, `setInterval` callbacks     |
-| **2. Pending Callbacks** | Some system-level operations              |
-| **3. Idle/Prepare**  | Internal use                             |
-| **4. Poll**          | Checks I/O (file, network, etc.)         |
-| **5. Check**         | Executes `setImmediate()` callbacks       |
-| **6. Close Callbacks** | Handles things like `socket.on('close')` |
-
-💡 **Microtasks queue** (`Promise.then`, `process.nextTick`) is handled **after every phase**, giving them high priority.
-
-#### 5. **Callback Execution**
-   - Once an async task completes, its callback is queued in the **Callback Queue** (or Microtask Queue).
-   - Event Loop picks it up when the call stack is clear.
-
-#### 6. **Response Sent**
-   - The callback logic eventually sends a response back to the client.
-
----
-
-### 🎯 Example: File Read API
-
-```js
-const fs = require('fs');
-
-fs.readFile('data.txt', 'utf8', (err, data) => {
-  console.log('File content:', data);
-});
-
-console.log('Request received!');
-```
-
-### 🎯 Example: HTTP Server
-```js
-const http = require('http');
-
-const server = http.createServer((req, res) => {
-  res.end('Hello, world!');
-});
-
-server.listen(3000, () => {
-  console.log('Server running on port 3000');
-});
-```
-
-#### Behind the scenes:
-
-1. `fs.readFile` is async → delegated to thread pool via libuv.
-2. `console.log('Request received!')` runs immediately.
-3. Once file is read, callback is pushed to Event Queue.
-4. Event Loop picks it up and executes `console.log('File content:', data)`.
-
----
-
-### 🧵 Thread Pool (libuv – 4 threads by default)
-
-Used for:
-
-- File system operations
-- DNS (without cache)
-- Some crypto operations
-- Compression
-
-You can configure it via:
-```bash
-UV_THREADPOOL_SIZE=8 node app.js
-```
-
----
-
-### 🚀 Why Node.js is Fast (Even Though It's Single-threaded):
-
-- It doesn't block the main thread.
-- It offloads heavy tasks.
-- It handles **10,000+ concurrent connections** using async callbacks, not threads per request like Java/Apache.
-
----
-
-### 🧩 Real-World Use Cases
-
-| Use Case                  | Why Node.js is Ideal                                 |
-|---------------------------|------------------------------------------------------|
-| Real-time apps (chat, games) | Event-driven, WebSocket support                     |
-| REST APIs                  | Lightweight, fast response with async I/O           |
-| Microservices              | Easy to scale, non-blocking                         |
-| Proxy servers              | Handle high concurrency with minimal resources      |
-| Streaming services         | Built-in Stream API for reading/writing in chunks   |
-
----
-
----
-
 ## **Node.js with TypeScript?**
 
 - TypeScript adds static typing to JavaScript, helping developers catch errors during development, improve code readability, and enable better IDE support.
 - This is particularly helpful in large-scale Node.js projects.
 
+
 ---
 
-## **Event Loop**
+## **Nodejs Architecture**
 
-**Phases of the Event Loop:**
--  **Timers**: Executes the callbacks for `setTimeout` and `setInterval`.
--  **Pending Callbacks**: Handles I/O callbacks (e.g., TCP callbacks).
--  **Idle/Prepare**: Internal phase for system operations.
--  **Poll**: Waits for new I/O events and executes callbacks when ready.
--  **Check**: Executes `setImmediate` callbacks.
--  **Close Callbacks**: Handles events such as `close` event listeners.
+- **Node.js**: Server-side JavaScript runtime built on Chrome’s **V8 engine**.
+- **Single-threaded** but **non-blocking**, ideal for scalable I/O-heavy apps.
+- Uses **libuv** for handling async I/O with a thread pool.
+- Built on an **event-driven** model via the **event loop**.
+- Designed for **high concurrency** with minimal system resources.
 
-**Code Execution Order:**
+---
+
+## 🔧 **Core Components of Node.js**
+
+- **V8 Engine**: Converts JS to machine code (JIT compilation).
+- **libuv**: Handles event loop, async I/O, timers, and thread pool.
+- **Event Loop**: Manages execution of code, handles callbacks & async tasks.
+- **Thread Pool**: Offloads heavy I/O tasks to prevent blocking the main thread.
+- **Callback Queue**: Stores ready-to-run async callbacks.
+- **Microtask Queue**: Stores high-priority microtasks (Promises, `process.nextTick`).
+- **Node APIs**: Built-in modules like `fs`, `http`, `crypto`, etc.
+
+---
+
+## 🔄 **Event Loop: Step-by-Step Execution**
+
+1. **Synchronous Code Executes First**
+   - Added to call stack and executed line-by-line.
+
+2. **Async Code (e.g., `setTimeout`, Promises`) Offloaded**
+   - Handled by Web APIs or libuv (thread pool).
+
+3. **Microtasks Added to Microtask Queue**
+   - Includes `.then()` and `process.nextTick()`.
+
+4. **Call Stack Clears**
+   - Once main thread is free, event loop starts picking tasks.
+
+5. **Event Loop Executes**
+   - **All Microtasks First** → then one **Macro-task**.
+
+6. **Final Output Order (Example):**
+   ```js
+   console.log("Start");
+   setTimeout(() => console.log("Timeout"), 0);
+   Promise.resolve().then(() => console.log("Promise"));
+   console.log("End");
+   // Output:
+   // Start
+   // End
+   // Promise
+   // Timeout
+   ```
+
+---
+
+## 📦 **Phases of the Event Loop**
+
+| Phase              | Handles                                   |
+|--------------------|--------------------------------------------|
+| **1. Timers**       | `setTimeout`, `setInterval` callbacks     |
+| **2. Pending**      | OS-level callbacks (e.g., TCP errors)     |
+| **3. Idle/Prepare** | Internal tasks                            |
+| **4. Poll**         | Retrieves new I/O events                  |
+| **5. Check**        | Executes `setImmediate()`                 |
+| **6. Close**        | `socket.on('close')`, etc.                |
+
+💡 **Microtasks** (`Promise`, `process.nextTick`) run **after each phase**.
+
+---
+
+## ⚡ **Key Async Execution Order**
+
 ```js
-setTimeout(() => console.log("Timeout Callback"), 10);
-setImmediate(() => console.log("Immediate Callback"));
-process.nextTick(() => console.log("NextTick Callback"));
-console.log("Main Module Ends");
+setTimeout(() => console.log("Timeout"), 0);
+setImmediate(() => console.log("Immediate"));
+process.nextTick(() => console.log("NextTick"));
+console.log("Main");
 ```
 **Output:**
 ```
-Main Module Ends
-NextTick Callback
-Immediate Callback
-Timeout Callback
+Main
+NextTick
+Immediate
+Timeout
 ```
 
-- **`process.nextTick()` vs `setImmediate()`**:  
-  - `process.nextTick()` executes **before** I/O operations, and **before** the next event loop iteration.
-  - `setImmediate()` executes **after I/O callbacks**, right before the event loop continues.
+🟢 **Priority Order**:
+1. `console.log("Main")` → sync
+2. `process.nextTick()` → runs before other microtasks
+3. `setImmediate()` → check phase
+4. `setTimeout()` → timer phase
+
+---
+
+## 🌐 **Request Handling in Node.js**
+
+1. **Client Sends HTTP Request**
+2. **Node.js Accepts via HTTP Module or Express**
+3. **Middleware Processed**
+4. **Route Matched**
+   - If sync: handled immediately.
+   - If async (DB, FS): offloaded to thread pool.
+5. **Callback queued on completion**
+6. **Event Loop picks callback** when stack is free
+7. **Response Sent**
+
+---
+
+## 🧵 **Thread Pool (libuv)**
+
+- Default: **4 threads** (configurable via `UV_THREADPOOL_SIZE`).
+- Used for:
+  - File I/O (`fs.readFile`)
+  - DNS (non-cached)
+  - Crypto operations (`pbkdf2`)
+  - Compression (zlib)
+
+---
+
+## 🚀 **Why Node.js is Fast (Despite Single Thread)**
+
+- No thread per request → low memory usage.
+- Async operations don’t block the event loop.
+- Handles **thousands of connections** efficiently via callbacks.
+
+---
+
+## 💼 **Real-World Use Cases**
+
+| Use Case               | Reason to Use Node.js                            |
+|------------------------|--------------------------------------------------|
+| **Real-time apps**     | Non-blocking, WebSocket support                  |
+| **APIs & Microservices** | Lightweight, scalable, fast async response      |
+| **Streaming services** | Stream API for data chunks                       |
+| **Proxies/gateways**   | Handles many concurrent requests                 |
+| **CLI tools**          | Fast execution with JS scripting capabilities    |
+
+---
 
 
 ##  **Event Emitters**

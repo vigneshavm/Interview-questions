@@ -1,5 +1,6 @@
 
 
+
 | **Category**                               | **Topics**                                                                                                                                                                        |
 |--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Node.js Basics**                         | [Create Node App using JS](#create-node-app-using-js), [Create Node App using TypeScript](#create-node-app-using-typescript), [Node.js with TypeScript](#nodejs-with-typescript) |
@@ -100,6 +101,99 @@ Node.js is **event-driven, single-threaded, and asynchronous**, built on top of:
 | **Node APIs**     | HTTP, fs, crypto, etc. expose native functionality to JS layer       |
 
 
+
+
+---
+
+### ✅ **Step-by-Step: How the JS Event Loop Works**
+
+---
+
+#### **1. Start Executing Main Code**
+- JavaScript starts executing **synchronously**.
+- Each line runs **top to bottom** in the **Call Stack**.
+
+```js
+console.log("Start");
+```
+➡️ Added to the call stack → executed → logs “Start” → removed from the stack.
+
+---
+
+#### **2. Handle Asynchronous Code**
+
+```js
+setTimeout(() => console.log("setTimeout"), 0);
+```
+
+- `setTimeout` is a **Web API**, so:
+  - The **callback function** (`() => console.log(...)`) is passed to the browser timer.
+  - It **does NOT block** the call stack.
+  - After 0ms, the callback is moved to the **Macro-task Queue**.
+
+---
+
+#### **3. Handle Promises (Micro-task)**
+
+```js
+Promise.resolve().then(() => console.log("Promise"));
+```
+
+- A resolved Promise is a **Micro-task**.
+- Its `.then()` callback is placed into the **Micro-task Queue**.
+
+---
+
+#### **4. Continue Synchronous Code**
+```js
+console.log("End");
+```
+➡️ This runs immediately and logs “End”.
+
+---
+
+#### **5. Finish Current Call Stack**
+- Now that all **synchronous code** has run, the call stack is **empty**.
+
+---
+
+#### **6. Event Loop Takes Over**
+- **Event Loop** checks the queues:
+  - 🔍 **Are there micro-tasks?** Yes → execute **all micro-tasks** first.
+    - `console.log("Promise")` runs.
+  - 🔁 Then, **1 macro-task** is taken from the Macro-task Queue.
+    - `console.log("setTimeout")` runs.
+
+---
+
+#### ✅ **Final Output (from this example)**
+
+```js
+console.log("Start");
+setTimeout(() => console.log("setTimeout"), 0);
+Promise.resolve().then(() => console.log("Promise"));
+console.log("End");
+```
+
+**Output:**
+```
+Start
+End
+Promise
+setTimeout
+```
+
+---
+
+### 🔄 In Short:
+1. **Main code runs** line-by-line.
+2. **Async tasks** are offloaded to Web APIs.
+3. **Promises (micro-tasks)** are queued.
+4. After main code: **event loop clears micro-tasks first**, then macro-tasks.
+5. **Single-threaded** but **asynchronous-capable** thanks to the event loop!
+
+---
+
 ---
 
 ## **Node.js Request Handling Flow**
@@ -146,6 +240,10 @@ res.json(users); // Sends JSON response back to client
 ```
 The event loop pushes this function onto the stack, and Node.js sends the response.
 ---
+
+
+
+
 ---
 
 ### 🔄 **Node.js Execution Flow (In Detail)**

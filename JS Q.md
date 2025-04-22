@@ -3024,13 +3024,15 @@ Here are **interview-style answers** for **Execution Context & Event Loop** conc
 #### **Call Stack and Execution Context**
 
 
+ - The **call stack** is a data structure that keeps track of the function calls in JavaScript. 
+ - When a function is called, it is added to the stack, and when it finishes executing, it is removed. 
+  - It follows a **Last In, First Out (LIFO)** order.
 
-The **call stack** is a data structure that keeps track of the function calls in JavaScript. When a function is called, it is added to the stack, and when it finishes executing, it is removed. It follows a **Last In, First Out (LIFO)** order.
+ - **Execution context** is an environment where JavaScript code is evaluated and executed. Each function invocation has its own execution context, and there are three main types:
 
-**Execution context** is an environment where JavaScript code is evaluated and executed. Each function invocation has its own execution context, and there are three main types:
-**Global execution context**: The default context in which the JavaScript code is executed.
-**Function execution context**: Created when a function is invoked, where the function's code is executed.
-**Eval execution context**: Code executed inside an `eval()` function (though it's not commonly used).
+ - **Global execution context**: The default context in which the JavaScript code is executed.
+ - **Function execution context**: Created when a function is invoked, where the function's code is executed.
+ - **Eval execution context**: Code executed inside an `eval()` function (though it's not commonly used).
 
 The **execution context** has three key components:
 - **Variable Object**: Stores variables and function declarations.
@@ -3046,10 +3048,10 @@ The **execution context** has three key components:
 The **event loop** in JavaScript is responsible for executing code, collecting and processing events, and executing sub-tasks from the message queue. It allows JavaScript to perform non-blocking asynchronous operations by handling events and messages in the queue.
 
 Here's how it works:
-**Call Stack**: When JavaScript code is executed, it runs inside the call stack.
-**Web APIs**: Some asynchronous operations (like `setTimeout`, AJAX, or event listeners) are handled by Web APIs, and they are not directly executed in the call stack.
-**Callback Queue**: Once an asynchronous task is completed, its callback is placed in the callback queue.
-**Event Loop**: The event loop continuously checks the call stack. If the stack is empty, it moves the first event from the callback queue to the call stack for execution.
+ - **Call Stack**: When JavaScript code is executed, it runs inside the call stack.
+ - **Web APIs**: Some asynchronous operations (like `setTimeout`, AJAX, or event listeners) are handled by Web APIs, and they are not directly executed in the call stack.
+ - **Callback Queue**: Once an asynchronous task is completed, its callback is placed in the callback queue.
+ - **Event Loop**: The event loop continuously checks the call stack. If the stack is empty, it moves the first event from the callback queue to the call stack for execution.
 
 The event loop allows JavaScript to handle asynchronous operations while maintaining a single-threaded execution model.
 

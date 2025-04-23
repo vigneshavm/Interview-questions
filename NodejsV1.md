@@ -2,28 +2,29 @@
 
 
 
-| **Category**                               | **Topics**                                                                                                                                                                        |
-|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Node.js Basics**                         | [Create Node App using JS](#create-node-app-using-js), [Create Node App using TypeScript](#create-node-app-using-typescript), [Node.js with TypeScript](#nodejs-with-typescript) |
-| **Node.js Architecture**                   | [Node.js Architecture](#nodejs-architecture), [Node.js handle multiple requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature), [Scalability issues](#scalability-issues)                                       |
-| **Asynchronous Programming**               | [Callback Hell](#callback-hell), [Promise](#promise), [Promise vs Async/Await](#promise-vs-asyncawait),  [Promise Type](#Promise-Type)           |
-| **Concurrency & Processes**                | [Event Loop](#event-loop), [Worker Threads](#worker-threads), [Child Processes](#child-processes), [Cluster Module](#cluster-module)     , [Cluster Module vs Child Process vs Worker Thread](#Cluster-Module-vs-Child-Process-vs-Worker-Thread)                                 |
-| **Event Handling**                         | [Event Emitters](#event-emitters), [Process Object](#process-object)           [WebSockets](#websockets-socketio-basics),                                                             |
-| **Security**                    | [Secure Node.js App](#secure-nodejs-app),  [HTTP Methods](#http-methods--use-cases), [HTTP Status Codes](#status-codes)   ,                [CORS](#cors) , [Middleware](#middleware), [Helmet](#Helmet)  ,[Rate Limiting APIs](#rate-limiting-apis)  |
-| **Authentication & Authorization**         | [Authentication vs Authorization](#authentication-vs-authorization), [JWT](#jwt),[Refresh Tokens](#refresh-tokens), [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers), [Protected Route](#protected-route), [Role-Based Access Control](#role-based-access-control-rbac)                    |
-| **Caching & Optimization**                 | [Caching Strategies](#caching-strategies), [Node.js with Redis (Caching)](#nodejs-with-redis-caching), [Performance Optimization](#performance-optimization)                     |
-| **API Design & Development**               | [REST API](#rest-api),[Secure REST APIs](#secure-rest-apis), [Pagination REST API](#implement-pagination-in-a-rest-api), [Clean RESTful Folder Structure](#clean-restful-folder-structure)|
-| **Error Handling & Validation**            | [Error handling in REST APIs](#error-handling-in-rest-apis), [Error Handling](#error-handling), [Data Validation](#data-validation)                                            |
-| **Package Json**                        |  [package json](#package-json)   , [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                         |
-| **Database & Transactions**                | [Database Transactions](#database-transactions), [Data consistency across distributed services](#data-consistency-across-distributed-services)                                |
-| **Deployment & Scaling**                   | [Load Balancing](#load-balancing),  [Microservices Communication](#microservices-communication)        |
-| **Garbage Collection**                   | [Garbage Collection](#Garbage-Collection)|
+---
 
+### 📘 **Node.js Categories and Topics**
 
-
-
+| **Category**                         | **Topics**                                                                                                                                                       |
+|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Node.js Basics**                  | - [Create Node App using JS](#create-node-app-using-js) <br> - [Create Node App using TypeScript](#create-node-app-using-typescript) <br> - [Node.js with TypeScript](#nodejs-with-typescript) |
+| **Node.js Architecture**            | - [Node.js Architecture](#nodejs-architecture) <br> - [Node.js handle multiple requests](#nodejs-handle-multiple-requests) <br> - [Single-Threaded Nature](#single-threaded-nature) <br> - [Scalability issues](#scalability-issues) |
+| **Asynchronous Programming**        | - [Callback Hell](#callback-hell) <br> - [Promise](#promise) <br> - [Promise vs Async/Await](#promise-vs-asyncawait) <br> - [Promise Type](#Promise-Type) |
+| **Concurrency & Processes**         | - [Event Loop](#event-loop) <br> - [Worker Threads](#worker-threads) <br> - [Child Processes](#child-processes) <br> - [Cluster Module](#cluster-module) <br> - [Cluster Module vs Child Process vs Worker Thread](#Cluster-Module-vs-Child-Process-vs-Worker-Thread) |
+| **Event Handling**                  | - [Event Emitters](#event-emitters) <br> - [Process Object](#process-object) <br> - [WebSockets](#websockets-socketio-basics) |
+| **Security**                        | - [Secure Node.js App](#secure-nodejs-app) <br> - [HTTP Methods](#http-methods--use-cases) <br> - [HTTP Status Codes](#status-codes) <br> - [CORS](#cors) <br> - [Middleware](#middleware) <br> - [Helmet](#Helmet) <br> - [Rate Limiting APIs](#rate-limiting-apis) <br> - [XSS Attack](#XSS-Attack) |
+| **Authentication & Authorization** | - [Authentication vs Authorization](#authentication-vs-authorization) <br> - [JWT](#jwt) <br> - [Refresh Tokens](#refresh-tokens) <br> - [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers) <br> - [Protected Route](#protected-route) <br> - [Role-Based Access Control](#role-based-access-control-rbac) |
+| **Caching & Optimization**         | - [Caching Strategies](#caching-strategies) <br> - [Node.js with Redis (Caching)](#nodejs-with-redis-caching) <br> - [Performance Optimization](#performance-optimization) |
+| **API Design & Development**       | - [REST API](#rest-api) <br> - [Secure REST APIs](#secure-rest-apis) <br> - [Pagination REST API](#implement-pagination-in-a-rest-api) <br> - [Clean RESTful Folder Structure](#clean-restful-folder-structure) |
+| **Error Handling & Validation**    | - [Error handling in REST APIs](#error-handling-in-rest-apis) <br> - [Error Handling](#error-handling) <br> - [Data Validation](#data-validation) |
+| **Package JSON**                   | - [package.json](#package-json) <br> - [package.json vs package-lock.json](#packagejson-vs-package-lockjson) |
+| **Database & Transactions**        | - [Database Transactions](#database-transactions) <br> - [Data consistency across distributed services](#data-consistency-across-distributed-services) |
+| **Deployment & Scaling**           | - [Load Balancing](#load-balancing) <br> - [Microservices Communication](#microservices-communication) |
+| **Garbage Collection**             | - [Garbage Collection](#Garbage-Collection) |
 
 ---
+
 
 
 ## **Create Node App using JS**
@@ -2046,6 +2047,68 @@ app.use(helmet({
 
 ---
 
+
+
+## **XSS Attack**
+
+An **XSS (Cross-Site Scripting) attack** is a **security vulnerability** that allows an attacker to **inject malicious scripts (usually JavaScript)** into content that other users will see.
+
+---
+
+### 🧨 **How it Works:**
+- Attacker injects a script into a **web page** (via form input, URL, or comment box).
+- The malicious script is then **executed in another user’s browser**.
+- This script can **steal cookies**, **session tokens**, redirect users, or **modify page content**.
+
+---
+
+### 📂 **Types of XSS Attacks:**
+
+1. **Stored XSS**  
+   - Malicious script is **permanently stored** on the server (e.g., in a database).
+   - Victim loads the page and script runs automatically.
+   - Common in comment sections, forums, etc.
+
+2. **Reflected XSS**  
+   - Script is **injected via a URL or request** and **reflected back** by the server.
+   - Triggered when user **clicks a malicious link**.
+
+3. **DOM-based XSS**  
+   - Happens entirely on the **client side**, through JavaScript modifying the DOM.
+   - Script uses `document.location`, `document.write`, etc., to inject payload.
+
+---
+
+### 🔓 **What Can It Do?**
+- Steal login credentials
+- Hijack sessions
+- Deface websites
+- Redirect users to phishing/malware sites
+- Perform actions on behalf of the user (if logged in)
+
+---
+
+### 🔐 **How to Prevent XSS:**
+
+- **Escape Output**: Sanitize HTML, JavaScript, URLs, etc.
+- **Input Validation**: Never trust user input. Sanitize on both client and server.
+- **Use HTTP-only Cookies**: So JavaScript can’t access them.
+- **Content Security Policy (CSP)**: Prevents inline scripts and untrusted sources.
+- **Framework Protections**: Use secure templating engines (e.g., React auto-escapes content).
+
+---
+
+### 🧪 **Example of Reflected XSS:**
+```html
+<!-- User clicks this URL -->
+http://example.com/search?q=<script>alert('XSS')</script>
+```
+If the server reflects the input without sanitizing:
+```html
+<p>You searched for: <script>alert('XSS')</script></p>
+```
+
+---
 
 
 

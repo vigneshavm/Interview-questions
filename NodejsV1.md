@@ -4,20 +4,20 @@
 
 | **Category**                         | **Topics**                                                                                                                                                       |
 |--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Node.js Basics**                  | [Create Node App using JS](#create-node-app-using-js)  [Create Node App using TypeScript](#create-node-app-using-typescript)  [Node.js with TypeScript](#nodejs-with-typescript) |
-| **Node.js Architecture**            | [Node.js Architecture](#nodejs-architecture)  [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  [Single-Threaded Nature](#single-threaded-nature)  [Scalability issues](#scalability-issues) |
-| **Asynchronous Programming**        | [Callback Hell](#callback-hell)  [Promise](#promise)  [Promise vs Async/Await](#promise-vs-asyncawait)  [Promise Type](#Promise-Type) |
-| **Concurrency & Processes**         | [Event Loop](#event-loop)  [Worker Threads](#worker-threads)  [Child Processes](#child-processes)  [Cluster Module](#cluster-module)  [Cluster Module vs Child Process vs Worker Thread](#Cluster-Module-vs-Child-Process-vs-Worker-Thread) |
-| **Event Handling**                  | [Event Emitters](#event-emitters)  [Process Object](#process-object)  [WebSockets](#websockets-socketio-basics) |
-| **Security**                        | [Secure Node.js App](#secure-nodejs-app)  [HTTP Methods](#http-methods--use-cases)  [HTTP Status Codes](#status-codes)  [CORS](#cors)  [Middleware](#middleware)  [Helmet](#Helmet)  [Rate Limiting APIs](#rate-limiting-apis)  [XSS Attack](#XSS-Attack) |
-| **Authentication & Authorization** | [Authentication vs Authorization](#authentication-vs-authorization)  [JWT](#jwt)  [Refresh Tokens](#refresh-tokens)  [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)  [Protected Route](#protected-route)  [Role-Based Access Control](#role-based-access-control-rbac) |
-| **Caching & Optimization**         | [Caching Strategies](#caching-strategies)  [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  [Performance Optimization](#performance-optimization) |
-| **API Design & Development**       | [REST API](#rest-api)  [Secure REST APIs](#secure-rest-apis)  [Pagination REST API](#implement-pagination-in-a-rest-api)  [Clean RESTful Folder Structure](#clean-restful-folder-structure) |
-| **Error Handling & Validation**    | [Error handling in REST APIs](#error-handling-in-rest-apis)  [Error Handling](#error-handling)  [Data Validation](#data-validation) |
-| **Package JSON**                   | [package.json](#package-json)  [package.json vs package-lock.json](#packagejson-vs-package-lockjson) |
-| **Database & Transactions**        | [Database Transactions](#database-transactions)  [Data consistency across distributed services](#data-consistency-across-distributed-services) |
-| **Deployment & Scaling**           | [Load Balancing](#load-balancing)  [Microservices Communication](#microservices-communication) |
-| **Garbage Collection**             | [Garbage Collection](#Garbage-Collection) |
+| **Node.js Basics**                  | - [Create Node App using JS](#create-node-app-using-js)  - [Create Node App using TypeScript](#create-node-app-using-typescript)  - [Node.js with TypeScript](#nodejs-with-typescript) |
+| **Node.js Architecture**            | - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues) |
+| **Asynchronous Programming**        | - [Callback Hell](#callback-hell)  - [Promise](#promise)  - [Promise vs Async/Await](#promise-vs-asyncawait)  - [Promise Type](#Promise-Type) |
+| **Concurrency & Processes**         | - [Event Loop](#event-loop)  - [Worker Threads](#worker-threads)  - [Child Processes](#child-processes)  - [Cluster Module](#cluster-module)  - [Cluster Module vs Child Process vs Worker Thread](#Cluster-Module-vs-Child-Process-vs-Worker-Thread) |
+| **Event Handling**                  | - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) |
+| **Security**                        | - [Secure Node.js App](#secure-nodejs-app)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#Helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [XSS Attack](#XSS-Attack) |
+| **Authentication & Authorization** | - [Authentication vs Authorization](#authentication-vs-authorization)  - [JWT](#jwt)  - [Refresh Tokens](#refresh-tokens)  - [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)  - [Protected Route](#protected-route)  - [Role-Based Access Control](#role-based-access-control-rbac) |
+| **Caching & Optimization**         | - [Caching Strategies](#caching-strategies)  - [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  - [Performance Optimization](#performance-optimization) |
+| **API Design & Development**       | - [REST API](#rest-api)  - [Secure REST APIs](#secure-rest-apis)  - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure) |
+| **Error Handling & Validation**    | - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Error Handling](#error-handling)  - [Data Validation](#data-validation) |
+| **Package JSON**                   | - [package.json](#package-json)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson) |
+| **Database & Transactions**        | - [Database Transactions](#database-transactions)  - [Data consistency across distributed services](#data-consistency-across-distributed-services) |
+| **Deployment & Scaling**           | - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication) |
+| **Garbage Collection**             | - [Garbage Collection](#Garbage-Collection) |
 
 ---
 

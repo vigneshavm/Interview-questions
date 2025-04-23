@@ -1,13 +1,22 @@
-| [Functions](#functions) | [Closures](#closures) | [Currying ](#currying-in-javascript) 
-|[Request/Response Types](#requestresponse-types) 
-| [Custom Error](#custom-error) 
-| [Inheritance](#Inheritance)
-| [Call, Apply, Bind](#call-and-apply-and-bind-methods)
-| [Debounce and Throttle](#debounce-and-throttle-functions)   | [Unexpected Outputs](#understanding-unexpected-outputs) | [Shallow vs Deep Copy](#shallow-vs-deep-copy)  |  [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick) 
 
-|[ES6 Features](#key-es6-features) | [Optional Chaining (`?.`)](#optional-chaining-operator) | [Hoisting](#hoisting)
 
-| • [innerHTML vs textContent](#innerhtml-vs-textcontent)  • [CSS Manipulation](#css-manipulation)|
+| [Hoisting](#hoisting)  
+| [Closures](#closures)  
+| [Call, Apply, Bind](#call-and-apply-and-bind-methods)  
+| [Currying](#currying-in-javascript)  
+| [Debounce and Throttle](#debounce-and-throttle-functions)  
+| [Shallow vs Deep Copy](#shallow-vs-deep-copy)  
+| [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)  
+| [ES6 Features](#key-es6-features)  
+| [Optional Chaining (`?.`)](#optional-chaining-operator)  
+| [Inheritance](#Inheritance)  
+| [innerHTML vs textContent](#innerhtml-vs-textcontent)  
+| [CSS Manipulation](#css-manipulation)  
+| [Request/Response Types](#requestresponse-types)  
+| [Custom Error](#custom-error)  
+| [Unexpected Outputs](#understanding-unexpected-outputs)
+
+
 
 **TypeScript**
 | [TS Improves JS](#how-typescript-improves-javascript) | [Interface Vs Type](#interface-vs-type) | [Generics](#generics) | [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |   [Decorators](#decorators) | [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | 

@@ -1,12 +1,6 @@
-| **Functions & Scope** | 
-• [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    
-• [Arrow Functions](#arrow-functions)    
-• [Normal Function vs Arrow Function](#normal-function-vs-arrow-function) 
-• [Anonymous Functions](#anonymous-functions---use-cases)    
-• [Higher-Order Functions](#higher-order-functions)    
-• [Callback Functions](#callback-functions) 
-• [Pure Functions](#pure-functions-and-side-effects)   
-• [Immediately Invoked Function](#immediately-invoked-function-expressions)    
+| [Functions](#functions) | 
+
+
 
 
 
@@ -4095,6 +4089,15 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 
 
+## Functions
+• [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    
+• [Arrow Functions](#arrow-functions)    
+• [Normal Function vs Arrow Function](#normal-function-vs-arrow-function) 
+• [Anonymous Functions](#anonymous-functions---use-cases)    
+• [Higher-Order Functions](#higher-order-functions)    
+• [Callback Functions](#callback-functions) 
+• [Pure Functions](#pure-functions-and-side-effects)   
+• [Immediately Invoked Function](#immediately-invoked-function-expressions)    
 
 
 

@@ -99,35 +99,52 @@ tsconfig.json
 
 ---
 
-## 🔄 **Event Loop: Step-by-Step Execution**
+## **Event Loop**
 
-1. **Synchronous Code Executes First**
-   - Added to call stack and executed line-by-line.
+- **Single-threaded but asynchronous**  
+  Node.js runs on a single thread, but it can handle multiple operations concurrently using the event loop and non-blocking I/O.
 
-2. **Async Code (e.g., `setTimeout`, Promises`) Offloaded**
-   - Handled by Web APIs or libuv (thread pool).
+- **Non-blocking I/O operations**  
+  Time-consuming tasks (like file reading or network requests) are offloaded, and callbacks are queued once the tasks complete.
 
-3. **Microtasks Added to Microtask Queue**
-   - Includes `.then()` and `process.nextTick()`.
+- **Components involved**  
+  - **Call Stack**
+  - **Event Queue (Callback Queue)**
+  - **Node APIs**
+  - **Microtask Queue (for Promises & async/await)**
+  - **Event Loop**
 
-4. **Call Stack Clears**
-   - Once main thread is free, event loop starts picking tasks.
+- **Main Phases of Event Loop:**
+  1. **Timers** – Executes `setTimeout` and `setInterval` callbacks.
+  2. **Pending Callbacks** – Executes I/O callbacks that were deferred.
+  3. **Idle, Prepare** – Internal use.
+  4. **Poll** – Retrieves new I/O events and executes their callbacks.
+  5. **Check** – Executes `setImmediate()` callbacks.
+  6. **Close Callbacks** – Executes `close` event callbacks like `socket.on('close')`.
 
-5. **Event Loop Executes**
-   - **All Microtasks First** → then one **Macro-task**.
+- **Microtasks vs Macrotasks**  
+  - **Microtasks**: Promises, `queueMicrotask()` — Executed **right after** the current operation, before next phase.
+  - **Macrotasks**: `setTimeout`, `setImmediate`, `setInterval` — Scheduled by the event loop phases.
 
-6. **Final Output Order (Example):**
-   ```js
-   console.log("Start");
-   setTimeout(() => console.log("Timeout"), 0);
-   Promise.resolve().then(() => console.log("Promise"));
-   console.log("End");
-   // Output:
-   // Start
-   // End
-   // Promise
-   // Timeout
-   ```
+- **Order of execution (priority):**
+  1. Code in call stack
+  2. Microtask queue (Promises)
+  3. Event loop phase (like timers, poll, check)
+  4. Next microtasks again before next phase
+
+- **Example flow:**
+  ```js
+  setTimeout(() => console.log('timeout'), 0);
+  setImmediate(() => console.log('immediate'));
+  Promise.resolve().then(() => console.log('promise'));
+  console.log('sync');
+  // Output: sync → promise → timeout OR immediate (order may vary)
+  ```
+
+- **Important behavior**:  
+  The **event loop ensures** that the call stack is empty before executing any callback from the event or microtask queues.
+
+---
 
 ---
 

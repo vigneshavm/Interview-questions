@@ -3,10 +3,7 @@
 | [Custom Error](#custom-error) 
 | [Inheritance](#Inheritance)
 | [Call, Apply, Bind](#call-and-apply-and-bind-methods)
-| [Debounce and Throttle](#debounce-and-throttle-functions)    
-| [Unexpected Outputs](#understanding-unexpected-outputs) 
-| [Shallow vs Deep Copy](#shallow-vs-deep-copy)  
-|  [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)
+| [Debounce and Throttle](#debounce-and-throttle-functions)   | [Unexpected Outputs](#understanding-unexpected-outputs) | [Shallow vs Deep Copy](#shallow-vs-deep-copy)  |  [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)
 
 **TypeScript**
 | [TS Improves JS](#how-typescript-improves-javascript) | [Interface Vs Type](#interface-vs-type) | [Generics](#generics) | [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |   [Decorators](#decorators) | [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | 

@@ -20,10 +20,7 @@
 
 
 **Design Patterns & Architecture**
- | • [Design Patterns](#introduction-to-design-patterns)    
- • [Function Composition Patterns](#function-composition-patterns)        
- • [Dependency Injection](#dependency-injection)       
- • [Memoization Techniques](#memoization-techniques)    
+ | • [Design Patterns](#introduction-to-design-patterns)     • [Function Composition Patterns](#function-composition-patterns)         • [Dependency Injection](#dependency-injection)        • [Memoization Techniques](#memoization-techniques)    
  
 
 **Build**

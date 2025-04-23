@@ -4,6 +4,7 @@
 | [Inheritance](#Inheritance)
 | [Call, Apply, Bind](#call-and-apply-and-bind-methods)
 | [Debounce and Throttle](#debounce-and-throttle-functions)    
+| [Unexpected Outputs](#understanding-unexpected-outputs) |
 
 **TypeScript**
 | [TS Improves JS](#how-typescript-improves-javascript) | [Interface Vs Type](#interface-vs-type) | [Generics](#generics) | [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |   [Decorators](#decorators) | [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | 
@@ -23,9 +24,6 @@
 
 **Design Patterns & Architecture**
  | • [Design Patterns](#introduction-to-design-patterns)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Dependency Injection](#dependency-injection)    • [Event Loop & Call Stack](#event-loop--call-stack)         • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)       
-
-**Execution & JS Engine**
- | • [Call Stack](#call-stack-and-execution-context)    • [Macro vs Micro-tasks](#macro-tasks-vs-micro-tasks)    • [setTimeout(0)](#settimeout0-and-task-queuing)    • [Web APIs](#web-apis-and-asynchronous-handling)    • [Unexpected Outputs](#understanding-unexpected-outputs) |
 
 **Modules & Tooling**
  | • [`<script>`, async, defer](#script-and-async-and-defer)    • [Tree Shaking](#tree-shaking-in-modern-bundlers)    • [Transpiling](#transpiling-javascript-code)    • [Babel](#role-of-babel-in-modern-development)    • [Webpack & Vite](#webpack-and-vite-bundling-process) |

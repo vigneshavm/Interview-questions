@@ -8,12 +8,10 @@
 
 
 
-| **TypeScript** |  |  |
-|----------------|--|--|
-| [How TypeScript Improves JavaScript](#how-typescript-improves-javascript) | [Interface vs. Type](#interface-vs-type) | [Generics](#generics) |
-| [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |
-| [Custom Error](#custom-error) | [Request/Response Types](#requestresponse-types) | [Decorators](#decorators) |
-| [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | — |
+| **TypeScript** |  |  |  |  |  |
+|-----------------------------|--|--|-----------------------------|--|--|
+| [How TypeScript Improves JavaScript](#how-typescript-improves-javascript) | [Interface vs. Type](#interface-vs-type) | [Generics](#generics) | [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |
+| [Custom Error](#custom-error) | [Request/Response Types](#requestresponse-types) | [Decorators](#decorators) | [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | — |
 
 ---
 

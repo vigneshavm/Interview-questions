@@ -18,7 +18,7 @@
 | [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions) | [Promises](#promises) | [Async/Await](#asyncawait) | [Handling Async Errors](#handling-async-errors) | [Event Propagation](#event-propagation) | [Extending Built-in Objects](#extending-built-in-objects) | [Microtask Queue](#microtask-queue) | [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick) | [Shallow vs Deep Copy](#shallow-vs-deep-copy) | [ Memory Leaks](#common-causes-of-memory-leaks) | [Garbage Collection](#javascript-garbage-collection) | [Type Coercion](#type-coercion-in-operations) | [Map Key References with Objects](#map-key-references-with-objects) | 
 
 **Objects & Classes**
-| • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)        • [Static Class Members](#static-class-members)        • [Prototype Pattern](#prototype-pattern)    • [Getters and Setters](#getters-and-setters)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)       • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
+| • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)        • [Static Class Members](#static-class-members)            • [Getters and Setters](#getters-and-setters)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)       • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
 
 
 **Design Patterns & Architecture**
@@ -1774,7 +1774,7 @@ For instance, the **Singleton Pattern** ensures that a class has only one instan
 | **Factory Pattern** | Provides a way to create objects without specifying the exact class. Defines an interface for object creation, but the instantiation is handled by methods or subclasses. Promotes loose coupling. |
 | **Module Pattern** | Encapsulates code in a self-contained unit to maintain a clean global namespace. Uses closures to expose public members while keeping other functionality private. |
 | **Observer Pattern** | A behavioral pattern where an object (subject) maintains a list of dependents (observers) and notifies them of changes. Useful in UI event handling or real-time systems. |
-| **Prototype Pattern** | Creates new objects by cloning an existing object (prototype). Useful when object creation is costly. In JavaScript, implemented using `Object.create()`. |
+| [Prototype Pattern](#prototype-pattern) | Creates new objects by cloning an existing object (prototype). Useful when object creation is costly. In JavaScript, implemented using `Object.create()`. |
 
 
 #### **Singleton Pattern**

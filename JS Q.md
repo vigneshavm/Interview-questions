@@ -1,20 +1,7 @@
 
 
-| [Hoisting](#hoisting)  
-| [Closures](#closures)  
-| [Call, Apply, Bind](#call-and-apply-and-bind-methods)  
-| [Currying](#currying-in-javascript)  
-| [Debounce and Throttle](#debounce-and-throttle-functions)  
-| [Shallow vs Deep Copy](#shallow-vs-deep-copy)  
-| [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)  
-| [ES6 Features](#key-es6-features)  
-| [Optional Chaining (`?.`)](#optional-chaining-operator)  
-| [Inheritance](#Inheritance)  
-| [innerHTML vs textContent](#innerhtml-vs-textcontent)  
-| [CSS Manipulation](#css-manipulation)  
-| [Request/Response Types](#requestresponse-types)  
-| [Custom Error](#custom-error)  
-| [Unexpected Outputs](#understanding-unexpected-outputs)
+| [Hoisting](#hoisting)  | [Closures](#closures)  | [Call, Apply, Bind](#call-and-apply-and-bind-methods)  
+| [Currying](#currying-in-javascript)  | [Debounce and Throttle](#debounce-and-throttle-functions)  | [Shallow vs Deep Copy](#shallow-vs-deep-copy)  | [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)  | [ES6 Features](#key-es6-features)  | [Optional Chaining (`?.`)](#optional-chaining-operator)  | [Inheritance](#Inheritance)  | [innerHTML vs textContent](#innerhtml-vs-textcontent)  | [CSS Manipulation](#css-manipulation)  | [Request/Response Types](#requestresponse-types)  | [Custom Error](#custom-error)  | [Unexpected Outputs](#understanding-unexpected-outputs)
 
 
 

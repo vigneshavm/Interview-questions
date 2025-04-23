@@ -1,3 +1,15 @@
+| **Functions & Scope** | 
+• [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    
+• [Arrow Functions](#arrow-functions)    
+• [Normal Function vs Arrow Function](#normal-function-vs-arrow-function) 
+• [Anonymous Functions](#anonymous-functions---use-cases)    
+• [Higher-Order Functions](#higher-order-functions)    
+• [Callback Functions](#callback-functions) 
+• [Pure Functions](#pure-functions-and-side-effects)   
+• [Immediately Invoked Function](#immediately-invoked-function-expressions)    
+
+
+
 | **JavaScript Fundamentals** |  |  |  |  |  |
 |-----------------------------|--|--|-----------------------------|--|--|
 | [let and var and const](#let-and-var-and-const) | [Global JavaScript scope](#global-javascript-scope) | [use strict Directive](#use-strict-directive) [Hoisting](#hoisting) | [Lexical Scoping](#lexical-scoping) | [Scope](#scope) |

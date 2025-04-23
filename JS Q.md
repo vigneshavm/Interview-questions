@@ -1,4 +1,5 @@
-|  |  |  |  |  |  |
+| |  |  |  |  |  |
+|-----------------------------|--|--|-----------------------------|--|--|
 | [let and var and const](#let-and-var-and-const) | [Global JavaScript scope](#global-javascript-scope) | [use strict Directive](#use-strict-directive) | [Hoisting](#hoisting) | [Lexical Scoping](#lexical-scoping) | [Scope](#scope) |
 | [Global and Function and Block Scope](#global-and-function-and-block-scope) | [Data Types](#data-types) | [Symbol](#symbol) | [null and undefined and undeclared](#null-and-undefined-and-undeclared) | [Type Checking](#type-checking) | [== vs ===](#loose-equality-vs-strict-equality) |
 | [Mutable vs Immutable Objects](#mutable-vs-immutable-objects) | [Destructuring](#destructuring) | [Spread operator](#spread-operator) | [Rest Parameters](#rest-parameters) | [Usage of `super()`](#usage-of-super-in-classes) | [Understanding `__proto__`](#understanding-__proto__-and-prototypes) |

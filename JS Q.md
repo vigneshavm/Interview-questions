@@ -1,6 +1,7 @@
 | [Functions](#functions) | [Closures](#closures) | [Currying ](#currying-in-javascript) 
 |[Request/Response Types](#requestresponse-types) 
 | [Custom Error](#custom-error) 
+| [Inheritance](#Inheritance)
 
 **TypeScript**
 | [TS Improves JS](#how-typescript-improves-javascript) | [Interface Vs Type](#interface-vs-type) | [Generics](#generics) | [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |   [Decorators](#decorators) | [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | 
@@ -18,32 +19,26 @@
 | [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions) | [Promises](#promises) | [Async/Await](#asyncawait) | [Handling Async Errors](#handling-async-errors) | [Event Propagation](#event-propagation) | [Extending Built-in Objects](#extending-built-in-objects) | [Microtask Queue](#microtask-queue) | [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick) | [Shallow vs Deep Copy](#shallow-vs-deep-copy) | [ Memory Leaks](#common-causes-of-memory-leaks) | [Garbage Collection](#javascript-garbage-collection) | [Type Coercion](#type-coercion-in-operations) | [Map Key References with Objects](#map-key-references-with-objects) | 
 
 **Objects & Classes**
-| • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    • [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance)    • [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)    • [Static Class Members](#static-class-members)    • [Inheritance](#inheritance)    • [Prototype Pattern](#prototype-pattern)    • [Getters and Setters](#getters-and-setters)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)       • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
+| • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    
+    • [Static Class Members](#static-class-members)        • [Prototype Pattern](#prototype-pattern)    • [Getters and Setters](#getters-and-setters)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)       • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
 
 
 **Design Patterns & Architecture**
- | • [Design Patterns](#introduction-to-design-patterns)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Dependency Injection](#dependency-injection)    • [Event Loop & Call Stack](#event-loop--call-stack)    • [call, apply, bind](#call-and-apply-and-bind-methods)     • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)       • [Debounce and Throttle](#debounce-and-throttle-functions)    • [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance) |
-
+ | • [Design Patterns](#introduction-to-design-patterns)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Dependency Injection](#dependency-injection)    • [Event Loop & Call Stack](#event-loop--call-stack)    • [call, apply, bind](#call-and-apply-and-bind-methods)     • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)       • [Debounce and Throttle](#debounce-and-throttle-functions)    
 **Execution & JS Engine**
  | • [Call Stack](#call-stack-and-execution-context)    • [Macro vs Micro-tasks](#macro-tasks-vs-micro-tasks)    • [setTimeout(0)](#settimeout0-and-task-queuing)    • [Web APIs](#web-apis-and-asynchronous-handling)    • [Unexpected Outputs](#understanding-unexpected-outputs) |
-
 **Modules & Tooling**
  | • [`<script>`, async, defer](#script-and-async-and-defer)    • [Tree Shaking](#tree-shaking-in-modern-bundlers)    • [Transpiling](#transpiling-javascript-code)    • [Babel](#role-of-babel-in-modern-development)    • [Webpack & Vite](#webpack-and-vite-bundling-process) |
-
 **Browser APIs**
  | • [Cookies, sessionStorage, localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [WebSocket](#websocket-api)    • [Web Workers](#web-workers)    • [window.history](#using-window-history-api) |
-
 **DOM & Events**
  | • [Event Listeners](#event-listeners)    • [Bubbling vs Capturing](#event-bubbling)    • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)  • [Event Delegation and Bubbling](#event-delegation-and-bubbling)  • [innerHTML vs textContent](#innerhtml-vs-textcontent)  • [CSS Manipulation](#css-manipulation)|
-
 **Testing**
  | • [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) |
-
 **Security**
  | • [XSS](#cross-site-scripting-xss-and-prevention)    • [SQL Injection](#preventing-sql-injection-vulnerabilities)    • [Sensitive Data Handling](#handling-sensitive-data)    • [CSP](#content-security-policy-csp)    • [Security Headers](#common-security-headers-and-their-purposes)    • [Clickjacking](#preventing-clickjacking-attacks)    • [Input Validation](#input-validation-and-its-importance) |
-
 **Performance Optimization**
- | • [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    • [Lazy Loading](#lazy-loading)    • [Caching](#leveraging-caching-strategies-for-performance-optimization)    • [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    • [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    • [Polyfills](#polyfills-and-backward-compatibility)    • [Mixins for Inheritance](#implementing-mixins-for-multiple-inheritance) |
+ | • [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    • [Lazy Loading](#lazy-loading)    • [Caching](#leveraging-caching-strategies-for-performance-optimization)    • [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    • [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    • [Polyfills](#polyfills-and-backward-compatibility)    
 
 ---
 
@@ -154,7 +149,7 @@ document.getElementById("child").addEventListener("click", (event) => {
 
 
 
-## Inheritance
+## Inheritance in JavaScript
 
 JavaScript supports **prototypal inheritance**, allowing objects to inherit properties and methods from other objects.
 
@@ -4073,6 +4068,12 @@ The `super()` function is used in a subclass to call methods on the parent class
 • [Pure Functions](#pure-functions-and-side-effects)   
 • [Immediately Invoked Function](#immediately-invoked-function-expressions)    
 
+## Inheritance
+• [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance)    
+• [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)
+• [Inheritance](#Inheritance in JavaScript)
+• [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance) |
+• [Mixins for Inheritance](#implementing-mixins-for-multiple-inheritance) |
 
 
 

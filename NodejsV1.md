@@ -16,7 +16,7 @@
 | **Error Handling & Validation**    | - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Error Handling](#error-handling)  - [Data Validation](#data-validation) |
 | **Package JSON**                   | - [package.json](#package-json)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson) |
 | **Database & Transactions**        | - [Database Transactions](#database-transactions)  - [Data consistency across distributed services](#data-consistency-across-distributed-services) |
-| **Deployment & Scaling**           | - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication) |
+| **Deployment & Scaling**           | - [PM2](#PM2) - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication) |
 | **Garbage Collection**             | - [Garbage Collection](#Garbage-Collection) |
 
 ---
@@ -2123,7 +2123,73 @@ If the server reflects the input without sanitizing:
 
 ---
 
+## **PM2**
 
+### 🚀 **PM2 (Process Manager 2) — Node.js Utility**
 
+- PM2 is a **production-grade process manager** for Node.js applications.
+- It helps manage, monitor, and keep apps alive indefinitely with ease.
 
+---
 
+#### 🔧 **Core Features / Use Cases**
+
+- **Keep Apps Alive Forever**  
+  Automatically restarts crashed apps (ideal for production).
+
+- **Process Management**  
+  - Start, stop, restart, reload apps  
+  - Manage multiple Node.js apps concurrently  
+  - Command:  
+    ```bash
+    pm2 start app.js
+    ```
+
+- **Cluster Mode**  
+  - Leverages multi-core systems by running apps in cluster mode  
+  - Command:  
+    ```bash
+    pm2 start app.js -i max
+    ```
+
+- **Zero Downtime Reload**  
+  - Reload apps without downtime (great for updates)  
+  - Command:  
+    ```bash
+    pm2 reload app.js
+    ```
+
+- **Auto Restart on File Changes (Dev Mode)**  
+  - Watches for file changes and restarts automatically  
+  - Command:  
+    ```bash
+    pm2 start app.js --watch
+    ```
+
+- **Startup Script Generation**  
+  - Keeps apps running after server reboot  
+  - Command:  
+    ```bash
+    pm2 startup
+    pm2 save
+    ```
+
+- **Logging & Monitoring**  
+  - Centralized logs (`stdout`, `stderr`)  
+  - Real-time monitoring:  
+    ```bash
+    pm2 logs
+    pm2 monit
+    ```
+
+- **JSON-based Ecosystem Config**  
+  - Use `ecosystem.config.js` for managing multiple apps with one command.
+
+---
+
+#### 📦 **Installation**
+```bash
+npm install -g pm2
+```
+
+---

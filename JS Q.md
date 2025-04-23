@@ -3565,12 +3565,11 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 
 
-### Prototypes and Inheritance Interview Answers
-
----
 
 #### **Understanding `__proto__` and Prototypes**
 
+
+- [Prototype Chaining](#Prototype-Chaining)
 
 
 - In JavaScript, every object has a **prototype** from which it can inherit properties and methods. The **prototype** is itself an object that provides a blueprint for the object, and it is linked to the object via the internal property `[[Prototype]]`.
@@ -3592,6 +3591,60 @@ The `super()` function is used in a subclass to call methods on the parent class
   - Objects can inherit from other objects via the prototype chain, which allows for shared properties and methods.
 
 ---
+
+
+### **Prototype Chaining**
+
+Prototype chaining is a mechanism in JavaScript that is used to implement **inheritance**. Every object in JavaScript has an internal link to another object called its **prototype**. When trying to access a property or method on an object, JavaScript will:
+
+1. Look for the property on the object itself.
+2. If it doesn't find it, it will look up the object's prototype.
+3. If it's not there, it moves up the chain—this continues until it reaches `Object.prototype`, the top of the chain.
+4. If not found, it returns `undefined`.
+
+---
+
+### 🔍 Example:
+
+```javascript
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function () {
+  console.log(`${this.name} makes a sound.`);
+};
+
+function Dog(name) {
+  Animal.call(this, name); // Inherit properties
+}
+
+Dog.prototype = Object.create(Animal.prototype); // Inherit methods
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.speak = function () {
+  console.log(`${this.name} barks.`);
+};
+
+const d = new Dog("Buddy");
+d.speak(); // Buddy barks.
+```
+
+#### 🔎 What's happening here:
+- `d` → instance of `Dog`
+- `Dog.prototype` → inherits from `Animal.prototype`
+- `Animal.prototype` → inherits from `Object.prototype`
+
+So the prototype chain is:
+
+```
+d → Dog.prototype → Animal.prototype → Object.prototype → null
+```
+
+---
+
+
+
 
 #### **Object create and Prototype Chains**
 

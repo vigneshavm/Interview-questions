@@ -6,14 +6,9 @@
 | [TS Improves JS](#how-typescript-improves-javascript) | [Interface Vs Type](#interface-vs-type) | [Generics](#generics) | [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |   [Decorators](#decorators) | [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | 
 
 
-| **JavaScript Fundamentals** |  |  |  |  |  |
-|-----------------------------|--|--|-----------------------------|--|--|
-| [let and var and const](#let-and-var-and-const) | [Global JavaScript scope](#global-javascript-scope) | [use strict Directive](#use-strict-directive) [Hoisting](#hoisting) | [Lexical Scoping](#lexical-scoping) | [Scope](#scope) |
-| [Global and Function and Block Scope](#global-and-function-and-block-scope) | [Data Types](#data-types) | [Symbol](#symbol)  [null and undefined and undeclared](#null-and-undefined-and-undeclared) | [Type Checking](#type-checking) | [== vs ===](#loose-equality-vs-strict-equality) |
-| [Mutable vs Immutable Objects](#mutable-vs-immutable-objects) | [Destructuring](#destructuring) | [Usage of `super()`](#usage-of-super-in-classes) | [Understanding `__proto__`](#understanding-__proto__-and-prototypes) |
-| [Labeled Statements](#labeled-statements-usage) | [this Keyword Behavior](#this-keyword-behavior) | [ES6 Features](#key-es6-features)  [Optional Chaining (`?.`)](#optional-chaining-operator) | [Nullish Coalescing (`??`)](#nullish-coalescing-operator) | [Object Destructuring with Defaults](#object-destructuring-with-defaults) |
+**JavaScript Fundamentals**
+| [let and var and const](#let-and-var-and-const) | [Global JavaScript scope](#global-javascript-scope) | [use strict Directive](#use-strict-directive) [Hoisting](#hoisting) | [Lexical Scoping](#lexical-scoping) | [Scope](#scope) | [Global and Function and Block Scope](#global-and-function-and-block-scope) | [Data Types](#data-types) | [Symbol](#symbol)  [null and undefined and undeclared](#null-and-undefined-and-undeclared) | [Type Checking](#type-checking) | [== vs ===](#loose-equality-vs-strict-equality) | [Mutable vs Immutable Objects](#mutable-vs-immutable-objects) |  [Usage of `super()`](#usage-of-super-in-classes) | [Understanding `__proto__`](#understanding-__proto__-and-prototypes) | [Labeled Statements](#labeled-statements-usage) | [this Keyword Behavior](#this-keyword-behavior) | [ES6 Features](#key-es6-features)  [Optional Chaining (`?.`)](#optional-chaining-operator) | [Nullish Coalescing (`??`)](#nullish-coalescing-operator) | [Object Destructuring with Defaults](#object-destructuring-with-defaults) |
 
----
 
 
 
@@ -61,7 +56,7 @@
 | [Arrow Functions](#arrow-functions)    | `const add = (a, b) => a + b;`                                                                        | Concise function syntax with `this` binding               |
 | **Template Literals**   | `` `Hello, ${name}!` ``                                                                               | Multi-line strings & expressions inside `` `${}` ``        |
 | **Default Parameters**  | `function greet(name = "Guest") { return "Hi " + name; }`                                             | Provides fallback values for missing args                |
-| **Destructuring**       | `const { title, year } = movie;` <br> `const [first, second] = items;`                                | Unpacks values from objects/arrays                       |
+| [Destructuring](#destructuring)      | `const { title, year } = movie;` <br> `const [first, second] = items;`                                | Unpacks values from objects/arrays                       |
 | [Spread and Rest operator](#spread-operator)  | `const newArr = [...arr1, ...arr2];` <br> `function logAll(...args) {}`                               | Spread: expands, Rest: collects values                   |
 | **Promises / async/await** | `const fetchData = async () => { const res = await fetch(url); };`                                 | Handle async operations cleanly                          |
 | **Modules (import/export)** | `import React from 'react';` <br> `export const add = (a, b) => a + b;`                            | Use reusable code across files                           |

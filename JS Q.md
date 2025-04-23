@@ -10,6 +10,7 @@
 ---
 
 
+
 | **TypeScript** |  |  |
 |----------------|--|--|
 | [How TypeScript Improves JavaScript](#how-typescript-improves-javascript) | [Interface vs. Type](#interface-vs-type) | [Generics](#generics) |

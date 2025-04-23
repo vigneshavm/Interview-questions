@@ -1,8 +1,8 @@
 | [Functions](#functions) | [Closures](#closures) | [Currying ](#currying-in-javascript) 
 |[Request/Response Types](#requestresponse-types) 
 | [Custom Error](#custom-error) 
-**TypeScript**
 
+**TypeScript**
 | [TS Improves JS](#how-typescript-improves-javascript) | [Interface Vs Type](#interface-vs-type) | [Generics](#generics) | [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |   [Decorators](#decorators) | [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | 
 
 

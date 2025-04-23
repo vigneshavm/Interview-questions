@@ -1,8 +1,6 @@
 
-
 | [Hoisting](#hoisting)  | [Closures](#closures)  | [Call, Apply, Bind](#call-and-apply-and-bind-methods) | [Currying](#currying-in-javascript)  | [Debounce and Throttle](#debounce-and-throttle-functions)  | [Shallow vs Deep Copy](#shallow-vs-deep-copy)  | [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)  | [ES6 Features](#key-es6-features)  | [Optional Chaining (`?.`)](#optional-chaining-operator)  | [Inheritance](#Inheritance)  
-| [innerHTML vs textContent](#innerhtml-vs-textcontent)  | [CSS Manipulation](#css-manipulation)  | [Request/Response Types](#requestresponse-types)  | [Custom Error](#custom-error)  | [Unexpected Outputs](#understanding-unexpected-outputs)
-
+| [innerHTML vs textContent](#innerhtml-vs-textcontent)  | [CSS Manipulation](#css-manipulation)  | [Request/Response Types](#requestresponse-types)  | [Custom Error](#custom-error)  | [Unexpected Outputs](#understanding-unexpected-outputs) | [Event Loop & Call Stack](#event-loop--call-stack)   | [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    | [Object.create() and Prototype Chains](#object-create-and-prototype-chains)  
 
 
 **TypeScript**
@@ -15,23 +13,27 @@
 | [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)  |  [Default Parameters](#default-parameters) |  [JavaScript Modules (`import/export`)](#javascript-modules-importexport) |  [WeakMap and WeakSet](#weakmap-and-weakset-usage) |  | [Map and Plain Objects](#difference-between-map-and-plain-objects) 
 
 **Asynchronous JavaScript** 
-| [Sync vs Async](#synchronous-vs-asynchronous-functions)  | [Handling Async Errors](#handling-async-errors) | [Event Propagation](#event-propagation) | [Extending Built-in Objects](#extending-built-in-objects)  | [ Memory Leaks](#common-causes-of-memory-leaks) | [Garbage Collection](#javascript-garbage-collection) | [Type Coercion](#type-coercion-in-operations) | [Map Key References with Objects](#map-key-references-with-objects) | 
+| [Sync vs Async](#synchronous-vs-asynchronous-functions)  | [Handling Async Errors](#handling-async-errors) |  [Extending Built-in Objects](#extending-built-in-objects)  | [ Memory Leaks](#common-causes-of-memory-leaks) | [Garbage Collection](#javascript-garbage-collection) | [Type Coercion](#type-coercion-in-operations) | [Map Key References with Objects](#map-key-references-with-objects) | 
 
 **Objects & Classes**
 | • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)        • [Static Class Members](#static-class-members)            • [Getters and Setters](#getters-and-setters)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)       • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
 
 
 **Design Patterns & Architecture**
- | • [Design Patterns](#introduction-to-design-patterns)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Dependency Injection](#dependency-injection)    • [Event Loop & Call Stack](#event-loop--call-stack)         • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)       
+ | • [Design Patterns](#introduction-to-design-patterns)    
+ • [Function Composition Patterns](#function-composition-patterns)        
+ • [Dependency Injection](#dependency-injection)       
+ • [Memoization Techniques](#memoization-techniques)    
+ 
 
-**Modules & Tooling**
+**Build**
  | • [`<script>`, async, defer](#script-and-async-and-defer)    • [Tree Shaking](#tree-shaking-in-modern-bundlers)    • [Transpiling](#transpiling-javascript-code)    • [Babel](#role-of-babel-in-modern-development)    • [Webpack & Vite](#webpack-and-vite-bundling-process) |
 
-**Browser APIs**
+**Browser**
  | • [Cookies, sessionStorage, localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [WebSocket](#websocket-api)    • [Web Workers](#web-workers)    • [window.history](#using-window-history-api) |
 
 **Events**
- | • [Event Listeners](#event-listeners)    • [Bubbling vs Capturing](#event-bubbling)    • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)  • [Event Delegation and Bubbling](#event-delegation-and-bubbling)  
+ | [Event Propagation](#event-propagation)  • [Event Listeners](#event-listeners)    • [Bubbling vs Capturing](#event-bubbling)    • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)  • [Event Delegation and Bubbling](#event-delegation-and-bubbling)  
 
 **Testing**
  | • [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) |
@@ -3092,9 +3094,9 @@ In JavaScript, `call`, `apply`, and `bind` are methods that allow you to control
 
 #### **Memoization Techniques**
 
-
-
-**Memoization** is an optimization technique that involves caching the results of expensive function calls and reusing the cached result when the same inputs occur again. It is particularly useful in functions where the output is deterministic and depends on the inputs.
+- **Memoization** is an optimization technique that involves caching the results of expensive function calls 
+- reusing the cached result when the same inputs occur again. 
+- It is particularly useful in functions where the output is deterministic and depends on the inputs.
 
 - **How it works**:
   - Store the result of a function in a cache (object or map) with the input parameters as the key.
@@ -3438,8 +3440,6 @@ The `super()` function is used in a subclass to call methods on the parent class
 ---
 
 #### **Tree Shaking in Modern Bundlers**
-
-
 
 - **Tree shaking** is a feature of modern JavaScript bundlers (like Webpack and Rollup) that eliminates unused code from the final bundle. It works by statically analyzing the code to determine which exports are used and which can be safely removed.
 

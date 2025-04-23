@@ -2,6 +2,8 @@
 |[Request/Response Types](#requestresponse-types) 
 | [Custom Error](#custom-error) 
 | [Inheritance](#Inheritance)
+| [Call, Apply, Bind](#call-and-apply-and-bind-methods)
+| [Debounce and Throttle](#debounce-and-throttle-functions)    
 
 **TypeScript**
 | [TS Improves JS](#how-typescript-improves-javascript) | [Interface Vs Type](#interface-vs-type) | [Generics](#generics) | [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |   [Decorators](#decorators) | [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | 
@@ -16,12 +18,11 @@
 | [Synchronous vs Asynchronous](#synchronous-vs-asynchronous-functions) | [Promises](#promises) | [Async/Await](#asyncawait) | [Handling Async Errors](#handling-async-errors) | [Event Propagation](#event-propagation) | [Extending Built-in Objects](#extending-built-in-objects) | [Microtask Queue](#microtask-queue) | [setTimeout(), setImmediate(), process.nextTick()](#settimeout-and-setimmediate-and-processnexttick) | [Shallow vs Deep Copy](#shallow-vs-deep-copy) | [ Memory Leaks](#common-causes-of-memory-leaks) | [Garbage Collection](#javascript-garbage-collection) | [Type Coercion](#type-coercion-in-operations) | [Map Key References with Objects](#map-key-references-with-objects) | 
 
 **Objects & Classes**
-| • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    
-    • [Static Class Members](#static-class-members)        • [Prototype Pattern](#prototype-pattern)    • [Getters and Setters](#getters-and-setters)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)       • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
+| • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)        • [Static Class Members](#static-class-members)        • [Prototype Pattern](#prototype-pattern)    • [Getters and Setters](#getters-and-setters)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)       • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
 
 
 **Design Patterns & Architecture**
- | • [Design Patterns](#introduction-to-design-patterns)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Dependency Injection](#dependency-injection)    • [Event Loop & Call Stack](#event-loop--call-stack)    • [call, apply, bind](#call-and-apply-and-bind-methods)     • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)       • [Debounce and Throttle](#debounce-and-throttle-functions)    
+ | • [Design Patterns](#introduction-to-design-patterns)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Dependency Injection](#dependency-injection)    • [Event Loop & Call Stack](#event-loop--call-stack)         • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)       
 
 **Execution & JS Engine**
  | • [Call Stack](#call-stack-and-execution-context)    • [Macro vs Micro-tasks](#macro-tasks-vs-micro-tasks)    • [setTimeout(0)](#settimeout0-and-task-queuing)    • [Web APIs](#web-apis-and-asynchronous-handling)    • [Unexpected Outputs](#understanding-unexpected-outputs) |

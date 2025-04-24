@@ -47,13 +47,13 @@
 - [Caching Strategies](#caching-strategies)  - [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  - [Performance Optimization](#performance-optimization) - [Garbage Collection](#Garbage-Collection) 
 
  **Security Best Practices**
-- [SQL Injection](#sql-injection) - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)
+- [SQL Injection](#sql-injection) - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss) - [XSS Attack](#XSS-Attack) 
 - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf) - [Insecure Dependencies](#insecure-dependencies)
 - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure)
 - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal)
 - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#insecure-cors-configuration)
 - [Securing Sensitive Data in Node.js Applications](#Securing-Sensitive-Data)
-- [Secure Node.js App](#secure-nodejs-app)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#Helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [XSS Attack](#XSS-Attack) 
+- [Secure Node.js App](#secure-nodejs-app)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#Helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  
 
  **Testing**
 - Testing Frameworks

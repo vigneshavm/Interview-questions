@@ -47,9 +47,12 @@
 - [Caching Strategies](#caching-strategies)  - [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  - [Performance Optimization](#performance-optimization) - [Garbage Collection](#Garbage-Collection) 
 
  **Security Best Practices**
-- Common Security Vulnerabilities in Node.js and Mitigation Strategies
-- Preventing Denial of Service (DoS) Attacks
-- Securing Sensitive Data in Node.js Applications
+- [SQL Injection](#sql-injection) - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)
+- [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf) - [Insecure Dependencies](#insecure-dependencies)
+- [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure)
+- [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal)
+- [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#insecure-cors-configuration)
+- [Securing Sensitive Data in Node.js Applications](#Securing-Sensitive-Data)
 - [Secure Node.js App](#secure-nodejs-app)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#Helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [XSS Attack](#XSS-Attack) 
 
  **Testing**
@@ -2336,5 +2339,122 @@ npm install -g pm2
 | **Chaining**                    | Not supported, but can be manually implemented. | Chaining is built-in with `.then()` and `.catch()`.   | Chaining can be done using `await` for cleaner code. |
 | **Best Use Case**               | Simple asynchronous tasks with a single callback. | Complex async operations that require chaining or error handling. | Cleaner async functions, especially with multiple asynchronous operations in a sequence. |
 | **Example**                     | ```fs.readFile('file.txt', (err, data) => { console.log(data); });``` | ```fetch(url).then(response => response.json()).then(data => console.log(data));``` | ```async function fetchData() { let data = await fetch(url); console.log(data); }``` |
+
+
+####  **SQL Injection**
+- **Cause**: Unsanitized input passed directly to database queries or shell commands.
+- **Mitigation**:
+  - Use parameterized queries (e.g., with ORM like Sequelize, Prisma).
+  - Avoid `eval`, `exec`, or `child_process` unless absolutely necessary.
+  - Validate and sanitize input using libraries like `validator.js` or `Joi`.
+
+####  **Cross-Site Scripting (XSS)**
+- **Cause**: Unsanitized user input rendered in frontend templates.
+- **Mitigation**:
+  - Escape output in templates (use templating engines like EJS/Pug safely).
+  - Sanitize HTML inputs using libraries like `DOMPurify` (frontend) or `sanitize-html` (backend).
+  - Implement Content Security Policy (CSP) headers.
+
+####  **Cross-Site Request Forgery (CSRF)**
+- **Cause**: Unauthorized commands transmitted from a user that the web app trusts.
+- **Mitigation**:
+  - Use anti-CSRF tokens (`csurf` middleware).
+  - Ensure state-changing operations are protected (POST, PUT, DELETE).
+  - Use SameSite cookies when applicable.
+
+####  **Insecure Dependencies**
+- **Cause**: Use of outdated or vulnerable npm packages.
+- **Mitigation**:
+  - Regularly run `npm audit` or use tools like `snyk`, `depcheck`.
+  - Keep dependencies updated (`npm-check-updates`).
+  - Use a lockfile (`package-lock.json`) to avoid version drift.
+
+####  **Insecure Deserialization**
+- **Cause**: Parsing and executing untrusted serialized data.
+- **Mitigation**:
+  - Avoid using `eval`, `Function`, or `vm` module with user input.
+  - Prefer JSON over other serialization formats.
+  - Validate and sanitize all inputs.
+
+####  **Sensitive Data Exposure**
+- **Cause**: Improper handling of credentials, tokens, or error messages.
+- **Mitigation**:
+  - Use environment variables for secrets (via `dotenv`).
+  - Avoid logging sensitive information.
+  - Use HTTPS and encryption for data in transit.
+  - Secure cookies (`Secure`, `HttpOnly`, `SameSite` flags).
+
+####  **Denial of Service (DoS)**
+- **Cause**: Heavy payloads, infinite loops, or blocking operations.
+- **Mitigation**:
+  - Implement rate limiting (`express-rate-limit`).
+  - Use payload size limits (`body-parser` or `express.json({ limit })`).
+  - Validate all inputs strictly to avoid heavy computations.
+####  **Directory Traversal**
+- **Cause**: Unsanitized paths allowing access outside intended directory.
+- **Mitigation**:
+  - Sanitize file paths using `path.join()` or `path.normalize()`.
+  - Set strict boundaries on accessible directories.
+
+####  **Improper Session Handling**
+- **Cause**: Predictable or non-expiring session tokens.
+- **Mitigation**:
+  - Use secure session stores (`express-session` + Redis or Mongo).
+  - Set proper session expiration and regenerate tokens on login.
+  - Store sessions server-side, not in client-local storage.
+
+#### **Insecure CORS Configuration**
+- **Cause**: Allowing requests from any origin (`'*'`).
+- **Mitigation**:
+  - Define allowed origins explicitly in CORS middleware.
+  - Validate origin dynamically if necessary.
+
+
+
+
+
+
+### **Securing Sensitive Data**
+
+- **Use Environment Variables**  
+  Store secrets (e.g., DB passwords, API keys) in environment variables using `.env` files and `dotenv` package.
+
+- **Encryption at Rest and In Transit**  
+  - Use **HTTPS** with TLS for data in transit.  
+  - Use libraries like `crypto` or `bcrypt` for encrypting sensitive fields (e.g., passwords).
+
+- **Password Hashing**  
+  - Never store plain text passwords.  
+  - Use **bcrypt** or **argon2** for secure hashing with salting.
+
+- **Access Control and Least Privilege**  
+  - Only allow access to sensitive data for authenticated and authorized users.  
+  - Enforce **role-based access control (RBAC)**.
+
+- **Secure Storage for Tokens & Secrets**  
+  - Store JWTs securely (e.g., in HTTP-only cookies).  
+  - Use secret management tools (e.g., HashiCorp Vault, AWS Secrets Manager).
+
+- **Input Validation & Sanitization**  
+  - Prevent injection attacks by validating user inputs using `Joi`, `express-validator`, or similar libraries.
+
+- **Avoid Logging Sensitive Info**  
+  - Mask or omit sensitive fields from logs (e.g., passwords, tokens, card details).
+
+- **Use Helmet.js**  
+  - Adds security headers (e.g., `X-Content-Type-Options`, `X-XSS-Protection`) to protect data integrity.
+
+- **Database-Level Security**  
+  - Use parameterized queries or ORMs to prevent SQL Injection.  
+  - Encrypt sensitive columns in the database if required.
+
+- **Regular Security Audits**  
+  - Run `npm audit` to check for vulnerable dependencies.  
+  - Keep dependencies updated.
+
+---
+
+
+
 
 

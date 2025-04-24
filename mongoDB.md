@@ -1,61 +1,36 @@
 
-Here’s a **clean and structured FAQ-style index** of **frequently asked MongoDB interview questions**, sorted and formatted to cover **key topics**, along with anchor-style links you can use in documentation or markdown formats:
 
----
 
-### 🧠 **Frequently Asked MongoDB Interview Questions (Sorted by Topic)**
 
 #### 📌 **Basics & Core Concepts**
-- [MongoDB vs Relational Databases](#mongodb-vs--relational-databases)  
-- [MongoDB Document](#mongodb-document)  
-- [Collection](#collection)  
-- [Data Storage Format in MongoDB](#data-storage-format-in-mongodb)  
-- [_id Field](#id-field)  
-- [Supported Data Types](#supported-data-types)  
-- [BSON vs JSON](#bson-vs-json)
+- [MongoDB vs Relational Databases](#mongodb-vs--relational-databases)  - [MongoDB Document](#mongodb-document)  - [Collection](#collection)  - [Data Storage Format in MongoDB](#data-storage-format-in-mongodb)  
+- [_id Field](#id-field)  - [Supported Data Types](#supported-data-types)  - [BSON vs JSON](#bson-vs-json)
 
 #### 📊 **Querying & Indexing**
-- [find() vs findOne()](#find-vs-findone)  
-- [Creating an Index in MongoDB](#creating-an-index-in-mongodb)  
-- [Indexing Drawbacks](#indexing-drawbacks)  
-- [$in Vs $all](#difference-between-in-and-all-in-mongodb)  
+- [find() vs findOne()](#find-vs-findone)  - [Creating an Index in MongoDB](#creating-an-index-in-mongodb)  - [Indexing Drawbacks](#indexing-drawbacks)  - [$in Vs $all](#difference-between-in-and-all-in-mongodb)  
 - [Searching in MongoDB](#searching-in-mongodb)  
 
 #### 🔄 **CRUD Operations**
-- [upsert](#upsert)  
-- [Update Multiple Documents](#update-multiple-documents-in-mongodb)  
-- [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)  
+- [upsert](#upsert)  - [Update Multiple Documents](#update-multiple-documents-in-mongodb)  - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)  
 
 #### 🧩 **Relationships & Schema**
-- [Model Relationships](#model-relationships)  
-- [Embedded and Referenced Documents](#embedded-and-referenced-documents)  
-- [Schema Enforcement](#mongodb-handle-schema-enforcement)  
+- [Model Relationships](#model-relationships)  - [Embedded and Referenced Documents](#embedded-and-referenced-documents)  - [Schema Enforcement](#mongodb-handle-schema-enforcement)  
 
 #### 🧮 **Advanced Features**
-- [Aggregations in MongoDB](#aggregations-in-mongodb)  
-- [Handle Transactions in MongoDB](#handle-transactions-in-mongodb)  
-- [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs)
+- [Aggregations in MongoDB](#aggregations-in-mongodb)  - [Handle Transactions in MongoDB](#handle-transactions-in-mongodb)  - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs)
 
 #### 📈 **Scaling & Performance**
-- [Sharding and Why Is It Used](#sharding-and-why-is-it-used)  
-- [Scaling MongoDB](#scaling-mongodb)  
-- [Performance Tuning Techniques in MongoDB](#performance-tuning-techniques-in-mongodb)  
+- [Sharding and Why Is It Used](#sharding-and-why-is-it-used)  - [Scaling MongoDB](#scaling-mongodb)  - [Performance Tuning Techniques in MongoDB](#performance-tuning-techniques-in-mongodb)  
 
 #### 🛡️ **Replication & Durability**
-- [Replica Set](#replica-set)  
-- [Clustering & Replication](#clustering--replication)  
-- [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb)  
-- [Durability & Consistency](#mongodb-ensure-durability-and-consistency)  
-- [CAP Theorem in MongoDB Context](#cap-theorem-in-mongodb-context)  
-- [Write Concerns & Read Preferences](#write-concerns-and-read-preferences)  
+- [Replica Set](#replica-set)  - [Clustering & Replication](#clustering--replication)  - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb)  
+- [Durability & Consistency](#mongodb-ensure-durability-and-consistency)  - [CAP Theorem in MongoDB Context](#cap-theorem-in-mongodb-context)  - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences)  
 
 #### 🧪 **Special Collections**
 - [Capped Collection in MongoDB](#capped-collection-in-mongodb)  
 
 #### ⚙️ **MongoDB with Node.js**
-- [MongoDB with Node.js](#mongodb-with-nodejs)  
-- [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose)  
-- [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver)  
+- [MongoDB with Node.js](#mongodb-with-nodejs)  - [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose)  - [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver)  
 
 #### 🚫 **Limitations & Considerations**
 - [Limitations of MongoDB and How to Overcome Them](#limitations-of-mongodb-and-how-to-overcome-them)

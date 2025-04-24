@@ -1,4 +1,5 @@
-### **Node.js Basics**
+
+ **Node.js Basics**
 - Overview and Working of Node.js
 - Core Modules
 - Node.js Architecture
@@ -8,74 +9,74 @@
 - [Create Node App using TypeScript](#create-node-app-using-typescript)
 - [Node.js with TypeScript](#nodejs-with-typescript)
 
-### **Asynchronous Programming**
+ **Asynchronous Programming**
 
 - Callback, Promise, and Async/Await 
 - [Callback Hell](#callback-hell) - [Promise](#promise) - [Promise vs Async/Await](#promise-vs-asyncawait) - [Promise Type](#Promise-Type) 
 - Asynchronous I/O Handling
 
-### **Express.js Framework**
+ **Express.js Framework**
 - Overview of Express.js and Its Usage with Node.js
 - Routing
 - Middleware
 - Error Handling
 
-### **Database Interaction**
+ **Database Interaction**
 - Connecting Node.js to Relational Databases (e.g., MySQL/PostgreSQL)
 - Connecting Node.js to NoSQL Databases (e.g., MongoDB)
 - Best Practices for Managing Database Connections
 - Data Validation and Sanitization
 - [Database Transactions](#database-transactions) - [Data consistency across distributed services](#data-consistency-across-distributed-services) 
 
-### **Authentication & Authorization**
+ **Authentication & Authorization**
 - Implementing JWT Authentication
 - Session-based vs Token-based Authentication
 - Protecting Sensitive Routes
 - [Authentication vs Authorization](#authentication-vs-authorization)  - [JWT](#jwt)  - [Refresh Tokens](#refresh-tokens)  - [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)  - [Protected Route](#protected-route)  - [Role-Based Access Control](#role-based-access-control-rbac) 
 
-### **Error Handling & Debugging**
+ **Error Handling & Debugging**
 - Error Handling in Node.js Applications
 - Logging Errors
 - Debugging Node.js Applications
 - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Error Handling](#error-handling)  - [Data Validation](#data-validation) 
 
 
-### **Performance Optimization**
+ **Performance Optimization**
 - Strategies for Improving Performance in Node.js Applications
 - Profiling and Optimizing Latency
 - Common Performance Pitfalls
 - [Caching Strategies](#caching-strategies)  - [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  - [Performance Optimization](#performance-optimization) - [Garbage Collection](#Garbage-Collection) 
 
-### **Security Best Practices**
+ **Security Best Practices**
 - Common Security Vulnerabilities in Node.js and Mitigation Strategies
 - Preventing Denial of Service (DoS) Attacks
 - Securing Sensitive Data in Node.js Applications
 - [Secure Node.js App](#secure-nodejs-app)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#Helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [XSS Attack](#XSS-Attack) 
 
-### **Testing**
+ **Testing**
 - Testing Frameworks
 - Testing Asynchronous Code
 - Mock Testing
 
-### **Deployment & Scaling**
+ **Deployment & Scaling**
 - Deploying a Node.js Application to Production
 - Scaling Node.js Applications for High Traffic
 - Clustering in Node.js for Performance Improvement
 - [PM2](#PM2) - [Load Balancing](#load-balancing) - [Microservices Communication](#microservices-communication) 
 
-### **Concurrency & Processes**
+ **Concurrency & Processes**
 - [Event Loop](#event-loop) - [Worker Threads](#worker-threads) - [Child Processes](#child-processes) - [Cluster Module](#cluster-module)
 - [Cluster Module vs Child Process vs Worker Thread](#Cluster-Module-vs-Child-Process-vs-Worker-Thread)
 
 
-### **API Design & Development**
+ **API Design & Development**
 - [REST API](#rest-api)  - [Secure REST APIs](#secure-rest-apis)  - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure) 
 
 
-### **Event Handling** 
+ **Event Handling** 
 - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) 
 
-### **Package JSON** 
+ **Package JSON** 
 - [package.json](#package-json)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson) 
 
 

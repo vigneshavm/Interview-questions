@@ -10,7 +10,7 @@
 - [Node.js with TypeScript](#nodejs-with-typescript)
 
  **Asynchronous Programming**
-- [Asynchronous I/O Handling](#Asynchronous-I/O-Handling) - [Callback, Promise, and Async/Await](#Callback-Vs-Promise-Vs-Async/Await)
+- [Asynchronous I/O Handling](#Asynchronous-IO-Handling) - [Callback, Promise, and Async/Await](#Callback-Vs-Promise-Vs-AsyncAwait)
 - [Callback Hell](#callback-hell) - [Promise](#promise) - [Promise vs Async/Await](#promise-vs-asyncawait) - [Promise Type](#Promise-Type) 
 
 
@@ -2248,7 +2248,7 @@ npm install -g pm2
 
 
 
-### Asynchronous I/O Handling
+### Asynchronous IO Handling
 
 - **Definition**: Asynchronous I/O in Node.js allows non-blocking operations, enabling multiple tasks (e.g., file reads, database queries) to run concurrently without waiting for each other to complete.
   
@@ -2321,7 +2321,7 @@ npm install -g pm2
 ---
 
 
-### Callback Vs Promise Vs Async/Await
+### Callback Vs Promise Vs AsyncAwait
 
 | **Aspect**                     | **Callback**                                     | **Promise**                                          | **Async/Await**                                       |
 |---------------------------------|--------------------------------------------------|------------------------------------------------------|------------------------------------------------------|

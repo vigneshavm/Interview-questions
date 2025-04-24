@@ -10,7 +10,7 @@
 - [Node.js with TypeScript](#nodejs-with-typescript)
 
  **Asynchronous Programming**
-- [Asynchronous I/O Handling] (#Asynchronous-I/O-Handling) - [Callback, Promise, and Async/Await](#Callback-Vs-Promise-Vs-Async/Await)
+- [Asynchronous I/O Handling](#Asynchronous-I/O-Handling) - [Callback, Promise, and Async/Await](#Callback-Vs-Promise-Vs-Async/Await)
 - [Callback Hell](#callback-hell) - [Promise](#promise) - [Promise vs Async/Await](#promise-vs-asyncawait) - [Promise Type](#Promise-Type) 
 
 

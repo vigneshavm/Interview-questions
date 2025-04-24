@@ -14,10 +14,7 @@
 ### **Asynchronous Programming**
 
 - Callback, Promise, and Async/Await 
-- [Callback Hell](#callback-hell)
-- [Promise](#promise)
-- [Promise vs Async/Await](#promise-vs-asyncawait)
-- [Promise Type](#Promise-Type) 
+- [Callback Hell](#callback-hell) - [Promise](#promise) - [Promise vs Async/Await](#promise-vs-asyncawait) - [Promise Type](#Promise-Type) 
 - Asynchronous I/O Handling
 
 ### **Express.js Framework**
@@ -90,28 +87,17 @@
 - [Microservices Communication](#microservices-communication) 
 
 ### **Concurrency & Processes**
-- [Event Loop](#event-loop)
-- [Worker Threads](#worker-threads)
-- [Child Processes](#child-processes)
-- [Cluster Module](#cluster-module)
+- [Event Loop](#event-loop) - [Worker Threads](#worker-threads) - [Child Processes](#child-processes) - [Cluster Module](#cluster-module)
 - [Cluster Module vs Child Process vs Worker Thread](#Cluster-Module-vs-Child-Process-vs-Worker-Thread)
 
 
 ### **API Design & Development**
-- [REST API](#rest-api)  
-- [Secure REST APIs](#secure-rest-apis)  
-- [Pagination REST API](#implement-pagination-in-a-rest-api)  
-- [Clean RESTful Folder Structure](#clean-restful-folder-structure) 
+- [REST API](#rest-api)  - [Secure REST APIs](#secure-rest-apis)  - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure) 
 
 
-### **Event Handling**
-- [Event Emitters](#event-emitters)  
-- [Process Object](#process-object)  
-- [WebSockets](#websockets-socketio-basics) 
+### **Event Handling** - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) 
 
-### **Package JSON**
-- [package.json](#package-json)  
-- [package.json vs package-lock.json](#packagejson-vs-package-lockjson) 
+### **Package JSON** - [package.json](#package-json)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson) 
 
 
 ## **Create Node App using JS**

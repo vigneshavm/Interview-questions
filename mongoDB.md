@@ -2,7 +2,7 @@
 | Q1 | Q2 | Q3 | Q4 | Q5 | Q6 |
 |----|----|----|----|----|----|
 | [MongoDB vs Relational Databases](#mongodb-vs--relational-databases) | [MongoDB Document](#mongodb-document) | [Collection](#collection) | [Data Storage Format](#data-storage-format-in-mongodb) | [_id Field](#id-field) | [find() vs findOne()](#find-vs-findone) |
-| [Supported Data Types](#supported-data-types) | [BSON vs JSON](#bson-vs-json) | [Index](#creating-an-index-in-mongodb) | [Aggregations](#aggregations-in-mongodb) | [Model Relationships](#model-relationships) | [Replica Set](#replica-set) |
+| [Supported Data Types](#supported-data-types) | [BSON vs JSON](#bson-vs-json) | [Index](#creating-an-index-in-mongodb) | [Indexing Drawbacks](#Indexing-Drawbacks) | [Aggregations](#aggregations-in-mongodb) | [Model Relationships](#model-relationships) | [Replica Set](#replica-set) |
 | [Sharding](#sharding-and-why-is-it-used)  | [upsert](#upsert) | [Update Multiple Documents](#update-multiple-documents-in-mongodb) | [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone) | [Scaling MongoDB](#scaling-mongodb) | [Clustering & Replication](#clustering--replication) |
 | [$in Vs $all](#difference-between-in-and-all-in-mongodb) | [Searching in MongoDB](#searching-in-mongodb) | [Databases for a Social Media App](#databases-for-a-social-media-app) | [Capped Collection in MongoDB](#capped-collection-in-mongodb)  | [Replication & Failover](#replication-and-how-failover-works-in-mongodb) |  |
 | [Handle Transactions](#handle-transactions-in-mongodb) | [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) | [Performance Tuning Techniques](#performance-tuning-techniques-in-mongodb) | [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) | [Durability & Consistency](#mongodb-ensure-durability-and-consistency) | [CAP Theorem](#cap-theorem-in-mongodb-context) |
@@ -161,7 +161,62 @@ db.users.createIndex({ email: 1 })  // Ascending index on email
 | Geospatial        | For location-based data (`2d`, `2dsphere`)      |
 | Wildcard (`$**`)  | Indexes all fields or dynamic fields            |
 
+
+## Indexing Drawbacks
 ---
+
+### **1. Increased Storage Requirements**
+- **Indexes consume disk space**, sometimes as much or more than the actual data.
+- Each index is stored separately and takes up additional memory and disk space.
+- This can become problematic in large datasets with multiple indexes.
+
+---
+
+### **2. Slower Write Operations (Insert, Update, Delete)**
+- Every time a document is written, updated, or deleted, all relevant indexes must be updated too.
+- This causes **additional overhead**, especially when multiple indexes are in place.
+- Example: Inserting 1 million records with 5 indexes will be **significantly slower** than with 1 or 2 indexes.
+
+---
+
+### **3. Risk of Using Wrong Index**
+- MongoDB’s query planner may **choose a suboptimal index**, especially if indexes overlap.
+- This can lead to **poor query performance**, worse than a collection scan in some cases.
+
+---
+
+### **4. Indexes Must Be Maintained**
+- During bulk imports or frequent schema changes, indexes need to be rebuilt or dropped/re-created.
+- Managing indexes across collections with varying access patterns can be complex.
+
+---
+
+### **5. RAM Pressure**
+- MongoDB loads index data into RAM. If your working set (data + indexes) exceeds RAM, **page faults** occur.
+- This causes performance degradation as MongoDB has to fetch data from disk repeatedly.
+
+---
+
+### **6. Complexity in Index Selection**
+- Over-indexing or creating compound indexes without understanding query patterns can **degrade performance**.
+- Careful planning is needed to balance between **read optimization** and **write performance**.
+
+---
+
+### **7. Index Build Time**
+- For large collections, **creating indexes can be time-consuming**, even if built in the background (`background: true` in older versions or `hidden`/`partial` in newer).
+- This might lock operations or slow down the database temporarily.
+
+---
+
+### **8. Doesn't Help with Every Query**
+- Indexes don’t help if:
+  - Your query doesn’t match the index field order.
+  - You’re doing regex or `$where` queries.
+  - You’re returning a large portion of the collection anyway.
+
+---
+
 
 
 ##  Aggregations in MongoDB

@@ -10,15 +10,13 @@
 - [Node.js with TypeScript](#nodejs-with-typescript)
 
  **Asynchronous Programming**
-- [Asynchronous I/O Handling](#Asynchronous-IO-Handling) - [Callback, Promise, and Async/Await](#Callback-Vs-Promise-Vs-AsyncAwait)
-- [Callback Hell](#callback-hell) - [Promise](#promise) - [Promise vs Async/Await](#promise-vs-asyncawait) - [Promise Type](#Promise-Type) 
+- [Asynchronous I/O Handling](#Asynchronous-IO-Handling) - [Callback, Promise, and Async/Await](#Callback-Vs-Promise-Vs-AsyncAwait) - [Callback Hell](#callback-hell) - [Promise](#promise) - [Promise vs Async/Await](#promise-vs-asyncawait) - [Promise Type](#Promise-Type) 
 
 
  **Express.js Framework**
 - Overview of Express.js and Its Usage with Node.js
 - Routing
-- Middleware
-- Error Handling
+- Error Handling - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)  
 
  **Database Interaction**
 - Connecting Node.js to Relational Databases (e.g., MySQL/PostgreSQL)
@@ -47,13 +45,9 @@
 - [Caching Strategies](#caching-strategies)  - [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  - [Performance Optimization](#performance-optimization) - [Garbage Collection](#Garbage-Collection) 
 
  **Security Best Practices**
-- [SQL Injection](#sql-injection) - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss) - [XSS Attack](#XSS-Attack) 
-- [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf) - [Insecure Dependencies](#insecure-dependencies)
-- [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure)
-- [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal)
-- [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#insecure-cors-configuration)
-- [Securing Sensitive Data in Node.js Applications](#Securing-Sensitive-Data)
-- [Secure Node.js App](#secure-nodejs-app)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#Helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  
+ - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#Helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [SQL Injection](#sql-injection) - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss) - [XSS Attack](#XSS-Attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#insecure-cors-configuration) - [Securing Sensitive Data in Node.js Applications](#Securing-Sensitive-Data) - [Secure Node.js App](#secure-nodejs-app)
+-
+- 
 
  **Testing**
 - Testing Frameworks

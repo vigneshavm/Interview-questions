@@ -1,6 +1,4 @@
 
-Here’s how you can group the topics based on categories for better clarity:
-
 ### **Node.js Basics**
 - Overview and Working of Node.js
 - Core Modules

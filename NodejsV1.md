@@ -158,21 +158,6 @@ tsconfig.json
 
 ---
 
-## 📦 **Phases of the Event Loop**
-
-| Phase              | Handles                                   |
-|--------------------|--------------------------------------------|
-| **1. Timers**       | `setTimeout`, `setInterval` callbacks     |
-| **2. Pending**      | OS-level callbacks (e.g., TCP errors)     |
-| **3. Idle/Prepare** | Internal tasks                            |
-| **4. Poll**         | Retrieves new I/O events                  |
-| **5. Check**        | Executes `setImmediate()`                 |
-| **6. Close**        | `socket.on('close')`, etc.                |
-
-💡 **Microtasks** (`Promise`, `process.nextTick`) run **after each phase**.
-
----
-
 ## ⚡ **Key Async Execution Order**
 
 ```js

@@ -8,7 +8,7 @@
 
 **Database Interaction**  - [SQL connection](#sql-connection)  - [MongoDB connection](#mongodb-connection)  - [Database connections](#database-connections)  - [Data validation](#data-validation)  - [Database Transactions](#database-transactions)  - [Data consistency across distributed services](#data-consistency-across-distributed-services)
 
-**Authentication & Authorization**  - [JWT](#implementing-jwt-authentication) - [Session-based vs Token-based Authentication](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)  - [Authentication vs Authorization](#authentication-vs-authorization)    - [Refresh Tokens](#refresh-tokens)  - [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)   - [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)
+**Authentication & Authorization**  - [JWT](#implementing-jwt-authentication) - [Session-based vs Token-based](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)  - [Authentication vs Authorization](#authentication-vs-authorization)    - [Refresh Tokens](#refresh-tokens)  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers)   - [Role-Based Access Control](#role-based-access-control-rbac)
 
 **Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Data Validation](#data-validation)
 

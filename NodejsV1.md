@@ -8,7 +8,7 @@
 
 **Database Interaction**  - [SQL connection](#sql-connection)  - [MongoDB connection](#mongodb-connection)  - [Database connections](#database-connections)  - [Data validation](#data-validation)  - [Database Transactions](#database-transactions)  - [Data consistency across distributed services](#data-consistency-across-distributed-services)
 
-**Authentication & Authorization**  - [Implementing JWT Authentication](#implementing-jwt-authentication)  - [Session-based vs Token-based Authentication](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)  - [Authentication vs Authorization](#authentication-vs-authorization)  - [JWT](#jwt)  - [Refresh Tokens](#refresh-tokens)  - [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)  - [Protected Route](#protected-route)  - [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)
+**Authentication & Authorization**  - [JWT](#implementing-jwt-authentication) - [Session-based vs Token-based Authentication](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)  - [Authentication vs Authorization](#authentication-vs-authorization)    - [Refresh Tokens](#refresh-tokens)  - [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)   - [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)
 
 **Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Data Validation](#data-validation)
 
@@ -715,157 +715,6 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 
 
 
-## JWT
-JWT is a compact token format used for securely transmitting info between parties. It’s signed and optionally encrypted.
-
----
-
-## **JWT Auth Works**
-1. User logs in → Server validates credentials
-2. Server generates a token (signed with a secret)
-3. Client sends the token with each request (usually in `Authorization` header)
-4. Server verifies the token before processing the request
-
----
-
-
-## **JWT Flow**
-
-- User logs in with credentials
-- User logs in → Server generates JWT.
-- JWT Structure: Header (algorithm), Payload (user data), Signature (hash).
-- Client stores the JWT (e.g., in localStorage)
-- Client sends JWT in the `Authorization` header.
-- Server verifies JWT and grants access to protected routes
----
-
-Folder Structure
-
-```
-jwt-auth-ts/
-├── src/
-│   ├── index.ts
-│   ├── auth.ts
-│   ├── middleware/
-│   │   └── authMiddleware.ts
-├── .env
-├── tsconfig.json
-├── package.json
-```
-
----
-
-
-
- `src/index.ts`
-
-```ts
-import express from "express";
-import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
-import { authMiddleware } from "./middleware/authMiddleware";
-
-dotenv.config();
-
-const app = express();
-app.use(express.json());
-
-const PORT = 4000;
-const USERS = [{ id: 1, username: "admin", password: "password" }];
-
-app.post("/login", (req, res) => {
-  const { username, password } = req.body;
-  const user = USERS.find(u => u.username === username && u.password === password);
-
-  if (!user) return res.status(401).json({ message: "Invalid credentials" });
-
-  const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET as string, {
-    expiresIn: "1h"
-  });
-
-  res.json({ token });
-});
-
-app.get("/protected", authMiddleware, (req, res) => {
-  res.json({ message: "You accessed protected data!" });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
-```
-
----
-
- `src/middleware/authMiddleware.ts`
-
-```ts
-import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-interface TokenPayload {
-  id: number;
-  username: string;
-  iat: number;
-  exp: number;
-}
-
-export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader?.split(" ")[1];
-
-  if (!token) return res.status(401).json({ message: "Token missing" });
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as TokenPayload;
-    req.user = decoded; // Optional: attach to req
-    next();
-  } catch {
-    res.status(401).json({ message: "Invalid or expired token" });
-  }
-};
-```
-
----
-
- `.env`
-
-```
-JWT_SECRET=mySuperSecretKey
-```
-
----
-
- Scripts in `package.json`
-
-```json
-"scripts": {
-  "dev": "ts-node-dev --respawn src/index.ts",
-  "start": "tsc && node dist/index.js"
-}
-```
-
----
-
- 🧪 Testing
-
- Login and get token
-
-```bash
-curl -X POST http://localhost:4000/login \
--H "Content-Type: application/json" \
--d '{"username":"admin","password":"password"}'
-```
-
- Access protected route
-
-```bash
-curl http://localhost:4000/protected \
--H "Authorization: Bearer <your_token_here>"
-```
 
 ## **JWT in Cookies vs Headers**
 
@@ -1621,14 +1470,7 @@ src/
 
 
 
-## Protected Route
-```ts
-app.get('/profile', authenticateJWT, (req: Request, res: Response) => {
-  res.json({ message: 'Secure user data' });
-});
-```
 
----
 
 
 
@@ -2583,7 +2425,7 @@ test('returns mocked user', async () => {
 ---
 
 
-### **[Implementing JWT Authentication](#Implementing-JWT-Authentication)**
+## **[Implementing JWT Authentication](#Implementing-JWT-Authentication)**
 - **JWT (JSON Web Token)** is used for stateless authentication in web applications.
 - **Login process**: 
   - Server generates a token after successful login, using user details and a secret key.
@@ -2595,6 +2437,158 @@ test('returns mocked user', async () => {
 - JWT allows you to scale easily since the server doesn’t need to store session information.
 - Commonly used libraries: `jsonwebtoken` for signing and verifying tokens.
 - Ensure secure handling of secrets using environment variables, and set token expiration to limit the window for token misuse.
+
+
+JWT is a compact token format used for securely transmitting info between parties. It’s signed and optionally encrypted.
+
+---
+
+### **JWT Auth Works**
+1. User logs in → Server validates credentials
+2. Server generates a token (signed with a secret)
+3. Client sends the token with each request (usually in `Authorization` header)
+4. Server verifies the token before processing the request
+
+---
+
+
+### **JWT Flow**
+
+- User logs in with credentials
+- User logs in → Server generates JWT.
+- JWT Structure: Header (algorithm), Payload (user data), Signature (hash).
+- Client stores the JWT (e.g., in localStorage)
+- Client sends JWT in the `Authorization` header.
+- Server verifies JWT and grants access to protected routes
+---
+
+Folder Structure
+
+```
+jwt-auth-ts/
+├── src/
+│   ├── index.ts
+│   ├── auth.ts
+│   ├── middleware/
+│   │   └── authMiddleware.ts
+├── .env
+├── tsconfig.json
+├── package.json
+```
+
+---
+
+
+
+ `src/index.ts`
+
+```ts
+import express from "express";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import { authMiddleware } from "./middleware/authMiddleware";
+
+dotenv.config();
+
+const app = express();
+app.use(express.json());
+
+const PORT = 4000;
+const USERS = [{ id: 1, username: "admin", password: "password" }];
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  const user = USERS.find(u => u.username === username && u.password === password);
+
+  if (!user) return res.status(401).json({ message: "Invalid credentials" });
+
+  const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET as string, {
+    expiresIn: "1h"
+  });
+
+  res.json({ token });
+});
+
+app.get("/protected", authMiddleware, (req, res) => {
+  res.json({ message: "You accessed protected data!" });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+```
+
+---
+
+ `src/middleware/authMiddleware.ts`
+
+```ts
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+interface TokenPayload {
+  id: number;
+  username: string;
+  iat: number;
+  exp: number;
+}
+
+export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader?.split(" ")[1];
+
+  if (!token) return res.status(401).json({ message: "Token missing" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as TokenPayload;
+    req.user = decoded; // Optional: attach to req
+    next();
+  } catch {
+    res.status(401).json({ message: "Invalid or expired token" });
+  }
+};
+```
+
+---
+
+ `.env`
+
+```
+JWT_SECRET=mySuperSecretKey
+```
+
+---
+
+ Scripts in `package.json`
+
+```json
+"scripts": {
+  "dev": "ts-node-dev --respawn src/index.ts",
+  "start": "tsc && node dist/index.js"
+}
+```
+
+---
+
+ 🧪 Testing
+
+ Login and get token
+
+```bash
+curl -X POST http://localhost:4000/login \
+-H "Content-Type: application/json" \
+-d '{"username":"admin","password":"password"}'
+```
+
+ Access protected route
+
+```bash
+curl http://localhost:4000/protected \
+-H "Authorization: Bearer <your_token_here>"
+```
 
 ---
 
@@ -2621,6 +2615,13 @@ test('returns mocked user', async () => {
 ---
 
 ### **[Protecting Sensitive Routes](#Protecting-Sensitive-Routes)**
+
+```ts
+app.get('/profile', authenticateJWT, (req: Request, res: Response) => {
+  res.json({ message: 'Secure user data' });
+});
+```
+
 - **JWT Verification**: Use middleware to check the JWT on protected routes.
 - Steps to protect routes:
   - Check if the token is sent via the `Authorization` header.

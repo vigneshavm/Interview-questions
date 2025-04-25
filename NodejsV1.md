@@ -2,9 +2,9 @@
 
 **Concurrency & Processes**  - [Event Loop](#event-loop)  - [Worker Threads](#worker-threads)  - [Child Processes](#child-processes)  - [Cluster Module](#cluster-module)  - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)
 
-**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)  - [Promise vs Async/Await](#promise-vs-asyncawait)  - [Promise Type](#promise-type)
+**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)
 
-**Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis) **Caching** - [Caching Strategies](#caching-strategies)  - [Redis (Caching)](#nodejs-with-redis-caching) **Secure** -  [Secure Node.js App](#secure-nodejs-app) - [Securing Sensitive Data](#securing-sensitive-data)  - [Secure REST APIs](#secure-rest-apis)
+**Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis) **Caching** - [Caching Strategies](#caching-strategies)  - [Redis(Caching)](#nodejs-with-redis-caching) **Secure** -  [Secure Node.js](#secure-nodejs-app) - [Securing Sensitive Data](#securing-sensitive-data)  - [Secure REST APIs](#secure-rest-apis)
 
 **Database Interaction**  - [SQL connection](#sql-connection)  - [MongoDB connection](#mongodb-connection)  - [Database connections](#database-connections)  - [Data validation](#data-validation)  - [Database Transactions](#database-transactions)  - [Data consistency across distributed services](#data-consistency-across-distributed-services)
 
@@ -14,7 +14,7 @@
 
 **Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)    - [Garbage Collection](#garbage-collection)
 
-**Security Best Practices**   - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)     **API Design & Development**  - [REST API](#rest-api)    - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure)
+**Security Best Practices**   - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)     **API Design & Development**  - [REST API](#rest-api)    - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [RESTful Folder Structure](#clean-restful-folder-structure)
 
 **Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) **Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
 
@@ -1132,12 +1132,6 @@ getUserData()
 ---
 
 
-## **Promise vs Async/Await**:
-- **Promises**: Use `.then()` and `.catch()` for chaining async calls.
-- **Async/Await**: More readable and concise for handling asynchronous operations.
-- Promises simplify callbacks but can still become complex.
-- **Async/await** allows writing asynchronous code like synchronous code, improving readability.
-- Async/await works on top of promises and eliminates `.then()` chains.
 
 ## **Promise Type**:
 
@@ -2104,6 +2098,14 @@ npm install -g pm2
 
 
 ### Callback Vs Promise Vs AsyncAwait
+
+## **Promise vs Async/Await**:
+- **Promises**: Use `.then()` and `.catch()` for chaining async calls.
+- **Async/Await**: More readable and concise for handling asynchronous operations.
+- Promises simplify callbacks but can still become complex.
+- **Async/await** allows writing asynchronous code like synchronous code, improving readability.
+- Async/await works on top of promises and eliminates `.then()` chains.
+
 
 | **Aspect**                     | **Callback**                                     | **Promise**                                          | **Async/Await**                                       |
 |---------------------------------|--------------------------------------------------|------------------------------------------------------|------------------------------------------------------|

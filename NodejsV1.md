@@ -10,18 +10,13 @@
 
 **Authentication & Authorization**  - [JWT](#implementing-jwt-authentication) - [Session-based vs Token-based](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)  - [Authentication vs Authorization](#authentication-vs-authorization)    - [Refresh Tokens](#refresh-tokens)  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers)   - [Role-Based Access Control](#role-based-access-control-rbac)
 
-**Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Data Validation](#data-validation)
+**Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Data Validation](#data-validation) **Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [Clustering](#clustering-in-nodejs-for-performance-improvement)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
 
 **Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)    - [Garbage Collection](#garbage-collection)
 
-**Security Best Practices**   - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)    
+**Security Best Practices**   - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)     **API Design & Development**  - [REST API](#rest-api)  - [Secure REST APIs](#secure-rest-apis)  - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure)
 
 **Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) **Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
-
-**Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [Clustering](#clustering-in-nodejs-for-performance-improvement)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
-
-**API Design & Development**  - [REST API](#rest-api)  - [Secure REST APIs](#secure-rest-apis)  - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure)
-
 
 
 ## **Create Node App using JS**

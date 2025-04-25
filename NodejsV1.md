@@ -34,7 +34,6 @@
 **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
 
 
-
 ## **Create Node App using JS**
 
 - mkdir user-api && cd user-api

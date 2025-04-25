@@ -6,8 +6,8 @@
 | [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)  |  [Default Parameters](#default-parameters) |  [JavaScript Modules (`import/export`)](#javascript-modules-importexport) |  [WeakMap and WeakSet](#weakmap-and-weakset-usage) |  | [Map and Plain Objects](#difference-between-map-and-plain-objects) 
 
 
-**Scope**
-| [Scope](#scope) | [Lexical Scoping](#lexical-scoping)  | [Global and Function and Block Scope](#global-and-function-and-block-scope) | [Global JavaScript scope](#global-javascript-scope) 
+**Scope** - [Scope](#scope) | [Lexical Scoping](#lexical-scoping)  | [Global and Function and Block Scope](#global-and-function-and-block-scope) | [Global JavaScript scope](#global-javascript-scope)  **Functions**
+| [Functions](#Functions) | [Closures](#closures)  | [Call, Apply, Bind](#call-and-apply-and-bind-methods) | [Currying](#currying-in-javascript)  
 
 **TypeScript**
 | [TS Improves JS](#how-typescript-improves-javascript) | [Interface Vs Type](#interface-vs-type) | [Generics](#generics) | [Union Types](#union-types) | [Type Inference](#type-inference) | [Mapped Types](#mapped-types) |   [Decorators](#decorators) | [Duck Typing](#duck-typing) | [Module System & Compiler Options](#module-system--compiler-options) | 
@@ -15,8 +15,6 @@
 **JavaScript Fundamentals**
 | [let and var and const](#let-and-var-and-const) | [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const) | [use strict Directive](#use-strict-directive)   | [Data Types](#data-types) | [Symbol](#symbol)  [null and undefined and undeclared](#null-and-undefined-and-undeclared) | [Type Checking](#type-checking) | [== vs ===](#loose-equality-vs-strict-equality) |   [Usage of `super()`](#usage-of-super-in-classes) | [Understanding `__proto__`](#understanding-__proto__-and-prototypes) | [Labeled Statements](#labeled-statements-usage) | [this Keyword Behavior](#this-keyword-behavior) |  [Nullish Coalescing (`??`)](#nullish-coalescing-operator) | [Object Destructuring with Defaults](#object-destructuring-with-defaults) |
 
-**Functions**
-| [Functions](#Functions) | [Closures](#closures)  | [Call, Apply, Bind](#call-and-apply-and-bind-methods) | [Currying](#currying-in-javascript)  
 
 **Asynchronous JavaScript** 
 | [Sync vs Async](#synchronous-vs-asynchronous-functions)  | [Handling Async Errors](#handling-async-errors) |  [Extending Built-in Objects](#extending-built-in-objects)  | [ Memory Leaks](#common-causes-of-memory-leaks) | [Garbage Collection](#javascript-garbage-collection) | [Type Coercion](#type-coercion-in-operations) | [Map Key References with Objects](#map-key-references-with-objects) | 

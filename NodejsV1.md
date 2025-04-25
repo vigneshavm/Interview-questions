@@ -14,9 +14,10 @@
 
 **Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)    - [Garbage Collection](#garbage-collection)
 
-**Security Best Practices**   - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)     **API Design & Development**  - [REST API](#rest-api)    - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [RESTful Folder Structure](#clean-restful-folder-structure)
+**API Design & Development**  - [REST API](#rest-api)    - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [RESTful Folder Structure](#clean-restful-folder-structure)
 
-**Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) **Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
+
+**Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
 
 
 ## **Create Node App using JS**
@@ -2122,76 +2123,6 @@ npm install -g pm2
 | **Example**                     | ```fs.readFile('file.txt', (err, data) => { console.log(data); });``` | ```fetch(url).then(response => response.json()).then(data => console.log(data));``` | ```async function fetchData() { let data = await fetch(url); console.log(data); }``` |
 
 
-####  **SQL Injection**
-- **Cause**: Unsanitized input passed directly to database queries or shell commands.
-- **Mitigation**:
-  - Use parameterized queries (e.g., with ORM like Sequelize, Prisma).
-  - Avoid `eval`, `exec`, or `child_process` unless absolutely necessary.
-  - Validate and sanitize input using libraries like `validator.js` or `Joi`.
-
-####  **Cross-Site Scripting (XSS)**
-- **Cause**: Unsanitized user input rendered in frontend templates.
-- **Mitigation**:
-  - Escape output in templates (use templating engines like EJS/Pug safely).
-  - Sanitize HTML inputs using libraries like `DOMPurify` (frontend) or `sanitize-html` (backend).
-  - Implement Content Security Policy (CSP) headers.
-
-####  **Cross-Site Request Forgery (CSRF)**
-- **Cause**: Unauthorized commands transmitted from a user that the web app trusts.
-- **Mitigation**:
-  - Use anti-CSRF tokens (`csurf` middleware).
-  - Ensure state-changing operations are protected (POST, PUT, DELETE).
-  - Use SameSite cookies when applicable.
-
-####  **Insecure Dependencies**
-- **Cause**: Use of outdated or vulnerable npm packages.
-- **Mitigation**:
-  - Regularly run `npm audit` or use tools like `snyk`, `depcheck`.
-  - Keep dependencies updated (`npm-check-updates`).
-  - Use a lockfile (`package-lock.json`) to avoid version drift.
-
-####  **Insecure Deserialization**
-- **Cause**: Parsing and executing untrusted serialized data.
-- **Mitigation**:
-  - Avoid using `eval`, `Function`, or `vm` module with user input.
-  - Prefer JSON over other serialization formats.
-  - Validate and sanitize all inputs.
-
-####  **Sensitive Data Exposure**
-- **Cause**: Improper handling of credentials, tokens, or error messages.
-- **Mitigation**:
-  - Use environment variables for secrets (via `dotenv`).
-  - Avoid logging sensitive information.
-  - Use HTTPS and encryption for data in transit.
-  - Secure cookies (`Secure`, `HttpOnly`, `SameSite` flags).
-
-####  **Denial of Service (DoS)**
-- **Cause**: Heavy payloads, infinite loops, or blocking operations.
-- **Mitigation**:
-  - Implement rate limiting (`express-rate-limit`).
-  - Use payload size limits (`body-parser` or `express.json({ limit })`).
-  - Validate all inputs strictly to avoid heavy computations.
-####  **Directory Traversal**
-- **Cause**: Unsanitized paths allowing access outside intended directory.
-- **Mitigation**:
-  - Sanitize file paths using `path.join()` or `path.normalize()`.
-  - Set strict boundaries on accessible directories.
-
-####  **Improper Session Handling**
-- **Cause**: Predictable or non-expiring session tokens.
-- **Mitigation**:
-  - Use secure session stores (`express-session` + Redis or Mongo).
-  - Set proper session expiration and regenerate tokens on login.
-  - Store sessions server-side, not in client-local storage.
-
-#### **Insecure CORS Configuration**
-- **Cause**: Allowing requests from any origin (`'*'`).
-- **Mitigation**:
-  - Define allowed origins explicitly in CORS middleware.
-  - Validate origin dynamically if necessary.
-
-
-
 
 
 
@@ -2302,57 +2233,6 @@ npm install -g pm2
 
 
 *
-
----
-
-###  **Testing Frameworks**
-- Common Node.js testing frameworks include **Mocha**, **Jest**, and **Jasmine**.
-- They provide a structured way to write unit, integration, and end-to-end tests.
-- Most support features like test suites, hooks (`before`, `after`), and assertions (via libraries like **Chai** or **Expect**).
-
-**Example:**
-```js
-describe('UserService', () => {
-  it('should return a user by ID', () => {
-    const user = getUserById(1);
-    expect(user.name).toBe('Alice');
-  });
-});
-```
-
----
-
-###  **Testing Asynchronous Code**
-- Asynchronous operations (e.g., Promises, callbacks, `async/await`) must be properly awaited or resolved in tests.
-- Most frameworks allow using `done()` callback, returning a Promise, or using `async/await`.
-
-**Example (Jest):**
-```js
-test('fetches user data asynchronously', async () => {
-  const data = await fetchUserData();
-  expect(data.name).toBe('Bob');
-});
-```
-
----
-
-###  **Mock Testing**
-- Mocking helps isolate units of code by simulating dependencies like databases, APIs, or services.
-- Libraries like **Sinon**, **Jest Mocks**, or **TestDouble** are used.
-- Allows testing how your code behaves under specific conditions (e.g., DB failure).
-
-**Example (Jest Mock):**
-```js
-jest.mock('./dbService');
-dbService.getUser.mockResolvedValue({ name: 'Charlie' });
-
-test('returns mocked user', async () => {
-  const user = await getUserProfile();
-  expect(user.name).toBe('Charlie');
-});
-```
-
----
 
 
 

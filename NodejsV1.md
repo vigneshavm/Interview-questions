@@ -1,8 +1,8 @@
 **Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues) **Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)
 
-**Concurrency & Processes**  - [Event Loop](#event-loop)  - [Worker Threads](#worker-threads)  - [Child Processes](#child-processes)  - [Cluster Module](#cluster-module)  - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)
-
 **Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)  - [Promise vs Async/Await](#promise-vs-asyncawait)  - [Promise Type](#promise-type)
+
+**Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis) **Caching** - [Caching Strategies](#caching-strategies)  - [Redis (Caching)](#nodejs-with-redis-caching) **Secure** -  [Secure Node.js App](#secure-nodejs-app) - [Securing Sensitive Data](#securing-sensitive-data)  
 
 **Database Interaction**  - [SQL connection](#sql-connection)  - [MongoDB connection](#mongodb-connection)  - [Database connections](#database-connections)  - [Data validation](#data-validation)  - [Database Transactions](#database-transactions)  - [Data consistency across distributed services](#data-consistency-across-distributed-services)
 
@@ -10,13 +10,15 @@
 
 **Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Data Validation](#data-validation)
 
-**Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)  - [Caching Strategies](#caching-strategies)  - [Redis (Caching)](#nodejs-with-redis-caching)   - [Garbage Collection](#garbage-collection)
+**Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)    - [Garbage Collection](#garbage-collection)
 
-**Security Best Practices**  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Securing Sensitive Data](#securing-sensitive-data)  - [Secure Node.js App](#secure-nodejs-app)
+**Security Best Practices**   - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)    
 
 **Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) **Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
 
 **Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [Clustering](#clustering-in-nodejs-for-performance-improvement)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
+
+**Concurrency & Processes**  - [Event Loop](#event-loop)  - [Worker Threads](#worker-threads)  - [Child Processes](#child-processes)  - [Cluster Module](#cluster-module)  - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)
 
 **API Design & Development**  - [REST API](#rest-api)  - [Secure REST APIs](#secure-rest-apis)  - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure)
 

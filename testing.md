@@ -2,10 +2,9 @@
 **Build** • [`<script>`, async, defer](#script-and-async-and-defer)    • [Tree Shaking](#tree-shaking-in-modern-bundlers)    • [Transpiling](#transpiling-javascript-code)    • [Babel](#role-of-babel-in-modern-development)    • [Webpack & Vite](#webpack-and-vite-bundling-process) | 
 
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) |
+**Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
 
 **Security Best Practices**   - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) 
-
-**Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) 
 
 
 **Security**
@@ -929,5 +928,674 @@ test('returns mocked user', async () => {
 - **Mitigation**:
   - Define allowed origins explicitly in CORS middleware.
   - Validate origin dynamically if necessary.
+
+
+
+### **Jest and React Testing Library**
+
+🟩 **Answer:**
+
+**Jest** and **React Testing Library (RTL)** are two of the most widely used libraries for testing in the React ecosystem. They work together to make unit and integration testing efficient and accessible.
+
+---
+
+### ✅ **Jest: Overview**
+
+**Jest** is a **JavaScript testing framework** developed by Facebook. It's designed for simplicity and is used primarily for **unit testing** and **integration testing**. Jest provides features like test runners, mocks, assertions, and code coverage.
+
+Key features of Jest:
+1. **Test Runner**: It executes tests and provides results.
+2. **Assertions**: Jest comes with built-in assertion methods (e.g., `expect()`).
+3. **Mocking**: Allows you to mock modules, functions, and timers.
+4. **Snapshot Testing**: Takes a snapshot of a component’s rendered output to detect changes in future test runs.
+
+#### Example:
+```javascript
+test('adds 1 + 2 to equal 3', () => {
+  expect(1 + 2).toBe(3);
+});
+```
+
+---
+
+### ✅ **React Testing Library (RTL): Overview**
+
+**React Testing Library** is a library focused on testing the **behavior** of React components rather than their implementation details. RTL encourages testing components the way users would interact with them (through the DOM), making tests more **user-centric**.
+
+Key features of React Testing Library:
+1. **Querying**: Allows you to query elements in the DOM using methods like `getByText`, `getByRole`, etc.
+2. **User interactions**: RTL encourages testing user behavior such as clicking, typing, and submitting forms.
+3. **No reliance on implementation details**: It avoids testing component internals (like state or props directly) and focuses on how the component behaves.
+
+#### Example:
+```javascript
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import MyButton from './MyButton';
+
+test('button click changes text', () => {
+  render(<MyButton />);
+  const button = screen.getByText(/click me/i);
+  userEvent.click(button);
+  expect(screen.getByText(/clicked/i)).toBeInTheDocument();
+});
+```
+
+---
+
+### ✅ **How Jest and RTL Work Together:**
+
+1. **Jest** handles the **test execution**, assertion, and mocking.
+2. **RTL** helps you **render** the component and interact with it via the **DOM**.
+3. **userEvent** from RTL can simulate user interactions like clicks, typing, etc.
+
+By combining Jest and RTL, you can test the behavior of your React components in a way that simulates actual user interactions, ensuring that your components work as expected.
+
+---
+
+### 🧪 **Testing Example with Jest + RTL:**
+
+Let’s say you have a simple button component that, when clicked, updates the text on the button.
+
+**Button Component**:
+```jsx
+function Button() {
+  const [clicked, setClicked] = useState(false);
+  return (
+    <button onClick={() => setClicked(true)}>
+      {clicked ? 'Clicked!' : 'Click Me'}
+    </button>
+  );
+}
+
+export default Button;
+```
+
+**Test**:
+```javascript
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import Button from './Button';
+
+test('Button text changes on click', () => {
+  render(<Button />);
+  const button = screen.getByRole('button', { name: /click me/i });
+  
+  userEvent.click(button);
+  
+  expect(screen.getByRole('button', { name: /clicked/i })).toBeInTheDocument();
+});
+```
+
+In this example:
+- We use **`render`** to render the component.
+- **`screen.getByRole`** is used to query the button.
+- **`userEvent.click`** simulates a user clicking the button.
+- Finally, **`expect`** is used to check the component’s behavior after the click.
+
+---
+
+### 📌 **Best Practices for Testing in React**:
+1. **Test user behavior**: Focus on how users interact with your app rather than implementation details.
+2. **Use mock functions**: Mock external dependencies or functions with **`jest.fn()`** for isolated tests.
+3. **Keep tests simple**: Avoid overly complex test logic.
+4. **Avoid testing implementation details**: Don’t test internal state or method calls. Focus on outcomes.
+5. **Snapshot testing**: Use **snapshot testing** for components that are static, but avoid it for components that rely on dynamic data.
+
+---
+
+### ⚡ **Advanced Jest + RTL Features**:
+- **Mocking Modules**: Use **`jest.mock()`** to mock modules or API calls in tests.
+- **Custom Hooks**: Use **`renderHook`** to test custom hooks.
+- **Test Cleanup**: Use **`cleanup()`** after tests to unmount components and prevent side effects.
+
+---
+
+### 🧠 **Summary**:
+- **Jest**: A test runner and assertion library, useful for unit and integration tests.
+- **React Testing Library**: Focuses on testing the user experience by querying the DOM and simulating user actions.
+- Together, they provide a powerful setup for testing React applications with a focus on **behavior** rather than implementation details.
+
+---
+
+
+
+### **Unit Tests**
+
+🟩 **Answer:**
+
+These three types of testing—**Unit Testing**, **Integration Testing**, and **End-to-End (E2E) Testing**—serve different purposes in the software development lifecycle. Let’s break down the key differences:
+
+---
+
+- **Unit Tests**: Focus on testing **small units** of code (functions or components) in isolation.
+- **Integration Tests**: Test how **multiple units** or components **work together** (e.g., API integration or component interaction).
+- **E2E Tests**: Test the **entire application** (frontend and backend) by simulating **user behavior** and validating the whole system’s flow.
+
+Each type of test serves a different purpose, and they complement each other in ensuring your application works as expected.
+
+---
+
+### ✅ **1. Unit Testing**
+
+**Purpose:**  
+Unit tests focus on testing the **smallest units** of your application, usually individual functions or components, in isolation. They ensure that each unit works as expected on its own.
+
+**Key Characteristics:**
+- **Scope**: Focuses on testing a single function, method, or component.
+- **Isolated**: It mocks or stubs any external dependencies (like API calls, databases, etc.).
+- **Speed**: Fast to run because they deal with minimal logic.
+- **Tools**: Jest, Mocha, Jasmine.
+
+**Example:**
+Testing a simple function that adds two numbers:
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+
+test('adds two numbers', () => {
+  expect(add(1, 2)).toBe(3);
+});
+```
+
+**When to Use:**
+- To test individual functions, methods, or small components.
+- When you want to check the correctness of logic isolated from external services or dependencies.
+
+---
+
+### ✅ **2. Integration Testing**
+
+**Purpose:**  
+Integration tests check if different parts of your application work together as expected. This involves testing combinations of functions, methods, or components that depend on each other, and ensuring they interact correctly.
+
+**Key Characteristics:**
+- **Scope**: Focuses on testing the integration between multiple components or services (e.g., testing a component that interacts with an API or database).
+- **Dependencies**: Unlike unit tests, integration tests involve real or simulated dependencies (e.g., actual database queries, API calls).
+- **Speed**: Slower than unit tests because they test more complex interactions.
+- **Tools**: Jest, Mocha, Supertest, React Testing Library.
+
+**Example:**
+Testing a function that fetches data from an API and processes it:
+
+```javascript
+import fetchData from './fetchData';
+
+test('fetches and processes data correctly', async () => {
+  const data = await fetchData('https://api.example.com');
+  expect(data).toBeDefined();
+  expect(data.name).toBe('John Doe');
+});
+```
+
+**When to Use:**
+- To ensure that modules or components that interact with each other are working together correctly.
+- When your code requires real external resources like databases or APIs.
+
+---
+
+### ✅ **3. End-to-End (E2E) Testing**
+
+**Purpose:**  
+E2E tests simulate real user interactions with your application to ensure that everything works together in a real-world scenario. They test the complete flow of the application, from the user interface to the backend, ensuring the app behaves as expected across the entire stack.
+
+**Key Characteristics:**
+- **Scope**: Focuses on the **entire system**, ensuring all components work together, from the front end to the back end.
+- **Realistic**: Simulates real-world user interactions like clicking buttons, filling out forms, and navigating through the app.
+- **Speed**: Slower to run because they interact with the entire application, often in a real browser environment.
+- **Tools**: Cypress, Selenium, Puppeteer, Playwright.
+
+**Example:**
+Testing a login flow where a user enters credentials, submits a form, and is redirected to the dashboard:
+
+```javascript
+describe('Login Flow', () => {
+  it('should login and navigate to dashboard', () => {
+    cy.visit('https://myapp.com');
+    cy.get('input[name="username"]').type('user');
+    cy.get('input[name="password"]').type('password123');
+    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/dashboard');
+  });
+});
+```
+
+**When to Use:**
+- To validate that all components and systems (e.g., backend, frontend, database, APIs) work together as expected in a live environment.
+- When testing user flows and verifying the application’s functionality from end to end, including navigation and form submissions.
+
+---
+
+### 🔍 **Comparison Table: Unit vs Integration vs E2E Testing**
+
+| **Aspect**                | **Unit Testing**                                 | **Integration Testing**                          | **End-to-End (E2E) Testing**                      |
+|---------------------------|--------------------------------------------------|-------------------------------------------------|---------------------------------------------------|
+| **Scope**                 | Tests individual functions or components         | Tests interaction between components or services | Tests the entire application flow (frontend + backend) |
+| **Isolation**             | Isolated from external dependencies              | Tests interactions with real or simulated dependencies | Tests the full system with real user scenarios      |
+| **Speed**                 | Fast (since it tests minimal logic)              | Slower than unit tests, but faster than E2E       | Slow (because it simulates entire user interactions) |
+| **Tools**                 | Jest, Mocha, Jasmine, AVA                       | Jest, Mocha, Supertest, React Testing Library    | Cypress, Selenium, Puppeteer, Playwright           |
+| **Dependencies**          | Mocks or stubs dependencies                      | May use real or simulated external dependencies  | Uses actual services, databases, or the full stack |
+| **Focus**                 | Correctness of logic                            | Correctness of interactions between components   | Correctness of the entire user journey and system behavior |
+| **Example**               | Testing a simple function like `add()`           | Testing a component that fetches data from an API | Testing a user login flow on a web app             |
+| **When to Use**           | To verify individual pieces of logic             | To test how different modules or components work together | To simulate real user behavior and verify system integration |
+
+---
+
+### ⚡ **When to Use Each Type of Test?**
+
+- **Unit Testing**:  
+   Use unit tests when you want to verify that each **function** or **component** works in isolation. They are crucial for testing small, isolated parts of your code and ensuring basic logic correctness.
+
+- **Integration Testing**:  
+   Use integration tests when you need to verify how different parts of your application **interact**. This might involve testing data flow, such as ensuring a frontend component can successfully fetch and display data from an API.
+
+- **End-to-End Testing**:  
+   Use E2E tests when you need to verify the **complete system** from the user’s perspective. This is ideal for simulating user behavior, ensuring that all components work together as expected in a live environment, including handling interactions like form submissions, navigation, and API calls.
+
+---
+
+
+
+### **Testing Hooks**
+
+🟩 **Answer:**
+
+React hooks are a crucial part of modern React development. Since hooks allow you to manage state, side effects, and context within functional components, it's important to ensure they behave as expected. Here, we will explore how to effectively test React hooks using **React Testing Library** and **Jest**.
+
+---
+
+### ✅ **Testing Custom Hooks**
+
+Custom hooks are reusable logic that encapsulate stateful logic and effects. Testing them ensures they work as expected when used within components.
+
+#### Key Tools:
+- **React Testing Library** (for rendering components and accessing hooks)
+- **Jest** (for assertions and mocking functions)
+
+### Steps for Testing React Hooks:
+
+---
+
+### 1. **Test a Hook with `renderHook` from `@testing-library/react-hooks`**
+
+`@testing-library/react-hooks` is a library specifically designed to test hooks in isolation. It provides a function called `renderHook()` that can be used to mount hooks outside of a component.
+
+#### Example: Testing a Custom Hook
+
+```javascript
+import { renderHook, act } from '@testing-library/react-hooks';
+import useCounter from './useCounter'; // Your custom hook
+
+test('should initialize counter with 0', () => {
+  const { result } = renderHook(() => useCounter()); // Render hook
+  expect(result.current.count).toBe(0); // Check initial state
+});
+
+test('should increment the counter', () => {
+  const { result } = renderHook(() => useCounter()); // Render hook
+  
+  act(() => { // Perform actions in the hook (important for updates)
+    result.current.increment();
+  });
+  
+  expect(result.current.count).toBe(1); // Check updated state
+});
+
+test('should decrement the counter', () => {
+  const { result } = renderHook(() => useCounter()); // Render hook
+  
+  act(() => { 
+    result.current.decrement();
+  });
+  
+  expect(result.current.count).toBe(-1); // Check updated state
+});
+```
+
+#### Key Notes:
+- **`renderHook()`** is used to render the hook in a test environment.
+- **`act()`** is used to simulate state updates, ensuring React updates the state correctly.
+- **`result.current`** contains the values returned from the hook (like state or functions).
+
+---
+
+### 2. **Test a Hook inside a Component**
+
+If you want to test a hook inside a component, you can render the component using **React Testing Library** and assert the behavior of the component based on the hook’s state.
+
+#### Example: Testing Hook Behavior in a Component
+
+```javascript
+import { render, screen, fireEvent } from '@testing-library/react';
+import CounterComponent from './CounterComponent'; // Component using the hook
+
+test('counter should increment when button is clicked', () => {
+  render(<CounterComponent />); // Render component that uses hook
+  
+  const incrementButton = screen.getByText('Increment'); // Find the button
+  fireEvent.click(incrementButton); // Simulate button click
+  
+  const counter = screen.getByTestId('counter'); // Get the counter
+  expect(counter).toHaveTextContent('1'); // Assert counter has incremented
+});
+```
+
+In this example:
+- **`CounterComponent`** uses the hook.
+- **`fireEvent.click()`** simulates the user clicking a button that updates the hook's state.
+- We assert that the **counter** displays the expected result after the state change.
+
+---
+
+### 3. **Mocking Dependencies in Hooks**
+
+Sometimes, hooks may depend on external services (e.g., an API request). You can mock these dependencies to test how the hook behaves under different conditions.
+
+#### Example: Mocking an API call in a hook:
+
+```javascript
+import { renderHook, act } from '@testing-library/react-hooks';
+import useFetchData from './useFetchData';
+import axios from 'axios';
+
+// Mock axios
+jest.mock('axios');
+
+test('should fetch data successfully', async () => {
+  // Set up the mock response
+  axios.get.mockResolvedValue({ data: { name: 'John' } });
+
+  const { result, waitForNextUpdate } = renderHook(() => useFetchData('https://api.example.com/user'));
+  
+  // Wait for the hook to update after the fetch request
+  await waitForNextUpdate();
+  
+  expect(result.current.data).toEqual({ name: 'John' }); // Assert data is fetched correctly
+  expect(result.current.loading).toBe(false); // Assert loading state is false
+});
+
+test('should handle fetch error', async () => {
+  // Set up the mock error response
+  axios.get.mockRejectedValue(new Error('Request failed'));
+
+  const { result, waitForNextUpdate } = renderHook(() => useFetchData('https://api.example.com/user'));
+  
+  // Wait for the hook to update after the fetch request
+  await waitForNextUpdate();
+  
+  expect(result.current.error).toEqual('Request failed'); // Assert error is handled
+});
+```
+
+In this case:
+- We use **jest.mock()** to mock the `axios.get()` method.
+- The hook **`useFetchData`** is tested to verify it handles both successful and failed API calls.
+
+---
+
+### 4. **Test Effects (e.g., `useEffect`)**
+
+Testing effects, such as those triggered by `useEffect()`, involves ensuring that side effects occur as expected (e.g., data fetching, subscriptions, etc.).
+
+#### Example: Testing `useEffect` for data fetching:
+
+```javascript
+import { renderHook, act } from '@testing-library/react-hooks';
+import useDataFetcher from './useDataFetcher'; // Custom hook with useEffect
+import axios from 'axios';
+
+// Mock axios
+jest.mock('axios');
+
+test('should fetch data on mount', async () => {
+  axios.get.mockResolvedValue({ data: { name: 'John' } });
+  
+  const { result, waitForNextUpdate } = renderHook(() => useDataFetcher('https://api.example.com/user'));
+  
+  await waitForNextUpdate(); // Wait for useEffect to complete
+  
+  expect(result.current.data).toEqual({ name: 'John' }); // Verify data is fetched
+});
+```
+
+In this example:
+- The `useDataFetcher` hook triggers an effect to fetch data using `useEffect()`.
+- We mock the API call and use **`waitForNextUpdate()`** to ensure the effect completes before making assertions.
+
+---
+
+### 📜 **Summary:**
+
+Testing hooks involves two main approaches:
+1. **Testing hooks in isolation** using `renderHook` and asserting their returned values.
+2. **Testing hooks as part of a component** to ensure they work within a real component lifecycle and handle UI interactions.
+
+Key methods:
+- **`renderHook()`**: Used for testing hooks directly in isolation.
+- **`act()`**: Ensures updates in hooks trigger state changes in React.
+- **Mocking dependencies**: Mock services (like API calls) to isolate and control test environments.
+- **Effect testing**: Ensure side effects (e.g., `useEffect`) behave as expected.
+
+This process ensures your custom hooks work as expected, both in isolation and when integrated into components.
+
+---
+
+
+### **Mocking APIs Tests**
+
+
+Mocking APIs during tests is crucial for isolating your tests from external dependencies, ensuring that your components or hooks behave as expected without actually making network requests. This is commonly done using **Jest** for mocking and **React Testing Library** (RTL) for testing React components. Below, we'll explore various ways to mock APIs for unit tests, integration tests, and how to test API interactions effectively.
+
+---
+1. **Jest Mocking**: Use `jest.mock()` to mock external libraries like `axios` or the native `fetch` API.
+2. **Mock Responses**: Use `mockResolvedValue()` to simulate successful responses, and `mockRejectedValue()` to simulate errors.
+3. **Testing Custom Hooks**: Combine `renderHook()` with mocking to test hooks that depend on external APIs.
+4. **Mocking API Services**: You can create and use custom mock services to replace real API calls during tests.
+
+Mocking APIs ensures that your tests remain fast, reliable, and independent of external systems. It isolates the logic in your components or hooks, making your tests more deterministic and less prone to failures caused by network issues.
+
+### ✅ **Mocking APIs in Tests**
+
+Mocking APIs involves replacing the real network request logic with mock functions that simulate responses (both successful and error scenarios). This allows you to control the test environment and ensure predictable behavior.
+
+---
+
+### **1. Mocking with Jest's `jest.mock()`**
+
+You can mock libraries like `axios`, `fetch`, or any custom API service you use to make HTTP requests. Jest provides the `jest.mock()` function to replace these modules with mocked versions.
+
+#### Example: Mocking `axios` using `jest.mock()`
+
+```javascript
+// Import your custom hook or component that makes an API call
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import MyComponent from './MyComponent'; // Component that makes an API call
+import axios from 'axios';
+
+// Mock axios module
+jest.mock('axios');
+
+test('should display data from the API', async () => {
+  // Setup the mock to return a successful response
+  axios.get.mockResolvedValue({
+    data: { name: 'John Doe' }
+  });
+
+  render(<MyComponent />); // Render the component
+
+  // Simulate user interaction if needed
+  fireEvent.click(screen.getByText('Fetch Data'));
+
+  // Wait for the component to update with the data
+  await waitFor(() => screen.getByText('Name: John Doe'));
+
+  // Assert the rendered text matches the API response
+  expect(screen.getByText('Name: John Doe')).toBeInTheDocument();
+});
+
+test('should handle API error', async () => {
+  // Setup the mock to return an error response
+  axios.get.mockRejectedValue(new Error('API Error'));
+
+  render(<MyComponent />); // Render the component
+
+  // Simulate user interaction if needed
+  fireEvent.click(screen.getByText('Fetch Data'));
+
+  // Wait for error message to appear
+  await waitFor(() => screen.getByText('Error: API Error'));
+
+  // Assert the error message
+  expect(screen.getByText('Error: API Error')).toBeInTheDocument();
+});
+```
+
+#### Key Points:
+- **`jest.mock()`**: Mocks the entire module (e.g., `axios`) and replaces it with a mock function.
+- **`mockResolvedValue()`**: Defines the value that the mock will return for a successful API call.
+- **`mockRejectedValue()`**: Defines the error that will be thrown when the mock is invoked (used for simulating failed API requests).
+- **`waitFor()`**: Waits for async updates to the component (e.g., after the API response).
+
+---
+
+### **2. Mocking `fetch` API with Jest**
+
+If you're using the native **`fetch` API** for making HTTP requests, you can mock `fetch` similarly with `jest.mock()`.
+
+#### Example: Mocking `fetch`
+
+```javascript
+global.fetch = jest.fn();
+
+test('should fetch user data successfully', async () => {
+  // Setup mock response
+  fetch.mockResolvedValueOnce({
+    json: async () => ({ name: 'Jane Doe' })
+  });
+
+  render(<MyComponent />); // Render the component
+
+  // Trigger API request (for example, on a button click)
+  fireEvent.click(screen.getByText('Fetch User'));
+
+  // Wait for the component to re-render with the API data
+  await waitFor(() => screen.getByText('User: Jane Doe'));
+
+  // Assert that the correct data was rendered
+  expect(screen.getByText('User: Jane Doe')).toBeInTheDocument();
+});
+
+test('should handle fetch error', async () => {
+  // Setup mock error
+  fetch.mockRejectedValueOnce(new Error('Fetch failed'));
+
+  render(<MyComponent />); // Render the component
+
+  // Trigger API request
+  fireEvent.click(screen.getByText('Fetch User'));
+
+  // Wait for error message
+  await waitFor(() => screen.getByText('Error: Fetch failed'));
+
+  // Assert that the error message was rendered
+  expect(screen.getByText('Error: Fetch failed')).toBeInTheDocument();
+});
+```
+
+#### Key Points:
+- **`global.fetch`**: Override the global `fetch` function with a mock function.
+- **`mockResolvedValueOnce()`**: Mock a successful response for one call.
+- **`mockRejectedValueOnce()`**: Mock a failure for one call.
+
+---
+
+### **3. Mocking API Calls in Custom Hooks**
+
+When you're testing custom hooks that make API calls, you can use `renderHook()` from **@testing-library/react-hooks** and mock API calls in a similar manner.
+
+#### Example: Testing a Custom Hook with Axios
+
+```javascript
+import { renderHook, act } from '@testing-library/react-hooks';
+import useUserData from './useUserData'; // Custom hook that fetches data
+import axios from 'axios';
+
+// Mock axios
+jest.mock('axios');
+
+test('should return user data after fetch', async () => {
+  axios.get.mockResolvedValue({ data: { name: 'John Doe' } });
+
+  const { result, waitForNextUpdate } = renderHook(() => useUserData());
+
+  // Wait for the hook to complete the API request
+  await waitForNextUpdate();
+
+  // Assert the hook's returned data
+  expect(result.current.user.name).toBe('John Doe');
+  expect(result.current.loading).toBe(false);
+});
+
+test('should handle API error in the hook', async () => {
+  axios.get.mockRejectedValue(new Error('Request failed'));
+
+  const { result, waitForNextUpdate } = renderHook(() => useUserData());
+
+  await waitForNextUpdate();
+
+  // Assert the error state
+  expect(result.current.error).toBe('Request failed');
+  expect(result.current.loading).toBe(false);
+});
+```
+
+---
+
+### **4. Mocking API Calls with Custom Mocks**
+
+Sometimes, you might want more control over how the mock behaves or simulate different scenarios. You can create a custom mock for API functions.
+
+#### Example: Custom Mock for an API Service
+
+```javascript
+// api.js
+export const fetchData = () => {
+  return fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .catch(error => {
+      throw new Error('API Error');
+    });
+};
+
+// Test file
+import { fetchData } from './api';
+
+jest.mock('./api', () => ({
+  fetchData: jest.fn()
+}));
+
+test('should return mock data', async () => {
+  fetchData.mockResolvedValue({ name: 'Jane' });
+
+  const result = await fetchData();
+
+  expect(result.name).toBe('Jane');
+});
+
+test('should throw an error when fetch fails', async () => {
+  fetchData.mockRejectedValue(new Error('API Error'));
+
+  try {
+    await fetchData();
+  } catch (error) {
+    expect(error.message).toBe('API Error');
+  }
+});
+```
+
+---
+
 
 

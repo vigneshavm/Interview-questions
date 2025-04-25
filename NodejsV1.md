@@ -1,5 +1,3 @@
-**Create Node App**  - [JS](#create-node-app-using-js)  - [TypeScript](#create-node-app-using-typescript)  - [Node.js with TypeScript](#nodejs-with-typescript)
-
 **Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues)
 
 **Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)  - [Promise vs Async/Await](#promise-vs-asyncawait)  - [Promise Type](#promise-type)
@@ -10,9 +8,9 @@
 
 **Authentication & Authorization**  - [Implementing JWT Authentication](#implementing-jwt-authentication)  - [Session-based vs Token-based Authentication](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)  - [Authentication vs Authorization](#authentication-vs-authorization)  - [JWT](#jwt)  - [Refresh Tokens](#refresh-tokens)  - [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)  - [Protected Route](#protected-route)  - [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)
 
-**Error Handling & Debugging**  - [Error Handling in Node.js Applications](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging Node.js Applications](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Error Handling](#error-handling)  - [Data Validation](#data-validation)
+**Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Data Validation](#data-validation)
 
-**Performance Optimization**  - [Strategies for Improving Performance in Node.js Applications](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)  - [Caching Strategies](#caching-strategies)  - [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  - [Performance Optimization](#performance-optimization)  - [Garbage Collection](#garbage-collection)
+**Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)  - [Caching Strategies](#caching-strategies)  - [Redis (Caching)](#nodejs-with-redis-caching)   - [Garbage Collection](#garbage-collection)
 
 **Security Best Practices**  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Securing Sensitive Data](#securing-sensitive-data)  - [Secure Node.js App](#secure-nodejs-app)
 
@@ -27,6 +25,7 @@
 **Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics)
 
 **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
+
 
 ## **Create Node App using JS**
 

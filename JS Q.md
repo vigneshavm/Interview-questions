@@ -17,22 +17,14 @@
 
 
 **Asynchronous JavaScript** 
-| [Sync vs Async](#synchronous-vs-asynchronous-functions)  | [Handling Async Errors](#handling-async-errors) |  [Extending Built-in Objects](#extending-built-in-objects)  | [ Memory Leaks](#common-causes-of-memory-leaks) | [Garbage Collection](#javascript-garbage-collection) | [Type Coercion](#type-coercion-in-operations) | [Map Key References with Objects](#map-key-references-with-objects) | 
-
-**Objects & Classes**
+| [Sync vs Async](#synchronous-vs-asynchronous-functions)  | [Handling Async Errors](#handling-async-errors) |  [Extending Built-in Objects](#extending-built-in-objects)  | [ Memory Leaks](#common-causes-of-memory-leaks) | [Garbage Collection](#javascript-garbage-collection) | [Type Coercion](#type-coercion-in-operations) | [Map Key References with Objects](#map-key-references-with-objects) **Objects & Classes**
 | • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)        • [Static Class Members](#static-class-members)            • [Getters and Setters](#getters-and-setters)    • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
 
 
 **Design Patterns & Architecture**
  | • [Design Patterns](#introduction-to-design-patterns)     • [Function Composition Patterns](#function-composition-patterns)         • [Dependency Injection](#dependency-injection)        • [Memoization Techniques](#memoization-techniques)    
  
-
-
-
-**Browser**
- | • [Cookies, sessionStorage, localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [WebSocket](#websocket-api)    • [Web Workers](#web-workers)    • [window.history](#using-window-history-api) |
-
-**Events**  - [Event Propagation](#event-propagation)  • [Event Listeners](#event-listeners)    • [Bubbling vs Capturing](#event-bubbling)    • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)  • [Event Delegation and Bubbling](#event-delegation-and-bubbling)  
+**Browser**  • [Cookies, sessionStorage, localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [WebSocket](#websocket-api)    • [Web Workers](#web-workers)    • [window.history](#using-window-history-api) **Events**  - [Event Propagation](#event-propagation)  • [Event Listeners](#event-listeners)    • [Bubbling vs Capturing](#event-bubbling)    • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)  • [Event Delegation and Bubbling](#event-delegation-and-bubbling)  
 
 **Build** • [`<script>`, async, defer](#script-and-async-and-defer)    • [Tree Shaking](#tree-shaking-in-modern-bundlers)    • [Transpiling](#transpiling-javascript-code)    • [Babel](#role-of-babel-in-modern-development)    • [Webpack & Vite](#webpack-and-vite-bundling-process) | **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) |
 

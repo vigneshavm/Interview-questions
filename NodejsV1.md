@@ -14,7 +14,7 @@
 
 **Performance Optimization**  - [Strategies for Improving Performance in Node.js Applications](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)  - [Caching Strategies](#caching-strategies)  - [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  - [Performance Optimization](#performance-optimization)  - [Garbage Collection](#garbage-collection)
 
-**Security Best Practices**  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Securing Sensitive Data in Node.js Applications](#securing-sensitive-data-in-nodejs-applications)  - [Secure Node.js App](#secure-nodejs-app)
+**Security Best Practices**  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Securing Sensitive Data](#securing-sensitive-data)  - [Secure Node.js App](#secure-nodejs-app)
 
 **Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing)
 
@@ -27,7 +27,6 @@
 **Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics)
 
 **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
-
 
 ## **Create Node App using JS**
 

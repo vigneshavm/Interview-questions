@@ -1,5 +1,7 @@
 **Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues) **Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)
 
+**Concurrency & Processes**  - [Event Loop](#event-loop)  - [Worker Threads](#worker-threads)  - [Child Processes](#child-processes)  - [Cluster Module](#cluster-module)  - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)
+
 **Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)  - [Promise vs Async/Await](#promise-vs-asyncawait)  - [Promise Type](#promise-type)
 
 **Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis) **Caching** - [Caching Strategies](#caching-strategies)  - [Redis (Caching)](#nodejs-with-redis-caching) **Secure** -  [Secure Node.js App](#secure-nodejs-app) - [Securing Sensitive Data](#securing-sensitive-data)  
@@ -17,8 +19,6 @@
 **Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) **Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
 
 **Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [Clustering](#clustering-in-nodejs-for-performance-improvement)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
-
-**Concurrency & Processes**  - [Event Loop](#event-loop)  - [Worker Threads](#worker-threads)  - [Child Processes](#child-processes)  - [Cluster Module](#cluster-module)  - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)
 
 **API Design & Development**  - [REST API](#rest-api)  - [Secure REST APIs](#secure-rest-apis)  - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure)
 

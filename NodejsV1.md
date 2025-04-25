@@ -1,6 +1,6 @@
  **Create Node App** : - [JS](#create-node-app-using-js) - [TypeScript](#create-node-app-using-typescript) - [Node.js with TypeScript](#nodejs-with-typescript)
  
- **Node.js Basics** :   - [Node.js Architecture](#nodejs-architecture)   - [Node.js handle multiple requests] (#nodejs-handle-multiple-requests)   - [Single-Threaded Nature](#single-threaded-nature)   - [Scalability issues](#scalability-issues)
+ **Node.js Basics** :   - [Node.js Architecture](#nodejs-architecture)   - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)   - [Single-Threaded Nature](#single-threaded-nature)   - [Scalability issues](#scalability-issues)
 
 
  **Asynchronous Programming** :   - [Asynchronous I/O Handling](#Asynchronous-IO-Handling) - [Callback, Promise, and Async/Await](#Callback-Vs-Promise-Vs-AsyncAwait) - [Callback Hell](#callback-hell) - [Promise](#promise) - [Promise vs Async/Await](#promise-vs-asyncawait) - [Promise Type](#Promise-Type) 

@@ -1,39 +1,38 @@
- **Create Node App** : - [JS](#create-node-app-using-js) - [TypeScript](#create-node-app-using-typescript) - [Node.js with TypeScript](#nodejs-with-typescript)
- 
- **Node.js Basics** :   - [Node.js Architecture](#nodejs-architecture)   - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)   - [Single-Threaded Nature](#single-threaded-nature)   - [Scalability issues](#scalability-issues)
+**Create Node App**  - [JS](#create-node-app-using-js)  - [TypeScript](#create-node-app-using-typescript)  - [Node.js with TypeScript](#nodejs-with-typescript)
 
+**Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues)
 
- **Asynchronous Programming** :   - [Asynchronous I/O Handling](#Asynchronous-IO-Handling) - [Callback, Promise, and Async/Await](#Callback-Vs-Promise-Vs-AsyncAwait) - [Callback Hell](#callback-hell) - [Promise](#promise) - [Promise vs Async/Await](#promise-vs-asyncawait) - [Promise Type](#Promise-Type) 
+**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)  - [Promise vs Async/Await](#promise-vs-asyncawait)  - [Promise Type](#promise-type)
 
+**Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)
 
- **Express.js Framework** :   - [Express.js](#expressjs) - [Routing](#routing) - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)  
+**Database Interaction**  - [SQL connection](#sql-connection)  - [MongoDB connection](#mongodb-connection)  - [Database connections](#database-connections)  - [Data validation](#data-validation)  - [Database Transactions](#database-transactions)  - [Data consistency across distributed services](#data-consistency-across-distributed-services)
 
- **Database Interaction** :   - [SQL connection](#sql-connection) - [MongoDB connection](#mongodb-connection) - [Database connections](#database-connections) - [Data validation](#data-validation) - [Database Transactions](#database-transactions) - [Data consistency across distributed services](#data-consistency-across-distributed-services) 
+**Authentication & Authorization**  - [Implementing JWT Authentication](#implementing-jwt-authentication)  - [Session-based vs Token-based Authentication](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)  - [Authentication vs Authorization](#authentication-vs-authorization)  - [JWT](#jwt)  - [Refresh Tokens](#refresh-tokens)  - [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)  - [Protected Route](#protected-route)  - [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)
 
+**Error Handling & Debugging**  - [Error Handling in Node.js Applications](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging Node.js Applications](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Error Handling](#error-handling)  - [Data Validation](#data-validation)
 
-**Authentication & Authorization** - [Implementing JWT Authentication**](#Implementing-JWT-Authentication) - [Session-based vs Token-based Authentication**](#Session-based-vs-Token-based-Authentication) - [Protecting Routes**](#Protecting-Sensitive-Routes) - [Authentication vs Authorization](#authentication-vs-authorization)  - [JWT](#jwt)  - [Refresh Tokens](#refresh-tokens)  - [JWT in Cookies vs Headers](#jwt-in-cookies-vs-headers)  - [Protected Route](#protected-route)  - [Role-Based Access Control](#role-based-access-control-rbac) 
+**Performance Optimization**  - [Strategies for Improving Performance in Node.js Applications](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  
+- [Common Performance Pitfalls](#common-performance-pitfalls)  - [Caching Strategies](#caching-strategies)  - [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  - [Performance Optimization](#performance-optimization)  - [Garbage Collection](#garbage-collection)
 
- **Error Handling & Debugging** - [Error Handling in Node.js Applications](#error-handling-in-nodejs-applications) - [Logging Errors](#logging-errors) - [Debugging Node.js Applications](#debugging-nodejs-applications) - [Error handling in REST APIs](#error-handling-in-rest-apis)  - [Error Handling](#error-handling)  - [Data Validation](#data-validation) 
+**Security Best Practices**  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  
+- [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  
+- [Improper Session Handling](#improper-session-handling)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Securing Sensitive Data in Node.js Applications](#securing-sensitive-data-in-nodejs-applications)  - [Secure Node.js App](#secure-nodejs-app)
 
+**Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing)
 
- **Performance Optimization** - [Strategies for Improving Performance in Node.js Applications](#Strategies-for-Improving-Performance-in-Node.js-Applications) - [Profiling and Optimizing Latency](#Profiling-and-Optimizing-Latency) - [Common Performance Pitfalls](#Common-Performance-Pitfalls) - [Caching Strategies](#caching-strategies)  - [Node.js with Redis (Caching)](#nodejs-with-redis-caching)  - [Performance Optimization](#performance-optimization) - [Garbage Collection](#Garbage-Collection) 
+**Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [Clustering](#clustering-in-nodejs-for-performance-improvement)  - [PM2](#pm2)  
+- [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
 
- **Security Best Practices**  - [CORS](#cors)  - [Middleware](#middleware)  - [Helmet](#Helmet)  - [Rate Limiting APIs](#rate-limiting-apis)  - [SQL Injection](#sql-injection) - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss) - [XSS Attack](#XSS-Attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#insecure-cors-configuration) - [Securing Sensitive Data in Node.js Applications](#Securing-Sensitive-Data) - [Secure Node.js App](#secure-nodejs-app)
+**Concurrency & Processes**  - [Event Loop](#event-loop)  - [Worker Threads](#worker-threads)  - [Child Processes](#child-processes)  
+- [Cluster Module](#cluster-module)  - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)
 
- **Testing** - [Testing Frameworks](#testing-frameworks) - [Testing Asynchronous Code](#testing-asynchronous-code) - [Mock Testing](#mock-testing)
+**API Design & Development**  - [REST API](#rest-api)  - [Secure REST APIs](#secure-rest-apis)  - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure)
 
+**Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics)
 
- **Deployment & Scaling** - [Deploying into Production](#deploying-a-nodejs-application-to-production) - [Scaling](#scaling-nodejs-applications-for-high-traffic) - [Clustering](#clustering-in-nodejs-for-performance-improvement) - [PM2](#PM2) - [Load Balancing](#load-balancing) - [Microservices Communication](#microservices-communication) 
+**Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
 
- **Concurrency & Processes** - [Event Loop](#event-loop) - [Worker Threads](#worker-threads) - [Child Processes](#child-processes) - [Cluster Module](#cluster-module) - [Cluster Module vs Child Process vs Worker Thread](#Cluster-Module-vs-Child-Process-vs-Worker-Thread)
-
-
- **API Design & Development** - [REST API](#rest-api)  - [Secure REST APIs](#secure-rest-apis)  - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [Clean RESTful Folder Structure](#clean-restful-folder-structure) 
-
-
- **Event Handling** - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) 
-
- **Package JSON** - [package.json](#package-json)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson) 
 
 
 ## **Create Node App using JS**

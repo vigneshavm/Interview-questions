@@ -3895,21 +3895,30 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 
 
-- The **Temporal Dead Zone (TDZ)** is the time between the entering of the scope and the initialization of variables declared with `let` or `const`. During this period, the variable cannot be accessed, and attempting to do so will result in a **ReferenceError**.
+The Temporal Dead Zone, or TDZ, happens when we declare variables using `let` or `const`.  
+Even though these variables are technically **hoisted** to the top of their scope — like a function or block — **they aren’t initialized right away**.
 
-  **Why does it happen?**
-  - Variables declared with `let` or `const` are **hoisted** to the top of their scope but are not initialized until their declaration is reached in the code. Accessing them before initialization results in the TDZ.
+There’s a small period between when the scope starts and when the variable is actually declared in the code.  
+During this time, **if we try to access the variable, JavaScript throws a `ReferenceError`** because it hasn’t been initialized yet.
 
-  **Example**:
-  ```javascript
-  console.log(foo); // ReferenceError: Cannot access 'foo' before initialization
-  let foo = 'bar';
-  ```
+Here's a quick example:
 
-  **Best Practice**:
-  - Always ensure variables are accessed only after their declaration to avoid the TDZ issue.
+```javascript
+console.log(foo); // ReferenceError: Cannot access 'foo' before initialization
+let foo = 'bar';
+```
+
+In this case, the variable `foo` exists in memory but is **uninitialized** until the `let foo = 'bar'` line is executed.  
+If we try to use it before that, we fall into the Temporal Dead Zone.
+
+**Why does it happen?**  
+It’s designed this way to **prevent bugs** — so developers can't accidentally use variables before they're ready.
+
+**Best practice:**  
+I always make sure to **declare variables at the top** of their scope and **only use them after they are declared**, so I don't run into TDZ issues.
 
 ---
+
 
 #### **Labeled Statements Usage**
 

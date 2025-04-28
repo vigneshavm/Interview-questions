@@ -1743,6 +1743,44 @@ For instance, the **Singleton Pattern** ensures that a class has only one instan
 
 ---
 
+---
+
+### 📦 Creational Patterns
+
+| #  | Pattern         | Purpose                                          | JavaScript Example/Usage              |
+|:--:|------------------|--------------------------------------------------|---------------------------------------|
+| 1  | **Builder**       | Build complex objects step by step               | Fluent APIs, chainable methods        |
+| 2  | **Prototype**     | Clone or reuse existing objects                  | `Object.create()`, prototypes         |
+| 3  | **Singleton**     | Ensure only one instance exists                  | Module pattern, shared config state   |
+
+---
+
+### 🏗️ Structural Patterns
+
+| #  | Pattern            | Purpose                                           | JavaScript Example/Usage                  |
+|:--:|--------------------|---------------------------------------------------|-------------------------------------------|
+| 4  | **Adapter**         | Convert one interface to another                  | API format converters, wrapper classes    |
+| 5  | **Bridge**          | Separate abstraction from implementation          | UI platform adapters                      |
+| 6  | **Composite**       | Treat individual and composite objects uniformly  | DOM trees, React/Vue component trees      |
+| 7  | **Decorator**       | Add behavior to objects without modifying them    | Higher-order functions, decorators        |
+| 8  | **Facade**          | Simplify complex subsystems with one interface     | Utility libraries like jQuery             |
+| 9  | **Flyweight**       | Share small reusable objects                      | DOM optimization, game asset sharing      |
+| 10 | **Proxy**           | Control access to objects                         | ES6 `Proxy`, API calls, validation layers |
+
+---
+
+### 🧠 Behavioral Patterns
+
+| #  | Pattern                  | Purpose                                           | JavaScript Example/Usage               |
+|:--:|---------------------------|---------------------------------------------------|----------------------------------------|
+| 11 | **Chain of Responsibility** | Pass requests along a chain until handled        | Express.js middleware flow             |
+| 12 | **Command**               | Encapsulate a request as an object                | UI buttons triggering actions          |
+| 13 | **Iterator**              | Access elements of a collection sequentially      | `Symbol.iterator`, custom generators   |
+| 14 | **Mediator**              | Centralize communication between components       | Event bus, chat applications           |
+| 15 | **Memento**               | Save and restore object state                     | Undo/redo in text editors               |
+| 16 | **Observer**              | Notify objects on state changes                   | DOM events, Reactive programming (RxJS)|
+| 17 | **Visitor**               | Add new operations without changing structures    | Operations on data trees, AST traversal |
+
 
 
 | **Design Pattern**   | **Description** |

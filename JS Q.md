@@ -6,7 +6,8 @@
 
 **Objects and Classes** - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)    • [Understanding `__proto__`](#understanding-__proto__-and-prototypes)    • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)   • [Map Key References](#map-key-references-with-objects)  
 
-**Modules and Imports** - [JavaScript Modules (import/export)](#javascript-modules-importexport)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules)  
+**Modules and Imports** - [JavaScript Modules (import/export)](#javascript-modules-importexport)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules)  **Design Patterns and Architecture** - [Introduction to Design Patterns](#introduction-to-design-patterns)    • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)  
+
 
 **Advanced Types and Data Structures** - [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)    • [Union Types (TS)](#union-types)    • [Interface vs Type (TS)](#interface-vs-type)    • [Generics (TS)](#generics)    • [Mapped Types (TS)](#mapped-types)    • [Duck Typing (TS)](#duck-typing)  
 
@@ -22,8 +23,6 @@
 
 
 **Performance and Optimization** - [Debounce and Throttle Functions](#debounce-and-throttle-functions)    • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)  
-
-**Design Patterns and Architecture** - [Introduction to Design Patterns](#introduction-to-design-patterns)    • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)  
 
 
 **CSS and DOM Manipulation** - [innerHTML vs textContent](#innerhtml-vs-textcontent)    • [CSS Manipulation](#css-manipulation)  

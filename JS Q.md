@@ -16,16 +16,12 @@
 
 **Events** - [Event Propagation](#event-propagation)    • [Event Listeners](#event-listeners)    • [Bubbling vs Capturing](#event-bubbling)    • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)    • [Event Delegation and Bubbling](#event-delegation-and-bubbling)  
 
-**Browser APIs** - [Cookies vs sessionStorage vs localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [window.history API](#using-window-history-api)    • [Web Workers](#web-workers)    • [WebSocket API](#websocket-api)  
+**Browser APIs** - [Cookies vs sessionStorage vs localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [window.history API](#using-window-history-api)    • [Web Workers](#web-workers)    • [WebSocket API](#websocket-api)  **Error Handling** - [Custom Error](#custom-error)    • [Unexpected Outputs](#understanding-unexpected-outputs)  
 
 **Language Features and Improvements** - [Key ES6 Features](#key-es6-features)    • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator)    • [Object Destructuring with Defaults](#object-destructuring-with-defaults)    • [Labeled Statements](#labeled-statements-usage)  
 
 
 **Performance and Optimization** - [Debounce and Throttle Functions](#debounce-and-throttle-functions)    • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)  
-
-
-**Error Handling** - [Custom Error](#custom-error)    • [Unexpected Outputs](#understanding-unexpected-outputs)  
-
 
 **Design Patterns and Architecture** - [Introduction to Design Patterns](#introduction-to-design-patterns)    • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)  
 

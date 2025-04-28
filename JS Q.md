@@ -478,12 +478,13 @@ person.name = 'Jane'; // Error: Cannot assign to read only property 'name'
 
 #### **How TypeScript Improves JavaScript**
 
+- **TypeScript is a superset of JavaScript** that adds **static typing**.
+- **Instead of waiting for errors at runtime**, TypeScript **catches type mistakes during compile time**.
+- This helps in **early error detection**, saving time and reducing bugs.
+- **IDEs and editors** work better with TypeScript, offering **autocompletion, easy refactoring, and quick error highlighting**.
+- **Explicit types** make the code **more readable and understandable**, especially in **large projects**.
+- Overall, **TypeScript makes development safer, faster, and the codebase much cleaner**.
 
- TypeScript is a superset of JavaScript that introduces static typing to help catch errors during development, before the code runs. While JavaScript is dynamically typed and relies on runtime checks, TypeScript allows you to declare variable types, which provides several benefits:
-- **Early Error Detection**: With TypeScript, errors related to type mismatches can be caught at compile time.
-- **Better Tooling**: IDEs and editors offer enhanced autocompletion, refactoring, and error-checking features.
-- **Improved Code Readability**: Explicit types make the code more understandable, especially in large projects.
-  
 **Example**:  
 ```typescript
 function add(a: number, b: number): number {

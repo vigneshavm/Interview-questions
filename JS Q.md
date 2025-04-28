@@ -1,39 +1,7 @@
 
-| [Hoisting](#hoisting) • [Debounce and Throttle](#debounce-and-throttle-functions) • [Shallow vs Deep Copy](#shallow-vs-deep-copy) • [setTimeout/setImmediate/process.nextTick()](#settimeout-and-setimmediate-and-processnexttick) • [ES6 Features](#key-es6-features) • [Optional Chaining (`?.`)](#optional-chaining-operator) • [Inheritance](#Inheritance)  
-| [innerHTML vs textContent](#innerhtml-vs-textcontent) • [CSS Manipulation](#css-manipulation) • [Request/Response Types](#requestresponse-types) • [Custom Error](#custom-error) • [Unexpected Outputs](#understanding-unexpected-outputs) • [Event Loop & Call Stack](#event-loop--call-stack)   
-**Object**| [Mutable vs Immutable Objects](#mutable-vs-immutable-objects) • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    | [Object.create() and Prototype Chains](#object-create-and-prototype-chains)  • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)  
-
-| [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor) • [Default Parameters](#default-parameters) • [JavaScript Modules (`import/export`)](#javascript-modules-importexport) • [WeakMap and WeakSet](#weakmap-and-weakset-usage) • [Map and Plain Objects](#difference-between-map-and-plain-objects) 
-
-
-**Scope** - [Scope](#scope) • [Lexical Scoping](#lexical-scoping) • [Global and Function and Block Scope](#global-and-function-and-block-scope) • [Global JavaScript scope](#global-javascript-scope)  **Functions**
-| [Functions](#Functions) • [Closures](#closures) • [Call, Apply, Bind](#call-and-apply-and-bind-methods) • [Currying](#currying-in-javascript)  
-
-**TypeScript**
-| [TS Improves JS](#how-typescript-improves-javascript) • [Interface Vs Type](#interface-vs-type) • [Generics](#generics) • [Union Types](#union-types) • [Type Inference](#type-inference) • [Mapped Types](#mapped-types) • [Decorators](#decorators) • [Duck Typing](#duck-typing) • [Module System & Compiler Options](#module-system--compiler-options) | 
 
 **JavaScript Fundamentals**
-| [let and var and const](#let-and-var-and-const) • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const) • [use strict Directive](#use-strict-directive)   | [Data Types](#data-types) • [Symbol](#symbol)  [null and undefined and undeclared](#null-and-undefined-and-undeclared) • [Type Checking](#type-checking) • [== vs ===](#loose-equality-vs-strict-equality) • [Usage of `super()`](#usage-of-super-in-classes) • [Understanding `__proto__`](#understanding-__proto__-and-prototypes) • [Labeled Statements](#labeled-statements-usage) • [this Keyword Behavior](#this-keyword-behavior) • [Nullish Coalescing (`??`)](#nullish-coalescing-operator) • [Object Destructuring with Defaults](#object-destructuring-with-defaults) |
-
-
-**Asynchronous JavaScript** 
-| [Sync vs Async](#synchronous-vs-asynchronous-functions) • [Handling Async Errors](#handling-async-errors) • [Extending Built-in Objects](#extending-built-in-objects) • [ Memory Leaks](#common-causes-of-memory-leaks) • [Garbage Collection](#javascript-garbage-collection) • [Type Coercion](#type-coercion-in-operations) • [Map Key References with Objects](#map-key-references-with-objects) **Objects & Classes**
-| • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)        • [Static Class Members](#static-class-members)            • [Getters and Setters](#getters-and-setters)    • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules) |
-
-
-**Design Patterns & Architecture**
- | • [Design Patterns](#introduction-to-design-patterns) • [SOLID principles](#SOLID-principles)    • [Function Composition Patterns](#function-composition-patterns)         • [Dependency Injection](#dependency-injection)        • [Memoization Techniques](#memoization-techniques)    
- 
-**Browser**  • [Cookies, sessionStorage, localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [WebSocket](#websocket-api)    • [Web Workers](#web-workers)    • [window.history](#using-window-history-api) **Events**  - [Event Propagation](#event-propagation)  • [Event Listeners](#event-listeners)    • [Bubbling vs Capturing](#event-bubbling)    • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)  • [Event Delegation and Bubbling](#event-delegation-and-bubbling)  
-
-
-
-
-
-**JavaScript Fundamentals**
-- [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)  
-- [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)  
-- [Type Inference (TS)](#type-inference)    • [TypeScript Improves JavaScript](#how-typescript-improves-javascript)  
+- [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)    • [Type Inference (TS)](#type-inference)    • [TypeScript Improves JavaScript](#how-typescript-improves-javascript)  
 
 
 **Scope and `this`**
@@ -41,16 +9,11 @@
 
 
 **Functions**
-- [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    • [Functions](#functions)  
-- [Closures](#closures)    • [Call, Apply, Bind](#call-and-apply-and-bind-methods)  
-- [Currying](#currying-in-javascript)    • [Default Parameters](#default-parameters)    • [Hoisting](#hoisting)  
+- [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    • [Functions](#functions)    • [Closures](#closures)    • [Call, Apply, Bind](#call-and-apply-and-bind-methods)    • [Currying](#currying-in-javascript)    • [Default Parameters](#default-parameters)    • [Hoisting](#hoisting)  
 
 
 **Objects and Classes**
-- [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Constructor Function](#constructor-function)  
-- [new Keyword](#new-keyword)    • [Static Class Members](#static-class-members)  
-- [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)  
-- [Usage of `super()`](#usage-of-super-in-classes)    • [Understanding `__proto__`](#understanding-__proto__-and-prototypes)    • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)  
+- [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)    • [Understanding `__proto__`](#understanding-__proto__-and-prototypes)    • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)  
 
 
 **Modules and Imports**
@@ -58,8 +21,7 @@
 
 
 **Advanced Types and Data Structures**
-- [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)    • [Union Types (TS)](#union-types)    • [Interface vs Type (TS)](#interface-vs-type)    • [Generics (TS)](#generics)    • [Mapped Types (TS)](#mapped-types)  
-- [Duck Typing (TS)](#duck-typing)  
+- [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)    • [Union Types (TS)](#union-types)    • [Interface vs Type (TS)](#interface-vs-type)    • [Generics (TS)](#generics)    • [Mapped Types (TS)](#mapped-types)    • [Duck Typing (TS)](#duck-typing)  
 
 
 **Asynchronous JavaScript**
@@ -74,8 +36,7 @@
 
 
 **Language Features and Improvements**
-- [Key ES6 Features](#key-es6-features)    • [Optional Chaining (`?.`)](#optional-chaining-operator)  
-- [Nullish Coalescing (`??`)](#nullish-coalescing-operator)    • [Object Destructuring with Defaults](#object-destructuring-with-defaults)    • [Labeled Statements](#labeled-statements-usage)  
+- [Key ES6 Features](#key-es6-features)    • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator)    • [Object Destructuring with Defaults](#object-destructuring-with-defaults)    • [Labeled Statements](#labeled-statements-usage)  
 
 
 **Performance and Optimization**

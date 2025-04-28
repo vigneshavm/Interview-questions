@@ -4,7 +4,7 @@
 
 **Functions** - [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    • [Functions](#functions)    • [Closures](#closures)    • [Call, Apply, Bind](#call-and-apply-and-bind-methods)    • [Currying](#currying-in-javascript)    • [Default Parameters](#default-parameters)    • [Hoisting](#hoisting)  
 
-**Objects and Classes** - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)    • [Understanding `__proto__`](#understanding-__proto__-and-prototypes)    • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)  
+**Objects and Classes** - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)    • [Understanding `__proto__`](#understanding-__proto__-and-prototypes)    • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)   • [Map Key References](#map-key-references-with-objects)  
 
 **Modules and Imports** - [JavaScript Modules (import/export)](#javascript-modules-importexport)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules)  
 
@@ -31,9 +31,6 @@
 
 
 **CSS and DOM Manipulation** - [innerHTML vs textContent](#innerhtml-vs-textcontent)    • [CSS Manipulation](#css-manipulation)  
-
-
-**Summary Topics** - [Map Key References with Objects](#map-key-references-with-objects)  
 
 
 

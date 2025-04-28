@@ -278,16 +278,28 @@ display(); // Outputs: I'm global
 ---
 
 #### **use strict Directive**
-The `'use strict'` directive is a feature in JavaScript that enables strict mode. It helps catch common coding mistakes and prevents the use of problematic features like implicit globals. When strict mode is applied, certain errors that are silently ignored in normal JavaScript will now throw errors.
+`'use strict'` is a special directive in JavaScript that we can add at the top of our script or inside a function.  
+It tells JavaScript to **run in strict mode**, which basically means **stricter rules** for how we write our code.
 
-**Example:**
+In strict mode, **JavaScript catches common mistakes** that would normally be ignored.  
+For example, if I accidentally use a variable without declaring it first, it would throw an error instead of silently creating a global variable.
+
+Here’s a small example:
+
 ```javascript
 'use strict';
+
 x = 5; // ReferenceError: x is not defined
 ```
-Without `'use strict'`, the variable `x` would be implicitly created as a global variable. With strict mode, JavaScript throws an error because `x` is not explicitly declared.
+
+Without strict mode, `x` would automatically become a global variable, which can cause problems in big applications.  
+But with `'use strict'`, JavaScript **forces us to declare variables properly** using `let`, `const`, or `var`, and helps avoid these kinds of bugs.
+
+**In short:**  
+Strict mode makes our code **safer**, **cleaner**, and **easier to debug**.
 
 ---
+
 
 #### **Hoisting**
 

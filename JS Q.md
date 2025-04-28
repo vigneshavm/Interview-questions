@@ -529,28 +529,19 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
 ---
 
 #### **Generics**
-
  - Generics in TypeScript are a way to make our code more flexible and reusable while still preserving type safety, by allowing types to be passed as parameters.
-
-> **"In TypeScript, Generics allow us to create reusable components or functions that can work with different types while still keeping type safety.  
->  
-> I like to think of them as type placeholders — instead of writing multiple versions of the same function or class for different types, I can write it once and just pass the type when I use it.  
->  
-> For example, a simple generic function could look like this:  
->  
+ - "In TypeScript, Generics allow us to create reusable components or functions that can work with different types while still keeping type safety.  
+ - I like to think of them as type placeholders — instead of writing multiple versions of the same function or class for different types, I can write it once and just pass the type when I use it.  
+ - For example, a simple generic function could look like this:  
 > ```typescript
 > function identity<T>(arg: T): T {
 >   return arg;
 > }
 > ```  
->  
-> Here, `T` acts like a variable for the type. When I call `identity("Hello")`, TypeScript understands `T` is a string. If I call it with a number, `T` becomes a number.  
->  
-> Generics can also be used with interfaces. For example, I can create a `Box<T>` interface where the `value` property can be of any type — string, number, anything — depending on how I define it.  
->  
-> And similarly with classes — I can have a generic class like `DataHolder<T>`, which can hold any type of data.  
->  
-> Overall, Generics help me write cleaner, more flexible code without giving up the strong type checking that TypeScript provides. It’s better than using `any` because it keeps things type-safe."**
+ - Here, `T` acts like a variable for the type. When I call `identity("Hello")`, TypeScript understands `T` is a string. If I call it with a number, `T` becomes a number.  
+ - Generics can also be used with interfaces. For example, I can create a `Box<T>` interface where the `value` property can be of any type — string, number, anything — depending on how I define it.  
+ - And similarly with classes — I can have a generic class like `DataHolder<T>`, which can hold any type of data.  
+ - Overall, Generics help me write cleaner, more flexible code without giving up the strong type checking that TypeScript provides. It’s better than using `any` because it keeps things type-safe."**
 
 ---
 

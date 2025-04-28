@@ -4,7 +4,7 @@
 **TypeScript** - [TS Improves JS](#how-typescript-improves-javascript) • [Interface Vs Type](#interface-vs-type) • [Generics](#generics) • [Union Types](#union-types) • [Type Inference](#type-inference) • [Mapped Types](#mapped-types) • [Decorators](#decorators) • [Duck Typing](#duck-typing) • [Module System & Compiler Options](#module-system--compiler-options) • [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)          
 
 
-**Scope and `this`** - [Scope](#scope)    • [Global, Function, and Block Scope](#global-and-function-and-block-scope)    • [Lexical Scoping](#lexical-scope)   • [this Keyword Behavior](#this-keyword-behavior)  **Events** - [Event Propagation](#event-propagation)    • [Event Listeners](#event-listeners)     • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)      • [Event Capturing vs Event Bubbling vs Event Delegation](#Event-Capturing-vs-Event-Bubbling-vs-Event-Delegation)  
+**Scope and `this`** - [Scope](#scope)    • [Global, Function, and Block Scope](#global-and-function-and-block-scope)    • [Lexical Scoping](#Lexical-Scoping)   • [this Keyword Behavior](#this-keyword-behavior)  **Events** - [Event Propagation](#event-propagation)    • [Event Listeners](#event-listeners)     • [`event.preventDefault()` vs `event.stopPropagation()`](#preventdefault-vs-stoppropagation)      • [Event Capturing vs Event Bubbling vs Event Delegation](#Event-Capturing-vs-Event-Bubbling-vs-Event-Delegation)  
 
 **Functions** - [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    • [Functions](#functions)    • [Closures](#closures)    • [Call, Apply, Bind](#call-and-apply-and-bind-methods)    • [Currying](#currying-in-javascript)    • [Default Parameters](#default-parameters)    • [Hoisting](#hoisting)  
 
@@ -92,41 +92,6 @@ const deep = JSON.parse(JSON.stringify(obj));
 deep.b.c = 4;
 console.log(obj.b.c); // 3
 ```
-
----
-
-
-
-
-
-## Event Propagation
-
-Event propagation is the way events travel through the DOM tree. It has three phases:
-
-1. **Capturing Phase (Event Capturing)** – Event travels from the root to the target.
-2. **Target Phase** – Event reaches the target element.
-3. **Bubbling Phase (Event Bubbling)** – Event bubbles up from the target to the root.
-
-**Example:**
-```html
-<div id="parent">
-  <button id="child">Click Me</button>
-</div>
-```
-
-```js
-document.getElementById("parent").addEventListener("click", () => {
-  console.log("Parent clicked");
-}, true); // Capturing phase
-
-document.getElementById("child").addEventListener("click", (event) => {
-  console.log("Child clicked");
-  event.stopPropagation(); // Prevents bubbling
-}, false); // Bubbling phase
-```
-
-- `event.stopPropagation()` prevents the event from moving up (bubbling).
-- `true` in `addEventListener` enables the **capturing phase**.
 
 ---
 
@@ -357,17 +322,16 @@ In the example above, `inner()` can access `name` because it's **lexically insid
 ---
 
 #### **Scope**
-Scope refers to the accessibility of variables in different parts of the code. There are several types of scopes in JavaScript:
-- **Global Scope**: Variables declared outside of any function or block.
-- **Function Scope**: Variables declared inside a function.
-- **Block Scope**: Variables declared within a block (for example, inside `if` statements or loops), using `let` or `const`.
-
 ---
 
+- Scope in JavaScript is all about where variables can be accessed or modified in your code
+- For instance, if you declare a variable inside a function, it won’t be accessible outside of that - function. But if it’s declared globally, it’s accessible throughout the entire program
+
 #### **Global and Function and Block Scope**
-- **Global Scope**: Variables declared outside any function or block are accessible from anywhere in the code.
-- **Function Scope**: Variables declared inside a function are only accessible within that function.
-- **Block Scope**: Variables declared inside a block (for example, inside an `if` or loop) are only accessible within that block when declared with `let` or `const`.
+
+- **Global Scope**: When a variable is declared outside of any function or block, it can be accessed anywhere in your code.
+- **Function Scope**: When a variable is declared inside a function, it’s only accessible within that function.
+- **Block Scope**: Variables declared inside blocks (like `if` statements or loops) using `let` or `const` are only accessible within that block."
 
 **Example:**
 ```javascript
@@ -391,6 +355,39 @@ console.log(globalVar); // I am global
 ```
 
 ---
+
+
+
+### Lexical Scoping
+
+- **Definition**: Lexical scoping refers to how JavaScript determines the scope of variables based on where they are declared in the code, not where they are executed.
+  
+- **Function Scope**: A function’s scope is determined by where the function is defined, not where it is called.
+
+- **Nested Functions**: Inner functions can access variables from their outer functions, even after the outer function has finished executing.
+
+- **Closure Creation**: Lexical scoping allows for closures, where an inner function "remembers" the variables of its outer function even after the outer function has returned.
+
+- **Example**:
+
+  ```javascript
+  function outer() {
+    let outerVar = 'I am in the outer function';
+    
+    function inner() {
+      console.log(outerVar); // 'outerVar' is accessible here
+    }
+    
+    inner(); // Logs: 'I am in the outer function'
+  }
+
+  outer();
+  ```
+
+- **Why it’s important**: It enables the creation of closures, which are essential for encapsulating state and creating private variables.
+
+
+
 
 #### **Data Types**
 JavaScript has several data types that can be classified as primitive types and object types.
@@ -498,14 +495,13 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 
 #### **Interface vs. Type**
 
+- "`interface` and `type` are both used to define the structure of data in TypeScript."
+- "Interfaces are mainly for describing object shapes and can be **extended** or **implemented** by classes."
+- "Types are more flexible — they can describe **objects, primitives, unions, intersections**, and more."
+- "One major difference is: **interfaces can be merged**, but **types cannot** be merged once created."
+- "In practice, if I'm only defining an object structure, I prefer using an `interface`."
+- "If I need to create something complex, like combining multiple types or handling different kinds of data, then `type` is a better fit."
 
- Both `interface` and `type` are used for defining shapes of objects, but they have subtle differences:
-- **Interface**: Primarily used to define object shapes and can be extended or implemented.
-- **Type**: More flexible than `interface` and can define primitive types, union types, intersection types, and more.
-
-**Key Differences**:
-- **Extensibility**: Interfaces can be extended or merged, whereas types cannot be merged once defined.
-- **Use Cases**: While `interface` is best suited for defining object shapes, `type` is better for complex types, like unions or tuples.
 
 **Example**:  
 ```typescript
@@ -665,7 +661,11 @@ greet(undefined); // TypeError: Cannot read property 'toUpperCase' of undefined
 #### **Mapped Types**
 
 
- Mapped types allow you to create new types by transforming properties of an existing type. For example, you can make all properties of a type `readonly`, `optional`, or change their types.
+- "Mapped types in TypeScript are used to create **new types** by transforming the properties of an existing type."
+- "For example, I can make all properties **readonly**, **optional**, or even **change their types** dynamically."
+- "They are really helpful when I want to apply a consistent transformation across all properties without rewriting the entire type."
+- "Common built-in mapped types include `Readonly`, `Partial`, and `Required`."
+
 
 **Example**:  
 ```typescript
@@ -748,9 +748,10 @@ By using these types, TypeScript provides type safety and improves the maintaina
 ---
 
 #### **Decorators**
-
-
- Decorators in TypeScript are special functions that can be applied to classes, methods, properties, or parameters to add behavior or metadata. They are commonly used in frameworks like Angular to handle things like dependency injection.
+- "In TypeScript, **decorators** are special functions that can be applied to **classes, methods, properties, or parameters**."
+- "They help us **add extra behavior** or **attach metadata** to these elements without changing their core logic."
+- "Decorators are especially common in frameworks like **Angular**, where they are used for things like **dependency injection**, routing, and more."
+- "They basically make our code **more organized and reusable** by separating extra behavior from the main logic."
 
 **Example**:  
 ```typescript
@@ -792,8 +793,10 @@ Decorators help add reusable logic without modifying the core structure of the c
 
 #### **Duck Typing**
 
+- "In TypeScript, **duck typing** means that an object is considered of a certain type **as long as it has the required properties or methods**, even if it doesn’t explicitly implement a class or interface."
+- "Basically, if it **looks like a duck and quacks like a duck**, we treat it like a duck — the actual structure matters more than the specific label."
+- "This is common when we use **interfaces** in TypeScript, where we just check if the object matches the **shape** we expect, rather than its actual type name."
 
- Duck typing is a concept where an object is considered to be of a certain type if it has the properties or methods expected of that type, regardless of its actual class or interface. In TypeScript, this is common when we use interfaces to define the shape of objects.
 
 **Example**:  
 ```typescript
@@ -829,13 +832,13 @@ In TypeScript, objects are accepted based on their structure (duck typing), rath
 
 #### **Module System & Compiler Options**
 
+- "In TypeScript, we use the **ES6 module system**, which means we work with `import` and `export` statements to break code into modules."
+- "The way modules and compilation work is controlled by settings in the **`tsconfig.json`** file."
+- "Some important compiler options are:"
+  - "**`module`** — It decides which module system to use, like `commonjs`, `es6`, or `amd`."
+  - "**`target`** — It tells TypeScript which JavaScript version to compile the code into, like `es5` or `es6`."
+  - "**`strict`** — It enables strict type-checking, making TypeScript catch more potential errors early."
 
- TypeScript uses the ES6 module system, which relies on `import` and `export` statements to modularize code. You can define modules and specify how they should be compiled using the `tsconfig.json` file.
-
-**Key Compiler Options**:
-- **`module`**: Specifies the module system (`commonjs`, `es6`, `amd`).
-- **`target`**: Specifies the JavaScript version the code should be compiled to (e.g., `es5`, `es6`).
-- **`strict`**: Enables strict type-checking options, ensuring more accurate type validation.
   
 **Example**:  
 ```typescript
@@ -2069,63 +2072,6 @@ This can be useful in single-page applications (SPAs) for updating the URL witho
 
 ---
 
-#### **Event Listeners**
-
-
-
-In JavaScript, **event listeners** are used to listen for specific events (like clicks, keypresses, etc.) on DOM elements and trigger a function when that event occurs.
-
-You can add an event listener to an element using the `addEventListener()` method. This method allows you to specify the event type and a callback function that will be executed when the event occurs.
-
-**Example**:
-```javascript
-document.getElementById("myButton").addEventListener("click", function() {
-  alert("Button clicked!");
-});
-```
-
-This will display an alert when the user clicks the button with `id="myButton"`. You can also specify options like event bubbling or capturing, and whether the event listener should be passive.
-
----
-
-
-#### **`event.preventDefault()` vs `event.stopPropagation()`**
-
-
-
-Both methods are used in event handling, but they serve different purposes:
-
-- **`event.preventDefault()`**: Prevents the default action associated with the event from occurring. This is useful for actions like stopping form submissions or disabling anchor tags' default navigation.
-
-  **Example**:
-  ```javascript
-  document.getElementById("myLink").addEventListener("click", function(event) {
-    event.preventDefault();  // Prevents the default link behavior (navigation)
-    alert("Link clicked, but no navigation");
-  });
-  ```
-
-- **`event.stopPropagation()`**: Stops the event from propagating (bubbling) to parent elements. This prevents any parent event listeners from being triggered.
-
-  **Example**:
-  ```javascript
-  document.getElementById("child").addEventListener("click", function(event) {
-    event.stopPropagation();  // Prevents the event from reaching parent elements
-    alert("Child clicked!");
-  });
-  ```
-
-**Key Difference**: `preventDefault()` stops the default behavior of the event, while `stopPropagation()` prevents the event from bubbling up the DOM.
-
----
-
-
-
-
-
-
-
-
 #### **`innerHTML` vs `textContent`**
 
 
@@ -2850,8 +2796,6 @@ Optimizing network requests is crucial to improve the loading speed and overall 
 
 #### **call and apply and bind Methods**
 
-
-
 In JavaScript, `call`, `apply`, and `bind` are methods that allow you to control the `this` context within functions, and they all are used to invoke a function with a specific `this` value.
 
 - **`call()`**: Immediately invokes the function and allows you to pass arguments one by one.
@@ -3048,11 +2992,10 @@ In this example, we composed `add` and `multiply` functions, which means `multip
 
 #### **WeakMap and WeakSet Usage**
 
-
-
-- **`WeakMap`**:
-  - A **`WeakMap`** is a collection of key-value pairs where the keys are objects and the values can be any data type. What makes it "weak" is that the keys are held **weakly** (i.e., they do not prevent garbage collection). If the key object is garbage collected, the corresponding entry is also removed from the `WeakMap`.
-  - **Use Case**: `WeakMap` is useful when you want to associate data with an object without preventing that object from being garbage collected.
+- "**WeakMap** is a special kind of collection in JavaScript where we store key-value pairs."
+- "The **keys** must be **objects**, and the **values** can be anything."
+- "What makes it 'weak' is that the keys are **held weakly**, meaning if the object is no longer used elsewhere, it can be **garbage collected** automatically, and its entry in the WeakMap also disappears."
+- "**Use case**: It's helpful when we want to attach some data to an object **without stopping it from being cleaned up** when it's no longer needed."
 
   **Example**:
   ```javascript
@@ -3063,8 +3006,10 @@ In this example, we composed `add` and `multiply` functions, which means `multip
   ```
 
 - **`WeakSet`**:
-  - A **`WeakSet`** is similar to a `Set`, but it only allows objects as its members and the objects are stored weakly (they don’t prevent garbage collection).
-  - **Use Case**: `WeakSet` is used when you need to track objects, and you don’t want the presence in the set to prevent those objects from being garbage collected.
+
+- "**WeakSet** is very similar to a `Set`, but it only stores **objects** as its members."
+- "The key difference is that the objects are stored **weakly**, meaning they don't prevent garbage collection."
+- "**Use case**: You would use a `WeakSet` when you need to track objects, but you don't want their presence in the set to **prevent them from being garbage collected** when they're no longer in use."
 
   **Example**:
   ```javascript
@@ -3117,20 +3062,16 @@ In this case, `age` was not defined on the `user` object, so the default value `
 
 #### **`this` Keyword Behavior**
 
+"The `this` keyword in JavaScript can be a bit tricky. It refers to different things depending on the context:
 
-
-- **Global Context**: 
-  - When `this` is used in the global execution context, it refers to the global object. In browsers, `this` will refer to the `window` object.
-
-  **Example**:
+- **Global Context**: When you use `this` in the global scope, it refers to the global object. In the browser, that's the `window` object.
+  Example:
   ```javascript
   console.log(this); // In the browser, this refers to the window object
   ```
 
-- **Inside a Function**: 
-  - In non-arrow functions, `this` refers to the object that called the function. For example, in a method call, `this` refers to the object the method is called on.
-
-  **Example**:
+- **Inside a Function**: When you use `this` inside a regular function, it refers to the object that called the function. So, if it's inside a method, `this` refers to the object that method belongs to.
+  Example:
   ```javascript
   const person = {
     name: 'Bob',
@@ -3141,10 +3082,8 @@ In this case, `age` was not defined on the `user` object, so the default value `
   person.greet();  // Output: Bob
   ```
 
-- **Arrow Functions**: 
-  - Arrow functions do not have their own `this`. They inherit `this` from the surrounding lexical context.
-
-  **Example**:
+- **Arrow Functions**: Arrow functions don’t have their own `this`. Instead, they inherit `this` from the surrounding context.
+  Example:
   ```javascript
   const person = {
     name: 'Bob',
@@ -3152,13 +3091,11 @@ In this case, `age` was not defined on the `user` object, so the default value `
       console.log(this.name);  // 'this' is inherited from the surrounding context
     }
   };
-  person.greet();  // Output: undefined (since 'this' does not refer to the person object)
+  person.greet();  // Output: undefined
   ```
 
-- **Event Handlers**: 
-  - In an event handler, `this` refers to the element that triggered the event.
-
-  **Example**:
+- **Event Handlers**: In event handlers, `this` refers to the element that triggered the event.
+  Example:
   ```javascript
   button.addEventListener('click', function() {
     console.log(this);  // 'this' refers to the button element
@@ -3166,6 +3103,7 @@ In this case, `age` was not defined on the `user` object, so the default value `
   ```
 
 ---
+
 
 #### **Usage of `super()` in Classes**
 
@@ -4164,6 +4102,60 @@ const userService = new UserService(mysqlDB);
 ---
 
 
+#### **Event Listeners**
+
+Event listeners are functions that listen for specific events, such as `click`, `keypress`, or `mouseover`, on DOM elements. When the specified event occurs, the listener executes a callback function to handle that event.
+
+In JavaScript, we typically use the `addEventListener()` method to attach an event listener to an element. This method takes two required arguments:
+1. The **event type** (such as `click`, `keydown`, `mouseover`), which specifies what kind of event we want to listen for.
+2. The **callback function**, which defines the action to be taken when the event occurs.
+
+**Example**:
+```javascript
+document.getElementById("myButton").addEventListener("click", function() {
+  alert("Button clicked!");
+});
+```
+
+This will display an alert when the user clicks the button with `id="myButton"`. You can also specify options like event bubbling or capturing, and whether the event listener should be passive.
+
+---
+
+
+
+### Event Propagation
+
+Event propagation is the way events travel through the DOM tree. It has three phases:
+
+1. **Capturing Phase (Event Capturing)** – Event travels from the root to the target.
+2. **Target Phase** – Event reaches the target element.
+3. **Bubbling Phase (Event Bubbling)** – Event bubbles up from the target to the root.
+
+**Example:**
+```html
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+```
+
+```js
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent clicked");
+}, true); // Capturing phase
+
+document.getElementById("child").addEventListener("click", (event) => {
+  console.log("Child clicked");
+  event.stopPropagation(); // Prevents bubbling
+}, false); // Bubbling phase
+```
+
+- `event.stopPropagation()` prevents the event from moving up (bubbling).
+- `true` in `addEventListener` enables the **capturing phase**.
+
+---
+
+
+
 
 ### **Event Capturing vs Event Bubbling vs Event Delegation** 
 ---
@@ -4214,14 +4206,14 @@ parent.addEventListener('click', function(event) {
 
 ---
 
-### 🧠 **Quick Summary:**  
+#### 🧠 **Quick Summary:**  
 - **Capturing** ➔ Event flows **down** the DOM.  
 - **Bubbling** ➔ Event flows **up** the DOM.  
 - **Delegation** ➔ Use bubbling to **efficiently manage events** on many child elements using **one parent listener**.
 
 ---
 
-## 🔥 Full Visual of Event Propagation Phases:
+#### 🔥 Full Visual of Event Propagation Phases:
 
 ```
 Document ➔ HTML ➔ BODY ➔ DIV.outer ➔ DIV.inner ➔ [TARGET ELEMENT]
@@ -4237,7 +4229,7 @@ DIV.inner ➔ DIV.outer ➔ BODY ➔ HTML ➔ Document
 
 ---
 
-## 📚 Quick Summary Table:
+#### Quick Summary Table:
 
 | Feature           | Capturing                         | Bubbling                          | Delegation                            |
 |-------------------|------------------------------------|-----------------------------------|---------------------------------------|
@@ -4248,9 +4240,48 @@ DIV.inner ➔ DIV.outer ➔ BODY ➔ HTML ➔ Document
 
 ---
 
-### 🚀 Important Notes:
+#### 🚀 Important Notes:
 - You can **stop propagation** at any phase using `event.stopPropagation()`.
 - You can **stop capturing/bubbling** early by controlling listeners.
 - Modern apps (React, Angular) internally use **delegation** heavily for performance!
 
 ---
+### **preventdefault Vs stoppropagation**
+
+
+
+Both methods are used in event handling, but they serve different purposes:
+
+- **`event.preventDefault()`**: Prevents the default action associated with the event from occurring. This is useful for actions like stopping form submissions or disabling anchor tags' default navigation.
+
+  **Example**:
+  ```javascript
+  document.getElementById("myLink").addEventListener("click", function(event) {
+    event.preventDefault();  // Prevents the default link behavior (navigation)
+    alert("Link clicked, but no navigation");
+  });
+  ```
+
+- **`event.stopPropagation()`**: Stops the event from propagating (bubbling) to parent elements. This prevents any parent event listeners from being triggered.
+
+  **Example**:
+  ```javascript
+  document.getElementById("child").addEventListener("click", function(event) {
+    event.stopPropagation();  // Prevents the event from reaching parent elements
+    alert("Child clicked!");
+  });
+  ```
+
+**Key Difference**: `preventDefault()` stops the default behavior of the event, while `stopPropagation()` prevents the event from bubbling up the DOM.
+
+---
+
+
+
+
+
+
+
+
+
+

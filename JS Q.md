@@ -22,7 +22,7 @@
 
 
 **Design Patterns & Architecture**
- | • [Design Patterns](#introduction-to-design-patterns)     • [Function Composition Patterns](#function-composition-patterns)         • [Dependency Injection](#dependency-injection)        • [Memoization Techniques](#memoization-techniques)    
+ | • [Design Patterns](#introduction-to-design-patterns) • [SOLID principles](#SOLID-principles)    • [Function Composition Patterns](#function-composition-patterns)         • [Dependency Injection](#dependency-injection)        • [Memoization Techniques](#memoization-techniques)    
  
 **Browser**  • [Cookies, sessionStorage, localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [WebSocket](#websocket-api)    • [Web Workers](#web-workers)    • [window.history](#using-window-history-api) **Events**  - [Event Propagation](#event-propagation)  • [Event Listeners](#event-listeners)    • [Bubbling vs Capturing](#event-bubbling)    • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)  • [Event Delegation and Bubbling](#event-delegation-and-bubbling)  
 
@@ -4137,6 +4137,185 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 
 
+
+
+
+### SOLID principles
+ - The **SOLID principles** are **five design principles** that help you write **better, cleaner, more maintainable** code 
+ - not only in JavaScript but in any object-oriented or structured programming language.  
+---
+
+### S — Single Responsibility Principle (SRP)
+
+- **Definition**: A class/module/function should **have only one reason to change** — meaning it should **do only one thing**.
+- **In JS**: Keep functions small and focused.
+
+```javascript
+// Bad: function doing too many things
+function manageUser(user) {
+  saveToDatabase(user);
+  sendWelcomeEmail(user.email);
+}
+
+// Good: each function has one responsibility
+function saveUser(user) {
+  // Save user to database
+}
+
+function sendWelcomeEmail(email) {
+  // Send email
+}
+```
+
+---
+
+### O — Open/Closed Principle (OCP)
+
+- **Definition**: Software entities (classes, modules, functions) should be **open for extension but closed for modification**.
+- **In JS**: You should be able to **add new behavior without modifying existing code**.
+
+```javascript
+// Bad
+function getArea(shape) {
+  if (shape.type === 'circle') {
+    return Math.PI * shape.radius ** 2;
+  } else if (shape.type === 'square') {
+    return shape.length * shape.length;
+  }
+}
+
+// Good: Use polymorphism
+class Circle {
+  constructor(radius) {
+    this.radius = radius;
+  }
+  area() {
+    return Math.PI * this.radius ** 2;
+  }
+}
+
+class Square {
+  constructor(length) {
+    this.length = length;
+  }
+  area() {
+    return this.length * this.length;
+  }
+}
+
+function getArea(shape) {
+  return shape.area();
+}
+```
+
+---
+
+### L — Liskov Substitution Principle (LSP)
+
+- **Definition**: Subtypes must be **substitutable for their base types** without breaking the program.
+- **In JS**: Derived classes should fully behave like their base class.
+
+```javascript
+class Bird {
+  fly() {
+    console.log('Flying');
+  }
+}
+
+class Duck extends Bird {
+  quack() {
+    console.log('Quack!');
+  }
+}
+
+function makeBirdFly(bird) {
+  bird.fly();
+}
+
+const duck = new Duck();
+makeBirdFly(duck);  // Works correctly ✅
+```
+
+---
+
+### I — Interface Segregation Principle (ISP)
+
+- **Definition**: Clients should **not be forced to depend on interfaces they do not use**.
+- **In JS**: Break large interfaces into smaller, specific ones.
+
+```javascript
+// Bad: too much responsibility
+class BadPrinter {
+  print() {}
+  scan() {}
+  fax() {}
+}
+
+// Good: split interfaces
+class Printer {
+  print() {}
+}
+
+class Scanner {
+  scan() {}
+}
+```
+> So if a class only needs "print", it doesn't have to implement "fax" or "scan".
+
+---
+
+### D — Dependency Inversion Principle (DIP)
+
+- **Definition**: High-level modules should not depend on low-level modules. Both should depend on abstractions.
+- **In JS**: Depend on **interfaces or abstractions**, not concrete implementations.
+
+```javascript
+// Bad
+class MySQLDatabase {
+  save(data) {
+    console.log('Saving to MySQL', data);
+  }
+}
+
+class UserService {
+  constructor() {
+    this.database = new MySQLDatabase();
+  }
+  saveUser(user) {
+    this.database.save(user);
+  }
+}
+
+// Good
+class UserService {
+  constructor(database) {
+    this.database = database;
+  }
+  saveUser(user) {
+    this.database.save(user);
+  }
+}
+
+const mysqlDB = new MySQLDatabase();
+const userService = new UserService(mysqlDB);
+```
+> Now you can easily switch from `MySQLDatabase` to `MongoDatabase` without changing `UserService`.
+
+---
+
+### **Summary Table**
+
+| Principle | Key Idea                                   |
+|:---------- |:------------------------------------------ |
+| SRP        | One responsibility per function/class     |
+| OCP        | Open to extend, closed to modify           |
+| LSP        | Subtypes can substitute base types         |
+| ISP        | Prefer many small interfaces               |
+| DIP        | Depend on abstractions, not concretions    |
+
+---
+
+Would you like me to also show you a **real-world JavaScript example** (like in a Node.js API or React app) applying all 5 principles together? 🚀
 
 
 

@@ -1,5 +1,9 @@
 **JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)    • [Type Inference (TS)](#type-inference)    • [TypeScript Improves JavaScript](#how-typescript-improves-javascript)  
 
+
+**TypeScript** - [TS Improves JS](#how-typescript-improves-javascript) • [Interface Vs Type](#interface-vs-type) • [Generics](#generics) • [Union Types](#union-types) • [Type Inference](#type-inference) • [Mapped Types](#mapped-types) • [Decorators](#decorators) • [Duck Typing](#duck-typing) • [Module System & Compiler Options](#module-system--compiler-options) • [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)          
+
+
 **Scope and `this`** - [Scope](#scope)    • [Global, Function, and Block Scope](#global-and-function-and-block-scope)    • [Lexical Scoping](#lexical-scope)   • [this Keyword Behavior](#this-keyword-behavior)  **Events** - [Event Propagation](#event-propagation)    • [Event Listeners](#event-listeners)     • [preventDefault vs stopPropagation](#preventdefault-vs-stoppropagation)      • [Event Capturing vs Event Bubbling vs Event Delegation](#Event-Capturing-vs-Event-Bubbling-vs-Event-Delegation)  
 
 **Functions** - [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    • [Functions](#functions)    • [Closures](#closures)    • [Call, Apply, Bind](#call-and-apply-and-bind-methods)    • [Currying](#currying-in-javascript)    • [Default Parameters](#default-parameters)    • [Hoisting](#hoisting)  
@@ -9,7 +13,6 @@
 **Modules and Imports** - [JavaScript Modules (import/export)](#javascript-modules-importexport)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules)  **Design Patterns and Architecture** - [Introduction to Design Patterns](#introduction-to-design-patterns)    • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)  
 
 
-**Advanced Types and Data Structures** - [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)    • [Union Types (TS)](#union-types)    • [Interface vs Type (TS)](#interface-vs-type)    • [Generics (TS)](#generics)    • [Mapped Types (TS)](#mapped-types)    • [Duck Typing (TS)](#duck-typing)  
 
 
 **Asynchronous JavaScript** - [Synchronous vs Asynchronous Functions](#synchronous-vs-asynchronous-functions)    • [Handling Async Errors](#handling-async-errors)    • [setTimeout vs setImmediate vs process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)    • [Event Loop & Call Stack](#event-loop--call-stack)    • [Memory Leaks](#common-causes-of-memory-leaks)    • [Garbage Collection](#javascript-garbage-collection)    • [Extending Built-in Objects](#extending-built-in-objects)  

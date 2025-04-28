@@ -4145,6 +4145,15 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
  - not only in JavaScript but in any object-oriented or structured programming language.  
 ---
 
+| Principle | Key Idea                                   |
+|:---------- |:------------------------------------------ |
+| SRP        | One responsibility per function/class     |
+| OCP        | Open to extend, closed to modify           |
+| LSP        | Subtypes can substitute base types         |
+| ISP        | Prefer many small interfaces               |
+| DIP        | Depend on abstractions, not concretions    |
+
+
 ### S — Single Responsibility Principle (SRP)
 
 - **Definition**: A class/module/function should **have only one reason to change** — meaning it should **do only one thing**.
@@ -4303,19 +4312,10 @@ const userService = new UserService(mysqlDB);
 
 ---
 
-### **Summary Table**
 
-| Principle | Key Idea                                   |
-|:---------- |:------------------------------------------ |
-| SRP        | One responsibility per function/class     |
-| OCP        | Open to extend, closed to modify           |
-| LSP        | Subtypes can substitute base types         |
-| ISP        | Prefer many small interfaces               |
-| DIP        | Depend on abstractions, not concretions    |
 
----
 
-Would you like me to also show you a **real-world JavaScript example** (like in a Node.js API or React app) applying all 5 principles together? 🚀
+
 
 
 

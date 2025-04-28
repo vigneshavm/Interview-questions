@@ -4269,67 +4269,56 @@ const userService = new UserService(mysqlDB);
 ### **Event Capturing vs Event Bubbling vs Event Delegation** 
 ---
 
-## 🧠 **1. Event Capturing (Capture Phase)**
+👉 **Event Capturing**  
+When an event happens, like a click, it first **travels from the top of the DOM** — starting from `document`, then moving down through `html`, `body`, and other elements — **until it reaches the target element**.  
+This is called **capturing phase**.  
+By default, browsers don’t handle events during capturing unless we **explicitly** set the `capture` option to `true` while adding the event listener.
 
-| Aspect        | Details |
-|---------------|---------|
-| **Definition** | Capturing is the **first phase** of event propagation. The event travels **from the document (outermost ancestor)** down through the DOM tree **toward the target element**. |
-| **Order**     | Document ➔ HTML ➔ BODY ➔ ... ➔ Actual Target Element |
-| **Trigger**   | You must explicitly tell JavaScript to listen during the capture phase by passing `true` as the third argument to `addEventListener`. |
-| **Syntax**    | `element.addEventListener('click', handler, true)` |
-| **Use Case**  | - You want to intercept the event **before** it reaches the target.<br>- Special security rules or early validations. |
-| **Example**   | Catch clicks on a parent element **before** it hits a child. |
-
-👉 Example:
+> Example:  
 ```javascript
-document.getElementById('outer').addEventListener('click', () => {
-  console.log('Captured at outer div');
-}, true);
+element.addEventListener('click', handler, true);
 ```
 
-> **Note:** Capture phase is **rarely used** compared to bubbling.
+We mainly use capturing when we need to **catch or intercept** the event **before** it reaches its target.
 
 ---
 
-## 🧠 **2. Event Bubbling (Bubble Phase)**
+👉 **Event Bubbling**  
+After the event reaches the target element, it then **bubbles up** — meaning it moves **back up the DOM tree** — from the target’s parent to its grandparent, and so on, until it reaches the `document`.  
+This is called the **bubbling phase**.  
+By default, **most events bubble** and that's why normally we don't set anything special.
 
-| Aspect        | Details |
-|---------------|---------|
-| **Definition** | Bubbling is the **second phase**. After an event reaches the target, it **bubbles back up** to the document. |
-| **Order**     | Target Element ➔ Parent ➔ Grandparent ➔ ... ➔ Document |
-| **Trigger**   | Bubbling happens **by default**. No need to specify anything special. |
-| **Syntax**    | `element.addEventListener('click', handler)` (default false) |
-| **Use Case**  | - Easy to manage events higher up the DOM.<br>- Most common and natural way of event handling. |
-| **Example**   | Clicking a button triggers handlers on the button ➔ its parent ➔ its grandparent, etc. |
+Bubbling is **very common**. It allows us to put event listeners on parent elements and still react to actions happening inside their children.
 
-👉 Example:
+> Example:  
 ```javascript
-document.getElementById('inner').addEventListener('click', () => {
-  console.log('Bubbled from inner div');
-});
+element.addEventListener('click', handler); // Default is bubbling
 ```
 
 ---
 
-## 🧠 **3. Event Delegation**
+👉 **Event Delegation**  
+Event Delegation is a **technique** where instead of attaching separate event listeners to each child element, **we attach just one listener to a parent**, and then use `event.target` inside the handler to figure out which child triggered the event.
 
-| Aspect        | Details |
-|---------------|---------|
-| **Definition** | Event Delegation is a **pattern** where you **attach one event listener** to a parent element, and based on the `event.target`, you **handle events for child elements**. |
-| **Uses Bubbling?** | Yes. Event Delegation **depends on event bubbling** to work. |
-| **Advantage** | - Fewer event listeners.<br>- Manage dynamic elements easily (elements added later).<br>- Improve performance for large lists/tables. |
-| **Syntax**    | Add event listener to parent ➔ Check `event.target` inside handler. |
-| **Use Case**  | - Clicking on list items (`<li>`) created dynamically.<br>- Handling buttons inside dynamically created cards. |
-| **Example**   | Parent `<ul>` listens, detects clicks on any `<li>`. |
+It **relies on event bubbling** to work.
 
-👉 Example:
+This is **very useful** when we have dynamic elements — like list items or buttons added later through JavaScript — because we don't need to add listeners to each new element manually.
+
+> Example:  
 ```javascript
-document.getElementById('list').addEventListener('click', function(event) {
-  if (event.target.tagName === 'LI') {
-    console.log('Clicked:', event.target.textContent);
+parent.addEventListener('click', function(event) {
+  if (event.target.matches('li')) {
+    console.log('Clicked on:', event.target.textContent);
   }
 });
 ```
+
+---
+
+### 🧠 **Quick Summary:**  
+- **Capturing** ➔ Event flows **down** the DOM.  
+- **Bubbling** ➔ Event flows **up** the DOM.  
+- **Delegation** ➔ Use bubbling to **efficiently manage events** on many child elements using **one parent listener**.
 
 ---
 

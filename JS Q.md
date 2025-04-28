@@ -1,7 +1,7 @@
 **JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)    • [Type Inference (TS)](#type-inference)    • [TypeScript Improves JavaScript](#how-typescript-improves-javascript)  
 
 
-**TypeScript** - [TS Improves JS](#how-typescript-improves-javascript) • [Interface Vs Type](#interface-vs-type) • [Generics](#generics) • [Union Types](#union-types) • [Type Inference](#type-inference) • [Mapped Types](#mapped-types) • [Decorators](#decorators) • [Duck Typing](#duck-typing) • [Module System & Compiler Options](#module-system--compiler-options) • [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)          
+**TypeScript** - [TS Improves JS](#how-typescript-improves-javascript) • [Interface Vs Type](#interface-vs-type) • [Generics](#generics) • [Any Vs Unknown Types](#Any-vs-Unknown) • [Union Types](#union-types) • [Type Inference](#type-inference) • [Mapped Types](#mapped-types) • [Decorators](#decorators) • [Duck Typing](#duck-typing) • [Module System & Compiler Options](#module-system--compiler-options) • [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)          
 
 
 **Scope and `this`** - [Scope](#scope)    • [Global, Function, and Block Scope](#global-and-function-and-block-scope)    • [Lexical Scoping](#Lexical-Scoping)   • [this Keyword Behavior](#this-keyword-behavior)  **Events** - [Event Propagation](#event-propagation)    • [Event Listeners](#event-listeners)     • [`event.preventDefault()` vs `event.stopPropagation()`](#preventdefault-vs-stoppropagation)      • [Event Capturing vs Event Bubbling vs Event Delegation](#Event-Capturing-vs-Event-Bubbling-vs-Event-Delegation)  
@@ -450,23 +450,36 @@ console.log(5 === '5'); // false (different types)
 
 ---
 
-#### **Mutable vs Immutable Objects**
-- **Mutable Objects**: These are objects that can be modified after they are created. Arrays and objects are mutable by default in JavaScript.
-  
-**Example of Mutable Object:**
-```javascript
-let arr = [1, 2, 3];
-arr.push(4); // Array is mutated
-console.log(arr); // [1, 2, 3, 4]
-```
+### **Mutable vs Immutable Objects**
 
-- **Immutable Objects**: These objects cannot be modified after creation. You can create immutability by using methods like `Object.freeze()`.
+- **Mutable Objects**: These are objects that can be modified after creation. For example, arrays and objects are mutable by default in JavaScript. You can add, remove, or change their properties at any time.
 
-**Example of Immutable Object:**
-```javascript
-const person = Object.freeze({ name: 'John' });
-person.name = 'Jane'; // Error: Cannot assign to read only property 'name'
-```
+    **Example**: 
+    ```javascript
+    let arr = [1, 2, 3];
+    arr.push(4);  // The array is mutated
+    console.log(arr);  // Output: [1, 2, 3, 4]
+    ```
+
+- **Immutable Objects**: These objects cannot be modified once they are created. In JavaScript, you can enforce immutability using methods like `Object.freeze()`. Once frozen, properties of the object cannot be changed, added, or deleted.
+
+    **Example**:
+    ```javascript
+    const person = Object.freeze({ name: 'John' });
+    person.name = 'Jane';  // Error: Cannot assign to read only property 'name'
+    ```
+
+#### **Table View:**
+
+| **Type**            | **Mutable Objects**                                        | **Immutable Objects**                                     |
+|---------------------|------------------------------------------------------------|-----------------------------------------------------------|
+| **Definition**       | Objects that can be modified after creation.               | Objects that cannot be modified after creation.           |
+| **Examples**         | Arrays, objects, etc.                                      | Frozen objects using `Object.freeze()`.                   |
+| **Modifiable**       | Yes, you can change, add, or remove properties.            | No, properties cannot be changed, added, or removed.      |
+| **Example Code**     | ```javascript<br>let arr = [1, 2, 3];<br>arr.push(4);<br>console.log(arr);``` | ```javascript<br>const person = Object.freeze({ name: 'John' });<br>person.name = 'Jane'; // Error``` |
+| **When to Use**      | When you need to modify data over time, like adding/removing elements. | When you need to ensure that an object remains unchanged throughout the program. |
+
+
 
 
 ### **TypeScript Interview Answers**
@@ -541,6 +554,23 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
  - Overall, Generics help me write cleaner, more flexible code without giving up the strong type checking that TypeScript provides. It’s better than using `any` because it keeps things type-safe."**
 
 ---
+
+
+
+#### **Any vs Unknown**
+
+
+| **Feature**          | **`any`**                                       | **`unknown`**                                      |
+|----------------------|-------------------------------------------------|----------------------------------------------------|
+| **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
+| **Flexibility**      | Very flexible, as any value can be assigned and used in any way. | Flexible but requires type checking or type assertion before use. |
+| **When to Use**      | When you need dynamic behavior, and you're willing to bypass TypeScript’s type checking. | When you need flexibility but want to enforce safer, type-checked operations. |
+| **Code Safety**      | Less safe, can lead to runtime errors due to lack of type checks. | Safer, as TypeScript forces you to handle the value before using it. |
+| **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
+
+
+
+
 
 #### **Union Types**
   - In TypeScript, Union Types let a variable hold more than one type.

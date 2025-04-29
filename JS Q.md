@@ -15,7 +15,7 @@
 
 **Functions** - [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    • [Functions](#functions)    • [Closures](#closures)    • [Call, Apply, Bind](#call-and-apply-and-bind-methods)    • [Currying](#currying-in-javascript)    • [Default Parameters](#default-parameters)    • [Hoisting](#hoisting)  
 
-**Objects and Classes** - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)    • [Understanding `__proto__`](#understanding-__proto__-and-prototypes)    • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)   • [Map Key References](#map-key-references-with-objects)  
+**Objects and Classes** - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)    • [Prototypes](#understanding-__proto__-and-prototypes)    • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)   • [Map Key References](#map-key-references-with-objects)  
 
 **Modules and Imports** - [JavaScript Modules (import/export)](#javascript-modules-importexport)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules)  **Design Patterns and Architecture** - [Introduction to Design Patterns](#introduction-to-design-patterns)    • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)  
 
@@ -1127,6 +1127,8 @@ Callbacks allow us to handle asynchronous operations in a non-blocking way.
  - [Closures Drawbacks](#Common-Pitfalls-of-Closures)
 
 - A **closure** is a function that remembers variables from its **lexical scope**, even after that scope has exited.
+- A closure is a feature in JavaScript where an inner function has access to variables from its outer function scope, even after the outer function has finished execution.
+- In other words, the inner function "remembers" the environment in which it was created.
 - Useful for:
   - **Data privacy**
   - **Stateful functions**
@@ -3481,8 +3483,8 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 - [Prototype Chaining](#Prototype-Chaining)
 
-
-- In JavaScript, every object has a **prototype** from which it can inherit properties and methods. The **prototype** is itself an object that provides a blueprint for the object, and it is linked to the object via the internal property `[[Prototype]]`.
+- In JavaScript, every object has a **prototype** from which it can inherit properties and methods.
+- The **prototype** is itself an object that provides a blueprint for the object, and it is linked to the object via the internal property `[[Prototype]]`.
 - `__proto__` is a reference to the prototype of an object, meaning it points to the object from which it inherits. It is a way to access the prototype of an object directly.
 
   **Example**:
@@ -3505,7 +3507,9 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 ### **Prototype Chaining**
 
-Prototype chaining is a mechanism in JavaScript that is used to implement **inheritance**. Every object in JavaScript has an internal link to another object called its **prototype**. When trying to access a property or method on an object, JavaScript will:
+  - Prototype chaining is a mechanism in JavaScript that is used to implement **inheritance**. 
+  - Every object in JavaScript has an internal link to another object called its **prototype**. 
+  - When trying to access a property or method on an object, JavaScript will:
 
 1. Look for the property on the object itself.
 2. If it doesn't find it, it will look up the object's prototype.
@@ -3514,7 +3518,7 @@ Prototype chaining is a mechanism in JavaScript that is used to implement **inhe
 
 ---
 
-### 🔍 Example:
+#### 🔍 Example:
 
 ```javascript
 function Animal(name) {
@@ -3540,7 +3544,7 @@ const d = new Dog("Buddy");
 d.speak(); // Buddy barks.
 ```
 
-#### 🔎 What's happening here:
+####  What's happening here:
 - `d` → instance of `Dog`
 - `Dog.prototype` → inherits from `Animal.prototype`
 - `Animal.prototype` → inherits from `Object.prototype`

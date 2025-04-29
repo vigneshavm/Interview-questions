@@ -1,7 +1,14 @@
 **JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)    • [Type Inference (TS)](#type-inference)    • [TypeScript Improves JavaScript](#how-typescript-improves-javascript)  
 
 
-**TypeScript** - [TS Improves JS](#how-typescript-improves-javascript) • [Interface Vs Type](#interface-vs-type) • [Generics](#generics) • [Any Vs Unknown Types](#Any-vs-Unknown) • [Union Types](#union-types) • [Type Inference](#type-inference) • [Mapped Types](#mapped-types) • [Decorators](#decorators) • [Duck Typing](#duck-typing) • [Module System & Compiler Options](#module-system--compiler-options) • [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)          
+**TypeScript** - [TS Improves JS](#how-typescript-improves-javascript) • [Interface Vs Type](#interface-vs-type) • [Generics](#generics) • [Any Vs Unknown Types](#Any-vs-Unknown) • [Union Types](#union-types) • [Type Inference](#type-inference) • [Mapped Types](#mapped-types) • [Decorators](#decorators) • [Duck Typing](#duck-typing) • [Type Narrowing](#Type-Narrowing) 
+• [Declaration Merging](#Declaration-Merging)
+• [Namespaces and modules](#Namespaces-and-modules)
+• [function overloading](#function-overloading)
+• [`Partial` `Pick` `Omit` `Record`](#Partial-Pick-Omit-Record)
+
+
+• [keyof Vs typeof](#keyof-Vs-typeof) • [Template literal types](#Template-literal-types) • [Module System & Compiler Options](#module-system--compiler-options) • [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)          
 
 
 **Scope and `this`** - [Scope](#scope)    • [Global, Function, and Block Scope](#global-and-function-and-block-scope)    • [Lexical Scoping](#Lexical-Scoping)   • [this Keyword Behavior](#this-keyword-behavior)  **Events** - [Event Propagation](#event-propagation)    • [Event Listeners](#event-listeners)     • [`event.preventDefault()` vs `event.stopPropagation()`](#preventdefault-vs-stoppropagation)      • [Event Capturing vs Event Bubbling vs Event Delegation](#Event-Capturing-vs-Event-Bubbling-vs-Event-Delegation)  
@@ -557,16 +564,6 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
 
 
 
-#### **Any vs Unknown**
-
-
-| **Feature**          | **`any`**                                       | **`unknown`**                                      |
-|----------------------|-------------------------------------------------|----------------------------------------------------|
-| **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
-| **Flexibility**      | Very flexible, as any value can be assigned and used in any way. | Flexible but requires type checking or type assertion before use. |
-| **When to Use**      | When you need dynamic behavior, and you're willing to bypass TypeScript’s type checking. | When you need flexibility but want to enforce safer, type-checked operations. |
-| **Code Safety**      | Less safe, can lead to runtime errors due to lack of type checks. | Safer, as TypeScript forces you to handle the value before using it. |
-| **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
 
 
 
@@ -820,6 +817,81 @@ console.log(person.name); // Logs: Getting name: Bob
 Decorators help add reusable logic without modifying the core structure of the class or function.
 
 ---
+
+### Declaration Merging
+
+
+> **Declaration Merging** in TypeScript means that **when two declarations have the same name, TypeScript automatically merges them into a single definition**.  
+> This happens commonly with **interfaces**, **namespaces**, and sometimes **functions and classes**.
+
+---
+
+#### 🧠 Example: Merging Interfaces
+
+```ts
+interface User {
+  name: string;
+}
+
+interface User {
+  age: number;
+}
+
+// After merging:
+const user: User = {
+  name: "Alice",
+  age: 30,
+};
+```
+
+
+### keyof Vs typeof
+
+### 📢 Key Points:
+| Operator | Purpose                      | Example                               |
+|----------|-------------------------------|---------------------------------------|
+| `typeof` | Get the type of a value        | `typeof person` ➔ `{ name: string; age: number }` |
+| `keyof`  | Get keys from a type (as union)| `keyof Person` ➔ `"name" | "age"`    |
+
+
+> In TypeScript:
+> - **`typeof`** is used to **get the type** of a **value**.
+> - **`keyof`** is used to **get the keys** of a **type** as a **union of strings**.
+
+---
+
+### 🧠 1. `typeof` — Get **Type from a Value**
+Used when you want to create a type based on a real variable or object.
+
+```ts
+const person = {
+  name: "Alice",
+  age: 30,
+};
+
+type Person = typeof person;
+// Same as:
+// type Person = { name: string; age: number; }
+```
+
+✅ `typeof` helps **reuse** or **reference** a variable's structure as a type.
+
+---
+
+### 🧠 2. `keyof` — Get **Keys of a Type**  
+Used to extract **property names** from a type.
+
+```ts
+type PersonKeys = keyof Person;
+// PersonKeys = "name" | "age"
+```
+
+✅ `keyof` gives a **union of keys** (`"name" | "age"`) from the `Person` type.
+
+---
+
+
+
 
 #### **Duck Typing**
 
@@ -3020,6 +3092,47 @@ In this example, we composed `add` and `multiply` functions, which means `multip
 
 
 
+
+### Template literal types
+
+
+> **Template literal types** in TypeScript allow us to create **dynamic string types** by combining strings and types using template syntax, similar to JavaScript's template literals.  
+>  
+> They are useful when we need to generate new types based on existing ones, such as creating `"GET /api/user"` or `"POST /api/post"` types dynamically.  
+>  
+> **Example:**  
+> ```ts
+> type Method = "GET" | "POST";
+> type Resource = "user" | "post";
+> type APIEndpoint = `${Method} /api/${Resource}`;
+> ```
+> Here, `APIEndpoint` becomes a union of all combinations like `"GET /api/user"`, `"POST /api/post"`, etc.
+>
+> This helps with **type safety**, **autocompletion**, and **avoiding string mismatches** in large applications.
+
+---
+
+
+
+
+#### Type Narrowing
+
+> **Type narrowing** is the process where TypeScript figures out a more specific type for a variable from a union type.
+
+##### Example:
+```ts
+function printLength(value: string | string[]) {
+  if (typeof value === "string") {
+    console.log(value.length);       // value: string
+  } else {
+    console.log(value.length);       // value: string[]
+  }
+}
+```
+> The variable `value` starts as `string | string[]`, but within each `if` branch, TypeScript **narrows** the type.
+
+
+
 #### **WeakMap and WeakSet Usage**
 
 - "**WeakMap** is a special kind of collection in JavaScript where we store key-value pairs."
@@ -4315,3 +4428,240 @@ Both methods are used in event handling, but they serve different purposes:
 
 
 
+
+
+### Namespaces and modules
+
+### ✅ Answer:
+
+> In TypeScript:
+> - **Namespaces** are used to **organize code** **inside a single file** or across **multiple files** by grouping related logic.
+> - **Modules** are based on the **file system** — each file becomes its **own module** if it uses `import` or `export`.
+
+---
+
+### 🧠 Example 1: **Namespace**
+```ts
+namespace MathUtils {
+  export function add(a: number, b: number): number {
+    return a + b;
+  }
+
+  export function multiply(a: number, b: number): number {
+    return a * b;
+  }
+}
+
+// Usage:
+const sum = MathUtils.add(2, 3);  // 5
+```
+✅ Here, `MathUtils` groups `add` and `multiply` under one "namespace."
+
+---
+
+### 🧠 Example 2: **Module**
+```ts
+// mathUtils.ts
+export function add(a: number, b: number): number {
+  return a + b;
+}
+export function multiply(a: number, b: number): number {
+  return a * b;
+}
+
+// app.ts
+import { add, multiply } from "./mathUtils";
+
+const sum = add(2, 3);
+```
+✅ Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import** its functions in another file.
+
+---
+
+### 📢 Important Points:
+| Feature         | Namespace                        | Module                           |
+|-----------------|-----------------------------------|----------------------------------|
+| How it works    | Groups code inside the same file  | Each file is a separate module   |
+| Keywords used   | `namespace` and `export`          | `import` and `export`            |
+| Compilation     | Needs special flags like `--outFile` | No special flags (default behavior) |
+| Usage today     | **Less common now** (older style) | **Standard practice** (modern)   |
+
+---
+
+
+
+
+---
+
+
+
+
+#### **Any vs Unknown**
+
+
+| **Feature**          | **`any`**                                       | **`unknown`**                                      |
+|----------------------|-------------------------------------------------|----------------------------------------------------|
+| **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
+| **Flexibility**      | Very flexible, as any value can be assigned and used in any way. | Flexible but requires type checking or type assertion before use. |
+| **When to Use**      | When you need dynamic behavior, and you're willing to bypass TypeScript’s type checking. | When you need flexibility but want to enforce safer, type-checked operations. |
+| **Code Safety**      | Less safe, can lead to runtime errors due to lack of type checks. | Safer, as TypeScript forces you to handle the value before using it. |
+| **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
+
+
+
+> In TypeScript:
+> - **`unknown`** is a **safer version of `any`**. It represents **any value**, but unlike `any`, you must **narrow its type** before using it (e.g., through type checks or type assertions).
+> - **`any`** allows **any operation** to be performed on it without restrictions, making it **more permissive but less safe**.
+
+---
+
+### 🧠 Example: **`unknown`** vs **`any`**
+
+```ts
+let value1: any = "hello";
+value1 = 42; // OK, `any` can be reassigned freely
+
+let value2: unknown = "hello";
+value2 = 42; // OK, but you must narrow the type before using it
+
+// Using `value2` directly would cause an error
+// value2.toUpperCase(); // Error: Object is of type 'unknown'
+
+// Narrowing `unknown` before using it
+if (typeof value2 === "string") {
+  console.log(value2.toUpperCase());  // OK, after type narrowing
+}
+```
+
+### 📢 Key Differences:
+| Type      | `any`                                | `unknown`                           |
+|-----------|--------------------------------------|-------------------------------------|
+| Safety    | **No safety** — any operation is allowed | **Requires type checking** before use |
+| Use case  | When you don't care about types (use carefully) | When you want to ensure proper type handling |
+
+---
+
+
+
+
+###  **function overloading** 
+
+---
+
+
+> In TypeScript, **function overloading** allows you to define **multiple signatures** for a single function, so it can accept different parameter types and return different types based on those parameters.  
+> You declare the **overload signatures first**, followed by the **implementation**. TypeScript will **select the appropriate signature** based on the arguments passed to the function.
+
+---
+
+
+
+```ts
+// Overload signatures
+function greet(person: string): string;
+function greet(person: string, age: number): string;
+
+// Function implementation
+function greet(person: string, age?: number): string {
+  if (age !== undefined) {
+    return `Hello, ${person}. You are ${age} years old.`;
+  }
+  return `Hello, ${person}!`;
+}
+
+// Usage
+console.log(greet("Alice"));       // "Hello, Alice!"
+console.log(greet("Bob", 30));    // "Hello, Bob. You are 30 years old."
+```
+
+### 📢 Key Points:
+1. **Overload Signatures**: First, you declare the possible **types of inputs** that the function can accept. 
+2. **Implementation**: Then, you provide one function implementation that handles all overload cases.
+3. TypeScript uses **the correct overload signature** based on how you call the function.
+
+---
+
+
+### `Partial` `Pick` `Omit` `Record`
+
+
+
+> **Utility types** in TypeScript are built-in **generics** that allow you to **transform** or **manipulate** types in a variety of useful ways. They help you **create new types** based on existing ones, making the development process **more efficient** and **type-safe**.
+
+---
+
+### 🧠 **1. `Partial<T>`** — Makes all properties **optional** in a given type `T`.
+
+```ts
+interface User {
+  name: string;
+  age: number;
+}
+
+// Partial<User> makes both properties optional
+const updateUser: Partial<User> = { name: "Alice" }; // OK
+```
+> - **Use case**: When you want to update only **some properties** of an object (e.g., a user profile update).
+
+---
+
+### 🧠 **2. `Pick<T, K>`** — Creates a new type by **picking** specific properties `K` from type `T`.
+
+```ts
+interface User {
+  name: string;
+  age: number;
+  email: string;
+}
+
+// Pick only `name` and `email` properties
+type UserNameEmail = Pick<User, "name" | "email">;
+
+const user: UserNameEmail = { name: "Alice", email: "alice@example.com" };
+```
+> - **Use case**: When you need a type that **only includes certain properties** of an object.
+
+---
+
+### 🧠 **3. `Omit<T, K>`** — Creates a new type by **omitting** specific properties `K` from type `T`.
+
+```ts
+interface User {
+  name: string;
+  age: number;
+  email: string;
+}
+
+// Omit `age` property from `User`
+type UserWithoutAge = Omit<User, "age">;
+
+const user: UserWithoutAge = { name: "Alice", email: "alice@example.com" };
+```
+> - **Use case**: When you need a type that excludes certain properties (e.g., hiding sensitive data like passwords).
+
+---
+
+### 🧠 **4. `Record<K, T>`** — Creates a type with **keys** `K` and **values** `T`.
+
+```ts
+// Record type where keys are strings, and values are numbers
+type Scores = Record<string, number>;
+
+const studentScores: Scores = {
+  Alice: 90,
+  Bob: 85,
+};
+```
+> - **Use case**: When you want to create a **map** or **dictionary** where each key is of type `K` and each value is of type `T`.
+
+---
+
+### 📢 Summary of Utility Types:
+| Utility Type | Description                                             | Example                            |
+|--------------|---------------------------------------------------------|------------------------------------|
+| `Partial<T>` | Makes all properties of `T` optional                    | `Partial<User>`                    |
+| `Pick<T, K>` | Selects a subset of properties from `T` (using keys `K`) | `Pick<User, "name" | "email">`     |
+| `Omit<T, K>` | Removes specified properties from `T`                   | `Omit<User, "age">`                |
+| `Record<K, T>` | Creates a dictionary where keys are `K` and values are `T` | `Record<string, number>`           |
+
+---

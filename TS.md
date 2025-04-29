@@ -279,7 +279,7 @@ TypeScript allows both **`interface`** and **`type`** aliases to be extended or 
 
 ---
 
-### 🔹 **Extending Interfaces**
+** 🔹 **Extending Interfaces**
 - Use the `extends` keyword.
 - Interfaces can be extended multiple times.
 - Useful for creating object shapes and enabling structural subtyping.
@@ -301,7 +301,7 @@ const emp: Employee = {
 
 ---
 
-### 🔸 **Extending Types**
+** 🔸 **Extending Types**
 - You can extend a `type` using **intersection types (`&`)**.
 - Suitable for combining multiple types or primitives.
 
@@ -322,7 +322,7 @@ const emp: Employee = {
 
 ---
 
-### ⚖️ **Comparison Table**
+** ⚖️ **Comparison Table**
 
 | Feature                       | `interface`                                | `type`                                      |
 |------------------------------|---------------------------------------------|----------------------------------------------|
@@ -335,7 +335,7 @@ const emp: Employee = {
 
 ---
 
-### 💡 Best Practices
+** 💡 Best Practices
 - Use **`interface`** for object-oriented designs or APIs.
 - Use **`type`** when dealing with union/intersection types or more complex combinations.
 
@@ -381,7 +381,7 @@ Mapped types are useful for creating reusable and flexible transformations of ty
 
 ---
 
-### 🧠 **1. `Partial<T>`** — Makes all properties **optional** in a given type `T`.
+** 🧠 **1. `Partial<T>`** — Makes all properties **optional** in a given type `T`.
 
 ```ts
 interface User {
@@ -396,7 +396,7 @@ const updateUser: Partial<User> = { name: "Alice" }; // OK
 
 ---
 
-### 🧠 **2. `Pick<T, K>`** — Creates a new type by **picking** specific properties `K` from type `T`.
+** 🧠 **2. `Pick<T, K>`** — Creates a new type by **picking** specific properties `K` from type `T`.
 
 ```ts
 interface User {
@@ -414,7 +414,7 @@ const user: UserNameEmail = { name: "Alice", email: "alice@example.com" };
 
 ---
 
-### 🧠 **3. `Omit<T, K>`** — Creates a new type by **omitting** specific properties `K` from type `T`.
+** 🧠 **3. `Omit<T, K>`** — Creates a new type by **omitting** specific properties `K` from type `T`.
 
 ```ts
 interface User {
@@ -432,7 +432,7 @@ const user: UserWithoutAge = { name: "Alice", email: "alice@example.com" };
 
 ---
 
-### 🧠 **4. `Record<K, T>`** — Creates a type with **keys** `K` and **values** `T`.
+** 🧠 **4. `Record<K, T>`** — Creates a type with **keys** `K` and **values** `T`.
 
 ```ts
 // Record type where keys are strings, and values are numbers
@@ -447,7 +447,7 @@ const studentScores: Scores = {
 
 ---
 
-### 📢 Summary of Utility Types:
+** 📢 Summary of Utility Types:
 | Utility Type | Description                                             | Example                            |
 |--------------|---------------------------------------------------------|------------------------------------|
 | `Partial<T>` | Makes all properties of `T` optional                    | `Partial<User>`                    |
@@ -671,7 +671,7 @@ type PersonKeys = keyof Person;
 
 ---
 
-### **Key Takeaways:**
+** **Key Takeaways:**
 - **`readonly`** is useful when you want to make **object properties** or **array elements immutable**, ensuring that their values cannot be changed.
 - **`const`** ensures the **variable reference** cannot be reassigned, but it does not prevent modifications to the contents of objects or arrays.
 
@@ -807,7 +807,7 @@ In `tsconfig.json`:
 
 ## `esModuleInterop` and `allowSyntheticDefaultImports`
 
-### 🔧 `esModuleInterop`
+** 🔧 `esModuleInterop`
 
 - **Purpose**: Enables a cleaner default import style from CommonJS modules.
 - **Transforms**: Adds a synthetic default export to CommonJS modules (via helper functions like `__importDefault`).
@@ -822,7 +822,7 @@ import fs from 'fs';
 
 ---
 
-### 🔧 `allowSyntheticDefaultImports`
+** 🔧 `allowSyntheticDefaultImports`
 
 - **Purpose**: Allows writing default import syntax (`import x from 'x'`) **without TypeScript complaining**, even if the module doesn’t have a default export.
 - **Only affects type checking**: Doesn’t affect emitted JavaScript.
@@ -836,7 +836,7 @@ import fs from 'fs';
 
 ---
 
-### Summary Table
+** Summary Table
 
 | Feature                          | `esModuleInterop` | `allowSyntheticDefaultImports` |
 |----------------------------------|--------------------|-------------------------------|
@@ -848,105 +848,9 @@ import fs from 'fs';
 
 ---
 
-### Recommendation
+** Recommendation
 - Use **`esModuleInterop: true`** if you want full compatibility and safe default import behavior from CommonJS modules.
 - Use **`allowSyntheticDefaultImports: true`** only if you are using a bundler (like Webpack or Babel) that handles interop for you.
-
-
-
-
-
-
-## **`tsconfig.json` compiler options**
-
----
-
-### 🔧 **Basic Options**
-| Option                | Description |
-|-----------------------|-------------|
-| `target`              | ECMAScript version for output (e.g., `es5`, `es6`, `es2020`) |
-| `module`              | Module system to use (`commonjs`, `esnext`, `umd`, etc.) |
-| `lib`                 | List of libraries to include in compilation (e.g., `["dom", "es2020"]`) |
-| `allowJs`             | Allow JavaScript files to be compiled |
-| `checkJs`             | Enable type checking on `.js` files |
-| `outDir`              | Redirect output structure to a directory |
-| `rootDir`             | Specify root directory of input files |
-
----
-
-### 🛠️ **Strict Type-Checking Options**
-| Option                    | Description |
-|---------------------------|-------------|
-| `strict`                  | Enables all strict type checks (`true` by default is recommended) |
-| `noImplicitAny`           | Raise error on variables with `any` type |
-| `strictNullChecks`        | Make `null` and `undefined` distinct types |
-| `strictFunctionTypes`     | Check function parameter bivariance |
-| `strictBindCallApply`     | Type-check `bind`, `call`, and `apply` methods |
-| `alwaysStrict`            | Emit `"use strict"` and perform strict checks |
-| `noImplicitThis`          | Raise error on `this` expressions with an `any` type |
-
----
-
-### 📦 **Module Resolution**
-| Option                  | Description |
-|-------------------------|-------------|
-| `moduleResolution`      | Strategy to resolve modules (`node` or `classic`) |
-| `baseUrl`               | Base directory for non-relative module names |
-| `paths`                 | Aliases for module paths (used with `baseUrl`) |
-| `typeRoots`             | Directories where type definitions are found |
-| `types`                 | Specific type declaration packages to include |
-| `esModuleInterop`       | Enables default imports from CommonJS |
-| `allowSyntheticDefaultImports` | Allows default import syntax for modules without default export |
-
----
-
-### 📂 **Emit / Output Options**
-| Option                 | Description |
-|------------------------|-------------|
-| `declaration`          | Generate `.d.ts` declaration files |
-| `sourceMap`            | Generate `.map` files for debugging |
-| `removeComments`       | Remove comments in output |
-| `noEmit`               | Don’t emit output (useful for type-check only) |
-| `incremental`          | Enable incremental compilation with `.tsbuildinfo` |
-
----
-
-### 🧪 **Experimental Options**
-| Option                 | Description |
-|------------------------|-------------|
-| `experimentalDecorators` | Enable support for decorators |
-| `emitDecoratorMetadata`  | Emit design-type metadata for decorated declarations |
-| `useDefineForClassFields` | Emit ES `define` semantics for class fields |
-
----
-
-### 🛡️ **Other Helpful Options**
-| Option                 | Description |
-|------------------------|-------------|
-| `skipLibCheck`         | Skip type checking of declaration files (`.d.ts`) |
-| `forceConsistentCasingInFileNames` | Ensure file name case consistency across OSs |
-
----
-
-### 📁 Sample `tsconfig.json`
-```json
-{
-  "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "declaration": true,
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "node"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
-}
-```
 
 
 
@@ -962,7 +866,7 @@ import fs from 'fs';
 
 ---
 
-### 🧠 Example 1: **Namespace**
+** 🧠 Example 1: **Namespace**
 ```ts
 namespace MathUtils {
   export function add(a: number, b: number): number {
@@ -981,7 +885,7 @@ Here, `MathUtils` groups `add` and `multiply` under one "namespace."
 
 ---
 
-### 🧠 Example 2: **Module**
+** 🧠 Example 2: **Module**
 ```ts
 // mathUtils.ts
 export function add(a: number, b: number): number {
@@ -1000,7 +904,7 @@ Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import**
 
 ---
 
-### 📢 Important Points:
+** 📢 Important Points:
 | Feature         | Namespace                        | Module                           |
 |-----------------|-----------------------------------|----------------------------------|
 | How it works    | Groups code inside the same file  | Each file is a separate module   |
@@ -1037,7 +941,7 @@ Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import**
   
 ---
 
-### **Intersection Types (`&`)**
+** **Intersection Types (`&`)**
 - **Definition**: A type that requires a value to **satisfy all combined types**.
 - **Operator**: `&` (ampersand symbol).
 - **Resulting Type**: A value that must conform to **all** types in the intersection.
@@ -1059,7 +963,7 @@ Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import**
 
 ---
 
-### **Key Differences**
+** **Key Differences**
 - **Union Types (`|`)**: Choose **one** from multiple types.
 - **Intersection Types (`&`)**: Combine **all** types together, meaning the value must match **all** constraints.
 
@@ -1128,6 +1032,102 @@ Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import**
 
 
 ---
+## **`tsconfig.json` compiler options**
+
+---
+
+**Basic Options**
+| Option                | Description |
+|-----------------------|-------------|
+| `target`              | ECMAScript version for output (e.g., `es5`, `es6`, `es2020`) |
+| `module`              | Module system to use (`commonjs`, `esnext`, `umd`, etc.) |
+| `lib`                 | List of libraries to include in compilation (e.g., `["dom", "es2020"]`) |
+| `allowJs`             | Allow JavaScript files to be compiled |
+| `checkJs`             | Enable type checking on `.js` files |
+| `outDir`              | Redirect output structure to a directory |
+| `rootDir`             | Specify root directory of input files |
+
+---
+
+**Strict Type-Checking Options**
+| Option                    | Description |
+|---------------------------|-------------|
+| `strict`                  | Enables all strict type checks (`true` by default is recommended) |
+| `noImplicitAny`           | Raise error on variables with `any` type |
+| `strictNullChecks`        | Make `null` and `undefined` distinct types |
+| `strictFunctionTypes`     | Check function parameter bivariance |
+| `strictBindCallApply`     | Type-check `bind`, `call`, and `apply` methods |
+| `alwaysStrict`            | Emit `"use strict"` and perform strict checks |
+| `noImplicitThis`          | Raise error on `this` expressions with an `any` type |
+
+---
+
+**Module Resolution**
+| Option                  | Description |
+|-------------------------|-------------|
+| `moduleResolution`      | Strategy to resolve modules (`node` or `classic`) |
+| `baseUrl`               | Base directory for non-relative module names |
+| `paths`                 | Aliases for module paths (used with `baseUrl`) |
+| `typeRoots`             | Directories where type definitions are found |
+| `types`                 | Specific type declaration packages to include |
+| `esModuleInterop`       | Enables default imports from CommonJS |
+| `allowSyntheticDefaultImports` | Allows default import syntax for modules without default export |
+
+---
+
+**Emit / Output Options**
+| Option                 | Description |
+|------------------------|-------------|
+| `declaration`          | Generate `.d.ts` declaration files |
+| `sourceMap`            | Generate `.map` files for debugging |
+| `removeComments`       | Remove comments in output |
+| `noEmit`               | Don’t emit output (useful for type-check only) |
+| `incremental`          | Enable incremental compilation with `.tsbuildinfo` |
+
+---
+
+ **Experimental Options**
+| Option                 | Description |
+|------------------------|-------------|
+| `experimentalDecorators` | Enable support for decorators |
+| `emitDecoratorMetadata`  | Emit design-type metadata for decorated declarations |
+| `useDefineForClassFields` | Emit ES `define` semantics for class fields |
+
+---
+
+**Other Helpful Options**
+| Option                 | Description |
+|------------------------|-------------|
+| `skipLibCheck`         | Skip type checking of declaration files (`.d.ts`) |
+| `forceConsistentCasingInFileNames` | Ensure file name case consistency across OSs |
+
+---
+
+**Sample `tsconfig.json`**
+```json
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+
+
+
+
+
 
 ## **`esModuleInterop` vs `allowSyntheticDefaultImports`**
 

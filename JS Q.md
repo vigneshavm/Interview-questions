@@ -943,22 +943,69 @@ kid.greet(); // Hello, John
 
 ##  Event Loop & Call Stack
 
-- JavaScript is single-threaded, with an **event loop** that manages async operations via the **call stack** and **task queue**.
 
-```js
-console.log("Start");
-setTimeout(() => console.log("Async"), 0);
-console.log("End");
-```
+#### 🧠 **Call Stack**
 
-**Output:**  
-```
-Start  
-End  
-Async
+- A **LIFO (Last In, First Out)** stack that keeps track of function calls.
+- When a function is invoked, it’s **pushed onto the stack**.
+- When it finishes execution, it’s **popped off** the stack.
+- If the stack is blocked (e.g., infinite loop or heavy computation), **no other code executes**.
+
+```javascript
+function greet() {
+  console.log("Hello");
+}
+greet();  // pushed to stack → executed → popped from stack
 ```
 
 ---
+
+#### 🔁 **Event Loop**
+
+- The **event loop** continuously checks the **call stack** and **callback queue** (or task/microtask queues).
+- If the call stack is empty, it **pushes queued tasks** (e.g., from `setTimeout`, `fetch`, or Promises) onto the stack.
+- Ensures **non-blocking** behavior and **asynchronous execution**.
+
+---
+
+#### 🕳️ **Callback Queue vs Microtask Queue**
+
+- **Callback Queue**: `setTimeout`, `setInterval`, DOM events
+- **Microtask Queue**: `Promise.then`, `async/await`, `queueMicrotask`
+- Microtasks are **executed first**, **right after the current task**, before any queued callbacks.
+
+---
+
+#### 📊 **Example Execution Order**
+
+```javascript
+console.log("1");
+
+setTimeout(() => console.log("2"), 0);
+
+Promise.resolve().then(() => console.log("3"));
+
+console.log("4");
+```
+
+📌 Output:
+```
+1
+4
+3   ← microtask
+2   ← macrotask (callback queue)
+```
+
+---
+
+#### 💡 **Why It Matters**
+
+- Helps avoid **race conditions**, UI freeze, and unexpected behavior.
+- Crucial for understanding how **async code**, **Promises**, and **timers** work together.
+- Used to explain why `setTimeout(..., 0)` doesn’t run immediately.
+
+---
+
 
 
 

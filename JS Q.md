@@ -5,10 +5,7 @@
 • [Declaration Merging](#Declaration-Merging)
 • [Namespaces and modules](#Namespaces-and-modules)
 • [function overloading](#function-overloading)
-• [`Partial` `Pick` `Omit` `Record`](#Partial-Pick-Omit-Record)
-
-
-• [keyof Vs typeof](#keyof-Vs-typeof) • [Template literal types](#Template-literal-types) • [Module System & Compiler Options](#module-system--compiler-options) • [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)          
+• [`Partial` `Pick` `Omit` `Record`](#Partial-Pick-Omit-Record) • [keyof Vs typeof](#keyof-Vs-typeof) • [Template literal types](#Template-literal-types) • [Module System & Compiler Options](#module-system--compiler-options) • [Map vs Plain Objects](#difference-between-map-and-plain-objects)    • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)          
 
 
 **Scope and `this`** - [Scope](#scope)    • [Global, Function, and Block Scope](#global-and-function-and-block-scope)    • [Lexical Scoping](#Lexical-Scoping)   • [this Keyword Behavior](#this-keyword-behavior)  **Events** - [Event Propagation](#event-propagation)    • [Event Listeners](#event-listeners)     • [`event.preventDefault()` vs `event.stopPropagation()`](#preventdefault-vs-stoppropagation)      • [Event Capturing vs Event Bubbling vs Event Delegation](#Event-Capturing-vs-Event-Bubbling-vs-Event-Delegation)  

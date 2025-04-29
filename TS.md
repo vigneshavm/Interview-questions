@@ -145,7 +145,7 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 
 ---
 
-**Example: `unknown` vs `any`**
+| **Example**
 
 ```ts
 let value1: any = "hello";
@@ -1273,7 +1273,7 @@ Decorators help add reusable logic without modifying the core structure of the c
 
 ---
 
-#### 🧠 Example: Merging Interfaces
+| **Example**
 
 ```ts
 interface User {
@@ -1348,7 +1348,7 @@ const user: User = {
 
 ---
 
-### 🔹 Example: `Map`
+| **Example**
 ```ts
 const map = new Map();
 map.set("key", "value");
@@ -1356,7 +1356,7 @@ map.set({ id: 1 }, "object value");
 console.log(map.size); // 2
 ```
 
-### 🔹 Example: `WeakMap`
+| **Example**
 ```ts
 const weakMap = new WeakMap();
 let obj = { name: "Alice" };
@@ -1366,7 +1366,7 @@ weakMap.set(obj, "some private data");
 obj = null;
 ```
 
-### When to use:
+**When to use**
 - **Use `Map`**: when you need to iterate, count, or use non-object keys.
 - **Use `WeakMap`**: when storing **private data per object** that should not prevent garbage collection.
 
@@ -1391,7 +1391,8 @@ obj = null;
 
 ---
 
-### 🔹 Example: `Set`
+
+| **Example**
 ```ts
 const set = new Set();
 set.add(1);
@@ -1404,7 +1405,7 @@ for (const val of set) {
 }
 ```
 
-### 🔹 Example: `WeakSet`
+| **Example**
 ```ts
 const weakSet = new WeakSet();
 let obj = { id: 1 };
@@ -1416,7 +1417,7 @@ obj = null; // Now eligible for garbage collection
 
 ---
 
-### When to use:
+**When to use**
 - **Use `Set`**: when you need a list of **unique values** and want to **iterate or check size**.
 - **Use `WeakSet`**: when you want to **track objects without preventing their garbage collection**, such as for **caching or tracking object state** internally.
 

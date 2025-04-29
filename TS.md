@@ -1033,4 +1033,107 @@ const sum = add(2, 3);
 ---
 
 
+## **Duck Typing**
+
+- "In TypeScript, **duck typing** means that an object is considered of a certain type **as long as it has the required properties or methods**, even if it doesn’t explicitly implement a class or interface."
+- "Basically, if it **looks like a duck and quacks like a duck**, we treat it like a duck — the actual structure matters more than the specific label."
+- "This is common when we use **interfaces** in TypeScript, where we just check if the object matches the **shape** we expect, rather than its actual type name."
+
+
+**Example**:  
+```typescript
+interface Duck {
+  quack(): void;
+}
+
+class Mallard {
+  quack() {
+    console.log("Quack!");
+  }
+}
+
+class Car {
+  honk() {
+    console.log("Honk!");
+  }
+}
+
+function makeQuack(duck: Duck) {
+  duck.quack();
+}
+
+let mallard = new Mallard();
+makeQuack(mallard); // Works fine
+
+let car = new Car();
+// makeQuack(car); // Error: Property 'quack' is missing in type 'Car'
+```
+In TypeScript, objects are accepted based on their structure (duck typing), rather than their exact type.
+
+---
+
+
+## Type Narrowing
+
+> **Type narrowing** is the process where TypeScript figures out a more specific type for a variable from a union type.
+
+##### Example:
+```ts
+function printLength(value: string | string[]) {
+  if (typeof value === "string") {
+    console.log(value.length);       // value: string
+  } else {
+    console.log(value.length);       // value: string[]
+  }
+}
+```
+> The variable `value` starts as `string | string[]`, but within each `if` branch, TypeScript **narrows** the type.
+
+
+
+
+## keyof Vs typeof
+
+### 📢 Key Points:
+| Operator | Purpose                      | Example                               |
+|----------|-------------------------------|---------------------------------------|
+| `typeof` | Get the type of a value        | `typeof person` ➔ `{ name: string; age: number }` |
+| `keyof`  | Get keys from a type (as union)| `keyof Person` ➔ `"name" | "age"`    |
+
+
+> In TypeScript:
+> - **`typeof`** is used to **get the type** of a **value**.
+> - **`keyof`** is used to **get the keys** of a **type** as a **union of strings**.
+
+---
+
+### 🧠 1. `typeof` — Get **Type from a Value**
+Used when you want to create a type based on a real variable or object.
+
+```ts
+const person = {
+  name: "Alice",
+  age: 30,
+};
+
+type Person = typeof person;
+// Same as:
+// type Person = { name: string; age: number; }
+```
+
+✅ `typeof` helps **reuse** or **reference** a variable's structure as a type.
+
+---
+
+### 🧠 2. `keyof` — Get **Keys of a Type**  
+Used to extract **property names** from a type.
+
+```ts
+type PersonKeys = keyof Person;
+// PersonKeys = "name" | "age"
+```
+
+✅ `keyof` gives a **union of keys** (`"name" | "age"`) from the `Person` type.
+
+---
 

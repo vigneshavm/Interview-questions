@@ -52,7 +52,7 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 
 ---
 
-#### **Why Type Inference is Useful:**
+**Why Type Inference is Useful:**
 
 - Reduces the need for **explicit type annotations**.
 - Improves **readability** and **developer productivity**.
@@ -61,7 +61,7 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 
 ---
 
-#### **Examples:**
+**Examples:**
 
 - **Basic Inference:**
   ```ts
@@ -89,7 +89,7 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 
 ---
 
-#### **Advanced Inference:**
+**Advanced Inference:**
 
 - TypeScript narrows types in conditions:
   ```ts
@@ -102,16 +102,16 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 
 ---
 
-#### **Limitations:**
+**Limitations:**
 
 - For **complex structures**, inference may not be accurate—explicit types are better.
 - If inference fails, TypeScript may assign the `any` type (disabling type checking).
 
 ---
 
-#### **When to Use Inference vs. Annotations:**
+**When to Use Inference vs. Annotations:**
 
-- ✅ Use inference for:
+- Use inference for:
   - Simple variables
   - Obvious values
   - Internal implementation details
@@ -122,6 +122,125 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
   - Complex or generic types
 
 ---
+
+
+
+
+## **Any vs Unknown**
+
+
+| **Feature**          | **`any`**                                       | **`unknown`**                                      |
+|----------------------|-------------------------------------------------|----------------------------------------------------|
+| **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
+| **Flexibility**      | Very flexible, as any value can be assigned and used in any way. | Flexible but requires type checking or type assertion before use. |
+| **When to Use**      | When you need dynamic behavior, and you're willing to bypass TypeScript’s type checking. | When you need flexibility but want to enforce safer, type-checked operations. |
+| **Code Safety**      | Less safe, can lead to runtime errors due to lack of type checks. | Safer, as TypeScript forces you to handle the value before using it. |
+| **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
+
+
+
+> In TypeScript:
+> - **`unknown`** is a **safer version of `any`**. It represents **any value**, but unlike `any`, you must **narrow its type** before using it (e.g., through type checks or type assertions).
+> - **`any`** allows **any operation** to be performed on it without restrictions, making it **more permissive but less safe**.
+
+---
+
+**Example: `unknown` vs `any`**
+
+```ts
+let value1: any = "hello";
+value1 = 42; // OK, `any` can be reassigned freely
+
+let value2: unknown = "hello";
+value2 = 42; // OK, but you must narrow the type before using it
+
+// Using `value2` directly would cause an error
+// value2.toUpperCase(); // Error: Object is of type 'unknown'
+
+// Narrowing `unknown` before using it
+if (typeof value2 === "string") {
+  console.log(value2.toUpperCase());  // OK, after type narrowing
+}
+```
+
+**Key Differences**
+| Type      | `any`                                | `unknown`                           |
+|-----------|--------------------------------------|-------------------------------------|
+| Safety    | **No safety** — any operation is allowed | **Requires type checking** before use |
+| Use case  | When you don't care about types (use carefully) | When you want to ensure proper type handling |
+
+---
+
+
+## **Duck Typing**
+
+- "In TypeScript, **duck typing** means that an object is considered of a certain type **as long as it has the required properties or methods**, even if it doesn’t explicitly implement a class or interface."
+- "Basically, if it **looks like a duck and quacks like a duck**, we treat it like a duck — the actual structure matters more than the specific label."
+- "This is common when we use **interfaces** in TypeScript, where we just check if the object matches the **shape** we expect, rather than its actual type name."
+
+
+**Example**:  
+```typescript
+interface Duck {
+  quack(): void;
+}
+
+class Mallard {
+  quack() {
+    console.log("Quack!");
+  }
+}
+
+class Car {
+  honk() {
+    console.log("Honk!");
+  }
+}
+
+function makeQuack(duck: Duck) {
+  duck.quack();
+}
+
+let mallard = new Mallard();
+makeQuack(mallard); // Works fine
+
+let car = new Car();
+// makeQuack(car); // Error: Property 'quack' is missing in type 'Car'
+```
+In TypeScript, objects are accepted based on their structure (duck typing), rather than their exact type.
+
+---
+
+
+
+
+
+## Type Narrowing
+
+> **Type narrowing** is the process where TypeScript figures out a more specific type for a variable from a union type.
+
+**Example**
+```ts
+function printLength(value: string | string[]) {
+  if (typeof value === "string") {
+    console.log(value.length);       // value: string
+  } else {
+    console.log(value.length);       // value: string[]
+  }
+}
+```
+> The variable `value` starts as `string | string[]`, but within each `if` branch, TypeScript **narrows** the type.
+
+
+
+
+
+
+
+
+
+
+
 
 ## **Interface vs. Type**
 
@@ -154,85 +273,73 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
 ```
 
 ---
-## **Any vs Unknown**
+## **Extending Types and Interfaces**
 
-
-| **Feature**          | **`any`**                                       | **`unknown`**                                      |
-|----------------------|-------------------------------------------------|----------------------------------------------------|
-| **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
-| **Flexibility**      | Very flexible, as any value can be assigned and used in any way. | Flexible but requires type checking or type assertion before use. |
-| **When to Use**      | When you need dynamic behavior, and you're willing to bypass TypeScript’s type checking. | When you need flexibility but want to enforce safer, type-checked operations. |
-| **Code Safety**      | Less safe, can lead to runtime errors due to lack of type checks. | Safer, as TypeScript forces you to handle the value before using it. |
-| **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
-
-
-
-> In TypeScript:
-> - **`unknown`** is a **safer version of `any`**. It represents **any value**, but unlike `any`, you must **narrow its type** before using it (e.g., through type checks or type assertions).
-> - **`any`** allows **any operation** to be performed on it without restrictions, making it **more permissive but less safe**.
+TypeScript allows both **`interface`** and **`type`** aliases to be extended or combined, but with some key differences and use cases.
 
 ---
 
-### 🧠 Example: **`unknown`** vs **`any`**
+### 🔹 **Extending Interfaces**
+- Use the `extends` keyword.
+- Interfaces can be extended multiple times.
+- Useful for creating object shapes and enabling structural subtyping.
 
 ```ts
-let value1: any = "hello";
-value1 = 42; // OK, `any` can be reassigned freely
-
-let value2: unknown = "hello";
-value2 = 42; // OK, but you must narrow the type before using it
-
-// Using `value2` directly would cause an error
-// value2.toUpperCase(); // Error: Object is of type 'unknown'
-
-// Narrowing `unknown` before using it
-if (typeof value2 === "string") {
-  console.log(value2.toUpperCase());  // OK, after type narrowing
+interface Person {
+  name: string;
 }
+
+interface Employee extends Person {
+  jobTitle: string;
+}
+
+const emp: Employee = {
+  name: "Alice",
+  jobTitle: "Developer",
+};
 ```
 
-### 📢 Key Differences:
-| Type      | `any`                                | `unknown`                           |
-|-----------|--------------------------------------|-------------------------------------|
-| Safety    | **No safety** — any operation is allowed | **Requires type checking** before use |
-| Use case  | When you don't care about types (use carefully) | When you want to ensure proper type handling |
+---
+
+### 🔸 **Extending Types**
+- You can extend a `type` using **intersection types (`&`)**.
+- Suitable for combining multiple types or primitives.
+
+```ts
+type Person = {
+  name: string;
+};
+
+type Employee = Person & {
+  jobTitle: string;
+};
+
+const emp: Employee = {
+  name: "Bob",
+  jobTitle: "Designer",
+};
+```
 
 ---
 
+### ⚖️ **Comparison Table**
 
-
-
-
-
-## **Generics**
- - Generics in TypeScript are a way to make our code more flexible and reusable while still preserving type safety, by allowing types to be passed as parameters.
- - "In TypeScript, Generics allow us to create reusable components or functions that can work with different types while still keeping type safety.  
- - I like to think of them as type placeholders — instead of writing multiple versions of the same function or class for different types, I can write it once and just pass the type when I use it.  
- - For example, a simple generic function could look like this:  
-> ```typescript
-> function identity<T>(arg: T): T {
->   return arg;
-> }
-> ```  
- - Here, `T` acts like a variable for the type. When I call `identity("Hello")`, TypeScript understands `T` is a string. If I call it with a number, `T` becomes a number.  
- - Generics can also be used with interfaces. For example, I can create a `Box<T>` interface where the `value` property can be of any type — string, number, anything — depending on how I define it.  
- - And similarly with classes — I can have a generic class like `DataHolder<T>`, which can hold any type of data.  
- - Overall, Generics help me write cleaner, more flexible code without giving up the strong type checking that TypeScript provides. It’s better than using `any` because it keeps things type-safe."**
+| Feature                       | `interface`                                | `type`                                      |
+|------------------------------|---------------------------------------------|----------------------------------------------|
+| Syntax for extension         | `extends`                                   | Intersection (`&`)                          |
+| Multiple inheritance         | Yes                                       | Yes (with `&`)                            |
+| Declaration merging          | Supported                                | ❌ Not supported                             |
+| Extend classes               | Can extend a class                       | ❌ Cannot extend classes                     |
+| Use with primitives          | ❌ No                                        | Yes (e.g., `string | number`)            |
+| Preferred use case           | Object shapes                               | Unions, intersections, and advanced types    |
 
 ---
 
+### 💡 Best Practices
+- Use **`interface`** for object-oriented designs or APIs.
+- Use **`type`** when dealing with union/intersection types or more complex combinations.
 
 
-
-
-## **Union Types**
-  - In TypeScript, Union Types let a variable hold more than one type.
- - For example, I can say let id: string | number;, which means id can either be a string or a number. If I assign a boolean to it, TypeScript will show an error.
- - We use the | symbol to join the types. It’s very helpful when you expect a function or a variable to handle multiple types of inputs.
- - A common place where I use Union Types is in functions. Like, if I have a printId function, it can accept either a string or a number, and inside the function, I can check using typeof to know what exactly it is.
- - It's useful because it keeps the flexibility without losing type safety, unlike using any.
- - We often use Union Types when handling different kinds of user inputs, API responses, or when something might be undefined or a specific type."**
----
 
 
 ## **Mapped Types**
@@ -261,7 +368,6 @@ user.name = "Bob"; // Error: Cannot assign to 'name' because it is a read-only p
 Mapped types are useful for creating reusable and flexible transformations of types.
 
 ---
-
 
 
 
@@ -351,224 +457,310 @@ const studentScores: Scores = {
 
 ---
 
+## **Union and Intersection Types**
 
-
-
-
-## Map vs WeakMap
-
-| Feature                    | `Map`                                   | `WeakMap`                              |
-|---------------------------|------------------------------------------|----------------------------------------|
-| **Key types**             | Any value (primitives or objects)        | **Only objects** (not primitives)      |
-| **Garbage collection**    | Keys are **strongly referenced**         | Keys are **weakly referenced**         |
-| **Iterable**              | ✅ Yes (can use `forEach`, `for...of`)   | ❌ No (not iterable)                   |
-| **Size property**         | ✅ Has `.size` to get number of entries  | ❌ No `.size` property                 |
-| **Use case**              | General-purpose key-value storage        | Private data storage tied to objects   |
-| **Memory leak risk**      | Possible if not cleared manually         | Lower risk due to GC when keys die     |
+| **Feature**                      | **Union Types (`|`)**                                      | **Intersection Types (`&`)**                                 |
+|-----------------------------------|------------------------------------------------------------|--------------------------------------------------------------|
+| **Definition**                    | A type that allows a value to be one of several types.     | A type that combines multiple types into a single type that must satisfy all of them. |
+| **Operator**                      | `|` (pipe symbol)                                          | `&` (ampersand symbol)                                       |
+| **Type Combination**              | Represents a value that can be **one** of several types.   | Represents a value that must satisfy **all** the types in the intersection. |
+| **Example**                       | `type A = string | number;`                                | `type A = { name: string } & { age: number };`                |
+| **Resulting Type**                | The resulting type can be **either** type in the union.    | The resulting type must contain **all properties** from the intersected types. |
+| **Use Case**                      | Useful when a value can be **one of several types** (e.g., different input formats). | Useful when a value must **satisfy multiple types** (e.g., merging interfaces with different properties). |
+| **Compatibility with Types**      | A value can be **any one type** from the union.            | A value must conform to **all types** in the intersection. |
+| **Example with Primitives**       | `let value: string | number = "Hello"; value = 42;`         | N/A (more common with objects).                              |
+| **Example with Objects**          | `type Animal = { legs: number } | { wings: number };`      | `type Animal = { legs: number } & { wings: number };`        |
+| **Result for Objects**            | The value can be **either** object (not requiring common properties). | The value must have **all properties** from both objects. |
+| **Type Narrowing**                | Type narrowing can be done by checking the type (e.g., `typeof` or `instanceof`). | Type narrowing requires checking for common properties from all types involved. |
 
 ---
 
-### 🔹 Example: `Map`
+ **Key Takeaways:**
+- **Union Types** (`|`): A value can be **one** of multiple types.
+- **Intersection Types** (`&`): A value must satisfy **all** the types in the intersection.
+
+---
+
+ **Example:**
+
+**Union Type Example:**
 ```ts
-const map = new Map();
-map.set("key", "value");
-map.set({ id: 1 }, "object value");
-console.log(map.size); // 2
+type StringOrNumber = string | number;
+
+let value: StringOrNumber = "Hello";
+value = 42;  // Both string and number are allowed
 ```
 
-### 🔹 Example: `WeakMap`
+**Intersection Type Example:**
 ```ts
-const weakMap = new WeakMap();
-let obj = { name: "Alice" };
-weakMap.set(obj, "some private data");
-
-// After `obj` is no longer referenced, it's eligible for garbage collection
-obj = null;
-```
-
-### ✅ When to use:
-- **Use `Map`**: when you need to iterate, count, or use non-object keys.
-- **Use `WeakMap`**: when storing **private data per object** that should not prevent garbage collection.
-
-
-
-
-
-
-## Set vs WeakSet
-
-
-
-| Feature                     | `Set`                                        | `WeakSet`                                      |
-|----------------------------|----------------------------------------------|------------------------------------------------|
-| **Value types**            | Any type (primitives or objects)             | **Only objects** (no primitives)               |
-| **Garbage collection**     | Values are strongly referenced               | Values are **weakly referenced**               |
-| **Iterable**               | ✅ Yes (`forEach`, `for...of`, spread, etc.) | ❌ No (not iterable, no `forEach`, no spread)  |
-| **Size property**          | ✅ Has `.size`                               | ❌ No `.size`                                   |
-| **Duplicates allowed?**    | ❌ No duplicates (same value only once)      | ❌ No duplicates                                |
-| **Use case**               | Unique list of values                       | Track object presence without preventing GC    |
-| **Memory management**      | Manual                                       | Automatic (objects are GC-ed when unreferenced) |
-
----
-
-### 🔹 Example: `Set`
-```ts
-const set = new Set();
-set.add(1);
-set.add(2);
-set.add(2); // Ignored (duplicate)
-set.add({ name: "Alice" });
-
-for (const val of set) {
-  console.log(val); // Iterates over values
-}
-```
-
-### 🔹 Example: `WeakSet`
-```ts
-const weakSet = new WeakSet();
-let obj = { id: 1 };
-weakSet.add(obj);
-
-console.log(weakSet.has(obj)); // true
-obj = null; // Now eligible for garbage collection
-```
-
----
-
-### ✅ When to use:
-- **Use `Set`**: when you need a list of **unique values** and want to **iterate or check size**.
-- **Use `WeakSet`**: when you want to **track objects without preventing their garbage collection**, such as for **caching or tracking object state** internally.
-
-
-## **Difference Between Map and Plain Objects**
-
-
-
-- **Key Types**:
-  - A **`Map`** allows keys of any type (objects, functions, primitive types), while **objects** only allow strings (or symbols) as keys.
-  
-- **Order of Keys**:
-  - In a **`Map`**, keys are ordered in the insertion order, while **objects** do not guarantee any specific order (though most modern JavaScript engines preserve it).
-  
-- **Performance**:
-  - **`Map`** is optimized for frequent additions and removals of key-value pairs, especially when the number of entries is large. **Objects** are more efficient for simple key-value pair lookups, but not for large datasets.
-  
-- **Prototype Inheritance**:
-  - **`Map`** does not have a prototype chain (no inherited properties like `toString` or `hasOwnProperty`), which avoids potential key conflicts. In contrast, **objects** inherit from `Object.prototype`.
-
-- **Iteration**:
-  - A **`Map`** has built-in methods for iteration like `forEach`, `keys()`, `values()`, and `entries()`. While **objects** can be iterated over using `for...in` loops, `Object.keys()`, `Object.values()`, etc., these methods are more manual.
-
----
-
-
-## Declaration Merging
-
-
-> **Declaration Merging** in TypeScript means that **when two declarations have the same name, TypeScript automatically merges them into a single definition**.  
-> This happens commonly with **interfaces**, **namespaces**, and sometimes **functions and classes**.
-
----
-
-#### 🧠 Example: Merging Interfaces
-
-```ts
-interface User {
+interface Person {
   name: string;
 }
 
-interface User {
-  age: number;
+interface Worker {
+  job: string;
 }
 
-// After merging:
-const user: User = {
+type Employee = Person & Worker;
+
+const employee: Employee = {
+  name: "Alice",
+  job: "Engineer",
+}; // Must have both `name` and `job` properties
+```
+
+---
+
+
+
+
+## Template literal types
+
+
+> **Template literal types** in TypeScript allow us to create **dynamic string types** by combining strings and types using template syntax, similar to JavaScript's template literals.  
+>  
+> They are useful when we need to generate new types based on existing ones, such as creating `"GET /api/user"` or `"POST /api/post"` types dynamically.  
+>  
+> **Example:**  
+> ```ts
+> type Method = "GET" | "POST";
+> type Resource = "user" | "post";
+> type APIEndpoint = `${Method} /api/${Resource}`;
+> ```
+> Here, `APIEndpoint` becomes a union of all combinations like `"GET /api/user"`, `"POST /api/post"`, etc.
+>
+> This helps with **type safety**, **autocompletion**, and **avoiding string mismatches** in large applications.
+
+---
+## keyof Vs typeof
+
+**Key Points**
+| Operator | Purpose                      | Example                               |
+|----------|-------------------------------|---------------------------------------|
+| `typeof` | Get the type of a value        | `typeof person` ➔ `{ name: string; age: number }` |
+| `keyof`  | Get keys from a type (as union)| `keyof Person` ➔ `"name" | "age"`    |
+
+
+> In TypeScript:
+> - **`typeof`** is used to **get the type** of a **value**.
+> - **`keyof`** is used to **get the keys** of a **type** as a **union of strings**.
+
+---
+
+**1. `typeof` — Get Type from a Value**
+Used when you want to create a type based on a real variable or object.
+
+```ts
+const person = {
   name: "Alice",
   age: 30,
 };
+
+type Person = typeof person;
+// Same as:
+// type Person = { name: string; age: number; }
 ```
 
-
-
-## **Decorators**
-- "In TypeScript, **decorators** are special functions that can be applied to **classes, methods, properties, or parameters**."
-- "They help us **add extra behavior** or **attach metadata** to these elements without changing their core logic."
-- "Decorators are especially common in frameworks like **Angular**, where they are used for things like **dependency injection**, routing, and more."
-- "They basically make our code **more organized and reusable** by separating extra behavior from the main logic."
-
-**Example**:  
-```typescript
-function log(target: any, key: string) {
-  let value = target[key];
-  
-  const getter = () => {
-    console.log(`Getting ${key}: ${value}`);
-    return value;
-  };
-  
-  const setter = (newValue: any) => {
-    console.log(`Setting ${key} to ${newValue}`);
-    value = newValue;
-  };
-  
-  Object.defineProperty(target, key, {
-    get: getter,
-    set: setter,
-  });
-}
-
-class Person {
-  @log
-  name: string;
-  
-  constructor(name: string) {
-    this.name = name;
-  }
-}
-
-const person = new Person("Alice");
-person.name = "Bob"; // Logs: Setting name to Bob
-console.log(person.name); // Logs: Getting name: Bob
-```
-Decorators help add reusable logic without modifying the core structure of the class or function.
+`typeof` helps **reuse** or **reference** a variable's structure as a type.
 
 ---
 
-
-
-##  **function overloading** 
-
-
-> In TypeScript, **function overloading** allows you to define **multiple signatures** for a single function, so it can accept different parameter types and return different types based on those parameters.  
-> You declare the **overload signatures first**, followed by the **implementation**. TypeScript will **select the appropriate signature** based on the arguments passed to the function.
-
-
+**`keyof` — Get **Keys of a Type****  
+Used to extract **property names** from a type.
 
 ```ts
-// Overload signatures
-function greet(person: string): string;
-function greet(person: string, age: number): string;
-
-// Function implementation
-function greet(person: string, age?: number): string {
-  if (age !== undefined) {
-    return `Hello, ${person}. You are ${age} years old.`;
-  }
-  return `Hello, ${person}!`;
-}
-
-// Usage
-console.log(greet("Alice"));       // "Hello, Alice!"
-console.log(greet("Bob", 30));    // "Hello, Bob. You are 30 years old."
+type PersonKeys = keyof Person;
+// PersonKeys = "name" | "age"
 ```
 
-### 📢 Key Points:
-1. **Overload Signatures**: First, you declare the possible **types of inputs** that the function can accept. 
-2. **Implementation**: Then, you provide one function implementation that handles all overload cases.
-3. TypeScript uses **the correct overload signature** based on how you call the function.
+`keyof` gives a **union of keys** (`"name" | "age"`) from the `Person` type.
 
 ---
+
+
+
+
+
+
+
+
+##  **Conditional Types**
+
+- **Definition**: Conditional types allow you to define types based on a condition that evaluates at **compile-time**, enabling more **dynamic type assignments** depending on the input type.
+
+- **Syntax**:
+  ```ts
+  T extends U ? X : Y
+  ```
+  - If `T` extends `U`, the type is `X`.
+  - Otherwise, the type is `Y`.
+
+- **Example (basic usage)**:
+  ```ts
+  type IsString<T> = T extends string ? "Yes" : "No";
+  
+  type Test1 = IsString<string>;  // "Yes"
+  type Test2 = IsString<number>;  // "No"
+  ```
+  - Here, `IsString<T>` evaluates to `"Yes"` if `T` is a string, otherwise `"No"`.
+
+- **Example (working with union types)**:
+  ```ts
+  type FilterNumber<T> = T extends number ? T : never;
+  
+  type Test3 = FilterNumber<"hello" | 42 | true>;  // 42
+  ```
+  - The conditional type filters out non-number types, resulting in `42`.
+
+- **Example (inferring types)**:
+  ```ts
+  type ElementType<T> = T extends (infer U)[] ? U : T;
+  
+  type ArrayElement = ElementType<string[]>;  // string
+  type NumberType = ElementType<number>;      // number
+  ```
+  - `infer` allows extracting the type of elements within an array or other container types.
+
+- **Example (conditional type with interfaces)**:
+  ```ts
+  interface Admin { role: "admin"; }
+  interface User { role: "user"; }
+  
+  type RoleType<T> = T extends { role: "admin" } ? "Administrator" : "General User";
+  
+  type Test4 = RoleType<Admin>;  // "Administrator"
+  type Test5 = RoleType<User>;   // "General User"
+  ```
+
+- **Use Cases**:
+  - **Filtering types** based on conditions (e.g., extracting numbers from a union of types).
+  - **Inferring types** of elements in collections (e.g., `infer` keyword).
+  - **Creating type-safe APIs** where logic differs based on the type provided.
+
+- **Advanced Example (Distributive Conditional Types)**:
+  ```ts
+  type Flatten<T> = T extends (infer U)[] ? U : T;
+  
+  type Test6 = Flatten<string[]>;  // string
+  type Test7 = Flatten<number>;    // number
+  ```
+
+- **Key Takeaways**:
+  - Conditional types are powerful for **type inference** and **type manipulation**.
+  - They allow you to **transform types dynamically** based on certain conditions.
+  - They are commonly used with **unions**, **arrays**, and **interfaces** to create flexible and type-safe code.
+
+---
+
+
+
+
+##  **`readonly` vs `const`** 
+
+| **Feature**                      | **`readonly`**                                      | **`const`**                                           |
+|-----------------------------------|-----------------------------------------------------|------------------------------------------------------|
+| **Definition**                    | A **type modifier** that makes properties of objects or elements of arrays immutable. | A **variable declaration keyword** that makes the variable reference immutable. |
+| **Applies to**                    | **Object properties** or **array elements**.        | **Variables** (including primitive types, arrays, and objects). |
+| **Mutability of Reference**       | Does not affect the reference itself; only the **property** or **element**. | **Prevents reassigning the reference** to a new value. |
+| **Mutability of Contents**        | The contents of the object or array cannot be modified (for properties or elements marked as `readonly`). | The contents of an object or array can be modified (unless combined with `readonly`). |
+| **Example with Object**           | `interface Person { readonly name: string; }`      | `const person = { name: "Alice" }; person.name = "Bob"; // Allowed` |
+| **Example with Array**            | `const numbers: readonly number[] = [1, 2, 3];`    | `const numbers = [1, 2, 3]; numbers.push(4); // Allowed` |
+| **Use Case**                      | Enforces **immutability** for object properties or array elements. | Ensures **reference immutability**, meaning the variable can’t be reassigned. |
+| **Scope**                         | Applied within the **type system** to enforce immutability of properties/elements. | Applied to **variables** to prevent reassigning their references. |
+| **Prevents Reassigning Variable** | No, only prevents modification of properties or elements within the object/array. | Yes, prevents reassignment of the variable itself. |
+
+---
+
+### **Key Takeaways:**
+- **`readonly`** is useful when you want to make **object properties** or **array elements immutable**, ensuring that their values cannot be changed.
+- **`const`** ensures the **variable reference** cannot be reassigned, but it does not prevent modifications to the contents of objects or arrays.
+
+
+
+
+
+
+## **Generics**
+ - Generics in TypeScript are a way to make our code more flexible and reusable while still preserving type safety, by allowing types to be passed as parameters.
+ - "In TypeScript, Generics allow us to create reusable components or functions that can work with different types while still keeping type safety.  
+ - I like to think of them as type placeholders — instead of writing multiple versions of the same function or class for different types, I can write it once and just pass the type when I use it.  
+ - For example, a simple generic function could look like this:  
+> ```typescript
+> function identity<T>(arg: T): T {
+>   return arg;
+> }
+> ```  
+ - Here, `T` acts like a variable for the type. When I call `identity("Hello")`, TypeScript understands `T` is a string. If I call it with a number, `T` becomes a number.  
+ - Generics can also be used with interfaces. For example, I can create a `Box<T>` interface where the `value` property can be of any type — string, number, anything — depending on how I define it.  
+ - And similarly with classes — I can have a generic class like `DataHolder<T>`, which can hold any type of data.  
+ - Overall, Generics help me write cleaner, more flexible code without giving up the strong type checking that TypeScript provides. It’s better than using `any` because it keeps things type-safe."**
+
+---
+
+
+
+
+## **Constraining Generics with `extends`**
+
+---
+
+- In TypeScript, the `extends` keyword is used to **constrain a generic type** to ensure it satisfies a specific shape or base type.
+  
+- This helps enforce **type safety** and provides **better IntelliSense/autocompletion**.
+
+- **Example (structural constraint)**:
+  ```ts
+  function getLength<T extends { length: number }>(item: T): number {
+    return item.length;
+  }
+  ```
+  - Only accepts values with a `length` property (e.g., strings, arrays).
+  - Passing a number would result in a compile-time error.
+
+- **Example (union type constraint)**:
+  ```ts
+  function doSomething<T extends "start" | "stop">(action: T) { ... }
+  ```
+  - Accepts only `"start"` or `"stop"` as valid values.
+
+- **Example (interface constraint)**:
+  ```ts
+  interface Person { name: string; age: number; }
+  function greet<T extends Person>(person: T) { ... }
+  ```
+  - Ensures the argument matches or extends the `Person` structure.
+
+- **Example (key constraint with `keyof`)**:
+  ```ts
+  function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+  }
+  ```
+  - Ensures the key exists in the object, enhancing type safety.
+
+- Overall, `extends` allows you to:
+  - Define **bounded generics**.
+  - Create **flexible but safe** utility functions.
+  - Support **complex type relationships** with conditional and mapped types.
+
+---
+
+
+
+
+## **Union Types**
+  - In TypeScript, Union Types let a variable hold more than one type.
+ - For example, I can say let id: string | number;, which means id can either be a string or a number. If I assign a boolean to it, TypeScript will show an error.
+ - We use the | symbol to join the types. It’s very helpful when you expect a function or a variable to handle multiple types of inputs.
+ - A common place where I use Union Types is in functions. Like, if I have a printId function, it can accept either a string or a number, and inside the function, I can check using typeof to know what exactly it is.
+ - It's useful because it keeps the flexibility without losing type safety, unlike using any.
+ - We often use Union Types when handling different kinds of user inputs, API responses, or when something might be undefined or a specific type."**
+---
+
+
+
+
+
 
 
 
@@ -608,24 +800,7 @@ In `tsconfig.json`:
 
 
 
-## Template literal types
 
-
-> **Template literal types** in TypeScript allow us to create **dynamic string types** by combining strings and types using template syntax, similar to JavaScript's template literals.  
->  
-> They are useful when we need to generate new types based on existing ones, such as creating `"GET /api/user"` or `"POST /api/post"` types dynamically.  
->  
-> **Example:**  
-> ```ts
-> type Method = "GET" | "POST";
-> type Resource = "user" | "post";
-> type APIEndpoint = `${Method} /api/${Resource}`;
-> ```
-> Here, `APIEndpoint` becomes a union of all combinations like `"GET /api/user"`, `"POST /api/post"`, etc.
->
-> This helps with **type safety**, **autocompletion**, and **avoiding string mismatches** in large applications.
-
----
 
 
 
@@ -641,7 +816,7 @@ In `tsconfig.json`:
 - **Emits helper functions**: Yes (`__importDefault`)
 
 ```ts
-// With esModuleInterop: ✅ Works even though fs is a CommonJS module
+// With esModuleInterop: Works even though fs is a CommonJS module
 import fs from 'fs';
 ```
 
@@ -655,25 +830,25 @@ import fs from 'fs';
 - **Use case**: For compatibility with Babel or webpack setups that handle interop differently.
 
 ```ts
-// With allowSyntheticDefaultImports: ✅ Compiles, but may fail at runtime if not bundled correctly
+// With allowSyntheticDefaultImports: Compiles, but may fail at runtime if not bundled correctly
 import fs from 'fs';
 ```
 
 ---
 
-### ✅ Summary Table
+### Summary Table
 
 | Feature                          | `esModuleInterop` | `allowSyntheticDefaultImports` |
 |----------------------------------|--------------------|-------------------------------|
-| Enables default imports from CJS | ✅ Yes             | ✅ Yes (only at type level)   |
-| Affects emitted JavaScript       | ✅ Yes             | ❌ No                         |
-| Adds helper functions            | ✅ Yes             | ❌ No                         |
-| Safer for CommonJS interop       | ✅ Yes             | 🚫 Risky without bundler      |
-| Implies the other                | ✅ Implies `allowSyntheticDefaultImports` | ❌ Does not imply `esModuleInterop` |
+| Enables default imports from CJS | Yes             | Yes (only at type level)   |
+| Affects emitted JavaScript       | Yes             | ❌ No                         |
+| Adds helper functions            | Yes             | ❌ No                         |
+| Safer for CommonJS interop       | Yes             | 🚫 Risky without bundler      |
+| Implies the other                | Implies `allowSyntheticDefaultImports` | ❌ Does not imply `esModuleInterop` |
 
 ---
 
-### ✅ Recommendation
+### Recommendation
 - Use **`esModuleInterop: true`** if you want full compatibility and safe default import behavior from CommonJS modules.
 - Use **`allowSyntheticDefaultImports: true`** only if you are using a bundler (like Webpack or Babel) that handles interop for you.
 
@@ -778,203 +953,6 @@ import fs from 'fs';
 
 
 
-## **Constraining Generics with `extends`**
-
----
-
-- In TypeScript, the `extends` keyword is used to **constrain a generic type** to ensure it satisfies a specific shape or base type.
-  
-- This helps enforce **type safety** and provides **better IntelliSense/autocompletion**.
-
-- ✅ **Example (structural constraint)**:
-  ```ts
-  function getLength<T extends { length: number }>(item: T): number {
-    return item.length;
-  }
-  ```
-  - Only accepts values with a `length` property (e.g., strings, arrays).
-  - Passing a number would result in a compile-time error.
-
-- ✅ **Example (union type constraint)**:
-  ```ts
-  function doSomething<T extends "start" | "stop">(action: T) { ... }
-  ```
-  - Accepts only `"start"` or `"stop"` as valid values.
-
-- ✅ **Example (interface constraint)**:
-  ```ts
-  interface Person { name: string; age: number; }
-  function greet<T extends Person>(person: T) { ... }
-  ```
-  - Ensures the argument matches or extends the `Person` structure.
-
-- ✅ **Example (key constraint with `keyof`)**:
-  ```ts
-  function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
-    return obj[key];
-  }
-  ```
-  - Ensures the key exists in the object, enhancing type safety.
-
-- Overall, `extends` allows you to:
-  - Define **bounded generics**.
-  - Create **flexible but safe** utility functions.
-  - Support **complex type relationships** with conditional and mapped types.
-
----
-
-
-
-
-
-
-##  **Conditional Types**
-
-- **Definition**: Conditional types allow you to define types based on a condition that evaluates at **compile-time**, enabling more **dynamic type assignments** depending on the input type.
-
-- **Syntax**:
-  ```ts
-  T extends U ? X : Y
-  ```
-  - If `T` extends `U`, the type is `X`.
-  - Otherwise, the type is `Y`.
-
-- **Example (basic usage)**:
-  ```ts
-  type IsString<T> = T extends string ? "Yes" : "No";
-  
-  type Test1 = IsString<string>;  // "Yes"
-  type Test2 = IsString<number>;  // "No"
-  ```
-  - Here, `IsString<T>` evaluates to `"Yes"` if `T` is a string, otherwise `"No"`.
-
-- **Example (working with union types)**:
-  ```ts
-  type FilterNumber<T> = T extends number ? T : never;
-  
-  type Test3 = FilterNumber<"hello" | 42 | true>;  // 42
-  ```
-  - The conditional type filters out non-number types, resulting in `42`.
-
-- **Example (inferring types)**:
-  ```ts
-  type ElementType<T> = T extends (infer U)[] ? U : T;
-  
-  type ArrayElement = ElementType<string[]>;  // string
-  type NumberType = ElementType<number>;      // number
-  ```
-  - `infer` allows extracting the type of elements within an array or other container types.
-
-- **Example (conditional type with interfaces)**:
-  ```ts
-  interface Admin { role: "admin"; }
-  interface User { role: "user"; }
-  
-  type RoleType<T> = T extends { role: "admin" } ? "Administrator" : "General User";
-  
-  type Test4 = RoleType<Admin>;  // "Administrator"
-  type Test5 = RoleType<User>;   // "General User"
-  ```
-
-- **Use Cases**:
-  - **Filtering types** based on conditions (e.g., extracting numbers from a union of types).
-  - **Inferring types** of elements in collections (e.g., `infer` keyword).
-  - **Creating type-safe APIs** where logic differs based on the type provided.
-
-- **Advanced Example (Distributive Conditional Types)**:
-  ```ts
-  type Flatten<T> = T extends (infer U)[] ? U : T;
-  
-  type Test6 = Flatten<string[]>;  // string
-  type Test7 = Flatten<number>;    // number
-  ```
-
-- **Key Takeaways**:
-  - Conditional types are powerful for **type inference** and **type manipulation**.
-  - They allow you to **transform types dynamically** based on certain conditions.
-  - They are commonly used with **unions**, **arrays**, and **interfaces** to create flexible and type-safe code.
-
----
-
-
-
-
-##  **`readonly` vs `const`** 
-
-| **Feature**                      | **`readonly`**                                      | **`const`**                                           |
-|-----------------------------------|-----------------------------------------------------|------------------------------------------------------|
-| **Definition**                    | A **type modifier** that makes properties of objects or elements of arrays immutable. | A **variable declaration keyword** that makes the variable reference immutable. |
-| **Applies to**                    | **Object properties** or **array elements**.        | **Variables** (including primitive types, arrays, and objects). |
-| **Mutability of Reference**       | Does not affect the reference itself; only the **property** or **element**. | **Prevents reassigning the reference** to a new value. |
-| **Mutability of Contents**        | The contents of the object or array cannot be modified (for properties or elements marked as `readonly`). | The contents of an object or array can be modified (unless combined with `readonly`). |
-| **Example with Object**           | `interface Person { readonly name: string; }`      | `const person = { name: "Alice" }; person.name = "Bob"; // Allowed` |
-| **Example with Array**            | `const numbers: readonly number[] = [1, 2, 3];`    | `const numbers = [1, 2, 3]; numbers.push(4); // Allowed` |
-| **Use Case**                      | Enforces **immutability** for object properties or array elements. | Ensures **reference immutability**, meaning the variable can’t be reassigned. |
-| **Scope**                         | Applied within the **type system** to enforce immutability of properties/elements. | Applied to **variables** to prevent reassigning their references. |
-| **Prevents Reassigning Variable** | No, only prevents modification of properties or elements within the object/array. | Yes, prevents reassignment of the variable itself. |
-
----
-
-### **Key Takeaways:**
-- **`readonly`** is useful when you want to make **object properties** or **array elements immutable**, ensuring that their values cannot be changed.
-- **`const`** ensures the **variable reference** cannot be reassigned, but it does not prevent modifications to the contents of objects or arrays.
-
-
-
-## **Union and Intersection Types**
-
-| **Feature**                      | **Union Types (`|`)**                                      | **Intersection Types (`&`)**                                 |
-|-----------------------------------|------------------------------------------------------------|--------------------------------------------------------------|
-| **Definition**                    | A type that allows a value to be one of several types.     | A type that combines multiple types into a single type that must satisfy all of them. |
-| **Operator**                      | `|` (pipe symbol)                                          | `&` (ampersand symbol)                                       |
-| **Type Combination**              | Represents a value that can be **one** of several types.   | Represents a value that must satisfy **all** the types in the intersection. |
-| **Example**                       | `type A = string | number;`                                | `type A = { name: string } & { age: number };`                |
-| **Resulting Type**                | The resulting type can be **either** type in the union.    | The resulting type must contain **all properties** from the intersected types. |
-| **Use Case**                      | Useful when a value can be **one of several types** (e.g., different input formats). | Useful when a value must **satisfy multiple types** (e.g., merging interfaces with different properties). |
-| **Compatibility with Types**      | A value can be **any one type** from the union.            | A value must conform to **all types** in the intersection. |
-| **Example with Primitives**       | `let value: string | number = "Hello"; value = 42;`         | N/A (more common with objects).                              |
-| **Example with Objects**          | `type Animal = { legs: number } | { wings: number };`      | `type Animal = { legs: number } & { wings: number };`        |
-| **Result for Objects**            | The value can be **either** object (not requiring common properties). | The value must have **all properties** from both objects. |
-| **Type Narrowing**                | Type narrowing can be done by checking the type (e.g., `typeof` or `instanceof`). | Type narrowing requires checking for common properties from all types involved. |
-
----
-
-### **Key Takeaways:**
-- **Union Types** (`|`): A value can be **one** of multiple types.
-- **Intersection Types** (`&`): A value must satisfy **all** the types in the intersection.
-
----
-
-### **Example:**
-
-#### **Union Type Example:**
-```ts
-type StringOrNumber = string | number;
-
-let value: StringOrNumber = "Hello";
-value = 42;  // Both string and number are allowed
-```
-
-#### **Intersection Type Example:**
-```ts
-interface Person {
-  name: string;
-}
-
-interface Worker {
-  job: string;
-}
-
-type Employee = Person & Worker;
-
-const employee: Employee = {
-  name: "Alice",
-  job: "Engineer",
-}; // Must have both `name` and `job` properties
-```
-
----
-
 
 ## Namespaces and modules
 
@@ -999,7 +977,7 @@ namespace MathUtils {
 // Usage:
 const sum = MathUtils.add(2, 3);  // 5
 ```
-✅ Here, `MathUtils` groups `add` and `multiply` under one "namespace."
+Here, `MathUtils` groups `add` and `multiply` under one "namespace."
 
 ---
 
@@ -1018,7 +996,7 @@ import { add, multiply } from "./mathUtils";
 
 const sum = add(2, 3);
 ```
-✅ Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import** its functions in another file.
+Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import** its functions in another file.
 
 ---
 
@@ -1033,188 +1011,12 @@ const sum = add(2, 3);
 ---
 
 
-## **Duck Typing**
-
-- "In TypeScript, **duck typing** means that an object is considered of a certain type **as long as it has the required properties or methods**, even if it doesn’t explicitly implement a class or interface."
-- "Basically, if it **looks like a duck and quacks like a duck**, we treat it like a duck — the actual structure matters more than the specific label."
-- "This is common when we use **interfaces** in TypeScript, where we just check if the object matches the **shape** we expect, rather than its actual type name."
-
-
-**Example**:  
-```typescript
-interface Duck {
-  quack(): void;
-}
-
-class Mallard {
-  quack() {
-    console.log("Quack!");
-  }
-}
-
-class Car {
-  honk() {
-    console.log("Honk!");
-  }
-}
-
-function makeQuack(duck: Duck) {
-  duck.quack();
-}
-
-let mallard = new Mallard();
-makeQuack(mallard); // Works fine
-
-let car = new Car();
-// makeQuack(car); // Error: Property 'quack' is missing in type 'Car'
-```
-In TypeScript, objects are accepted based on their structure (duck typing), rather than their exact type.
-
----
-
-
-## Type Narrowing
-
-> **Type narrowing** is the process where TypeScript figures out a more specific type for a variable from a union type.
-
-##### Example:
-```ts
-function printLength(value: string | string[]) {
-  if (typeof value === "string") {
-    console.log(value.length);       // value: string
-  } else {
-    console.log(value.length);       // value: string[]
-  }
-}
-```
-> The variable `value` starts as `string | string[]`, but within each `if` branch, TypeScript **narrows** the type.
-
-
-
-
-## keyof Vs typeof
-
-### 📢 Key Points:
-| Operator | Purpose                      | Example                               |
-|----------|-------------------------------|---------------------------------------|
-| `typeof` | Get the type of a value        | `typeof person` ➔ `{ name: string; age: number }` |
-| `keyof`  | Get keys from a type (as union)| `keyof Person` ➔ `"name" | "age"`    |
-
-
-> In TypeScript:
-> - **`typeof`** is used to **get the type** of a **value**.
-> - **`keyof`** is used to **get the keys** of a **type** as a **union of strings**.
-
----
-
-### 🧠 1. `typeof` — Get **Type from a Value**
-Used when you want to create a type based on a real variable or object.
-
-```ts
-const person = {
-  name: "Alice",
-  age: 30,
-};
-
-type Person = typeof person;
-// Same as:
-// type Person = { name: string; age: number; }
-```
-
-✅ `typeof` helps **reuse** or **reference** a variable's structure as a type.
-
----
-
-### 🧠 2. `keyof` — Get **Keys of a Type**  
-Used to extract **property names** from a type.
-
-```ts
-type PersonKeys = keyof Person;
-// PersonKeys = "name" | "age"
-```
-
-✅ `keyof` gives a **union of keys** (`"name" | "age"`) from the `Person` type.
-
----
-
-
-
-
-
-## **Extending Types and Interfaces**
-
-TypeScript allows both **`interface`** and **`type`** aliases to be extended or combined, but with some key differences and use cases.
-
----
-
-### 🔹 **Extending Interfaces**
-- Use the `extends` keyword.
-- Interfaces can be extended multiple times.
-- Useful for creating object shapes and enabling structural subtyping.
-
-```ts
-interface Person {
-  name: string;
-}
-
-interface Employee extends Person {
-  jobTitle: string;
-}
-
-const emp: Employee = {
-  name: "Alice",
-  jobTitle: "Developer",
-};
-```
-
----
-
-### 🔸 **Extending Types**
-- You can extend a `type` using **intersection types (`&`)**.
-- Suitable for combining multiple types or primitives.
-
-```ts
-type Person = {
-  name: string;
-};
-
-type Employee = Person & {
-  jobTitle: string;
-};
-
-const emp: Employee = {
-  name: "Bob",
-  jobTitle: "Designer",
-};
-```
-
----
-
-### ⚖️ **Comparison Table**
-
-| Feature                       | `interface`                                | `type`                                      |
-|------------------------------|---------------------------------------------|----------------------------------------------|
-| Syntax for extension         | `extends`                                   | Intersection (`&`)                          |
-| Multiple inheritance         | ✅ Yes                                       | ✅ Yes (with `&`)                            |
-| Declaration merging          | ✅ Supported                                | ❌ Not supported                             |
-| Extend classes               | ✅ Can extend a class                       | ❌ Cannot extend classes                     |
-| Use with primitives          | ❌ No                                        | ✅ Yes (e.g., `string | number`)            |
-| Preferred use case           | Object shapes                               | Unions, intersections, and advanced types    |
-
----
-
-### 💡 Best Practices
-- Use **`interface`** for object-oriented designs or APIs.
-- Use **`type`** when dealing with union/intersection types or more complex combinations.
-
-
-
 
 
 ## **Union** and **Intersection Types** 
 ---
 
-### **Union Types (`|`)**
+ **Union Types (`|`)**
 - **Definition**: A type that allows a value to be **one of several types**.
 - **Operator**: `|` (pipe symbol).
 - **Resulting Type**: A value that can be **any one** of the specified types.
@@ -1252,7 +1054,7 @@ const emp: Employee = {
   const person: B = {
     name: "Alice",
     age: 30,
-  }; // ✅ Must have both properties
+  }; // Must have both properties
   ```
 
 ---
@@ -1270,7 +1072,7 @@ const emp: Employee = {
   - A **module** is any file that contains `export` and/or `import`.
   - Each file is treated as a separate module, with its own scope.
 
-### **Key Features**:
+**Key Features**:
 - **Exporting**:
   - **Named Export**: Export multiple entities from a module.
     ```ts
@@ -1324,13 +1126,12 @@ const emp: Employee = {
 
 
 
-Here’s a concise, interview-friendly bullet-point comparison of **`esModuleInterop` vs `allowSyntheticDefaultImports`** in TypeScript:
 
 ---
 
-### **`esModuleInterop` vs `allowSyntheticDefaultImports`**
+## **`esModuleInterop` vs `allowSyntheticDefaultImports`**
 
-#### **`esModuleInterop`**  
+**`esModuleInterop`**  
 - **Purpose**: Ensures compatibility between CommonJS and ES6 module systems.
 - **What It Does**:
   - Enables default imports from CommonJS modules.
@@ -1349,7 +1150,7 @@ Here’s a concise, interview-friendly bullet-point comparison of **`esModuleInt
   import express from 'express'; // Works correctly
   ```
 
-#### **`allowSyntheticDefaultImports`**  
+**`allowSyntheticDefaultImports`**  
 - **Purpose**: Allows default imports from modules without a default export, without enabling full interop with CommonJS.
 - **What It Does**:
   - **Only allows default imports** from modules that do not have a default export.
@@ -1368,7 +1169,7 @@ Here’s a concise, interview-friendly bullet-point comparison of **`esModuleInt
   import express from 'express'; // Works even without default export
   ```
 
-#### **Key Differences**
+**Key Differences**
 | Feature                       | **`esModuleInterop`**                                 | **`allowSyntheticDefaultImports`**                        |
 |-------------------------------|-------------------------------------------------------|----------------------------------------------------------|
 | **Purpose**                    | Enables full compatibility between CommonJS and ES6.  | Allows default imports from modules without default export. |
@@ -1377,4 +1178,245 @@ Here’s a concise, interview-friendly bullet-point comparison of **`esModuleInt
 | **Common Use Case**            | When using CommonJS and ES6 modules together.         | When you need default imports from non-default export modules. |
 
 ---
+
+
+
+
+
+##  **function overloading** 
+
+
+> In TypeScript, **function overloading** allows you to define **multiple signatures** for a single function, so it can accept different parameter types and return different types based on those parameters.  
+> You declare the **overload signatures first**, followed by the **implementation**. TypeScript will **select the appropriate signature** based on the arguments passed to the function.
+
+
+
+```ts
+// Overload signatures
+function greet(person: string): string;
+function greet(person: string, age: number): string;
+
+// Function implementation
+function greet(person: string, age?: number): string {
+  if (age !== undefined) {
+    return `Hello, ${person}. You are ${age} years old.`;
+  }
+  return `Hello, ${person}!`;
+}
+
+// Usage
+console.log(greet("Alice"));       // "Hello, Alice!"
+console.log(greet("Bob", 30));    // "Hello, Bob. You are 30 years old."
+```
+
+📢 Key Points:
+1. **Overload Signatures**: First, you declare the possible **types of inputs** that the function can accept. 
+2. **Implementation**: Then, you provide one function implementation that handles all overload cases.
+3. TypeScript uses **the correct overload signature** based on how you call the function.
+
+---
+
+
+## **Decorators**
+- "In TypeScript, **decorators** are special functions that can be applied to **classes, methods, properties, or parameters**."
+- "They help us **add extra behavior** or **attach metadata** to these elements without changing their core logic."
+- "Decorators are especially common in frameworks like **Angular**, where they are used for things like **dependency injection**, routing, and more."
+- "They basically make our code **more organized and reusable** by separating extra behavior from the main logic."
+
+**Example**:  
+```typescript
+function log(target: any, key: string) {
+  let value = target[key];
+  
+  const getter = () => {
+    console.log(`Getting ${key}: ${value}`);
+    return value;
+  };
+  
+  const setter = (newValue: any) => {
+    console.log(`Setting ${key} to ${newValue}`);
+    value = newValue;
+  };
+  
+  Object.defineProperty(target, key, {
+    get: getter,
+    set: setter,
+  });
+}
+
+class Person {
+  @log
+  name: string;
+  
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+const person = new Person("Alice");
+person.name = "Bob"; // Logs: Setting name to Bob
+console.log(person.name); // Logs: Getting name: Bob
+```
+Decorators help add reusable logic without modifying the core structure of the class or function.
+
+---
+
+
+
+
+
+## Declaration Merging
+
+
+> **Declaration Merging** in TypeScript means that **when two declarations have the same name, TypeScript automatically merges them into a single definition**.  
+> This happens commonly with **interfaces**, **namespaces**, and sometimes **functions and classes**.
+
+---
+
+#### 🧠 Example: Merging Interfaces
+
+```ts
+interface User {
+  name: string;
+}
+
+interface User {
+  age: number;
+}
+
+// After merging:
+const user: User = {
+  name: "Alice",
+  age: 30,
+};
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+## **Difference Between Map and Plain Objects**
+
+
+
+- **Key Types**:
+  - A **`Map`** allows keys of any type (objects, functions, primitive types), while **objects** only allow strings (or symbols) as keys.
+  
+- **Order of Keys**:
+  - In a **`Map`**, keys are ordered in the insertion order, while **objects** do not guarantee any specific order (though most modern JavaScript engines preserve it).
+  
+- **Performance**:
+  - **`Map`** is optimized for frequent additions and removals of key-value pairs, especially when the number of entries is large. **Objects** are more efficient for simple key-value pair lookups, but not for large datasets.
+  
+- **Prototype Inheritance**:
+  - **`Map`** does not have a prototype chain (no inherited properties like `toString` or `hasOwnProperty`), which avoids potential key conflicts. In contrast, **objects** inherit from `Object.prototype`.
+
+- **Iteration**:
+  - A **`Map`** has built-in methods for iteration like `forEach`, `keys()`, `values()`, and `entries()`. While **objects** can be iterated over using `for...in` loops, `Object.keys()`, `Object.values()`, etc., these methods are more manual.
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+## Map vs WeakMap
+
+| Feature                    | `Map`                                   | `WeakMap`                              |
+|---------------------------|------------------------------------------|----------------------------------------|
+| **Key types**             | Any value (primitives or objects)        | **Only objects** (not primitives)      |
+| **Garbage collection**    | Keys are **strongly referenced**         | Keys are **weakly referenced**         |
+| **Iterable**              | Yes (can use `forEach`, `for...of`)   | ❌ No (not iterable)                   |
+| **Size property**         | Has `.size` to get number of entries  | ❌ No `.size` property                 |
+| **Use case**              | General-purpose key-value storage        | Private data storage tied to objects   |
+| **Memory leak risk**      | Possible if not cleared manually         | Lower risk due to GC when keys die     |
+
+---
+
+### 🔹 Example: `Map`
+```ts
+const map = new Map();
+map.set("key", "value");
+map.set({ id: 1 }, "object value");
+console.log(map.size); // 2
+```
+
+### 🔹 Example: `WeakMap`
+```ts
+const weakMap = new WeakMap();
+let obj = { name: "Alice" };
+weakMap.set(obj, "some private data");
+
+// After `obj` is no longer referenced, it's eligible for garbage collection
+obj = null;
+```
+
+### When to use:
+- **Use `Map`**: when you need to iterate, count, or use non-object keys.
+- **Use `WeakMap`**: when storing **private data per object** that should not prevent garbage collection.
+
+
+
+
+
+
+## Set vs WeakSet
+
+
+
+| Feature                     | `Set`                                        | `WeakSet`                                      |
+|----------------------------|----------------------------------------------|------------------------------------------------|
+| **Value types**            | Any type (primitives or objects)             | **Only objects** (no primitives)               |
+| **Garbage collection**     | Values are strongly referenced               | Values are **weakly referenced**               |
+| **Iterable**               | Yes (`forEach`, `for...of`, spread, etc.) | ❌ No (not iterable, no `forEach`, no spread)  |
+| **Size property**          | Has `.size`                               | ❌ No `.size`                                   |
+| **Duplicates allowed?**    | ❌ No duplicates (same value only once)      | ❌ No duplicates                                |
+| **Use case**               | Unique list of values                       | Track object presence without preventing GC    |
+| **Memory management**      | Manual                                       | Automatic (objects are GC-ed when unreferenced) |
+
+---
+
+### 🔹 Example: `Set`
+```ts
+const set = new Set();
+set.add(1);
+set.add(2);
+set.add(2); // Ignored (duplicate)
+set.add({ name: "Alice" });
+
+for (const val of set) {
+  console.log(val); // Iterates over values
+}
+```
+
+### 🔹 Example: `WeakSet`
+```ts
+const weakSet = new WeakSet();
+let obj = { id: 1 };
+weakSet.add(obj);
+
+console.log(weakSet.has(obj)); // true
+obj = null; // Now eligible for garbage collection
+```
+
+---
+
+### When to use:
+- **Use `Set`**: when you need a list of **unique values** and want to **iterate or check size**.
+- **Use `WeakSet`**: when you want to **track objects without preventing their garbage collection**, such as for **caching or tracking object state** internally.
 

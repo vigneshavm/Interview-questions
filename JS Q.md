@@ -37,9 +37,6 @@
 
 
 
-
-
-
 ## **let and var and const**
 
 ---
@@ -3843,33 +3840,81 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 ---
 
-#### **ES6 Classes and Prototypal Inheritance**
+## **ES6 Classes and Prototypal Inheritance**
 
+- **Definition**: ES6 (ECMAScript 2015) introduced the `class` keyword to provide a clearer and more familiar syntax for creating objects and handling inheritance, while still using prototypal inheritance under the hood.
 
+- **Syntactic Sugar**: ES6 classes are syntactic sugar over JavaScript's existing prototype-based inheritance.
 
-- **ES6 classes** are a **syntactic sugar** over JavaScript's existing prototype-based inheritance. While classes provide a more familiar syntax for object-oriented programming (OOP), they still rely on **prototypes** under the hood.
-- An ES6 class is essentially a function, and its instances inherit from the class's prototype.
+- **Basic Syntax Example**:
 
-  **Example**:
   ```javascript
-  class Animal {
+  class Person {
     constructor(name) {
       this.name = name;
     }
-    speak() {
-      console.log(`${this.name} makes a noise.`);
+
+    greet() {
+      console.log(`Hello, my name is ${this.name}`);
     }
   }
 
-  const dog = new Animal('Dog');
-  dog.speak(); // Dog makes a noise.
-  console.log(dog.__proto__ === Animal.prototype); // true
+  const user = new Person("Alice");
+  user.greet(); // Hello, my name is Alice
   ```
 
-- **Key Points**:
-  - The `constructor` method in a class is used to initialize the instance.
-  - Methods defined inside the class are added to the prototype of the class, meaning all instances share them.
-  - Even though the syntax is cleaner, the inheritance model is still **prototypal** at its core.
+- **Constructor Method**: A special method called `constructor` is used to initialize object properties.
+
+- **Method Declaration**: Methods inside a class are added to the prototype, not copied per instance.
+
+- **Inheritance with `extends` and `super`**:
+
+  ```javascript
+  class Employee extends Person {
+    constructor(name, position) {
+      super(name); // Calls the parent class constructor
+      this.position = position;
+    }
+
+    work() {
+      console.log(`${this.name} is working as a ${this.position}`);
+    }
+  }
+  ```
+
+- **Key Features**:
+  - Supports **inheritance** via `extends`
+  - Use `super()` to call the parent class constructor
+  - Methods defined in class are **non-enumerable**
+  - No hoisting for classes (unlike function declarations)
+
+- **Static Methods**: Defined with `static` keyword and are called on the class itself, not instances.
+
+  ```javascript
+  class MathUtil {
+    static add(a, b) {
+      return a + b;
+    }
+  }
+
+  MathUtil.add(2, 3); // 5
+  ```
+
+- **Private Fields** (ES2022+): Use `#` prefix to declare truly private fields.
+
+  ```javascript
+  class BankAccount {
+    #balance = 0;
+
+    deposit(amount) {
+      this.#balance += amount;
+    }
+
+    getBalance() {
+      return this.#balance;
+    }
+  }
+  ```
 
 ---
 
@@ -3978,7 +4023,7 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 ---
 
-#### **JavaScript Garbage Collection**
+## **JavaScript Garbage Collection**
 
 
 
@@ -4046,7 +4091,7 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 ---
 
-#### **Understanding Unexpected Outputs**
+## **Understanding Unexpected Outputs**
 
 
 
@@ -4101,19 +4146,46 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 • [Immediately Invoked Function](#immediately-invoked-function-expressions)    
 
 ## Inheritance
-• [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance)    
-• [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes)
-• [Inheritance](#Inheritance in JavaScript)
-• [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance) |
-• [Mixins for Inheritance](#implementing-mixins-for-multiple-inheritance) |
+• [Classical vs Prototypal Inheritance](#classical-vs-prototypal-inheritance)   
+• [Inheritance in ES2015 Classes](#inheritance-in-es2015-classes) 
+• [Inheritance](#Inheritance-in-JavaScript) 
+• [ES6 Classes and Prototypal Inheritance](#es6-classes-and-prototypal-inheritance) 
+• [Mixins for Inheritance](#implementing-mixins-for-multiple-inheritance) 
+• [Prototypal Inheritance](#Prototypal-Inheritance) 
 
 
 
+---
 
+### **Prototypal Inheritance**
 
+- **Definition**: Prototypal Inheritance is a JavaScript feature where objects inherit properties and methods from other objects via a prototype chain.
+- Every object in JavaScript has an internal link (`[[Prototype]]`), accessible using `__proto__`, which points to its prototype object.
+- When a property or method is not found on an object, JavaScript automatically looks **up the prototype chain** to find it.
+- It supports **behavior reuse**, reducing memory overhead by sharing methods through the prototype instead of copying them.
+- Can be implemented using:
+  - Constructor functions + `prototype`
+  - `Object.create()` for direct object-to-object inheritance
+- **Example** using `Object.create()`:
 
+  ```javascript
+  const person = {
+    greet() {
+      console.log(`Hello, I'm ${this.name}`);
+    }
+  };
 
+  const user = Object.create(person);
+  user.name = "Alice";
+  user.greet(); // Output: Hello, I'm Alice
+  ```
 
+- Modern ES6 `class` syntax is syntactic sugar over this prototype-based system.
+- Enables **dynamic composition** and **flexible inheritance**, unlike rigid class-based OOP.
+
+---
+
+Would you like a follow-up with a **prototype chain diagram** or a comparison with **classical inheritance**?
 
 
 
@@ -4306,7 +4378,7 @@ const userService = new UserService(mysqlDB);
 ---
 
 
-#### **Event Listeners**
+## **Event Listeners**
 
 Event listeners are functions that listen for specific events, such as `click`, `keypress`, or `mouseover`, on DOM elements. When the specified event occurs, the listener executes a callback function to handle that event.
 

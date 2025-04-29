@@ -311,7 +311,7 @@ In this example, `a` is hoisted but only the declaration (`var a;`) is hoisted, 
 
 ---
 
-### ✅ **Example:**
+#### **Example:**
 ```javascript
 function outer() {
   let name = "Lexical";
@@ -586,7 +586,7 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
 
 ---
 
-##### ✅ **Why Use Type Inference?**
+###### **Why Use Type Inference?**
 
 - **No need for explicit types** in many cases, making code easier to read and write.
 - Helps keep the code **maintainable** by ensuring variables always have the correct type without the need for repetitive type annotations.
@@ -1135,7 +1135,7 @@ Callbacks allow us to handle asynchronous operations in a non-blocking way.
   - **Stateful functions**
   - **Encapsulation**
 
-#### ✅ Example: Creating a Counter
+##### Example: Creating a Counter
 
 ```javascript
 function createCounter() {
@@ -1175,7 +1175,7 @@ function createLargeObject() {
 ```
 - `largeArray` remains in memory due to closure.
 
-#### ✅ Best Practices
+##### Best Practices
 
 - **Avoid long-lived closures** with large objects.
 - **Manually dereference** variables if needed (e.g., `largeArray = null`).
@@ -1197,7 +1197,7 @@ for (var i = 0; i < 3; i++) {
 }
 ```
 
-#### ✅ Fixed with `let`
+##### Fixed with `let`
 
 ```javascript
 for (let i = 0; i < 3; i++) {
@@ -1254,7 +1254,7 @@ IIFEs are often used for **module patterns** or **self-contained logic** in Java
 
 ---
 
-#### **Promises**
+### **Promises**
 
 
  A **Promise** is an object that represents the eventual completion (or failure) of an asynchronous operation. Promises allow us to handle asynchronous operations in a more manageable way than using callbacks (callback hell).
@@ -1335,7 +1335,7 @@ myPromise
 
 
 
-### ✅ **1. `Promise.all([...])`**
+#### **1. `Promise.all([...])`**
 - **Waits for all promises to resolve**.
 - Rejects immediately if **any** promise rejects.
 
@@ -1347,7 +1347,7 @@ Promise.all([p1, p2, p3])
 
 ---
 
-### ✅ **2. `Promise.allSettled([...])`**
+#### **2. `Promise.allSettled([...])`**
 - Waits for **all promises to settle** (either fulfilled or rejected).
 - Never rejects.
 
@@ -1360,7 +1360,7 @@ Promise.allSettled([p1, p2])
 
 ---
 
-### ✅ **3. `Promise.race([...])`**
+#### **3. `Promise.race([...])`**
 - Resolves or rejects **as soon as the first promise settles**.
 - Useful for timeouts or competitive async tasks.
 
@@ -1372,7 +1372,7 @@ Promise.race([slowPromise, fastPromise])
 
 ---
 
-### ✅ **4. `Promise.any([...])`**
+#### **4. `Promise.any([...])`**
 - Resolves when **any one promise fulfills**.
 - If **all reject**, it rejects with `AggregateError`.
 
@@ -1384,7 +1384,7 @@ Promise.any([p1, p2, p3])
 
 ---
 
-### ✅ **5. `Promise.resolve(value)`**
+#### **5. `Promise.resolve(value)`**
 - Converts a value (even non-promise) into a resolved promise.
 
 ```js
@@ -1393,7 +1393,7 @@ Promise.resolve(42).then(console.log); // 42
 
 ---
 
-### ✅ **6. `Promise.reject(error)`**
+#### **6. `Promise.reject(error)`**
 - Returns a **rejected** promise.
 
 ```js
@@ -1427,7 +1427,7 @@ fetchData();
 ---
 
 
-####  async await vs Promises
+#### **async await vs Promises**
 
 ```js
 function getData() {
@@ -1447,10 +1447,7 @@ async function fetchData() {
 | Syntax         | `.then().catch()`            | `await`, `try...catch`    |
 | Readability    | ❌ More chaining              | ✅ Cleaner, like sync code |
 | Error Handling | `.catch()`                   | `try...catch`             |
-| Style | Functional chaining | Imperative / synchronous-looking |
-| Debugging | Harder due to nesting | Easier with stack traces |
-| Readability | Can get nested / harder to follow | Cleaner, especially for sequential flows |
-| Returns | Returns a Promise | Always wraps return in a Promise |
+
 ---
 
 #### **Handling Async Errors**
@@ -4467,7 +4464,7 @@ Both methods are used in event handling, but they serve different purposes:
 
 ### Namespaces and modules
 
-### ✅ Answer:
+#### Answer:
 
 > In TypeScript:
 > - **Namespaces** are used to **organize code** **inside a single file** or across **multiple files** by grouping related logic.

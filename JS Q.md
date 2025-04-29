@@ -35,6 +35,196 @@
 
 
 
+## **let and var and const**
+
+---
+
+
+| **Keyword** | **Scope**              | **Reassignment Allowed** | **Hoisted**                  | **Common Use Case**                                  | **Example Behavior**                                 |
+|-------------|------------------------|---------------------------|------------------------------|-------------------------------------------------------|------------------------------------------------------|
+| `var`       | Function/global scope  | ✅ Yes                    | ✅ Yes (initialized as `undefined`) | Legacy code, but prone to scope-related bugs          | `console.log(y)` outside block prints **20**         |
+| `let`       | Block-scoped           | ✅ Yes                    | ⚠️ Yes (but not initialized)   | Mutable variables within a specific block             | `console.log(x)` outside block gives **ReferenceError** |
+| `const`     | Block-scoped           | ❌ No                     | ⚠️ Yes (but not initialized)   | Constants — values that shouldn’t change              | `z = 40` gives **TypeError**                         |
+
+
+
+
+**Example:**
+```javascript
+if (true) {
+    var y = 20;
+}
+console.log(y); // 20
+```
+Here, `y` is accessible outside the block because `var` is function-scoped.
+
+**Example:**
+```javascript
+if (true) {
+    let x = 10;
+    console.log(x); // 10
+}
+console.log(x); // ReferenceError: x is not defined
+```
+In this example, `x` is scoped to the `if` block and cannot be accessed outside it.
+
+**Example:**
+```javascript
+const z = 30;
+z = 40; // TypeError: Assignment to constant variable.
+```
+You cannot reassign a value to a constant variable once it's initialized.
+
+---
+
+## **Temporal Dead Zone in `let` and const`**
+
+
+
+The Temporal Dead Zone, or TDZ, happens when we declare variables using `let` or `const`.  
+Even though these variables are technically **hoisted** to the top of their scope — like a function or block — **they aren’t initialized right away**.
+
+There’s a small period between when the scope starts and when the variable is actually declared in the code.  
+During this time, **if we try to access the variable, JavaScript throws a `ReferenceError`** because it hasn’t been initialized yet.
+
+Here's a quick example:
+
+```javascript
+console.log(foo); // ReferenceError: Cannot access 'foo' before initialization
+let foo = 'bar';
+```
+
+In this case, the variable `foo` exists in memory but is **uninitialized** until the `let foo = 'bar'` line is executed.  
+If we try to use it before that, we fall into the Temporal Dead Zone.
+
+**Why does it happen?**  
+It’s designed this way to **prevent bugs** — so developers can't accidentally use variables before they're ready.
+
+**Best practice:**  
+I always make sure to **declare variables at the top** of their scope and **only use them after they are declared**, so I don't run into TDZ issues.
+
+---
+
+
+
+## **use strict Directive**
+`'use strict'` is a special directive in JavaScript that we can add at the top of our script or inside a function.  
+It tells JavaScript to **run in strict mode**, which basically means **stricter rules** for how we write our code.
+
+In strict mode, **JavaScript catches common mistakes** that would normally be ignored.  
+For example, if I accidentally use a variable without declaring it first, it would throw an error instead of silently creating a global variable.
+
+Here’s a small example:
+
+```javascript
+'use strict';
+
+x = 5; // ReferenceError: x is not defined
+```
+
+Without strict mode, `x` would automatically become a global variable, which can cause problems in big applications.  
+But with `'use strict'`, JavaScript **forces us to declare variables properly** using `let`, `const`, or `var`, and helps avoid these kinds of bugs.
+
+**In short:**  
+Strict mode makes our code **safer**, **cleaner**, and **easier to debug**.
+
+---
+## **Data Types**
+JavaScript has several data types that can be classified as primitive types and object types.
+- **Primitive Types**: `string`, `number`, `boolean`, `null`, `undefined`, `symbol`, and `bigint`.
+- **Object Types**: `object`, `array`, `function`, and others.
+
+---
+
+## **Symbol**
+A `Symbol` is a unique and immutable primitive value. Symbols are often used as keys for object properties to avoid property name collisions.
+
+**Example:**
+```javascript
+const sym1 = Symbol('description');
+const sym2 = Symbol('description');
+console.log(sym1 === sym2); // false (each Symbol is unique)
+```
+
+---
+
+
+## **null and undefined and undeclared**
+- **`null`**: Represents the intentional absence of any value. It’s an object and can be explicitly assigned to variables.
+- **`undefined`**: Represents a variable that has been declared but hasn’t been assigned a value yet.
+- **Undeclared**: Refers to variables that have been used without declaration. This leads to global variables being created in non-strict mode.
+
+**Example:**
+```javascript
+let a;
+console.log(a); // undefined
+a = null;
+console.log(a); // null
+```
+
+---
+
+## **Type Checking**
+To check the data type of a variable, you can use the `typeof` operator for primitives and `instanceof` for objects.
+
+**Example:**
+```javascript
+let num = 5;
+console.log(typeof num); // "number"
+
+let obj = {};
+console.log(typeof obj); // "object"
+console.log(obj instanceof Object); // true
+```
+
+---
+
+## **Loose Equality Vs Strict Equality**
+- **`==` (Loose Equality)**: Compares values for equality but performs type coercion. This can lead to unexpected results.
+- **`===` (Strict Equality)**: Compares both value and type, so no type conversion is done.
+
+**Example:**
+```javascript
+console.log(5 == '5');  // true (due to type coercion)
+console.log(5 === '5'); // false (different types)
+```
+
+---
+## **Type Coercion in Operations**
+
+
+
+- **Type coercion** refers to JavaScript's automatic conversion of one data type to another when performing operations. This can lead to unexpected results, especially when using operators like `+`.
+
+  **Examples**:
+  
+  - **`[] + []`**:
+    - Both arrays are empty, and when the `+` operator is used, JavaScript coerces them to strings, resulting in an empty string.
+    - **Result**: `""` (empty string)
+
+    ```javascript
+    console.log([] + []); // ""
+    ```
+
+  - **`{} + []`**:
+    - The **`{}`** is interpreted as a **block of code** (empty block), and the `+ []` is treated as an attempt to coerce the empty array to a number (which is `0`).
+    - **Result**: `0` (a number)
+
+    ```javascript
+    console.log({} + []); // 0
+    ```
+
+    To avoid this confusion, it’s recommended to wrap the object in parentheses:
+
+    ```javascript
+    console.log({} + []); // 0
+    console.log(({}) + []); // "[object Object]"
+    ```
+
+  **Key Takeaway**: JavaScript applies type coercion in ways that can lead to unexpected results, particularly when the operands are complex data types like objects and arrays.
+
+---
+
 
 
 ## Key ES6 Features
@@ -53,10 +243,619 @@
 
 ---
 
+## **Promises**
+
+
+ A **Promise** is an object that represents the eventual completion (or failure) of an asynchronous operation. Promises allow us to handle asynchronous operations in a more manageable way than using callbacks (callback hell).
+
+A promise has three states:
+**Pending**: The promise is neither fulfilled nor rejected.
+**Fulfilled**: The operation was successful.
+**Rejected**: The operation failed.
+
+**Example**:
+```javascript
+let promise = new Promise((resolve, reject) => {
+  let success = true;
+  if (success) {
+    resolve("Operation successful");
+  } else {
+    reject("Operation failed");
+  }
+});
+
+promise
+  .then(result => console.log(result)) // "Operation successful"
+  .catch(error => console.log(error)); // If rejected
+```
+
+---
+
+**Promise States**
+
+
+ A Promise can exist in one of the following states:
+
+**Pending**: The initial state, where the Promise is waiting to be resolved or rejected.
+**Fulfilled**: The Promise has completed successfully and has returned a value.
+**Rejected**: The Promise has failed and returned a reason (error).
+
+**Example**:
+```javascript
+const myPromise = new Promise((resolve, reject) => {
+  let success = false;
+  if (success) {
+    resolve("Success");
+  } else {
+    reject("Failure");
+  }
+});
+
+myPromise
+  .then(result => console.log(result))   // Will not execute
+  .catch(error => console.log(error));   // Outputs: Failure
+```
+
+---
+
+- **Pros**:
+  - **Avoid Callback Hell**: Promises allow chaining with `.then()` and `.catch()`, which makes the code more readable than nested callbacks.
+  - **Improved error handling**: With promises, errors can be caught at any point in the chain using `.catch()`.
+  - **Better flow control**: Promises make it easier to manage asynchronous operations and follow a linear flow.
+
+- **Cons**:
+  - **Chaining can become complex**: Deep chaining can lead to code that's difficult to maintain.
+  - **Not always intuitive**: Debugging and understanding promises can be tricky, especially when multiple promises are involved.
+  - **Older browser support**: Older browsers may not support promises natively without polyfills.
+
+---
+
+
+- **Promise Type**:
+
+| Method               | Behavior |
+|----------------------|----------|
+| `Promise.all`         | Wait for **all to resolve**, or **rejects fast** |
+| `Promise.allSettled`  | Wait for **all to settle** |
+| `Promise.race`        | Resolve/reject with **first settled** |
+| `Promise.any`         | Resolve with **first fulfilled**, or `AggregateError` |
+| `Promise.resolve`     | Wrap any value into a **fulfilled** promise |
+| `Promise.reject`      | Create a **rejected** promise immediately |
+
+
+
+#### **1. `Promise.all([...])`**
+- **Waits for all promises to resolve**.
+- Rejects immediately if **any** promise rejects.
+
+```js
+Promise.all([p1, p2, p3])
+  .then(results => console.log(results))  // [val1, val2, val3]
+  .catch(err => console.error(err));      // If any reject, catches first
+```
+
+---
+
+#### **2. `Promise.allSettled([...])`**
+- Waits for **all promises to settle** (either fulfilled or rejected).
+- Never rejects.
+
+```js
+Promise.allSettled([p1, p2])
+  .then(results => {
+    results.forEach(r => console.log(r.status)); // 'fulfilled' or 'rejected'
+  });
+```
+
+---
+
+#### **3. `Promise.race([...])`**
+- Resolves or rejects **as soon as the first promise settles**.
+- Useful for timeouts or competitive async tasks.
+
+```js
+Promise.race([slowPromise, fastPromise])
+  .then(result => console.log(result))
+  .catch(err => console.error(err));
+```
+
+---
+
+#### **4. `Promise.any([...])`**
+- Resolves when **any one promise fulfills**.
+- If **all reject**, it rejects with `AggregateError`.
+
+```js
+Promise.any([p1, p2, p3])
+  .then(value => console.log(value))
+  .catch(error => console.error(error)); // AggregateError if all reject
+```
+
+---
+
+#### **5. `Promise.resolve(value)`**
+- Converts a value (even non-promise) into a resolved promise.
+
+```js
+Promise.resolve(42).then(console.log); // 42
+```
+
+---
+
+#### **6. `Promise.reject(error)`**
+- Returns a **rejected** promise.
+
+```js
+Promise.reject('Error').catch(console.error); // Error
+```
+
+
+---
+
+
+## **Async Await**
+
+
+ 
+- **`async`** is a keyword used to define a function as asynchronous, which means it will always return a promise. Inside an `async` function, you can use `await` to pause the execution of the function until the promise resolves or rejects.
+  
+- **`await`** pauses the execution of the `async` function until the promise resolves or rejects. It only works inside an `async` function.
+
+**Example**:
+```javascript
+async function fetchData() {
+  let response = await fetch('https://api.example.com/data');
+  let data = await response.json();
+  console.log(data);
+}
+
+fetchData();
+```
+`async/await` makes asynchronous code look more like synchronous code and makes it easier to read and debug.
+
+---
+
+
+## **async await vs Promises**
+
+```js
+function getData() {
+  return new Promise(resolve => {
+    setTimeout(() => resolve("Done!"), 1000);
+  });
+}
+
+async function fetchData() {
+  const result = await getData();
+  console.log(result); // Done!
+}
+```
+
+| Feature        | Promises                     | async/await               |
+|----------------|------------------------------|---------------------------|
+| Syntax         | `.then().catch()`            | `await`, `try...catch`    |
+| Readability    | ❌ More chaining              | ✅ Cleaner, like sync code |
+| Error Handling | `.catch()`                   | `try...catch`             |
+
+---
+
+### **Handling Async Errors**
+
+
+ Errors in asynchronous code can be handled using `try/catch` blocks when using `async/await`, or `.catch()` when using promises.
+
+- **With async/await**:
+  ```javascript
+  async function fetchData() {
+    try {
+      let response = await fetch('https://api.example.com/data');
+      let data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log("Error fetching data:", error);
+    }
+  }
+  ```
+
+- **With promises**:
+  ```javascript
+  fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .catch(error => console.log("Error fetching data:", error));
+  ```
+
+Both approaches allow you to catch and handle errors in a clean and structured way.
+
+---
+
+---
+
+## **Optional Chaining Operator**
+
+
+
+- The **Optional Chaining (`?.`) Operator** allows us to access deeply nested properties of an object without having to explicitly check if each level of the object exists, preventing errors like `TypeError: Cannot read property 'x' of undefined`.
+
+  **How it Works**:
+  - If the property or method exists, the expression is evaluated normally.
+  - If the property or method is `null` or `undefined`, it short-circuits and returns `undefined` instead of throwing an error.
+
+  **Example**:
+  ```javascript
+  const user = { profile: { name: 'John' } };
+  console.log(user?.profile?.name); // 'John'
+  console.log(user?.address?.city); // undefined (no error thrown)
+  ```
+
+  **Use Case**:
+  - The operator is especially useful when dealing with optional or missing properties in nested objects or arrays, such as when fetching data from APIs that may not always return all expected properties.
+
+---
+
+## **Nullish Coalescing Operator**
+
+
+
+- The **Nullish Coalescing (`??`) Operator** is used to return the right-hand operand when the left-hand operand is either `null` or `undefined`. It is often used to provide a fallback value when dealing with potentially missing or uninitialized values.
+
+  **Key Difference from `||`**:
+  - The **`??` operator** only checks for `null` or `undefined` and does **not** treat falsy values like `0`, `false`, or `""` as "nullish."
+  - The **`||` operator** considers all falsy values (`0`, `false`, `""`, `null`, `undefined`, `NaN`) as false, potentially leading to unintended behavior.
+
+  **Example**:
+  ```javascript
+  const foo = null;
+  console.log(foo ?? 'default'); // 'default' (nullish value)
+  
+  const bar = 0;
+  console.log(bar ?? 42); // 0 (does not consider 0 as nullish)
+
+  // Using OR (||)
+  console.log(bar || 42); // 42 (0 is considered falsy here)
+  ```
+
+  **Use Case**:
+  - The `??` operator is particularly useful when you want to treat `null` and `undefined` as absent values, but still allow other falsy values like `0`, `false`, and empty strings.
+
+---
+
+## **`in` Operator vs `hasOwnProperty()`**
+
+
+
+- The **`in` Operator** checks if a property exists in an object (including properties inherited from the prototype chain).
+
+  **Example**:
+  ```javascript
+  const obj = { name: 'Alice' };
+  console.log('name' in obj); // true
+  console.log('toString' in obj); // true (inherited from Object.prototype)
+  ```
+
+- **`hasOwnProperty()`** is a method that checks whether a property exists directly on the object, excluding properties that are inherited via the prototype chain.
+
+  **Example**:
+  ```javascript
+  const obj = { name: 'Alice' };
+  console.log(obj.hasOwnProperty('name')); // true
+  console.log(obj.hasOwnProperty('toString')); // false
+  ```
+
+  **Key Differences**:
+  - The **`in` operator** returns `true` if the property exists anywhere in the prototype chain.
+  - **`hasOwnProperty()`** only returns `true` if the property is directly present on the object.
+
 ---
 
 
 
+
+## **Labeled Statements Usage**
+
+
+
+- **Labeled statements** in JavaScript allow you to assign a label to a block of code (like a loop or a function), which can then be referenced by control flow statements (like `break` or `continue`). They are typically used in conjunction with nested loops to control the flow of execution in a more readable way.
+
+  **Syntax**:
+  ```javascript
+  outerLoop: for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (i === 2 && j === 2) {
+        break outerLoop; // Breaks out of the outer loop
+      }
+      console.log(i, j);
+    }
+  }
+  ```
+
+  **Use Case**:
+  - Labeled statements are helpful when you have nested loops or complex control flow and want to break out of multiple levels of loops at once. However, they are **rarely used** in practice due to their potential to make code harder to read and maintain.
+
+
+
+
+
+---
+
+## **How TypeScript Improves JavaScript**
+
+- **TypeScript is a superset of JavaScript** that adds **static typing**.
+- **Instead of waiting for errors at runtime**, TypeScript **catches type mistakes during compile time**.
+- This helps in **early error detection**, saving time and reducing bugs.
+- **IDEs and editors** work better with TypeScript, offering **autocompletion, easy refactoring, and quick error highlighting**.
+- **Explicit types** make the code **more readable and understandable**, especially in **large projects**.
+- Overall, **TypeScript makes development safer, faster, and the codebase much cleaner**.
+
+**Example**:  
+```typescript
+function add(a: number, b: number): number {
+  return a + b;
+}
+add("2", 3); // Error: Argument of type 'string' is not assignable to parameter of type 'number'
+```
+TypeScript ensures that only numbers are passed into the `add` function, preventing bugs early in the development cycle.
+
+---
+
+## **Interface vs. Type**
+
+- "`interface` and `type` are both used to define the structure of data in TypeScript."
+- "Interfaces are mainly for describing object shapes and can be **extended** or **implemented** by classes."
+- "Types are more flexible — they can describe **objects, primitives, unions, intersections**, and more."
+- "One major difference is: **interfaces can be merged**, but **types cannot** be merged once created."
+- "In practice, if I'm only defining an object structure, I prefer using an `interface`."
+- "If I need to create something complex, like combining multiple types or handling different kinds of data, then `type` is a better fit."
+
+
+**Example**:  
+```typescript
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+
+const dog: Dog = { name: "Max", breed: "Golden Retriever" };
+```
+Alternatively, with `type`:
+```typescript
+type Animal = { name: string };
+type Dog = Animal & { breed: string };
+
+const dog: Dog = { name: "Max", breed: "Golden Retriever" };
+```
+
+---
+
+## **Generics**
+ - Generics in TypeScript are a way to make our code more flexible and reusable while still preserving type safety, by allowing types to be passed as parameters.
+ - "In TypeScript, Generics allow us to create reusable components or functions that can work with different types while still keeping type safety.  
+ - I like to think of them as type placeholders — instead of writing multiple versions of the same function or class for different types, I can write it once and just pass the type when I use it.  
+ - For example, a simple generic function could look like this:  
+> ```typescript
+> function identity<T>(arg: T): T {
+>   return arg;
+> }
+> ```  
+ - Here, `T` acts like a variable for the type. When I call `identity("Hello")`, TypeScript understands `T` is a string. If I call it with a number, `T` becomes a number.  
+ - Generics can also be used with interfaces. For example, I can create a `Box<T>` interface where the `value` property can be of any type — string, number, anything — depending on how I define it.  
+ - And similarly with classes — I can have a generic class like `DataHolder<T>`, which can hold any type of data.  
+ - Overall, Generics help me write cleaner, more flexible code without giving up the strong type checking that TypeScript provides. It’s better than using `any` because it keeps things type-safe."**
+
+---
+
+
+
+
+## **Any vs Unknown**
+
+
+| **Feature**          | **`any`**                                       | **`unknown`**                                      |
+|----------------------|-------------------------------------------------|----------------------------------------------------|
+| **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
+| **Flexibility**      | Very flexible, as any value can be assigned and used in any way. | Flexible but requires type checking or type assertion before use. |
+| **When to Use**      | When you need dynamic behavior, and you're willing to bypass TypeScript’s type checking. | When you need flexibility but want to enforce safer, type-checked operations. |
+| **Code Safety**      | Less safe, can lead to runtime errors due to lack of type checks. | Safer, as TypeScript forces you to handle the value before using it. |
+| **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
+
+
+
+> In TypeScript:
+> - **`unknown`** is a **safer version of `any`**. It represents **any value**, but unlike `any`, you must **narrow its type** before using it (e.g., through type checks or type assertions).
+> - **`any`** allows **any operation** to be performed on it without restrictions, making it **more permissive but less safe**.
+
+---
+
+### 🧠 Example: **`unknown`** vs **`any`**
+
+```ts
+let value1: any = "hello";
+value1 = 42; // OK, `any` can be reassigned freely
+
+let value2: unknown = "hello";
+value2 = 42; // OK, but you must narrow the type before using it
+
+// Using `value2` directly would cause an error
+// value2.toUpperCase(); // Error: Object is of type 'unknown'
+
+// Narrowing `unknown` before using it
+if (typeof value2 === "string") {
+  console.log(value2.toUpperCase());  // OK, after type narrowing
+}
+```
+
+### 📢 Key Differences:
+| Type      | `any`                                | `unknown`                           |
+|-----------|--------------------------------------|-------------------------------------|
+| Safety    | **No safety** — any operation is allowed | **Requires type checking** before use |
+| Use case  | When you don't care about types (use carefully) | When you want to ensure proper type handling |
+
+---
+
+
+
+
+
+
+## **Union Types**
+  - In TypeScript, Union Types let a variable hold more than one type.
+ - For example, I can say let id: string | number;, which means id can either be a string or a number. If I assign a boolean to it, TypeScript will show an error.
+ - We use the | symbol to join the types. It’s very helpful when you expect a function or a variable to handle multiple types of inputs.
+ - A common place where I use Union Types is in functions. Like, if I have a printId function, it can accept either a string or a number, and inside the function, I can check using typeof to know what exactly it is.
+ - It's useful because it keeps the flexibility without losing type safety, unlike using any.
+ - We often use Union Types when handling different kinds of user inputs, API responses, or when something might be undefined or a specific type."**
+---
+
+
+## **Type Inference**
+
+- Type Inference is the compiler's ability to **automatically deduce the type** of a variable, parameter, or expression based on its value or context.
+- It helps write **cleaner, less verbose code** without compromising on **type safety**.
+
+---
+
+#### **Why Type Inference is Useful:**
+
+- Reduces the need for **explicit type annotations**.
+- Improves **readability** and **developer productivity**.
+- Still allows the compiler to catch **type-related errors**.
+- Enhances **maintainability** by keeping types consistent with their initial values.
+
+---
+
+#### **Examples:**
+
+- **Basic Inference:**
+  ```ts
+  let num = 100; // inferred as number
+  ```
+
+- **Function Return Type:**
+  ```ts
+  function add(a: number, b: number) {
+    return a + b; // inferred as number
+  }
+  ```
+
+- **Object and Array Inference:**
+  ```ts
+  let user = { name: "John", age: 30 }; // inferred as { name: string; age: number }
+  let scores = [1, 2, 3];               // inferred as number[]
+  ```
+
+- **`const` vs `let`:**
+  ```ts
+  const a = "hello"; // inferred as literal type "hello"
+  let b = "hello";   // inferred as string
+  ```
+
+---
+
+#### **Advanced Inference:**
+
+- TypeScript narrows types in conditions:
+  ```ts
+  function greet(name: string | undefined) {
+    if (name) {
+      console.log(name.toUpperCase()); // name is inferred as string inside this block
+    }
+  }
+  ```
+
+---
+
+#### **Limitations:**
+
+- For **complex structures**, inference may not be accurate—explicit types are better.
+- If inference fails, TypeScript may assign the `any` type (disabling type checking).
+
+---
+
+#### **When to Use Inference vs. Annotations:**
+
+- ✅ Use inference for:
+  - Simple variables
+  - Obvious values
+  - Internal implementation details
+
+- ❗ Use annotations for:
+  - Public APIs
+  - Function return types
+  - Complex or generic types
+
+---
+## **Mapped Types**
+
+
+- "Mapped types in TypeScript are used to create **new types** by transforming the properties of an existing type."
+- "For example, I can make all properties **readonly**, **optional**, or even **change their types** dynamically."
+- "They are really helpful when I want to apply a consistent transformation across all properties without rewriting the entire type."
+- "Common built-in mapped types include `Readonly`, `Partial`, and `Required`."
+
+
+**Example**:  
+```typescript
+type ReadOnly<T> = {
+  readonly [P in keyof T]: T[P];
+};
+
+interface User {
+  name: string;
+  age: number;
+}
+
+const user: ReadOnly<User> = { name: "Alice", age: 30 };
+user.name = "Bob"; // Error: Cannot assign to 'name' because it is a read-only property
+```
+Mapped types are useful for creating reusable and flexible transformations of types.
+
+---
+
+## **Decorators**
+- "In TypeScript, **decorators** are special functions that can be applied to **classes, methods, properties, or parameters**."
+- "They help us **add extra behavior** or **attach metadata** to these elements without changing their core logic."
+- "Decorators are especially common in frameworks like **Angular**, where they are used for things like **dependency injection**, routing, and more."
+- "They basically make our code **more organized and reusable** by separating extra behavior from the main logic."
+
+**Example**:  
+```typescript
+function log(target: any, key: string) {
+  let value = target[key];
+  
+  const getter = () => {
+    console.log(`Getting ${key}: ${value}`);
+    return value;
+  };
+  
+  const setter = (newValue: any) => {
+    console.log(`Setting ${key} to ${newValue}`);
+    value = newValue;
+  };
+  
+  Object.defineProperty(target, key, {
+    get: getter,
+    set: setter,
+  });
+}
+
+class Person {
+  @log
+  name: string;
+  
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+const person = new Person("Alice");
+person.name = "Bob"; // Logs: Setting name to Bob
+console.log(person.name); // Logs: Getting name: Bob
+```
+Decorators help add reusable logic without modifying the core structure of the class or function.
+
+---
 
 ##  Normal Function vs Arrow Function
 
@@ -193,50 +992,6 @@ console.log(add(2, 3)); // ✅ 5
 
 
 
-### **JavaScript Fundamentals**
-
-#### **let and var and const**
-
----
-
-
-| **Keyword** | **Scope**              | **Reassignment Allowed** | **Hoisted**                  | **Common Use Case**                                  | **Example Behavior**                                 |
-|-------------|------------------------|---------------------------|------------------------------|-------------------------------------------------------|------------------------------------------------------|
-| `var`       | Function/global scope  | ✅ Yes                    | ✅ Yes (initialized as `undefined`) | Legacy code, but prone to scope-related bugs          | `console.log(y)` outside block prints **20**         |
-| `let`       | Block-scoped           | ✅ Yes                    | ⚠️ Yes (but not initialized)   | Mutable variables within a specific block             | `console.log(x)` outside block gives **ReferenceError** |
-| `const`     | Block-scoped           | ❌ No                     | ⚠️ Yes (but not initialized)   | Constants — values that shouldn’t change              | `z = 40` gives **TypeError**                         |
-
-
-
-
-**Example:**
-```javascript
-if (true) {
-    var y = 20;
-}
-console.log(y); // 20
-```
-Here, `y` is accessible outside the block because `var` is function-scoped.
-
-**Example:**
-```javascript
-if (true) {
-    let x = 10;
-    console.log(x); // 10
-}
-console.log(x); // ReferenceError: x is not defined
-```
-In this example, `x` is scoped to the `if` block and cannot be accessed outside it.
-
-**Example:**
-```javascript
-const z = 30;
-z = 40; // TypeError: Assignment to constant variable.
-```
-You cannot reassign a value to a constant variable once it's initialized.
-
----
-
 #### **Global JavaScript Scope**
 - The global scope refers to the top level of your JavaScript code where variables and functions are accessible throughout the entire program. 
 - If a variable is declared in the global scope, it can be accessed from any part of the code. - - However, global variables can lead to conflicts and bugs, especially in large applications.
@@ -253,28 +1008,6 @@ display(); // Outputs: I'm global
 
 ---
 
-#### **use strict Directive**
-`'use strict'` is a special directive in JavaScript that we can add at the top of our script or inside a function.  
-It tells JavaScript to **run in strict mode**, which basically means **stricter rules** for how we write our code.
-
-In strict mode, **JavaScript catches common mistakes** that would normally be ignored.  
-For example, if I accidentally use a variable without declaring it first, it would throw an error instead of silently creating a global variable.
-
-Here’s a small example:
-
-```javascript
-'use strict';
-
-x = 5; // ReferenceError: x is not defined
-```
-
-Without strict mode, `x` would automatically become a global variable, which can cause problems in big applications.  
-But with `'use strict'`, JavaScript **forces us to declare variables properly** using `let`, `const`, or `var`, and helps avoid these kinds of bugs.
-
-**In short:**  
-Strict mode makes our code **safer**, **cleaner**, and **easier to debug**.
-
----
 
 
 #### **Hoisting**
@@ -397,66 +1130,7 @@ console.log(globalVar); // I am global
 
 
 
-#### **Data Types**
-JavaScript has several data types that can be classified as primitive types and object types.
-- **Primitive Types**: `string`, `number`, `boolean`, `null`, `undefined`, `symbol`, and `bigint`.
-- **Object Types**: `object`, `array`, `function`, and others.
 
----
-
-#### **Symbol**
-A `Symbol` is a unique and immutable primitive value. Symbols are often used as keys for object properties to avoid property name collisions.
-
-**Example:**
-```javascript
-const sym1 = Symbol('description');
-const sym2 = Symbol('description');
-console.log(sym1 === sym2); // false (each Symbol is unique)
-```
-
----
-
-#### **null and undefined and undeclared**
-- **`null`**: Represents the intentional absence of any value. It’s an object and can be explicitly assigned to variables.
-- **`undefined`**: Represents a variable that has been declared but hasn’t been assigned a value yet.
-- **Undeclared**: Refers to variables that have been used without declaration. This leads to global variables being created in non-strict mode.
-
-**Example:**
-```javascript
-let a;
-console.log(a); // undefined
-a = null;
-console.log(a); // null
-```
-
----
-
-#### **Type Checking**
-To check the data type of a variable, you can use the `typeof` operator for primitives and `instanceof` for objects.
-
-**Example:**
-```javascript
-let num = 5;
-console.log(typeof num); // "number"
-
-let obj = {};
-console.log(typeof obj); // "object"
-console.log(obj instanceof Object); // true
-```
-
----
-
-#### **Loose Equality Vs Strict Equality**
-- **`==` (Loose Equality)**: Compares values for equality but performs type coercion. This can lead to unexpected results.
-- **`===` (Strict Equality)**: Compares both value and type, so no type conversion is done.
-
-**Example:**
-```javascript
-console.log(5 == '5');  // true (due to type coercion)
-console.log(5 === '5'); // false (different types)
-```
-
----
 
 ### **Mutable vs Immutable Objects**
 
@@ -490,202 +1164,8 @@ console.log(5 === '5'); // false (different types)
 
 
 
-### **TypeScript Interview Answers**
-
----
-
-#### **How TypeScript Improves JavaScript**
-
-- **TypeScript is a superset of JavaScript** that adds **static typing**.
-- **Instead of waiting for errors at runtime**, TypeScript **catches type mistakes during compile time**.
-- This helps in **early error detection**, saving time and reducing bugs.
-- **IDEs and editors** work better with TypeScript, offering **autocompletion, easy refactoring, and quick error highlighting**.
-- **Explicit types** make the code **more readable and understandable**, especially in **large projects**.
-- Overall, **TypeScript makes development safer, faster, and the codebase much cleaner**.
-
-**Example**:  
-```typescript
-function add(a: number, b: number): number {
-  return a + b;
-}
-add("2", 3); // Error: Argument of type 'string' is not assignable to parameter of type 'number'
-```
-TypeScript ensures that only numbers are passed into the `add` function, preventing bugs early in the development cycle.
-
----
-
-#### **Interface vs. Type**
-
-- "`interface` and `type` are both used to define the structure of data in TypeScript."
-- "Interfaces are mainly for describing object shapes and can be **extended** or **implemented** by classes."
-- "Types are more flexible — they can describe **objects, primitives, unions, intersections**, and more."
-- "One major difference is: **interfaces can be merged**, but **types cannot** be merged once created."
-- "In practice, if I'm only defining an object structure, I prefer using an `interface`."
-- "If I need to create something complex, like combining multiple types or handling different kinds of data, then `type` is a better fit."
 
 
-**Example**:  
-```typescript
-interface Animal {
-  name: string;
-}
-
-interface Dog extends Animal {
-  breed: string;
-}
-
-const dog: Dog = { name: "Max", breed: "Golden Retriever" };
-```
-Alternatively, with `type`:
-```typescript
-type Animal = { name: string };
-type Dog = Animal & { breed: string };
-
-const dog: Dog = { name: "Max", breed: "Golden Retriever" };
-```
-
----
-
-#### **Generics**
- - Generics in TypeScript are a way to make our code more flexible and reusable while still preserving type safety, by allowing types to be passed as parameters.
- - "In TypeScript, Generics allow us to create reusable components or functions that can work with different types while still keeping type safety.  
- - I like to think of them as type placeholders — instead of writing multiple versions of the same function or class for different types, I can write it once and just pass the type when I use it.  
- - For example, a simple generic function could look like this:  
-> ```typescript
-> function identity<T>(arg: T): T {
->   return arg;
-> }
-> ```  
- - Here, `T` acts like a variable for the type. When I call `identity("Hello")`, TypeScript understands `T` is a string. If I call it with a number, `T` becomes a number.  
- - Generics can also be used with interfaces. For example, I can create a `Box<T>` interface where the `value` property can be of any type — string, number, anything — depending on how I define it.  
- - And similarly with classes — I can have a generic class like `DataHolder<T>`, which can hold any type of data.  
- - Overall, Generics help me write cleaner, more flexible code without giving up the strong type checking that TypeScript provides. It’s better than using `any` because it keeps things type-safe."**
-
----
-
-
-
-
-
-
-
-
-#### **Union Types**
-  - In TypeScript, Union Types let a variable hold more than one type.
- - For example, I can say let id: string | number;, which means id can either be a string or a number. If I assign a boolean to it, TypeScript will show an error.
- - We use the | symbol to join the types. It’s very helpful when you expect a function or a variable to handle multiple types of inputs.
- - A common place where I use Union Types is in functions. Like, if I have a printId function, it can accept either a string or a number, and inside the function, I can check using typeof to know what exactly it is.
- - It's useful because it keeps the flexibility without losing type safety, unlike using any.
- - We often use Union Types when handling different kinds of user inputs, API responses, or when something might be undefined or a specific type."**
----
-
-
-### **Type Inference**
-
-- Type Inference is the compiler's ability to **automatically deduce the type** of a variable, parameter, or expression based on its value or context.
-- It helps write **cleaner, less verbose code** without compromising on **type safety**.
-
----
-
-#### **Why Type Inference is Useful:**
-
-- Reduces the need for **explicit type annotations**.
-- Improves **readability** and **developer productivity**.
-- Still allows the compiler to catch **type-related errors**.
-- Enhances **maintainability** by keeping types consistent with their initial values.
-
----
-
-#### **Examples:**
-
-- **Basic Inference:**
-  ```ts
-  let num = 100; // inferred as number
-  ```
-
-- **Function Return Type:**
-  ```ts
-  function add(a: number, b: number) {
-    return a + b; // inferred as number
-  }
-  ```
-
-- **Object and Array Inference:**
-  ```ts
-  let user = { name: "John", age: 30 }; // inferred as { name: string; age: number }
-  let scores = [1, 2, 3];               // inferred as number[]
-  ```
-
-- **`const` vs `let`:**
-  ```ts
-  const a = "hello"; // inferred as literal type "hello"
-  let b = "hello";   // inferred as string
-  ```
-
----
-
-#### **Advanced Inference:**
-
-- TypeScript narrows types in conditions:
-  ```ts
-  function greet(name: string | undefined) {
-    if (name) {
-      console.log(name.toUpperCase()); // name is inferred as string inside this block
-    }
-  }
-  ```
-
----
-
-#### **Limitations:**
-
-- For **complex structures**, inference may not be accurate—explicit types are better.
-- If inference fails, TypeScript may assign the `any` type (disabling type checking).
-
----
-
-#### **When to Use Inference vs. Annotations:**
-
-- ✅ Use inference for:
-  - Simple variables
-  - Obvious values
-  - Internal implementation details
-
-- ❗ Use annotations for:
-  - Public APIs
-  - Function return types
-  - Complex or generic types
-
----
-
-
-
-### **Mapped Types**
-
-
-- "Mapped types in TypeScript are used to create **new types** by transforming the properties of an existing type."
-- "For example, I can make all properties **readonly**, **optional**, or even **change their types** dynamically."
-- "They are really helpful when I want to apply a consistent transformation across all properties without rewriting the entire type."
-- "Common built-in mapped types include `Readonly`, `Partial`, and `Required`."
-
-
-**Example**:  
-```typescript
-type ReadOnly<T> = {
-  readonly [P in keyof T]: T[P];
-};
-
-interface User {
-  name: string;
-  age: number;
-}
-
-const user: ReadOnly<User> = { name: "Alice", age: 30 };
-user.name = "Bob"; // Error: Cannot assign to 'name' because it is a read-only property
-```
-Mapped types are useful for creating reusable and flexible transformations of types.
-
----
 
 #### **Custom Error**
 
@@ -749,49 +1229,7 @@ By using these types, TypeScript provides type safety and improves the maintaina
 
 ---
 
-#### **Decorators**
-- "In TypeScript, **decorators** are special functions that can be applied to **classes, methods, properties, or parameters**."
-- "They help us **add extra behavior** or **attach metadata** to these elements without changing their core logic."
-- "Decorators are especially common in frameworks like **Angular**, where they are used for things like **dependency injection**, routing, and more."
-- "They basically make our code **more organized and reusable** by separating extra behavior from the main logic."
 
-**Example**:  
-```typescript
-function log(target: any, key: string) {
-  let value = target[key];
-  
-  const getter = () => {
-    console.log(`Getting ${key}: ${value}`);
-    return value;
-  };
-  
-  const setter = (newValue: any) => {
-    console.log(`Setting ${key} to ${newValue}`);
-    value = newValue;
-  };
-  
-  Object.defineProperty(target, key, {
-    get: getter,
-    set: setter,
-  });
-}
-
-class Person {
-  @log
-  name: string;
-  
-  constructor(name: string) {
-    this.name = name;
-  }
-}
-
-const person = new Person("Alice");
-person.name = "Bob"; // Logs: Setting name to Bob
-console.log(person.name); // Logs: Getting name: Bob
-```
-Decorators help add reusable logic without modifying the core structure of the class or function.
-
----
 
 ### Declaration Merging
 
@@ -1228,230 +1666,7 @@ IIFEs are often used for **module patterns** or **self-contained logic** in Java
 
 ---
 
-### **Promises**
 
-
- A **Promise** is an object that represents the eventual completion (or failure) of an asynchronous operation. Promises allow us to handle asynchronous operations in a more manageable way than using callbacks (callback hell).
-
-A promise has three states:
-**Pending**: The promise is neither fulfilled nor rejected.
-**Fulfilled**: The operation was successful.
-**Rejected**: The operation failed.
-
-**Example**:
-```javascript
-let promise = new Promise((resolve, reject) => {
-  let success = true;
-  if (success) {
-    resolve("Operation successful");
-  } else {
-    reject("Operation failed");
-  }
-});
-
-promise
-  .then(result => console.log(result)) // "Operation successful"
-  .catch(error => console.log(error)); // If rejected
-```
-
----
-
-**Promise States**
-
-
- A Promise can exist in one of the following states:
-
-**Pending**: The initial state, where the Promise is waiting to be resolved or rejected.
-**Fulfilled**: The Promise has completed successfully and has returned a value.
-**Rejected**: The Promise has failed and returned a reason (error).
-
-**Example**:
-```javascript
-const myPromise = new Promise((resolve, reject) => {
-  let success = false;
-  if (success) {
-    resolve("Success");
-  } else {
-    reject("Failure");
-  }
-});
-
-myPromise
-  .then(result => console.log(result))   // Will not execute
-  .catch(error => console.log(error));   // Outputs: Failure
-```
-
----
-
-- **Pros**:
-  - **Avoid Callback Hell**: Promises allow chaining with `.then()` and `.catch()`, which makes the code more readable than nested callbacks.
-  - **Improved error handling**: With promises, errors can be caught at any point in the chain using `.catch()`.
-  - **Better flow control**: Promises make it easier to manage asynchronous operations and follow a linear flow.
-
-- **Cons**:
-  - **Chaining can become complex**: Deep chaining can lead to code that's difficult to maintain.
-  - **Not always intuitive**: Debugging and understanding promises can be tricky, especially when multiple promises are involved.
-  - **Older browser support**: Older browsers may not support promises natively without polyfills.
-
----
-
-
-- **Promise Type**:
-
-| Method               | Behavior |
-|----------------------|----------|
-| `Promise.all`         | Wait for **all to resolve**, or **rejects fast** |
-| `Promise.allSettled`  | Wait for **all to settle** |
-| `Promise.race`        | Resolve/reject with **first settled** |
-| `Promise.any`         | Resolve with **first fulfilled**, or `AggregateError` |
-| `Promise.resolve`     | Wrap any value into a **fulfilled** promise |
-| `Promise.reject`      | Create a **rejected** promise immediately |
-
-
-
-#### **1. `Promise.all([...])`**
-- **Waits for all promises to resolve**.
-- Rejects immediately if **any** promise rejects.
-
-```js
-Promise.all([p1, p2, p3])
-  .then(results => console.log(results))  // [val1, val2, val3]
-  .catch(err => console.error(err));      // If any reject, catches first
-```
-
----
-
-#### **2. `Promise.allSettled([...])`**
-- Waits for **all promises to settle** (either fulfilled or rejected).
-- Never rejects.
-
-```js
-Promise.allSettled([p1, p2])
-  .then(results => {
-    results.forEach(r => console.log(r.status)); // 'fulfilled' or 'rejected'
-  });
-```
-
----
-
-#### **3. `Promise.race([...])`**
-- Resolves or rejects **as soon as the first promise settles**.
-- Useful for timeouts or competitive async tasks.
-
-```js
-Promise.race([slowPromise, fastPromise])
-  .then(result => console.log(result))
-  .catch(err => console.error(err));
-```
-
----
-
-#### **4. `Promise.any([...])`**
-- Resolves when **any one promise fulfills**.
-- If **all reject**, it rejects with `AggregateError`.
-
-```js
-Promise.any([p1, p2, p3])
-  .then(value => console.log(value))
-  .catch(error => console.error(error)); // AggregateError if all reject
-```
-
----
-
-#### **5. `Promise.resolve(value)`**
-- Converts a value (even non-promise) into a resolved promise.
-
-```js
-Promise.resolve(42).then(console.log); // 42
-```
-
----
-
-#### **6. `Promise.reject(error)`**
-- Returns a **rejected** promise.
-
-```js
-Promise.reject('Error').catch(console.error); // Error
-```
-
-
----
-
-
-#### **Async Await**
-
-
- 
-- **`async`** is a keyword used to define a function as asynchronous, which means it will always return a promise. Inside an `async` function, you can use `await` to pause the execution of the function until the promise resolves or rejects.
-  
-- **`await`** pauses the execution of the `async` function until the promise resolves or rejects. It only works inside an `async` function.
-
-**Example**:
-```javascript
-async function fetchData() {
-  let response = await fetch('https://api.example.com/data');
-  let data = await response.json();
-  console.log(data);
-}
-
-fetchData();
-```
-`async/await` makes asynchronous code look more like synchronous code and makes it easier to read and debug.
-
----
-
-
-#### **async await vs Promises**
-
-```js
-function getData() {
-  return new Promise(resolve => {
-    setTimeout(() => resolve("Done!"), 1000);
-  });
-}
-
-async function fetchData() {
-  const result = await getData();
-  console.log(result); // Done!
-}
-```
-
-| Feature        | Promises                     | async/await               |
-|----------------|------------------------------|---------------------------|
-| Syntax         | `.then().catch()`            | `await`, `try...catch`    |
-| Readability    | ❌ More chaining              | ✅ Cleaner, like sync code |
-| Error Handling | `.catch()`                   | `try...catch`             |
-
----
-
-#### **Handling Async Errors**
-
-
- Errors in asynchronous code can be handled using `try/catch` blocks when using `async/await`, or `.catch()` when using promises.
-
-- **With async/await**:
-  ```javascript
-  async function fetchData() {
-    try {
-      let response = await fetch('https://api.example.com/data');
-      let data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log("Error fetching data:", error);
-    }
-  }
-  ```
-
-- **With promises**:
-  ```javascript
-  fetch('https://api.example.com/data')
-    .then(response => response.json())
-    .catch(error => console.log("Error fetching data:", error));
-  ```
-
-Both approaches allow you to catch and handle errors in a clean and structured way.
-
----
 
 #### **Microtask Queue**
 
@@ -3787,176 +4002,11 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 
 
-### Optional Chaining & Advanced Operators
-
----
-
-#### **Optional Chaining Operator**
 
 
 
-- The **Optional Chaining (`?.`) Operator** allows us to access deeply nested properties of an object without having to explicitly check if each level of the object exists, preventing errors like `TypeError: Cannot read property 'x' of undefined`.
-
-  **How it Works**:
-  - If the property or method exists, the expression is evaluated normally.
-  - If the property or method is `null` or `undefined`, it short-circuits and returns `undefined` instead of throwing an error.
-
-  **Example**:
-  ```javascript
-  const user = { profile: { name: 'John' } };
-  console.log(user?.profile?.name); // 'John'
-  console.log(user?.address?.city); // undefined (no error thrown)
-  ```
-
-  **Use Case**:
-  - The operator is especially useful when dealing with optional or missing properties in nested objects or arrays, such as when fetching data from APIs that may not always return all expected properties.
-
----
-
-#### **Nullish Coalescing Operator**
 
 
-
-- The **Nullish Coalescing (`??`) Operator** is used to return the right-hand operand when the left-hand operand is either `null` or `undefined`. It is often used to provide a fallback value when dealing with potentially missing or uninitialized values.
-
-  **Key Difference from `||`**:
-  - The **`??` operator** only checks for `null` or `undefined` and does **not** treat falsy values like `0`, `false`, or `""` as "nullish."
-  - The **`||` operator** considers all falsy values (`0`, `false`, `""`, `null`, `undefined`, `NaN`) as false, potentially leading to unintended behavior.
-
-  **Example**:
-  ```javascript
-  const foo = null;
-  console.log(foo ?? 'default'); // 'default' (nullish value)
-  
-  const bar = 0;
-  console.log(bar ?? 42); // 0 (does not consider 0 as nullish)
-
-  // Using OR (||)
-  console.log(bar || 42); // 42 (0 is considered falsy here)
-  ```
-
-  **Use Case**:
-  - The `??` operator is particularly useful when you want to treat `null` and `undefined` as absent values, but still allow other falsy values like `0`, `false`, and empty strings.
-
----
-
-#### **`in` Operator vs `hasOwnProperty()`**
-
-
-
-- The **`in` Operator** checks if a property exists in an object (including properties inherited from the prototype chain).
-
-  **Example**:
-  ```javascript
-  const obj = { name: 'Alice' };
-  console.log('name' in obj); // true
-  console.log('toString' in obj); // true (inherited from Object.prototype)
-  ```
-
-- **`hasOwnProperty()`** is a method that checks whether a property exists directly on the object, excluding properties that are inherited via the prototype chain.
-
-  **Example**:
-  ```javascript
-  const obj = { name: 'Alice' };
-  console.log(obj.hasOwnProperty('name')); // true
-  console.log(obj.hasOwnProperty('toString')); // false
-  ```
-
-  **Key Differences**:
-  - The **`in` operator** returns `true` if the property exists anywhere in the prototype chain.
-  - **`hasOwnProperty()`** only returns `true` if the property is directly present on the object.
-
----
-
-#### **Temporal Dead Zone in `let` and const`**
-
-
-
-The Temporal Dead Zone, or TDZ, happens when we declare variables using `let` or `const`.  
-Even though these variables are technically **hoisted** to the top of their scope — like a function or block — **they aren’t initialized right away**.
-
-There’s a small period between when the scope starts and when the variable is actually declared in the code.  
-During this time, **if we try to access the variable, JavaScript throws a `ReferenceError`** because it hasn’t been initialized yet.
-
-Here's a quick example:
-
-```javascript
-console.log(foo); // ReferenceError: Cannot access 'foo' before initialization
-let foo = 'bar';
-```
-
-In this case, the variable `foo` exists in memory but is **uninitialized** until the `let foo = 'bar'` line is executed.  
-If we try to use it before that, we fall into the Temporal Dead Zone.
-
-**Why does it happen?**  
-It’s designed this way to **prevent bugs** — so developers can't accidentally use variables before they're ready.
-
-**Best practice:**  
-I always make sure to **declare variables at the top** of their scope and **only use them after they are declared**, so I don't run into TDZ issues.
-
----
-
-
-#### **Labeled Statements Usage**
-
-
-
-- **Labeled statements** in JavaScript allow you to assign a label to a block of code (like a loop or a function), which can then be referenced by control flow statements (like `break` or `continue`). They are typically used in conjunction with nested loops to control the flow of execution in a more readable way.
-
-  **Syntax**:
-  ```javascript
-  outerLoop: for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      if (i === 2 && j === 2) {
-        break outerLoop; // Breaks out of the outer loop
-      }
-      console.log(i, j);
-    }
-  }
-  ```
-
-  **Use Case**:
-  - Labeled statements are helpful when you have nested loops or complex control flow and want to break out of multiple levels of loops at once. However, they are **rarely used** in practice due to their potential to make code harder to read and maintain.
-
----
-### Miscellaneous
-
----
-
-#### **Type Coercion in Operations**
-
-
-
-- **Type coercion** refers to JavaScript's automatic conversion of one data type to another when performing operations. This can lead to unexpected results, especially when using operators like `+`.
-
-  **Examples**:
-  
-  - **`[] + []`**:
-    - Both arrays are empty, and when the `+` operator is used, JavaScript coerces them to strings, resulting in an empty string.
-    - **Result**: `""` (empty string)
-
-    ```javascript
-    console.log([] + []); // ""
-    ```
-
-  - **`{} + []`**:
-    - The **`{}`** is interpreted as a **block of code** (empty block), and the `+ []` is treated as an attempt to coerce the empty array to a number (which is `0`).
-    - **Result**: `0` (a number)
-
-    ```javascript
-    console.log({} + []); // 0
-    ```
-
-    To avoid this confusion, it’s recommended to wrap the object in parentheses:
-
-    ```javascript
-    console.log({} + []); // 0
-    console.log(({}) + []); // "[object Object]"
-    ```
-
-  **Key Takeaway**: JavaScript applies type coercion in ways that can lead to unexpected results, particularly when the operands are complex data types like objects and arrays.
-
----
 
 #### **Map Key References with Objects**
 
@@ -4500,52 +4550,6 @@ const sum = add(2, 3);
 ---
 
 
-
-
-#### **Any vs Unknown**
-
-
-| **Feature**          | **`any`**                                       | **`unknown`**                                      |
-|----------------------|-------------------------------------------------|----------------------------------------------------|
-| **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
-| **Flexibility**      | Very flexible, as any value can be assigned and used in any way. | Flexible but requires type checking or type assertion before use. |
-| **When to Use**      | When you need dynamic behavior, and you're willing to bypass TypeScript’s type checking. | When you need flexibility but want to enforce safer, type-checked operations. |
-| **Code Safety**      | Less safe, can lead to runtime errors due to lack of type checks. | Safer, as TypeScript forces you to handle the value before using it. |
-| **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
-
-
-
-> In TypeScript:
-> - **`unknown`** is a **safer version of `any`**. It represents **any value**, but unlike `any`, you must **narrow its type** before using it (e.g., through type checks or type assertions).
-> - **`any`** allows **any operation** to be performed on it without restrictions, making it **more permissive but less safe**.
-
----
-
-### 🧠 Example: **`unknown`** vs **`any`**
-
-```ts
-let value1: any = "hello";
-value1 = 42; // OK, `any` can be reassigned freely
-
-let value2: unknown = "hello";
-value2 = 42; // OK, but you must narrow the type before using it
-
-// Using `value2` directly would cause an error
-// value2.toUpperCase(); // Error: Object is of type 'unknown'
-
-// Narrowing `unknown` before using it
-if (typeof value2 === "string") {
-  console.log(value2.toUpperCase());  // OK, after type narrowing
-}
-```
-
-### 📢 Key Differences:
-| Type      | `any`                                | `unknown`                           |
-|-----------|--------------------------------------|-------------------------------------|
-| Safety    | **No safety** — any operation is allowed | **Requires type checking** before use |
-| Use case  | When you don't care about types (use carefully) | When you want to ensure proper type handling |
-
----
 
 
 

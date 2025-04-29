@@ -118,7 +118,7 @@ const studentScores: Scores = {
 
 
 
-## `Map` vs `WeakMap`
+## Map vs WeakMap
 
 | Feature                    | `Map`                                   | `WeakMap`                              |
 |---------------------------|------------------------------------------|----------------------------------------|
@@ -158,7 +158,7 @@ obj = null;
 
 
 
-## `Set` vs `WeakSet`
+## Set vs WeakSet
 
 
 

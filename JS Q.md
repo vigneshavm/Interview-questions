@@ -2,7 +2,7 @@
 
 
 **JavaScript Fundamentals Advance** - [Key ES6 Features](#key-es6-features)    • [Promises](#Promises)
-• [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator)    • [Object Destructuring with Defaults](#object-destructuring-with-defaults)    • [Labeled Statements](#labeled-statements-usage)  
+• [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage)  
 
 **TypeScript** - [TS Improves JS](#how-typescript-improves-javascript) • [Interface Vs Type](#interface-vs-type) • [Generics](#generics) • [Any Vs Unknown Types](#Any-vs-Unknown) • [Union Types](#union-types) • [Type Inference](#type-inference) • [Mapped Types](#mapped-types) • [Decorators](#decorators) • [Duck Typing](#duck-typing) • [Type Narrowing](#Type-Narrowing) 
 • [Declaration Merging](#Declaration-Merging)
@@ -2226,9 +2226,9 @@ In JavaScript, you can manipulate the styles of an element by using the `style` 
 
 #### **Destructuring**
 
-
-
 **Destructuring** is a convenient way of extracting multiple properties from an object or elements from an array and assigning them to variables.
+
+• [Object Destructuring with Defaults](#object-destructuring-with-defaults)  
 
 - **Object Destructuring**:
   ```javascript

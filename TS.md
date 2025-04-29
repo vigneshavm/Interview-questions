@@ -1,55 +1,21 @@
 
-### 🌟 Core Concepts
-• [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)  
-• [Type Inference](#type-inference)  
-• [`any` vs `unknown` Types](#any-vs-unknown)  
-• [Duck Typing](#duck-typing)  
-• [Type Narrowing](#type-narrowing)  
+**Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)  • [Type Inference](#type-inference)  • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  • [Type Narrowing](#type-narrowing)  
 
----
 
-### 📐 Types & Interfaces
-• [Interface vs Type](#interface-vs-type)  
-• [Extending Types and Interfaces](#extending-types-and-interfaces)  
-• [Mapped Types](#mapped-types)  
-• [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  
-• [Union vs Intersection Types](#union-vs-intersection-types)  
+**Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#union-vs-intersection-types)  
 
----
 
-### 🔗 Advanced Types
-• [Template Literal Types](#template-literal-types)  
-• [`keyof` and `typeof` Operators](#keyof-vs-typeof)  
-• [Conditional Types](#conditional-types)  
-• [`readonly` vs `const`](#readonly-vs-const)  
 
----
+**Advanced Types** • [Template Literal Types](#template-literal-types)  • [`keyof` and `typeof` Operators](#keyof-vs-typeof)  • [Conditional Types](#conditional-types)  • [`readonly` vs `const`](#readonly-vs-const)  
 
-### 🔧 Generics
-• [Generic Functions and Classes](#generics)  
-• [Constraining Generics with `extends`](#constraining-generics-with-extends)  
 
----
+**Generics** • [Generic Functions and Classes](#generics)  • [Constraining Generics with `extends`](#constraining-generics-with-extends)  
 
-### 📦 Modules, Namespaces & Compiler
-• [Namespaces and Modules](#namespaces-and-modules)  
-• [Module System in TypeScript](#module-system-in-typescript)  
-• [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options)  
-• [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)  
+**Modules, Namespaces & Compiler**   • [Namespaces and Modules](#namespaces-and-modules)  • [Module System in TypeScript](#module-system-in-typescript)  • [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options)  • [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)  
 
----
+**Functions & Behavior**     • [Function Overloading](#function-overloading)  • [Decorators](#decorators)  • [Declaration Merging](#declaration-merging)  
 
-### ⚙️ Functions & Behavior
-• [Function Overloading](#function-overloading)  
-• [Decorators](#decorators)  
-• [Declaration Merging](#declaration-merging)  
-
----
-
-### 🗃️ Objects & Collections
-• [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects)  
-• [`Map` vs `WeakMap`](#map-vs-weakmap)  
-• [`Set` vs `WeakSet`](#set-vs-weakset)
+**Objects & Collections**   • [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects)  • [`Map` vs `WeakMap`](#map-vs-weakmap)   • [`Set` vs `WeakSet`](#set-vs-weakset)
 
 
 

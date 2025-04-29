@@ -2,7 +2,7 @@
 **Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)  • [Type Inference](#type-inference)  • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  • [Type Narrowing](#type-narrowing)  
 
 
-**Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#union-vs-intersection-types)  
+**Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#Union-and-Intersection-Types)  
 
 
 
@@ -45,119 +45,6 @@ add("2", 3); // Error: Argument of type 'string' is not assignable to parameter 
 TypeScript ensures that only numbers are passed into the `add` function, preventing bugs early in the development cycle.
 
 ---
-
-## **Interface vs. Type**
-
-- "`interface` and `type` are both used to define the structure of data in TypeScript."
-- "Interfaces are mainly for describing object shapes and can be **extended** or **implemented** by classes."
-- "Types are more flexible — they can describe **objects, primitives, unions, intersections**, and more."
-- "One major difference is: **interfaces can be merged**, but **types cannot** be merged once created."
-- "In practice, if I'm only defining an object structure, I prefer using an `interface`."
-- "If I need to create something complex, like combining multiple types or handling different kinds of data, then `type` is a better fit."
-
-
-**Example**:  
-```typescript
-interface Animal {
-  name: string;
-}
-
-interface Dog extends Animal {
-  breed: string;
-}
-
-const dog: Dog = { name: "Max", breed: "Golden Retriever" };
-```
-Alternatively, with `type`:
-```typescript
-type Animal = { name: string };
-type Dog = Animal & { breed: string };
-
-const dog: Dog = { name: "Max", breed: "Golden Retriever" };
-```
-
----
-
-## **Generics**
- - Generics in TypeScript are a way to make our code more flexible and reusable while still preserving type safety, by allowing types to be passed as parameters.
- - "In TypeScript, Generics allow us to create reusable components or functions that can work with different types while still keeping type safety.  
- - I like to think of them as type placeholders — instead of writing multiple versions of the same function or class for different types, I can write it once and just pass the type when I use it.  
- - For example, a simple generic function could look like this:  
-> ```typescript
-> function identity<T>(arg: T): T {
->   return arg;
-> }
-> ```  
- - Here, `T` acts like a variable for the type. When I call `identity("Hello")`, TypeScript understands `T` is a string. If I call it with a number, `T` becomes a number.  
- - Generics can also be used with interfaces. For example, I can create a `Box<T>` interface where the `value` property can be of any type — string, number, anything — depending on how I define it.  
- - And similarly with classes — I can have a generic class like `DataHolder<T>`, which can hold any type of data.  
- - Overall, Generics help me write cleaner, more flexible code without giving up the strong type checking that TypeScript provides. It’s better than using `any` because it keeps things type-safe."**
-
----
-
-
-
-
-## **Any vs Unknown**
-
-
-| **Feature**          | **`any`**                                       | **`unknown`**                                      |
-|----------------------|-------------------------------------------------|----------------------------------------------------|
-| **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
-| **Flexibility**      | Very flexible, as any value can be assigned and used in any way. | Flexible but requires type checking or type assertion before use. |
-| **When to Use**      | When you need dynamic behavior, and you're willing to bypass TypeScript’s type checking. | When you need flexibility but want to enforce safer, type-checked operations. |
-| **Code Safety**      | Less safe, can lead to runtime errors due to lack of type checks. | Safer, as TypeScript forces you to handle the value before using it. |
-| **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
-
-
-
-> In TypeScript:
-> - **`unknown`** is a **safer version of `any`**. It represents **any value**, but unlike `any`, you must **narrow its type** before using it (e.g., through type checks or type assertions).
-> - **`any`** allows **any operation** to be performed on it without restrictions, making it **more permissive but less safe**.
-
----
-
-### 🧠 Example: **`unknown`** vs **`any`**
-
-```ts
-let value1: any = "hello";
-value1 = 42; // OK, `any` can be reassigned freely
-
-let value2: unknown = "hello";
-value2 = 42; // OK, but you must narrow the type before using it
-
-// Using `value2` directly would cause an error
-// value2.toUpperCase(); // Error: Object is of type 'unknown'
-
-// Narrowing `unknown` before using it
-if (typeof value2 === "string") {
-  console.log(value2.toUpperCase());  // OK, after type narrowing
-}
-```
-
-### 📢 Key Differences:
-| Type      | `any`                                | `unknown`                           |
-|-----------|--------------------------------------|-------------------------------------|
-| Safety    | **No safety** — any operation is allowed | **Requires type checking** before use |
-| Use case  | When you don't care about types (use carefully) | When you want to ensure proper type handling |
-
----
-
-
-
-
-
-
-## **Union Types**
-  - In TypeScript, Union Types let a variable hold more than one type.
- - For example, I can say let id: string | number;, which means id can either be a string or a number. If I assign a boolean to it, TypeScript will show an error.
- - We use the | symbol to join the types. It’s very helpful when you expect a function or a variable to handle multiple types of inputs.
- - A common place where I use Union Types is in functions. Like, if I have a printId function, it can accept either a string or a number, and inside the function, I can check using typeof to know what exactly it is.
- - It's useful because it keeps the flexibility without losing type safety, unlike using any.
- - We often use Union Types when handling different kinds of user inputs, API responses, or when something might be undefined or a specific type."**
----
-
-
 ## **Type Inference**
 
 - Type Inference is the compiler's ability to **automatically deduce the type** of a variable, parameter, or expression based on its value or context.
@@ -235,6 +122,119 @@ if (typeof value2 === "string") {
   - Complex or generic types
 
 ---
+
+## **Interface vs. Type**
+
+- "`interface` and `type` are both used to define the structure of data in TypeScript."
+- "Interfaces are mainly for describing object shapes and can be **extended** or **implemented** by classes."
+- "Types are more flexible — they can describe **objects, primitives, unions, intersections**, and more."
+- "One major difference is: **interfaces can be merged**, but **types cannot** be merged once created."
+- "In practice, if I'm only defining an object structure, I prefer using an `interface`."
+- "If I need to create something complex, like combining multiple types or handling different kinds of data, then `type` is a better fit."
+
+
+**Example**:  
+```typescript
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+
+const dog: Dog = { name: "Max", breed: "Golden Retriever" };
+```
+Alternatively, with `type`:
+```typescript
+type Animal = { name: string };
+type Dog = Animal & { breed: string };
+
+const dog: Dog = { name: "Max", breed: "Golden Retriever" };
+```
+
+---
+## **Any vs Unknown**
+
+
+| **Feature**          | **`any`**                                       | **`unknown`**                                      |
+|----------------------|-------------------------------------------------|----------------------------------------------------|
+| **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
+| **Flexibility**      | Very flexible, as any value can be assigned and used in any way. | Flexible but requires type checking or type assertion before use. |
+| **When to Use**      | When you need dynamic behavior, and you're willing to bypass TypeScript’s type checking. | When you need flexibility but want to enforce safer, type-checked operations. |
+| **Code Safety**      | Less safe, can lead to runtime errors due to lack of type checks. | Safer, as TypeScript forces you to handle the value before using it. |
+| **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
+
+
+
+> In TypeScript:
+> - **`unknown`** is a **safer version of `any`**. It represents **any value**, but unlike `any`, you must **narrow its type** before using it (e.g., through type checks or type assertions).
+> - **`any`** allows **any operation** to be performed on it without restrictions, making it **more permissive but less safe**.
+
+---
+
+### 🧠 Example: **`unknown`** vs **`any`**
+
+```ts
+let value1: any = "hello";
+value1 = 42; // OK, `any` can be reassigned freely
+
+let value2: unknown = "hello";
+value2 = 42; // OK, but you must narrow the type before using it
+
+// Using `value2` directly would cause an error
+// value2.toUpperCase(); // Error: Object is of type 'unknown'
+
+// Narrowing `unknown` before using it
+if (typeof value2 === "string") {
+  console.log(value2.toUpperCase());  // OK, after type narrowing
+}
+```
+
+### 📢 Key Differences:
+| Type      | `any`                                | `unknown`                           |
+|-----------|--------------------------------------|-------------------------------------|
+| Safety    | **No safety** — any operation is allowed | **Requires type checking** before use |
+| Use case  | When you don't care about types (use carefully) | When you want to ensure proper type handling |
+
+---
+
+
+
+
+
+
+## **Generics**
+ - Generics in TypeScript are a way to make our code more flexible and reusable while still preserving type safety, by allowing types to be passed as parameters.
+ - "In TypeScript, Generics allow us to create reusable components or functions that can work with different types while still keeping type safety.  
+ - I like to think of them as type placeholders — instead of writing multiple versions of the same function or class for different types, I can write it once and just pass the type when I use it.  
+ - For example, a simple generic function could look like this:  
+> ```typescript
+> function identity<T>(arg: T): T {
+>   return arg;
+> }
+> ```  
+ - Here, `T` acts like a variable for the type. When I call `identity("Hello")`, TypeScript understands `T` is a string. If I call it with a number, `T` becomes a number.  
+ - Generics can also be used with interfaces. For example, I can create a `Box<T>` interface where the `value` property can be of any type — string, number, anything — depending on how I define it.  
+ - And similarly with classes — I can have a generic class like `DataHolder<T>`, which can hold any type of data.  
+ - Overall, Generics help me write cleaner, more flexible code without giving up the strong type checking that TypeScript provides. It’s better than using `any` because it keeps things type-safe."**
+
+---
+
+
+
+
+
+## **Union Types**
+  - In TypeScript, Union Types let a variable hold more than one type.
+ - For example, I can say let id: string | number;, which means id can either be a string or a number. If I assign a boolean to it, TypeScript will show an error.
+ - We use the | symbol to join the types. It’s very helpful when you expect a function or a variable to handle multiple types of inputs.
+ - A common place where I use Union Types is in functions. Like, if I have a printId function, it can accept either a string or a number, and inside the function, I can check using typeof to know what exactly it is.
+ - It's useful because it keeps the flexibility without losing type safety, unlike using any.
+ - We often use Union Types when handling different kinds of user inputs, API responses, or when something might be undefined or a specific type."**
+---
+
+
 ## **Mapped Types**
 
 
@@ -1134,6 +1134,247 @@ type PersonKeys = keyof Person;
 ```
 
 ✅ `keyof` gives a **union of keys** (`"name" | "age"`) from the `Person` type.
+
+---
+
+
+
+
+
+## **Extending Types and Interfaces**
+
+TypeScript allows both **`interface`** and **`type`** aliases to be extended or combined, but with some key differences and use cases.
+
+---
+
+### 🔹 **Extending Interfaces**
+- Use the `extends` keyword.
+- Interfaces can be extended multiple times.
+- Useful for creating object shapes and enabling structural subtyping.
+
+```ts
+interface Person {
+  name: string;
+}
+
+interface Employee extends Person {
+  jobTitle: string;
+}
+
+const emp: Employee = {
+  name: "Alice",
+  jobTitle: "Developer",
+};
+```
+
+---
+
+### 🔸 **Extending Types**
+- You can extend a `type` using **intersection types (`&`)**.
+- Suitable for combining multiple types or primitives.
+
+```ts
+type Person = {
+  name: string;
+};
+
+type Employee = Person & {
+  jobTitle: string;
+};
+
+const emp: Employee = {
+  name: "Bob",
+  jobTitle: "Designer",
+};
+```
+
+---
+
+### ⚖️ **Comparison Table**
+
+| Feature                       | `interface`                                | `type`                                      |
+|------------------------------|---------------------------------------------|----------------------------------------------|
+| Syntax for extension         | `extends`                                   | Intersection (`&`)                          |
+| Multiple inheritance         | ✅ Yes                                       | ✅ Yes (with `&`)                            |
+| Declaration merging          | ✅ Supported                                | ❌ Not supported                             |
+| Extend classes               | ✅ Can extend a class                       | ❌ Cannot extend classes                     |
+| Use with primitives          | ❌ No                                        | ✅ Yes (e.g., `string | number`)            |
+| Preferred use case           | Object shapes                               | Unions, intersections, and advanced types    |
+
+---
+
+### 💡 Best Practices
+- Use **`interface`** for object-oriented designs or APIs.
+- Use **`type`** when dealing with union/intersection types or more complex combinations.
+
+
+
+
+
+## **Union** and **Intersection Types** 
+---
+
+### **Union Types (`|`)**
+- **Definition**: A type that allows a value to be **one of several types**.
+- **Operator**: `|` (pipe symbol).
+- **Resulting Type**: A value that can be **any one** of the specified types.
+- **Use Case**: When a value can be **either** one type or another.
+- **Common Scenarios**: 
+  - Multiple types for function parameters.
+  - Union of primitive types (e.g., `string | number`).
+- **Type Checking**: 
+  - Use type narrowing (`typeof`, `in`, or `instanceof`) to identify which type is in use.
+- **Example**:
+  ```ts
+  type A = string | number;
+  
+  let value: A;
+  value = "hello"; // ✅
+  value = 123;     // ✅
+  ```
+  
+---
+
+### **Intersection Types (`&`)**
+- **Definition**: A type that requires a value to **satisfy all combined types**.
+- **Operator**: `&` (ampersand symbol).
+- **Resulting Type**: A value that must conform to **all** types in the intersection.
+- **Use Case**: When a value needs to have **combined properties** or behavior from multiple types.
+- **Common Scenarios**: 
+  - Combining multiple interfaces or object types.
+  - Merging different behaviors into one object.
+- **Type Checking**: 
+  - No need for narrowing; the value must have all properties from the intersected types.
+- **Example**:
+  ```ts
+  type B = { name: string } & { age: number };
+
+  const person: B = {
+    name: "Alice",
+    age: 30,
+  }; // ✅ Must have both properties
+  ```
+
+---
+
+### **Key Differences**
+- **Union Types (`|`)**: Choose **one** from multiple types.
+- **Intersection Types (`&`)**: Combine **all** types together, meaning the value must match **all** constraints.
+
+
+
+
+## **Module System in TypeScript**
+- **Definition**: TypeScript uses **ES6 modules** to structure code into reusable files.
+- **Modules**:
+  - A **module** is any file that contains `export` and/or `import`.
+  - Each file is treated as a separate module, with its own scope.
+
+### **Key Features**:
+- **Exporting**:
+  - **Named Export**: Export multiple entities from a module.
+    ```ts
+    export const add = (a: number, b: number) => a + b;
+    ```
+  - **Default Export**: Export a single entity (e.g., class or function).
+    ```ts
+    const add = (a: number, b: number) => a + b;
+    export default add;
+    ```
+  
+- **Importing**:
+  - **Named Import**: Import specific exports from a module.
+    ```ts
+    import { add } from './math';
+    ```
+  - **Import Entire Module**: Use `import * as` to bring in all exports as an object.
+    ```ts
+    import * as MathFunctions from './math';
+    ```
+  - **Destructured Import**: Import only selected members.
+    ```ts
+    import { add } from './math';
+    ```
+
+- **Module Resolution**: TypeScript uses different strategies to resolve modules (e.g., **Classic**, **Node** resolution).
+  - **Node Resolution**: Looks for modules in `node_modules` or relative paths.
+
+- **Configuration in `tsconfig.json`**:
+  - The `module` option determines the module system to use, e.g., `"module": "ES6"` for ES6 modules.
+  - Example:
+    ```json
+    {
+      "compilerOptions": {
+        "module": "ES6",
+        "moduleResolution": "Node"
+      }
+    }
+    ```
+
+- **CommonJS vs ES6 Modules**:
+  - **CommonJS**: Uses `require()` and `module.exports`.
+  - **ES6 Modules**: Uses `import` and `export` syntax.
+
+- **Benefits**:
+  - **Encapsulation**: Keeps code isolated in modules, exposing only necessary parts.
+  - **Reusability**: Import/export allows easy reuse of code across files.
+  - **Type Safety**: Modules bring in type-checking for imported/exported code.
+
+---
+
+
+
+Here’s a concise, interview-friendly bullet-point comparison of **`esModuleInterop` vs `allowSyntheticDefaultImports`** in TypeScript:
+
+---
+
+### **`esModuleInterop` vs `allowSyntheticDefaultImports`**
+
+#### **`esModuleInterop`**  
+- **Purpose**: Ensures compatibility between CommonJS and ES6 module systems.
+- **What It Does**:
+  - Enables default imports from CommonJS modules.
+  - Converts `import x from 'module'` to `import * as x from 'module'` for non-ES6 modules.
+  - Resolves interoperability issues between TypeScript and CommonJS-style modules.
+- **Use Case**: When working with CommonJS modules (like `require`-based modules) in a project using ES6 module syntax.
+- **Setting**:
+  - `"esModuleInterop": true`
+  - **Effect**: Allows you to use the default `import` syntax with CommonJS modules.
+- **Example**:
+  ```ts
+  // CommonJS module
+  const express = require('express');
+  
+  // ES6 style import with esModuleInterop enabled
+  import express from 'express'; // Works correctly
+  ```
+
+#### **`allowSyntheticDefaultImports`**  
+- **Purpose**: Allows default imports from modules without a default export, without enabling full interop with CommonJS.
+- **What It Does**:
+  - **Only allows default imports** from modules that do not have a default export.
+  - Does **not enable CommonJS interop** (i.e., it does not convert the `import * as x from 'module'` for CommonJS).
+  - Primarily affects **ES6 module imports** and **non-default exports**.
+- **Use Case**: When you want to import CommonJS-style modules using the default import syntax, but you don't need full interop.
+- **Setting**:
+  - `"allowSyntheticDefaultImports": true`
+  - **Effect**: Allows you to use `import x from 'module'` even if `module` does not have a default export.
+- **Example**:
+  ```ts
+  // CommonJS module
+  const express = require('express');
+  
+  // ES6 style import with allowSyntheticDefaultImports enabled
+  import express from 'express'; // Works even without default export
+  ```
+
+#### **Key Differences**
+| Feature                       | **`esModuleInterop`**                                 | **`allowSyntheticDefaultImports`**                        |
+|-------------------------------|-------------------------------------------------------|----------------------------------------------------------|
+| **Purpose**                    | Enables full compatibility between CommonJS and ES6.  | Allows default imports from modules without default export. |
+| **Effect**                     | Changes the behavior of imports for CommonJS modules. | Allows default imports without CommonJS interop.           |
+| **Module Type Compatibility**  | Provides full CommonJS interop, converting imports.   | Allows default imports but does not enable full interop.   |
+| **Common Use Case**            | When using CommonJS and ES6 modules together.         | When you need default imports from non-default export modules. |
 
 ---
 

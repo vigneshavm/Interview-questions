@@ -20,17 +20,19 @@
 **Objects and Classes** • [Prototypes](#understanding-__proto__-and-prototypes)  - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)     • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)   • [Map Key References](#map-key-references-with-objects)  
 
 
-**Performance and Optimization** - [Debounce and Throttle Functions](#debounce-and-throttle-functions)    • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)  **CSS and DOM Manipulation** - [innerHTML vs textContent](#innerhtml-vs-textcontent)    • [CSS Manipulation](#css-manipulation)  
+**Performance and Optimization** - [Debounce and Throttle Fn](#debounce-and-throttle-functions)    • [Memoization Techniques](#memoization-techniques)    • [Function Composition Patterns](#function-composition-patterns)  **CSS and DOM Manipulation** - [innerHTML vs textContent](#innerhtml-vs-textcontent)    • [CSS Manipulation](#css-manipulation)  
 
 
 
-**Asynchronous JavaScript** - [Synchronous vs Asynchronous Functions](#synchronous-vs-asynchronous-functions)    • [Handling Async Errors](#handling-async-errors)    • [setTimeout vs setImmediate vs process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)    • [Event Loop & Call Stack](#event-loop--call-stack)    • [Memory Leaks](#common-causes-of-memory-leaks)    • [Garbage Collection](#javascript-garbage-collection)    • [Extending Built-in Objects](#extending-built-in-objects)  
+**Asynchronous JavaScript** - [Sync vs Async Fn](#synchronous-vs-asynchronous-functions)    • [Async Errors](#handling-async-errors)    • [setTimeout vs setImmediate vs process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)    • [Event Loop & Call Stack](#event-loop--call-stack)    • [Memory Leaks](#common-causes-of-memory-leaks)    • [Garbage Collection](#javascript-garbage-collection)    • [Extend Built-in Objects](#extending-built-in-objects)  
 
 
-**Modules and Imports** - [JavaScript Modules (import/export)](#javascript-modules-importexport)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules)  **Design Patterns and Architecture** - [Design Patterns](#introduction-to-design-patterns)    • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)  
+**Modules and Imports** - [Js Modules (import/export)](#javascript-modules-importexport)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules)  **Design Patterns and Architecture** - [Design Patterns](#introduction-to-design-patterns)    • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)  
 
 
 **Browser APIs** - [Cookies vs sessionStorage vs localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [window.history API](#using-window-history-api)    • [Web Workers](#web-workers)    • [WebSocket API](#websocket-api)  **Error Handling** - [Custom Error](#custom-error)    • [Unexpected Outputs](#understanding-unexpected-outputs)  
+
+
 
 
 

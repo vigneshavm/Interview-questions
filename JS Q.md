@@ -1,4 +1,4 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)    • [Type Inference (TS)](#type-inference)    • [TypeScript Improves JavaScript](#how-typescript-improves-javascript)  
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)  
 
 
 **JavaScript Fundamentals Advance** - [Key ES6 Features](#key-es6-features)    • [Promises](#Promises)
@@ -579,114 +579,88 @@ const dog: Dog = { name: "Max", breed: "Golden Retriever" };
  - We often use Union Types when handling different kinds of user inputs, API responses, or when something might be undefined or a specific type."**
 ---
 
-#### **Type Inference**
 
+### **Type Inference**
 
-**Type Inference** is a powerful feature in TypeScript that allows the compiler to automatically deduce the type of a variable based on its value or context. This reduces the need for explicit type annotations in many cases, making your code cleaner while still benefiting from TypeScript's type safety.
-
----
-
-###### **Why Use Type Inference?**
-
-- **No need for explicit types** in many cases, making code easier to read and write.
-- Helps keep the code **maintainable** by ensuring variables always have the correct type without the need for repetitive type annotations.
-- **Error prevention** by ensuring the correct types are being used across the code.
+- Type Inference is the compiler's ability to **automatically deduce the type** of a variable, parameter, or expression based on its value or context.
+- It helps write **cleaner, less verbose code** without compromising on **type safety**.
 
 ---
 
-##### 📦 **How TypeScript Infers Types:**
+#### **Why Type Inference is Useful:**
 
-TypeScript uses the value assigned to a variable to infer its type. 
-
-###### **Examples of Type Inference:**
-
-1. **Basic Inference:**
-
-```typescript
-let num = 10;  // TypeScript infers `num` as `number`
-num = "hello"; // Error: Type 'string' is not assignable to type 'number'.
-```
-
-Here, TypeScript infers that `num` is of type `number` because it is initialized with a numeric value.
+- Reduces the need for **explicit type annotations**.
+- Improves **readability** and **developer productivity**.
+- Still allows the compiler to catch **type-related errors**.
+- Enhances **maintainability** by keeping types consistent with their initial values.
 
 ---
 
-2. **Inference in Functions:**
+#### **Examples:**
 
-```typescript
-function add(a: number, b: number) {
-  return a + b;  // TypeScript infers that the return type is `number`
-}
+- **Basic Inference:**
+  ```ts
+  let num = 100; // inferred as number
+  ```
 
-let result = add(5, 10);  // TypeScript infers `result` as `number`
-result = "string";        // Error: Type 'string' is not assignable to type 'number'.
-```
-
-In the `add` function, TypeScript infers the return type to be `number` because the function performs arithmetic addition.
-
----
-
-3. **Object and Array Inference:**
-
-```typescript
-let obj = { name: "John", age: 30 };  // TypeScript infers `obj` as { name: string; age: number; }
-
-let arr = [1, 2, 3];  // TypeScript infers `arr` as number[]
-```
-
-For objects and arrays, TypeScript will infer the types of each property or element based on the initial values.
-
----
-
-4. **Inference with `const` and `let`:**
-
-```typescript
-const a = "Hello";   // TypeScript infers `a` as `const` with type `string`
-let b = 42;          // TypeScript infers `b` as `number`
-```
-
-- **`const`** allows the type to be inferred as a literal value (e.g., `"Hello"`).
-- **`let`** infers general types like `string` or `number`.
-
----
-
-##### 🔍 **Narrowing Inference:**
-
-Sometimes, TypeScript can narrow the inferred type based on conditions.
-
-```typescript
-function greet(person: string | undefined) {
-  if (person) {
-    // `person` is inferred as `string` here because we've checked it's not `undefined`
-    console.log(`Hello, ${person.toUpperCase()}`);
+- **Function Return Type:**
+  ```ts
+  function add(a: number, b: number) {
+    return a + b; // inferred as number
   }
-}
+  ```
 
-greet("Alice"); // Valid
-greet(undefined); // TypeError: Cannot read property 'toUpperCase' of undefined
-```
+- **Object and Array Inference:**
+  ```ts
+  let user = { name: "John", age: 30 }; // inferred as { name: string; age: number }
+  let scores = [1, 2, 3];               // inferred as number[]
+  ```
 
----
-
-##### 🚫 **Limitations of Type Inference:**
-
-- **Complex Structures:** For more complex objects or functions, TypeScript might not infer the desired type accurately. Explicit type annotations might still be necessary.
-  
-- **Any Type:** If TypeScript cannot infer the type, it defaults to the `any` type, which disables type checking, essentially opting out of type safety.
-
----
-
-##### 💡 **When to Use Type Inference vs Type Annotations:**
-
-- **Use Type Inference** when the variable's type can be clearly inferred from the initialization or context (e.g., simple types like `number`, `string`, arrays).
-- **Use Type Annotations** when you want to be explicit about a type (e.g., for complex objects, function return types, or when the type isn't easily inferred).
+- **`const` vs `let`:**
+  ```ts
+  const a = "hello"; // inferred as literal type "hello"
+  let b = "hello";   // inferred as string
+  ```
 
 ---
 
+#### **Advanced Inference:**
+
+- TypeScript narrows types in conditions:
+  ```ts
+  function greet(name: string | undefined) {
+    if (name) {
+      console.log(name.toUpperCase()); // name is inferred as string inside this block
+    }
+  }
+  ```
 
 ---
 
-#### **Mapped Types**
+#### **Limitations:**
+
+- For **complex structures**, inference may not be accurate—explicit types are better.
+- If inference fails, TypeScript may assign the `any` type (disabling type checking).
+
+---
+
+#### **When to Use Inference vs. Annotations:**
+
+- ✅ Use inference for:
+  - Simple variables
+  - Obvious values
+  - Internal implementation details
+
+- ❗ Use annotations for:
+  - Public APIs
+  - Function return types
+  - Complex or generic types
+
+---
+
+
+
+### **Mapped Types**
 
 
 - "Mapped types in TypeScript are used to create **new types** by transforming the properties of an existing type."

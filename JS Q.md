@@ -1,7 +1,8 @@
 **JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)    • [Type Inference (TS)](#type-inference)    • [TypeScript Improves JavaScript](#how-typescript-improves-javascript)  
 
 
-**JavaScript Fundamentals Advance** - [Key ES6 Features](#key-es6-features)    • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator)    • [Object Destructuring with Defaults](#object-destructuring-with-defaults)    • [Labeled Statements](#labeled-statements-usage)  
+**JavaScript Fundamentals Advance** - [Key ES6 Features](#key-es6-features)    • [Promises](#Promises)
+• [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator)    • [Object Destructuring with Defaults](#object-destructuring-with-defaults)    • [Labeled Statements](#labeled-statements-usage)  
 
 **TypeScript** - [TS Improves JS](#how-typescript-improves-javascript) • [Interface Vs Type](#interface-vs-type) • [Generics](#generics) • [Any Vs Unknown Types](#Any-vs-Unknown) • [Union Types](#union-types) • [Type Inference](#type-inference) • [Mapped Types](#mapped-types) • [Decorators](#decorators) • [Duck Typing](#duck-typing) • [Type Narrowing](#Type-Narrowing) 
 • [Declaration Merging](#Declaration-Merging)
@@ -46,7 +47,7 @@
 | **Default Parameters**  | `function greet(name = "Guest") { return "Hi " + name; }`                                             | Provides fallback values for missing args                |
 | [Destructuring](#destructuring)      | `const { title, year } = movie;` <br> `const [first, second] = items;`                                | Unpacks values from objects/arrays                       |
 | [Spread and Rest operator](#spread-operator)  | `const newArr = [...arr1, ...arr2];` <br> `function logAll(...args) {}`                               | Spread: expands, Rest: collects values                   |
-| **Promises / async/await** | `const fetchData = async () => { const res = await fetch(url); };`                                 | Handle async operations cleanly                          |
+| **[Promises](#Promises)  /  [async/await](#async-await)** | `const fetchData = async () => { const res = await fetch(url); };`                                 | Handle async operations cleanly                          |
 | **Modules (import/export)** | `import React from 'react';` <br> `export const add = (a, b) => a + b;`                            | Use reusable code across files                           |
 | **Optional Chaining (`?.`)** | `const username = user?.profile?.name;`                                                          | Avoid errors when accessing nested properties             |
 
@@ -1227,10 +1228,6 @@ IIFEs are often used for **module patterns** or **self-contained logic** in Java
 
 ---
 
-### **Asynchronous JavaScript Interview Answers**
-
----
-
 #### **Synchronous vs Asynchronous Functions**
 
 
@@ -1285,7 +1282,7 @@ promise
 
 ---
 
-#### **Promise States**
+**Promise States**
 
 
  A Promise can exist in one of the following states:
@@ -1312,10 +1309,6 @@ myPromise
 
 ---
 
-#### **Pros and Cons of Promises**
-
-
-
 - **Pros**:
   - **Avoid Callback Hell**: Promises allow chaining with `.then()` and `.catch()`, which makes the code more readable than nested callbacks.
   - **Improved error handling**: With promises, errors can be caught at any point in the chain using `.catch()`.
@@ -1328,55 +1321,90 @@ myPromise
 
 ---
 
-#### **Promise.all()**
+
+- **Promise Type**:
+
+| Method               | Behavior |
+|----------------------|----------|
+| `Promise.all`         | Wait for **all to resolve**, or **rejects fast** |
+| `Promise.allSettled`  | Wait for **all to settle** |
+| `Promise.race`        | Resolve/reject with **first settled** |
+| `Promise.any`         | Resolve with **first fulfilled**, or `AggregateError` |
+| `Promise.resolve`     | Wrap any value into a **fulfilled** promise |
+| `Promise.reject`      | Create a **rejected** promise immediately |
 
 
- `Promise.all()` takes an array of promises and returns a single promise that resolves when all the input promises have resolved or rejects as soon as one of the promises is rejected.
 
-**Example**:
-```javascript
-let promise1 = Promise.resolve(3);
-let promise2 = new Promise((resolve, reject) => setTimeout(resolve, 100, 'foo'));
-let promise3 = new Promise((resolve, reject) => setTimeout(resolve, 500, 'bar'));
+### ✅ **1. `Promise.all([...])`**
+- **Waits for all promises to resolve**.
+- Rejects immediately if **any** promise rejects.
 
-Promise.all([promise1, promise2, promise3])
-  .then(values => console.log(values));  // Outputs: [3, 'foo', 'bar']
+```js
+Promise.all([p1, p2, p3])
+  .then(results => console.log(results))  // [val1, val2, val3]
+  .catch(err => console.error(err));      // If any reject, catches first
 ```
-Use `Promise.all()` when you want to wait for multiple asynchronous operations to complete before proceeding.
 
 ---
 
-#### **Promise.all vs Promise.allSettled**
+### ✅ **2. `Promise.allSettled([...])`**
+- Waits for **all promises to settle** (either fulfilled or rejected).
+- Never rejects.
 
-
- 
-- **`Promise.all()`**: Returns a single promise that resolves when all promises in the array resolve. If any of the promises is rejected, the entire promise chain is rejected immediately.
-  
-  **Example**:
-  ```javascript
-  let promise1 = Promise.resolve(3);
-  let promise2 = Promise.reject("Error");
-  let promise3 = Promise.resolve("Done");
-
-  Promise.all([promise1, promise2, promise3])
-    .then(values => console.log(values)) // Will not execute because of the rejection
-    .catch(error => console.log(error)); // Outputs: Error
-  ```
-
-- **`Promise.allSettled()`**: Returns a promise that resolves when all of the promises have settled (either resolved or rejected). The result is an array of objects describing the outcome of each promise.
-
-  **Example**:
-  ```javascript
-  Promise.allSettled([promise1, promise2, promise3])
-    .then(results => console.log(results));
-  // Outputs: [{status: "fulfilled", value: 3}, {status: "rejected", reason: "Error"}, {status: "fulfilled", value: "Done"}]
-  ```
-
-`Promise.allSettled()` is useful when you need to know the outcome of each promise, regardless of whether it was fulfilled or rejected.
+```js
+Promise.allSettled([p1, p2])
+  .then(results => {
+    results.forEach(r => console.log(r.status)); // 'fulfilled' or 'rejected'
+  });
+```
 
 ---
 
-#### **Async/Await**
+### ✅ **3. `Promise.race([...])`**
+- Resolves or rejects **as soon as the first promise settles**.
+- Useful for timeouts or competitive async tasks.
+
+```js
+Promise.race([slowPromise, fastPromise])
+  .then(result => console.log(result))
+  .catch(err => console.error(err));
+```
+
+---
+
+### ✅ **4. `Promise.any([...])`**
+- Resolves when **any one promise fulfills**.
+- If **all reject**, it rejects with `AggregateError`.
+
+```js
+Promise.any([p1, p2, p3])
+  .then(value => console.log(value))
+  .catch(error => console.error(error)); // AggregateError if all reject
+```
+
+---
+
+### ✅ **5. `Promise.resolve(value)`**
+- Converts a value (even non-promise) into a resolved promise.
+
+```js
+Promise.resolve(42).then(console.log); // 42
+```
+
+---
+
+### ✅ **6. `Promise.reject(error)`**
+- Returns a **rejected** promise.
+
+```js
+Promise.reject('Error').catch(console.error); // Error
+```
+
+
+---
+
+
+#### **Async Await**
 
 
  
@@ -1399,7 +1427,7 @@ fetchData();
 ---
 
 
-####  async/await vs Promises
+####  async await vs Promises
 
 ```js
 function getData() {
@@ -1419,7 +1447,10 @@ async function fetchData() {
 | Syntax         | `.then().catch()`            | `await`, `try...catch`    |
 | Readability    | ❌ More chaining              | ✅ Cleaner, like sync code |
 | Error Handling | `.catch()`                   | `try...catch`             |
-
+| Style | Functional chaining | Imperative / synchronous-looking |
+| Debugging | Harder due to nesting | Easier with stack traces |
+| Readability | Can get nested / harder to follow | Cleaner, especially for sequential flows |
+| Returns | Returns a Promise | Always wraps return in a Promise |
 ---
 
 #### **Handling Async Errors**

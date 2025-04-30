@@ -4416,8 +4416,79 @@ Here, both the outer and inner arrays have been copied deeply. Changing the nest
 
 
 
+### **shallow copy** and **deep copy** ### 
+
+ **Summary**:
+
+| **Feature**            | **Shallow Copy**                                          | **Deep Copy**                                              |
+|------------------------|-----------------------------------------------------------|------------------------------------------------------------|
+| **Copying Behavior**    | Copies only the **outer array** (reference to nested items). | Copies both the outer array and **nested items** fully.    |
+| **Changes Affecting Other** | Changes to inner objects/arrays affect both copies.     | Changes to inner objects/arrays affect only the copy.      |
+| **Methods Used**        | Spread operator (`...`), `Object.assign()`, `Array.slice()`, etc. | `JSON.parse(JSON.stringify())`, or recursive functions.    |
+| **Performance**         | Faster, especially for large arrays with non-object elements. | Slower, due to deep recursion or serialization.            |
 
 
+| Index | Type         | Copy Type     | Shared? |
+|-------|--------------|---------------|---------|
+| 0     | Primitive    | Value         | ❌      |
+| 1     | Array        | Reference     | ✅      |
+| 2     | Object       | Reference     | ✅      |
+
+
+**Shallow Copy** (Non-Recursive Copy)
+Example:
+```js
+const original = [1, 2, [3, 4]];
+const shallowCopy = [...original];
+
+shallowCopy[0] = 10;         // Changes only the first element
+shallowCopy[2][0] = 99;      // Modifies the nested array inside both arrays
+
+console.log(original);       // [1, 2, [99, 4]]
+console.log(shallowCopy);    // [10, 2, [99, 4]]
+```
+
+Notice how changing the nested array element (`shallowCopy[2][0] = 99`) also affected the original array because it only copied the reference to the inner array, not the actual array.
+
+---
+
+**Deep Copy** (Recursive Copy)
+
+Example:
+```js
+const original = [1, 2, [3, 4]];
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+deepCopy[0] = 10;            // Changes only the first element
+deepCopy[2][0] = 99;         // Modifies the nested array in the copy, not the original
+
+console.log(original);       // [1, 2, [3, 4]]
+console.log(deepCopy);       // [10, 2, [99, 4]]
+```
+
+Here, both the outer and inner arrays have been copied deeply. Changing the nested array element in `deepCopy` does **not** affect `original`.
+
+---
+
+
+**Deep Copy (own fn)**
+Example:
+```js
+function deepClone(value) {
+  if (Array.isArray(value)) {
+    return value.map(deepClone);
+  } else if (value && typeof value === "object") {
+    const result = {};
+    for (let key in value) {
+      result[key] = deepClone(value[key]);
+    }
+    return result;
+  }
+  return value;
+}
+
+const deepCopy = deepClone(original);
+```
 
 
 

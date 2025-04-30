@@ -4377,6 +4377,16 @@ You can also build objects, arrays, etc., using `reduce()`.
  - Primitive        ->  no effect on original.
  - Array/Object     -> affects both original and shallowCopy
 
+
+ | Concept                   | `b = a`                            | `b = { ...a }`                      |
+|---------------------------|------------------------------------|-------------------------------------|
+| Type                      | Reference assignment               | Shallow copy                        |
+| Shared memory             | ✅ Yes (same object)               | ❌ No (separate objects)            |
+| Changing `b` affects `a`? | ✅ Yes                             | ❌ No                               |
+| Use case                  | When you **want to mutate** same object | When you **want a copy**          |
+
+
+ - using Shallow copy
 | Index | Type         | Copy Type     | Shared? |
 |-------|--------------|---------------|---------|
 | 0     | Primitive    | Value         | ❌      |

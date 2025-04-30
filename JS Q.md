@@ -4374,8 +4374,8 @@ You can also build objects, arrays, etc., using `reduce()`.
 | **Methods Used**        | Spread operator (`...`), `Object.assign()`, `Array.slice()`, etc. | `JSON.parse(JSON.stringify())`, or recursive functions.    |
 | **Performance**         | Faster, especially for large arrays with non-object elements. | Slower, due to deep recursion or serialization.            |
 
-Primitive        ->  no effect on original.
-Array/Object     -> affects both original and shallowCopy
+ - Primitive        ->  no effect on original.
+ - Array/Object     -> affects both original and shallowCopy
 
 | Index | Type         | Copy Type     | Shared? |
 |-------|--------------|---------------|---------|

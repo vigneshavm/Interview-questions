@@ -4371,7 +4371,7 @@ You can also build objects, arrays, etc., using `reduce()`.
 |------------------------|-----------------------------------------------------------|------------------------------------------------------------|
 | **Copying Behavior**    | Copies only the **outer array** (reference to nested items). | Copies both the outer array and **nested items** fully.    |
 | **Changes Affecting Other** | Changes to inner objects/arrays affect both copies.     | Changes to inner objects/arrays affect only the copy.      |
-| **Methods Used**        | Spread operator (`...`), `Object.assign()`, `Array.slice()`, etc. | `JSON.parse(JSON.stringify())`, or recursive functions.    |
+| **Methods Used**        | Spread operator (`...`), `Object.assign()`, `Array.slice()`, etc. | `JSON.parse(JSON.stringify())`, or [recursive functions](#recursive-functions)    |
 | **Performance**         | Faster, especially for large arrays with non-object elements. | Slower, due to deep recursion or serialization.            |
 
  - Primitive        ->  no effect on original.
@@ -4420,7 +4420,8 @@ Here, both the outer and inner arrays have been copied deeply. Changing the nest
 ---
 
 
-**Deep Copy (own fn)**
+**recursive functions**
+ - Deep copy
 Example:
 ```js
 function deepClone(value) {

@@ -1,6 +1,14 @@
 **JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)  
 
 
+- **[Create Array](#create-array)**  
+- **[JavaScript Array Methods](#javascript-array-methods)**  
+-  **[`slice()` and `splice()`](#slice-and-splice)**  
+-  **[Loop through Arrays](#loop-through-arrays)**  
+-  **[`map()`, `filter()`, and `reduce()`](#map-filter-reduce)**  
+
+
+
 **JavaScript Fundamentals Advance** - [Key ES6 Features](#key-es6-features)    • [Promises](#Promises)
 • [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage)  
 
@@ -4121,6 +4129,245 @@ Both methods are used in event handling, but they serve different purposes:
 **Key Difference**: `preventDefault()` stops the default behavior of the event, while `stopPropagation()` prevents the event from bubbling up the DOM.
 
 ---
+
+
+
+### **Create Array**
+
+| **Method**             | **Syntax**                             | **Description**                                                                 | **Example Output**                     |
+|------------------------|----------------------------------------|----------------------------------------------------------------------------------|----------------------------------------|
+| **Array Literal**      | `const arr = [1, 2, 3];`               | Most common and readable way to create arrays.                                  | `[1, 2, 3]`                             |
+| **Array Constructor**  | `const arr = new Array(3);`            | Creates an array of 3 empty slots.                                               | `[ <3 empty items> ]`                  |
+|                        | `const arr = new Array(1, 2, 3);`      | Creates an array with given elements.                                            | `[1, 2, 3]`                             |
+| **Array.of()**         | `const arr = Array.of(3);`             | Creates an array with a single element `3` (not 3 empty slots).                  | `[3]`                                   |
+| **Array.from()**       | `const arr = Array.from('abc');`       | Converts iterable or array-like object into an array.                            | `['a', 'b', 'c']`                       |
+| **Spread Syntax**      | `const arr = [...'abc'];`              | Spreads iterable elements into an array.                                         | `['a', 'b', 'c']`                       |
+
+
+
+
+
+
+### **JavaScript Array Methods**
+
+```js
+const arr = [1, 2, 3];
+```
+
+| **Method**    | **Description**                                                                 | **Example**                                 | **Result**                                 |
+|---------------|----------------------------------------------------------------------------------|----------------------------------------------|---------------------------------------------|
+| `push()`      | Adds one or more elements to the **end** of an array.                           | `arr.push(4)`                                | `[1, 2, 3, 4]`                              |
+| `pop()`       | Removes the **last** element from an array.                                     | `arr.pop()`                                  | Returns `3`, `arr` becomes `[1, 2]`         |
+| `shift()`     | Removes the **first** element from an array.                                    | `arr.shift()`                                | Returns `1`, `arr` becomes `[2, 3]`         |
+| `unshift()`   | Adds one or more elements to the **start** of an array.                         | `arr.unshift(0)`                             | `[0, 1, 2, 3]`                              |
+| `slice()`     | Returns a **shallow copy** of a portion of an array (doesn't modify original).  | `arr.slice(1, 3)`                            | `[2, 3]` (elements at index 1 and 2)        |
+| `splice()`    | Adds/removes elements in-place.                                                 | `arr.splice(1, 2)`                           | Removes 2 elements from index 1; returns `[2, 3]` |
+| `concat()`    | Combines arrays or values into a new array.                                     | `arr.concat([4, 5])`                         | `[1, 2, 3, 4, 5]`                           |
+| `join()`      | Joins array elements into a string (with optional separator).                   | `arr.join('-')`                              | `"1-2-3"`                                   |
+| `indexOf()`   | Returns the **first index** of a value, or `-1` if not found.                   | `arr.indexOf(2)`                             | `1`                                         |
+
+---
+
+
+### **`slice()` and `splice()`** ### 
+
+| Feature      | `slice()`                       | `splice()`                                |
+|--------------|----------------------------------|--------------------------------------------|
+| Changes array? | ❌ No                           | ✅ Yes                                      |
+| What it does | Copies part of the array         | Removes or adds items                      |
+| Example use  | Get part of an array for display | Delete items, insert new items             |
+
+
+`slice()` – **Take a part of the array** (does **not** change original)
+
+- **Think of it as: "cut a copy"**
+- You give a start and end position, and it returns that part as a new array.
+- The original array stays the same.
+
+**Example**
+```js
+const fruits = ['apple', 'banana', 'cherry', 'date'];
+const result = fruits.slice(1, 3); 
+console.log(result);  // ['banana', 'cherry']
+console.log(fruits);  // ['apple', 'banana', 'cherry', 'date']
+```
+➡️ It **copied** items from index 1 to 2 (not including 3), but didn't change the original.
+
+---
+
+`splice()` – **Change the array** (add or remove items)
+
+- **Think of it as: "cut and change"**
+- You can **remove** items, **add** items, or **both**
+- The original array **is modified**
+
+**Example**
+```js
+const fruits = ['apple', 'banana', 'cherry', 'date'];
+const removed = fruits.splice(1, 2); 
+console.log(removed);  // ['banana', 'cherry']
+console.log(fruits);   // ['apple', 'date']
+```
+➡️ It **removed** 2 items starting from index 1, and the original array got shorter.
+
+**Example with adding items**
+```js
+const fruits = ['apple', 'date'];
+fruits.splice(1, 0, 'banana', 'cherry');
+console.log(fruits);  // ['apple', 'banana', 'cherry', 'date']
+```
+➡️ It **added** 'banana' and 'cherry' at index 1.
+
+---
+
+### **Loop through arrays** ### 
+
+
+| Loop Type     | Can Modify Original? | Returns New Array? | Break/Continue Allowed? | Simpler Syntax? | Async-Friendly? |
+|---------------|----------------------|---------------------|--------------------------|------------------|------------------|
+| `for`         | ✅ Yes               | ❌ No              | ✅ Yes                   | ❌ No (manual index) | ✅ Yes            |
+| `for...of`    | ✅ Yes               | ❌ No              | ✅ Yes                   | ✅ Yes             | ✅ Yes            |
+| `forEach()`   | ✅ Yes               | ❌ No              | ❌ No                   | ✅ Yes             | ❌ No (no `await`) |
+| `map()`       | ✅ Yes (if used carefully) | ✅ Yes        | ❌ No                   | ✅ Yes             | ❌ No (but alternatives exist) |
+
+---
+
+| **Use This When You Want To...**                         | **Use**      |
+|----------------------------------------------------------|--------------|
+| Loop with full control (`break`, `continue`, index)      | `for`        |
+| Loop simply over values (no index needed)                | `for...of`   |
+| Loop cleanly with a callback (read-only loop)            | `forEach()`  |
+| Transform an array into a new one (return values)        | `map()`      |
+
+1. `for` loop
+
+- ✅ Can break/continue
+- ✅ Most flexible
+- 🔧 Needs manual indexing
+
+```js
+const arr = [1, 2, 3];
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+```
+
+---
+
+ 2. `for...of` loop
+
+- ✅ Simpler than `for`
+- ❌ Cannot access index directly unless using `.entries()`
+
+```js
+const arr = [1, 2, 3];
+for (const value of arr) {
+  console.log(value);
+}
+```
+
+✅ To access index:
+```js
+for (const [i, val] of arr.entries()) {
+  console.log(i, val);
+}
+```
+
+---
+
+ 3. `forEach()` method
+
+- ✅ Clean syntax
+- ❌ Cannot use `break`, `continue`, or `await` inside
+
+```js
+const arr = [1, 2, 3];
+arr.forEach((value, index) => {
+  console.log(index, value);
+});
+```
+
+---
+
+ 4. `map()` method
+
+- ✅ Best when transforming array values
+- ✅ Returns a **new array**
+- ❌ Cannot break or use `await` directly
+
+```js
+const numbers = [1, 2, 3];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6]
+```
+
+---
+
+
+
+### **`map()`, `filter()`, and `reduce()`** ### 
+
+---
+
+**Overview Table**
+
+| Method   | Purpose                      | Returns        | Changes Original? | Common Use Case                     |
+|----------|------------------------------|----------------|-------------------|--------------------------------------|
+| `map()`   | Transform each item          | New array      | ❌ No              | Double numbers, format strings, etc. |
+| `filter()`| Keep items that pass a test | New filtered array | ❌ No           | Filter even numbers, non-empty items |
+| `reduce()`| Combine all items into one  | A single value | ❌ No              | Sum, average, object building        |
+
+---
+
+**Summary with Simple Analogy**
+
+| Method     | Think of it as...                    |
+|------------|--------------------------------------|
+| `map()`     | "Change every item"                 |
+| `filter()`  | "Keep only what passes"             |
+| `reduce()`  | "Boil it all down to one thing"     |
+
+**`map()`**
+ — **Transform each item**
+
+```js
+const numbers = [1, 2, 3];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6]
+```
+✅ Transforms each element and gives a new array.
+
+---
+
+**`filter()**`
+ — **Keep only matching items**
+
+```js
+const numbers = [1, 2, 3, 4];
+const evens = numbers.filter(num => num % 2 === 0);
+console.log(evens); // [2, 4]
+```
+✅ Returns only items that pass the condition.
+
+---
+
+**`reduce()`**
+ — **Reduce to a single result**
+
+```js
+const numbers = [1, 2, 3, 4];
+const total = numbers.reduce((acc, num) => acc + num, 0);
+console.log(total); // 10
+```
+✅ Combines all items into one value (sum, product, etc.).
+
+You can also build objects, arrays, etc., using `reduce()`.
+
+
+---
+
+
+
 
 
 

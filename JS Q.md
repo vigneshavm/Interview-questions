@@ -5,7 +5,7 @@
 - **[JavaScript Array Methods](#javascript-array-methods)**  
 -  **[`slice()` and `splice()`](#slice-and-splice)**  
 -  **[Loop through Arrays](#loop-through-arrays)**  
--  **[`map()`, `filter()`, and `reduce()`](#map-filter-reduce)**  
+-  **[`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce)**  
 
 
 
@@ -4305,7 +4305,7 @@ console.log(doubled); // [2, 4, 6]
 
 
 
-### **`map()`, `filter()`, and `reduce()`** ### 
+### **`map()` `filter()` and `reduce()`** ### 
 
 ---
 

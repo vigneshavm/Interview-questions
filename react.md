@@ -7,7 +7,7 @@
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) 
 | **Routing**          | •  [React Router](#react-router) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
-| **Lists and DOM**          | •    [Refs ](#refs-in-react) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr)  |
+| **React Others**          | •    [Refs ](#refs-in-react) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux-Saga](#Redux-Saga) |
 | **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
@@ -3559,3 +3559,131 @@ Think of React like a **waterfall**:
 > I always start with local state and props. If multiple components need access, I lift state up or use **context/hooks**. This keeps the data flow intentional and prevents side effects. For complex apps, I evaluate whether to use tools like Redux, Zustand, or React Query for better state/data management.
 
 ---
+
+
+
+
+
+
+
+
+
+# Redux Saga
+
+## Overview
+- Redux-Saga is a middleware library for Redux to handle side effects (e.g., API calls, delays, etc.)
+- It uses **ES6 generators** to make asynchronous flows easy to read, write, and test.
+
+## Key Concepts
+- **Sagas**: Generator functions that yield plain JavaScript objects to the middleware.
+- **Effects**: Instructions to the middleware on what to do (e.g., `call`, `put`, `takeEvery`).
+- **Side Effects**: Operations like data fetching, delay, caching, etc.
+
+---
+
+## Common Redux-Saga Effects
+
+### `takeEvery`
+- Listens for a specific action type and runs the worker saga for every dispatched action.
+- Suitable when you want to perform actions for each event.
+
+```javascript
+yield takeEvery('FETCH_REQUEST', fetchData);
+````
+
+---
+
+### `takeLatest`
+
+* Runs only the **latest** worker saga and cancels any previous unfinished instances.
+* Useful for search, auto-save, or type-ahead use cases.
+
+```javascript
+yield takeLatest('FETCH_USER_REQUEST', fetchUserData);
+```
+
+---
+
+### `call`
+
+* Calls an asynchronous function (e.g., API request).
+* Blocks saga until the promise resolves.
+
+```javascript
+const data = yield call(api.getUser, action.payload);
+```
+
+---
+
+### `put`
+
+* Dispatches an action to the Redux store.
+
+```javascript
+yield put({ type: 'FETCH_SUCCESS', payload: data });
+```
+
+---
+
+### `select`
+
+* Accesses the current state from the Redux store.
+
+```javascript
+const userId = yield select(state => state.user.id);
+```
+
+---
+
+## Error Handling
+
+* Use `try...catch` blocks around sagas to handle failures gracefully.
+
+```javascript
+function* fetchData(action) {
+  try {
+    const data = yield call(api.fetch, action.payload);
+    yield put({ type: 'FETCH_SUCCESS', data });
+  } catch (error) {
+    yield put({ type: 'FETCH_ERROR', error: error.message });
+  }
+}
+```
+
+---
+
+## Complete Example
+
+```javascript
+import { call, put, takeLatest } from 'redux-saga/effects';
+import api from './api';
+
+function* fetchUserData(action) {
+  try {
+    const data = yield call(api.getUser, action.payload);
+    yield put({ type: 'FETCH_USER_SUCCESS', data });
+  } catch (error) {
+    yield put({ type: 'FETCH_USER_ERROR', error: error.message });
+  }
+}
+
+export function* watchFetchUserData() {
+  yield takeLatest('FETCH_USER_REQUEST', fetchUserData);
+}
+```
+
+---
+
+## Summary
+
+* `takeEvery`: Run saga on every action.
+* `takeLatest`: Run only the most recent saga.
+* `call`: Invoke async logic.
+* `put`: Dispatch an action.
+* `select`: Get state from Redux.
+* Handle errors using `try...catch`.
+
+
+
+
+

@@ -3945,16 +3945,16 @@ function groupAnagrams(strs) {
 
 ```javascript
 function memoizeAdd() {
-  const cache = {};
+  const cache = {};  // Step 1: Create an empty cache object
 
-  return function(a, b) {
-    const key = `${a},${b}`;
-    if (cache[key] !== undefined) {
-      return cache[key];
+  return function(a, b) {  // Step 2: Return a closure that "remembers" the cache
+    const key = `${a},${b}`;  // Step 3: Create a unique key for the input arguments
+    if (cache[key] !== undefined) {  // Step 4: Check if the result for this key is already cached
+      return cache[key];  // Step 5: Return the cached result if found
     }
-    const result = a + b;
-    cache[key] = result;
-    return result;
+    const result = a + b;  // Step 6: If not cached, calculate the result
+    cache[key] = result;   // Step 7: Store the calculated result in the cache
+    return result;         // Step 8: Return the calculated result
   };
 }
 ```
@@ -3976,18 +3976,19 @@ function memoizeAdd() {
 
 ```javascript
 function memoizeAdd() {
-  const cache = new Map();
+  const cache = new Map();  // Step 1: Setup cache
 
-  return function(a, b) {
-    const key = `${a},${b}`; // Still using a string key here
-    if (cache.has(key)) {
-      return cache.get(key);
+  return function(a, b) {   // Step 2: Return a function that uses the cache
+    const key = `${a},${b}`;  // Step 3: Generate a unique key from inputs
+    if (cache.has(key)) {     // Step 4: Check if result is already cached
+      return cache.get(key);  // Step 5: Return cached result if available
     }
-    const result = a + b;
-    cache.set(key, result);
-    return result;
+    const result = a + b;     // Step 6: Compute result if not cached
+    cache.set(key, result);   // Step 7: Set/store result in the cache
+    return result;            // Step 8: Return the computed result
   };
 }
+
 ```
 
 > Slightly better than using `{}`: `Map` has no prototype collisions and is optimized for key-based lookups.
@@ -3998,18 +3999,21 @@ function memoizeAdd() {
 
 ```javascript
 function memoize(fn) {
-  const cache = new Map();
+  const cache = new Map(); // ✅ SETUP: Create a new Map to hold cached results
 
-  return function(...args) {
-    const key = JSON.stringify(args);
-    if (cache.has(key)) {
-      return cache.get(key);
+  return function(...args) {  // Wrapper function can take any number of arguments
+    const key = JSON.stringify(args); // Convert arguments to a string key
+
+    if (cache.has(key)) { // 🔍 GET: Check if the key is already cached
+      return cache.get(key); // Return cached result
     }
-    const result = fn(...args);
-    cache.set(key, result);
-    return result;
+
+    const result = fn(...args); // Compute the result if not cached
+    cache.set(key, result);     // ✅ SET: Store result in the cache with key
+    return result;              // Return the result
   };
 }
+
 
 // Usage:
 const add = memoize((a, b) => a + b);

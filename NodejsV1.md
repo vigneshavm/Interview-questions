@@ -99,6 +99,32 @@ tsconfig.json
 
 ### **Event Loop**
 
+  - The Event Loop is the mechanism that allows Node.js to handle asynchronous operations, enabling non-blocking, single-threaded execution.
+
+  - Node.js runs on a **single thread**, but can handle many requests concurrently.
+  - The Event Loop allows Node.js to **offload** operations (e.g., file I/O, network requests) to the system, without blocking the main thread.
+  - When tasks are complete (like reading a file), Node.js picks them up from the **callback queue** and executes them.
+
+- **Phases of the Event Loop:**
+  1. **Timers**: Executes callbacks for `setTimeout` and `setInterval`.
+  2. **I/O Callbacks**: Handles I/O operations like file reading.
+  3. **Idle, Prepare**: Internal phase, usually not used directly.
+  4. **Poll**: Checks for new I/O events (e.g., incoming HTTP requests).
+  5. **Check**: Executes `setImmediate()` callbacks.
+  6. **Close Callbacks**: Executes `close` events like `socket.on('close')`.
+
+- **Key Concepts:**
+  - **Non-blocking**: Node.js does not wait for operations to complete before moving to the next one.
+  - **Asynchronous**: Functions like `fs.readFile` or network requests don't block the main thread.
+  - **Single-threaded**: Node.js runs on a single thread, but uses asynchronous I/O and the Event Loop to handle multiple tasks concurrently.
+
+- **Real-life Example**:  
+  When a request comes in, Node.js doesn't wait for a database query or file read to finish. It continues to handle other tasks, and once the I/O operation is complete, the callback gets executed in the Event Loop.
+
+- **Why it's important?**  
+  The Event Loop enables **high concurrency** in Node.js with **low overhead**, making it suitable for I/O-bound applications like web servers.
+
+
 - **Single-threaded but asynchronous**  
   Node.js runs on a single thread, but it can handle multiple operations concurrently using the event loop and non-blocking I/O.
 

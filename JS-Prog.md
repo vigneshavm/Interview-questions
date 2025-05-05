@@ -4,7 +4,7 @@
 | Array 2 |  • [Recursive Sum of Array](#recursive-sum-of-array)  • [Flat Nested Array](#flatten-nested-arrays)  • [Chunk Array](#chunk-an-array) • [Array Contains Duplicate Value](#Array-Contains-Duplicate-Value) • [Missing Number](#missing-number) • [First and Last Position - Element](#first-and-last-position-of-element-in-Sorted-Array)
 | Sort |   • [Sort an array of objects](#Sort-an-array-of-objects) • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort) • [Topological Sort](#topological-sort)
 | Arrays | • [Two Sum](#two-sum)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)  • [Rotate Array](#rotate-array)      • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) 
-| Advance |  • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
+| Advance | • Memoize[#Memoize] • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hash & Sets |• [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Deep Clone an Object](#deep-clone-an-object) • [Custom `map()` Method](#custom-map-method) • [`var` vs `let` in Loops](#understanding-var-vs-let-in-loops-and-closures)  • [Retry Promise N Times](#retry-promise-n-times) 
 | String 1 | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagrams)  • [Vowels](#vowels)   • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) • [Isomorphic Strings](#isomorphic-strings)  • [Longest Substring](#Longest-Substring) 
 | Frequent |  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Character Frequency Count](#character-frequency-count) • [Most Frequent Character](#Most-Frequent-Character-in-a-String) • [Count Frequency - Array](#Count-Frequency-of-Array-Element) • [Minimum Window Substring](#Minimum-Window-Substring) 
@@ -3933,5 +3933,35 @@ function groupAnagrams(strs) {
 **Output**: `[["eat","tea","ate"],["tan","nat"],["bat"]]`
 
 ---
+
+
+
+### Memoize
+
+```js
+function memoizeAdd() {
+  const cache = {};  // Step 1: Create a local cache object
+
+  return function(a, b) {  // Step 2: Return a closure (inner function) that has access to `cache`
+    const key = `${a},${b}`;  // Step 3: Build a unique key for the input arguments
+
+    if (cache[key] !== undefined) {  // Step 4: Check if this key already exists in the cache
+      console.log('Fetching from cache:', key);
+      return cache[key];  // Step 5: If yes, return the cached result
+    } else {
+      console.log('Calculating result for:', key);
+      const result = a + b;  // Step 6: Calculate the result
+      cache[key] = result;   // Step 7: Store it in the cache (set)
+      return result;         // Step 8: Return the result
+    }
+  };
+}
+
+
+
+const add = memoizeAdd();  // Setup happens here
+console.log(add(2, 3));     // Calculates and stores cache["2,3"] = 5
+console.log(add(2, 3));     // Retrieves cache["2,3"] = 5 (no new calculation)
+```
 
 

@@ -1,3 +1,4 @@
+
 **Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues) **Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)
 
 **Concurrency & Processes**  - [Event Loop](#event-loop)    - [Async Execution Order](#Async-Execution-Order) - [Worker Threads](#worker-threads)  - [Child Processes](#child-processes)  - [Cluster Module](#cluster-module)  - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)
@@ -289,6 +290,109 @@ console.log(`Platform: ${process.platform}`);
 
 ## **Cluster Module vs Child Process vs Worker Thread**
 
+## Cluster Module
+- Allows Node.js to create a multi-process application that utilizes multiple CPU cores.
+- **Key Features**:
+  - Forks child processes using `cluster.fork()`, each with its own event loop.
+  - The master process can load balance requests between worker processes.
+  - Improves performance by distributing tasks across multiple CPU cores for CPU-bound applications.
+- **Example Usage**:
+  ```javascript
+  const cluster = require('cluster');
+  const http = require('http');
+  const numCPUs = require('os').cpus().length;
+
+  if (cluster.isMaster) {
+    for (let i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
+
+    cluster.on('exit', (worker, code, signal) => {
+      console.log(`Worker ${worker.process.pid} died`);
+    });
+  } else {
+    http.createServer((req, res) => {
+      res.writeHead(200);
+      res.end('Hello World');
+    }).listen(8000);
+  }
+  ```
+
+## Child Process
+
+* Allows Node.js to spawn new processes for executing external scripts or commands.
+* **Key Features**:
+
+  * Methods like `exec()`, `spawn()`, `fork()`, and `execFile()` allow spawning child processes.
+  * Provides **Inter-process Communication (IPC)** via `stdin`, `stdout`, `stderr`, or `send()` when forking.
+* **Example Usage**:
+
+  ```javascript
+  const { exec } = require('child_process');
+
+  exec('ls -l', (error, stdout, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.log(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
+  ```
+
+## Worker Threads
+
+* Allows JavaScript code to run in parallel threads within a single Node.js process.
+* **Key Features**:
+
+  * Provides **multithreading** with each thread having its own event loop.
+  * Enables **shared memory** using `SharedArrayBuffer` and communication via `MessageChannel`.
+  * Best for **CPU-bound tasks** where parallel execution is needed.
+* **Example Usage**:
+
+  ```javascript
+  const { Worker, isMainThread, parentPort } = require('worker_threads');
+
+  if (isMainThread) {
+    const worker = new Worker(__filename);
+    worker.on('message', (message) => {
+      console.log('Received from worker:', message);
+    });
+    worker.postMessage('Hello Worker');
+  } else {
+    parentPort.on('message', (message) => {
+      console.log('Received from main thread:', message);
+      parentPort.postMessage('Hello Main');
+    });
+  }
+  ```
+
+## Summary of Key Differences:
+
+* **Cluster Module**:
+
+  * Creates multiple processes to handle requests across multiple CPU cores.
+  * Used for **load balancing** and **multi-core utilization**.
+* **Child Process**:
+
+  * Executes external commands or scripts in separate processes.
+  * Used for running shell commands or interacting with other applications.
+* **Worker Threads**:
+
+  * Runs JavaScript code in separate threads within the same process.
+  * Ideal for **CPU-intensive tasks** that need parallel execution without blocking the main event loop.
+
+
+
+### 📝 **Summary:**
+- **Use Cluster**  --> **scaling Node.js servers** to use all CPU cores.
+- **Use Child Process** --> **running external programs** or isolating code.
+- **Use Worker Thread** --> **heavy JS computations** without blocking the main thread.
+
+
 | Feature / Aspect          | **Cluster Module**                          | **Child Process**                            | **Worker Thread**                          |
 |---------------------------|---------------------------------------------|-----------------------------------------------|---------------------------------------------|
 | 🔧 Purpose                | Scale app across CPU cores (load balancing) | Run external scripts or processes             | Run CPU-intensive JS code in parallel       |
@@ -303,11 +407,6 @@ console.log(`Platform: ${process.platform}`);
 | 🌐 Port Sharing         | Yes (workers share server port)             | No                                            | Not applicable                              |
 
 ---
-
-### 📝 **Summary:**
-- **Use Cluster**  --> **scaling Node.js servers** to use all CPU cores.
-- **Use Child Process** --> **running external programs** or isolating code.
-- **Use Worker Thread** --> **heavy JS computations** without blocking the main thread.
 
 
 ##  **Child Processes**
@@ -2667,3 +2766,7 @@ app.get('/user/profile', authenticateToken, (req, res) => {
 - I also make sure to sanitize data **both at input and output** stages to prevent security vulnerabilities.
 
 ---
+
+
+
+

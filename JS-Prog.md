@@ -3780,15 +3780,52 @@ function isIsomorphic(s, t) {
 ---
 
 ### **Count Number of Unique Elements in an Array**
+
+#### ✅ Example: Using `Set`
+
 ```javascript
-function countUnique(nums) {
-    return new Set(nums).size;
+function countUniqueElements(arr) {
+  const uniqueSet = new Set(arr); // Step 1: Create a Set from the array // A Set automatically removes duplicate values
+  return uniqueSet.size;  // Step 2: Return the size of the Set, which gives us the number of unique elements
 }
+
+// Test cases to demonstrate
+console.log(countUniqueElements([1, 2, 2, 3, 4, 4, 5])); // Output: 5 (unique elements are 1, 2, 3, 4, 5)
+console.log(countUniqueElements([]));                   // Output: 0 (no elements)
+console.log(countUniqueElements([9, 9, 9]));            // Output: 1 (only one unique element, 9)
+
 ```
-**Input**: `[1, 2, 2, 3, 4, 4]`  
-**Output**: `4`
+
+#### 🔍 How it works:
+
+* A `Set` automatically filters out duplicates.
+* `.size` gives the count of unique elements.
 
 ---
+
+#### ✅ Without using `Set`
+
+```javascript
+function countUniqueElements(arr) {
+  const seen = {};    // Step 1: Initialize an empty object `seen` to track elements we've encountered
+  let count = 0;        // Step 2: Initialize a counter `count` to track the number of unique elements
+  for (const num of arr) {  // Step 3: Loop through each number in the array
+    if (!seen[num]) {   // Step 4: If the number hasn't been seen before (i.e., not in `seen` object)
+      seen[num] = true;   // Step 5: Mark the number as seen by adding it to the `seen` object
+      count++;    // Step 6: Increment the count since it's a unique number
+    }
+  }
+  return count;  // Step 7: Return the count of unique elements
+}
+
+// Test cases to demonstrate
+console.log(countUniqueElements([1, 2, 2, 3, 4, 4, 5])); // Output: 5 (unique elements are 1, 2, 3, 4, 5)
+console.log(countUniqueElements([]));                   // Output: 0 (no elements)
+console.log(countUniqueElements([9, 9, 9]));            // Output: 1 (only one unique element, 9)
+
+```
+
+
 
 
 

@@ -2161,7 +2161,24 @@ To avoid unnecessary rerenders:
 
 ### **React Profiler**
 
-🟩 **Answer:**
+In one of my recent projects—a large enterprise dashboard with real-time data updates—I used **React Profiler** 
+
+### 🔹 Step 1: React Profiler Analysis
+
+I started with the **React DevTools Profiler** to track render times and re-renders:
+
+* I noticed that certain components (like charts and tables) were **re-rendering on every state change**, even though their props didn’t change.
+* Using the Profiler’s flame graph, I found a parent component causing **unnecessary re-renders** due to inline functions and state updates.
+
+### 🔹 Optimization:
+
+* I memoized child components using `React.memo` and extracted inline functions with `useCallback`.
+* Introduced `useMemo` to prevent recalculating expensive computations (like filtering large datasets).
+* Reduced global state usage and localized state where applicable to prevent prop drilling and excessive re-renders.
+
+This reduced average component re-renders by **\~60%**, especially under load.
+
+
 
 The **React Profiler** is a built-in tool that helps you measure the **performance** of your React components by tracking their rendering behavior. It shows how long each component takes to render, and why it re-renders (e.g., state or props changes). This tool is part of the **React Developer Tools** extension for browsers.
 

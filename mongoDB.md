@@ -4,7 +4,7 @@
 
 #### 📌 **Basics & Core Concepts** - [MongoDB vs Relational Databases](#mongodb-vs--relational-databases)  - [MongoDB Document](#mongodb-document)  - [Collection](#collection)  - [Data Storage Format in MongoDB](#data-storage-format-in-mongodb)  - [_id Field](#id-field)  - [Supported Data Types](#supported-data-types)  - [BSON vs JSON](#bson-vs-json)
 
-#### 📊 **Querying & Indexing** - [find() vs findOne()](#find-vs-findone)  - [Creating an Index in MongoDB](#creating-an-index-in-mongodb)  - [Indexing Drawbacks](#indexing-drawbacks)  - [$in Vs $all](#difference-between-in-and-all-in-mongodb)  - [Searching in MongoDB](#searching-in-mongodb)  
+#### 📊 **Querying & Indexing** - [find() vs findOne()](#find-vs-findone)  - [Creating an Index in MongoDB](#creating-an-index-in-mongodb)  - [Indexing strategies](#indexing-strategies) - [Indexing Drawbacks](#indexing-drawbacks)  - [$in Vs $all](#difference-between-in-and-all-in-mongodb)  - [Searching in MongoDB](#searching-in-mongodb)  
 
 #### 🔄 **CRUD Operations** - [upsert](#upsert)  - [Update Multiple Documents](#update-multiple-documents-in-mongodb)  - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)  
 
@@ -22,7 +22,7 @@
 
 #### 🚫 **Limitations & Considerations** - [Limitations of MongoDB and How to Overcome Them](#limitations-of-mongodb-and-how-to-overcome-them)
 
-#### 💡 **Real-World Applications**  - [Databases for a Social Media App](#databases-for-a-social-media-app)
+####  **Real-World Applications**  - [Databases for a Social Media App](#databases-for-a-social-media-app)
 
 ---
 
@@ -241,7 +241,7 @@ db.users.createIndex({ email: 1 })  // Ascending index on email
 ##  Aggregations in MongoDB
 
 
-**✅ Answer:**  
+** Answer:**  
 - Aggregation in MongoDB is used to process data and return computed results, similar to SQL `GROUP BY` and other data transformations. 
 - MongoDB provides the **aggregation pipeline** to perform complex transformations and computations.
 - The **aggregation pipeline** is a series of stages that process documents. Each stage transforms the document and passes it to the next stage.
@@ -686,7 +686,7 @@ In **MongoDB**, an **upsert** is a combination of **update** and **insert**:
 
 
 
-### ✅ Example using Native MongoDB Driver
+###  Example using Native MongoDB Driver
 
 ```js
 await db.collection("users").updateOne(
@@ -698,7 +698,7 @@ await db.collection("users").updateOne(
 
 ---
 
-### ✅ `findOneAndUpdate` with Upsert (Mongoose)
+###  `findOneAndUpdate` with Upsert (Mongoose)
 
 If you want to return the **new or updated document**:
 
@@ -721,3 +721,124 @@ await User.updateOne(
   { upsert: true }
 );
 ```
+
+
+##  **Indexing strategies**
+
+---
+
+In my experience working with **NoSQL (MongoDB)** and **SQL databases**, indexing has been a crucial tool to improve query performance—especially in high-traffic enterprise applications.
+
+---
+
+###  **1. Single Field Indexes**
+
+I commonly use **single-field indexes** on:
+
+* **Frequently queried fields** (e.g., `userID`, `email`, `status`)
+* Fields used in **filter conditions** (`find({ status: 'active' })`)
+
+This drastically reduces scan time and improves response speed.
+
+---
+
+###  **2. Compound Indexes**
+
+When multiple fields are queried together, I use **compound indexes**.
+
+Example (MongoDB):
+
+```js
+db.orders.createIndex({ userID: 1, orderDate: -1 })
+```
+
+* Helps optimize queries like:
+  `db.orders.find({ userID: 123 }).sort({ orderDate: -1 })`
+
+---
+
+###  **3. Unique Indexes**
+
+I use **unique indexes** to ensure data integrity (e.g., for `email`, `username`) and speed up exact-match queries.
+
+Example:
+
+```js
+db.users.createIndex({ email: 1 }, { unique: true })
+```
+
+---
+
+###  **4. Text Indexes (for Search)**
+
+In scenarios where we implemented **search features**, I used **text indexes** on fields like `title`, `description`.
+
+```js
+db.products.createIndex({ title: "text", description: "text" })
+```
+
+---
+
+###  **5. Partial Indexes**
+
+For large datasets with frequent filters on specific values (e.g., `status: 'active'`), I used **partial indexes**:
+
+```js
+db.bookings.createIndex({ status: 1 }, { partialFilterExpression: { status: 'active' } })
+```
+
+This saves storage and speeds up targeted queries.
+
+---
+
+###  **6. TTL Indexes (MongoDB)**
+
+Used for auto-deletion of logs, sessions, OTPs:
+
+```js
+db.sessions.createIndex({ createdAt: 1 }, { expireAfterSeconds: 3600 })
+```
+
+Improves performance by reducing dataset size over time.
+
+---
+
+###  **7. Covering Indexes**
+
+When queries only need indexed fields, I ensure the index **covers** the query so MongoDB/SQL doesn’t need to fetch full documents/rows.
+
+Example:
+
+```js
+db.orders.createIndex({ userID: 1, amount: 1 })
+```
+
+Query:
+
+```js
+db.orders.find({ userID: 123 }, { amount: 1, _id: 0 })
+```
+
+---
+
+### 🔍 **Real Use Case**
+
+In an analytics module, I had a dashboard that queried `userID`, `eventType`, and `createdAt`. Initially slow, I added:
+
+```js
+db.events.createIndex({ userID: 1, eventType: 1, createdAt: -1 })
+```
+
+This improved performance from \~1.2s to <200ms.
+
+---
+
+### 📌 **Best Practices I Follow**
+
+* Regularly monitor **slow query logs** or use **MongoDB Atlas Profiler**.
+* Avoid over-indexing—indexes increase write cost and storage.
+* Rebuild indexes when data shape or access pattern changes.
+
+---
+
+Would you like a SQL-specific or MongoDB-specific version of this answer too?

@@ -699,21 +699,6 @@ type PersonKeys = keyof Person;
   * `T` is a placeholder for any type.
   * Calling `identity("Hello")` infers `T` as `string`.
 
-* **Real-World Use Case**:
-  Filtering an array of objects by key and value:
-
-  ```ts
-  function filterByKey<T, K extends keyof T>(
-    items: T[],
-    key: K,
-    value: T[K]
-  ): T[] {
-    return items.filter(item => item[key] === value);
-  }
-  ```
-
-  * Works for any object type: `User[]`, `Product[]`, etc.
-  * Ensures type correctness during filtering.
 
 * **Use in Interfaces & Classes**:
 
@@ -743,7 +728,7 @@ type PersonKeys = keyof Person;
 
 ###  **Use Case: Creating a Type-Safe Utility for Array Filtering**
 
-Suppose you're working with different types of data (e.g., `User[]`, `Product[]`, etc.) and want to write a **reusable filter function** that works for any array of objects.
+On working with different types of data (e.g., `User[]`, `Product[]`, etc.) and want to write a **reusable filter function** that works for any array of objects.
 
 Instead of duplicating code for each type, you can use **generics** to keep it type-safe and flexible.
 
@@ -761,7 +746,7 @@ function filterByKey<T, K extends keyof T>(
 }
 ```
 
-### 🧪 **Usage with Different Types**
+###  **Usage with Different Types**
 
 ```ts
 interface User {

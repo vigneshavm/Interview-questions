@@ -3938,30 +3938,107 @@ function groupAnagrams(strs) {
 
 ### Memoize
 
-```js
+
+---
+
+## ✅ 1. Basic Version (using `Object` as cache)
+
+```javascript
 function memoizeAdd() {
-  const cache = {};  // Step 1: Create a local cache object
+  const cache = {};
 
-  return function(a, b) {  // Step 2: Return a closure (inner function) that has access to `cache`
-    const key = `${a},${b}`;  // Step 3: Build a unique key for the input arguments
-
-    if (cache[key] !== undefined) {  // Step 4: Check if this key already exists in the cache
-      console.log('Fetching from cache:', key);
-      return cache[key];  // Step 5: If yes, return the cached result
-    } else {
-      console.log('Calculating result for:', key);
-      const result = a + b;  // Step 6: Calculate the result
-      cache[key] = result;   // Step 7: Store it in the cache (set)
-      return result;         // Step 8: Return the result
+  return function(a, b) {
+    const key = `${a},${b}`;
+    if (cache[key] !== undefined) {
+      return cache[key];
     }
+    const result = a + b;
+    cache[key] = result;
+    return result;
+  };
+}
+```
+
+### 🔹 Pros:
+
+* Simple and readable.
+* Works fine for small, string-keyed arguments.
+
+### 🔹 Cons:
+
+* Converts arguments to strings – might cause **key collisions** (e.g., `1 + "2"` vs `"1" + 2`).
+* Only works well with **primitive arguments**.
+* Can’t handle objects or arrays as keys.
+
+---
+
+## ✅ 2. Optimized Version (using `Map`)
+
+```javascript
+function memoizeAdd() {
+  const cache = new Map();
+
+  return function(a, b) {
+    const key = `${a},${b}`; // Still using a string key here
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    const result = a + b;
+    cache.set(key, result);
+    return result;
+  };
+}
+```
+
+> Slightly better than using `{}`: `Map` has no prototype collisions and is optimized for key-based lookups.
+
+---
+
+## ✅ 3. Fully Generalized Optimized Memoization (for **any function**, any arguments)
+
+```javascript
+function memoize(fn) {
+  const cache = new Map();
+
+  return function(...args) {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    const result = fn(...args);
+    cache.set(key, result);
+    return result;
   };
 }
 
-
-
-const add = memoizeAdd();  // Setup happens here
-console.log(add(2, 3));     // Calculates and stores cache["2,3"] = 5
-console.log(add(2, 3));     // Retrieves cache["2,3"] = 5 (no new calculation)
+// Usage:
+const add = memoize((a, b) => a + b);
+console.log(add(2, 3)); // Computes
+console.log(add(2, 3)); // Cached
 ```
+
+### 🔹 Advantages:
+
+* Works for **any number and type of arguments**.
+* Avoids polluting the global scope.
+* Uses `Map`, which performs better for many lookups.
+
+### 🔹 Trade-off:
+
+* `JSON.stringify(args)` can be **slow for large or nested objects**, and it’s not always reliable (e.g., functions or circular references).
+
+---
+
+## ⚖️ Summary Comparison
+
+| Feature                   | Object `{}`         | `Map`                                    | `Map + JSON.stringify`                 |
+| ------------------------- | ------------------- | ---------------------------------------- | -------------------------------------- |
+| Key type support          | Strings only        | Any value (but still using strings here) | Any argument types (via serialization) |
+| Performance               | Fast for small sets | Optimized for lookup                     | Slightly slower (stringify)            |
+| Suitable for primitives?  | ✅                   | ✅                                        | ✅                                      |
+| Suitable for complex args | ❌                   | ❌ (unless you tweak)                     | ✅                                      |
+| Risk of key collisions    | Yes                 | Less likely                              | Very low                               |
+
+---
 
 

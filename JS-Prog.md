@@ -57,12 +57,6 @@
 
 ### Find Maximum in an Array
 
-**No Built-ins**
-
-- Initialize `max` with the first element of the array.
-- Loop through the rest of the elements.
-- If a number is greater than the current `max`, update `max`.
-- Return `max` at the end.
 
 **Example**
 ```ts
@@ -73,20 +67,21 @@ Output : 99
 
 ```ts
 function findMaxManual(arr: number[]): number {
-  if (arr.length === 0) {
-    throw new Error("Array is empty");
+  
+  if (arr.length === 0) {               // Step 1: Check if the array is empty
+    throw new Error("Array is empty");  // Handle edge case by throwing an error
   }
-
-  let max: number = arr[0];
-
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] > max) {
+  let max: number = arr[0];   // Step 2: Initialize the maximum value with the first element of the array
+  
+  for (let i = 1; i < arr.length; i++) { // Step 3: Loop through the rest of the array starting from index 1
+    if (arr[i] > max) {  // Step 4: If the current element is greater than max, update max
       max = arr[i];
     }
   }
-
-  return max;
+  
+  return max;     // Step 5: After the loop, return the maximum value found
 }
+
 ```
 
 **Using Built-ins**
@@ -117,12 +112,7 @@ Second Largest: 20
 
 **Using Predefined Functions (`sort()`, `filter()`, etc.)**
 
-**Pseudocode / Algorithm**
-```
-1. Sort the array in descending order
-2. Filter out duplicates
-3. Return the second element (index 1) from the result
-```
+
 
 **Code Example**
 ```js
@@ -144,35 +134,31 @@ console.log(secondLargestUsingSort([10, 5, 20, 20, 8, 25]));
 
 **Without Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Initialize first = -Infinity, second = -Infinity
-2. Loop through each element:
-   a. If element > first:
-       - second = first
-       - first = element
-   b. Else if element > second AND element != first:
-       - second = element
-3. Return second
-```
 
 **Code Example**
 ```js
 function secondLargestManual(arr) {
+  // Step 1: Initialize first and second with the lowest possible value
   let first = -Infinity;
   let second = -Infinity;
 
+  // Step 2: Loop through the array
   for (let i = 0; i < arr.length; i++) {
+    // Step 3: If current element is greater than first, update both first and second
     if (arr[i] > first) {
-      second = first;
-      first = arr[i];
-    } else if (arr[i] > second && arr[i] !== first) {
-      second = arr[i];
+      second = first;   // Move the current first to second
+      first = arr[i];   // Update first with the new maximum
+    } 
+    // Step 4: If current element is not equal to first, but greater than second
+    else if (arr[i] > second && arr[i] !== first) {
+      second = arr[i];  // Update second
     }
   }
 
+  // Step 5: Return the second largest value
   return second;
 }
+
 
 console.log(secondLargestManual([10, 5, 20, 20, 8, 25]));
 ```
@@ -203,36 +189,52 @@ console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2)); // Output: 5
 
 ```js
 function findKthLargest(nums, k) {
-    const target = nums.length - k;
+  // Step 1: The target index is the kth largest element's index in sorted order.
+  // We need to find the element that corresponds to the target index in the partitioned array.
+  const target = nums.length - k;
 
-    function quickSelect(left, right) {
-        const pivotIndex = partition(left, right);
+  // Step 2: Recursive quickSelect function to find the kth largest element
+  function quickSelect(left, right) {
+    // Partition the array and get the pivot index
+    const pivotIndex = partition(left, right);
 
-        if (pivotIndex === target) {
-            return nums[pivotIndex];
-        } else if (pivotIndex < target) {
-            return quickSelect(pivotIndex + 1, right);
-        } else {
-            return quickSelect(left, pivotIndex - 1);
-        }
+    // Step 3: If the pivot index matches the target, we've found the kth largest element
+    if (pivotIndex === target) {
+      return nums[pivotIndex];
+    } 
+    // Step 4: If the pivot index is smaller than the target, search the right half
+    else if (pivotIndex < target) {
+      return quickSelect(pivotIndex + 1, right);
+    } 
+    // Step 5: If the pivot index is greater than the target, search the left half
+    else {
+      return quickSelect(left, pivotIndex - 1);
     }
+  }
 
-    function partition(left, right) {
-        const pivot = nums[right];
-        let i = left;
+  // Step 6: Partition function to perform the partitioning process (like in QuickSort)
+  function partition(left, right) {
+    const pivot = nums[right]; // Choose the rightmost element as the pivot
+    let i = left; // Initialize the pointer for the smaller element
 
-        for (let j = left; j < right; j++) {
-            if (nums[j] <= pivot) {
-                [nums[i], nums[j]] = [nums[j], nums[i]];
-                i++;
-            }
-        }
-        [nums[i], nums[right]] = [nums[right], nums[i]];
-        return i;
+    // Step 7: Rearranging elements so that elements smaller than pivot are on the left, larger on the right
+    for (let j = left; j < right; j++) {
+      if (nums[j] <= pivot) { // If current element is smaller than or equal to pivot
+        [nums[i], nums[j]] = [nums[j], nums[i]]; // Swap elements
+        i++; // Increment the smaller element pointer
+      }
     }
+    // Step 8: Place the pivot in the correct sorted position
+    [nums[i], nums[right]] = [nums[right], nums[i]];
 
-    return quickSelect(0, nums.length - 1);
+    // Step 9: Return the index of the pivot after partitioning
+    return i;
+  }
+
+  // Step 10: Call quickSelect to find the kth largest element
+  return quickSelect(0, nums.length - 1);
 }
+
 ```
 
 ---
@@ -252,26 +254,26 @@ function findKthLargest(nums, k) {
 ---
 
 **Using Predefined Functions (e.g., `includes`)**
-**Pseudocode / Algorithm**
-```
-1. Initialize empty result array
-2. Loop through each element in the input array
-3. If element is not in result array (using includes)
-    - Add it to result array
-4. Return result array
-```
 
 **Code Example**
 ```js
 function removeDuplicates(arr) {
+  // Step 1: Initialize an empty array `result` to store unique elements
   let result = [];
+
+  // Step 2: Iterate over each item in the input array `arr`
   arr.forEach(item => {
+    // Step 3: Check if the item is already in the `result` array
     if (!result.includes(item)) {
+      // Step 4: If the item is not in the result, add it to `result`
       result.push(item);
     }
   });
+
+  // Step 5: Return the `result` array, which contains only unique elements
   return result;
 }
+
 
 console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
 ```
@@ -284,35 +286,38 @@ console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
 ---
 
 **Without Using Predefined Functions**
-**Pseudocode / Algorithm**
-```
-1. Initialize an empty array called result
-2. Loop i from 0 to array.length
-   a. Initialize found as false
-   b. Loop j from 0 to result.length
-      i. If arr[i] == result[j], set found = true and break
-   c. If found == false, push arr[i] to result
-3. Return result
-```
+
 
 **Code Example**
 ```js
 function removeDuplicatesManual(arr) {
+  // Step 1: Initialize an empty array `result` to store unique elements
   let result = [];
+
+  // Step 2: Iterate through the input array `arr` with index `i`
   for (let i = 0; i < arr.length; i++) {
+    // Step 3: Initialize a flag `found` to track whether the current item is already in `result`
     let found = false;
+
+    // Step 4: Loop through the `result` array with index `j` to check for duplicates
     for (let j = 0; j < result.length; j++) {
+      // Step 5: If the current item already exists in `result`, set `found` to true and break out of the loop
       if (arr[i] === result[j]) {
         found = true;
         break;
       }
     }
+
+    // Step 6: If the item was not found in `result`, push it to the `result` array
     if (!found) {
       result.push(arr[i]);
     }
   }
+
+  // Step 7: Return the `result` array containing only unique elements
   return result;
 }
+
 
 console.log(removeDuplicatesManual([1, 2, 2, 3, 1, 4]));
 ```
@@ -375,27 +380,27 @@ Expected output:
 
 **Using Predefined Functions (`.filter()`, `.some()`)**
 
-**Pseudocode / Algorithm**
-```
-1. Create empty result array
-2. Loop through each object in original array
-3. For each object:
-   a. Check if result array already contains object with same id (using some)
-   b. If not, push it to result array
-4. Return result array
-```
+
 
 **Code Example**
 ```js
 function removeDuplicateObjects(arr) {
+  // Step 1: Initialize an empty array `result` to store unique objects
   const result = [];
+
+  // Step 2: Iterate through the input array `arr` with `forEach`
   arr.forEach(obj => {
+    // Step 3: Use `some()` to check if an object with the same `id` already exists in `result`
     if (!result.some(item => item.id === obj.id)) {
+      // Step 4: If no object with the same `id` is found, push the current object to `result`
       result.push(obj);
     }
   });
+
+  // Step 5: Return the `result` array containing unique objects by `id`
   return result;
 }
+
 
 const input = [
   { id: 1, name: 'A' },
@@ -420,37 +425,38 @@ console.log(removeDuplicateObjects(input));
 
 **Without Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Create empty array called result
-2. Loop i from 0 to arr.length
-   a. Set found = false
-   b. Loop j from 0 to result.length
-      i. If arr[i].id == result[j].id
-         - found = true, break
-   c. If found == false
-      - Push arr[i] into result
-3. Return result
-```
+
 
 **Code Example**
 ```js
 function removeDuplicateObjectsManual(arr) {
+  // Step 1: Initialize an empty array `result` to store unique objects
   let result = [];
+
+  // Step 2: Iterate over each object in the input array `arr`
   for (let i = 0; i < arr.length; i++) {
+    // Step 3: Initialize a flag `exists` to track if the object already exists in the `result`
     let exists = false;
+
+    // Step 4: Loop through the `result` array to check for duplicates by `id`
     for (let j = 0; j < result.length; j++) {
+      // Step 5: If an object with the same `id` exists in `result`, set `exists` to true and break out of the loop
       if (arr[i].id === result[j].id) {
         exists = true;
         break;
       }
     }
+
+    // Step 6: If no duplicate object was found, push the current object to the `result`
     if (!exists) {
       result.push(arr[i]);
     }
   }
+
+  // Step 7: Return the `result` array containing only unique objects
   return result;
 }
+
 
 const input = [
   { id: 1, name: 'A' },
@@ -656,25 +662,30 @@ Example: `"madam"`, `"racecar"` are palindromes.
 
 **Using Predefined Functions (`split()`, `reverse()`, `join()`)**
 
-**Pseudocode / Algorithm**
-```
-1. Convert string to lowercase (optional, to ignore case)
-2. Reverse the string using split → reverse → join
-3. Compare original string with reversed string
-4. If equal, return true; else, false
-```
 
 **Code Example**
 
 ```javascript
 function isPalindrome(s) {
-    s = s.toLowerCase().replace(/[^a-z0-9]/g, '');
-    let left = 0, right = s.length - 1;
-    while (left < right) {
-        if (s[left++] !== s[right--]) return false;
+  // Step 1: Normalize the string by converting it to lowercase and removing non-alphanumeric characters
+  s = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  // Step 2: Initialize two pointers: one at the beginning (left) and one at the end (right) of the string
+  let left = 0, right = s.length - 1;
+
+  // Step 3: Iterate while the left pointer is less than the right pointer
+  while (left < right) {
+    // Step 4: Compare the characters at the left and right pointers
+    if (s[left++] !== s[right--]) {
+      // If they don't match, it's not a palindrome, so return false
+      return false;
     }
-    return true;
+  }
+
+  // Step 5: If we finish the loop without returning false, the string is a palindrome
+  return true;
 }
+
 ```
 
  **Example**: `isPalindrome("A man, a plan, a canal: Panama")` → `true`
@@ -708,45 +719,45 @@ false
 
 **Without Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Convert string to lowercase
-2. Initialize two pointers:
-   - left = 0
-   - right = length - 1
-3. While left < right:
-   a. If characters at left and right are different, return false
-   b. Move left forward, right backward
-4. If loop completes, return true
-```
+
 
 **Code Example**
 ```js
 function isPalindromeManual(str) {
+  // Step 1: Initialize an empty string to store the manually converted lowercase string
   let lowerStr = '';
-  // Manual lowercase conversion (optional)
+
+  // Step 2: Manually convert the string to lowercase
+  // Loop through each character in the string
   for (let i = 0; i < str.length; i++) {
-    const code = str.charCodeAt(i);
-    if (code >= 65 && code <= 90) {
-      lowerStr += String.fromCharCode(code + 32); // A-Z to a-z
+    const code = str.charCodeAt(i);  // Get the Unicode of the character
+    if (code >= 65 && code <= 90) { // Check if the character is an uppercase letter (A-Z)
+      // Convert uppercase to lowercase by adding 32 to the char code (A -> a, B -> b, etc.)
+      lowerStr += String.fromCharCode(code + 32);
     } else {
+      // If the character is already lowercase or non-alphabetic, just add it as is
       lowerStr += str[i];
     }
   }
 
+  // Step 3: Initialize two pointers: one at the beginning (left) and one at the end (right)
   let left = 0;
   let right = lowerStr.length - 1;
 
+  // Step 4: Compare characters from both ends of the string, moving inward
   while (left < right) {
     if (lowerStr[left] !== lowerStr[right]) {
+      // If characters don't match, it's not a palindrome
       return false;
     }
-    left++;
-    right--;
+    left++;  // Move the left pointer towards the center
+    right--; // Move the right pointer towards the center
   }
 
+  // Step 5: If we complete the loop without finding any mismatch, it's a palindrome
   return true;
 }
+
 
 console.log(isPalindromeManual("Racecar"));  // true
 console.log(isPalindromeManual("Hello"));    // false
@@ -778,26 +789,25 @@ Expected Output:
 
 **Using Predefined Functions (`slice()`, `push()`)**
 
-**Pseudocode / Algorithm**
-```
-1. Create empty result array
-2. Loop i from 0 to array.length in steps of chunk size
-   a. Use slice(i, i + size) to get a subarray
-   b. Push that subarray into result
-3. Return result
-```
+
 
 **Code Example**
 ```js
 function chunkArray(arr, size) {
-  const result = [];
+  const result = [];  // Initialize an empty array to store the chunks
+
+  // Iterate through the array with steps of 'size' to break it into chunks
   for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size)); // using slice
+    // Slice the array from index 'i' to 'i + size', creating a new chunk
+    result.push(arr.slice(i, i + size));  // Push the chunk to the result array
   }
-  return result;
+
+  return result;  // Return the array containing all chunks
 }
 
+// Example usage:
 console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3));
+
 ```
 
  **Output:**
@@ -809,43 +819,36 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3));
 
 **Without Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Create empty result array
-2. Create temporary empty chunk array
-3. Loop through each element in input array
-   a. Add current element to chunk
-   b. If chunk length equals size:
-       - Push chunk to result
-       - Reset chunk to empty array
-4. After loop, if chunk is not empty, push it to result
-5. Return result
-```
+
 
 **Code Example**
 ```js
 function chunkArrayManual(arr, size) {
-  let result = [];
-  let chunk = [];
-  let chunkCount = 0;
+  let result = [];       // Array to store the resulting chunks
+  let chunk = [];        // Temporary array to store the current chunk
+  let chunkCount = 0;    // Counter to track the number of elements in the current chunk
 
+  // Iterate through the original array
   for (let i = 0; i < arr.length; i++) {
-    chunk[chunkCount] = arr[i];
-    chunkCount++;
+    chunk[chunkCount] = arr[i];  // Add the current element to the chunk
+    chunkCount++;                // Increment the chunk counter
 
+    // If the chunk has reached the desired size, push it to the result array
     if (chunkCount === size) {
-      result[result.length] = chunk;
-      chunk = [];
-      chunkCount = 0;
+      result[result.length] = chunk;  // Add the chunk to the result array
+      chunk = [];                     // Reset the chunk array for the next group
+      chunkCount = 0;                 // Reset the chunk counter for the next group
     }
   }
 
+  // If there are any leftover elements in the chunk (less than the specified size)
   if (chunkCount > 0) {
-    result[result.length] = chunk;
+    result[result.length] = chunk;  // Push the last chunk to the result array
   }
 
-  return result;
+  return result;  // Return the array containing all chunks
 }
+
 
 console.log(chunkArrayManual([1, 2, 3, 4, 5, 6, 7], 3));
 ```
@@ -895,19 +898,16 @@ function reverseString(str: string): string {
 
 **Using Predefined Functions (`split()`, `reverse()`, `join()`)**
 
-**Pseudocode / Algorithm**
-```
-1. Split the sentence into an array of words using space
-2. Reverse the array
-3. Join the words back into a sentence using space
-4. Return the result
-```
+
 
 **Code Example**
 ```js
 function reverseWords(sentence) {
-  return sentence.split(' ').reverse().join(' ');
+  return sentence.split(' ')    // Split the sentence into an array of words
+    .reverse()                  // Reverse the array of words
+    .join(' ');                 // Join the reversed array back into a sentence
 }
+
 
 console.log(reverseWords("Hello world this is JavaScript"));
 ```
@@ -921,17 +921,6 @@ JavaScript is this world Hello
 
 **Without Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Create an empty array to hold words
-2. Traverse the sentence character by character
-   a. Build a word character by character
-   b. On space or end of string, push word to array and reset it
-3. After collecting all words, reverse the word array manually:
-   a. Swap elements from start and end using loop
-4. Concatenate the reversed words with spaces
-5. Return final string
-```
 
 **Code Example**
 ```js
@@ -1000,26 +989,36 @@ JavaScript is this world Hello
 
 ### **Count Vowels Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Convert the string to lowercase
-2. Initialize vowel count = 0
-3. Loop through each character using split()
-   a. If the character is in ['a', 'e', 'i', 'o', 'u'], increase count
-4. Return vowel count
-```
+
 
 **Code Example**
 ```js
 function countVowels(str) {
-  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  const vowels = ['a', 'e', 'i', 'o', 'u'];  // Array of vowels
   return str
-    .toLowerCase()
-    .split('')
-    .filter(char => vowels.includes(char)).length;
+    .toLowerCase()                      // Convert the string to lowercase
+    .split('')                           // Split the string into an array of characters
+    .filter(char => vowels.includes(char)) // Filter out only the vowels
+    .length;                             // Return the count of vowels
 }
 
+
 console.log(countVowels("Hello World"));
+```
+
+```js
+function countVowels(str) {
+  const vowels = 'aeiou';
+  let count = 0;
+  
+  for (let char of str.toLowerCase()) {
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+  
+  return count;
+}
 ```
 
  **Output:**
@@ -1031,15 +1030,7 @@ console.log(countVowels("Hello World"));
 
 ### **Count Vowels Without Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Create a counter = 0
-2. Loop through the string character by character
-3. Convert each character to lowercase manually
-4. Compare character with vowels using if or switch
-5. If match found, increment count
-6. Return count
-```
+
 
 **Code Example**
 ```js
@@ -1185,35 +1176,29 @@ console.log(firstUniqChar('ceetcode'));
 **Using Predefined Functions**  
 (using `.split()`, `.forEach()`, `.charAt()`, `.toLowerCase()`)
 
-**Pseudocode / Algorithm**
-```
-1. Convert string to lowercase
-2. Create empty object for frequency counts
-3. Split string into characters and count each one
-4. Loop through string again:
-   a. Return the first char whose count is 1
-```
+
 
 **Code Example**
 ```js
 function firstNonRepeatingChar(str) {
-  const freq = {};
-  const lower = str.toLowerCase();
+  const freq = {};                    // Object to store the frequency of characters
+  const lower = str.toLowerCase();    // Convert string to lowercase for case-insensitive comparison
 
-  // Count frequency
+  // Count frequency of each character
   lower.split('').forEach(char => {
-    freq[char] = (freq[char] | 0) + 1;
+    freq[char] = (freq[char] | 0) + 1; // Increment count for each character
   });
 
-  // Find first non-repeating character
+  // Find the first non-repeating character in original case
   for (let i = 0; i < lower.length; i++) {
-    if (freq[lower[i]] === 1) {
-      return str[i]; // return original-case char
+    if (freq[lower[i]] === 1) {        // If the character appears only once
+      return str[i];                   // Return the character in its original case
     }
   }
 
-  return null; // If none found
+  return null;                         // Return null if no non-repeating character is found
 }
+
 
 console.log(firstNonRepeatingChar("swiss"));   // 'w'
 console.log(firstNonRepeatingChar("level"));   // 'v'
@@ -1229,17 +1214,7 @@ console.log(firstNonRepeatingChar("level"));   // 'v'
 
 **Without Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Create an empty frequency object
-2. Loop through string:
-   a. Convert each character to lowercase manually
-   b. Count frequency
-3. Loop again through string:
-   a. Convert to lowercase again
-   b. If frequency is 1, return original character
-4. If no non-repeating character, return null
-```
+
 
 **Code Example**
 ```js
@@ -1534,25 +1509,18 @@ console.log(powerRecursive(2, 4)); // Output: 16
 
 **Using Predefined Functions (`forEach()`, object access, etc.)**
 
-**Pseudocode / Algorithm**
-```
-1. Create an empty object to hold counts
-2. Loop through the array using forEach
-3. For each element:
-   a. If it exists in object, increment
-   b. Else, set to 1
-4. Return the object
-```
+
 
 **Code Example**
 ```js
 function countArrayFreq(arr) {
-  const freq = {};
+  const freq = {};  // Object to store frequency of items
   arr.forEach(item => {
-    freq[item] = (freq[item] | 0) + 1;
+    freq[item] = (freq[item] | 0) + 1;  // Increment frequency count for the item
   });
-  return freq;
+  return freq;  // Return the frequency object
 }
+
 
 console.log(countArrayFreq([1, 2, 2, 3, 1, 4, 2]));
 ```
@@ -1566,33 +1534,26 @@ console.log(countArrayFreq([1, 2, 2, 3, 1, 4, 2]));
 
 **Without Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Create an empty object for frequency
-2. Use a for loop to go through each element of the array
-3. For each element:
-   a. If it exists in the object, increase count
-   b. Else, set to 1
-4. Return the object
-```
 
 **Code Example**
 ```js
 function countArrayFreqManual(arr) {
-  const freq = {};
+  const freq = {};  // Object to store frequencies of items
 
-  for (let i = 0; i < arr.length; i++) {
-    const item = arr[i];
+  for (let i = 0; i < arr.length; i++) {  // Loop through each item in the array
+    const item = arr[i];  // Get the current item
 
+    // Check if the item is already in the freq object
     if (freq[item]) {
-      freq[item] = freq[item] + 1;
+      freq[item] = freq[item] + 1;  // If it exists, increment the count
     } else {
-      freq[item] = 1;
+      freq[item] = 1;  // If it doesn't exist, set the count to 1
     }
   }
 
-  return freq;
+  return freq;  // Return the frequency object
 }
+
 
 console.log(countArrayFreqManual([1, 2, 2, 3, 1, 4, 2]));
 ```
@@ -1614,26 +1575,18 @@ console.log(countArrayFreqManual([1, 2, 2, 3, 1, 4, 2]));
 
 **Using Predefined Functions (`toLowerCase()`, `split()`, `forEach()` / `reduce()` / object access)**
 
-**Pseudocode / Algorithm**
-```
-1. Convert string to lowercase
-2. Create an empty object for counts
-3. Split string into characters
-4. Loop through characters using forEach
-   a. If char exists in object, increment it
-   b. Else, set it to 1
-5. Return the object
-```
+
 
 **Code Example**
 ```js
 function charFrequency(str) {
-  const freq = {};
+  const freq = {}; // Initialize an empty object to store frequencies
   str.toLowerCase().split('').forEach(char => {
-    freq[char] = (freq[char] | 0) + 1;
+    freq[char] = (freq[char] | 0) + 1; // Bitwise OR handles undefined values as 0
   });
   return freq;
 }
+
 
 console.log(charFrequency("hello"));
 ```
@@ -1647,15 +1600,6 @@ console.log(charFrequency("hello"));
 
 **Without Using Predefined Functions**
 
-**Pseudocode / Algorithm**
-```
-1. Create an empty object for character counts
-2. Loop through each character of the string
-3. Convert to lowercase manually
-4. If character exists in object, increment it
-   Else, set to 1
-5. Return the object
-```
 
 **Code Example**
 ```js
@@ -3845,15 +3789,6 @@ console.log(countUniqueElements([9, 9, 9]));            // Output: 1 (only one u
 ### **Anagram Using Predefined Functions**
 (using `.split()`, `.sort()`, `.join()`, `.toLowerCase()`)
 
-**Pseudocode / Algorithm**
-```
-1. Convert both strings to lowercase
-2. Split each string into array of characters
-3. Sort both arrays
-4. Join the sorted arrays back into strings
-5. Compare the two resulting strings
-```
-
 **Code Example**
 ```js
 function isAnagram(str1, str2) {
@@ -3876,16 +3811,6 @@ false
 ### **Anagram Without Using Predefined Functions**
 (manual comparison using frequency count)
 
-**Pseudocode / Algorithm**
-```
-1. If lengths of the strings are different → not anagrams
-2. Convert both to lowercase manually
-3. Create frequency counters (objects) for each string
-4. Loop through each string and count characters
-5. Compare both frequency maps:
-   - If all keys and values match → anagram
-   - Else → not anagram
-```
 
 **Code Example**
 ```js

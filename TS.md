@@ -1,12 +1,14 @@
 
-**Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)  • [Type Inference](#type-inference)  • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  • [Type Narrowing](#type-narrowing)  
+**Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)   • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  
+
+**Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  
 
 
 **Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#Union-and-Intersection-Types)  
 
 
 
-**Advanced Types** • [Template Literal Types](#template-literal-types)  • [`keyof` and `typeof` Operators](#keyof-vs-typeof)  • [Conditional Types](#conditional-types)  • [`readonly` vs `const`](#readonly-vs-const)  
+**Advanced Types** • [Template Literal Types](#template-literal-types)  • [`keyof` and `typeof` Operators](#keyof-vs-typeof)  • [Conditional Types](#conditional-types)  • [`readonly` vs `const`](#readonly-vs-const)   
 
 
 **Generics** • [Generic Functions and Classes](#generics)  • [Constraining Generics with `extends`](#constraining-generics-with-extends)  
@@ -1508,3 +1510,54 @@ obj = null; // Now eligible for garbage collection
 - **Use `Set`**: when you need a list of **unique values** and want to **iterate or check size**.
 - **Use `WeakSet`**: when you want to **track objects without preventing their garbage collection**, such as for **caching or tracking object state** internally.
 
+
+
+## **Type Checking**
+To check the data type of a variable, you can use the `typeof` operator for primitives and `instanceof` for objects.
+
+**Example:**
+```javascript
+let num = 5;
+console.log(typeof num); // "number"
+
+let obj = {};
+console.log(typeof obj); // "object"
+console.log(obj instanceof Object); // true
+```
+
+---
+
+## **Type Coercion in Operations**
+
+
+
+- **Type coercion** refers to JavaScript's automatic conversion of one data type to another when performing operations. This can lead to unexpected results, especially when using operators like `+`.
+
+  **Examples**:
+  
+  - **`[] + []`**:
+    - Both arrays are empty, and when the `+` operator is used, JavaScript coerces them to strings, resulting in an empty string.
+    - **Result**: `""` (empty string)
+
+    ```javascript
+    console.log([] + []); // ""
+    ```
+
+  - **`{} + []`**:
+    - The **`{}`** is interpreted as a **block of code** (empty block), and the `+ []` is treated as an attempt to coerce the empty array to a number (which is `0`).
+    - **Result**: `0` (a number)
+
+    ```javascript
+    console.log({} + []); // 0
+    ```
+
+    To avoid this confusion, it’s recommended to wrap the object in parentheses:
+
+    ```javascript
+    console.log({} + []); // 0
+    console.log(({}) + []); // "[object Object]"
+    ```
+
+  **Key Takeaway**: JavaScript applies type coercion in ways that can lead to unexpected results, particularly when the operands are complex data types like objects and arrays.
+
+---

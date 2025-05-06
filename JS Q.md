@@ -639,31 +639,6 @@ Both approaches allow you to catch and handle errors in a clean and structured w
 
 
 
-##  Normal Function vs Arrow Function
-
-| Aspect              | Normal Function                                   | Arrow Function                              |
-|---------------------|--------------------------------------------------|---------------------------------------------|
-| `this` Binding       | Dynamic (`this` depends on call)                 | Lexical (`this` inherits from parent scope) |
-| `arguments` Object   | ✅ Available                                      | ❌ Not available                             |
-| Constructor Use      | ✅ Yes                                            | ❌ No                                        |
-| Hoisting             | ✅ Fully hoisted (if declaration)                | ❌ Not hoisted                               |
-| Usage as Methods     | ✅ Recommended                                   | ⚠️ Not ideal for object methods              |
-
-```js
-function normalFunc() {
-  console.log(this);
-  console.log(arguments);
-}
-
-const arrowFunc = () => {
-  console.log(this);
-  // console.log(arguments); // ❌ Error
-};
-```
-
----
-
-
 
 ##  Shallow vs Deep Copy
 
@@ -1106,7 +1081,7 @@ The primary difference between declaration and expression lies in hoisting, whil
 
 ---
 
-#### **Arrow Functions**
+## **Arrow Functions**
 
 
  Arrow functions, introduced in ES6, offer a more concise syntax for writing functions and have the key difference of **lexical scoping** for `this`. Unlike regular functions, they do not have their own `this`, `arguments`, `super`, or `new.target`.
@@ -1134,6 +1109,31 @@ obj.greet(); // Outputs: Alice
 ```
 
 ---
+##  Normal Function vs Arrow Function
+
+| Aspect              | Normal Function                                   | Arrow Function                              |
+|---------------------|--------------------------------------------------|---------------------------------------------|
+| `this` Binding       | Dynamic (`this` depends on call)                 | Lexical (`this` inherits from parent scope) |
+| `arguments` Object   | ✅ Available                                      | ❌ Not available                             |
+| Constructor Use      | ✅ Yes                                            | ❌ No                                        |
+| Hoisting             | ✅ Fully hoisted (if declaration)                | ❌ Not hoisted                               |
+| Usage as Methods     | ✅ Recommended                                   | ⚠️ Not ideal for object methods              |
+
+```js
+function normalFunc() {
+  console.log(this);
+  console.log(arguments);
+}
+
+const arrowFunc = () => {
+  console.log(this);
+  // console.log(arguments); // ❌ Error
+};
+```
+
+---
+
+
 
 #### **Anonymous Functions - Use Cases**
 

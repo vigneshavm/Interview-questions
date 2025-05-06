@@ -7,7 +7,7 @@
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) 
 | **Routing**          | •  [React Router](#react-router) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
-| **React Others**          | •    [Refs ](#refs-in-react) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux-Saga](#Redux-Saga) |
+| **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux-Saga](#Redux-Saga) |
 | **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
@@ -2117,6 +2117,83 @@ Refs are **ideal for values that don’t need to trigger a re-render**. Using st
 | `createRef()`          | Class Component           |  Yes                       |
 
 ---
+
+
+
+
+### forwardRef
+---
+
+* **What is `forwardRef` in React?**
+
+  * `forwardRef` is a higher-order component (HOC) that allows you to forward a **ref** from a parent component to a child component.
+  * By default, refs don't get passed to functional components, but `forwardRef` enables this functionality.
+
+* **Use Cases:**
+
+  * **Access to DOM elements:** When a parent component needs to directly access or manipulate a DOM element inside a child component.
+  * **Reusable Components:** Allowing parent components to interact with the child’s DOM elements (e.g., focusing an input field, managing focus or scroll position).
+
+* **Basic Syntax:**
+
+  ```js
+  const MyComponent = React.forwardRef((props, ref) => {
+    return <div ref={ref}>{props.children}</div>;
+  });
+  ```
+
+  * `forwardRef` takes a function with `props` and `ref` as arguments.
+  * The `ref` is attached to the DOM element (like `<div />` in this case).
+
+* **Example:**
+
+  ```js
+  import React, { useRef } from 'react';
+
+  // Child component using forwardRef
+  const CustomInput = React.forwardRef((props, ref) => {
+    return <input ref={ref} {...props} />;
+  });
+
+  // Parent component
+  const ParentComponent = () => {
+    const inputRef = useRef(null);
+
+    const handleClick = () => {
+      // Access and focus the input element
+      inputRef.current.focus();
+    };
+
+    return (
+      <div>
+        <CustomInput ref={inputRef} />
+        <button onClick={handleClick}>Focus Input</button>
+      </div>
+    );
+  };
+
+  export default ParentComponent;
+  ```
+
+  * In the above example, the ref is forwarded from `ParentComponent` to the `CustomInput` component, allowing the parent to interact with the `input` field.
+
+* **When to Use `forwardRef`:**
+
+  * When you need to pass a **ref** to a child component to access a **DOM element**.
+  * When you are creating **wrapper components** and want to forward the ref to an underlying DOM element.
+
+* **Limitations:**
+
+  * `forwardRef` only forwards **refs** to the underlying DOM elements or child components. It doesn't forward **instance methods** from class components.
+  * It’s not necessary if the component doesn’t need access to the DOM or other components via refs.
+
+* **Summary:**
+
+  * `forwardRef` is a useful feature when you want to make functional components more reusable and allow parent components to interact directly with their DOM elements, such as focusing inputs or scrolling elements.
+
+---
+
+
 
 ---
 

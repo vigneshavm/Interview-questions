@@ -4283,8 +4283,9 @@ setTimeout(() => console.log(cache.get("a")), 6000); // undefined (expired)
 ## Interleave the characters from both strings
 
 ```ts
-var a = 'abcdef';
-var b = '1234567';
+var a = 'abc';
+var b = '123';
+// Output: "a1b2c3"
 var result = '';
 
 // Loop through the characters of both strings until the shortest string length

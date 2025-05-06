@@ -613,6 +613,23 @@ const theme = useContext(ThemeContext);
 
 A **Higher-Order Component** is a function that **takes a component as input and returns a new enhanced component**.
 
+### Senior-Level Insight:
+
+> I use HOCs when I need to apply **generic behavior** (like error handling, tracking, or conditionally wrapping UI) across components. However, in modern React, **custom hooks and render props** often offer more flexibility.
+So I use HOCs selectively — when they truly simplify composition without complicating the tree.
+
+---
+
+### 📌 When to Use HOCs Today
+- Applying behavior to 3rd-party components you can’t modify.
+- Wrapping components with external logic (e.g., connecting to Redux via `connect()`).
+- Legacy apps where refactoring to hooks isn’t yet feasible.
+
+
+**Common HOCs:** `withRouter`, `connect` (Redux)
+
+---
+
 ```js
 const withLoading = (WrappedComponent) => {
   return function EnhancedComponent(props) {
@@ -642,22 +659,7 @@ const withLoading = (WrappedComponent) => {
 
 ---
 
-### Senior-Level Insight:
 
-> I use HOCs when I need to apply **generic behavior** (like error handling, tracking, or conditionally wrapping UI) across components. However, in modern React, **custom hooks and render props** often offer more flexibility.
-So I use HOCs selectively — when they truly simplify composition without complicating the tree.
-
----
-
-### 📌 When to Use HOCs Today
-- Applying behavior to 3rd-party components you can’t modify.
-- Wrapping components with external logic (e.g., connecting to Redux via `connect()`).
-- Legacy apps where refactoring to hooks isn’t yet feasible.
-
-
-**Common HOCs:** `withRouter`, `connect` (Redux)
-
----
 
 ## Reconciliation Process 
 

@@ -5,7 +5,7 @@
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  |
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) 
-| **Routing**          | •  [React Router](#react-router) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
+| **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
 | **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux-Saga](#Redux-Saga) |
 | **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
@@ -1012,7 +1012,81 @@ This ensures that if the component fails to load, an appropriate error message i
 ---
 
 
+## Roles Routes
 
+---
+
+### 🔐 **Roles & Role-Based Routing**
+
+* In applications with multiple user types (e.g., Admin, User, Moderator), we use **roles** to **control access** to specific pages.
+* **Role-Based Routing** ensures that users can only access routes they're authorized for.
+
+**Example:**
+
+```js
+const user = { role: 'admin' };
+
+<Route path="/admin" element={
+  user.role === 'admin' ? <AdminPage /> : <Navigate to="/unauthorized" />
+} />
+```
+
+---
+
+### 🔒 **Protected Routes (Private Routes)**
+
+* Protect pages so that **unauthenticated users** are redirected to login.
+* Common in apps with authentication (e.g., dashboard, profile).
+
+**Implementation:**
+
+```js
+const PrivateRoute = ({ children }) => {
+  const auth = useAuth();
+  return auth?.isLoggedIn ? children : <Navigate to="/login" />;
+};
+
+// Usage
+<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+```
+
+---
+
+### 🌲 **Nested Routes**
+
+* Allow defining **routes inside other routes** — useful for layouts, tabs, or multi-step pages.
+* Helps structure the UI hierarchy and reuse parent layout components.
+
+**Example:**
+
+```js
+<Route path="/settings" element={<SettingsLayout />}>
+  <Route path="profile" element={<ProfileSettings />} />
+  <Route path="account" element={<AccountSettings />} />
+</Route>
+```
+
+Accessed via `/settings/profile` and `/settings/account`.
+
+---
+
+### 🧠 **Best Practices in an Interview:**
+
+* “I use `React Router`'s `Outlet` for rendering nested child routes inside parent layouts.”
+* “For private and role-based routes, I usually build reusable wrapper components like `PrivateRoute` or `RoleRoute` to avoid repetition.”
+* “Authorization is often checked against user roles stored in context or global state (like Redux).”
+
+---
+
+### 🗂️ Summary Table
+
+| Feature              | Purpose                                      | Example Usage                            |
+| -------------------- | -------------------------------------------- | ---------------------------------------- |
+| **Roles**            | Access control for different user types      | Admin vs User dashboard                  |
+| **Protected Routes** | Block access if user is not authenticated    | `<PrivateRoute>` wrapper                 |
+| **Nested Routes**    | Child routes inside parent layout components | `/settings/profile`, `/settings/account` |
+
+---
 
 
 

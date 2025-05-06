@@ -6,7 +6,7 @@
 | Arrays | • [Two Sum](#two-sum)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)  • [Rotate Array](#rotate-array)      • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) 
 | Advance | • [Memoize](#Memoize) • [Type Coercion](#Type-Coercion) • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hash & Sets |• [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Deep Clone an Object](#deep-clone-an-object) • [Custom `map()` Method](#custom-map-method) • [`var` vs `let` in Loops](#understanding-var-vs-let-in-loops-and-closures)  • [Retry Promise N Times](#retry-promise-n-times) 
-| String 1 | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagrams)  • [Vowels](#vowels)   • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) • [Isomorphic Strings](#isomorphic-strings)  • [Longest Substring](#Longest-Substring) 
+| String  | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagrams)  • [Vowels](#vowels)   • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) • [Isomorphic Strings](#isomorphic-strings)  • [Longest Substring](#Longest-Substring) • [Interleave characters](#Interleave-the-characters-from-both-strings) 
 | Frequent |  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Character Frequency Count](#character-frequency-count) • [Most Frequent Character](#Most-Frequent-Character-in-a-String) • [Count Frequency - Array](#Count-Frequency-of-Array-Element) • [Minimum Window Substring](#Minimum-Window-Substring) 
 | Functions |   • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Binary Search](#Binary-Search) 
 | Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
@@ -4279,3 +4279,25 @@ setTimeout(() => console.log(cache.get("a")), 6000); // undefined (expired)
 ---
 
 
+
+## Interleave the characters from both strings
+
+```ts
+var a = 'abcdef';
+var b = '1234567';
+var result = '';
+
+// Loop through the characters of both strings until the shortest string length
+for (var i = 0; i < Math.min(a.length, b.length); i++) {
+  result += a[i] + b[i];  // Add character from 'a' and 'b'
+}
+
+// Add the remaining characters from the longer string
+if (a.length > b.length) {
+  result += a.slice(b.length);  // Add remaining characters from 'a'
+} else if (b.length > a.length) {
+  result += b.slice(a.length);  // Add remaining characters from 'b'
+}
+
+console.log(result);  // Output: "a1b2c3c46"
+```

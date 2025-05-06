@@ -1,4 +1,4 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)  
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   
 
 
 **Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [shallow copy and deep copy`](#shallow-copy-and-deep-copy)
@@ -225,20 +225,7 @@ console.log(a); // null
 
 ---
 
-## **Type Checking**
-To check the data type of a variable, you can use the `typeof` operator for primitives and `instanceof` for objects.
 
-**Example:**
-```javascript
-let num = 5;
-console.log(typeof num); // "number"
-
-let obj = {};
-console.log(typeof obj); // "object"
-console.log(obj instanceof Object); // true
-```
-
----
 
 ## **Loose Equality Vs Strict Equality**
 - **`==` (Loose Equality)**: Compares values for equality but performs type coercion. This can lead to unexpected results.
@@ -251,40 +238,7 @@ console.log(5 === '5'); // false (different types)
 ```
 
 ---
-## **Type Coercion in Operations**
 
-
-
-- **Type coercion** refers to JavaScript's automatic conversion of one data type to another when performing operations. This can lead to unexpected results, especially when using operators like `+`.
-
-  **Examples**:
-  
-  - **`[] + []`**:
-    - Both arrays are empty, and when the `+` operator is used, JavaScript coerces them to strings, resulting in an empty string.
-    - **Result**: `""` (empty string)
-
-    ```javascript
-    console.log([] + []); // ""
-    ```
-
-  - **`{} + []`**:
-    - The **`{}`** is interpreted as a **block of code** (empty block), and the `+ []` is treated as an attempt to coerce the empty array to a number (which is `0`).
-    - **Result**: `0` (a number)
-
-    ```javascript
-    console.log({} + []); // 0
-    ```
-
-    To avoid this confusion, it’s recommended to wrap the object in parentheses:
-
-    ```javascript
-    console.log({} + []); // 0
-    console.log(({}) + []); // "[object Object]"
-    ```
-
-  **Key Takeaway**: JavaScript applies type coercion in ways that can lead to unexpected results, particularly when the operands are complex data types like objects and arrays.
-
----
 
 
 

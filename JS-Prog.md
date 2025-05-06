@@ -4107,12 +4107,12 @@ In high-performance systems (like API servers, browsers, or databases), we can't
 class LRUCache<K, V> {
   private cache = new Map<K, V>();
 
-  constructor(private capacity: number) {}
+  constructor(private capacity: number = 5) {}
 
   get(key: K): V | undefined {
     if (!this.cache.has(key)) return undefined;
 
-    // Move key to the end to show it was recently used
+    // Move the key to the end (most recently used)
     const value = this.cache.get(key)!;
     this.cache.delete(key);
     this.cache.set(key, value);
@@ -4121,16 +4121,21 @@ class LRUCache<K, V> {
 
   put(key: K, value: V): void {
     if (this.cache.has(key)) {
-      this.cache.delete(key);
+      this.cache.delete(key); // remove old entry
     } else if (this.cache.size >= this.capacity) {
-      // Delete the least recently used (first item in Map)
+      // Remove the least recently used (first item)
       const oldestKey = this.cache.keys().next().value;
       this.cache.delete(oldestKey);
     }
-
+    // Insert as most recently used
     this.cache.set(key, value);
   }
+
+  print(): void {
+    console.log([...this.cache.entries()]);
+  }
 }
+
 ```
 
 ---
@@ -4138,12 +4143,20 @@ class LRUCache<K, V> {
 ### 🧪 Usage:
 
 ```ts
-const cache = new LRUCache<string, number>(2);
+const cache = new LRUCache<string, number>(5);
+
 cache.put('a', 1);
 cache.put('b', 2);
-cache.get('a');         // 'a' is recently used
-cache.put('c', 3);       // 'b' is evicted (least recently used)
-console.log(cache.get('b')); // undefined
+cache.put('c', 3);
+cache.put('d', 4);
+cache.put('e', 5);
+cache.print(); // Shows all 5
+
+cache.get('b'); // 'b' becomes most recently used
+cache.put('f', 6); // 'a' gets evicted (least recently used)
+
+cache.print(); // Should show b, c, d, e, f
+
 ```
 
 ---

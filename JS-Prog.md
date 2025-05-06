@@ -11,7 +11,7 @@
 | Functions |   • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Binary Search](#Binary-Search) 
 | Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 | Searching |  • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)    • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
-| Graph Problems | • [BFS Traversal](#bfs) • [DFS Traversal](#dfs) • [Number of Islands (Matrix BFS/DFS)](#number-of-islands) • [Detect Cycle in Graph](#detect-cycle-in-graph)  • [Clone Graph](#clone-graph) • [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix) • [Word Ladder](#word-ladder) • [Dijkstra’s Algorithm](#dijkstras-algorithm) 
+| Graph Problems | • [BFS Traversal](#bfs) • [DFS Traversal](#dfs) • [Number of Islands (Matrix BFS/DFS)](#number-of-islands) • [Detect Cycle in Graph](#detect-cycle-in-graph)  • [Clone Graph](#clone-graph) • [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix) • [Word Ladder](#word-ladder) • [Dijkstra’s Algorithm](#dijkstras-algorithm) • [LRU](#LRU)
 | Binary Tree | • [Inorder / Preorder / Postorder Traversal](#inorder-preorder-postorder-traversal) • [Level Order Traversal](#level-order-traversal) • [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree) • [Symmetric Tree](#symmetric-tree) • [Diameter of Binary Tree](#diameter-of-binary-tree) • [Lowest Common Ancestor (BST & Binary Tree)](#lowest-common-ancestor) • [Serialize and Deserialize Binary Tree](#serialize-and-deserialize-binary-tree) • [Path Sum](#path-sum) • [Convert Sorted Array to BST](#convert-sorted-array-to-bst) • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)  
 
 ---
@@ -4076,4 +4076,75 @@ console.log(add(2, 3)); // Cached
 
 ---
 
+
+
+
+### LRU
+
+**LRU** stands for **Least Recently Used** — it's a **caching algorithm** used to manage memory efficiently by discarding the **least recently used items** when the cache reaches its capacity.
+
+---
+
+### ✅ Use Case
+
+In high-performance systems (like API servers, browsers, or databases), we can't store everything in memory. So, when memory is full, **LRU removes the "least recently accessed" item** to make space for a new one.
+
+---
+
+### 📦 How It Works
+
+* You store items in a **cache** (usually a Map or LinkedHashMap).
+* When you **access** or **add** an item:
+
+  * That item becomes the **most recently used**.
+* When the cache exceeds its **maximum size**, it evicts the **least recently used** item.
+
+---
+
+### 🧑‍💻 Example in JavaScript (Simple LRU Cache):
+
+```ts
+class LRUCache<K, V> {
+  private cache = new Map<K, V>();
+
+  constructor(private capacity: number) {}
+
+  get(key: K): V | undefined {
+    if (!this.cache.has(key)) return undefined;
+
+    // Move key to the end to show it was recently used
+    const value = this.cache.get(key)!;
+    this.cache.delete(key);
+    this.cache.set(key, value);
+    return value;
+  }
+
+  put(key: K, value: V): void {
+    if (this.cache.has(key)) {
+      this.cache.delete(key);
+    } else if (this.cache.size >= this.capacity) {
+      // Delete the least recently used (first item in Map)
+      const oldestKey = this.cache.keys().next().value;
+      this.cache.delete(oldestKey);
+    }
+
+    this.cache.set(key, value);
+  }
+}
+```
+
+---
+
+### 🧪 Usage:
+
+```ts
+const cache = new LRUCache<string, number>(2);
+cache.put('a', 1);
+cache.put('b', 2);
+cache.get('a');         // 'a' is recently used
+cache.put('c', 3);       // 'b' is evicted (least recently used)
+console.log(cache.get('b')); // undefined
+```
+
+---
 

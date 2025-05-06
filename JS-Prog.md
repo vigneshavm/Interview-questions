@@ -602,15 +602,84 @@ function throttle<T extends (...args: any[]) => void>(fn: T, limit: number): (..
 
 ### Retry Promise N Times
 ```ts
+// Generic async retry function that attempts to execute a promise-returning function with retry logic
 async function retry<T>(fn: () => Promise<T>, retries: number): Promise<T> {
   try {
+    // Attempt to execute the function and wait for its result
     return await fn();
   } catch (error) {
+    // If an error occurs and no retries are left, throw the error
     if (retries <= 0) throw error;
+
+    // Otherwise, retry the function by calling 'retry' again with one fewer attempt
     return retry(fn, retries - 1);
   }
 }
+
+
+const fetchData = () => fetch("https://api.example.com/data").then(res => res.json());
+
+retry(fetchData, 3); // Tries to fetch data up to 3 times if it fails
+
+
 ```
+
+
+
+---
+
+```ts
+// A utility function to fetch a URL with retry logic
+async function fetchWithRetry(
+  url: string,                    // URL to fetch
+  options: RequestInit = {},      // Fetch options like method, headers, body
+  maxRetries: number = 3,         // Maximum number of retry attempts (default is 3)
+  delayMs: number = 1000          // Delay between retries in milliseconds (default is 1000ms)
+): Promise<Response> {
+  let attempt = 0;                // Tracks the number of retry attempts
+
+  // Retry loop: will keep trying until maxRetries is reached
+  while (attempt < maxRetries) {
+    try {
+      const response = await fetch(url, options);  // Try to make the fetch call
+
+      if (!response.ok) {        // Check if the response status is not in the 200–299 range
+        throw new Error(`HTTP error! status: ${response.status}`);  // Force retry for failed responses
+      }
+
+      return response;           // If successful, return the response immediately
+
+    } catch (error) {
+      attempt++;                 // Increment the retry attempt count
+
+      // If we've reached the maximum retries, throw the final error
+      if (attempt >= maxRetries) {
+        throw new Error(`Failed after ${maxRetries} retries: ${(error as Error).message}`);
+      }
+
+      // Log the retry attempt to the console
+      console.warn(`Retrying (${attempt}/${maxRetries})...`);
+
+      // Wait for delayMs milliseconds before retrying
+      await new Promise((res) => setTimeout(res, delayMs));
+    }
+  }
+
+  // This should never be reached, but is a fallback safeguard
+  throw new Error('Unexpected error in fetchWithRetry');
+}
+```
+
+---
+
+### ✅ Key Concepts:
+
+* **Retry logic** ensures the function attempts a fetch again if it fails due to network or server issues.
+* **Response status check** ensures that even HTTP errors like 500 trigger retries.
+* **Delay between retries** prevents hammering the server with back-to-back retries.
+* **Typed error handling** and default values make the function robust and easy to reuse.
+
+
 
 ---
 

@@ -3715,11 +3715,11 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 ## Functions
 • [Function Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    
 • [Arrow Functions](#arrow-functions)    
-• [Normal Function vs Arrow Function](#normal-function-vs-arrow-function) 
+• [Normal Function vs Arrow Function](#normal-function-vs-arrow-function)    
 • [Anonymous Functions](#anonymous-functions---use-cases)    
 • [Higher-Order Functions](#higher-order-functions)    
-• [Callback Functions](#callback-functions) 
-• [Pure Functions](#pure-functions-and-side-effects)   
+• [Callback Functions](#callback-functions)    
+• [Pure Functions](#pure-functions-and-side-effects)      
 • [Immediately Invoked Function](#immediately-invoked-function-expressions)    
 
 ## Inheritance

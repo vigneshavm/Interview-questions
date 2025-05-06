@@ -99,19 +99,17 @@ tsconfig.json
 
 ### **Event Loop**
 
-- The Event Loop is Node.js's core mechanism for managing asynchronous tasks.
-- It ensures non-blocking I/O and allows Node.js to handle many operations concurrently, making it highly efficient for scalable, performance-oriented applications.
+* **Core Mechanism**:
 
+  * The Event Loop enables **asynchronous, non-blocking I/O** in Node.js, allowing efficient handling of multiple tasks concurrently.
 
-### **Event Loop in Node.js**:
+* **Single-Threaded**:
 
-* **Single-Threaded Architecture**:
-
-  * Node.js operates on a **single thread** but efficiently handles asynchronous tasks through the Event Loop, enabling concurrent operations without blocking execution.
+  * Node.js operates on a **single thread** but handles concurrent tasks without blocking execution using the Event Loop.
 
 * **Non-blocking I/O**:
 
-  * I/O operations like file reading, database queries, etc., are non-blocking. While Node.js waits for the operation to complete, it continues processing other code and executes the callback once the operation is done.
+  * I/O operations (e.g., file reads, database queries) are non-blocking; Node.js continues executing other code while waiting for the I/O task to finish, then processes the callback once done.
 
 ---
 

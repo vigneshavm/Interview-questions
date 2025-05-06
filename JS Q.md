@@ -1,4 +1,5 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)    • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)  
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  
+• [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)    • [Type Checking](#type-checking)    • [== vs ===](#loose-equality-vs-strict-equality)    • [Type Coercion](#type-coercion-in-operations)  
 
 
 **Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [shallow copy and deep copy`](#shallow-copy-and-deep-copy)
@@ -79,6 +80,64 @@ z = 40; // TypeError: Assignment to constant variable.
 You cannot reassign a value to a constant variable once it's initialized.
 
 ---
+
+
+## **const with primitive and non-primitive** 
+
+
+---
+
+### ✅ **1. `const` with Primitive Types**
+
+Primitive types include:
+`string`, `number`, `boolean`, `null`, `undefined`, `symbol`, `bigint`
+
+When you declare a **primitive** with `const`, the **value cannot be changed**.
+
+```js
+const age = 30;
+age = 35; // ❌ Error: Assignment to constant variable.
+```
+
+---
+
+### ✅ **2. `const` with Non-Primitive Types**
+
+Non-primitive types include:
+`object`, `array`, `function`, etc.
+
+With non-primitives, the **reference** is constant — meaning the variable always points to the same object/array/function — **but the contents can be modified.**
+
+#### Example with Object:
+
+```js
+const user = { name: "Alice", age: 25 };
+user.age = 26;         // ✅ Allowed
+user.name = "Bob";     // ✅ Allowed
+
+user = { name: "Eve" }; // ❌ Error: Assignment to constant variable.
+```
+
+#### Example with Array:
+
+```js
+const numbers = [1, 2, 3];
+numbers.push(4);     // ✅ Allowed
+numbers[0] = 100;    // ✅ Allowed
+
+numbers = [5, 6];    // ❌ Error: Assignment to constant variable.
+```
+
+---
+
+### 🧠 Summary
+
+| `const` with...              | Can change value?  | Can reassign variable? |
+| ---------------------------- | ------------------ | ---------------------- |
+| Primitive                    | ❌ No               | ❌ No                   |
+| Non-primitive (object/array) | ✅ Yes (internally) | ❌ No                   |
+
+
 
 ## **Temporal Dead Zone in `let` and const`**
 

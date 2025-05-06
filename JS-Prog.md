@@ -4083,6 +4083,8 @@ console.log(add(2, 3)); // Cached
 
 **LRU** stands for **Least Recently Used** — it's a **caching algorithm** used to manage memory efficiently by discarding the **least recently used items** when the cache reaches its capacity.
 
+
+• [LRU TTL](#LRU-TTL)
 ---
 
 ### ✅ Use Case
@@ -4157,6 +4159,91 @@ cache.put('f', 6); // 'a' gets evicted (least recently used)
 
 cache.print(); // Should show b, c, d, e, f
 
+```
+
+---
+
+
+* **LRU**: Removes the least recently accessed item when the cache reaches capacity.
+* **TTL**: Invalidates an item after a specific time duration, regardless of access.
+
+### LRU TTL
+
+This hybrid cache is useful when:
+
+* You want to **limit memory** usage (via LRU).
+* You want to **ensure freshness** of data (via TTL).
+
+---
+
+### ✅ Implementation Strategy (High-Level)
+
+You can implement this in most languages using:
+
+1. **Doubly Linked List** – for O(1) insertion/removal.
+2. **Hash Map** – for O(1) access by key.
+3. **Timestamps** – to track TTL expiry.
+
+---
+
+### ✅ TypeScript / JavaScript Example
+
+```ts
+class LRUCacheWithTTL<K, V> {
+  private cache: Map<K, { value: V; expiry: number }>;
+  private capacity: number;
+  private ttl: number;
+
+  constructor(capacity: number, ttl: number) {
+    this.capacity = capacity;
+    this.ttl = ttl; // in milliseconds
+    this.cache = new Map();
+  }
+
+  get(key: K): V | undefined {
+    const item = this.cache.get(key);
+    if (!item) return undefined;
+
+    const now = Date.now();
+    if (item.expiry < now) {
+      this.cache.delete(key);
+      return undefined;
+    }
+
+    // Refresh item as most recently used
+    this.cache.delete(key);
+    this.cache.set(key, item);
+    return item.value;
+  }
+
+  set(key: K, value: V): void {
+    const now = Date.now();
+
+    if (this.cache.has(key)) {
+      this.cache.delete(key); // refresh position
+    } else if (this.cache.size >= this.capacity) {
+      // Remove least recently used (first inserted)
+      const firstKey = this.cache.keys().next().value;
+      this.cache.delete(firstKey);
+    }
+
+    this.cache.set(key, {
+      value,
+      expiry: now + this.ttl
+    });
+  }
+}
+```
+
+---
+
+### 🧪 Usage
+
+```ts
+const cache = new LRUCacheWithTTL<string, string>(3, 5000); // max 3 items, 5 sec TTL
+cache.set("a", "value1");
+console.log(cache.get("a")); // "value1"
+setTimeout(() => console.log(cache.get("a")), 6000); // undefined (expired)
 ```
 
 ---

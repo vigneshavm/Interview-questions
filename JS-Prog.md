@@ -1796,6 +1796,17 @@ for (var i = 0; i < 5; i++) {
   (function(i) {    setTimeout(() => console.log(i), 0);  })(i);
 }
 ```
+
+| Feature                     | `let`                                | `var`                             |
+| --------------------------- | ------------------------------------ | --------------------------------- |
+| **Scope**                   | Block-scoped                         | Function-scoped                   |
+| **Binding per iteration**   | ✅ New binding each time              | ❌ One shared binding              |
+| **Closure behavior**        | Remembers correct value              | Remembers same reference          |
+| **What `setTimeout` sees**  | Each callback sees its own `i` value | All callbacks see final `i` value |
+| **Loop Output (Immediate)** | `0 1 2 3 4`                          | `0 1 2 3 4`                       |
+| **`setTimeout` Output**     | `0 1 2 3 4`                          | `5 5 5 5 5`                       |
+| **Fix for `var`**           | Not needed                           | Use IIFE or convert to `let`      |
+
 ## **Boolean Function to Match Filename Pattern Without Regex**
 ```js
 function matchPattern(filename, pattern) {

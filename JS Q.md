@@ -4439,13 +4439,11 @@ You can also build objects, arrays, etc., using `reduce()`.
 ---
 
 
-### **shallow copy** and **deep copy** ### 
+## **shallow copy** and **deep copy** ### 
 
-Great question! Let’s break down the difference between **shallow copy** and **deep copy** in **JavaScript**, along with how they work:
 
----
 
-## 🔹 **1. Shallow Copy**
+### **1. Shallow Copy**
 
 
 A **shallow copy** duplicates only the **first level** of an object or array. **Nested objects are still referenced**, not copied.
@@ -4464,7 +4462,7 @@ A **shallow copy** duplicates only the **first level** of an object or array. **
 
 ---
 
-## 🔹 **2. Deep Copy**
+### **2. Deep Copy**
 
 A **deep copy** duplicates the object and **all nested objects**. The result is **fully independent** from the original.
 
@@ -4575,7 +4573,7 @@ console.log(originalArr[2][0]); // 3 — original remains untouched
 | `JSON.parse(JSON.stringify(arr))` | Deep Copy        | ❌ No                | ✅ Yes              | ❌ Full copy      |
 
 ----------------------
-## 🔹 Example with **Object**
+### Example with **Object**
 
 ### 🧾 Original:
 
@@ -4610,7 +4608,7 @@ console.log(deepObj.address.city);     // 'Chicago'
 
 ---
 
-## 🔹 Example with **Array**
+### Example with **Array**
 
 ### 🧾 Original:
 

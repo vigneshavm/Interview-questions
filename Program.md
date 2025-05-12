@@ -789,7 +789,7 @@ app.use((req, res, next) => {
 
 
 ## Build simple API
-
+```tsx
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -852,4 +852,4 @@ app.delete('/books/:id', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
-
+```

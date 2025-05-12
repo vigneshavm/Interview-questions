@@ -2,7 +2,7 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) | [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) | [Rate Limiter Middleware](#Rate-Limiter-Middleware)
-|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)|[Location based IP-based restrictions](#Location-based-IP-based-restrictions) | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) |[Build simple API](#Build-simple-API)
+|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)|[Location based IP-based restrictions](#Location-based-IP-based-restrictions) | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) |[Build simple API](#Build-simple-API) |[TodoList](#TodoList) 
 
 
 ## Grid View
@@ -852,4 +852,73 @@ app.delete('/books/:id', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+```
+
+## TodoList
+```tsx
+
+
+import React, { useState } from 'react';
+
+const TodoList = () => {
+  const [todos, setTodos] = useState([]);
+  const [title, setTitle] = useState('');
+  const [error, setError] = useState('');
+
+  const handleAddTodo = () => {
+    if (title.trim() === '') {
+      setError('Todo title cannot be empty');
+      return;
+    }
+    const newTodo = { id: Date.now(), title };
+    setTodos([...todos, newTodo]);
+    setTitle('');
+    setError('');
+  };
+
+  const handleDelete = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  return (
+    <div className="max-w-md mx-auto mt-10 p-4 shadow-lg rounded-xl bg-white">
+      <h1 className="text-2xl font-bold mb-4 text-center">Todo List</h1>
+      <div className="flex gap-2 mb-4">
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="flex-grow border p-2 rounded"
+          placeholder="Enter todo"
+        />
+        <button
+          onClick={handleAddTodo}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Add
+        </button>
+      </div>
+      {error && <p className="text-red-500 mb-2">{error}</p>}
+      <ul className="space-y-2">
+        {todos.map(todo => (
+          <li
+            key={todo.id}
+            className="flex justify-between items-center bg-gray-100 p-2 rounded"
+          >
+            <span>{todo.title}</span>
+            <button
+              onClick={() => handleDelete(todo.id)}
+              className="text-red-500 hover:text-red-700"
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+        {todos.length === 0 && <p className="text-gray-500">No todos yet.</p>}
+      </ul>
+    </div>
+  );
+};
+
+export default TodoList;
 ```

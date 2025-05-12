@@ -2,7 +2,7 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) | [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) | [Rate Limiter Middleware](#Rate-Limiter-Middleware)
-|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)|[Location based IP-based restrictions](#Location-based-IP-based-restrictions) | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) |[Build simple API](#Build-simple-API) |[TodoList](#TodoList) 
+|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)|[Location based IP-based restrictions](#Location-based-IP-based-restrictions) | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) |[Build simple API](#Build-simple-API) |[TodoList](#TodoList)  |[Fetch and display list users](#Fetch-and-display-list-users) 
 
 
 ## Grid View
@@ -922,3 +922,69 @@ const TodoList = () => {
 
 export default TodoList;
 ```
+
+
+
+
+
+
+## Fetch and display list users
+```tsx
+
+
+
+import React, { useEffect, useState } from 'react';
+
+const UserList = () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((res) => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
+      .then((data) => {
+        setUsers(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError('Failed to load users');
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <div className="max-w-xl mx-auto mt-10 p-4 rounded shadow bg-white">
+      <h2 className="text-2xl font-bold mb-4 text-center">User List</h2>
+
+      {loading && <p>Loading...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+
+      {!loading && !error && (
+        <ul className="space-y-3">
+          {users.map((user) => (
+            <li
+              key={user.id}
+              className="border p-3 rounded bg-gray-50 flex flex-col"
+            >
+              <span className="font-semibold">{user.name}</span>
+              <span className="text-sm text-gray-600">{user.email}</span>
+              <span className="text-sm text-gray-500">
+                {user.address.city}, {user.address.street}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default UserList;
+
+```
+
+

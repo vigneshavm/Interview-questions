@@ -2,7 +2,7 @@
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) | [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) | [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) | [Rate Limiter Middleware](#Rate-Limiter-Middleware)
-|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)|[Location based IP-based restrictions](#Location-based-IP-based-restrictions) | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)
+|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)|[Location based IP-based restrictions](#Location-based-IP-based-restrictions) | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) |[Build simple API](#Build-simple-API)
 
 
 ## Grid View
@@ -782,3 +782,74 @@ app.use((req, res, next) => {
 });
 
 ```
+
+
+
+
+
+
+## Build simple API
+
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+app.use(bodyParser.json());
+
+// In-memory data
+let books = [
+  { id: 1, title: "1984", author: "George Orwell", publishedYear: 1949 },
+  { id: 2, title: "Sapiens", author: "Yuval Noah Harari", publishedYear: 2011 }
+];
+
+// GET all books
+app.get('/books', (req, res) => {
+  res.json(books);
+});
+
+// GET a single book
+app.get('/books/:id', (req, res) => {
+  const book = books.find(b => b.id === parseInt(req.params.id));
+  if (!book) return res.status(404).json({ message: 'Book not found' });
+  res.json(book);
+});
+
+// POST a new book
+app.post('/books', (req, res) => {
+  const { title, author, publishedYear } = req.body;
+  const newBook = {
+    id: books.length + 1,
+    title,
+    author,
+    publishedYear
+  };
+  books.push(newBook);
+  res.status(201).json(newBook);
+});
+
+// PUT (update) a book
+app.put('/books/:id', (req, res) => {
+  const book = books.find(b => b.id === parseInt(req.params.id));
+  if (!book) return res.status(404).json({ message: 'Book not found' });
+
+  const { title, author, publishedYear } = req.body;
+  book.title = title ?? book.title;
+  book.author = author ?? book.author;
+  book.publishedYear = publishedYear ?? book.publishedYear;
+
+  res.json(book);
+});
+
+// DELETE a book
+app.delete('/books/:id', (req, res) => {
+  books = books.filter(b => b.id !== parseInt(req.params.id));
+  res.json({ message: 'Book deleted' });
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+

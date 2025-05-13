@@ -1,4 +1,6 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  
+• [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  
+• [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   
 
 
 **Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy)
@@ -748,6 +750,12 @@ kid.greet(); // Hello, John
 
 ##  Event Loop & Call Stack
 
+#### 🔁 **Event Loop**
+- The event loop is what allows JavaScript — even though it's single-threaded — to perform asynchronous operations like handling timers, HTTP requests, or user interactions without blocking the main thread.
+- The **event loop** continuously checks the call stack and callback queue (or task/microtask queues).
+ - The event loop constantly checking if the call stack is empty, and then pushing callbacks or microtasks into the stack to execute.
+ - This allows JavaScript to stay non-blocking and reactive, even though it runs in a single thread.
+
 
 #### 🧠 **Call Stack**
 
@@ -765,13 +773,7 @@ greet();  // pushed to stack → executed → popped from stack
 
 ---
 
-#### 🔁 **Event Loop**
 
-- The **event loop** continuously checks the **call stack** and **callback queue** (or task/microtask queues).
-- If the call stack is empty, it **pushes queued tasks** (e.g., from `setTimeout`, `fetch`, or Promises) onto the stack.
-- Ensures **non-blocking** behavior and **asynchronous execution**.
-
----
 
 #### 🕳️ **Callback Queue vs Microtask Queue**
 

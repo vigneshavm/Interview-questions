@@ -6,6 +6,7 @@
 | Arrays | • [Two Sum](#two-sum)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)  • [Rotate Array](#rotate-array)      • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) 
 | Advance | • [Memoize](#Memoize) • [Type Coercion](#Type-Coercion) • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hash & Sets |• [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Deep Clone an Object](#deep-clone-an-object) • [Custom `map()` Method](#custom-map-method) • [`var` vs `let` in Loops](#understanding-var-vs-let-in-loops-and-closures)  • [Retry Promise N Times](#retry-promise-n-times) 
+| String  | • [string compression(aaabbcaa into a3b2c1a2)](#string-compression)
 | String  | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagrams)  • [Vowels](#vowels)   • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation](#Permutation-in-String) • [Isomorphic Strings](#isomorphic-strings)  • [Longest Substring](#Longest-Substring) • [Interleave characters](#Interleave-the-characters-from-both-strings) 
 | Frequent |  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Character Frequency Count](#character-frequency-count) • [Most Frequent Character](#Most-Frequent-Character-in-a-String) • [Count Frequency - Array](#Count-Frequency-of-Array-Element) • [Minimum Window Substring](#Minimum-Window-Substring) 
 | Functions |   • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Binary Search](#Binary-Search) 
@@ -4301,4 +4302,26 @@ if (a.length > b.length) {
 }
 
 console.log(result);  // Output: "a1b2c3c46"
+```
+##  String Compression
+
+```ts
+console.log(compressString("aaabbc"));    // "a3b2c1"
+console.log(compressString("aabccccaaa")); // "a2b1c4a3"
+
+function compressString(s) {
+    let result = '';
+    let count = 1;
+
+    for (let i = 1; i <= s.length; i++) {
+        if (s[i] === s[i - 1]) {
+            count++;
+        } else {
+            result += s[i - 1] + count;
+            count = 1;
+        }
+    }
+
+    return result;
+}
 ```

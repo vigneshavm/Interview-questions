@@ -1,6 +1,4 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  
-• [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  
-• [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   
 
 
 **Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy)
@@ -15,11 +13,11 @@
 
 **Events** - [Event Propagation](#event-propagation)    • [Event Listeners](#event-listeners)     • [`event.preventDefault()` vs `event.stopPropagation()`](#preventdefault-vs-stoppropagation)      • [Event Capturing vs Event Bubbling vs Event Delegation](#Event-Capturing-vs-Event-Bubbling-vs-Event-Delegation)  
 
-**Functions** - [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    • [Functions](#functions)    • [Closures](#closures)       • [Currying](#currying-in-javascript)       • [Hoisting](#hoisting)   • [`Call()`, `Apply()`, and `Bind()`](#call-and-apply-and-bind-methods) • [Default Parameters](#default-parameters) 
+**Functions** - [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor)    • [Functions](#functions)    • [Closures](#closures)   • [Memory Leaks](#common-causes-of-memory-leaks)      • [Currying](#currying-in-javascript)       • [Hoisting](#hoisting)   • [`Call()`, `Apply()`, and `Bind()`](#call-and-apply-and-bind-methods) • [Default Parameters](#default-parameters) 
 
 
 
-**Asynchronous JavaScript** - [Sync vs Async Fn](#synchronous-vs-asynchronous-functions)    • [Async Errors](#handling-async-errors)    • [setTimeout vs setImmediate vs process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)    • [Event Loop & Call Stack](#event-loop--call-stack)    • [Memory Leaks](#common-causes-of-memory-leaks)    • [Garbage Collection](#javascript-garbage-collection)    • [Extend Built-in Objects](#extending-built-in-objects)  
+**Asynchronous JavaScript** - [Sync vs Async Fn](#synchronous-vs-asynchronous-functions)    • [Async Errors](#handling-async-errors)    • [setTimeout vs setImmediate vs process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)    • [Event Loop & Call Stack](#event-loop--call-stack)      • [Garbage Collection](#javascript-garbage-collection)    • [Extend Built-in Objects](#extending-built-in-objects)  
 
 
 **Objects and Classes** • [Prototypes](#understanding-__proto__-and-prototypes)  - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Constructor Function](#constructor-function)    • [new Keyword](#new-keyword)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)     • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)   • [Map Key References](#map-key-references-with-objects)  
@@ -751,7 +749,7 @@ kid.greet(); // Hello, John
 ##  Event Loop & Call Stack
 
 #### 🔁 **Event Loop**
-- The event loop is what allows JavaScript — even though it's single-threaded — to perform asynchronous operations like handling timers, HTTP requests, or user interactions without blocking the main thread.
+- The event loop is what allows JavaScript — even though it's single-threaded — to perform asynchronous operations without blocking the main thread (handling timers, HTTP requests, or user interactions).
 - The **event loop** continuously checks the call stack and callback queue (or task/microtask queues).
  - The event loop constantly checking if the call stack is empty, and then pushing callbacks or microtasks into the stack to execute.
  - This allows JavaScript to stay non-blocking and reactive, even though it runs in a single thread.
@@ -893,10 +891,10 @@ In this example, `a` is hoisted but only the declaration (`var a;`) is hoisted, 
 ---
 
 #### **Lexical Scoping**
-- **Lexical scoping** means that the scope of a variable is determined by its **position in the source code** (i.e., where it is written).
-- Inner functions have access to variables **defined in their outer (parent) scopes**.
-- This behavior is fixed **at the time of writing code**, not during execution.
-- JavaScript uses **lexical scoping** to resolve variable references.
+- Lexical scoping means scope of a variable is determined by its position in the source code.
+- Inner functions have access to variables defined in their outer (parent) scopes.
+- This behavior is fixed at the time of writing code, not during execution.
+- JavaScript uses lexical scoping to resolve variable references.
 
 ---
 
@@ -1137,7 +1135,9 @@ The primary difference between declaration and expression lies in hoisting, whil
 ## **Arrow Functions**
 
 
- Arrow functions, introduced in ES6, offer a more concise syntax for writing functions and have the key difference of **lexical scoping** for `this`. Unlike regular functions, they do not have their own `this`, `arguments`, `super`, or `new.target`.
+ Arrow functions are a shorter syntax for writing functions in JavaScript, introduced in ES6. and have the key difference of **lexical scoping** for `this`.
+ Unlike regular functions, they do not have their own `this`, `arguments`, `super`, or `new.target`.
+ They're great for writing concise, readable, and expression-style code, especially in callbacks and array methods.
 
 **Example**:
 ```javascript
@@ -1282,8 +1282,7 @@ Callbacks allow us to handle asynchronous operations in a non-blocking way.
 
  - [Closures Drawbacks](#Common-Pitfalls-of-Closures)
 
-- A **closure** is a function that remembers variables from its **lexical scope**, even after that scope has exited.
-- A closure is a feature in JavaScript where an inner function has access to variables from its outer function scope, even after the outer function has finished execution.
+- A closure where an inner function has access to variables from its outer function scope(lexical scope), even after the outer function has finished execution.
 - In other words, the inner function "remembers" the environment in which it was created.
 - Useful for:
   - **Data privacy**
@@ -2860,7 +2859,8 @@ Optimizing network requests is crucial to improve the loading speed and overall 
 
 #### **call and apply and bind Methods**
 
-In JavaScript, `call`, `apply`, and `bind` are methods that allow you to control the `this` context within functions, and they all are used to invoke a function with a specific `this` value.
+`call`, `apply`, and `bind` are methods that allow you to control the `this` context within functions, 
+they all are used to invoke a function with a specific `this` value.
 
 - **`call()`**: Immediately invokes the function and allows you to pass arguments one by one.
     - **Syntax**: `func.call(thisContext, arg1, arg2, ...)`
@@ -2969,7 +2969,7 @@ console.log(factorial(5)); // Returns cached result
 Both **debounce** and **throttle** are techniques to control the frequency of function calls, typically used with events like scrolling, resizing, or typing.
 
 - **Debounce**:
-  - Ensures that a function is executed only after a certain amount of time has passed since the last time it was invoked. It’s useful when you want to prevent a function from being called too frequently (e.g., when typing in a search bar).
+  - Ensures that a function is **executed only after a certain amount of time has passed since the last time it was invoked**. It’s useful when you want to prevent a function from being called too frequently (e.g., when typing in a search bar).
   - **Example**:
     ```javascript
     function debounce(func, delay) {
@@ -2985,7 +2985,7 @@ Both **debounce** and **throttle** are techniques to control the frequency of fu
     ```
 
 - **Throttle**:
-  - Ensures that a function is executed at most once in a specified interval, even if it is triggered multiple times. It is useful for limiting expensive operations like scroll event handlers.
+  - Ensures that a function is **executed at most once in a specified interval**, even if it is triggered multiple times. It is useful for limiting expensive operations like scroll event handlers.
   - **Example**:
     ```javascript
     function throttle(func, limit) {
@@ -3114,15 +3114,21 @@ In this case, `age` was not defined on the `user` object, so the default value `
 
 #### **`this` Keyword Behavior**
 
-"The `this` keyword in JavaScript can be a bit tricky. It refers to different things depending on the context:
+"The `this` refers to different things depending on the context:
 
-- **Global Context**: When you use `this` in the global scope, it refers to the global object. In the browser, that's the `window` object.
+- **Global Context**: 
+  - When you use `this` in the global scope, it refers to the global object. 
+  - In the browser, that's the `window` object.
+
   Example:
   ```javascript
   console.log(this); // In the browser, this refers to the window object
   ```
 
-- **Inside a Function**: When you use `this` inside a regular function, it refers to the object that called the function. So, if it's inside a method, `this` refers to the object that method belongs to.
+- **Inside a Function**: 
+  When `this` inside a regular function, it refers to the object that called the function. 
+  `this` refers to the object that method belongs to.
+
   Example:
   ```javascript
   const person = {
@@ -3135,16 +3141,21 @@ In this case, `age` was not defined on the `user` object, so the default value `
   ```
 
 - **Arrow Functions**: Arrow functions don’t have their own `this`. Instead, they inherit `this` from the surrounding context.
-  Example:
-  ```javascript
-  const person = {
-    name: 'Bob',
-    greet: () => {
-      console.log(this.name);  // 'this' is inherited from the surrounding context
-    }
-  };
-  person.greet();  // Output: undefined
-  ```
+
+
+ ```javascript
+const person = {
+  name: 'Alice',
+  greet: function () {
+    setTimeout(() => {
+      console.log(`Hi, I'm ${this.name}`);  // ✅ 'Alice'
+    }, 1000);
+  }
+};
+
+person.greet();       // Hi, I'm Alice
+ ```
+  
 
 - **Event Handlers**: In event handlers, `this` refers to the element that triggered the event.
   Example:
@@ -3155,7 +3166,6 @@ In this case, `age` was not defined on the `user` object, so the default value `
   ```
 
 
-Sure! Here’s a step-by-step explanation of **why `this` is `undefined`** when using an arrow function in your original example, and how it behaves differently when using a regular function.
 
 ---
 
@@ -3776,7 +3786,8 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 
 
-- JavaScript uses **automatic garbage collection** to manage memory. The JavaScript engine tracks all objects created during runtime and frees up memory when objects are no longer in use.
+- JavaScript uses **automatic garbage collection** to manage memory.
+ The JavaScript engine tracks all objects created during runtime and frees up memory when objects are no longer in use.
 
   **Key concepts**:
   - **Mark-and-Sweep Algorithm**: This is the most common garbage collection strategy in JavaScript. It works in two main phases:

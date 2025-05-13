@@ -212,7 +212,8 @@ class Counter extends React.Component {
 ---
 ### Functional Components
 
-Functional components were introduced as a simpler, more lightweight way to write React components. With **React 16.8**, functional components gained the ability to manage state and side effects through **Hooks** (`useState`, `useEffect`, etc.).
+Functional components were introduced as a simpler, more lightweight way to write React components. 
+Manage state and side effects through **Hooks** (`useState`, `useEffect`, etc.).
 
 #### **Key Features of Functional Components**:
 - **Simpler Syntax**: No need for class syntax or `this` keyword.
@@ -1882,6 +1883,7 @@ function Card({ title, children }) {
 - [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components)  
 - [Uncontrolled Components](#uncontrolled-components)
 
+###  Controlled Components
 
 A **Controlled Component** in React is a form element (like an `<input>`, `<textarea>`, or `<select>`) whose **value is controlled by React state**.
 
@@ -1902,7 +1904,7 @@ In other words, the input's value is **bound to a state variable**, and any chan
 
 ---
 
-### ❗ Uncontrolled Components (for contrast):
+###  Uncontrolled Components
 - Manage their own state via the DOM (e.g., using refs).
 - Less code but harder to validate or control dynamically.
 
@@ -2541,6 +2543,18 @@ To avoid unnecessary rerenders:
 
 ## **React Profiler**
 ---
+
+ - The React Profiler is a tool that helps you measure performance of your React components — when they render, how long they take, and what causes re-renders.
+
+
+ - Identify unnecessary renders
+ - Spot slow components
+ - Optimize rendering performance
+
+
+
+
+
 
 ###  **How I Used React Profiler to Improve Performance**
 

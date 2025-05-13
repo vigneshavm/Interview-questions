@@ -1,4 +1,6 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  
+• [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  
+• [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   
 
 
 **Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy)
@@ -147,6 +149,11 @@ Primitive types include:
 
 When you declare a **primitive** with `const`, the **value cannot be changed**.
 
+For primitive values, they are stored directly in the variable.
+So with const, you can't change or reassign them — they behave as immutable.
+
+
+
 ```js
 const age = 30;
 age = 35; //  Error: Assignment to constant variable.
@@ -158,6 +165,10 @@ age = 35; //  Error: Assignment to constant variable.
 
 Non-primitive types include:
 `object`, `array`, `function`, etc.
+
+For non-primitive values , the variable holds a reference to the data. 
+Const locks that reference, meaning I can't assign a new object or array to it. 
+However, I can still modify the contents of the object or array because the reference remains unchanged.
 
 With non-primitives, the **reference** is constant — meaning the variable always points to the same object/array/function — **but the contents can be modified.**
 
@@ -196,10 +207,12 @@ numbers = [5, 6];    //  Error: Assignment to constant variable.
 
 
 
-The Temporal Dead Zone, or TDZ, happens when we declare variables using `let` or `const`.  
+The Temporal Dead Zone happens when we declare variables using `let` or `const`.  
+
 Even though these variables are technically **hoisted** to the top of their scope — like a function or block — **they aren’t initialized right away**.
 
 There’s a small period between when the scope starts and when the variable is actually declared in the code.  
+
 During this time, **if we try to access the variable, JavaScript throws a `ReferenceError`** because it hasn’t been initialized yet.
 
 Here's a quick example:
@@ -223,10 +236,11 @@ I always make sure to **declare variables at the top** of their scope and **only
 
 
 ## **use strict Directive**
-`'use strict'` is a special directive in JavaScript that we can add at the top of our script or inside a function.  
-It tells JavaScript to **run in strict mode**, which basically means **stricter rules** for how we write our code.
+`'use strict'` is a special directive in JavaScript
+That we can add at the top of our script or inside a function.  
+It tells JavaScript to **run in strict mode**, which  follow  **stricter rules** for write our code.
+In strict mode, **JavaScript catches common mistakes** that normally be ignored. 
 
-In strict mode, **JavaScript catches common mistakes** that would normally be ignored.  
 For example, if I accidentally use a variable without declaring it first, it would throw an error instead of silently creating a global variable.
 
 Here’s a small example:
@@ -252,13 +266,26 @@ JavaScript has several data types that can be classified as primitive types and 
 ---
 
 ## **Symbol**
-A `Symbol` is a unique and immutable primitive value. Symbols are often used as keys for object properties to avoid property name collisions.
+A `Symbol` is a unique and immutable primitive value.
+Symbols are often used as keys for object properties to avoid property name collisions.
 
 **Example:**
 ```javascript
 const sym1 = Symbol('description');
 const sym2 = Symbol('description');
 console.log(sym1 === sym2); // false (each Symbol is unique)
+
+```javascript
+const id = Symbol("userId");
+
+const user = {
+  name: "Alice",
+  [id]: 12345
+};
+
+console.log(user.name);    // Alice
+console.log(user[id]);     // 12345
+console.log(user["userId"]); // undefined
 ```
 
 ---
@@ -282,8 +309,16 @@ console.log(a); // null
 
 
 ## **Loose Equality Vs Strict Equality**
+
+
+That == tries to convert the values to the same type before comparing, 
+but === checks both value and type exactly.
+
 - **`==` (Loose Equality)**: Compares values for equality but performs type coercion. This can lead to unexpected results.
 - **`===` (Strict Equality)**: Compares both value and type, so no type conversion is done.
+
+
+Type coercion is the process where JavaScript automatically converts values from one data type to another when doing operations — especially comparisons or arithmetic.
 
 **Example:**
 ```javascript
@@ -315,7 +350,8 @@ console.log(5 === '5'); // false (different types)
 ## **Promises**
 
 
- A **Promise** is an object that represents the eventual completion (or failure) of an asynchronous operation. Promises allow us to handle asynchronous operations in a more manageable way than using callbacks (callback hell).
+ A **Promise** is an object that represents the eventual completion (or failure) of an asynchronous operation.
+ Promises allow us to handle asynchronous operations in a more manageable way than using callbacks (callback hell).
 
 A promise has three states:
 **Pending**: The promise is neither fulfilled nor rejected.
@@ -464,11 +500,11 @@ Promise.reject('Error').catch(console.error); // Error
 
 ## **Async Await**
 
-
- 
-- **`async`** is a keyword used to define a function as asynchronous, which means it will always return a promise. Inside an `async` function, you can use `await` to pause the execution of the function until the promise resolves or rejects.
+- `async/await` makes asynchronous code look more like synchronous code and makes it easier to read and debug.
+- **`async`** is a keyword used to define a function as asynchronous,
+-  which means it will always return a promise. 
+-  Inside an `async` function, `await` keyword to pause the execution of the function until the promise resolves or rejects.
   
-- **`await`** pauses the execution of the `async` function until the promise resolves or rejects. It only works inside an `async` function.
 
 **Example**:
 ```javascript
@@ -480,7 +516,7 @@ async function fetchData() {
 
 fetchData();
 ```
-`async/await` makes asynchronous code look more like synchronous code and makes it easier to read and debug.
+
 
 ---
 
@@ -541,9 +577,14 @@ Both approaches allow you to catch and handle errors in a clean and structured w
 
 ## **Optional Chaining Operator**
 
+ 
+- The **Optional Chaining (`?.`) Operator** allows us to access deeply nested properties of an object without having to explicitly check 
+- If each level of the object exists, preventing errors like `TypeError: Cannot read property 'x' of undefined`.
 
 
-- The **Optional Chaining (`?.`) Operator** allows us to access deeply nested properties of an object without having to explicitly check if each level of the object exists, preventing errors like `TypeError: Cannot read property 'x' of undefined`.
+**Use Case**:
+  - The operator is especially useful when dealing with optional or missing properties in nested objects or arrays, 
+  such as when fetching data from APIs that may not always return all expected properties.
 
   **How it Works**:
   - If the property or method exists, the expression is evaluated normally.
@@ -556,8 +597,7 @@ Both approaches allow you to catch and handle errors in a clean and structured w
   console.log(user?.address?.city); // undefined (no error thrown)
   ```
 
-  **Use Case**:
-  - The operator is especially useful when dealing with optional or missing properties in nested objects or arrays, such as when fetching data from APIs that may not always return all expected properties.
+ 
 
 ---
 
@@ -565,7 +605,8 @@ Both approaches allow you to catch and handle errors in a clean and structured w
 
 
 
-- The **Nullish Coalescing (`??`) Operator** is used to return the right-hand operand when the left-hand operand is either `null` or `undefined`. It is often used to provide a fallback value when dealing with potentially missing or uninitialized values.
+- The **Nullish Coalescing (`??`) Operator** is used to return the right-hand operand when the left-hand operand is either `null` or `undefined`. 
+- It is often used to provide a fallback value when dealing with potentially missing or uninitialized values.
 
   **Key Difference from `||`**:
   - The **`??` operator** only checks for `null` or `undefined` and does **not** treat falsy values like `0`, `false`, or `""` as "nullish."
@@ -623,7 +664,13 @@ Both approaches allow you to catch and handle errors in a clean and structured w
 
 
 
-- **Labeled statements** in JavaScript allow you to assign a label to a block of code (like a loop or a function), which can then be referenced by control flow statements (like `break` or `continue`). They are typically used in conjunction with nested loops to control the flow of execution in a more readable way.
+- **Labeled statements** in JavaScript allow you to assign a label to a block of code (like a loop or a function), 
+- which can then be referenced by control flow statements (like `break` or `continue`). 
+- They are typically used in conjunction with nested loops to control the flow of execution in a more readable way.
+
+**Use Case**:
+  - Labeled statements are helpful when you have nested loops or complex control flow and want to break out of multiple levels of loops at once. However, they are **rarely used** in practice due to their potential to make code harder to read and maintain.
+
 
   **Syntax**:
   ```javascript
@@ -637,10 +684,7 @@ Both approaches allow you to catch and handle errors in a clean and structured w
   }
   ```
 
-  **Use Case**:
-  - Labeled statements are helpful when you have nested loops or complex control flow and want to break out of multiple levels of loops at once. However, they are **rarely used** in practice due to their potential to make code harder to read and maintain.
-
-
+  
 
 
 
@@ -877,8 +921,9 @@ In the example above, `inner()` can access `name` because it's **lexically insid
 #### **Scope**
 ---
 
-- Scope in JavaScript is all about where variables can be accessed or modified in your code
-- For instance, if you declare a variable inside a function, it won’t be accessible outside of that - function. But if it’s declared globally, it’s accessible throughout the entire program
+- Scope in JavaScript is all about where variables can be accessed or modified in code
+- For instance, if declare a variable inside a function, it won’t be accessible outside of that - function. 
+  But if it’s declared globally, it’s accessible throughout the entire program
 
 #### **Global and Function and Block Scope**
 
@@ -4358,12 +4403,12 @@ console.log(fruits);  // ['apple', 'banana', 'cherry', 'date']
 
 ---
 
-| **Use This When You Want To...**                         | **Use**      |
-|----------------------------------------------------------|--------------|
-| Loop with full control (`break`, `continue`, index)      | `for`        |
-| Loop simply over values (no index needed)                | `for...of`   |
-| Loop cleanly with a callback (read-only loop)            | `forEach()`  |
-| Transform an array into a new one (return values)        | `map()`      |
+| **Use**      || **Use This When You Want To...**                         
+|--------------||----------------------------------------------------------
+| `for`        || Loop with full control (`break`, `continue`, index)      
+| `for...of`   || Loop simply over values (no index needed)                
+| `forEach()`  || Loop cleanly with a callback (read-only loop)            
+| `map()`      || Transform an array into a new one (return values)        
 
 1. `for` loop
 

@@ -49,10 +49,10 @@ In JavaScript, `var`, `let`, and `const` are used to declare variables, but they
 
 ### 1. **`var`**:
 
-* **Scope**: Function-scoped.
-* **Hoisting**: Variables declared with `var` are hoisted to the top of their function, but initialized as `undefined`.
-* **Re-declaration**: Allowed within the same scope.
-* **Usage**: Considered outdated; avoid using in modern code.
+* Function-scoped.
+* Variables declared with `var` are hoisted to the top of their function, but initialized as `undefined`.
+* Re-declaration are Allowed within the same scope.
+* Considered outdated; avoid using in modern code.
 
 ```js
 function example() {
@@ -65,10 +65,10 @@ function example() {
 
 ### 2. **`let`**:
 
-* **Scope**: Block-scoped (`{}`).
-* **Hoisting**: Hoisted but not initialized; accessing before declaration causes a ReferenceError (temporal dead zone).
-* **Re-declaration**: Not allowed in the same scope.
-* **Usage**: Preferred for variables that change value.
+* Block-scoped (`{}`).
+* Hoisted but not initialized; accessing before declaration causes a ReferenceError (temporal dead zone).
+* Re-declaration are Not allowed in the same scope.
+* Preferred for variables that change value.
 
 ```js
 {
@@ -81,10 +81,10 @@ function example() {
 
 ### 3. **`const`**:
 
-* **Scope**: Block-scoped.
-* **Hoisting**: Same as `let` — hoisted but in temporal dead zone.
-* **Re-declaration**: Not allowed.
-* **Re-assignment**: Not allowed. However, for objects/arrays, their contents **can** be modified.
+* Block-scoped.
+* Same as `let` — hoisted but in temporal dead zone.
+* Re-declaration areNot allowed.
+* Re-assignment are Not allowed. However, for objects/arrays, their contents **can** be modified.
 
 ```js
 const y = 20;

@@ -1,6 +1,6 @@
 | Category                          | Topics                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Array 1 | • [Find Largest value](#Find-Largest-value)  • [Remove Duplicates element](#Remove-Duplicates-element) • [Group Array of Objects](#Group-Array-of-Objects) • [Count - Unique Elements](#count-number-of-unique-elements-in-an-array)  • [Find Peak Element](#find-peak-element)
+| Array 1 | • [Find Largest value](#Find-Largest-value)  • [Remove Duplicates element](#Remove-Duplicates-element) • [Group Array of Objects](#Group-Array-of-Objects) • [Unique Elements](#Unique-Elements-in-an-Array)  • [Find Peak Element](#find-peak-element)
 | Array 2 |  • [Recursive Sum of Array](#recursive-sum-of-array)  • [Flat Nested Array](#flatten-nested-arrays)  • [Chunk Array](#chunk-an-array) • [Array Contains Duplicate Value](#Array-Contains-Duplicate-Value) • [Missing Number](#missing-number) • [First and Last Position - Element](#first-and-last-position-of-element-in-Sorted-Array) • [Flatten Nested Arrays](#Flatten-Nested-Arrays)
 | Sort |   • [Sort an array of objects](#Sort-an-array-of-objects) • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort) • [Topological Sort](#topological-sort)
 | Arrays | • [Two Sum](#two-sum)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)  • [Rotate Array](#rotate-array)      • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) 
@@ -485,10 +485,21 @@ console.log(removeDuplicateObjectsManual(input));
 
 
 
+---
+
+
 
 ## Group Array of Objects
 
-• [Group Products by key](#Group-Products-by-key) 
+• [Group Products by key](#group-products-by-key)  
+• [Group into array](#group-into-array)  
+• [Group Words by First Letter](#group-words-by-first-letter)  
+• [Group Elements into k-sized Chunks](#group-elements-into-k-sized-chunks)  
+• [Group by Property](#group-by-property)  
+• [Group by Frequency](#group-by-frequency)  
+
+### Group Products by key
+
 **Input:**
 ```js
 [  { id: 1, name: "Apple", category: "Fruits" }, { id: 2, name: "Carrot", category: "Vegetables" },  { id: 3, name: "Banana", category: "Fruits" },];
@@ -501,22 +512,6 @@ console.log(removeDuplicateObjectsManual(input));
   Vegetables: [    { id: 2, name: 'Carrot', category: 'Vegetables' }  ]
 }
 ```
-
-• [Group into array](#Group-into-array) 
-
-**Input:**
-```js
-[  { name: "one", class: 1 },  { name: "two", class: 2 },  { name: "three", class: 3 },  { name: "four", class: 1 },  { name: "five", class: 2 },];
-```
-
-**Output:**
-```js
-[
-  { class: 1, names: [ 'one', 'four' ] },  { class: 2, names: [ 'two', 'five' ] },  { class: 3, names: [ 'three' ] }
-]
-```
-
-### Group Products by key
 
 ```js
 function groupByCategory(products) {
@@ -535,7 +530,17 @@ console.log(groupByCategory(products));
 ---
 ### Group into array
 
+**Input:**
+```js
+[  { name: "one", class: 1 },  { name: "two", class: 2 },  { name: "three", class: 3 },  { name: "four", class: 1 },  { name: "five", class: 2 },];
+```
 
+**Output:**
+```js
+[
+  { class: 1, names: [ 'one', 'four' ] },  { class: 2, names: [ 'two', 'five' ] },  { class: 3, names: [ 'three' ] }
+]
+```
 
 
 
@@ -556,6 +561,96 @@ console.log(groupInputByClass(input));
 ```
 ---
 
+
+
+###  **Group by Frequency**
+
+**Problem:** Group elements in an array based on how many times they appear.
+
+```javascript
+function groupByFrequency(arr) {
+    const freqMap = {};
+    for (let num of arr) {
+        freqMap[num] = (freqMap[num] || 0) + 1;
+    }
+
+    const result = {};
+    for (let num in freqMap) {
+        const count = freqMap[num];
+        if (!result[count]) result[count] = [];
+        result[count].push(Number(num));
+    }
+    return result;
+}
+
+// Example:
+console.log(groupByFrequency([1,2,2,3,3,3,4]));
+// Output: { '1': [1,4], '2': [2], '3': [3] }
+```
+
+---
+
+###  **Group by Property**
+
+```javascript
+const people = [
+    { name: 'Alice', age: 21 },
+    { name: 'Bob', age: 25 },
+    { name: 'Charlie', age: 21 },
+];
+
+function groupBy(arr, key) {
+    return arr.reduce((acc, obj) => {
+        const groupKey = obj[key];
+        if (!acc[groupKey]) acc[groupKey] = [];
+        acc[groupKey].push(obj);
+        return acc;
+    }, {});
+}
+
+console.log(groupBy(people, 'age'));
+// Output: { '21': [{...}, {...}], '25': [{...}] }
+```
+
+---
+
+###  **Group Elements into k-sized Chunks**
+
+```javascript
+function chunkArray(arr, k) {
+    const result = [];
+    for (let i = 0; i < arr.length; i += k) {
+        result.push(arr.slice(i, i + k));
+    }
+    return result;
+}
+
+// Example:
+console.log(chunkArray([1,2,3,4,5,6,7], 3));
+// Output: [[1,2,3], [4,5,6], [7]]
+```
+
+---
+
+###  **Group Words by First Letter**
+
+```javascript
+function groupByFirstLetter(words) {
+    const map = {};
+    for (let word of words) {
+        const first = word[0];
+        if (!map[first]) map[first] = [];
+        map[first].push(word);
+    }
+    return map;
+}
+
+// Example:
+console.log(groupByFirstLetter(["apple", "banana", "apricot", "blueberry", "cherry"]));
+// Output: { a: ["apple", "apricot"], b: ["banana", "blueberry"], c: ["cherry"] }
+```
+
+---
 
 
 
@@ -959,7 +1054,7 @@ function reverseManually(str) {
 
 ### **Reverse Each Word in a Sentence**
 
-#### 🔹 `"Hello World"` → `"olleH dlroW"`
+####  `"Hello World"` → `"olleH dlroW"`
 
 ```javascript
 function reverseEachWord(sentence) {
@@ -973,7 +1068,7 @@ function reverseEachWord(sentence) {
 
 ### **Reverse Word Order**
 
-#### 🔹 `"I am fine"` → `"fine am I"`
+####  `"I am fine"` → `"fine am I"`
 
 ```javascript
 function reverseWordOrder(str) {
@@ -1035,7 +1130,7 @@ console.log(reverseWordsManual("Hello world this is JavaScript"));
 
 ### **Reverse String Without Affecting Space Positions**
 
-#### 🔹 `"I am a boy"` → `"y ob a maI"`
+####  `"I am a boy"` → `"y ob a maI"`
 
 
 ```javascript
@@ -3867,10 +3962,35 @@ function isIsomorphic(s, t) {
 
 ---
 
-### **Count Number of Unique Elements in an Array**
+### **Unique Elements in an Array**
 
+- [Find Unique Elements in an Array](#find-unique-elements-in-an-array)
+- [Find Unique Elements Count in an Array](#find-unique-elements-Count-in-an-array)
+- [Find the First Non-Repeating Character in a String](#find-the-first-non-repeating-character-in-a-string)
+- [Remove Duplicates from an Array](#remove-duplicates-from-an-array)
+- [Check if All Characters in a String are Unique](#check-if-all-characters-in-a-string-are-unique)
+- [Return Only Unique Characters From a String](#return-only-unique-characters-from-a-string)
+- [Intersection of Two Arrays with Unique Result](#intersection-of-two-arrays-with-unique-result)
+- [Find Single Number (Every other element appears twice)](#find-single-number-every-other-element-appears-twice)
+
+
+##  **Find Unique Elements in an Array**
+
+**Input:** `[1, 2, 2, 3, 4, 4, 5]`
+**Output:** `[1, 3, 5]` (Elements that appear exactly once)
+
+```javascript
+function findUniques(arr) {
+    const freq = {};
+    for (let num of arr) {
+        freq[num] = (freq[num] || 0) + 1;
+    }
+    return Object.keys(freq).filter(key => freq[key] === 1).map(Number);
+}
+```
+
+##  **Find Unique Elements Count in an Array**
 #### ✅ Example: Using `Set`
-
 ```javascript
 function countUniqueElements(arr) {
   const uniqueSet = new Set(arr); // Step 1: Create a Set from the array // A Set automatically removes duplicate values
@@ -3881,15 +4001,7 @@ function countUniqueElements(arr) {
 console.log(countUniqueElements([1, 2, 2, 3, 4, 4, 5])); // Output: 5 (unique elements are 1, 2, 3, 4, 5)
 console.log(countUniqueElements([]));                   // Output: 0 (no elements)
 console.log(countUniqueElements([9, 9, 9]));            // Output: 1 (only one unique element, 9)
-
 ```
-
-#### 🔍 How it works:
-
-* A `Set` automatically filters out duplicates.
-* `.size` gives the count of unique elements.
-
----
 
 #### ✅ Without using `Set`
 
@@ -3912,6 +4024,116 @@ console.log(countUniqueElements([]));                   // Output: 0 (no element
 console.log(countUniqueElements([9, 9, 9]));            // Output: 1 (only one unique element, 9)
 
 ```
+
+
+##  **Find the First Non-Repeating Character in a String**
+
+**Input:** `"aabbcdde"`
+**Output:** `"c"`
+
+```javascript
+function firstUniqueChar(str) {
+    const freq = {};
+    for (let char of str) {
+        freq[char] = (freq[char] || 0) + 1;
+    }
+    for (let char of str) {
+        if (freq[char] === 1) return char;
+    }
+    return null;
+}
+```
+
+---
+
+##  **Remove Duplicates from an Array**
+
+**Input:** `[1, 2, 2, 3, 4, 4]`
+**Output:** `[1, 2, 3, 4]`
+
+```javascript
+function removeDuplicates(arr) {
+    return [...new Set(arr)];
+}
+```
+
+---
+
+##  **Check if All Characters in a String are Unique**
+
+**Input:** `"abcdef"` → `true`
+**Input:** `"aabc"` → `false`
+
+```javascript
+function hasUniqueChars(str) {
+    const charSet = new Set();
+    for (let ch of str) {
+        if (charSet.has(ch)) return false;
+        charSet.add(ch);
+    }
+    return true;
+}
+```
+
+---
+
+##  **Return Only Unique Characters From a String**
+
+**Input:** `"aabbcdeffg"`
+**Output:** `"cdeg"`
+
+```javascript
+function getUniqueChars(str) {
+    const freq = {};
+    for (let ch of str) {
+        freq[ch] = (freq[ch] || 0) + 1;
+    }
+    return Object.keys(freq).filter(ch => freq[ch] === 1).join('');
+}
+```
+
+---
+
+##  **Intersection of Two Arrays with Unique Result**
+
+**Input:** `arr1 = [1, 2, 2, 3]`, `arr2 = [2, 3, 4]`
+**Output:** `[2, 3]`
+
+```javascript
+function arrayIntersection(arr1, arr2) {
+    const set1 = new Set(arr1);
+    const set2 = new Set(arr2);
+    return [...set1].filter(item => set2.has(item));
+}
+```
+
+---
+
+##  **Find Single Number (Every other element appears twice)**
+
+
+**Input:** `[2, 3, 2, 4, 4]`
+**Output:** `3`
+
+```javascript
+function findSingleNumberWithMap(nums) {
+    const freq = new Map();
+
+    for (let num of nums) {
+        freq.set(num, (freq.get(num) || 0) + 1);
+    }
+
+    for (let [key, value] of freq.entries()) {
+        if (value === 1) return key;
+    }
+}
+```
+
+---
+
+
+
+
 
 
 
@@ -4065,12 +4287,12 @@ function memoizeAdd() {
 }
 ```
 
-### 🔹 Pros:
+###  Pros:
 
 * Simple and readable.
 * Works fine for small, string-keyed arguments.
 
-### 🔹 Cons:
+###  Cons:
 
 * Converts arguments to strings – might cause **key collisions** (e.g., `1 + "2"` vs `"1" + 2`).
 * Only works well with **primitive arguments**.
@@ -4127,13 +4349,13 @@ console.log(add(2, 3)); // Computes
 console.log(add(2, 3)); // Cached
 ```
 
-### 🔹 Advantages:
+###  Advantages:
 
 * Works for **any number and type of arguments**.
 * Avoids polluting the global scope.
 * Uses `Map`, which performs better for many lookups.
 
-### 🔹 Trade-off:
+###  Trade-off:
 
 * `JSON.stringify(args)` can be **slow for large or nested objects**, and it’s not always reliable (e.g., functions or circular references).
 

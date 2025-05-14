@@ -932,45 +932,68 @@ console.log(chunkArrayManual([1, 2, 3, 4, 5, 6, 7], 3));
 
 
 ## **Reverse a String**
-**Approach**: Two-pointer swap.
+
+Reverse the entire string `"hello"` → `"olleh"`
+- [Reverse Entire String](#reverse-entire-string)
+- [Reverse Without Built-in Functions](#reverse-without-built-in-functions)
+- [Reverse a String Recursively](#reverse-a-string-recursively)
+- [Reverse a String with Two Pointers](#reverse-a-string-with-two-pointers)
+
+Reverse Each Word in a Sentence `"Hello World"` → `"olleH dlroW"`
+- [Reverse Each Word in a Sentence](#reverse-each-word-in-a-sentence)
+
+Reverse Word Order  `"I am fine"` → `"fine am I"`
+- [Reverse Word Order](#reverse-word-order)
+
+Reverse String Without Affecting Space Positions `"I am a boy"` → `"y ob a maI"`
+- [Reverse String Without Affecting Space Positions](#reverse-string-without-affecting-space-positions)
+
+
+### **Reverse Entire String**
+```javascript
+function reverseString(str) {
+    return str.split('').reverse().join('');
+}
+```
+
+### **Reverse Without Built-in Functions**
 
 ```javascript
-function reverseString(s) {
-    let left = 0, right = s.length - 1;
-    while (left < right) {
-        [s[left], s[right]] = [s[right], s[left]];
-        left++;
-        right--;
+function reverseManually(str) {
+    let reversed = '';
+    for (let i = str.length - 1; i >= 0; i--) {
+        reversed += str[i];
     }
-    return s;
+    return reversed;
 }
 ```
 
- **Example**: `reverseString(["h","e","l","l","o"])` → `["o","l","l","e","h"]`
-
 ---
 
-## Reverse a String
-```ts
-function reverseString(str: string): string {
-  return str.split('').reverse().join('');
+### **Reverse Each Word in a Sentence**
+
+#### 🔹 `"Hello World"` → `"olleH dlroW"`
+
+```javascript
+function reverseEachWord(sentence) {
+    return sentence.split(' ')
+        .map(word => word.split('').reverse().join(''))
+        .join(' ');
 }
 ```
-> Splits the string into characters, reverses them, and joins them back.
-
-
-## **Reverse Words in a Sentence**
-
-> Example input: `"Hello world this is JavaScript"`  
-> Expected output: `"JavaScript is this world Hello"`
 
 ---
 
-**Using Predefined Functions (`split()`, `reverse()`, `join()`)**
+### **Reverse Word Order**
 
+#### 🔹 `"I am fine"` → `"fine am I"`
 
+```javascript
+function reverseWordOrder(str) {
+    return str.trim().split(/\s+/).reverse().join(' ');
+}
+```
 
-**Code Example**
 ```js
 function reverseWords(sentence) {
   return sentence.split(' ')    // Split the sentence into an array of words
@@ -982,17 +1005,6 @@ function reverseWords(sentence) {
 console.log(reverseWords("Hello world this is JavaScript"));
 ```
 
- **Output:**
-```
-JavaScript is this world Hello
-```
-
----
-
-**Without Using Predefined Functions**
-
-
-**Code Example**
 ```js
 function reverseWordsManual(sentence) {
   let words = [];
@@ -1031,16 +1043,80 @@ function reverseWordsManual(sentence) {
 console.log(reverseWordsManual("Hello world this is JavaScript"));
 ```
 
- **Output:**
+
+---
+
+### **Reverse String Without Affecting Space Positions**
+
+#### 🔹 `"I am a boy"` → `"y ob a maI"`
+
+
+```javascript
+function reversePreserveSpaces(str) {
+    let chars = str.replace(/ /g, '').split('');
+    let result = '';
+
+    for (let i = 0; i < str.length; i++) {
+        result += str[i] === ' ' ? ' ' : chars.pop();
+    }
+    return result;
+}
 ```
-JavaScript is this world Hello
+
+```javascript
+function reversePreserveSpaces(str) {
+    let result = Array(str.length).fill('');  // create array to hold result
+    let chars = [];
+    // Step 1: Extract all non-space characters
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] !== ' ') {
+            chars.push(str[i]);
+        }
+    }
+    // Step 2: Fill result array in reverse order, skipping spaces
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === ' ') {
+            result[i] = ' '; // preserve space
+        } else {
+            result[i] = chars.pop(); // fill from reversed stack
+        }
+    }
+    return result.join('');
+}
 ```
 
 ---
 
+### **Reverse a String Recursively**
 
+```javascript
+function reverseRecursive(str) {
+    if (str.length <= 1) return str;
+    return reverseRecursive(str.slice(1)) + str[0];
+}
+```
 
 ---
+### **Reverse a String with Two Pointers**
+
+Efficient for interviews:
+
+```javascript
+function reverseTwoPointers(str) {
+    let arr = str.split('');
+    let left = 0, right = arr.length - 1;
+
+    while (left < right) {
+        [arr[left], arr[right]] = [arr[right], arr[left]];
+        left++;
+        right--;
+    }
+
+    return arr.join('');
+}
+```
+
+
 
 
 ## **Vowels**

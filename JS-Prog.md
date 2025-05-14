@@ -489,32 +489,37 @@ console.log(removeDuplicateObjectsManual(input));
 ## Group Array of Objects
 
 • [Group Products by key](#Group-Products-by-key) 
-
-• [Group into array](#Group-into-array) 
-
-### Group Products by key
-
-
 **Input:**
 ```js
-const products = [   { id: 1, name: "Apple", category: "Fruits" },
-  { id: 2, name: "Carrot", category: "Vegetables" },
-  { id: 3, name: "Banana", category: "Fruits" },
+const products = [   { id: 1, name: "Apple", category: "Fruits" },  { id: 2, name: "Carrot", category: "Vegetables" },  { id: 3, name: "Banana", category: "Fruits" },
 ];
 ```
 
 **Output:**
 ```js
 {
-  Fruits: [
-    { id: 1, name: 'Apple', category: 'Fruits' },
-    { id: 3, name: 'Banana', category: 'Fruits' }
-  ],
-  Vegetables: [
-    { id: 2, name: 'Carrot', category: 'Vegetables' }
-  ]
+  Fruits: [    { id: 1, name: 'Apple', category: 'Fruits' },    { id: 3, name: 'Banana', category: 'Fruits' }  ],
+  Vegetables: [    { id: 2, name: 'Carrot', category: 'Vegetables' }  ]
 }
 ```
+
+• [Group into array](#Group-into-array) 
+
+**Input:**
+```js
+const input = [
+  { name: "one", class: 1 },  { name: "two", class: 2 },  { name: "three", class: 3 },  { name: "four", class: 1 },  { name: "five", class: 2 },
+];
+```
+
+**Output:**
+```js
+[
+  { class: 1, names: [ 'one', 'four' ] },  { class: 2, names: [ 'two', 'five' ] },  { class: 3, names: [ 'three' ] }
+]
+```
+
+### Group Products by key
 
 ```js
 function groupByCategory(products) {
@@ -535,25 +540,7 @@ console.log(groupByCategory(products));
 
 
 
-**Input:**
-```js
-const input = [
-  { name: "one", class: 1 },
-  { name: "two", class: 2 },
-  { name: "three", class: 3 },
-  { name: "four", class: 1 },
-  { name: "five", class: 2 },
-];
-```
 
-**Output:**
-```js
-[
-  { class: 1, names: [ 'one', 'four' ] },
-  { class: 2, names: [ 'two', 'five' ] },
-  { class: 3, names: [ 'three' ] }
-]
-```
 
 ```js
 function groupInputByClass(inputArray) {

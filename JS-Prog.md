@@ -247,7 +247,9 @@ function findKthLargest(nums, k) {
 ## Remove Duplicates element
 
 • [Remove Duplicates element from array](#remove-duplicates-element-from-array) 
+
 • [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array) 
+
 • [Remove Duplicates element from Object](#remove-duplicates-element-from-Object)
 
 ### Remove Duplicates element from array
@@ -487,6 +489,7 @@ console.log(removeDuplicateObjectsManual(input));
 ## Group Array of Objects
 
 • [Group Products by key](#Group-Products-by-key) 
+
 • [Group into array](#Group-into-array) 
 
 ### Group Products by key

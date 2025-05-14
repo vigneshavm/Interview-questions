@@ -491,8 +491,7 @@ console.log(removeDuplicateObjectsManual(input));
 • [Group Products by key](#Group-Products-by-key) 
 **Input:**
 ```js
-const products = [   { id: 1, name: "Apple", category: "Fruits" },  { id: 2, name: "Carrot", category: "Vegetables" },  { id: 3, name: "Banana", category: "Fruits" },
-];
+[  { id: 1, name: "Apple", category: "Fruits" }, { id: 2, name: "Carrot", category: "Vegetables" },  { id: 3, name: "Banana", category: "Fruits" },];
 ```
 
 **Output:**
@@ -507,9 +506,7 @@ const products = [   { id: 1, name: "Apple", category: "Fruits" },  { id: 2, nam
 
 **Input:**
 ```js
-const input = [
-  { name: "one", class: 1 },  { name: "two", class: 2 },  { name: "three", class: 3 },  { name: "four", class: 1 },  { name: "five", class: 2 },
-];
+[  { name: "one", class: 1 },  { name: "two", class: 2 },  { name: "three", class: 3 },  { name: "four", class: 1 },  { name: "five", class: 2 },];
 ```
 
 **Output:**

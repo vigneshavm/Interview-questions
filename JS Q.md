@@ -1439,14 +1439,43 @@ console.log('End');
   ```
 
 - **`setImmediate()`**: Executes the callback after the current event loop cycle, in the **check phase** of the event loop.
+
+Use when you want to execute code after the current event loop phase ends — especially after I/O.
+
   ```javascript
   setImmediate(() => console.log('Immediate'));
+
+  const fs = require('fs');
+
+fs.readFile('file.txt', () => {
+  setImmediate(() => {
+    console.log('This runs after I/O events.');
+  });
+});
+
+
   ```
 
+  setImmediate ensures your logic runs after I/O callbacks, so it's great for cleanup, logging, or deferred computations.
+
 - **`process.nextTick()`**: Executes the callback immediately after the current operation completes, before any I/O tasks or timers. This gives it the highest priority.
+
+Use when you need to defer execution until after the current operation, but before any asynchronous I/O.
+
   ```javascript
   process.nextTick(() => console.log('Next Tick'));
+
+  function doSomething(callback) {
+  if (!callback) {
+    process.nextTick(() => {
+      throw new Error('Callback is required');
+    });
+  }
+}
+
   ```
+
+  Here, nextTick ensures that the error is thrown after the function exits, allowing the calling code to finish and catch it properly.
 
 **Example Execution Order**:
 ```javascript

@@ -104,80 +104,111 @@ tsconfig.json
 
 ### **Event Loop**
 
-* **Core Mechanism**:
-
-  * The Event Loop enables **asynchronous, non-blocking I/O** in Node.js, allowing efficient handling of multiple tasks concurrently.
-
-* **Single-Threaded**:
-
-  * Node.js operates on a **single thread** but handles concurrent tasks without blocking execution using the Event Loop.
-
-* **Non-blocking I/O**:
-
-  * I/O operations (e.g., file reads, database queries) are non-blocking; Node.js continues executing other code while waiting for the I/O task to finish, then processes the callback once done.
+You're on the right track! Let’s walk through and **refine** your explanation and example to clarify how the **Node.js event loop** works, especially in the context of **microtasks**, **macrotasks**, and **event loop phases**.
 
 ---
 
-### **Event Loop Phases**:
+### 🔁 **Event Loop in Node.js**
 
-1. **Timers**:
+Node.js uses the **libuv** library to handle asynchronous I/O via the **event loop**, enabling non-blocking execution despite being single-threaded.
 
-   * Executes `setTimeout()` and `setInterval()` callbacks.
+#### ✅ **Core Principles**
 
-2. **I/O Callbacks**:
-
-   * Handles I/O-related tasks, such as network requests or file system operations.
-
-3. **Idle/Prepare**:
-
-   * Prepares for the next event loop cycle.
-
-4. **Poll**:
-
-   * Monitors the callback queue and processes events that need attention.
-
-5. **Check**:
-
-   * Executes `setImmediate()` callbacks.
-
-6. **Close Callbacks**:
-
-   * Handles events like `socket.on('close')`.
+* **Single-threaded**: Only one JavaScript thread handles execution.
+* **Non-blocking I/O**: File and network operations don't freeze the event loop.
+* **Phases**: The loop progresses through a series of phases in a cycle.
 
 ---
 
-### **Microtasks vs Macrotasks**:
+### ⚙️ **Event Loop Phases (Simplified Order)**
 
-* **Microtasks** (Promises, `queueMicrotask()`) are executed first, before any **macrotasks** (like `setTimeout()` or I/O callbacks).
+1. **Timers**
+   Executes `setTimeout()` and `setInterval()` callbacks.
 
-  * This ensures **Promise** resolutions are processed before other I/O events.
+2. **Pending Callbacks**
+   Executes I/O callbacks deferred to the next loop iteration.
+
+3. **Idle/Prepare**
+   Internal use only.
+
+4. **Poll**
+
+   * Retrieves new I/O events.
+   * Executes I/O callbacks (excluding close, timers, and `setImmediate()`).
+   * If nothing is in the poll queue, it may:
+
+     * Wait for callbacks.
+     * Move to the **check** phase.
+
+5. **Check**
+   Executes `setImmediate()` callbacks.
+
+6. **Close Callbacks**
+   Executes close events like `socket.on('close')`.
 
 ---
 
-### **Example of Event Loop Flow**:
+### 🧠 **Microtasks vs Macrotasks**
+
+| Type           | Examples                                          | When Executed                                                  |
+| -------------- | ------------------------------------------------- | -------------------------------------------------------------- |
+| **Microtasks** | `Promise.then()`, `queueMicrotask()`              | **Immediately after current operation**, before I/O and timers |
+| **Macrotasks** | `setTimeout()`, `setImmediate()`, `fs.readFile()` | Handled during their respective event loop phases              |
+
+**Important Rule:**
+
+> Microtasks **always execute after the current function** finishes and **before** moving to the next event loop phase.
+
+---
+
+### 🧪 **Node.js Event Loop Example**
 
 ```js
+const fs = require('fs');
+
 console.log('Start');
 
 setTimeout(() => console.log('Timer 1'), 0);
 setImmediate(() => console.log('Immediate 1'));
 
-fs.readFile(__filename, () => console.log('File Read'));
+fs.readFile(__filename, () => {
+  console.log('File Read');
+});
+
+Promise.resolve().then(() => console.log('Promise resolved'));
 
 console.log('End');
 ```
 
-**Output**:
+#### 🧾 **Expected Output (Most likely)**
 
 ```
 Start
 End
+Promise resolved
 Immediate 1
 File Read
 Timer 1
 ```
 
+#### 💡 **Explanation:**
+
+* `console.log('Start')` and `console.log('End')` are **synchronous**, so they run immediately.
+* `Promise.then()` is a **microtask**, so it's executed **after the current call stack**.
+* `setImmediate()` is queued during the **check phase** — it often fires **before** `setTimeout()` when scheduled from the top level.
+* `fs.readFile()` is an async I/O task; its callback is queued in the **poll phase**.
+* `setTimeout(..., 0)` is a **macrotask** queued in the **timers phase**, and it might execute **after I/O** and `setImmediate()`.
+
 ---
+
+### 📌 **Key Takeaways**
+
+* Microtasks (like `Promise.then`) run before any I/O or timer callbacks.
+* `setImmediate()` callbacks usually run before `setTimeout(..., 0)` when both are set at the same level.
+* The event loop is **not random**—it follows a specific phase order.
+
+-----------------------
+
 
 ### **Behavior of `setImmediate()` vs `process.nextTick()`**:
 

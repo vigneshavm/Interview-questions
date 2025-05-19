@@ -154,10 +154,18 @@ Node.js uses the **libuv** library to handle asynchronous I/O via the **event lo
 
 ### 🧠 **Microtasks vs Macrotasks**
 
-| Type           | Examples                                          | When Executed                                                  |
-| -------------- | ------------------------------------------------- | -------------------------------------------------------------- |
-| **Microtasks** | `Promise.then()`, `queueMicrotask()`              | **Immediately after current operation**, before I/O and timers |
-| **Macrotasks** | `setTimeout()`, `setImmediate()`, `fs.readFile()` | Handled during their respective event loop phases              |
+
+| Category       | Description                                                                            | Examples                                                         |
+| -------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Microtasks** | Executed **immediately after the current operation**, before the next event loop tick. | `process.nextTick()`, `Promise.then()`, `queueMicrotask()`       |
+| **Macrotasks** | Scheduled in specific **phases of the event loop**. They are executed one per tick.    | `setTimeout()`, `setInterval()`, `setImmediate()`, I/O callbacks |
+
+
+ - Microtasks always run after the currently executing task and before the next phase begins.
+ - process.nextTick() is a special kind of microtask that runs before other microtasks like Promises.
+ - Microtasks: Higher priority, run between phases.
+ - process.nextTick(): Even higher — before other microtasks.
+ - Macrotasks: Scheduled in specific phases of the event loop.
 
 **Important Rule:**
 

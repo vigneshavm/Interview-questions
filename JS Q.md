@@ -1438,9 +1438,19 @@ console.log('End');
   setTimeout(() => console.log('Timeout'), 0);
   ```
 
-- **`setImmediate()`**: Executes the callback after the current event loop cycle, in the **check phase** of the event loop.
+- **`setImmediate()`**: 
 
-Use when you want to execute code after the current event loop phase ends — especially after I/O.
+setImmediate() schedules a callback to run after the current event loop phase completes, specifically during the "check" phase of the Node.js event loop.
+
+It’s commonly used to run code after I/O operations or to defer non-critical logic so that I/O and other high-priority tasks are not blocked.
+
+Use setImmediate() when:
+
+You want to run logic after I/O callbacks (e.g., after fs.readFile).
+
+You want to avoid blocking I/O with heavy computation.
+
+You need to yield to the event loop to let other tasks proceed.
 
   ```javascript
   setImmediate(() => console.log('Immediate'));
@@ -1458,9 +1468,15 @@ fs.readFile('file.txt', () => {
 
   setImmediate ensures your logic runs after I/O callbacks, so it's great for cleanup, logging, or deferred computations.
 
-- **`process.nextTick()`**: Executes the callback immediately after the current operation completes, before any I/O tasks or timers. This gives it the highest priority.
+- **`process.nextTick()`**: process.nextTick() executes a callback immediately after the current operation completes, but before any I/O events, timers, or setImmediate() callbacks.
 
-Use when you need to defer execution until after the current operation, but before any asynchronous I/O.
+It has the highest priority in the Node.js event loop and is ideal when you want to defer execution without waiting for the next tick — for example, to:
+
+  - handle async errors safely,
+
+  - allow the current stack to unwind,
+
+  - or schedule critical logic just after the current call completes.
 
   ```javascript
   process.nextTick(() => console.log('Next Tick'));

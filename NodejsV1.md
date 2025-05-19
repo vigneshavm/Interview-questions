@@ -450,6 +450,7 @@ console.log(`Platform: ${process.platform}`);
 - **Key Features**:
   - Forks child processes using `cluster.fork()`, each with its own event loop.
   - The master process can load balance requests between worker processes.
+  - and  **communication via  IPC (Inter-Process Communication)** using process.send() and the 'message' event.
   - Improves performance by distributing tasks across multiple CPU cores for CPU-bound applications.
 - **Example Usage**:
   ```javascript
@@ -479,6 +480,7 @@ console.log(`Platform: ${process.platform}`);
 ### 🔍 **What are Child Processes?**
 - Node.js uses the `child_process` module to **create subprocesses**.
 - Enables **running external programs or scripts** in parallel.
+- and  **communication via  IPC (Inter-Process Communication) using .send() and 'message' events** 
 - Each child process runs in a **separate memory space** (unlike Worker Threads).
 - Useful for handling **CPU-bound or blocking tasks**, or to **leverage other languages/tools**.
 

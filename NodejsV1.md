@@ -173,7 +173,7 @@ Node.js uses the **libuv** library to handle asynchronous I/O via the **event lo
 
 ---
 
-### 🧪 **Node.js Event Loop Example**
+###  **Node.js Event Loop Example**
 
 ```js
 const fs = require('fs');
@@ -418,6 +418,47 @@ console.log(`Platform: ${process.platform}`);
  - [Child Processes](#child-processes)  
  - [Cluster Module](#cluster-module)
 
+
+
+## Summary of Key Differences:
+
+* **Cluster Module**:
+
+  * Creates multiple processes to handle requests across multiple CPU cores.
+  * Used for **load balancing** and **multi-core utilization**.
+* **Child Process**:
+
+  * Executes external commands or scripts in separate processes.
+  * Used for running shell commands or interacting with other applications.
+* **Worker Threads**:
+
+  * Runs JavaScript code in separate threads within the same process.
+  * Ideal for **CPU-intensive tasks** that need parallel execution without blocking the main event loop.
+
+
+
+### 📝 **Summary:**
+- **Use Cluster**  --> **scaling Node.js servers** to use all CPU cores.
+- **Use Child Process** --> **running external programs** or isolating code.
+- **Use Worker Thread** --> **heavy JS computations** without blocking the main thread.
+
+
+| Feature / Aspect          | **Cluster Module**                          | **Child Process**                            | **Worker Thread**                          |
+|---------------------------|---------------------------------------------|-----------------------------------------------|---------------------------------------------|
+| 🔧 Purpose                | Scale app across CPU cores (load balancing) | Run external scripts or processes             | Run CPU-intensive JS code in parallel       |
+| 🧠 Memory                 | Separate memory per worker                  | Separate memory per process                   | Shared memory with isolation (SharedArrayBuffer) |
+| 🔄 Communication         | IPC via messaging                           | IPC via messaging (slower)                    | Fast message passing (same process)         |
+| 🚀 Performance           | Good for scaling HTTP servers               | Costly for frequent creation                  | Better for JS-level parallel computing      |
+|  Use Case              | Load-balanced web server, clustering apps   | Shell commands, script execution              | Heavy computations (e.g., parsing, hashing) |
+| ⚙️ API Module           | `cluster`                                   | `child_process`                               | `worker_threads`                            |
+| 🔁 Restart / Monitor     | Built-in restart logic (cluster.on exit)    | Manual process management                     | Must manage manually                        |
+| 📞 Communication Speed   | Moderate                                    | Slow (serializing large data)                 | Fastest (structured cloning, SharedArrayBuffer) |
+| ⚠️ Complexity            | Medium (setup + monitoring)                 | Low (simple to use)                           | Low to Medium (code split required)         |
+| 🌐 Port Sharing         | Yes (workers share server port)             | No                                            | Not applicable                              |
+
+---
+
+
  ## Worker Threads
 
 * Allows JavaScript code to run in parallel threads within a single Node.js process.
@@ -473,102 +514,7 @@ console.log(`Platform: ${process.platform}`);
     }).listen(8000);
   }
   ```
-
-## Child Processes
-
-
-### 🔍 **What are Child Processes?**
-- Node.js uses the `child_process` module to **create subprocesses**.
-- Enables **running external programs or scripts** in parallel.
-- and  **communication via  IPC (Inter-Process Communication) using .send() and 'message' events** 
-- Each child process runs in a **separate memory space** (unlike Worker Threads).
-- Useful for handling **CPU-bound or blocking tasks**, or to **leverage other languages/tools**.
-
----
-
-###  **When to Use Child Processes:**
-- Running **external commands** or shell scripts (e.g., `ffmpeg`, `git`, `python`, etc.)
-- **Spawning multiple Node.js processes** for heavy computations.
-- **Isolating crashes** — if a child process crashes, it doesn’t affect the main process.
-- Building **multi-core solutions** using clustering.
-
----
-
-### 🧰 **Types of Child Process Methods:**
-- `spawn()` – Launches a new process with a given command.
-- `exec()` – Runs a command in a shell and buffers the output (good for short commands).
-- `execFile()` – Similar to `exec()`, but without a shell.
-- `fork()` – Special case of `spawn()` for spawning **Node.js modules**, with built-in communication.
-
----
-
-### 📦 **Example: Using `fork()`**
-```js
-const { fork } = require('child_process');
-
-const child = fork('child.js');
-
-child.on('message', (msg) => {
-  console.log('Message from child:', msg);
-});
-
-child.send({ hello: 'from parent' });
-```
-
-**child.js**
-```js
-process.on('message', (msg) => {
-  console.log('Message from parent:', msg);
-  process.send({ reply: 'hello back!' });
-});
-```
-
----
-
-
-
-
-## Summary of Key Differences:
-
-* **Cluster Module**:
-
-  * Creates multiple processes to handle requests across multiple CPU cores.
-  * Used for **load balancing** and **multi-core utilization**.
-* **Child Process**:
-
-  * Executes external commands or scripts in separate processes.
-  * Used for running shell commands or interacting with other applications.
-* **Worker Threads**:
-
-  * Runs JavaScript code in separate threads within the same process.
-  * Ideal for **CPU-intensive tasks** that need parallel execution without blocking the main event loop.
-
-
-
-### 📝 **Summary:**
-- **Use Cluster**  --> **scaling Node.js servers** to use all CPU cores.
-- **Use Child Process** --> **running external programs** or isolating code.
-- **Use Worker Thread** --> **heavy JS computations** without blocking the main thread.
-
-
-| Feature / Aspect          | **Cluster Module**                          | **Child Process**                            | **Worker Thread**                          |
-|---------------------------|---------------------------------------------|-----------------------------------------------|---------------------------------------------|
-| 🔧 Purpose                | Scale app across CPU cores (load balancing) | Run external scripts or processes             | Run CPU-intensive JS code in parallel       |
-| 🧠 Memory                 | Separate memory per worker                  | Separate memory per process                   | Shared memory with isolation (SharedArrayBuffer) |
-| 🔄 Communication         | IPC via messaging                           | IPC via messaging (slower)                    | Fast message passing (same process)         |
-| 🚀 Performance           | Good for scaling HTTP servers               | Costly for frequent creation                  | Better for JS-level parallel computing      |
-| 🧪 Use Case              | Load-balanced web server, clustering apps   | Shell commands, script execution              | Heavy computations (e.g., parsing, hashing) |
-| ⚙️ API Module           | `cluster`                                   | `child_process`                               | `worker_threads`                            |
-| 🔁 Restart / Monitor     | Built-in restart logic (cluster.on exit)    | Manual process management                     | Must manage manually                        |
-| 📞 Communication Speed   | Moderate                                    | Slow (serializing large data)                 | Fastest (structured cloning, SharedArrayBuffer) |
-| ⚠️ Complexity            | Medium (setup + monitoring)                 | Low (simple to use)                           | Low to Medium (code split required)         |
-| 🌐 Port Sharing         | Yes (workers share server port)             | No                                            | Not applicable                              |
-
----
-
-
-
-##  **Cluster Module**
+##  Cluster Module
 
 - The **Cluster module** in Node.js allows you to **create child processes (workers)** that all share the **same server port**.
 - Built-in module used to **take advantage of multi-core systems**.
@@ -591,7 +537,7 @@ process.on('message', (msg) => {
 
 ---
 
-### 🧪 **Simple Example:**
+###  **Simple Example:**
 
 ```js
 const cluster = require('cluster');
@@ -643,6 +589,63 @@ if (cluster.isMaster) {
 
 
 ---
+
+## Child Processes
+
+
+### **What are Child Processes?**
+- Node.js uses the `child_process` module to **create subprocesses**.
+- Enables **running external programs or scripts** in parallel.
+- and  **communication via  IPC (Inter-Process Communication) using .send() and 'message' events** 
+- Each child process runs in a **separate memory space** (unlike Worker Threads).
+- Useful for handling **CPU-bound or blocking tasks**, or to **leverage other languages/tools**.
+
+---
+
+###  **When to Use Child Processes:**
+- Running **external commands** or shell scripts (e.g., `ffmpeg`, `git`, `python`, etc.)
+- **Spawning multiple Node.js processes** for heavy computations.
+- **Isolating crashes** — if a child process crashes, it doesn’t affect the main process.
+- Building **multi-core solutions** using clustering.
+
+---
+
+### 🧰 **Types of Child Process Methods:**
+- `spawn()` – Launches a new process with a given command.
+- `exec()` – Runs a command in a shell and buffers the output (good for short commands).
+- `execFile()` – Similar to `exec()`, but without a shell.
+- `fork()` – Special case of `spawn()` for spawning **Node.js modules**, with built-in communication.
+
+---
+
+### 📦 **Example: Using `fork()`**
+```js
+const { fork } = require('child_process');
+
+const child = fork('child.js');
+
+child.on('message', (msg) => {
+  console.log('Message from child:', msg);
+});
+
+child.send({ hello: 'from parent' });
+```
+
+**child.js**
+```js
+process.on('message', (msg) => {
+  console.log('Message from parent:', msg);
+  process.send({ reply: 'hello back!' });
+});
+```
+
+---
+
+
+
+
+
+
 
 ##  **Global Objects**
 
@@ -1921,7 +1924,7 @@ You run them with `npm run dev`, `npm start`, etc.
 
 ---
 
-## 🧪 Bonus Practical Questions
+##  Bonus Practical Questions
 
 | Question | Purpose |
 |---------|---------|
@@ -1956,9 +1959,9 @@ const app = express();
 app.use(helmet()); // Apply security headers to all responses
 ```
 
-### 🔐 What Does Helmet Do?
+###  What Does Helmet Do?
 
-| 🛡️ **Header**                | 🔍 **Purpose**                                                  |
+| 🛡️ **Header**                | **Purpose**                                                  |
 |-----------------------------|------------------------------------------------------------------|
 | `Content-Security-Policy`   | Prevents XSS by restricting sources of content                  |
 | `X-Frame-Options`           | Prevents clickjacking by disallowing iframe embedding           |
@@ -1969,7 +1972,7 @@ app.use(helmet()); // Apply security headers to all responses
 
 ---
 
-### 🧪 Customizing Helmet:
+###  Customizing Helmet:
 
 You can selectively enable/disable headers like this:
 
@@ -2116,7 +2119,7 @@ An **XSS (Cross-Site Scripting) attack** is a **security vulnerability** that al
 
 ---
 
-### 🔓 **What Can It Do?**
+###  **What Can It Do?**
 - Steal login credentials
 - Hijack sessions
 - Deface websites
@@ -2125,7 +2128,7 @@ An **XSS (Cross-Site Scripting) attack** is a **security vulnerability** that al
 
 ---
 
-### 🔐 **How to Prevent XSS:**
+###  **How to Prevent XSS:**
 
 - **Escape Output**: Sanitize HTML, JavaScript, URLs, etc.
 - **Input Validation**: Never trust user input. Sanitize on both client and server.
@@ -2135,7 +2138,7 @@ An **XSS (Cross-Site Scripting) attack** is a **security vulnerability** that al
 
 ---
 
-### 🧪 **Example of Reflected XSS:**
+###  **Example of Reflected XSS:**
 ```html
 <!-- User clicks this URL -->
 http://example.com/search?q=<script>alert('XSS')</script>
@@ -2656,7 +2659,7 @@ JWT_SECRET=mySuperSecretKey
 
 ---
 
- 🧪 Testing
+  Testing
 
  Login and get token
 
@@ -2889,7 +2892,7 @@ app.get('/user/profile', authenticateToken, (req, res) => {
 
 ---
 
-## 🔐 **2. Security Considerations**
+##  **2. Security Considerations**
 
 * **Problem**: WebSockets don’t have built-in authentication/authorization.
 * **Drawback**: You must **manually secure** connections and check permissions.

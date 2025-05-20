@@ -108,12 +108,6 @@ tsconfig.json
 
 ### **Event Loop**
 
-You're on the right track! Let’s walk through and **refine** your explanation and example to clarify how the **Node.js event loop** works, especially in the context of **microtasks**, **macrotasks**, and **event loop phases**.
-
----
-
-### 🔁 **Event Loop in Node.js**
-
 Node.js uses the **libuv** library to handle asynchronous I/O via the **event loop**, enabling non-blocking execution despite being single-threaded.
 
 #### ✅ **Core Principles**
@@ -121,6 +115,31 @@ Node.js uses the **libuv** library to handle asynchronous I/O via the **event lo
 * **Single-threaded**: Only one JavaScript thread handles execution.
 * **Non-blocking I/O**: File and network operations don't freeze the event loop.
 * **Phases**: The loop progresses through a series of phases in a cycle.
+
+
+┌───────────────────────────────┐
+│      Synchronous Code         │ ← Runs first
+├───────────────────────────────┤
+│    process.nextTick() Queue   │ ← Always runs next
+├───────────────────────────────┤
+│       Microtask Queue         │ ← e.g., Promise callbacks
+├───────────────────────────────┤
+│       Event Loop Phases       │
+│  ┌ timers (setTimeout, etc.)  │
+│  ├ pending callbacks          │
+│  ├ idle/prepare                │
+│  ├ poll (I/O)                  │
+│  ├ check (setImmediate)        │
+│  └ close callbacks             │
+└───────────────────────────────┘
+
+
+**Execution Priority**
+1.Current synchronous code runs (call stack).
+2.All microtasks are processed (in order).
+3.Then one macrotask runs.
+4.Loop repeats.
+
 
 ---
 
@@ -163,13 +182,19 @@ Node.js uses the **libuv** library to handle asynchronous I/O via the **event lo
 
  - Microtasks always run after the currently executing task and before the next phase begins.
  - process.nextTick() is a special kind of microtask that runs before other microtasks like Promises.
+- process.nextTick(): Even higher — before other microtasks.
  - Microtasks: Higher priority, run between phases.
- - process.nextTick(): Even higher — before other microtasks.
  - Macrotasks: Scheduled in specific phases of the event loop.
 
-**Important Rule:**
 
-> Microtasks **always execute after the current function** finishes and **before** moving to the next event loop phase.
+### **Behavior of `setImmediate()` vs `process.nextTick()`**:
+
+* **`setImmediate()`**:
+  * Executes in the **Check Phase**, after I/O events.
+* **`process.nextTick()`**:
+  * Executes immediately after the current operation, before any I/O tasks, including `setImmediate()`.
+
+---
 
 ---
 
@@ -222,16 +247,7 @@ Timer 1
 -----------------------
 
 
-### **Behavior of `setImmediate()` vs `process.nextTick()`**:
 
-* **`setImmediate()`**:
-
-  * Executes in the **Check Phase**, after I/O events.
-* **`process.nextTick()`**:
-
-  * Executes immediately after the current operation, before any I/O tasks, including `setImmediate()`.
-
----
 
 ### **Optimizing Event Loop Performance**:
 

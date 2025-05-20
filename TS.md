@@ -1395,21 +1395,94 @@ const user: User = {
 ## **Difference Between Map and Plain Objects**
 
 
+### 🗝️ **Key Types**
 
-- **Key Types**:
-  - A **`Map`** allows keys of any type (objects, functions, primitive types), while **objects** only allow strings (or symbols) as keys.
-  
-- **Order of Keys**:
-  - In a **`Map`**, keys are ordered in the insertion order, while **objects** do not guarantee any specific order (though most modern JavaScript engines preserve it).
-  
-- **Performance**:
-  - **`Map`** is optimized for frequent additions and removals of key-value pairs, especially when the number of entries is large. **Objects** are more efficient for simple key-value pair lookups, but not for large datasets.
-  
-- **Prototype Inheritance**:
-  - **`Map`** does not have a prototype chain (no inherited properties like `toString` or `hasOwnProperty`), which avoids potential key conflicts. In contrast, **objects** inherit from `Object.prototype`.
+* **`Object`**: Keys must be **strings** (or symbols).
+* **`Map`**: Keys can be **any type** – string, number, object, function, etc.
 
-- **Iteration**:
-  - A **`Map`** has built-in methods for iteration like `forEach`, `keys()`, `values()`, and `entries()`. While **objects** can be iterated over using `for...in` loops, `Object.keys()`, `Object.values()`, etc., these methods are more manual.
+```ts
+const obj: any = {};
+obj[123] = "value"; // key becomes "123" (a string)
+
+const map = new Map();
+map.set(123, "value"); // key remains a number
+```
+
+---
+
+### 🔢 **Order of Keys**
+
+* **Object**: Order **not guaranteed** (though modern engines try to preserve insertion order for string keys).
+* **Map**: **Guaranteed insertion order**.
+
+```ts
+const obj = { b: 1, a: 2 };
+console.log(Object.keys(obj)); // Might be ['b', 'a']
+
+const map = new Map();
+map.set('b', 1);
+map.set('a', 2);
+console.log([...map.keys()]); // ['b', 'a']
+```
+
+---
+
+### 🚀 **Performance**
+
+* **Object**: Good for **small**, simple lookups.
+* **Map**: Better for **large** datasets and **frequent additions/deletions**.
+
+---
+
+### 🧬 **Prototype Inheritance**
+
+* **Object**: Inherits from `Object.prototype`, which may cause conflicts:
+
+```ts
+console.log(obj.toString); // exists by default
+```
+
+* **Map**: No prototype interference:
+
+```ts
+console.log(map.toString); // undefined
+```
+
+---
+
+### 🔁 **Iteration**
+
+* **Object**:
+
+  ```ts
+  for (let key in obj) { console.log(key, obj[key]); }
+  ```
+
+* **Map**:
+
+  ```ts
+  map.forEach((value, key) => console.log(key, value));
+  // or
+  for (let [key, value] of map.entries()) {
+    console.log(key, value);
+  }
+  ```
+
+---
+
+### ✅ Summary Table
+
+| Feature            | Object               | Map                             |
+| ------------------ | -------------------- | ------------------------------- |
+| Key Types          | Strings/Symbols only | Any type                        |
+| Key Order          | Not guaranteed       | Preserved (insertion order)     |
+| Performance        | OK for small lookups | Better for large data/modifies  |
+| Prototype Issues   | Yes                  | No                              |
+| Built-in Iteration | Manual               | Built-in (`forEach`, `entries`) |
+
+---
+
+Let me know if you’d like a cheat sheet or visual chart for this!
 
 ---
 

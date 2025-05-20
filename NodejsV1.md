@@ -117,6 +117,9 @@ Node.js uses the **libuv** library to handle asynchronous I/O via the **event lo
 * **Phases**: The loop progresses through a series of phases in a cycle.
 
 
+Sure! Here's your diagram formatted in **Markdown (`.md`)**:
+
+```
 ┌───────────────────────────────┐
 │      Synchronous Code         │ ← Runs first
 ├───────────────────────────────┤
@@ -127,11 +130,12 @@ Node.js uses the **libuv** library to handle asynchronous I/O via the **event lo
 │       Event Loop Phases       │
 │  ┌ timers (setTimeout, etc.)  │
 │  ├ pending callbacks          │
-│  ├ idle/prepare                │
-│  ├ poll (I/O)                  │
-│  ├ check (setImmediate)        │
-│  └ close callbacks             │
+│  ├ idle/prepare               │
+│  ├ poll (I/O)                 │
+│  ├ check (setImmediate)       │
+│  └ close callbacks            │
 └───────────────────────────────┘
+```
 
 
 **Execution Priority**

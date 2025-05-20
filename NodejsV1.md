@@ -139,9 +139,13 @@ Sure! Here's your diagram formatted in **Markdown (`.md`)**:
 
 
 **Execution Priority**
+
 1.Current synchronous code runs (call stack).
+
 2.All microtasks are processed (in order).
+
 3.Then one macrotask runs.
+
 4.Loop repeats.
 
 

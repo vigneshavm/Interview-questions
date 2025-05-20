@@ -109,23 +109,22 @@ tsconfig.json
 ### **Event Loop**
 
 
-> Node.js uses the **libuv** library to implement its event loop, which provides a **non-blocking, asynchronous I/O model**. 
-Although JavaScript itself runs on a **single thread**, 
-Node achieves concurrency by offloading heavy I/O operations to the **libuv thread pool** or system APIs.
+The event loop is at the core of Node.js’s asynchronous, non-blocking architecture. 
+Although JavaScript runs on a single thread, Node uses the libuv library to offload I/O tasks to a thread pool or the operating system, enabling high concurrency.
 
-> The event loop is structured into **phases**, such as:
->
-> * **Timers** – for `setTimeout` and `setInterval`.
-> * **Pending Callbacks** – for deferred I/O errors.
-> * **Poll** – where I/O events are retrieved.
-> * **Check** – where `setImmediate` callbacks run.
-> * **Close Callbacks** – for cleanup like `socket.on('close')`.
->
-> Between each phase, Node processes **microtasks**, which include `Promise.then()` and `queueMicrotask()`, and even higher-priority tasks like `process.nextTick()`. These are **fully drained** before moving to the next phase.
->
-> For example, `process.nextTick()` allows us to execute logic **before any other microtask or phase**, which is useful but must be used with care to avoid starving the event loop.
->
-> Understanding these internals is essential when optimizing for **latency, throughput, or event loop lag**, especially in high-concurrency or real-time systems. I’ve used this knowledge to fine-tune performance, avoid blocking patterns, and handle backpressure in production systems.
+ The event loop is structured into **phases**, such as:
+
+ * **Timers** – for `setTimeout` and `setInterval`.
+ * **Pending Callbacks** – for deferred I/O errors.
+ * **Poll** – where I/O events are retrieved.
+ * **Check** – where `setImmediate` callbacks run.
+ * **Close Callbacks** – for cleanup like `socket.on('close')`.
+
+ Between each phase, Node processes **microtasks**, which include `Promise.then()` and `queueMicrotask()`, and even higher-priority tasks like `process.nextTick()`. These are **fully drained** before moving to the next phase.
+
+ For example, `process.nextTick()` allows us to execute logic **before any other microtask or phase**, which is useful but must be used with care to avoid starving the event loop.
+
+ Understanding these internals is essential when optimizing for **latency, throughput, or event loop lag**, especially in high-concurrency or real-time systems. I’ve used this knowledge to fine-tune performance, avoid blocking patterns, and handle backpressure in production systems.
 
 
 

@@ -117,7 +117,6 @@ Node.js uses the **libuv** library to handle asynchronous I/O via the **event lo
 * **Phases**: The loop progresses through a series of phases in a cycle.
 
 
-Sure! Here's your diagram formatted in **Markdown (`.md`)**:
 
 ```
 ┌───────────────────────────────┐

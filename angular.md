@@ -1,34 +1,26 @@
 
-| Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 | Questions8 |
-| --- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [What is Angular?](#1-what-is-angular) | [Lifecycle Hooks](#2-lifecycle-hooks) | [Modules (`@NgModule`)](#3-modules-ngmodule) | [HTTP Interceptor](#4-http-interceptor) | [Routing & Child Routes](#5-routing--child-routes) | [Input & Output Decorators](#6-input--output-decorators) | [Directives](#7-directives) | [Data Binding](#8-data-binding) |
-| [Route Protection (`AuthGuard`)](#9-route-protection-authguard) | [Promise vs Observable](#10-promise-vs-observable) |  [RxJS Operators](#11-rxjs-operators) | [ViewChild & ViewChildren](#12-viewchild--viewchildren) |  [Lazy Loading](#13-lazy-loading) | [Dependency Injection (DI)](#14-dependency-injection-di) |  [Forms](#15-forms) |
 
 
-
-
-
-| **Category**                  | **Topics**                                                                          |
-| ----------------------------- | ----------------------------------------------------------------------------------- |
-| **Core Architecture**         | [Component-Based Architecture](#component-based-architecture), [NgModules and App Structure](#ngmodules-and-app-structure), [Standalone Components](#standalone-components)    |
-| **Change Detection**          | [Change Detection and Zone.js](#change-detection-and-zonejs), [OnPush Change Detection Strategy](#onpush-change-detection-strategy)                   |
-| **Component Communication**   | [Component Communication Techniques](#component-communication-techniques)                                                |
-| **Forms**                     | [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms), [Custom Validators](#custom-validators), [Handling Large Forms](#handling-large-forms)        |
-| **Routing & Loading**         | [Lazy Loading Modules](#lazy-loading-modules)  [Lazy Loading Preloading Strategies](#Lazy-Loading-Preloading-Strategies)                       |
-| **Reactive Programming**      | [RxJS in Angular](#rxjs-in-angular) - [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap) |
-| **State Management**          | [NgRx for State Management](#ngrx-for-state-management)                                                     |
-| **Performance**               | [Performance Optimization](#performance-optimization)  [Debugging Performance Issues](#debugging-performance-issues)                          |
-| **Code Organization**         | [Structuring Angular Libraries](#structuring-angular-libraries)                                                     |
-| **Testing**                   | [Testing Angular Components](#testing-angular-components)                                                         |
-| **Dependency Injection (DI)** | [Dependency Injection in Angular](#dependency-injection-in-angular)                                                    |
-| **Security**                  | [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection)  [Authentication and Role-Based Access](#authentication-and-role-based-access)            |
-| **Micro-Frontend**            | [Micro-Frontend Architecture](#micro-frontend-architecture)                                                       |
-| **Token & Auth Management**   | [Token Expiration and Refresh Logic](#token-expiration-and-refresh-logic)                                              |
-| **Architecture & Decisions**  | [Architectural Decision Example](#architectural-decision-example)                                                   |
-| **CI/CD & DevOps**            | [CI/CD Practices](#cicd-practices)                                                                  |
-| **HTTP & Interceptors**       | [HTTP Interceptors in Angular](#http-interceptors-in-angular)                                                      |
-
----
+| **Category**                  | **Topics**                                                                                                                                |
+| -----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **Core Architecture**         | [Component-Based Architecture](#component-based-architecture), [NgModules and App Structure](#ngmodules-and-app-structure), [Standalone Components](#standalone-components) |
+| **Change Detection**          | [Change Detection and Zone.js](#change-detection-and-zonejs), [OnPush Change Detection Strategy](#onpush-change-detection-strategy)        |
+| **Component Communication**   | [Component Communication Techniques](#component-communication-techniques), [Angular Lifecycle Hooks](#angular-lifecycle-hooks), [ViewChild & ViewChildren](#viewchild--viewchildren)             |
+| **Forms**                     | [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms), [Custom Validators](#custom-validators), [Handling Large Forms](#handling-large-forms)                  |
+| **Routing & Navigation**      | [Lazy Loading Modules](#lazy-loading-modules), [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies), [Routing & Child Routes](#routing--child-routes), [AuthGuard](#authguard) |
+| **Reactive Programming**      | [RxJS in Angular](#rxjs-in-angular), [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)           |
+| **State Management**          | [NgRx for State Management](#ngrx-for-state-management)                                                                                   |
+| **Performance**               | [Performance Optimization](#performance-optimization), [Debugging Performance Issues](#debugging-performance-issues)                       |
+| **Code Organization**         | [Structuring Angular Libraries](#structuring-angular-libraries)                                                                            |
+| **Testing**                   | [Testing Angular Components](#testing-angular-components)                                                                                 |
+| **Dependency Injection (DI)** | [Dependency Injection in Angular](#dependency-injection-in-angular)                                                                       |
+| **Security**                  | [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection), [Authentication and Role-Based Access](#authentication-and-role-based-access)                           |
+| **Micro-Frontend**            | [Micro-Frontend Architecture](#micro-frontend-architecture)                                                                               |
+| **Token & Auth Management**   | [Token Expiration and Refresh Logic](#token-expiration-and-refresh-logic)                                                                 |
+| **Architecture & Decisions**  | [Architectural Decision Example](#architectural-decision-example)                                                                          |
+| **CI/CD & DevOps**            | [CI/CD Practices](#cicd-practices)                                                                                                        |
+| **HTTP & Interceptors**       | [HTTP Interceptors in Angular](#http-interceptors-in-angular)                                                                             |
+| **Templates & UI**            | [Directives](#directives), [Pipes](#pipes)                                                                                                |
 
 
 
@@ -1678,4 +1670,488 @@ intercept(req: HttpRequest<any>, next: HttpHandler) {
 }
 ```
 
+
+
+
+---
+
+## Angular Lifecycle Hooks
+
+* **ngOnChanges(changes: SimpleChanges)**
+
+  * Called **before ngOnInit** and whenever any data-bound input properties change.
+  * Receives a `SimpleChanges` object detailing the changed inputs.
+  * Useful for reacting to @Input() property changes.
+
+* **ngOnInit()**
+
+  * Called **once** after the first ngOnChanges.
+  * Good place for component initialization, fetching data, or setup logic.
+
+* **ngDoCheck()**
+
+  * Called during every change detection cycle.
+  * Allows custom change detection logic beyond default Angular detection.
+
+* **ngAfterContentInit()**
+
+  * Called once after Angular projects external content (ng-content) into the component.
+
+* **ngAfterContentChecked()**
+
+  * Called after every check of projected content.
+
+* **ngAfterViewInit()**
+
+  * Called once after Angular initializes the component’s views and child views.
+
+* **ngAfterViewChecked()**
+
+  * Called after every check of the component’s views and child views.
+
+* **ngOnDestroy()**
+
+  * Called just before Angular destroys the component.
+  * Ideal for cleanup: unsubscribing Observables, clearing timers, detaching event handlers.
+
+---
+
+### Quick Summary Table
+
+| Hook                  | When Called                          | Common Use                       |
+| --------------------- | ------------------------------------ | -------------------------------- |
+| ngOnChanges           | On @Input property changes           | Respond to input changes         |
+| ngOnInit              | Once after component initialization  | Initialization, data fetch       |
+| ngDoCheck             | Every change detection run           | Custom change detection          |
+| ngAfterContentInit    | After content (ng-content) projected | Post content initialization      |
+| ngAfterContentChecked | After every content check            | React to content updates         |
+| ngAfterViewInit       | After component's view initialized   | DOM-dependent initialization     |
+| ngAfterViewChecked    | After every view check               | Respond to view changes          |
+| ngOnDestroy           | Before component is destroyed        | Cleanup subscriptions, resources |
+
+---
+
+
+
+
+
+## ViewChild & ViewChildren
+
+* **Purpose**:
+  Both are decorators to get references to child elements, components, or directives inside a component’s template.
+
+* **@ViewChild**
+
+  * Selects **one** element/component/directive.
+  * Returns the first matching element.
+  * Typically used when you want to access a **single** child element or component instance.
+  * Example use case: Access a child component’s method or a DOM element directly.
+
+* **@ViewChildren**
+
+  * Selects **multiple** elements/components/directives.
+  * Returns a `QueryList` of all matching elements.
+  * Useful when you need to work with **multiple** child elements or components.
+  * Example use case: Iterate over a list of child components to call a method or listen to events.
+
+* **Common Usage**:
+
+  * Accessing template elements for DOM manipulation.
+  * Invoking child component methods or accessing properties.
+  * Managing dynamic lists of components/elements.
+
+* **Syntax Example**:
+
+```typescript
+@ViewChild('myInput') inputElement: ElementRef;
+@ViewChild(ChildComponent) childComp: ChildComponent;
+
+@ViewChildren(ChildComponent) childrenComps: QueryList<ChildComponent>;
+```
+
+* **Access Timing**:
+
+  * Values are **available after** the `ngAfterViewInit()` lifecycle hook.
+  * Changes in `@ViewChildren` can be observed via `childrenComps.changes` observable.
+
+* **Notes**:
+
+  * Use `static: true/false` option to control when the query resolves (usually `false` for dynamic content).
+  * Helps avoid direct DOM queries like `document.querySelector` in Angular’s reactive model.
+
+---
+
+
+
+## Use Cases of **@ViewChild**
+
+* **Accessing DOM Elements**
+  For example, accessing an `<input>` element to focus it programmatically or read its value:
+
+  ```typescript
+  @ViewChild('searchInput') searchInput: ElementRef;
+
+  focusInput() {
+    this.searchInput.nativeElement.focus();
+  }
+  ```
+
+* **Calling Child Component Methods**
+  When you want to call a method or access a property of a child component:
+
+  ```typescript
+  @ViewChild(ChildComponent) childComp: ChildComponent;
+
+  ngAfterViewInit() {
+    this.childComp.someMethod();
+  }
+  ```
+
+* **Manipulating Third-party Components**
+  Accessing third-party components (e.g., modals, sliders) to open/close or configure programmatically.
+
+---
+
+## Use Cases of **@ViewChildren**
+
+* **Accessing Multiple Child Components**
+  If you have a list of similar child components and want to call a method on each of them:
+
+  ```typescript
+  @ViewChildren(ItemComponent) items: QueryList<ItemComponent>;
+
+  updateAllItems() {
+    this.items.forEach(item => item.refresh());
+  }
+  ```
+
+* **Listening for Changes in Dynamic Lists**
+  If the list of child components changes dynamically, you can subscribe to the `changes` observable to react accordingly:
+
+  ```typescript
+  ngAfterViewInit() {
+    this.items.changes.subscribe(() => {
+      console.log('Child components changed!');
+    });
+  }
+  ```
+
+* **Manipulating Multiple DOM Elements**
+  E.g., querying multiple buttons or inputs and applying some effect or styles to all:
+
+  ```typescript
+  @ViewChildren('btn') buttons: QueryList<ElementRef>;
+
+  disableAllButtons() {
+    this.buttons.forEach(btn => btn.nativeElement.disabled = true);
+  }
+  ```
+
+---
+
+
+
+
+
+## AuthGuard
+
+---
+
+### 🔐 **What is AuthGuard in Angular?**
+
+* `AuthGuard` is a route guard that **prevents unauthorized access** to certain routes.
+* It implements `CanActivate`, `CanLoad`, or `CanActivateChild` interfaces.
+* Commonly used to protect routes from users who are not authenticated or lack permissions.
+
+---
+
+
+### 🔍 **Other Guards (Mention in Interview)**
+
+* `CanActivate`: Checks before activating a route.
+* `CanLoad`: Prevents module loading.
+* `CanDeactivate`: Prevents leaving a route (e.g., unsaved form).
+* `Resolve`: Pre-fetches data before route activation.
+* `CanActivateChild`: Guards child routes.
+
+---
+
+### 🛠️ **How It Works (CanActivate Example)**
+
+```typescript
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(): boolean {
+    if (this.authService.isLoggedIn()) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+}
+```
+
+### 🔗 **Applying to Routes**
+
+```typescript
+const routes: Routes = [
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+];
+```
+
+---
+
+### ✅ **Use Cases**
+
+* **Protect authenticated routes** like `/dashboard`, `/profile`, etc.
+* **Role-based access**: Only admins can access certain routes.
+* **Prevent navigation to login/register pages if already logged in** (reverse guard).
+* **Lazy loaded modules**: Use `CanLoad` to prevent loading secure modules unless authenticated.
+
+---
+
+
+
+
+## Routing & Child Routes
+---
+
+### 🔄 **Angular Routing & Child Routes**
+
+#### ✅ **What is Angular Routing?**
+
+* Angular Routing enables navigation between views or components in a single-page application (SPA).
+* It maps URL paths to components using the `RouterModule`.
+
+#### 🛠️ **Basic Routing Example:**
+
+```ts
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+];
+```
+
+Add to `AppModule`:
+
+```ts
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+```
+
+---
+
+### 👶 **What are Child Routes?**
+
+* Child Routes allow you to nest routes inside a parent route.
+* Useful for layouts where a part of the view (like sidebar/header) stays consistent.
+
+#### 📦 **Example:**
+
+```ts
+const routes: Routes = [
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'users', component: UsersComponent },
+    ],
+  },
+];
+```
+
+* Navigating to `/admin/dashboard` shows `DashboardComponent` inside `AdminLayoutComponent`.
+
+---
+
+### 🔍 **Use Cases for Child Routes**
+
+* **Nested views/layouts** (e.g., admin panel).
+* **Tabs or multi-step forms**.
+* **Shared layout with router outlet for children**.
+* **Modular design** with feature modules.
+
+---
+
+### 🧠 **Key Points to Mention**
+
+* Use `<router-outlet>` in both root and child components.
+* Child routes can also have their own guards.
+* Can be lazy-loaded for performance.
+
+---
+
+
+
+
+##  **Directives**
+
+### ✅ **What are Directives?**
+
+* Directives are **classes that add behavior** to elements in the DOM.
+* Angular provides **built-in directives**, and you can also create **custom directives**.
+
+---
+
+### 📂 **Types of Directives**
+
+| Type           | Description                                             | Example                            |
+| -------------- | ------------------------------------------------------- | ---------------------------------- |
+| **Component**  | A directive with a template.                            | `@Component`                       |
+| **Structural** | Changes the **DOM layout** by adding/removing elements. | `*ngIf`, `*ngFor`, `*ngSwitch`     |
+| **Attribute**  | Changes the **appearance or behavior** of an element.   | `ngClass`, `ngStyle`, custom attrs |
+
+---
+
+### 🔧 **Built-in Structural Directives**
+
+1. `*ngIf` – Conditionally render elements
+
+   ```html
+   <div *ngIf="isLoggedIn">Welcome!</div>
+   ```
+
+2. `*ngFor` – Loop over data
+
+   ```html
+   <li *ngFor="let item of items">{{ item }}</li>
+   ```
+
+3. `*ngSwitch` – Conditional multiple branches
+
+   ```html
+   <div [ngSwitch]="role">
+     <p *ngSwitchCase="'admin'">Admin Panel</p>
+     <p *ngSwitchDefault>User Panel</p>
+   </div>
+   ```
+
+---
+
+### 🎨 **Built-in Attribute Directives**
+
+1. `ngClass` – Apply CSS classes
+
+   ```html
+   <div [ngClass]="{ 'highlight': isActive }"></div>
+   ```
+
+2. `ngStyle` – Apply inline styles
+
+   ```html
+   <div [ngStyle]="{ color: isError ? 'red' : 'green' }"></div>
+   ```
+
+---
+
+### 🧩 **Custom Attribute Directive Example**
+
+```ts
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+  constructor(el: ElementRef) {
+    el.nativeElement.style.backgroundColor = 'yellow';
+  }
+}
+```
+
+**Usage:**
+
+```html
+<p appHighlight>This is highlighted</p>
+```
+
+---
+
+### 📌 **Use Cases**
+
+* **Structural**: Render UI conditionally or dynamically.
+* **Attribute**: Apply reusable visual effects, validation, or behaviors.
+* **Custom**: Build reusable logic (e.g., auto-focus, tooltip, access control).
+
+---
+
+
+
+
+
+---
+
+##  **Pipes**
+
+### ✅ **What are Pipes?**
+
+* Pipes are **functions** used to **transform data in templates**.
+* They are **used in interpolation ({{}})** to format and display data more cleanly.
+
+---
+
+### 🔹 **Built-in Pipes**
+
+| Pipe Name   | Purpose                               | Example Input | Example Output |                     |
+| ----------- | ------------------------------------- | ------------- | -------------- | ------------------- |
+| `date`      | Formats date/time                     | `new Date()`  | `Jan 1, 2024`  |                     |
+| `uppercase` | Converts text to uppercase            | `'hello'`     | `'HELLO'`      |                     |
+| `lowercase` | Converts text to lowercase            | `'HELLO'`     | `'hello'`      |                     |
+| `currency`  | Formats number as currency            | `1234.5`      | `$1,234.50`    |                     |
+| `percent`   | Converts number to percentage         | `0.25`        | `25%`          |                     |
+| `json`      | Converts object to JSON string        | `{a: 1}`      | `{"a": 1}`     |                     |
+| `slice`     | Slices array or string                | \`\[1,2,3,4]  | slice:1:3\`    | `[2,3]`             |
+| `async`     | Subscribes to Observables or Promises | \`data\$      | async\`        | Auto-updated values |
+
+---
+
+### 🧩 **Custom Pipe Example**
+
+#### Custom pipe to reverse a string:
+
+```ts
+@Pipe({ name: 'reverse' })
+export class ReversePipe implements PipeTransform {
+  transform(value: string): string {
+    return value.split('').reverse().join('');
+  }
+}
+```
+
+**Usage:**
+
+```html
+<p>{{ 'angular' | reverse }}</p> <!-- Output: ralugna -->
+```
+
+---
+
+### 🛠️ **Use Cases**
+
+* **Date formatting** (`date`)
+* **Currency conversion** (`currency`)
+* **String transformations** (`uppercase`, `lowercase`, `reverse`)
+* **Object debugging** (`json`)
+* **Real-time updates** (`async` for Observables)
+* **Custom formatting logic** (e.g., `truncate`, `capitalize`, `highlight`)
+
+---
+
+### 📎 Best Practices
+
+* Pipes should be **pure by default** (no side effects).
+* Use **impure pipes** only when necessary (e.g., pipes that depend on external data).
+* Avoid heavy computations inside pipes, especially impure ones.
+
+---
 

@@ -1673,12 +1673,12 @@ intercept(req: HttpRequest<any>, next: HttpHandler) {
 - The `constructor` is  not technically an Angular lifecycle hook.  
 - However, it is often the first method executed when a component is created, so it’s commonly discussed alongside Angular's lifecycle hooks.
 
-### ✅ Purpose of `constructor`
+✅ Purpose of `constructor`
 * Used for **dependency injection**.
 * Initialize **class-level variables**.
 * It runs **before** any Angular lifecycle hook, including `ngOnInit`.
 
-### ❌ What Not to Do in the Constructor
+❌ What Not to Do in the Constructor
 
 * Do **not perform DOM access** or complex logic.
 * Avoid using `@Input()` properties here — they are not initialized yet.

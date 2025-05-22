@@ -122,7 +122,6 @@ The **event loop** is a core part of how **Node.js handles asynchronous operatio
 * Handle **non-blocking I/O** (like file reads, HTTP requests)
 * Keep the main thread responsive
 * Defer execution of asynchronous callbacks (e.g., `setTimeout`, `fs.readFile`, `Promise.then`)
-* Node.js handles async operations via the **event loop**
 * The **call stack** runs synchronous code
 * Async tasks (I/O, timers, etc.) are **offloaded** and **re-queued**
 * Event loop **pulls** them back in when the stack is clear

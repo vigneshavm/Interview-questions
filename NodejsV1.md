@@ -1,4 +1,6 @@
 
+
+
 **Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues) 
 
 **Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)
@@ -107,6 +109,60 @@ tsconfig.json
 ---
 
 ### **Event Loop**
+
+
+The **event loop** is a core part of how **Node.js handles asynchronous operations** without blocking the main thread, even though Node.js is **single-threaded**.
+
+---
+
+## 🧠 Quick Summary
+
+**Node.js uses the event loop to:**
+
+* Handle **non-blocking I/O** (like file reads, HTTP requests)
+* Keep the main thread responsive
+* Defer execution of asynchronous callbacks (e.g., `setTimeout`, `fs.readFile`, `Promise.then`)
+* Node.js handles async operations via the **event loop**
+* The **call stack** runs synchronous code
+* Async tasks (I/O, timers, etc.) are **offloaded** and **re-queued**
+* Event loop **pulls** them back in when the stack is clear
+---
+
+## 🌀 How the Event Loop Works (Step-by-Step)
+
+### 1. **Call Stack**
+
+Node starts executing code in the **call stack** (like normal JavaScript).
+
+### 2. **Web APIs / Thread Pool**
+
+When it hits something async like:
+
+* `setTimeout()`
+* `fs.readFile()`
+* HTTP request
+
+…it **offloads** it to:
+
+* Browser’s **Web APIs** (in browser)
+* **libuv thread pool** (in Node.js)
+
+### 3. **Callback Queue / Task Queue**
+
+When the async operation finishes:
+
+* Its **callback** goes to the **callback queue** (also called task queue).
+
+### 4. **Event Loop Cycle**
+
+The event loop:
+
+* Checks if the **call stack is empty**
+* If so, it **pushes the callback** from the queue to the stack
+* The callback is then **executed**
+
+---
+
 
 
 The event loop is at the core of Node.js’s asynchronous, non-blocking architecture. 

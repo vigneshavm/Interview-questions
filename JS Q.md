@@ -1428,6 +1428,12 @@ console.log('End');
 #### **setTimeout and setImmediate and processnextTick**
 
 
+🟢 **Priority Order**:
+1. `console.log("Main")` → sync
+2. `process.nextTick()` → runs before other microtasks
+3. `setImmediate()` → check phase
+4. `setTimeout()` → timer phase
+
  These are methods in Node.js that deal with asynchronous scheduling but differ in when they are executed:
 
 - **`setTimeout()`**: Executes the callback after a specified delay, typically used for scheduling a task in the event loop after a given period.

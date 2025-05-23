@@ -547,6 +547,55 @@ console.log(`Platform: ${process.platform}`);
 
  ## Worker Threads
 
+
+ ## **Worker Threads**
+
+
+- **Worker Threads** allow Node.js to run **JavaScript code in parallel** on multiple threads.
+- They are part of the `worker_threads` module.
+- Introduced in **Node.js v10.5.0** and stable from **v12 onwards**.
+- Useful for **CPU-intensive** operations that can block the **main event loop**.
+- Help improve performance in applications that require **heavy computation**.
+
+---
+
+### **When to use Worker Threads:**
+- Performing **CPU-bound tasks** (e.g., encryption, image processing, large calculations).
+- Running **long-running JavaScript operations** without blocking the main thread.
+- Offloading **computational workloads** from the event loop to avoid performance issues.
+
+---
+
+### **Key Features:**
+- Each worker runs in its **own thread** with a **separate V8 instance and memory heap**.
+- Communicates with the main thread using **`postMessage`** and **`parentPort`**.
+- Lightweight compared to `child_process`, as it's not a separate OS process.
+- **Not ideal for I/O tasks** (prefer async/await or streams for those).
+
+---
+
+### **Simple Code Example:**
+
+**main.js**
+```js
+const { Worker } = require('worker_threads');
+
+const worker = new Worker('./worker.js');
+worker.on('message', (msg) => console.log('Result:', msg));
+```
+
+**worker.js**
+```js
+const { parentPort } = require('worker_threads');
+
+let sum = 0;
+for (let i = 0; i < 1e9; i++) sum += i;
+
+parentPort.postMessage(sum);
+```
+
+
+
 * Allows JavaScript code to run in parallel threads within a single Node.js process.
 * **Key Features**:
 
@@ -1050,54 +1099,6 @@ res.cookie('accessToken', token, {
 - Enable **load balancing** and **clustering**.
 - Use **Gzip compression**.
 - Implement **lazy loading** to optimize resource loading.
-
----
-
-## **Worker Threads**
-
-
-- **Worker Threads** allow Node.js to run **JavaScript code in parallel** on multiple threads.
-- They are part of the `worker_threads` module.
-- Introduced in **Node.js v10.5.0** and stable from **v12 onwards**.
-- Useful for **CPU-intensive** operations that can block the **main event loop**.
-- Help improve performance in applications that require **heavy computation**.
-
----
-
-### **When to use Worker Threads:**
-- Performing **CPU-bound tasks** (e.g., encryption, image processing, large calculations).
-- Running **long-running JavaScript operations** without blocking the main thread.
-- Offloading **computational workloads** from the event loop to avoid performance issues.
-
----
-
-### **Key Features:**
-- Each worker runs in its **own thread** with a **separate V8 instance and memory heap**.
-- Communicates with the main thread using **`postMessage`** and **`parentPort`**.
-- Lightweight compared to `child_process`, as it's not a separate OS process.
-- **Not ideal for I/O tasks** (prefer async/await or streams for those).
-
----
-
-### **Simple Code Example:**
-
-**main.js**
-```js
-const { Worker } = require('worker_threads');
-
-const worker = new Worker('./worker.js');
-worker.on('message', (msg) => console.log('Result:', msg));
-```
-
-**worker.js**
-```js
-const { parentPort } = require('worker_threads');
-
-let sum = 0;
-for (let i = 0; i < 1e9; i++) sum += i;
-
-parentPort.postMessage(sum);
-```
 
 ---
 

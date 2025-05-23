@@ -2,7 +2,7 @@
 **Build** • [`<script>`, async, defer](#script-and-async-and-defer)    • [Tree Shaking](#tree-shaking-in-modern-bundlers)    • [Transpiling](#transpiling-javascript-code)    • [Polyfills](#polyfills-and-backward-compatibility)    • [Babel](#role-of-babel-in-modern-development)    • [Webpack & Vite](#webpack-and-vite-bundling-process) | 
 
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) |
-**Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
+- [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
 
 
 **Security**  • [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention)    • [SQL Injection](#preventing-sql-injection-vulnerabilities)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration)    • [Sensitive Data Handling](#handling-sensitive-data)    • [CSP](#content-security-policy-csp)    • [Security Headers](#common-security-headers-and-their-purposes)    • [Clickjacking](#preventing-clickjacking-attacks)    • [Input Validation](#input-validation-and-its-importance) |
@@ -443,6 +443,20 @@ This is a simple test using the **Jest** testing framework. It asserts that mult
 
 #### **Popular JavaScript Testing Frameworks**
 
+
+- Common Node.js testing frameworks include **Mocha**, **Jest**, and **Jasmine**.
+- They provide a structured way to write unit, integration, and end-to-end tests.
+- Most support features like test suites, hooks (`before`, `after`), and assertions (via libraries like **Chai** or **Expect**).
+
+**Example:**
+```js
+describe('UserService', () => {
+  it('should return a user by ID', () => {
+    const user = getUserById(1);
+    expect(user.name).toBe('Alice');
+  });
+});
+```
 
 
 Some of the most popular JavaScript testing frameworks are:
@@ -1003,22 +1017,7 @@ Optimizing network requests is crucial to improve the loading speed and overall 
 
 ---
 
-###  **Testing Frameworks**
-- Common Node.js testing frameworks include **Mocha**, **Jest**, and **Jasmine**.
-- They provide a structured way to write unit, integration, and end-to-end tests.
-- Most support features like test suites, hooks (`before`, `after`), and assertions (via libraries like **Chai** or **Expect**).
 
-**Example:**
-```js
-describe('UserService', () => {
-  it('should return a user by ID', () => {
-    const user = getUserById(1);
-    expect(user.name).toBe('Alice');
-  });
-});
-```
-
----
 
 ###  **Testing Asynchronous Code**
 - Asynchronous operations (e.g., Promises, callbacks, `async/await`) must be properly awaited or resolved in tests.

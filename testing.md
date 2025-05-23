@@ -4,10 +4,8 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) |
 **Testing**  - [Testing Frameworks](#testing-frameworks)  - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
 
-**Security Best Practices**   - [SQL Injection](#sql-injection)  - [Cross-Site Scripting (XSS)](#cross-site-scripting-xss)  - [XSS Attack](#xss-attack)  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) 
 
-
-**Security**
+**Security**  - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf)  - [Insecure Dependencies](#insecure-dependencies)  - [Insecure Deserialization](#insecure-deserialization)  - [Sensitive Data Exposure](#sensitive-data-exposure)  - [Denial of Service (DoS)](#denial-of-service-dos)  - [Directory Traversal](#directory-traversal)  - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) 
  • [XSS](#cross-site-scripting-xss-and-prevention)    • [SQL Injection](#preventing-sql-injection-vulnerabilities)    • [Sensitive Data Handling](#handling-sensitive-data)    • [CSP](#content-security-policy-csp)    • [Security Headers](#common-security-headers-and-their-purposes)    • [Clickjacking](#preventing-clickjacking-attacks)    • [Input Validation](#input-validation-and-its-importance) |
 
 
@@ -569,7 +567,11 @@ Testing async code ensures that the asynchronous operations are correctly handle
 
 #### **Cross-Site Scripting (XSS) and Prevention**
 
-
+- **Cause**: Unsanitized user input rendered in frontend templates.
+- **Mitigation**:
+  - Escape output in templates (use templating engines like EJS/Pug safely).
+  - Sanitize HTML inputs using libraries like `DOMPurify` (frontend) or `sanitize-html` (backend).
+  - Implement Content Security Policy (CSP) headers.
 
 Cross-Site Scripting (XSS) is a security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts can steal sensitive information, manipulate content, or hijack user sessions.
 
@@ -627,6 +629,11 @@ Cross-Site Request Forgery (CSRF) is an attack where a malicious actor tricks a 
 
 #### **Preventing SQL Injection Vulnerabilities**
 
+- **Cause**: Unsanitized input passed directly to database queries or shell commands.
+- **Mitigation**:
+  - Use parameterized queries (e.g., with ORM like Sequelize, Prisma).
+  - Avoid `eval`, `exec`, or `child_process` unless absolutely necessary.
+  - Validate and sanitize input using libraries like `validator.js` or `Joi`.
 
 
 SQL Injection is a technique where an attacker can manipulate SQL queries by injecting malicious SQL code into user inputs, potentially allowing them to access, modify, or delete data from the database.
@@ -1050,19 +1057,8 @@ test('returns mocked user', async () => {
 
 
 
-####  **SQL Injection**
-- **Cause**: Unsanitized input passed directly to database queries or shell commands.
-- **Mitigation**:
-  - Use parameterized queries (e.g., with ORM like Sequelize, Prisma).
-  - Avoid `eval`, `exec`, or `child_process` unless absolutely necessary.
-  - Validate and sanitize input using libraries like `validator.js` or `Joi`.
 
-####  **Cross-Site Scripting (XSS)**
-- **Cause**: Unsanitized user input rendered in frontend templates.
-- **Mitigation**:
-  - Escape output in templates (use templating engines like EJS/Pug safely).
-  - Sanitize HTML inputs using libraries like `DOMPurify` (frontend) or `sanitize-html` (backend).
-  - Implement Content Security Policy (CSP) headers.
+
 
 ####  **Cross-Site Request Forgery (CSRF)**
 - **Cause**: Unauthorized commands transmitted from a user that the web app trusts.

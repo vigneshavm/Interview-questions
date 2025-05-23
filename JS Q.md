@@ -24,9 +24,7 @@
 **CSS and DOM Manipulation** - [innerHTML vs textContent](#innerhtml-vs-textcontent)    • [CSS Manipulation](#css-manipulation)  
 
 
-**Modules and Imports** - [Js Modules (import/export)](#javascript-modules-importexport)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules)  
-
-**Design Patterns and Architecture** • [Function Composition Patterns](#function-composition-patterns) 
+**Modules and Imports** - [Js Modules (import/export)](#javascript-modules-importexport)    • [CommonJS vs ES Modules](#commonjs-vs-es-modules)  • [Function Composition Patterns](#function-composition-patterns) 
 • [Design Patterns](#introduction-to-design-patterns)    • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)  
 
 

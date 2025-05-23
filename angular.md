@@ -1522,18 +1522,15 @@ Angular's DI system provides services or objects where needed. We declare provid
 
 Here’s a concise, interview-ready bullet-point overview of **Dependency Injection (DI) in Angular**:
 
----
 
 ## ✅ Dependency Injection in Angular
 
----
 
 ### 🔎 What is Dependency Injection?
 
 * DI is a design pattern to **inject dependencies** (services, objects) rather than creating them manually.
 * Promotes **loose coupling** and easier testing.
 
----
 
 ### ⚙️ How DI Works in Angular
 
@@ -1544,7 +1541,6 @@ Here’s a concise, interview-ready bullet-point overview of **Dependency Inject
 constructor(private myService: MyService) {}
 ```
 
----
 
 ### 📦 Providers and Injector Hierarchy
 
@@ -1561,7 +1557,6 @@ constructor(private myService: MyService) {}
 export class MyService {}
 ```
 
----
 
 ### 🔄 Hierarchical Injectors
 
@@ -1569,7 +1564,6 @@ export class MyService {}
 * Child components can get a **different instance** if a provider is configured at component level.
 * Useful for **scoped services** or overriding dependencies.
 
----
 
 ### 🛠️ Providers Syntax
 
@@ -1578,14 +1572,12 @@ export class MyService {}
 * **Factory provider:** `{ provide: MyService, useFactory: () => new MyService() }`
 * **Existing provider:** `{ provide: MyService, useExisting: OtherService }`
 
----
 
 ### 🔐 Singleton Services
 
 * Services provided in **root** are **singletons** by default.
 * Ensures shared state across the app.
 
----
 
 ### 🧪 Testing with DI
 
@@ -1595,7 +1587,6 @@ export class MyService {}
 providers: [{ provide: MyService, useClass: MockMyService }]
 ```
 
----
 
 ### 💡 Best Practices
 

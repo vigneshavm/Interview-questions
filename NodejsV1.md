@@ -109,77 +109,59 @@ tsconfig.json
 ### **Event Loop**
 
 
-The **event loop** is a core part of how **Node.js handles asynchronous operations** without blocking the main thread, even though Node.js is **single-threaded**.
+Your content is very well-structured and informative. Below is a lightly refined version with improved formatting, clarity, and completeness for interview prep or documentation purposes:
 
 ---
 
-## 🧠 Quick Summary
+## ✅ Event Loop in Node.js
 
-**Node.js uses the event loop to:**
-
-* Handle **non-blocking I/O** (like file reads, HTTP requests)
-* Keep the main thread responsive
-* Defer execution of asynchronous callbacks (e.g., `setTimeout`, `fs.readFile`, `Promise.then`)
-* The **call stack** runs synchronous code
-* Async tasks (I/O, timers, etc.) are **offloaded** and **re-queued**
-* Event loop **pulls** them back in when the stack is clear
----
-
-## 🌀 How the Event Loop Works (Step-by-Step)
-
-### 1. **Call Stack**
-
-Node starts executing code in the **call stack** (like normal JavaScript).
-
-### 2. **Web APIs / Thread Pool**
-
-When it hits something async like:
-
-* `setTimeout()`
-* `fs.readFile()`
-* HTTP request
-
-…it **offloads** it to:
-
-* Browser’s **Web APIs** (in browser)
-* **libuv thread pool** (in Node.js)
-
-### 3. **Callback Queue / Task Queue**
-
-When the async operation finishes:
-
-* Its **callback** goes to the **callback queue** (also called task queue).
-
-### 4. **Event Loop Cycle**
-
-The event loop:
-
-* Checks if the **call stack is empty**
-* If so, it **pushes the callback** from the queue to the stack
-* The callback is then **executed**
+The **event loop** is the mechanism that allows Node.js to perform **non-blocking I/O operations**—despite being **single-threaded**—by offloading operations to the system kernel or background threads when possible.
 
 ---
 
+### 1. What is the Event Loop?
 
+* The **event loop** is a fundamental part of Node.js that enables asynchronous operations like network requests, file I/O, or database queries to be performed without blocking the main thread.
+* Node.js achieves this through a combination of:
 
-The event loop is at the core of Node.js’s asynchronous, non-blocking architecture. 
-Although JavaScript runs on a single thread, Node uses the libuv library to offload I/O tasks to a thread pool or the operating system, enabling high concurrency.
+  * **Event-driven architecture**
+  * **Callback functions**
+  * **The libuv library**, which manages the thread pool and event loop.
+* As a result, Node.js can efficiently handle **thousands of concurrent connections**.
 
- The event loop is structured into **phases**, such as:
+---
 
- * **Timers** – for `setTimeout` and `setInterval`.
- * **Pending Callbacks** – for deferred I/O errors.
- * **Poll** – where I/O events are retrieved.
- * **Check** – where `setImmediate` callbacks run.
- * **Close Callbacks** – for cleanup like `socket.on('close')`.
+### 2. Phases of the Event Loop
 
- Between each phase, Node processes **microtasks**, which include `Promise.then()` and `queueMicrotask()`, and even higher-priority tasks like `process.nextTick()`. These are **fully drained** before moving to the next phase.
+Each tick of the event loop is divided into **phases**, which are executed in a specific order:
 
- For example, `process.nextTick()` allows us to execute logic **before any other microtask or phase**, which is useful but must be used with care to avoid starving the event loop.
+| Phase                 | Description                                                                   |
+| --------------------- | ----------------------------------------------------------------------------- |
+| **Timers**            | Executes callbacks from `setTimeout()` and `setInterval()`                    |
+| **Pending Callbacks** | Executes I/O callbacks deferred to the next loop iteration                    |
+| **Idle/Prepare**      | Internal use (preparing for the next cycle)                                   |
+| **Poll**              | Retrieves new I/O events; executes I/O-related callbacks (e.g., file, socket) |
+| **Check**             | Executes callbacks from `setImmediate()`                                      |
+| **Close Callbacks**   | Executes callbacks for closed resources (e.g., `socket.on('close')`)          |
 
- Understanding these internals is essential when optimizing for **latency, throughput, or event loop lag**, especially in high-concurrency or real-time systems. I’ve used this knowledge to fine-tune performance, avoid blocking patterns, and handle backpressure in production systems.
+---
 
+### 3. How the Event Loop Works (Step-by-Step)
 
+   * Node.js begins by executing top-level code on the call stack.
+   * Time-consuming I/O operations (e.g., file system, DNS, crypto) are offloaded to the **libuv thread pool**.
+   * When async tasks complete, their **callbacks** are placed in the appropriate **queue** (e.g., timers queue, check queue, I/O queue).
+   * The event loop checks if the **call stack is empty**.
+   * If empty, it dequeues a callback from the appropriate phase and **pushes it to the call stack** for execution.
+   * This cycle repeats continuously.
+
+---
+
+**Execution Priority**
+1.Current synchronous code runs (call stack).
+2.All microtasks are processed (in order).
+3.Then one macrotask runs.
+4.Loop repeats.
 
 ```
 ┌───────────────────────────────┐
@@ -199,47 +181,6 @@ Although JavaScript runs on a single thread, Node uses the libuv library to offl
 └───────────────────────────────┘
 ```
 
-
-**Execution Priority**
-
-1.Current synchronous code runs (call stack).
-
-2.All microtasks are processed (in order).
-
-3.Then one macrotask runs.
-
-4.Loop repeats.
-
-
----
-
-### ⚙️ **Event Loop Phases (Simplified Order)**
-
-1. **Timers**
-   Executes `setTimeout()` and `setInterval()` callbacks.
-
-2. **Pending Callbacks**
-   Executes I/O callbacks deferred to the next loop iteration.
-
-3. **Idle/Prepare**
-   Internal use only.
-
-4. **Poll**
-
-   * Retrieves new I/O events.
-   * Executes I/O callbacks (excluding close, timers, and `setImmediate()`).
-   * If nothing is in the poll queue, it may:
-
-     * Wait for callbacks.
-     * Move to the **check** phase.
-
-5. **Check**
-   Executes `setImmediate()` callbacks.
-
-6. **Close Callbacks**
-   Executes close events like `socket.on('close')`.
-
----
 
 ### 🧠 **Microtasks vs Macrotasks**
 

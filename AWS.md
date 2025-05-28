@@ -39,7 +39,27 @@
 - [Difference between a partition key and a sort key](#difference-between-a-partition-key-and-a-sort-key)
 - [Primary keys types](#primary-keys-types) - [Primary key in DynamoDB](#primary-key-in-dynamodb) - [MongoDB vs Amazon DynamoDB](#MongoDB-vs-Amazon-DynamoDB)
 
-
+**S3**
+- [S3 Bucket Policy](#s3-bucket-policy)
+- [Bucket Policy different from IAM Policy](#bucket-policy-different-from-iam-policy)
+- [Common actions controlled by S3 policies](#common-actions-controlled-by-s3-policies)
+- [Restrict access to an S3 bucket to a specific IP range](#restrict-access-to-an-s3-bucket-to-a-specific-ip-range)
+- [S3 bucket publicly accessible](#s3-bucket-publicly-accessible)
+- [Purpose of Block Public Access settings](#purpose-of-block-public-access-settings)
+- [S3 Access Control Lists (ACLs)](#s3-access-control-lists-acls)
+- [Bucket Policies vs ACLs](#bucket-policies-vs-acls)
+- [S3 Cross-Origin Resource Sharing (CORS)](#s3-cross-origin-resource-sharing-cors)
+- [Encrypt objects in S3](#encrypt-objects-in-s3)
+- [Pre-Signed URL in S3](#pre-signed-url-in-s3)
+- [S3 lifecycle policies work](#s3-lifecycle-policies-work)
+- [Common S3 storage classes](#common-s3-storage-classes)
+- [Secure S3 buckets](#secure-s3-buckets)
+- [S3 handle versioning](#s3-handle-versioning)
+- [Handle large file uploads in S3](#handle-large-file-uploads-in-s3)
+- [S3 Transfer Acceleration](#s3-transfer-acceleration)
+- [S3 event notifications work](#s3-event-notifications-work)
+- [Prevent unauthorized deletion of objects](#prevent-unauthorized-deletion-of-objects)
+- [Maximum size of an S3 object](#maximum-size-of-an-s3-object)
 
 
 
@@ -918,6 +938,164 @@ You use the **Query** API to retrieve items based on the partition key and optio
 * Your workload requires high throughput and low latency at scale
 * You prefer tight AWS ecosystem integration (Lambda, API Gateway, IAM)
 * Your access patterns are primarily key-value with predictable query patterns
+
+---
+
+
+
+## Amazon S3 Policies & Interview Questions
+
+### S3 Bucket Policy
+
+**Answer:**
+A bucket policy is a JSON-based access policy attached to an S3 bucket that defines permissions for principals (users, accounts, or services) to perform actions on that bucket and its objects.
+
+---
+
+###  Bucket Policy different from IAM Policy
+
+**Answer:**
+
+* **Bucket Policy:** Attached directly to a bucket, controls access to that bucket’s objects.
+* **IAM Policy:** Attached to users, groups, or roles, controls what AWS resources those identities can access.
+
+---
+
+### common actions controlled by S3 policies
+
+**Answer:**
+Examples include: `s3:GetObject`, `s3:PutObject`, `s3:DeleteObject`, `s3:ListBucket`, `s3:GetBucketPolicy`.
+
+---
+
+### restrict access to an S3 bucket to a specific IP range
+
+**Answer:**
+Use a condition in the bucket policy with the `IpAddress` operator specifying the allowed IP range under `"Condition"`.
+
+---
+
+### S3 bucket publicly accessible
+
+**Answer:**
+Add a bucket policy allowing `"Principal": "*"` and `"Action": "s3:GetObject"` on the bucket’s resource. Also, ensure **Block Public Access** settings are disabled.
+
+---
+
+### purpose of **Block Public Access** settings
+
+**Answer:**
+To prevent accidental public exposure of S3 buckets or objects by blocking public policies and ACLs.
+
+---
+
+### S3 Access Control Lists (ACLs)
+
+**Answer:**
+ACLs are legacy access control mechanisms allowing you to grant read/write permissions on buckets or objects to AWS accounts and predefined groups.
+
+---
+### Bucket Policies vs ACLs
+
+**Answer:**
+Use bucket policies for fine-grained, scalable permissions. ACLs are generally discouraged except for legacy support or cross-account access.
+
+---
+
+### S3 Cross-Origin Resource Sharing (CORS)
+
+**Answer:**
+CORS enables browsers to make cross-origin requests to S3 buckets. You configure allowed origins, methods, and headers in a CORS configuration on the bucket.
+
+---
+
+### encrypt objects in S3
+
+**Answer:**
+Options include:
+
+* Server-side encryption with Amazon S3-managed keys (SSE-S3)
+* Server-side encryption with AWS KMS-managed keys (SSE-KMS)
+* Client-side encryption before upload
+
+---
+
+### Pre-Signed URL in S3
+
+**Answer:**
+A URL generated with a signature that allows temporary access to private objects without requiring AWS credentials.
+
+---
+### S3 lifecycle policies work
+
+**Answer:**
+Lifecycle policies automate moving objects between storage classes or deleting them after a set period.
+
+---
+
+### common S3 storage classes
+
+**Answer:**
+
+* STANDARD
+* STANDARD\_IA (Infrequent Access)
+* ONEZONE\_IA
+* INTELLIGENT\_TIERING
+* GLACIER
+* DEEP\_ARCHIVE
+
+---
+
+### secure S3 buckets
+
+**Answer:**
+
+* Use IAM policies and bucket policies with least privilege
+* Enable Block Public Access
+* Use encryption (SSE-S3, SSE-KMS)
+* Enable logging and monitoring (CloudTrail, S3 access logs)
+* Enable MFA Delete on versioned buckets
+
+---
+
+### S3 handle versioning
+
+**Answer:**
+Versioning keeps multiple variants of an object in the same bucket, enabling recovery from unintended overwrites or deletions.
+
+---
+### handle large file uploads in S3
+
+**Answer:**
+Use Multipart Upload to upload parts in parallel, improving efficiency and reliability.
+
+---
+
+### S3 Transfer Acceleration
+
+**Answer:**
+A feature to speed up content transfers to S3 using optimized network paths via Amazon CloudFront edge locations.
+
+---
+
+### S3 event notifications work
+
+**Answer:**
+S3 can send event notifications to AWS Lambda, SNS, or SQS when specified events happen (e.g., object created, deleted).
+
+---
+
+### prevent unauthorized deletion of objects
+
+**Answer:**
+Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to restrict `s3:DeleteObject`.
+
+---
+
+### maximum size of an S3 object
+
+**Answer:**
+5 TB per object. For objects larger than 5 GB, Multipart Upload is recommended.
 
 ---
 

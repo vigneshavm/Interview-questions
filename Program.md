@@ -5,6 +5,17 @@
 |[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)|[Location based IP-based restrictions](#Location-based-IP-based-restrictions) | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) |[Build simple API](#Build-simple-API) |[TodoList](#TodoList)  |[Fetch and display list users](#Fetch-and-display-list-users) 
 
 
+**polyfill programs** 
+
+- [Array.prototype.map](#arrayprototypemap)
+- [Array.prototype.filter](#arrayprototypefilter)
+- [Array.prototype.reduce](#arrayprototypereduce)
+- [Function.prototype.call](#functionprototypecall)
+- [Object.create](#objectcreate)
+- [Promise](#Promise)
+
+
+
 ## Grid View
 
 ```js
@@ -986,5 +997,209 @@ const UserList = () => {
 export default UserList;
 
 ```
+
+
+
+
+
+
+---
+
+#### `Array.prototype.map`
+
+```js
+Array.prototype.myMap = function (callback) {
+  if (typeof callback !== 'function') {
+    throw new TypeError(callback + ' is not a function');
+  }
+
+  const result = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(callback(this[i], i, this));
+  }
+  return result;
+};
+
+// ✅ Usage
+const nums = [1, 2, 3];
+const doubled = nums.myMap(x => x * 2);  // [2, 4, 6]
+```
+
+---
+
+#### `Array.prototype.filter`
+
+```js
+Array.prototype.myFilter = function (callback) {
+  const result = [];
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i], i, this)) {
+      result.push(this[i]);
+    }
+  }
+  return result;
+};
+
+// ✅ Usage
+const nums = [1, 2, 3, 4];
+const evens = nums.myFilter(x => x % 2 === 0);  // [2, 4]
+```
+
+---
+
+#### `Array.prototype.reduce`
+
+```js
+Array.prototype.myReduce = function (callback, initialValue) {
+  let acc = initialValue;
+  let startIndex = 0;
+
+  if (acc === undefined) {
+    acc = this[0];
+    startIndex = 1;
+  }
+
+  for (let i = startIndex; i < this.length; i++) {
+    acc = callback(acc, this[i], i, this);
+  }
+
+  return acc;
+};
+
+// ✅ Usage
+const total = [1, 2, 3, 4].myReduce((sum, val) => sum + val); // 10
+```
+
+---
+
+#### `Function.prototype.call`
+
+```js
+Function.prototype.myCall = function (context, ...args) {
+  context = context || globalThis;
+  const fnKey = Symbol();
+  context[fnKey] = this;
+  const result = context[fnKey](...args);
+  delete context[fnKey];
+  return result;
+};
+
+// ✅ Usage
+function greet(greeting) {
+  return `${greeting}, ${this.name}`;
+}
+const person = { name: 'Alice' };
+console.log(greet.myCall(person, 'Hello'));  // "Hello, Alice"
+```
+
+---
+
+#### `Object.create`
+
+```js
+function myCreate(proto) {
+  function F() {}
+  F.prototype = proto;
+  return new F();
+}
+
+// ✅ Usage
+const parent = { greet: () => 'hi' };
+const child = myCreate(parent);
+console.log(child.greet()); // "hi"
+```
+
+---
+
+
+#### Promise
+
+```js
+(function (global) {
+  if (typeof global.Promise !== 'undefined') return;
+
+  function MyPromise(executor) {
+    var self = this;
+    self.status = 'pending';
+    self.value = undefined;
+    self.reason = undefined;
+    self.onFulfilled = [];
+    self.onRejected = [];
+
+    function resolve(value) {
+      if (self.status === 'pending') {
+        self.status = 'fulfilled';
+        self.value = value;
+        self.onFulfilled.forEach(function (fn) {
+          fn(self.value);
+        });
+      }
+    }
+
+    function reject(reason) {
+      if (self.status === 'pending') {
+        self.status = 'rejected';
+        self.reason = reason;
+        self.onRejected.forEach(function (fn) {
+          fn(self.reason);
+        });
+      }
+    }
+
+    try {
+      executor(resolve, reject);
+    } catch (err) {
+      reject(err);
+    }
+  }
+
+  MyPromise.prototype.then = function (onFulfilled, onRejected) {
+    var self = this;
+    return new MyPromise(function (resolve, reject) {
+      if (self.status === 'fulfilled') {
+        try {
+          var result = onFulfilled ? onFulfilled(self.value) : self.value;
+          resolve(result);
+        } catch (err) {
+          reject(err);
+        }
+      } else if (self.status === 'rejected') {
+        try {
+          var result = onRejected ? onRejected(self.reason) : self.reason;
+          reject(result);
+        } catch (err) {
+          reject(err);
+        }
+      } else {
+        self.onFulfilled.push(function (value) {
+          try {
+            var result = onFulfilled ? onFulfilled(value) : value;
+            resolve(result);
+          } catch (err) {
+            reject(err);
+          }
+        });
+
+        self.onRejected.push(function (reason) {
+          try {
+            var result = onRejected ? onRejected(reason) : reason;
+            reject(result);
+          } catch (err) {
+            reject(err);
+          }
+        });
+      }
+    });
+  };
+
+  MyPromise.prototype.catch = function (onRejected) {
+    return this.then(null, onRejected);
+  };
+
+  global.Promise = MyPromise;
+})(this);
+```
+
+
 
 

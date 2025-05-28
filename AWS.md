@@ -1,25 +1,15 @@
-Here's the **corrected and consistently formatted list of topics** for AWS Lambda and API Gateway:
 
 ---
 
 ### 🟦 **AWS Lambda**
 
-* [AWS Lambda](#aws-lambda)
-* [AWS Lambda Supported Languages](#aws-lambda-supported-languages)
-* [Maximum Execution Time of an AWS Lambda Function](#maximum-execution-time-of-an-aws-lambda-function)
-* [Triggers That Can Invoke AWS Lambda](#triggers-that-can-invoke-aws-lambda)
-* [Typical Architecture of Using AWS Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)
-* [Passing Data to an AWS Lambda Function](#passing-data-to-an-aws-lambda-function)
-* [Handling Large File Uploads in AWS](#handling-large-file-uploads-in-aws)
-* [Cold Start](#cold-start)
-* [How Lambda Scales](#how-lambda-scales)
-* [Provisioned Concurrency](#provisioned-concurrency)
-* [Monitoring Lambda Functions](#monitoring-lambda-functions)
-* [Assigning Permissions to Lambda Functions](#assigning-permissions-to-lambda-functions)
-* [Securely Storing Secrets in Lambda](#securely-storing-secrets-in-lambda)
-* [Lambda Layers](#lambda-layers)
-* [Maximum Deployment Package Size](#maximum-deployment-package-size)
-* [Building a Serverless Video Upload and Processing System Using Lambda](#building-a-serverless-video-upload-and-processing-system-using-lambda)
+* [AWS Lambda](#aws-lambda)   * [AWS Lambda Supported Languages](#aws-lambda-supported-languages)    * [Maximum Execution Time of an AWS Lambda Function](#maximum-execution-time-of-an-aws-lambda-function)
+* [Triggers That Can Invoke AWS Lambda](#triggers-that-can-invoke-aws-lambda) * [Typical Architecture of Using AWS Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)
+* [Passing Data to an AWS Lambda Function](#passing-data-to-an-aws-lambda-function) * [Handling Large File Uploads in AWS](#handling-large-file-uploads-in-aws)
+* [Cold Start](#cold-start) * [How Lambda Scales](#how-lambda-scales) * [Provisioned Concurrency](#provisioned-concurrency)
+* [Monitoring Lambda Functions](#monitoring-lambda-functions) * [Assigning Permissions to Lambda Functions](#assigning-permissions-to-lambda-functions)
+* [Securely Storing Secrets in Lambda](#securely-storing-secrets-in-lambda) * [Lambda Layers](#lambda-layers)
+* [Maximum Deployment Package Size](#maximum-deployment-package-size) * [Building a Serverless Video Upload and Processing System Using Lambda](#building-a-serverless-video-upload-and-processing-system-using-lambda)
 
 
 ---

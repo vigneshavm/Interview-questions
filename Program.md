@@ -943,53 +943,48 @@ export default TodoList;
 ```tsx
 
 
-
 import React, { useEffect, useState } from 'react';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [search, setSearch] = useState('');
 
+  // Fetch users on component mount
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((res) => {
-        if (!res.ok) throw new Error('Network response was not ok');
-        return res.json();
-      })
-      .then((data) => {
-        setUsers(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError('Failed to load users');
-        setLoading(false);
-      });
+    fetch('https://jsonplaceholder.typicode.com/users') // Dummy API
+      .then(res => res.json())
+      .then(data => setUsers(data))
+      .catch(err => console.error('Error fetching users:', err));
   }, []);
 
+  // Filter users based on search
+  const filteredUsers = users.filter(user =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="max-w-xl mx-auto mt-10 p-4 rounded shadow bg-white">
-      <h2 className="text-2xl font-bold mb-4 text-center">User List</h2>
+    <div style={{ padding: '20px' }}>
+      <h2>User List</h2>
 
-      {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
+      <input
+        type="text"
+        placeholder="Search by name..."
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        style={{ padding: '8px', marginBottom: '10px', width: '100%' }}
+      />
 
-      {!loading && !error && (
-        <ul className="space-y-3">
-          {users.map((user) => (
-            <li
-              key={user.id}
-              className="border p-3 rounded bg-gray-50 flex flex-col"
-            >
-              <span className="font-semibold">{user.name}</span>
-              <span className="text-sm text-gray-600">{user.email}</span>
-              <span className="text-sm text-gray-500">
-                {user.address.city}, {user.address.street}
-              </span>
+      <ul>
+        {filteredUsers.length > 0 ? (
+          filteredUsers.map(user => (
+            <li key={user.id}>
+              {user.name} – {user.email}
             </li>
-          ))}
-        </ul>
-      )}
+          ))
+        ) : (
+          <li>No users found</li>
+        )}
+      </ul>
     </div>
   );
 };

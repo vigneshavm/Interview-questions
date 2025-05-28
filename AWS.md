@@ -16,21 +16,13 @@
 
 ### 🟨 **AWS API Gateway**
 
-* [AWS API Gateway](#aws-api-gateway)
-* [Types of APIs in API Gateway](#types-of-apis-in-api-gateway)
-* [REST API vs HTTP API](#rest-api-vs-http-api)
-* [Integration Types Supported by API Gateway](#integration-types-supported-by-api-gateway)
-* [How API Gateway Integrates with AWS Lambda](#how-api-gateway-integrates-with-aws-lambda)
-* [Stages in API Gateway](#stages-in-api-gateway)
-* [Usage Plans in API Gateway](#usage-plans-in-api-gateway)
-* [Throttling in API Gateway](#throttling-in-api-gateway)
-* [Securing Your API in API Gateway](#securing-your-api-in-api-gateway)
-* [Lambda Authorizer](#lambda-authorizer)
-* [Can API Gateway Serve Static Content](#can-api-gateway-serve-static-content)
-* [Payload Limit for API Gateway](#payload-limit-for-api-gateway)
-* [Building a Secure Video Upload System](#building-a-secure-video-upload-system)
-* [Handling CORS in API Gateway](#handling-cors-in-api-gateway)
-* [How API Gateway Handles Caching](#how-api-gateway-handles-caching)
+* [AWS API Gateway](#aws-api-gateway) * [Types of APIs in API Gateway](#types-of-apis-in-api-gateway) * [REST API vs HTTP API](#rest-api-vs-http-api)
+* [Integration Types Supported by API Gateway](#integration-types-supported-by-api-gateway) * [How API Gateway Integrates with AWS Lambda](#how-api-gateway-integrates-with-aws-lambda)
+* [Stages in API Gateway](#stages-in-api-gateway) * [Usage Plans in API Gateway](#usage-plans-in-api-gateway)
+* [Throttling in API Gateway](#throttling-in-api-gateway) * [Securing Your API in API Gateway](#securing-your-api-in-api-gateway)
+* [Lambda Authorizer](#lambda-authorizer) * [Can API Gateway Serve Static Content](#can-api-gateway-serve-static-content)
+* [Payload Limit for API Gateway](#payload-limit-for-api-gateway) * [Building a Secure Video Upload System](#building-a-secure-video-upload-system)
+* [Handling CORS in API Gateway](#handling-cors-in-api-gateway) * [How API Gateway Handles Caching](#how-api-gateway-handles-caching)
 
 ---
 

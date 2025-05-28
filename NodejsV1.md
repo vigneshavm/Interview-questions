@@ -569,32 +569,9 @@ parentPort.postMessage(sum);
   - The master process can load balance requests between worker processes.
   - and  **communication via  IPC (Inter-Process Communication)** using process.send() and the 'message' event.
   - Improves performance by distributing tasks across multiple CPU cores for CPU-bound applications.
-- **Example Usage**:
-  ```javascript
-  const cluster = require('cluster');
-  const http = require('http');
-  const numCPUs = require('os').cpus().length;
-
-  if (cluster.isMaster) {
-    for (let i = 0; i < numCPUs; i++) {
-      cluster.fork();
-    }
-
-    cluster.on('exit', (worker, code, signal) => {
-      console.log(`Worker ${worker.process.pid} died`);
-    });
-  } else {
-    http.createServer((req, res) => {
-      res.writeHead(200);
-      res.end('Hello World');
-    }).listen(8000);
-  }
-  ```
-##  Cluster Module
-
-- The **Cluster module** in Node.js allows you to **create child processes (workers)** that all share the **same server port**.
-- Built-in module used to **take advantage of multi-core systems**.
-- Helps scale Node.js applications by **distributing incoming connections** across multiple processes.
+  - The **Cluster module** in Node.js allows you to **create child processes (workers)** that all share the **same server port**.
+  - Built-in module used to **take advantage of multi-core systems**.
+  - Helps scale Node.js applications by **distributing incoming connections** across multiple processes.
 
 ---
 

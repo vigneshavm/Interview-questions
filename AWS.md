@@ -1,3 +1,48 @@
+Here's the **corrected and consistently formatted list of topics** for AWS Lambda and API Gateway:
+
+---
+
+### 🟦 **AWS Lambda**
+
+* [AWS Lambda](#aws-lambda)
+* [AWS Lambda Supported Languages](#aws-lambda-supported-languages)
+* [Maximum Execution Time of an AWS Lambda Function](#maximum-execution-time-of-an-aws-lambda-function)
+* [Triggers That Can Invoke AWS Lambda](#triggers-that-can-invoke-aws-lambda)
+* [Typical Architecture of Using AWS Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)
+* [Passing Data to an AWS Lambda Function](#passing-data-to-an-aws-lambda-function)
+* [Handling Large File Uploads in AWS](#handling-large-file-uploads-in-aws)
+* [Cold Start](#cold-start)
+* [How Lambda Scales](#how-lambda-scales)
+* [Provisioned Concurrency](#provisioned-concurrency)
+* [Monitoring Lambda Functions](#monitoring-lambda-functions)
+* [Assigning Permissions to Lambda Functions](#assigning-permissions-to-lambda-functions)
+* [Securely Storing Secrets in Lambda](#securely-storing-secrets-in-lambda)
+* [Lambda Layers](#lambda-layers)
+* [Maximum Deployment Package Size](#maximum-deployment-package-size)
+* [Building a Serverless Video Upload and Processing System Using Lambda](#building-a-serverless-video-upload-and-processing-system-using-lambda)
+
+
+---
+
+### 🟨 **AWS API Gateway**
+
+* [AWS API Gateway](#aws-api-gateway)
+* [Types of APIs in API Gateway](#types-of-apis-in-api-gateway)
+* [REST API vs HTTP API](#rest-api-vs-http-api)
+* [Integration Types Supported by API Gateway](#integration-types-supported-by-api-gateway)
+* [How API Gateway Integrates with AWS Lambda](#how-api-gateway-integrates-with-aws-lambda)
+* [Stages in API Gateway](#stages-in-api-gateway)
+* [Usage Plans in API Gateway](#usage-plans-in-api-gateway)
+* [Throttling in API Gateway](#throttling-in-api-gateway)
+* [Securing Your API in API Gateway](#securing-your-api-in-api-gateway)
+* [Lambda Authorizer](#lambda-authorizer)
+* [Can API Gateway Serve Static Content](#can-api-gateway-serve-static-content)
+* [Payload Limit for API Gateway](#payload-limit-for-api-gateway)
+* [Building a Secure Video Upload System](#building-a-secure-video-upload-system)
+* [Handling CORS in API Gateway](#handling-cors-in-api-gateway)
+* [How API Gateway Handles Caching](#how-api-gateway-handles-caching)
+
+---
 
 
 
@@ -41,7 +86,6 @@ Let me know if you want details on how to configure timeout or best practices fo
 
 ###  Triggers That Can Invoke AWS Lambda
 
-### 🟦 **Topic: Triggers That Can Invoke AWS Lambda**
 
 AWS Lambda can be invoked by a variety of event sources (triggers), enabling it to run code in response to many types of events. Common triggers include:
 
@@ -62,9 +106,6 @@ AWS Lambda can be invoked by a variety of event sources (triggers), enabling it 
 
 ###  Typical Architecture of Using AWS Lambda for APIs
 
-
-
-### 🟦 **Topic: Typical Architecture of Using AWS Lambda for APIs**
 
 A common serverless API architecture with AWS Lambda includes the following components:
 
@@ -216,7 +257,7 @@ Example for SNS:
 
 
 
-###  Handle Large File Uploads in AWS 
+###  Handling Large File Uploads in AWS
 
 **Answer:**
 Do **not** upload directly via Lambda. Instead:
@@ -335,7 +376,7 @@ A **cold start** occurs when AWS Lambda **initializes a new instance** of your f
 ---
 
 
-###  How does Lambda scale?
+###  How Lambda Scales
 
 **Answer:**
 Lambda scales **automatically and horizontally** by running multiple instances in parallel. By default:
@@ -400,13 +441,12 @@ If your API receives 5000 requests per second:
 It ensures a **pre-warmed number of Lambda instances**, eliminating cold starts. It’s suitable for latency-sensitive workloads (e.g., APIs, gaming, ML inference).
 
 
-### 🟦 **Topic: What is Provisioned Concurrency in AWS Lambda?**
 
 **Provisioned Concurrency** is an AWS Lambda feature that **pre-warms** a specified number of Lambda instances so they are **ready to respond immediately**—eliminating cold starts.
 
 ---
 
-### 🚀 **Why Use Provisioned Concurrency?**
+#### 🚀 **Why Use Provisioned Concurrency?**
 
 Cold starts can cause latency in:
 
@@ -418,7 +458,7 @@ Provisioned concurrency **ensures consistent performance** for such use cases.
 
 ---
 
-### ⚙️ **How It Works**
+#### ⚙️ **How It Works**
 
 * You specify the **number of warm Lambda instances** to keep ready.
 * AWS **initializes those instances ahead of time** (including runtime, init code).
@@ -429,7 +469,7 @@ Provisioned concurrency **ensures consistent performance** for such use cases.
 
 ---
 
-### 📌 **Key Properties**
+#### 📌 **Key Properties**
 
 | Property              | Value                                                                       |
 | --------------------- | --------------------------------------------------------------------------- |
@@ -440,7 +480,7 @@ Provisioned concurrency **ensures consistent performance** for such use cases.
 
 ---
 
-### 🧪 **Example – Enabling via AWS CLI**
+#### 🧪 **Example – Enabling via AWS CLI**
 
 ```bash
 aws lambda put-provisioned-concurrency-config \
@@ -453,7 +493,7 @@ aws lambda put-provisioned-concurrency-config \
 
 ---
 
-### 📊 **Billing Comparison**
+#### 📊 **Billing Comparison**
 
 | Type                    | Billed For                           |
 | ----------------------- | ------------------------------------ |
@@ -462,7 +502,7 @@ aws lambda put-provisioned-concurrency-config \
 
 ---
 
-### ✅ **When to Use It**
+#### ✅ **When to Use It**
 
 * Cold start latency is not acceptable
 * You have **predictable traffic patterns**
@@ -472,7 +512,7 @@ aws lambda put-provisioned-concurrency-config \
 
 
 
-###  How do you handle errors in Lambda?
+####  How do you handle errors in Lambda?
 
 * Use **try/catch** in your code
 * Configure **DLQs (Dead Letter Queues)** for asynchronous invocations
@@ -481,7 +521,7 @@ aws lambda put-provisioned-concurrency-config \
 
 ---
 
-###  How do you monitor Lambda functions?
+###  Monitoring Lambda Functions
 
 **Answer:**
 Use:
@@ -493,14 +533,14 @@ Use:
 ---
 
 
-###  How do you assign permissions to Lambda?
+###  Assigning Permissions to Lambda Functions
 
 **Answer:**
 You assign an **IAM execution role** to the Lambda function. This role defines what AWS services (e.g., S3, DynamoDB) the function can access.
 
 ---
 
-###  How can you securely store secrets in Lambda?
+###  Securely Storing Secrets in Lambda
 
 **Answer:**
 
@@ -511,14 +551,14 @@ You assign an **IAM execution role** to the Lambda function. This role defines w
 ---
 
 
-###  What are Lambda Layers?
+###  Lambda Layers
 
 **Answer:**
 Lambda Layers allow you to **package and share code libraries or dependencies** (e.g., Node.js modules, Python packages) across multiple Lambda functions.
 
 ---
 
-###  What is the maximum deployment package size?
+###  maximum deployment package size
 
 * **Direct upload (console or API):** 50 MB (zipped)
 * **With S3 upload:** 250 MB (zipped)
@@ -527,8 +567,7 @@ Lambda Layers allow you to **package and share code libraries or dependencies** 
 
 ---
 
-
-###  Describe how you would build a serverless video upload and processing system using Lambda.
+###  Building a Serverless Video Upload and Processing System Using Lambda
 
 **Answer:**
 
@@ -550,16 +589,15 @@ Would you like me to generate **practice coding questions**, a **mock interview*
 
 
 
-## ✅ **Basic Interview Questions**
 
-###  What is AWS API Gateway?
+###   AWS API Gateway
 
 **Answer:**
 AWS API Gateway is a fully managed service that makes it easy to **create, publish, maintain, monitor, and secure REST, HTTP, and WebSocket APIs** at any scale. It acts as a **gateway between clients and backend services** (e.g., AWS Lambda, EC2, etc.).
 
 ---
 
-###  What types of APIs are supported by API Gateway?
+###  Types of APIs in API Gateway
 
 **Answer:**
 
@@ -569,7 +607,7 @@ AWS API Gateway is a fully managed service that makes it easy to **create, publi
 
 ---
 
-###  What is the difference between REST API and HTTP API?
+###  REST API Vs HTTP API
 
 | Feature     | REST API                          | HTTP API                     |
 | ----------- | --------------------------------- | ---------------------------- |
@@ -581,7 +619,7 @@ AWS API Gateway is a fully managed service that makes it easy to **create, publi
 ---
 
 
-###  What are the integration types supported by API Gateway?
+###  integration types supported by API Gateway
 
 **Answer:**
 
@@ -591,8 +629,7 @@ AWS API Gateway is a fully managed service that makes it easy to **create, publi
 4. **AWS Service Proxy** – Directly call AWS services (e.g., DynamoDB, SNS)
 
 ---
-
-###  How does API Gateway integrate with AWS Lambda?
+###  How API Gateway Integrates with AWS Lambda
 
 **Answer:**
 
@@ -601,15 +638,14 @@ AWS API Gateway is a fully managed service that makes it easy to **create, publi
 * Data is passed to Lambda in the **event object**.
 
 ---
-
-###  What is a stage in API Gateway?
+###  Stages in API Gateway
 
 **Answer:**
 A **stage** is a named reference to a deployment of your API (e.g., `dev`, `staging`, `prod`). It allows versioning and separates environments.
 
 ---
 
-###  What are usage plans in API Gateway?
+###  usage plans in API Gateway
 
 **Answer:**
 Usage plans allow you to:
@@ -620,7 +656,7 @@ Usage plans allow you to:
 
 ---
 
-###  What is throttling in API Gateway?
+###  throttling in API Gateway
 
 **Answer:**
 Throttling controls how many requests can be handled:
@@ -633,7 +669,7 @@ Prevents abuse and ensures backend stability.
 ---
 
 
-###  How can you secure your API in API Gateway?
+###  Securing Your API in API Gateway
 
 **Answer:**
 
@@ -645,21 +681,21 @@ Prevents abuse and ensures backend stability.
 
 ---
 
-###  What is a Lambda Authorizer?
+###  Lambda Authorizer
 
 **Answer:**
 A Lambda Authorizer (previously known as a custom authorizer) is a Lambda function that controls access to your API by **validating headers, tokens, or other context** before the main handler runs.
 
 ---
 
-###  Can API Gateway serve static content?
+###  Can API Gateway serve static content
 
 **Answer:**
 No, API Gateway doesn’t serve static files. You should serve static assets like HTML, CSS, JS, or videos from **Amazon S3 with CloudFront**. API Gateway is best for dynamic APIs.
 
 ---
 
-###  What is the payload limit for API Gateway?
+###  payload limit for API Gateway
 
 **Answer:**
 
@@ -669,7 +705,7 @@ No, API Gateway doesn’t serve static files. You should serve static assets lik
 ---
 
 
-###  How would you build a secure video upload system?
+###  Building a Secure Video Upload System
 
 **Answer:**
 
@@ -680,7 +716,7 @@ No, API Gateway doesn’t serve static files. You should serve static assets lik
 
 ---
 
-###  How do you handle CORS in API Gateway?
+###  Handling CORS in API Gateway
 
 **Answer:**
 
@@ -690,8 +726,7 @@ No, API Gateway doesn’t serve static files. You should serve static assets lik
 
 ---
 
-###  How does API Gateway handle caching?
-
+###  How API Gateway Handles Caching
 **Answer:**
 
 * You can enable **response caching** at the method level (for REST APIs).

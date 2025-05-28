@@ -4,7 +4,7 @@
 | **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  |
-| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) 
+| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
 | **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux-Saga](#Redux-Saga) |
@@ -4254,6 +4254,78 @@ useEffect(() => {
   * Prettier + ESLint for formatting and code quality.
   * Git hooks (Husky) to enforce linting and tests pre-commit.
   * CI pipeline (e.g., GitHub Actions) for testing and deployments.
+
+---
+
+
+
+
+### Suspense Boundary
+
+A **Suspense Boundary** in React is a component wrapper (`<Suspense>`) that tells React to:
+
+* **Pause rendering** of its children until some async data or code is ready.
+* **Show a fallback UI** while waiting (e.g., a spinner, skeleton screen, or placeholder).
+
+---
+
+#### 📦 Syntax Example
+
+```jsx
+import React, { Suspense, lazy } from 'react';
+
+const LazyComponent = lazy(() => import('./MyComponent'));
+
+function App() {
+  return (
+    <div>
+      <h1>My App</h1>
+
+      <Suspense fallback={<div>Loading component...</div>}>
+        <LazyComponent />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+---
+
+#### 🔍 When Do You Use Suspense?
+
+1. **Code-splitting** with `React.lazy()`
+2. **Data fetching** with libraries like:
+
+   * React Query (with experimental features)
+   * Relay
+   * React 18+ with `use()` (experimental or Server Components)
+3. **Image or asset preloading** with libraries or custom wrappers
+
+---
+
+#### 🧩 Nested Suspense Boundaries
+
+You can **nest Suspense boundaries** to control fallbacks more precisely:
+
+```jsx
+<Suspense fallback={<div>Loading section A...</div>}>
+  <SectionA />
+
+  <Suspense fallback={<div>Loading subsection B...</div>}>
+    <SectionB />
+  </Suspense>
+</Suspense>
+```
+
+This means Section A and B can load independently, improving perceived performance.
+
+---
+
+#### ⚠️ Limitations & Notes
+
+* `React.lazy()` only works for default exports.
+* Suspense for data fetching is still **experimental** in many contexts unless you're using a library that supports it or Server Components.
+* Server-side rendering (SSR) requires careful handling with `Suspense`.
 
 ---
 

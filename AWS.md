@@ -1,7 +1,7 @@
 
 ---
 
-### 🟦 **AWS Lambda**
+**AWS Lambda**
 
 * [AWS Lambda](#aws-lambda)   * [AWS Lambda Supported Languages](#aws-lambda-supported-languages)    * [Maximum Execution Time of an AWS Lambda Function](#maximum-execution-time-of-an-aws-lambda-function)
 * [Triggers That Can Invoke AWS Lambda](#triggers-that-can-invoke-aws-lambda) * [Typical Architecture of Using AWS Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)
@@ -14,7 +14,7 @@
 
 ---
 
-### 🟨 **AWS API Gateway**
+**AWS API Gateway**
 
 * [AWS API Gateway](#aws-api-gateway) * [Types of APIs in API Gateway](#types-of-apis-in-api-gateway) * [REST API vs HTTP API](#rest-api-vs-http-api)
 * [Integration Types Supported by API Gateway](#integration-types-supported-by-api-gateway) * [How API Gateway Integrates with AWS Lambda](#how-api-gateway-integrates-with-aws-lambda)
@@ -25,6 +25,21 @@
 * [Handling CORS in API Gateway](#handling-cors-in-api-gateway) * [How API Gateway Handles Caching](#how-api-gateway-handles-caching)
 
 ---
+
+
+**Amazon DynamoDB**
+
+
+- [Amazon DynamoDB](#amazon-dynamodb)  - [DynamoDB features](#dynamodb-features) - [DynamoDB ensure data durability and availability](#dynamodb-ensure-data-durability-and-availability)
+- [Perform a query in DynamoDB](#perform-a-query-in-dynamodb) - [Secure DynamoDB data](#secure-dynamodb-data)
+- [Best practice for designing DynamoDB tables](#best-practice-for-designing-dynamodb-tables) - [Difference between Query and Scan in DynamoDB](#difference-between-query-and-scan-in-dynamodb)
+- [Limits of DynamoDB](#limits-of-dynamodb) - [Handle transactions in DynamoDB](#handle-transactions-in-dynamodb) - [Read/write capacity modes in DynamoDB](#readwrite-capacity-modes-in-dynamodb)
+- [DynamoDB Streams](#dynamodb-streams) - [DynamoDB handle scaling](#dynamodb-handle-scaling)
+- [Global Secondary Index (GSI) and Local Secondary Index (LSI)](#global-secondary-index-gsi-and-local-secondary-index-lsi)
+- [Difference between a partition key and a sort key](#difference-between-a-partition-key-and-a-sort-key)
+- [Primary keys types](#primary-keys-types) - [Primary key in DynamoDB](#primary-key-in-dynamodb) - [MongoDB vs Amazon DynamoDB](#MongoDB-vs-Amazon-DynamoDB)
+
+
 
 
 
@@ -716,4 +731,194 @@ No, API Gateway doesn’t serve static files. You should serve static assets lik
 * TTL (time-to-live) can be configured per method.
 
 ---
+
+
+
+
+
+
+
+---
+
+### Amazon DynamoDB
+
+**Answer:**
+Amazon DynamoDB is a fully managed NoSQL database service provided by AWS that offers fast and predictable performance with seamless scalability. It stores data as key-value pairs and supports document data structures, making it suitable for applications that require low latency and flexible schema design.
+
+---
+
+### DynamoDB features
+
+**Answer:**
+
+* Fully managed and serverless
+* Single-digit millisecond latency
+* Supports key-value and document data models
+* Auto-scaling for throughput capacity
+* Built-in security with encryption at rest and in transit
+* Global tables for multi-region replication
+* Fine-grained access control with IAM policies
+* Event-driven programming via DynamoDB Streams
+
+---
+
+### primary key in DynamoDB
+
+**Answer:**
+The primary key uniquely identifies each item in a DynamoDB table. There are two types:
+
+
+### primary keys types
+* **Partition Key (Simple Primary Key):** A single attribute used to distribute data across partitions.
+* **Partition Key + Sort Key (Composite Primary Key):** A combination of two attributes where the partition key defines the partition and the sort key orders items within the partition.
+
+---
+
+### difference between a partition key and a sort key
+
+**Answer:**
+
+* The **partition key** determines the partition (physical storage) where data is stored and must be unique if no sort key is present.
+* The **sort key** allows multiple items with the same partition key but different sort keys, enabling sorted data retrieval within a partition.
+
+---
+
+### Global Secondary Index (GSI) and Local Secondary Index (LSI)
+
+**Answer:**
+
+* **Global Secondary Index (GSI):** An index with a partition key and optional sort key different from the base table’s primary key. It can span all partitions and supports eventually consistent reads.
+* **Local Secondary Index (LSI):** An index that uses the same partition key as the base table but a different sort key. It is limited to 5 LSIs per table and supports strongly consistent reads.
+
+---
+
+### DynamoDB handle scaling
+
+**Answer:**
+DynamoDB supports **automatic scaling** by adjusting read and write throughput capacity based on demand. It also supports **on-demand capacity mode**, which allows the table to scale instantly without pre-provisioning.
+
+---
+
+### DynamoDB Streams
+
+**Answer:**
+DynamoDB Streams capture a time-ordered sequence of item-level changes in a DynamoDB table. It can be used to trigger AWS Lambda functions or other processing tasks for event-driven architectures.
+
+---
+
+### read/write capacity modes in DynamoDB
+
+**Answer:**
+
+* **Provisioned Capacity:** You specify the number of reads and writes per second (RCUs and WCUs) you need.
+* **On-Demand Capacity:** DynamoDB automatically scales to handle any amount of traffic without capacity planning.
+
+---
+
+### handle transactions in DynamoDB
+
+**Answer:**
+DynamoDB supports ACID transactions using **TransactWriteItems** and **TransactGetItems** APIs that allow multiple Put, Update, Delete, and ConditionCheck operations in a single all-or-nothing operation.
+
+---
+
+### limits of DynamoDB
+
+**Answer:**
+
+* Maximum item size: 400 KB
+* Maximum provisioned throughput per table varies by region but can be scaled
+* Maximum 5 Local Secondary Indexes per table
+* Up to 20 Global Secondary Indexes per table
+
+---
+
+### DynamoDB ensure data durability and availability
+
+**Answer:**
+DynamoDB replicates data across multiple Availability Zones in an AWS region to provide high availability and durability. For global applications, **Global Tables** replicate data across multiple regions.
+
+---
+
+### perform a query in DynamoDB
+
+**Answer:**
+You use the **Query** API to retrieve items based on the partition key and optionally filter by the sort key. Queries are efficient because they only search within a single partition.
+
+---
+
+### difference between Query and Scan in DynamoDB
+
+**Answer:**
+
+* **Query:** Retrieves items based on primary key values, efficient and fast.
+* **Scan:** Reads every item in the table, which can be expensive and slow for large tables.
+
+---
+
+### secure DynamoDB data
+
+**Answer:**
+
+* Use IAM policies to control access
+* Enable encryption at rest (AWS-managed or customer-managed keys via KMS)
+* Use VPC endpoints to restrict access
+* Enable encryption in transit using HTTPS/TLS
+
+---
+
+### best practice for designing DynamoDB tables
+
+**Answer:**
+
+* Use composite keys for efficient data access
+* Design your table and indexes based on query patterns
+* Avoid hot partitions by distributing data evenly using good partition keys
+* Use GSIs/LSIs to support additional query patterns
+* Prefer on-demand capacity mode if unpredictable traffic is expected
+
+---
+
+
+
+
+
+---
+
+### MongoDB vs Amazon DynamoDB
+
+| Feature                 | MongoDB                                                    | Amazon DynamoDB                                                                  |
+| ----------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Type**                | Document-oriented NoSQL database                           | Fully managed key-value and document NoSQL database                              |
+| **Deployment**          | Self-managed (on-prem/cloud) or managed via Atlas          | Fully managed serverless service by AWS                                          |
+| **Data Model**          | BSON documents with flexible schema                        | Key-value and document model with schema-less design                             |
+| **Scalability**         | Sharding across multiple nodes, manual configuration       | Auto-scaling with built-in partitioning                                          |
+| **Performance**         | Depends on deployment, generally low latency               | Single-digit millisecond latency at scale                                        |
+| **Query Language**      | Rich query language, supports ad hoc queries, aggregation  | Supports key-based queries, limited ad hoc querying via secondary indexes        |
+| **Transactions**        | Multi-document ACID transactions supported                 | ACID transactions supported (since 2018) but limited to 25 items                 |
+| **Consistency Model**   | Eventual consistency by default, configurable              | Strong or eventual consistency (configurable per request)                        |
+| **Indexing**            | Supports various indexes (compound, text, geospatial)      | Supports primary keys, Global Secondary Index (GSI), Local Secondary Index (LSI) |
+| **Pricing Model**       | Pay for infrastructure or MongoDB Atlas usage              | Pay-per-request or provisioned throughput pricing                                |
+| **Backup and Recovery** | Manual or via MongoDB Atlas services                       | Automated backups and point-in-time recovery                                     |
+| **Integration**         | Wide ecosystem, supports multiple languages and frameworks | Deeply integrated with AWS services                                              |
+| **Use Cases**           | Complex querying, flexible schemas, analytics              | High throughput, low latency, simple access patterns                             |
+
+---
+
+### When to choose MongoDB?
+
+* You need rich, complex queries and aggregations
+* You want flexibility in schema design and relationships
+* You manage your own infrastructure or use MongoDB Atlas
+* You require advanced indexing or geospatial queries
+
+### When to choose DynamoDB?
+
+* You want a fully managed, serverless NoSQL service with automatic scaling
+* Your workload requires high throughput and low latency at scale
+* You prefer tight AWS ecosystem integration (Lambda, API Gateway, IAM)
+* Your access patterns are primarily key-value with predictable query patterns
+
+---
+
 

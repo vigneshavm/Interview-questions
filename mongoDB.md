@@ -2,29 +2,799 @@
 
 
 
-#### 📌 **Basics & Core Concepts** - [MongoDB vs Relational Databases](#mongodb-vs--relational-databases)  - [MongoDB Document](#mongodb-document)  - [Collection](#collection)  - [Data Storage Format in MongoDB](#data-storage-format-in-mongodb)  - [_id Field](#id-field)  - [Supported Data Types](#supported-data-types)  - [BSON vs JSON](#bson-vs-json)
 
-#### 📊 **Querying & Indexing** - [find() vs findOne()](#find-vs-findone)  - [Creating an Index in MongoDB](#creating-an-index-in-mongodb)  - [Indexing strategies](#indexing-strategies) - [Indexing Drawbacks](#indexing-drawbacks)  - [$in Vs $all](#difference-between-in-and-all-in-mongodb)  - [Searching in MongoDB](#searching-in-mongodb)  
 
-#### 🔄 **CRUD Operations** - [upsert](#upsert)  - [Update Multiple Documents](#update-multiple-documents-in-mongodb)  - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)  
+  **Basics & Core Concepts** - [MongoDB vs Relational Databases](#mongodb-vs--relational-databases)  - [MongoDB Document](#mongodb-document)  - [Collection](#collection)  - [Data Storage Format in MongoDB](#data-storage-format-in-mongodb)  - [_id Field](#id-field)  - [Supported Data Types](#supported-data-types)  - [BSON vs JSON](#bson-vs-json)
 
-#### 🧩 **Relationships & Schema** - [Model Relationships](#model-relationships)  - [Embedded and Referenced Documents](#embedded-and-referenced-documents)  - [Schema Enforcement](#mongodb-handle-schema-enforcement)  
 
-#### 🧮 **Advanced Features** - [Aggregations in MongoDB](#aggregations-in-mongodb)  - [Handle Transactions in MongoDB](#handle-transactions-in-mongodb)  - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs)
+  **Querying** - [find() vs findOne()](#find-vs-findone) - [$in Vs $all](#difference-between-in-and-all-in-mongodb)  - [Searching in MongoDB](#searching-in-mongodb)  
 
-#### 📈 **Scaling & Performance** - [Sharding and Why Is It Used](#sharding-and-why-is-it-used)  - [Scaling MongoDB](#scaling-mongodb)  - [Performance Tuning Techniques in MongoDB](#performance-tuning-techniques-in-mongodb)  
 
-#### 🛡️ **Replication & Durability** - [Replica Set](#replica-set)  - [Clustering & Replication](#clustering--replication)  - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb)  - [Durability & Consistency](#mongodb-ensure-durability-and-consistency)  - [CAP Theorem in MongoDB Context](#cap-theorem-in-mongodb-context)  - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences)  
+  **Indexing** -  [Creating an Index in MongoDB](#creating-an-index-in-mongodb)  - [Indexing strategies](#indexing-strategies) - [Indexing Drawbacks](#indexing-drawbacks)   - [Multikey and Compound indexes](#Multikey-and-Compound-indexes) - [Compound Indexes](#Compound-Indexes)
 
-#### 🧪 **Special Collections** - [Capped Collection in MongoDB](#capped-collection-in-mongodb)  
+  **CRUD Operations** - [upsert](#upsert)  - [Update Multiple Documents](#update-multiple-documents-in-mongodb)  - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)  
 
-#### ⚙️ **MongoDB with Node.js** - [MongoDB with Node.js](#mongodb-with-nodejs)  - [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose)  - [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver)  
+  **Relationships & Schema** - [Model Relationships](#model-relationships)  - [Embedded and Referenced Documents](#embedded-and-referenced-documents)  - [Schema Enforcement](#mongodb-handle-schema-enforcement)  
 
-#### 🚫 **Limitations & Considerations** - [Limitations of MongoDB and How to Overcome Them](#limitations-of-mongodb-and-how-to-overcome-them)
+  **Advanced Features** - [Aggregations in MongoDB](#aggregations-in-mongodb)  - [Handle Transactions in MongoDB](#handle-transactions-in-mongodb)  - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs)
 
-####  **Real-World Applications**  - [Databases for a Social Media App](#databases-for-a-social-media-app)
+  **Scaling & Performance** - [Sharding](#Sharding) - [Sharding and Why Is It Used](#sharding-and-why-is-it-used)  - [Scaling MongoDB](#scaling-mongodb)  - [Performance Tuning Techniques in MongoDB](#performance-tuning-techniques-in-mongodb)  
+
+  **Replication & Durability** - [Replica Set](#replica-set)  - [Clustering & Replication](#clustering--replication)  - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb)  - [Durability & Consistency](#mongodb-ensure-durability-and-consistency)  - [CAP Theorem in MongoDB Context](#cap-theorem-in-mongodb-context)  - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences)  
+
+  **Special Collections** - [Capped Collection in MongoDB](#capped-collection-in-mongodb)  
+
+  **MongoDB with Node.js** - [MongoDB with Node.js](#mongodb-with-nodejs)  - [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose)  - [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver)  
+
+  **Limitations & Considerations** - [Limitations of MongoDB and How to Overcome Them](#limitations-of-mongodb-and-how-to-overcome-them)
+
+  **Real-World Applications**  - [Databases for a Social Media App](#databases-for-a-social-media-app)
+
+  **Other Topics**  - [CAP Theorem](#CAP-Theorem) - [Time Series](#Time-Series) -[ACID properties](#ACID-properties) - [Two-Phase Commit](#Two-Phase-Commit)
 
 ---
+
+
+
+
+
+
+## CAP Theorem
+
+> MongoDB follows the **CAP Theorem**, which states that in a distributed system, we can only guarantee **two out of three** properties at any given time:
+>
+> * **Consistency (C)** – Every read receives the most recent write
+> * **Availability (A)** – Every request gets a response (success or failure)
+> * **Partition Tolerance (P)** – The system continues to operate despite network failures
+
+#### 📌 MongoDB as CP or AP:
+
+* **By default, MongoDB is CP (Consistency + Partition Tolerance)** in a partitioned network.
+
+  * It prioritizes **data consistency** over availability.
+  * If a **primary node is unreachable**, MongoDB will not accept writes until a new primary is elected — ensuring no stale data is written.
+
+#### 🔁 Tunable Consistency:
+
+* MongoDB offers **tunable consistency** and **write concerns**:
+
+  * You can configure **read preference** (e.g., `primary`, `primaryPreferred`, `secondary`) and **write concern** (e.g., `majority`) to balance between **C and A** based on your use case.
+
+#### 🧠 Example:
+
+> In a replicated setup, if a network partition occurs:
+>
+> * **MongoDB blocks writes** until a new primary is elected (favoring **Consistency**)
+> * Clients may receive errors during this time (sacrificing **Availability**)
+
+---
+
+### 📝 Conclusion:
+
+> So, MongoDB is generally considered a **CP system** under CAP theorem, with options to **tune between C and A** depending on your application's needs.
+
+---
+
+
+
+
+
+## Time Series
+ - **Time Series Data in MongoDB** is a **first-class feature** introduced in **MongoDB 5.0** (and enhanced in 5.1+).
+ - It allows you to efficiently store and query time-based data (e.g., IoT data, sensor readings, stock prices, logs) using **optimized internal storage**.
+ - Data where each entry is associated with a **timestamp**, typically ordered chronologically.
+    Examples:
+        * Temperature readings every second
+        * Stock prices every minute
+        * Server logs with timestamps
+
+---
+
+### 🧰 MongoDB Time Series Collections
+
+MongoDB provides **time series collections** to:
+
+* Optimize storage
+* Improve query performance
+* Reduce indexing and I/O overhead
+
+---
+
+### ✅ How to Create a Time Series Collection
+
+```js
+db.createCollection("sensorData", {
+  timeseries: {
+    timeField: "timestamp",       // Required: Field that stores time
+    metaField: "deviceId",        // Optional: Metadata (e.g., sensor ID)
+    granularity: "seconds"        // Can be "seconds", "minutes", or "hours"
+  }
+})
+```
+
+* **`timeField`**: Required. Stores the timestamp.
+* **`metaField`**: Optional. Groups time series data by metadata (like a device or user).
+* **`granularity`**: Optional. Hints at frequency (improves compression and performance).
+
+---
+
+### 📥 Example Document
+
+```json
+{
+  "timestamp": ISODate("2025-05-28T10:00:00Z"),
+  "deviceId": "sensor-42",
+  "temperature": 26.5,
+  "humidity": 68
+}
+```
+
+---
+
+### 📈 Querying Time Series Data
+
+Query by timestamp range:
+
+```js
+db.sensorData.find({
+  timestamp: {
+    $gte: ISODate("2025-05-28T00:00:00Z"),
+    $lt: ISODate("2025-05-29T00:00:00Z")
+  }
+})
+```
+
+Group and aggregate (e.g., average temperature per hour):
+
+```js
+db.sensorData.aggregate([
+  {
+    $group: {
+      _id: {
+        hour: { $hour: "$timestamp" }
+      },
+      avgTemp: { $avg: "$temperature" }
+    }
+  }
+])
+```
+
+---
+
+### 🚀 Benefits of MongoDB Time Series Collections
+
+* **Highly compressed internal schema**
+* **Optimized for inserts and range queries**
+* **Built-in support for automatic bucketing**
+* **Indexing on `metaField` and `timeField`**
+
+---
+
+### ⚠️ Limitations (as of MongoDB 6.0+)
+
+* Documents **must be inserted in order** of timeField (monotonic increasing).
+* No support for updates that change the `timeField`.
+* TTL (Time-To-Live) works, but needs to be configured.
+
+---
+
+### 🛠️ TTL on Time Series Collections
+
+Expire old data automatically:
+
+```js
+db.createCollection("sensorData", {
+  timeseries: {
+    timeField: "timestamp"
+  },
+  expireAfterSeconds: 86400  // Expire documents after 24 hours
+})
+```
+
+---
+
+### 🔚 Summary
+
+| Feature                | Support in MongoDB      |
+| ---------------------- | ----------------------- |
+| Native time series     | ✅ Since MongoDB 5.0     |
+| Efficient storage      | ✅ Compressed buckets    |
+| Fast inserts & queries | ✅ Optimized performance |
+| TTL support            | ✅ For auto-expiry       |
+| Metadata grouping      | ✅ Via `metaField`       |
+
+Would you like a sample Node.js script or MongoDB Compass steps for this?
+
+
+
+
+
+
+## Sharding
+
+**Sharding** is MongoDB’s method for **horizontally scaling** your database to handle **large amounts of data and high throughput** by **distributing data across multiple servers**.
+
+---
+
+### What is Sharding?
+
+Sharding = **Splitting data** across **multiple machines (shards)** to:
+
+* Handle **more data than fits on one server**
+* Improve **read/write performance**
+* Ensure **high availability** and **scalability**
+
+---
+
+### 🛠️ Key Components of Sharding
+
+| Component          | Description                                                              |
+| ------------------ | ------------------------------------------------------------------------ |
+| **Shard**          | A MongoDB server that holds a portion of the data (can be a replica set) |
+| **Mongos**         | Query router that routes queries to the correct shard(s)                 |
+| **Config Servers** | Store metadata about the cluster and sharded collections                 |
+
+---
+
+### 🧭 How Sharding Works
+
+1. **Choose a collection to shard**
+2. **Pick a shard key** (a field used to determine how data is split)
+3. MongoDB **splits data into chunks** based on the shard key
+4. Each chunk is assigned to a shard
+
+---
+
+### 🔑 Shard Key
+
+The **most important part** of sharding. The right shard key ensures **even distribution** and **query efficiency**.
+
+#### Good Shard Key:
+
+* High **cardinality** (many unique values)
+* Even **distribution** across shards
+* Frequently used in queries
+
+#### Bad Shard Key:
+
+* Low cardinality (e.g., `gender`)
+* Monotonically increasing (e.g., `timestamp` without hashing) → can cause **hotspots**
+
+---
+
+### 📦 Sharding Strategies
+
+1. **Range-Based Sharding**
+
+   * Documents with nearby values go to the same shard.
+   * Risk: **Hotspots** if most writes go to one range.
+
+2. **Hashed Sharding**
+
+   * MongoDB hashes the shard key value → even distribution.
+   * Best for **uniform write distribution**, not ideal for range queries.
+
+3. **Zone Sharding (Tag Aware)**
+
+   * Assign certain ranges of shard keys to specific shards.
+   * Good for **geographically aware** or **regulatory partitioning**.
+
+---
+
+### ✅ Pros of Sharding
+
+* Scales **reads/writes horizontally**
+* Can store **massive data** sets
+* Supports **geographically distributed workloads**
+* Increases **availability** with replica sets in shards
+
+---
+
+### ⚠️ Challenges with Sharding
+
+* Must **choose the shard key carefully**
+* Complexity in setup and maintenance
+* Certain operations like **joins** or **multi-document transactions** are more complex across shards
+
+---
+
+### 🧪 Example Setup
+
+```js
+// Enable sharding on database
+sh.enableSharding("mydb")
+
+// Shard a collection
+sh.shardCollection("mydb.users", { userId: "hashed" })
+```
+
+---
+
+### 🧠 Summary
+
+| Feature        | Description                                 |
+| -------------- | ------------------------------------------- |
+| Sharding       | Horizontal partitioning of data             |
+| Shard Key      | Field used to distribute data across shards |
+| Mongos         | Routes client queries to the right shard(s) |
+| Config Servers | Store metadata for sharded cluster          |
+| Best for       | Big data, high traffic, distributed systems |
+
+---
+
+
+### 📦 Real-World Use Case: E-commerce Platform
+
+### Scenario:
+
+An e-commerce app has a `Orders` collection that stores millions of orders. Each document includes:
+
+```json
+{
+  "orderId": "ORD123456",
+  "userId": "USR7890",
+  "productId": "PRD456",
+  "orderDate": "2025-05-27T14:23:00Z",
+  "amount": 2999,
+  "status": "delivered"
+}
+```
+
+### ❓Problem:
+
+* Orders keep growing → DB size exceeds server capacity
+* High traffic → write operations becoming a bottleneck
+* Need to **scale horizontally** and ensure **high availability**
+
+### ✅ Solution: Use MongoDB **Sharding**
+
+---
+
+### 📈 Diagram of Sharded Cluster
+
+```
+                     +-------------------+
+                     |     Application   |
+                     +--------+----------+
+                              |
+                              v
+                        +-----------+
+                        |   mongos  |  <-- Query Router
+                        +-----+-----+
+                              |
+          +-------------------+-------------------+
+          |                   |                   |
+    +-----------+       +-----------+       +-----------+
+    | Shard 1   |       | Shard 2   |       | Shard 3   |
+    | (replica) |       | (replica) |       | (replica) |
+    +-----------+       +-----------+       +-----------+
+          ^                   ^                   ^
+    +------------+     +------------+     +------------+
+    | Config DB1 |     | Config DB2 |     | Config DB3 |
+    +------------+     +------------+     +------------+
+```
+
+---
+
+### 🛠️ Step-by-Step Setup (Simulation)
+
+Assuming a 3-node sharded cluster is up, here's how you would enable and shard a collection.
+
+### 1. Connect to `mongos`
+
+```bash
+mongo --host mongos-host:27017
+```
+
+### 2. Enable Sharding on the Database
+
+```js
+sh.enableSharding("ecommerce")
+```
+
+### 3. Choose a Shard Key
+
+Let's choose `userId` (hashed) for uniform distribution:
+
+```js
+sh.shardCollection("ecommerce.orders", { userId: "hashed" })
+```
+
+> ✅ Hashed key ensures even writes across shards.
+
+---
+
+### 📊 How Data Is Distributed
+
+MongoDB breaks data into **chunks** (e.g., 64MB) and uses the **shard key** to place each chunk on the appropriate shard.
+
+If 30% of orders belong to one user and you used `userId` as a **non-hashed range key**, you would get a **hotspot**. With **hashed sharding**, writes spread evenly.
+
+---
+
+### 🧪 Sample Query Through `mongos`
+
+```js
+db.orders.find({ userId: "USR7890" })
+```
+
+> `mongos` routes this to the correct shard(s) based on the shard key value.
+
+---
+
+### 🧠 Tips for Choosing a Shard Key
+
+| Do ✅                              | Avoid ❌                                        |
+| --------------------------------- | ---------------------------------------------- |
+| Use high-cardinality fields       | Low-cardinality fields                         |
+| Use hashed keys for write scaling | Monotonically increasing keys (e.g. timestamp) |
+| Choose frequently queried fields  | Rarely used or internal fields                 |
+
+---
+
+### 🔐 Production Tips
+
+* Run shards as **replica sets** for high availability.
+* Monitor chunks with `sh.status()` or `db.collection.getShardDistribution()`
+* Rebalance data with `balancer` if shards become uneven
+
+---
+
+
+
+
+
+
+
+## Two Phase Commit
+
+The **Two-Phase Commit (2PC)** is a protocol used to ensure **atomicity** (all-or-nothing behavior) for **multi-document** or **distributed transactions** — especially across multiple shards or databases.
+
+---
+
+#### 💡 Why Use Two-Phase Commit?
+
+ - MongoDB (or any DB) doesn’t guarantee atomic writes across **multiple collections** or **shards** by default.
+ - To maintain **consistency** across these operations, we use **2PC**.
+
+
+#### 🧠 Summary
+
+| Feature               | Description                                       |
+| --------------------- | ------------------------------------------------- |
+| Two-Phase Commit      | Protocol for atomic multi-source operations       |
+| Phase 1: Prepare      | Participants prepare and vote                     |
+| Phase 2: Commit/Abort | Commit if all agree; otherwise abort              |
+| Supported in MongoDB  | Yes (from v4.0 on replica sets, 4.2+ for sharded) |
+| Use with Transactions | Yes — `startSession()` and `startTransaction()`   |
+
+---
+
+---
+
+#### 🧩 How Two-Phase Commit Works
+
+2PC has **two phases**:
+
+##### 1. Prepare Phase
+
+##### 2. Commit Phase
+
+Let’s break it down:
+
+---
+
+##### 🥇 Phase 1: Prepare
+
+* The coordinator (usually the app or a controller) sends a **"prepare"** request to all participants (e.g., collections or shards).
+* Each participant:
+
+  * Executes the operation **without committing** it.
+  * Writes a temporary state like `status: "pending"`.
+  * Replies with a "Ready to commit" or "Abort" message.
+
+---
+
+##### 🥈 Phase 2: Commit or Abort
+
+* If **all participants respond OK**, the coordinator sends a **"commit"** command.
+* If **any participant fails**, the coordinator sends a **"rollback"** command.
+* Participants finalize the operation or discard the changes based on this decision.
+
+---
+
+#### 🧪 Example in MongoDB
+
+Suppose you're transferring money between two collections:
+
+```js
+db.accounts.insertMany([
+  { _id: "Alice", balance: 100 },
+  { _id: "Bob", balance: 50 }
+])
+```
+
+##### Step 1: Start a Session + Transaction
+
+```js
+const session = await client.startSession();
+session.startTransaction();
+```
+
+##### Step 2: Perform Operations in "prepare" phase
+
+```js
+try {
+  await db.accounts.updateOne(
+    { _id: "Alice" },
+    { $inc: { balance: -30 } },
+    { session }
+  );
+
+  await db.accounts.updateOne(
+    { _id: "Bob" },
+    { $inc: { balance: 30 } },
+    { session }
+  );
+```
+
+##### Step 3: Commit if all goes well
+
+```js
+  await session.commitTransaction();
+} catch (e) {
+  await session.abortTransaction();
+}
+finally {
+  session.endSession();
+}
+```
+
+> ✅ MongoDB automatically handles 2PC-like behavior under the hood when using **multi-document transactions** in **replica sets** and **sharded clusters** (MongoDB 4.2+).
+
+---
+
+#### 🔐 Use Cases
+
+| Use Case                           | Why 2PC Helps                        |
+| ---------------------------------- | ------------------------------------ |
+| Money transfers                    | Avoid partial updates                |
+| Booking systems                    | Prevent double booking               |
+| Inventory + Order updates          | Consistent state between collections |
+| Cross-shard updates (MongoDB 4.2+) | Atomic across multiple shards        |
+
+---
+
+#### ⚠️ Downsides of 2PC
+
+| Drawback             | Details                                           |
+| -------------------- | ------------------------------------------------- |
+| Performance Overhead | More round trips, locks, and metadata             |
+| Complexity           | More moving parts; needs error handling           |
+| Blocking             | If a coordinator crashes mid-process, it can hang |
+
+---
+
+
+
+
+
+
+
+## ACID properties
+
+ - **ACID** stands for **Atomicity, Consistency, Isolation, and Durability**. 
+ - These are the four key properties that guarantee reliable processing of database transactions.
+
+---
+
+### 🔹 1. Atomicity
+
+* **Relational Databases (RDBMS)**:
+
+  * Transactions are **fully atomic**: all operations within a transaction either succeed or fail together.
+  * Example: In PostgreSQL or MySQL, `BEGIN`, `COMMIT`, and `ROLLBACK` control atomic execution.
+
+* **MongoDB**:
+
+  * Originally, MongoDB guaranteed atomicity **only at the document level** (a single document update is atomic).
+  * Since **MongoDB 4.0+**, **multi-document ACID transactions** are supported for **replica sets** and **sharded clusters** (since v4.2).
+
+---
+
+### 🔹 2. Consistency
+
+* **RDBMS**:
+
+  * Strong schema enforcement ensures consistency (e.g., foreign keys, constraints).
+  * Violations of constraints prevent transaction commits.
+
+* **MongoDB**:
+
+  * Uses **application-level schema enforcement** (via schema validation or tools like Mongoose).
+  * Multi-document transactions maintain consistency, but it’s **developer’s responsibility** to ensure logical consistency.
+
+---
+
+### 🔹 3. Isolation
+
+* **RDBMS**:
+
+  * Supports multiple **isolation levels** (Read Uncommitted, Read Committed, Repeatable Read, Serializable).
+  * Prevents race conditions, dirty reads, non-repeatable reads.
+
+* **MongoDB**:
+
+  * Multi-document transactions provide **snapshot isolation** using an **"all or nothing" commit** model.
+  * Internally uses **write-ahead logs and oplog** to maintain isolation.
+
+---
+
+### 🔹 4. Durability
+
+* **RDBMS**:
+
+  * Once a transaction is committed, data is persisted, even in the event of power failure (via WAL or redo logs).
+
+* **MongoDB**:
+
+  * Ensures durability via **journaling**.
+  * `writeConcern` settings allow configuring durability (e.g., `majority`, `w:1`, `w:0`).
+
+---
+
+### 🧠 Summary:
+
+| Property    | RDBMS                    | MongoDB                             |
+| ----------- | ------------------------ | ----------------------------------- |
+| Atomicity   | Full (multi-statement)   | Document-level; Multi-doc since 4.0 |
+| Consistency | Enforced via schema      | Tunable; application-enforced       |
+| Isolation   | Various isolation levels | Snapshot isolation in transactions  |
+| Durability  | WAL / redo logs          | Journaling, `writeConcern`          |
+
+---
+
+### 📝 Final Statement:
+
+> So while **RDBMS have long supported full ACID compliance**, MongoDB has **evolved** to support **multi-document ACID transactions** while still maintaining the flexibility of its document model — making it suitable for applications that require both high performance and transactional guarantees.
+
+---
+
+
+
+
+
+## Multikey and Compound indexes
+- In MongoDB, **indexes improve query performance**, and two common types are **multikey indexes** and **compound indexes**.
+- **multikey indexes** are essential for efficient querying of array fields, 
+ - **compound indexes** optimize performance across multiple fields — especially when **field order is aligned** with query patterns. 
+
+---
+
+### 🔹 **Multikey Index**
+
+* A **multikey index** is created when **indexing an array field**.
+* MongoDB **automatically creates multiple index entries** per document — one for each element in the array.
+
+#### 🔧 Example:
+
+```js
+{ _id: 1, tags: ["mongodb", "nosql", "indexing"] }
+```
+
+Creating a multikey index:
+
+```js
+db.posts.createIndex({ tags: 1 })
+```
+
+> MongoDB will index each tag in the array as a separate key.
+
+#### ⚠️ Constraints:
+
+* You **cannot create a compound multikey index** if **more than one field** in the index is an array.
+* Queries that use `$elemMatch` on arrays benefit from multikey indexes.
+
+---
+
+### 🔹 **Compound Index**
+
+* A **compound index** includes **multiple fields** in a single index.
+* It supports queries that filter or sort by **any prefix** of the indexed fields.
+
+#### 🔧 Example:
+
+```js
+db.orders.createIndex({ customerId: 1, orderDate: -1 })
+```
+
+> This index supports queries like:
+
+```js
+db.orders.find({ customerId: 123 })
+db.orders.find({ customerId: 123 }).sort({ orderDate: -1 })
+```
+
+#### ⚠️ Key Point: **Field order matters**
+
+* `{ a: 1, b: 1 } ≠ { b: 1, a: 1 }`
+* Only queries starting with `a` (the first field) will benefit from the index.
+
+---
+
+### 🔍 Multikey vs Compound — At a Glance:
+
+| Feature            | Multikey Index                     | Compound Index                     |
+| ------------------ | ---------------------------------- | ---------------------------------- |
+| Indexed Field Type | Array                              | Multiple scalar fields             |
+| Index Entries      | One per array element              | One per document                   |
+| Supports Arrays    | Yes (single array field only)      | Yes (if only **one** array field)  |
+| Query Use Cases    | `$in`, `$elemMatch`, array matches | Multiple field filtering & sorting |
+
+---
+
+
+
+
+
+
+##  Compound Indexes
+
+- In MongoDB, **compound indexes** are indexes that include **multiple fields**, and the **order of the fields is critical** because it defines how the index is used for query optimization.
+
+- In MongoDB, the **sequence of fields in a compound index defines the access pattern**. 
+- Indexes are only used when the query starts with the **prefix fields** in the same order, so designing the **right field sequence** is key to maximizing performance.
+
+---
+
+### 🔹 Why Order Matters
+
+Compound indexes support queries based on a **prefix subset** of the fields — starting from the **leftmost field** in the index definition.
+
+#### 🔧 Example:
+
+```js
+db.users.createIndex({ country: 1, city: 1, age: -1 })
+```
+
+* This index supports:
+
+  * ✅ `find({ country: "India" })`
+  * ✅ `find({ country: "India", city: "Chennai" })`
+  * ✅ `find({ country: "India" }).sort({ city: 1 })`
+* ❌ Does **not** support:
+
+  * `find({ city: "Chennai" })` – Skips the first indexed field
+  * `find({ age: 30 })` – Skips both `country` and `city`
+
+> **Field order in the index must match the field order in the query** for MongoDB to use the index efficiently.
+
+---
+
+### 🔄 Choosing the Right Order
+
+When designing compound indexes, choose the field order based on:
+
+1. **Query frequency** – Fields queried most often should come first.
+2. **Selectivity** – More selective fields (that reduce result size) should come earlier.
+3. **Sort order** – If you also sort on fields, include them in the index in the required order.
+
+---
+
+### 🧠 Summary:
+
+| Index Definition        | Efficient For                               | Not Efficient For     |
+| ----------------------- | ------------------------------------------- | --------------------- |
+| `{ a: 1, b: 1 }`        | `find({ a: 10 })`, `find({ a: 10, b: 20 })` | `find({ b: 20 })`     |
+| `{ a: 1, b: 1, c: -1 }` | Sorting on `a`, `b`, and `c`                | Filtering only on `c` |
+
+---
+
+
+
+
+
+
 
 
 ##  MongoDB vs  Relational Databases

@@ -1,6 +1,3 @@
-
-
-
 **Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues) 
 
 **Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)
@@ -11,7 +8,9 @@
 
 **Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)    - [Rate Limiter](#Rate-Limiter) - [DDoS attack](#DDoS-attack) - [Data validation](#data-validation) 
 
-**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)
+**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns) 
+**Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
+
 
 **Caching** - [Caching Strategies](#caching-strategies)  - [Redis(Caching)](#nodejs-with-redis-caching)  **Secure** -  [Secure Node.js](#secure-nodejs-app) - [Securing Sensitive Data](#securing-sensitive-data)  - [Secure REST APIs](#secure-rest-apis)
 
@@ -27,11 +26,6 @@
 
 
 **Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) - [WebSockets Drawbacks](#drawbacks-of-WebSockets)
-
-
-**Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
-
-
 
 
 

@@ -18,9 +18,9 @@
 
   **Advanced Features** - [Aggregations in MongoDB](#aggregations-in-mongodb)  - [Handle Transactions in MongoDB](#handle-transactions-in-mongodb)  - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs)
 
-  **Scaling & Performance** - [Sharding](#Sharding) - [Sharding and Why Is It Used](#sharding-and-why-is-it-used)  - [Scaling MongoDB](#scaling-mongodb)  - [Performance Tuning Techniques in MongoDB](#performance-tuning-techniques-in-mongodb)  
+  **Scaling & Performance** - [Sharding](#Sharding)  - [Scaling MongoDB](#scaling-mongodb)  - [Performance Tuning Techniques in MongoDB](#performance-tuning-techniques-in-mongodb)  
 
-  **Replication & Durability** - [Replica Set](#replica-set)  - [Clustering & Replication](#clustering--replication)  - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb)  - [Durability & Consistency](#mongodb-ensure-durability-and-consistency)  - [CAP Theorem in MongoDB Context](#cap-theorem-in-mongodb-context)  - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences)  
+  **Replication & Durability** - [Replica Set](#replica-set)  - [Clustering & Replication](#clustering--replication)  - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb)  - [Durability & Consistency](#mongodb-ensure-durability-and-consistency)    - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences)  
 
   **Special Collections** - [Capped Collection in MongoDB](#capped-collection-in-mongodb)  
 
@@ -41,11 +41,15 @@
 
 ## CAP Theorem
 
-> MongoDB follows the **CAP Theorem**, which states that in a distributed system, we can only guarantee **two out of three** properties at any given time:
->
-> * **Consistency (C)** – Every read receives the most recent write
-> * **Availability (A)** – Every request gets a response (success or failure)
-> * **Partition Tolerance (P)** – The system continues to operate despite network failures
+
+- MongoDB follows the **CAP Theorem**, which states that in a distributed system, we can only guarantee **two out of three** properties at any given time:
+
+-  **Consistency (C)** – Every read receives the most recent write
+- **Availability (A)** – Every request gets a response (success or failure)
+- **Partition Tolerance (P)** – The system continues to operate despite network failures
+
+-  MongoDB is **CP by default**, with options to tune for **AP** using read preferences.
+
 
 #### 📌 MongoDB as CP or AP:
 
@@ -211,6 +215,23 @@ Would you like a sample Node.js script or MongoDB Compass steps for this?
 
 
 ## Sharding
+
+
+
+**Concept:**  
+Sharding is horizontal partitioning of data across multiple machines for high scalability.
+
+**Why it's used:**
+- To handle large data volumes
+- Distributes read/write load
+
+**Example:**
+```js
+sh.enableSharding("myDatabase")
+sh.shardCollection("myDatabase.users", { userId: 1 })
+```
+
+---
 
 **Sharding** is MongoDB’s method for **horizontally scaling** your database to handle **large amounts of data and high throughput** by **distributing data across multiple servers**.
 
@@ -1261,22 +1282,7 @@ db.collection.find({ $text: { $search: "searchText" } });
 
 
 
-## Sharding and Why is it Used?
 
-**Concept:**  
-Sharding is horizontal partitioning of data across multiple machines for high scalability.
-
-**Why it's used:**
-- To handle large data volumes
-- Distributes read/write load
-
-**Example:**
-```js
-sh.enableSharding("myDatabase")
-sh.shardCollection("myDatabase.users", { userId: 1 })
-```
-
----
 
 ## Replication and How Failover Works in MongoDB
 
@@ -1386,14 +1392,6 @@ mongofiles -d mydb put video.mp4
 
 ---
 
-## CAP Theorem in MongoDB Context
-
-**CAP Theorem:**
-- **C**onsistency
-- **A**vailability
-- **P**artition Tolerance
-
-MongoDB is **CP by default**, with options to tune for **AP** using read preferences.
 
 ---
 

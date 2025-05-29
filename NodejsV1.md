@@ -9,7 +9,7 @@
 
 **Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)
 
-**Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)  - [Rate Limiting APIs](#rate-limiting-apis) 
+**Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)   - [Circuit Breaker](#Circuit-Breaker)  - [Rate Limiter](#Rate-Limiter) - [DDoS attack](#DDoS-attack)
 
 **Caching** - [Caching Strategies](#caching-strategies)  - [Redis(Caching)](#nodejs-with-redis-caching)  **Secure** -  [Secure Node.js](#secure-nodejs-app) - [Securing Sensitive Data](#securing-sensitive-data)  - [Secure REST APIs](#secure-rest-apis)
 
@@ -28,6 +28,10 @@
 
 
 **Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
+
+
+
+
 
 
 ## **Create Node App using JS**
@@ -874,26 +878,7 @@ console.log(process.env.API_KEY);
 
 ---
 
-##  **Rate Limiting APIs**
 
- 
-
-- Protects APIs from abuse or brute-force attacks.
-- Implemented using middleware like `express-rate-limit`.
-
-
-
-```js
-const rateLimit = require('express-rate-limit');
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 mins
-  max: 100, // Limit each IP to 100 requests
-});
-
-app.use(limiter);
-```
-
----
 
 ##  **Node.js with Redis (Caching)**
 
@@ -2956,4 +2941,204 @@ app.get('/user/profile', authenticateToken, (req, res) => {
 | Debugging           | Harder than HTTP logs      | Add custom tracking/logging     |
 
 ---
+
+
+
+
+## Circuit Breaker
+
+- The **Circuit Breaker** is a **resilience pattern** used in distributed systems to **prevent cascading failures** and allow systems to recover gracefully when a downstream service is failing or unresponsive.
+
+- The **Circuit Breaker pattern** is a crucial component in **fault-tolerant microservices**, helping isolate failures and allowing systems to degrade gracefully instead of collapsing entirely.
+
+
+### 🧠 Why It's Important:
+
+* Prevents **system overload** from repeated failed calls.
+* Enables **fast failure**, improving user experience.
+* Allows **recovery** without restarting the entire service.
+
+---
+
+### 📦 Example (Microservices):
+
+Service A calls Service B. If B is down:
+
+* With Circuit Breaker:
+
+  * A stops calling B after repeated failures.
+  * It retries after a delay instead of hammering B continuously.
+
+---
+
+### 🔌 Real-World Analogy:
+
+Think of it like an electrical circuit breaker — it “trips” to **prevent overload or damage** when something goes wrong.
+
+---
+
+### 🔁 How It Works:
+
+The circuit breaker can be in one of **three states**:
+
+1. **Closed**:
+
+   * All requests pass through.
+   * If failures exceed a threshold, it **trips** (moves to Open).
+
+2. **Open**:
+
+   * Requests are **immediately rejected** (fail fast).
+   * A timeout begins (cool-down period).
+
+3. **Half-Open**:
+
+   * A limited number of requests are allowed to check if the service has recovered.
+   * If successful, the circuit **closes**; otherwise, it goes back to **Open**.
+
+---
+
+
+### 🛠️ Tools/Libraries:
+
+* **Node.js**: `opossum`
+
+
+
+
+
+
+
+
+---
+
+
+##  Rate Limiter
+
+
+- Protects APIs from abuse or brute-force attacks.
+- Implemented using middleware like `express-rate-limit`.
+- A **Rate Limiter** is a design pattern used to **control the rate of incoming requests** to a service or API, ensuring fair usage, protecting system resources, and preventing abuse or denial-of-service (DoS) attacks.
+
+ - In summary, a **Rate Limiter** is a defensive pattern that protects APIs and services from being overwhelmed by **controlling request frequency**, enhancing **reliability, scalability, and security** in distributed systems.
+
+
+```js
+const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 mins
+  max: 100, // Limit each IP to 100 requests
+});
+
+app.use(limiter);
+```
+
+---
+
+### 🔍 Purpose:
+
+* Prevent overloading the system with too many requests.
+* Ensure **fair usage policies** (e.g., 100 requests per minute per user).
+* Improve system **stability and performance** under high load.
+
+---
+
+### 📦 Common Use Cases:
+
+* Public APIs (e.g., `GET /weather?city=Chennai`)
+* Login endpoints to avoid brute force attacks
+* Payment or transaction systems to avoid misuse
+
+---
+
+### 🔁 Popular Algorithms for Rate Limiting:
+
+| Algorithm          | Description                                                                    |
+| ------------------ | ------------------------------------------------------------------------------ |
+| **Fixed Window**   | Limits requests in a fixed time window (e.g., 100 requests per minute)         |
+| **Sliding Window** | Smoother distribution; counts over a moving window of time                     |
+| **Token Bucket**   | Tokens are added at a fixed rate; each request consumes one token              |
+| **Leaky Bucket**   | Requests are processed at a steady rate; excess requests are queued or dropped |
+
+---
+
+### 🔧 Example (Fixed Window):
+
+> “Each user can make **100 requests per 60 seconds**.”
+
+If user exceeds 100 requests:
+
+* ✅ If under limit: allow request.
+* ❌ If over limit: reject with **HTTP 429 Too Many Requests**.
+
+---
+
+### ⚙️ Tools & Libraries:
+
+* **NGINX / Envoy**: Built-in rate limiting
+* **Node.js**: express-rate-limit
+
+---
+
+
+
+
+
+
+
+## DDoS attack
+
+- A **DDoS (Distributed Denial of Service)** attack occurs when **multiple systems** flood a **target server, application, or network** with a massive volume of traffic, overwhelming its capacity and **disrupting normal services**.
+
+
+-  A DDoS attack is a **serious threat to service availability**, and defending against it requires a **multi-layered approach** involving **rate limits, firewalls, CDNs**, and **behavioral analytics** to identify and block abnormal traffic.
+
+---
+
+### 🚨 Key Characteristics:
+
+* Involves **thousands or millions** of requests from **botnets** (compromised machines).
+* Targets bandwidth, CPU, memory, or specific application vulnerabilities.
+* Aimed at **making the service unavailable** to legitimate users.
+
+---
+
+### 🧨 Types of DDoS Attacks:
+
+| Type                  | Description                                                       |
+| --------------------- | ----------------------------------------------------------------- |
+| **Volumetric Attack** | Floods network bandwidth (e.g., UDP flood)                        |
+| **Protocol Attack**   | Exploits weaknesses in protocols (e.g., SYN flood, Ping of Death) |
+| **Application-layer** | Targets app-level endpoints (e.g., HTTP GET/POST flood)           |
+
+---
+
+### 🔐 Mitigation Techniques:
+
+1. **Rate Limiting**
+
+   * Limit number of requests per IP or user.
+
+2. **Web Application Firewall (WAF)**
+
+   * Filters and blocks malicious traffic.
+
+3. **CDN & DDoS Protection Services**
+
+   * Offload traffic to providers like **Cloudflare**, **AWS Shield**, **Akamai**.
+
+4. **Geo-blocking & IP Blacklisting**
+
+   * Block regions or addresses with suspicious traffic patterns.
+
+5. **Autoscaling & Load Balancers**
+
+   * Absorb spikes with elastic infrastructure.
+
+6. **CAPTCHA / Challenge-Response**
+
+   * Prevent bots from abusing endpoints.
+
+---
+
 

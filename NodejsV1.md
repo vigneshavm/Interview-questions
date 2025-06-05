@@ -4,7 +4,7 @@
 
 **Concurrency & Processes**  - [Event Loop](#event-loop)    - [Async Execution Order](#Async-Execution-Order)   - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture)  -[libuv](#libuv)
 
-**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)  - [Handling 100,000 concurrent requests](#Handling-100,000-concurrent-requests) 
+**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)  - [Handling 100,000 concurrent requests](#Handling-100000-concurrent-requests) 
 
 
 **Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)    - [Rate Limiter](#Rate-Limiter) - [DDoS attack](#DDoS-attack) - [Data validation](#data-validation)  -[Input Validate](#Input-Validate) 
@@ -3786,7 +3786,7 @@ Use tools like `clinic.js`, `0x`, or built-in `--trace-events` to inspect your a
 
 
 
-## Handling 100,000 concurrent requests
+## Handling 100000 concurrent requests
 
 
 To handle 100,000 concurrent requests efficiently in Node.js, I would focus on the following key strategies:

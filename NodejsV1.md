@@ -2,7 +2,7 @@
 
 **Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)
 
-**Concurrency & Processes**  - [Event Loop](#event-loop)    - [Async Execution Order](#Async-Execution-Order)   - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)
+**Concurrency & Processes**  - [Event Loop](#event-loop)    - [Async Execution Order](#Async-Execution-Order)   - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture) 
 
 **Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)
 
@@ -3430,5 +3430,163 @@ app.post('/user', [
 * Reject unknown/unexpected fields (`stripUnknown: true` in Joi)
 
 ---
+
+
+
+## Event Driven Architecture
+
+---
+
+### 📌 **What is Event-Driven Architecture (EDA)?**
+
+**Event-Driven Architecture** is a software design pattern where:
+
+* The **system reacts to events** (e.g., “user signed up”, “file uploaded”, “comment added”).
+* Components emit and listen for **events** instead of calling each other directly.
+
+This decouples different parts of your application, making it:
+
+* **Modular**
+* **Scalable**
+* **Responsive**
+
+Node.js is inherently built on an **event-driven model**, making it ideal for real-time, reactive applications.
+
+---
+
+### ⚙️ Core Concepts in Node.js
+
+| Concept                | Description                                     |
+| ---------------------- | ----------------------------------------------- |
+| `EventEmitter`         | Core Node.js module for creating custom events  |
+| Event Loop             | Runs asynchronously and handles event callbacks |
+| Callback/Promise/Async | Works well with events and non-blocking I/O     |
+
+### 🏁 Summary
+
+* Node.js and `EventEmitter` make EDA easy and powerful.
+* Great for **scalable**, **modular**, **real-time** apps like Instagram, Twitter, or Slack.
+* You can also scale this by using **message queues** like RabbitMQ, Kafka, or Redis Pub/Sub for distributed systems.
+
+---
+
+### 🧾 Basic Example
+
+```js
+const EventEmitter = require('events');
+
+class AppEvents extends EventEmitter {}
+const appEvents = new AppEvents();
+
+// Listener
+appEvents.on('userSignedUp', (user) => {
+  console.log(`Welcome email sent to ${user.email}`);
+});
+
+// Emit event
+appEvents.emit('userSignedUp', { email: 'user@example.com' });
+```
+
+✅ Output:
+
+```
+Welcome email sent to user@example.com
+```
+
+---
+
+## 📱 Real-World Example: Instagram-like App
+
+### 🔁 Scenario: User uploads a photo
+
+**Step-by-step flow:**
+
+1. User uploads a photo.
+2. The backend emits a `photoUploaded` event.
+3. Multiple parts of the system react:
+
+   * Update feed for followers.
+   * Trigger image moderation.
+   * Log analytics.
+   * Send notification.
+
+---
+
+### 🧩 Code Structure
+
+#### `events/photoEvents.js`
+
+```js
+const EventEmitter = require('events');
+class PhotoEvents extends EventEmitter {}
+module.exports = new PhotoEvents();
+```
+
+#### `controllers/photoController.js`
+
+```js
+const photoEvents = require('../events/photoEvents');
+
+app.post('/upload', upload.single('image'), async (req, res) => {
+  const photo = await savePhoto(req.user.id, req.file);
+
+  // Emit event
+  photoEvents.emit('photoUploaded', {
+    userId: req.user.id,
+    photoId: photo.id,
+  });
+
+  res.status(201).json({ message: 'Photo uploaded' });
+});
+```
+
+#### `listeners/notificationListener.js`
+
+```js
+const photoEvents = require('../events/photoEvents');
+
+photoEvents.on('photoUploaded', ({ userId, photoId }) => {
+  notifyFollowers(userId, photoId);
+});
+```
+
+#### `listeners/loggingListener.js`
+
+```js
+const photoEvents = require('../events/photoEvents');
+
+photoEvents.on('photoUploaded', ({ userId, photoId }) => {
+  setImmediate(() => {
+    console.log(`User ${userId} uploaded photo ${photoId}`);
+  });
+});
+```
+
+---
+
+### 🧠 Why Use Event-Driven Architecture?
+
+| Benefit           | Description                                         |
+| ----------------- | --------------------------------------------------- |
+| ✅ Decoupling      | Upload logic doesn’t need to know who gets notified |
+| 🔄 Asynchronous   | Events don’t block main user interactions           |
+| 🔧 Extensibility  | Add new listeners without touching existing logic   |
+| ⚡ Real-time Ready | Suits real-time apps: chat, notifications, streams  |
+
+---
+
+### 🧵 Real-World Events in a Social App
+
+| Event           | Trigger           | Handlers                              |
+| --------------- | ----------------- | ------------------------------------- |
+| `userSignedUp`  | On registration   | Send welcome email, log signup        |
+| `photoUploaded` | After photo saved | Notify followers, moderate image      |
+| `postLiked`     | User likes a post | Notify post owner, increment counter  |
+| `commentAdded`  | On new comment    | Notify tagged users, moderate comment |
+
+---
+
+
+
 
 

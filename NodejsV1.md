@@ -3591,38 +3591,79 @@ photoEvents.on('photoUploaded', ({ userId, photoId }) => {
 
 ## libuv
 
-**`libuv`** is a **C-based support library** that provides Node.js with:
+
+ - Node.js runs JavaScript in a **single-threaded** event loop. However, certain operations (like file I/O, DNS lookups, encryption) are **blocking at the system level** and would block the main thread.
+
+ - To solve this, Node.js uses a **thread pool** (managed by the [libuv](https://github.com/libuv/libuv) library) to offload blocking operations in the background.
+
+
+
+* **libuv** is the backbone of Node.js's non-blocking architecture.
+* It handles both I/O and CPU-bound tasks through:
+
+  * Event loop (for async, non-blocking work)
+  * Thread pool (for blocking tasks)
+* It abstracts OS-level behavior to provide a unified API across platforms.
+* Use `UV_THREADPOOL_SIZE` to scale the thread pool for heavy workloads.
+
+---
+
+## ⚙️ libuv in Node.js
+
+`libuv` is a **C-based support library** that powers Node.js's **non-blocking, event-driven** architecture. It provides:
 
 * An **event loop**
 * **Asynchronous I/O**
-* **Cross-platform abstraction** (Windows, macOS, Linux)
+* **Cross-platform abstractions** (Windows, macOS, Linux)
 
-> 📌 It is the engine under the hood that powers Node.js's **non-blocking**, **event-driven** architecture.
-
----
-
-### 🧠 Why libuv Exists?
-
-Node.js uses JavaScript — a **single-threaded** language — but real-world applications need to:
-
-* Handle file system access
-* Perform network I/O
-* Use timers
-* Handle DNS and child processes
-
-To do all that **without blocking** the main thread, Node.js uses **libuv** to delegate these tasks to a background system written in C.
+> 🧠 It’s the low-level engine that enables high-level asynchronous APIs in Node.js.
 
 ---
 
-### 🔄 How libuv Enables the Event Loop
+### 🚀 Why Node.js Needs libuv
 
-1. JS code triggers an async operation (like `fs.readFile()`).
-2. Node delegates the task to **libuv**.
-3. libuv runs it in a **thread pool** (if blocking) or via **OS-level APIs** (if non-blocking).
-4. When done, libuv emits an event.
-5. Your callback is pushed onto the event loop queue to run.
+JavaScript is **single-threaded**, but real-world applications require:
+
+* File system access
+* Network communication
+* DNS resolution
+* Timers
+* Spawning child processes
+
+To handle all this **without blocking** the main thread, Node.js offloads these operations to `libuv`, which uses threads or OS-level async features.
 
 ---
+
+### 🔁 How libuv Powers the Event Loop
+
+1. JavaScript code initiates an async operation (e.g., `fs.readFile()`).
+2. Node.js delegates it to `libuv`.
+3. `libuv` handles the task via:
+
+   * A **thread pool** for blocking work
+   * **OS-level APIs** for non-blocking tasks (e.g., sockets)
+4. Once done, `libuv` queues a callback in the event loop.
+5. Node.js executes the callback when the event loop reaches it.
+
+---
+
+### 🧵 libuv Thread Pool
+
+Some operations (like file I/O, crypto, and DNS lookups) are **blocking at the system level**, so `libuv` runs them in a **thread pool**:
+
+| Feature                 | Detail                                    |
+| ----------------------- | ----------------------------------------- |
+| Default pool size       | 4 threads                                 |
+| Maximum pool size       | 128 threads                               |
+| Configurable via        | `UV_THREADPOOL_SIZE` environment variable |
+| Tasks using thread pool | `fs`, `crypto`, `zlib`, `dns`, etc.       |
+
+> 📌 Use non-blocking APIs wherever possible for scalability.
+
+---
+
+
+
 
 ### 🔁 **What Does libuv Handle?**
 

@@ -7,7 +7,7 @@
 | **Indexing**                | [Creating an Index in MongoDB](#creating-an-index-in-mongodb) - [Indexing strategies](#indexing-strategies) - [Indexing Drawbacks](#indexing-drawbacks) - [Multikey and Compound indexes](#Multikey-and-Compound-indexes) - [Compound Indexes](#Compound-Indexes) |
 | **CRUD Operations**         | [upsert](#upsert) - [Update Multiple Documents](#update-multiple-documents-in-mongodb) - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)        |
 | **Relationships & Schema**  | [Model Relationships](#model-relationships) - [Embedded and Referenced Documents](#embedded-and-referenced-documents) - [Schema Enforcement](#mongodb-handle-schema-enforcement) |
-| **Advanced Features**       | [Aggregations in MongoDB](#aggregations-in-mongodb) - [Handle Transactions in MongoDB](#handle-transactions-in-mongodb) - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) |
+| **Advanced Features**       | [Aggregations in MongoDB](#aggregations-in-mongodb) - [Aggregate examples](#Aggregate-examples) - [Handle Transactions in MongoDB](#handle-transactions-in-mongodb) - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) |
 | **Scaling & Performance**   | [Sharding](#Sharding) - [Scaling MongoDB](#scaling-mongodb) - [Performance Tuning Techniques in MongoDB](#performance-tuning-techniques-in-mongodb)                             |
 | **Replication & Durability**| [Replica Set](#replica-set) - [Clustering & Replication](#clustering--replication) - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb) - [Durability & Consistency](#mongodb-ensure-durability-and-consistency) - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) |
 | **Special Collections**     | [Capped Collection in MongoDB](#capped-collection-in-mongodb)                                                                                         |
@@ -1674,6 +1674,139 @@ This improved performance from \~1.2s to <200ms.
 * Use **MongoDB Atlas**, `explain()`, or `db.currentOp()` to analyze slow queries.
 * Monitor **working set size** – ideally fits in RAM for fast access.
 * Watch for **page faults, CPU spikes, index misses**.
+
+---
+
+## Aggregate examples
+
+Group orders by customer and calculate total spend per customer
+
+
+```js
+db.orders.aggregate([
+  {
+    $match: {
+      status: "completed" // Optional filter if you want only successful orders
+    }
+  },
+  {
+    $group: {
+      _id: "$customerId",               // Group by customerId
+      totalSpend: { $sum: "$amount" },  // Sum up the amount field
+      orderCount: { $sum: 1 }           // Optional: count number of orders
+    }
+  },
+  {
+    $sort: { totalSpend: -1 }           // Optional: sort by highest spenders
+  }
+])
+```js
+
+
+
+Great! To **join the `orders` collection with the `customers` collection** using MongoDB’s `$lookup`, we’ll enhance the previous aggregation query.
+
+---
+
+## 🔄 **Goal:**
+
+* Group `orders` by `customerId`
+* Calculate `totalSpend` and `orderCount`
+* Join with `customers` to fetch customer details like `name`, `email`, etc.
+
+---
+
+## 🗃️ **Assumptions**
+
+### `orders` collection:
+
+```json
+{
+  "_id": ObjectId("..."),
+  "customerId": "CUST123",
+  "amount": 250.50,
+  "status": "completed"
+}
+```
+
+### `customers` collection:
+
+```json
+{
+  "_id": "CUST123",
+  "name": "John Doe",
+  "email": "john@example.com"
+}
+```
+
+---
+
+## 📘 **Aggregation Pipeline with `$lookup`**
+
+```js
+db.orders.aggregate([
+  {
+    $match: {
+      status: "completed"
+    }
+  },
+  {
+    $group: {
+      _id: "$customerId",
+      totalSpend: { $sum: "$amount" },
+      orderCount: { $sum: 1 }
+    }
+  },
+  {
+    $lookup: {
+      from: "customers",
+      localField: "_id",         // _id from $group, which is customerId
+      foreignField: "_id",       // _id in the customers collection
+      as: "customerDetails"
+    }
+  },
+  {
+    $unwind: "$customerDetails" // Flatten the customerDetails array
+  },
+  {
+    $project: {
+      _id: 0,
+      customerId: "$_id",
+      name: "$customerDetails.name",
+      email: "$customerDetails.email",
+      totalSpend: 1,
+      orderCount: 1
+    }
+  },
+  {
+    $sort: { totalSpend: -1 } // Optional: top spenders first
+  }
+])
+```
+
+---
+
+## ✅ **Sample Output**
+
+```json
+[
+  {
+    "customerId": "CUST123",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "totalSpend": 1025.75,
+    "orderCount": 4
+  }
+]
+```
+
+---
+
+## 📌 Notes
+
+* `$lookup` acts like a **left outer join**.
+* `$unwind` is used to convert the joined array into a single object.
+* `$project` formats the output nicely.
 
 ---
 

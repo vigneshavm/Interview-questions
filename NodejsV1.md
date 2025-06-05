@@ -106,18 +106,10 @@ tsconfig.json
 
 ---
 
-### **Event Loop**
-
-
-Your content is very well-structured and informative. Below is a lightly refined version with improved formatting, clarity, and completeness for interview prep or documentation purposes:
-
----
-
-## ✅ Event Loop in Node.js
+## **Event Loop**
 
 The **event loop** is the mechanism that allows Node.js to perform **non-blocking I/O operations**—despite being **single-threaded**—by offloading operations to the system kernel or background threads when possible.
 
----
 
 ### 1. What is the Event Loop?
 

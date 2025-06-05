@@ -13,7 +13,10 @@
 | **Special Collections**     | [Capped Collection in MongoDB](#capped-collection-in-mongodb)                                                                                         |
 | **MongoDB with Node.js**    | [MongoDB with Node.js](#mongodb-with-nodejs) - [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose) - [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver) |
 | **Limitations & Considerations** | [Limitations of MongoDB and How to Overcome Them](#limitations-of-mongodb-and-how-to-overcome-them)   - [Databases for a Social Media App](#databases-for-a-social-media-app)                                                                                 |
-| **Other Topics**            | [CAP Theorem](#CAP-Theorem) - [Time Series](#Time-Series) - [ACID properties](#ACID-properties) - [Two-Phase Commit](#Two-Phase-Commit) - [Handling large datasets efficiently in MongoDB](#Handling-large-datasets-efficiently-in-MongoDB) |
+| **Other Topics**            | [CAP Theorem](#CAP-Theorem) - [Time Series](#Time-Series) - [ACID properties](#ACID-properties) - [Two-Phase Commit](#Two-Phase-Commit) - [Handling large datasets efficiently in MongoDB](#Handling-large-datasets-efficiently-in-MongoDB) - (Scenario Based Questions)[Scenario-Based-Questions]
+|
+
+
 
 ---
 
@@ -1809,6 +1812,61 @@ db.orders.aggregate([
 * `$project` formats the output nicely.
 
 ---
+
+
+
+---
+
+## Scenario Based Questions
+
+### 18. Find users who haven't logged in for 30+ days
+
+```js
+db.users.find({
+  lastLogin: { $lt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) }
+});
+```
+
+---
+
+### 19. Find products between price 100 and 500, and in stock
+
+```js
+db.products.find({
+  price: { $gte: 100, $lte: 500 },
+  stock: { $gt: 0 }
+});
+```
+
+---
+
+### 20. Query array of objects by nested field
+
+```js
+db.orders.find({
+  "items.productId": ObjectId("...")
+});
+```
+
+---
+
+### 21. Update documents conditionally
+
+```js
+db.users.updateMany(
+  { status: "inactive" },
+  { $set: { archived: true } }
+);
+```
+
+---
+
+### 22. Pagination using `skip()` and `limit()`
+
+```js
+db.users.find().skip(10).limit(10);
+```
+
 
 
 

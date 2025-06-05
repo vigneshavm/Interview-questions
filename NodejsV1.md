@@ -319,9 +319,24 @@ Timeout
 3. `setImmediate()` → check phase
 4. `setTimeout()` → timer phase
 
+
+
+| Use                  | Situation                                                                               
+| -------------------- | --------------------------------------------------------------------------------------- |
+| `process.nextTick()` | Need to **throw an error ASAP**, without crashing or overlapping stack                  |
+| `setImmediate()`     | Want to **defer post-processing** (e.g., analytics, cleanups) without delaying response |
+
+
+| Tool Used               | Task                               | Reason                                                                  |
+| ---------------------------------- | ----------------------- | ----------------------------------------------------------------------- |
+| `process.nextTick()`    |Throwing format error immediately  |  Ensure error is raised before any other code can process partial result |
+| `setImmediate()`        | Logging analytics after completion | Non-critical background task; defer until after I/O and response        |
+
+
+
 ---
 
-### 🌐 **Request Handling in Node.js**
+###  **Request Handling in Node.js**
 
 1. **Client Sends HTTP Request**
 2. **Node.js Accepts via HTTP Module or Express**

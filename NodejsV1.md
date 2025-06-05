@@ -4,7 +4,8 @@
 
 **Concurrency & Processes**  - [Event Loop](#event-loop)    - [Async Execution Order](#Async-Execution-Order)   - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture)  -[libuv](#libuv)
 
-**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)
+**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)  - [Handling 100,000 concurrent requests](#Handling-100,000-concurrent-requests) 
+
 
 **Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)    - [Rate Limiter](#Rate-Limiter) - [DDoS attack](#DDoS-attack) - [Data validation](#data-validation)  -[Input Validate](#Input-Validate) 
 
@@ -3782,6 +3783,39 @@ Increase `UV_THREADPOOL_SIZE` if:
 
 Use tools like `clinic.js`, `0x`, or built-in `--trace-events` to inspect your app's event loop and thread pool behavior before tuning this setting.
 
+
+
+
+## Handling 100,000 concurrent requests
+
+
+To handle 100,000 concurrent requests efficiently in Node.js, I would focus on the following key strategies:
+
+1. **Write Non-Blocking Code:**
+   Ensure all I/O operations (file, DB, network) use asynchronous, non-blocking APIs to keep the event loop free.
+
+2. **Utilize Clustering:**
+   Since Node.js runs on a single thread, use the built-in `cluster` module or process managers like PM2 to spawn multiple worker processes, leveraging all CPU cores.
+
+3. **Horizontal Scaling:**
+   If a single machine isn’t enough, scale horizontally with container orchestration tools like Kubernetes.
+
+4. **Offload Heavy Tasks:**
+   For CPU-intensive or slow operations (e.g., sending emails, image processing), use background job queues (like RabbitMQ) to keep request handlers fast.
+
+5. **Use a Reverse Proxy:**
+   Deploy a reverse proxy like Nginx or HAProxy to manage incoming connections, enable keep-alive, SSL termination, and load balancing across Node.js workers.
+
+6. **Implement Connection Pooling and Caching:**
+   Use connection pools for database access and caching layers (Redis or Memcached) to reduce latency and avoid bottlenecks.
+
+
+7. **Optimize Network Usage:**
+   Enable HTTP/2 or keep-alive connections to reduce overhead.
+
+
+8. **Monitoring and Profiling:**
+   Continuously monitor event loop lag, memory usage, and throughput to detect bottlenecks and optimize accordingly.
 
 
 

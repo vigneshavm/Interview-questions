@@ -2254,9 +2254,9 @@ npm install -g pm2
 ---
 
 
-### Callback Vs Promise Vs AsyncAwait
+## Callback Vs Promise Vs AsyncAwait
 
-## **Promise vs Async/Await**:
+
 - **Promises**: Use `.then()` and `.catch()` for chaining async calls.
 - **Async/Await**: More readable and concise for handling asynchronous operations.
 - Promises simplify callbacks but can still become complex.

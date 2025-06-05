@@ -13,7 +13,7 @@
 | **Special Collections**     | [Capped Collection in MongoDB](#capped-collection-in-mongodb)                                                                                         |
 | **MongoDB with Node.js**    | [MongoDB with Node.js](#mongodb-with-nodejs) - [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose) - [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver) |
 | **Limitations & Considerations** | [Limitations of MongoDB and How to Overcome Them](#limitations-of-mongodb-and-how-to-overcome-them)   - [Databases for a Social Media App](#databases-for-a-social-media-app)                                                                                 |
-| **Other Topics**            | [CAP Theorem](#CAP-Theorem) - [Time Series](#Time-Series) - [ACID properties](#ACID-properties) - [Two-Phase Commit](#Two-Phase-Commit) - [Handling large datasets efficiently in MongoDB](#Handling-large-datasets-efficiently-in-MongoDB) - (Scenario Based Questions)[Scenario-Based-Questions]
+| **Other Topics**            | [CAP Theorem](#CAP-Theorem) - [Time Series](#Time-Series) - [ACID properties](#ACID-properties) - [Two-Phase Commit](#Two-Phase-Commit) - [Handling large datasets efficiently in MongoDB](#Handling-large-datasets-efficiently-in-MongoDB) - [Scenario Based Questions](Scenario-Based-Questions)
 |
 
 

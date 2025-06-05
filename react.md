@@ -2024,7 +2024,8 @@ You might choose **Uncontrolled Components** when:
 ---
 
 ###  **Summary**:  
-Use **Uncontrolled Components** for **simple, non-dynamic forms** where performance matters or form data isn’t needed until submission. Use **Controlled Components** when you need real-time updates, validation, or tighter control.
+ - Use **Uncontrolled Components** for **simple, non-dynamic forms** where performance matters or form data isn’t needed until submission. 
+ - Use **Controlled Components** when you need real-time updates, validation, or tighter control.
 
 ---
 🔸 **Example – Uncontrolled Input:**

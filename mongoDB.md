@@ -30,7 +30,7 @@
 
   **Real-World Applications**  - [Databases for a Social Media App](#databases-for-a-social-media-app)
 
-  **Other Topics**  - [CAP Theorem](#CAP-Theorem) - [Time Series](#Time-Series) -[ACID properties](#ACID-properties) - [Two-Phase Commit](#Two-Phase-Commit)  - [Handling large datasets efficiently in MongoDB](#Handling-large-datasets-efficiently-in-MongoDB]
+  **Other Topics**  - [CAP Theorem](#CAP-Theorem) - [Time Series](#Time-Series) -[ACID properties](#ACID-properties) - [Two-Phase Commit](#Two-Phase-Commit)  - [Handling large datasets efficiently in MongoDB](#Handling-large-datasets-efficiently-in-MongoDB)
 
 ---
 

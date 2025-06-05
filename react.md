@@ -4127,9 +4127,22 @@ export function* watchFetchUserData() {
 
 ---
 
-## 🚨 Common Causes of Memory Leaks in React
+## ✅ Best Practices to Prevent Memory Leaks
 
-### 1. **Uncleared `setTimeout` / `setInterval`**
+| Problem                          | Solution                                      |
+| -------------------------------- | --------------------------------------------- |
+| Long-running timers              | Clear them in cleanup function                |
+| Event listeners                  | Always remove in `useEffect` cleanup          |
+| Network requests / subscriptions | Abort/cancel/unsubscribe on unmount           |
+| Async `setState` after unmount   | Track mounted status or use `AbortController` |
+| Global objects / static caches   | Avoid storing component-specific data there   |
+| Refs holding large data          | Use sparingly and clear when no longer needed |
+
+---
+
+###  Common Causes of Memory Leaks in React
+
+#### 1. **Uncleared `setTimeout` / `setInterval`**
 
 Timers continue to run even after the component is unmounted.
 
@@ -4145,7 +4158,7 @@ useEffect(() => {
 
 ---
 
-### 2. **Unsubscribed External Listeners (WebSocket, EventEmitter, etc.)**
+#### 2. **Unsubscribed External Listeners (WebSocket, EventEmitter, etc.)**
 
 Failing to unsubscribe from listeners keeps references alive.
 
@@ -4159,7 +4172,7 @@ useEffect(() => {
 
 ---
 
-### 3. **Unremoved DOM Event Listeners**
+#### 3. **Unremoved DOM Event Listeners**
 
 Directly added DOM listeners must be removed manually.
 
@@ -4173,7 +4186,7 @@ useEffect(() => {
 
 ---
 
-### 4. **Stale Closures / Async Calls after Unmount**
+#### 4. **Stale Closures / Async Calls after Unmount**
 
 An async call updating state after a component is gone can cause warnings or leaks.
 
@@ -4210,7 +4223,7 @@ useEffect(() => {
 
 ---
 
-### 5. **Global Variables / Caches**
+#### 5. **Global Variables / Caches**
 
 Storing references to components or DOM nodes globally can prevent GC (garbage collection).
 
@@ -4221,7 +4234,7 @@ window.myCache = someComponentInstance;
 
 ---
 
-### 6. **Improper use of Refs**
+#### 6. **Improper use of Refs**
 
 Refs persist across renders. Holding large objects (e.g. DOM elements, event targets) unnecessarily can cause leaks.
 
@@ -4231,20 +4244,9 @@ const largeDataRef = useRef(heavyData); // ⚠️ can leak if not used carefully
 
 ---
 
-## ✅ Best Practices to Prevent Memory Leaks
 
-| Problem                          | Solution                                      |
-| -------------------------------- | --------------------------------------------- |
-| Long-running timers              | Clear them in cleanup function                |
-| Event listeners                  | Always remove in `useEffect` cleanup          |
-| Network requests / subscriptions | Abort/cancel/unsubscribe on unmount           |
-| Async `setState` after unmount   | Track mounted status or use `AbortController` |
-| Global objects / static caches   | Avoid storing component-specific data there   |
-| Refs holding large data          | Use sparingly and clear when no longer needed |
 
----
-
-## 🧠 How to Detect Memory Leaks
+### 🧠 How to Detect Memory Leaks
 
 * **Browser DevTools → Performance → Record memory usage**
 * Use the **"Memory" tab** to track detached DOM nodes or retained JS objects
@@ -4256,7 +4258,7 @@ const largeDataRef = useRef(heavyData); // ⚠️ can leak if not used carefully
 
 ---
 
-## 🔄 React 18+ Note
+### 🔄 React 18+ Note
 
 React’s **Concurrent Mode** and new **`useTransition`**, **`useDeferredValue`**, etc., may retain state longer — so always **clean up effects** carefully to avoid leaks in complex UI transitions.
 

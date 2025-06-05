@@ -11,7 +11,8 @@
 | **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
-| **Performance Optimization**          | •  [Performance Optimization](#performance-optimization) •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [Memory leaks](#Memory-leaks) •  [Structure Large Scale Application](#large-scale-application)
+| **Performance Optimization**          | •  [Performance Optimization](#performance-optimization) •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [Memory leaks](#Memory-leaks) •  [Structure Large Scale Application](#large-scale-application) •  [During-a-React-Re-render](#What-Happens-During-a-React-Re-render)
+
 
 
 
@@ -4328,5 +4329,74 @@ This means Section A and B can load independently, improving perceived performan
 * Server-side rendering (SSR) requires careful handling with `Suspense`.
 
 ---
+
+
+
+## What Happens During a React Re-render
+
+ - When a component's state, props, or context change, React re-invokes the component function to generate a new Virtual DOM.
+ - It then compares this with the previous Virtual DOM using a diffing algorithm to detect changes.
+ - Only the actual differences are applied to the real DOM.
+ - After the render phase, React runs any cleanup and re-executes side effects via `useEffect`.
+ - React’s virtual DOM and reconciliation help ensure updates are fast and efficient."
+
+
+
+### ✅ 1. **Trigger**
+
+A re-render is triggered by:
+
+* A change in **state** (`useState`, `setState`)
+* A change in **props** from a parent component
+* A change in **context** (`useContext`)
+* A **force update** (`forceUpdate` or equivalent)
+
+---
+
+### ✅ 2. **Component Re-evaluation**
+
+React **re-invokes the component function**:
+
+* For function components, the function is called again.
+* All hooks (`useState`, `useEffect`, etc.) are re-evaluated in order.
+* New **Virtual DOM** is generated from the return value (JSX).
+
+---
+
+### ✅ 3. **Virtual DOM Diffing**
+
+React compares:
+
+* The **new Virtual DOM** vs. the **previous Virtual DOM**.
+* It uses a **diffing algorithm** (called *reconciliation*) to find differences.
+
+---
+
+### ✅ 4. **Efficient DOM Updates**
+
+* React computes a **minimal set of real DOM changes**.
+* Only the **changed nodes** are updated in the browser DOM.
+* This is why React is fast — it avoids full re-renders of the actual DOM.
+
+---
+
+### ✅ 5. **Effects Handling**
+
+* **`useEffect`** and **`useLayoutEffect`** are triggered *after* the paint phase.
+
+  * React checks if their dependencies (`[deps]`) have changed.
+  * Clean-up functions from the previous effect run first (if needed).
+
+---
+
+## 🎯 Optimization Notes
+
+* **Re-renders are local**: A child doesn't re-render unless its props or state change.
+* Use `React.memo` to avoid unnecessary re-renders for pure functional components.
+* Use **keys** properly in lists to help React optimize updates.
+
+---
+
+
 
 

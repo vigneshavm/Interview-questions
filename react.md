@@ -472,6 +472,42 @@ ReactDOM.render(virtualDOM, document.getElementById('root'));
 Lifecycle methods let you run code at specific **stages of a component’s life** (Mount, Update, Unmount).
 Lifecycle methods are special methods in class components. Hooks like `useEffect` replicate them in functional components.
 
+
+### 1. **Mounting Phase**
+
+When the component is first added to the DOM:
+
+* `useEffect(() => { ... }, [])` — runs **after** the first render.
+* React calls the function component to produce the virtual DOM (VNode).
+* Reconciliation compares this VNode with the real DOM (initially empty) and renders it.
+
+### 2. **Updating Phase**
+
+When props or state change:
+
+* Component function re-executes to produce a new VNode.
+* `useEffect(() => { ... }, [deps])` runs when dependencies change.
+* DOM updates occur after the diffing (reconciliation) process.
+
+### 3. **Unmounting Phase**
+
+When the component is removed:
+
+* Cleanup functions in `useEffect(() => { return () => {...} }, [])` are called.
+
+---
+
+## 🔄 **Class Component Lifecycle (for reference)**
+
+| Phase      | Lifecycle Method                                          |
+| ---------- | --------------------------------------------------------- |
+| Mounting   | `constructor` → `render` → `componentDidMount`            |
+| Updating   | `shouldComponentUpdate` → `render` → `componentDidUpdate` |
+| Unmounting | `componentWillUnmount`                                    |
+
+---
+
+
 ### **Class Component Lifecycle Methods vs Hook Equivalents**
 
 | **Class Lifecycle Method** | **Purpose** | **Hook Equivalent** |

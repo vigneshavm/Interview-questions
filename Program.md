@@ -940,6 +940,10 @@ export default TodoList;
 
 
 ## Fetch and display list users
+
+ - Searching -
+
+
 ```tsx
 
 
@@ -992,6 +996,90 @@ const UserList = () => {
 export default UserList;
 
 ```
+
+
+
+### ✅ **Angular Equivalent of `UserList` Component**
+
+#### **1. app.module.ts** – Import `HttpClientModule` and `FormsModule`
+
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+import { UserListComponent } from './user-list/user-list.component';
+
+@NgModule({
+  declarations: [AppComponent, UserListComponent],
+  imports: [BrowserModule, HttpClientModule, FormsModule],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+---
+
+#### **2. user-list.component.ts**
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.css']
+})
+export class UserListComponent implements OnInit {
+  users: any[] = [];
+  search: string = '';
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.http.get<any[]>('https://jsonplaceholder.typicode.com/users')
+      .subscribe({
+        next: (data) => this.users = data,
+        error: (err) => console.error('Error fetching users:', err)
+      });
+  }
+
+  get filteredUsers() {
+    return this.users.filter(user =>
+      user.name.toLowerCase().includes(this.search.toLowerCase())
+    );
+  }
+}
+```
+
+---
+
+#### **3. user-list.component.html**
+
+```html
+<div style="padding: 20px;">
+  <h2>User List</h2>
+
+  <input
+    type="text"
+    placeholder="Search by name..."
+    [(ngModel)]="search"
+    style="padding: 8px; margin-bottom: 10px; width: 100%;"
+  />
+
+  <ul>
+    <li *ngFor="let user of filteredUsers">
+      {{ user.name }} – {{ user.email }}
+    </li>
+    <li *ngIf="filteredUsers.length === 0">No users found</li>
+  </ul>
+</div>
+```
+
+---
 
 
 

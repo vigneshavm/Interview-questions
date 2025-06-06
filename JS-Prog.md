@@ -254,7 +254,49 @@ function findKthLargest(nums, k) {
 
 ### Remove Duplicates element from array
 
+
+Input 	--> [1, 2, 3, 4, 1, 5, 5, 6]`)
+Output 	--> [2, 3, 4, 6]
+
+### 🔁 **1. Using `reduce()` with an object counter**
+
+```js
+const input = [1, 2, 3, 4, 1, 5, 5, 6];
+
+// Count frequency
+const freqMap = input.reduce((acc, val) => {
+  acc[val] = (acc[val] || 0) + 1;
+  return acc;
+}, {});
+
+// Filter values that occurred only once
+const output = input.filter(val => freqMap[val] === 1);
+
+console.log(output); // [2, 3, 4, 6]
+```
+
 ---
+
+### 🧮 **2. Using `Map` for better performance (especially with large arrays)**
+
+```js
+const input = [1, 2, 3, 4, 1, 5, 5, 6];
+
+const countMap = new Map();
+
+input.forEach(val => {
+  countMap.set(val, (countMap.get(val) || 0) + 1);
+});
+
+const output = input.filter(val => countMap.get(val) === 1);
+
+console.log(output); // [2, 3, 4, 6]
+```
+
+---
+
+Input 	--> [1, 2, 2, 3, 1, 4]
+Output 	--> [1, 2, 3, 4]
 
 **Using Predefined Functions (e.g., `includes`)**
 

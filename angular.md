@@ -1657,6 +1657,12 @@ intercept(req: HttpRequest<any>, next: HttpHandler) {
 
 ## ViewChild & ViewChildren
 
+
+ -  `@ViewChild` gets a reference to a single DOM element or component.
+ -  `@ViewChildren` gets multiple elements as a `QueryList`.
+
+
+
 * **Purpose**:
   Both are decorators to get references to child elements, components, or directives inside a component’s template.
 
@@ -2232,11 +2238,6 @@ export class ReversePipe implements PipeTransform {
 
 
 
-
-###  **@ViewChild and @ViewChildren**
-
- -  `@ViewChild` gets a reference to a single DOM element or component.
- -  `@ViewChildren` gets multiple elements as a `QueryList`.
 
 
 

@@ -14,6 +14,33 @@
 | **HTTP & Interceptors**       | [HTTP Interceptors](#http-interceptors-in-angular)  
 
 
+
+- [HttpClientModule](#httpclientmodule)
+- [Module and Component](#module-and-component)
+- [Dependency Injection](#dependency-injection)
+- [setTimeout and setInterval](#settimeout-and-setinterval)
+- [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms)
+- [Pipes](#pipes)
+- [EventEmitter](#eventemitter)
+- [Services and Injectors](#services-and-injectors)
+- [Component Factory and Encapsulation](#component-factory-and-encapsulation)
+- [Lazy Loading](#lazy-loading)
+- [ViewChild and ViewChildren](#viewchild-and-viewchildren)
+- [HostListener and HostBinding](#hostlistener-and-hostbinding)
+- [Common RxJS Operators](#common-rxjs-operators)
+- [Promise and Observable](#promise-and-observable)
+- [Protect Routes](#protect-routes)
+- [Data Binding](#data-binding)
+- [Directive](#directive)
+- [Input and Output Decorators](#input-and-output-decorators)
+- [Routes and Child Routes](#routes-and-child-routes)
+- [Interceptor](#interceptor)
+- [Module](#module)
+- [Lifecycle Hooks](#lifecycle-hooks)
+- [Angular](#angular)
+
+
+
 ## Component-Based Architecture
 
 - Angular follows a component-based architecture, where the UI is broken into smaller, reusable components. 
@@ -2152,4 +2179,266 @@ export class ReversePipe implements PipeTransform {
 * Avoid heavy computations inside pipes, especially impure ones.
 
 ---
+
+
+
+
+
+
+
+###  **Angular**
+
+  - Angular is a TypeScript-based front-end framework developed by Google. It’s used to build single-page applications (SPAs) with a component-based architecture, built-in routing, forms, HTTP services, and powerful dependency injection.
+
+---
+
+
+
+
+###  **Lifecycle Hooks**
+
+ -  Angular provides lifecycle hooks to tap into key moments of a component’s lifecycle.
+ -  Some important ones are:
+
+* `ngOnInit()` – used for initialization logic after the component is constructed.
+* `ngOnChanges()` – called when any `@Input()` property changes.
+* `ngOnDestroy()` – used for cleanup like unsubscribing from observables or clearing intervals.
+  Others include `ngDoCheck()`, `ngAfterViewInit()`, and `ngAfterContentChecked()`.
+
+---
+
+
+
+
+###  **Module**
+
+ -  A module is a container that groups related components, directives, pipes, and services. It’s defined using the `@NgModule` decorator.
+ -  The root module is usually `AppModule`, and we can also create feature modules to organize the code better.
+
+---
+
+
+
+###  **Interceptor**
+
+ -  An interceptor is a class that implements the `HttpInterceptor` interface. It intercepts all HTTP requests and responses.
+ -  We use it to:
+
+* Add authentication headers
+* Handle errors globally
+* Log HTTP activity
+
+---
+
+
+
+###  **Routes and Child Routes**
+
+ -  Angular uses the `RouterModule` to handle navigation.
+ -  Routes are defined using a `Routes` array.
+ -  Child routes are nested routes under a parent component, useful for modules like admin dashboards.
+ -  They are rendered using a secondary `<router-outlet>` in the parent component.
+
+---
+
+
+
+
+
+###  **@Input and @Output Decorators**
+
+ -  `@Input()` is used to pass data **from parent to child component**.
+ -  `@Output()` is used to **emit events from child to parent** using `EventEmitter`.
+
+---
+
+
+
+
+
+###  **Directive**
+
+ -  A directive is a class that changes the appearance or behavior of DOM elements.
+ -  Three types are:
+
+1. **Component Directive** – essentially a directive with a template.
+2. **Attribute Directive** – changes appearance/behavior (e.g., `ngClass`, `ngStyle`).
+3. **Structural Directive** – modifies layout (e.g., `*ngIf`, `*ngFor`, `*ngSwitch`).
+
+---
+
+
+
+
+###  **Data Binding**
+
+ -  Data binding connects template and component. Types include:
+
+* Interpolation: `{{ data }}`
+* Property binding: `[src]="imgUrl"`
+* Event binding: `(click)="onClick()"`
+* Two-way binding: `[(ngModel)]="name"` (requires FormsModule)
+
+---
+
+
+
+###  **Protect Routes**
+
+ -  We use **Route Guards** like `CanActivate` to protect routes.
+ -  They check conditions before navigation (e.g., user is logged in).
+ -  We register them in the routing module using the `canActivate` property.
+
+---
+
+
+
+
+
+###  **Promise and Observable**
+
+ -  **Promises** handle one-time asynchronous operations.
+ -  **Observables** (from RxJS) are more powerful – they handle multiple values over time, support cancellation, and have operators like `map`, `filter`, and `mergeMap`.
+
+---
+
+
+
+
+###  **Common RxJS Operators**
+
+* `of()` – emits static values as an observable
+* `forkJoin()` – runs multiple observables in parallel, returns when all complete
+* `map()` – transforms the emitted value
+* `tap()` – for side effects like logging
+* `pipe()` – chains multiple RxJS operators
+
+---
+
+
+
+
+###  **@HostListener and @HostBinding**
+
+ -  `@HostListener` listens to host element events like click, resize.
+ -  `@HostBinding` binds a property or attribute to the host element of the directive/component.
+
+---
+
+
+
+
+###  **@ViewChild and @ViewChildren**
+
+ -  `@ViewChild` gets a reference to a single DOM element or component.
+ -  `@ViewChildren` gets multiple elements as a `QueryList`.
+
+---
+
+
+
+
+
+###  **Lazy Loading**
+
+ -  Lazy loading is the practice of loading feature modules **only when needed**, reducing initial load time.
+ -  We define routes using `loadChildren` with dynamic imports.
+
+---
+
+
+
+
+###  **Component Factory & Encapsulation**
+
+ -  A component factory is used to dynamically create components at runtime using `ComponentFactoryResolver`.
+ -  Encapsulation determines how styles are scoped:
+
+* Emulated (default)
+* None
+* Shadow DOM
+
+---
+
+
+
+
+###  **Services and Injectors**
+
+ -  Services contain shared logic and are injected using Angular's **dependency injection** system.
+ -  Injectors create and manage service instances, maintaining a hierarchy for scoped services.
+
+---
+
+
+
+###  **EventEmitter**
+
+ -  It’s used with `@Output()` to emit custom events from child to parent components.
+
+---
+
+
+
+
+###  **Pipes**
+
+ -  Pipes transform data in the template.
+ -  Built-in examples: `date`, `uppercase`, `currency`.
+ -  Custom pipes can be created using `@Pipe()` decorator.
+
+---
+
+
+
+
+###  **Reactive vs Template-Driven Forms**
+
+| Feature      | Template-Driven        | Reactive                              |
+| ------------ | ---------------------- | ------------------------------------- |
+| Approach     | Declarative            | Programmatic                          |
+| Form control | HTML-based (`ngModel`) | Component class-based (`FormControl`) |
+| Validation   | In template            | In component                          |
+| Flexibility  | Less                   | More control and scalable             |
+
+---
+
+
+
+
+
+###  **setTimeout and setInterval**
+
+ -  `setTimeout()` runs code once after a delay.
+ -  `setInterval()` runs code repeatedly at a fixed interval.
+ -  Used in Angular for delays, polling, etc. But should be cleared in `ngOnDestroy()`.
+
+---
+
+###  **HttpClientModule**
+
+ -  `HttpClientModule` is used to make HTTP calls.
+ -  It provides the `HttpClient` service, supports observables, interceptors, and typed responses.
+
+---
+
+###  **Module and Component**
+
+ -  A **Module** is a container for a group of related features (components, services, etc.)
+ -  A **Component** controls a part of the UI. It includes:
+
+* Template (HTML)
+* Class (logic)
+* Styles
+
+---
+
+###  **Dependency Injection**
+
+ -  DI is a design pattern where Angular provides services or objects that a component needs.
+ -  We declare dependencies in the constructor, and Angular injects them at runtime.
+
+---
+
+
 

@@ -14,13 +14,13 @@
 | **HTTP & Interceptors**       | [HTTP Interceptors](#http-interceptors-in-angular)  
 
 
-
+- [Angular](#angular)
+- [Module](#module)
 - [HttpClientModule](#httpclientmodule)
 - [Module and Component](#module-and-component)
 - [Dependency Injection](#dependency-injection)
 - [setTimeout and setInterval](#settimeout-and-setinterval)
 - [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms)
-- [Pipes](#pipes)
 - [EventEmitter](#eventemitter)
 - [Services and Injectors](#services-and-injectors)
 - [Component Factory and Encapsulation](#component-factory-and-encapsulation)
@@ -31,13 +31,9 @@
 - [Promise and Observable](#promise-and-observable)
 - [Protect Routes](#protect-routes)
 - [Data Binding](#data-binding)
-- [Directive](#directive)
 - [Input and Output Decorators](#input-and-output-decorators)
-- [Routes and Child Routes](#routes-and-child-routes)
-- [Interceptor](#interceptor)
-- [Module](#module)
-- [Lifecycle Hooks](#lifecycle-hooks)
-- [Angular](#angular)
+
+
 
 
 
@@ -1669,6 +1665,16 @@ I use GitHub Actions or Azure Pipelines. Lint, test, build, and deploy to enviro
 
 ## HTTP Interceptors in Angular
 
+
+ -  An interceptor is a class that implements the `HttpInterceptor` interface. It intercepts all HTTP requests and responses.
+ -  We use it to:
+
+* Add authentication headers
+* Handle errors globally
+* Log HTTP activity
+
+
+
 Interceptors allow us to modify HTTP requests/responses globally. I use them to add auth tokens, log requests, and handle errors globally.
 
 ```ts
@@ -1684,6 +1690,17 @@ intercept(req: HttpRequest<any>, next: HttpHandler) {
 ---
 
 ## Angular Lifecycle Hooks
+
+
+###  **Lifecycle Hooks**
+
+ -  Angular provides lifecycle hooks to tap into key moments of a component’s lifecycle.
+ -  Some important ones are:
+
+* `ngOnInit()` – used for initialization logic after the component is constructed.
+* `ngOnChanges()` – called when any `@Input()` property changes.
+* `ngOnDestroy()` – used for cleanup like unsubscribing from observables or clearing intervals.
+  Others include `ngDoCheck()`, `ngAfterViewInit()`, and `ngAfterContentChecked()`.
 
 
 * **constructor**
@@ -1948,16 +1965,17 @@ const routes: Routes = [
 
 
 ## Routing & Child Routes
----
 
-### 🔄 **Angular Routing & Child Routes**
+ -  Angular Routing enables navigation between views or components in a single-page application (SPA).
+ -  It maps URL paths to components using the `RouterModule`.
+ -  Angular uses the `RouterModule` to handle navigation.
+ -  Routes are defined using a `Routes` array.
+ -  Child routes are nested routes under a parent component, useful for modules like admin dashboards.
+ -  They are rendered using a secondary `<router-outlet>` in the parent component.
 
-#### ✅ **What is Angular Routing?**
 
-* Angular Routing enables navigation between views or components in a single-page application (SPA).
-* It maps URL paths to components using the `RouterModule`.
 
-#### 🛠️ **Basic Routing Example:**
+####  **Basic Routing Example:**
 
 ```ts
 const routes: Routes = [
@@ -1977,7 +1995,7 @@ Add to `AppModule`:
 
 ---
 
-### 👶 **What are Child Routes?**
+###  **What are Child Routes?**
 
 * Child Routes allow you to nest routes inside a parent route.
 * Useful for layouts where a part of the view (like sidebar/header) stays consistent.
@@ -2028,7 +2046,16 @@ const routes: Routes = [
 * Directives are **classes that add behavior** to elements in the DOM.
 * Angular provides **built-in directives**, and you can also create **custom directives**.
 
+
+ -  A directive is a class that changes the appearance or behavior of DOM elements.
+ -  Three types are:
+
+1. **Component Directive** – essentially a directive with a template.
+2. **Attribute Directive** – changes appearance/behavior (e.g., `ngClass`, `ngStyle`).
+3. **Structural Directive** – modifies layout (e.g., `*ngIf`, `*ngFor`, `*ngSwitch`).
+
 ---
+
 
 ### 📂 **Types of Directives**
 
@@ -2123,7 +2150,11 @@ export class HighlightDirective {
 * Pipes are **functions** used to **transform data in templates**.
 * They are **used in interpolation ({{}})** to format and display data more cleanly.
 
----
+ -  Pipes transform data in the template.
+ -  Built-in examples: `date`, `uppercase`, `currency`.
+ -  Custom pipes can be created using `@Pipe()` decorator.
+
+
 
 ### 🔹 **Built-in Pipes**
 
@@ -2195,17 +2226,7 @@ export class ReversePipe implements PipeTransform {
 
 
 
-###  **Lifecycle Hooks**
 
- -  Angular provides lifecycle hooks to tap into key moments of a component’s lifecycle.
- -  Some important ones are:
-
-* `ngOnInit()` – used for initialization logic after the component is constructed.
-* `ngOnChanges()` – called when any `@Input()` property changes.
-* `ngOnDestroy()` – used for cleanup like unsubscribing from observables or clearing intervals.
-  Others include `ngDoCheck()`, `ngAfterViewInit()`, and `ngAfterContentChecked()`.
-
----
 
 
 
@@ -2219,27 +2240,9 @@ export class ReversePipe implements PipeTransform {
 
 
 
-###  **Interceptor**
-
- -  An interceptor is a class that implements the `HttpInterceptor` interface. It intercepts all HTTP requests and responses.
- -  We use it to:
-
-* Add authentication headers
-* Handle errors globally
-* Log HTTP activity
-
----
 
 
 
-###  **Routes and Child Routes**
-
- -  Angular uses the `RouterModule` to handle navigation.
- -  Routes are defined using a `Routes` array.
- -  Child routes are nested routes under a parent component, useful for modules like admin dashboards.
- -  They are rendered using a secondary `<router-outlet>` in the parent component.
-
----
 
 
 
@@ -2256,16 +2259,6 @@ export class ReversePipe implements PipeTransform {
 
 
 
-###  **Directive**
-
- -  A directive is a class that changes the appearance or behavior of DOM elements.
- -  Three types are:
-
-1. **Component Directive** – essentially a directive with a template.
-2. **Attribute Directive** – changes appearance/behavior (e.g., `ngClass`, `ngStyle`).
-3. **Structural Directive** – modifies layout (e.g., `*ngIf`, `*ngFor`, `*ngSwitch`).
-
----
 
 
 
@@ -2381,13 +2374,6 @@ export class ReversePipe implements PipeTransform {
 
 
 
-###  **Pipes**
-
- -  Pipes transform data in the template.
- -  Built-in examples: `date`, `uppercase`, `currency`.
- -  Custom pipes can be created using `@Pipe()` decorator.
-
----
 
 
 

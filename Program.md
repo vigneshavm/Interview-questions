@@ -3,10 +3,16 @@
 Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) 
 
 
+React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)
+
+
+Angular --  [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search)
+
+
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
 | [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) || [Handling API Errors in React](#Handling-API-Errors-in-React)
-|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)| |  | |[TodoList](#TodoList)  |[Fetch and display list users](#Fetch-and-display-list-users) | [polyfill programs](#polyfill-programs)
+|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)| |  | |[TodoList](#TodoList)   | [polyfill programs](#polyfill-programs)
 
 
 ## polyfill programs
@@ -943,9 +949,9 @@ export default TodoList;
 
 
 
-## Fetch and display list users
 
- - Searching -
+
+ ## React - Fetch and display list users with user search
 
 
 ```tsx
@@ -1002,8 +1008,7 @@ export default UserList;
 ```
 
 
-
-### ✅ **Angular Equivalent of `UserList` Component**
+## Angular - Fetch and display list users with user search
 
 #### **1. app.module.ts** – Import `HttpClientModule` and `FormsModule`
 

@@ -2150,6 +2150,48 @@ export class ReversePipe implements PipeTransform {
 
 
 
+* Use **interpolation** when you only need to **display** data.
+* Use **two-way binding** when you need to **read and write** data between the view and the component.
+* **Property binding** is for **setting values** on DOM elements or components.
+* **Event binding** is for **responding to user actions**.
+
+
+
+
+### 🔍 **Difference Between Interpolation and Two-Way Binding**
+
+| Feature                   | **Interpolation (`{{ data }}`)**                | **Two-Way Binding (`[(ngModel)]="name"`)**             |
+| ------------------------- | ----------------------------------------------- | ------------------------------------------------------ |
+| **Direction**             | One-way (component → view)                      | Two-way (component ↔ view)                             |
+| **Purpose**               | Display data from the component in the template | Sync data between the component and form/input element |
+| **Syntax**                | `{{ variable }}`                                | `[(ngModel)]="variable"`                               |
+| **Use Case**              | Showing static/dynamic text in HTML             | Getting and updating form input values dynamically     |
+| **Module Required**       | No extra module needed                          | Requires importing `FormsModule` from `@angular/forms` |
+| **Example**               | `<p>{{ userName }}</p>`                         | `<input [(ngModel)]="userName">`                       |
+| **Can Update Component?** | ❌ No – data flows one-way only                  | ✅ Yes – data is updated both in view and component     |
+
+---
+
+
+
+### 🔁 **Difference Between Property Binding and Event Binding**
+
+| Feature       | **Property Binding** (`[property]="value"`)                       | **Event Binding** (`(event)="handler()"`)            |
+| ------------- | ----------------------------------------------------------------- | ---------------------------------------------------- |
+| **Direction** | One-way: **Component → View**                                     | One-way: **View → Component**                        |
+| **Purpose**   | Set/update **DOM element or directive properties** from component | Respond to **DOM events** (like clicks, input, etc.) |
+| **Syntax**    | Square brackets: `[src]="imgUrl"`                                 | Parentheses: `(click)="onClick()"`                   |
+| **Data Flow** | Pushes data from component to the template                        | Sends user interaction from template to component    |
+| **Use Case**  | Set element attributes like `src`, `disabled`, `value`, etc.      | Handle events like `click`, `input`, `submit`, etc.  |
+| **Example**   | `<img [src]="profilePic">`                                        | `<button (click)="deleteUser()">Delete</button>`     |
+
+
+
+
+
+
+
+
 ###  **Protect Routes**
 
  -  We use **Route Guards** like `CanActivate` to protect routes.

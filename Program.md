@@ -951,7 +951,7 @@ export default TodoList;
 
 
 
- ## React - Fetch and display list users with user search
+ ## React Fetch and display list users with user search
 
 
 ```tsx
@@ -1008,7 +1008,7 @@ export default UserList;
 ```
 
 
-## Angular - Fetch and display list users with user search
+## Angular Fetch and display list users with user search
 
 #### **1. app.module.ts** – Import `HttpClientModule` and `FormsModule`
 

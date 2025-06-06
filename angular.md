@@ -2141,10 +2141,107 @@ export class ReversePipe implements PipeTransform {
  -  `@Input()` is used to pass data **from parent to child component**.
  -  `@Output()` is used to **emit events from child to parent** using `EventEmitter`.
 
+| Decorator   | Used For                | Data Direction  | Example                |
+| ----------- | ----------------------- | --------------- | ---------------------- |
+| `@Input()`  | Receiving data          | Parent ➡️ Child | User profile component |
+| `@Output()` | Sending event or signal | Child ➡️ Parent | Like button event      |
 
 
 
+## ✅ **@Input() Only Example**
 
+### Scenario: Show a user's profile card using data from the parent component.
+
+
+### 🔹 Child Component – `UserProfileComponent`
+
+```ts
+// user-profile.component.ts
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-user-profile',
+  template: `
+    <div class="card">
+      <h2>{{ user.name }}</h2>
+      <p>Email: {{ user.email }}</p>
+    </div>
+  `
+})
+export class UserProfileComponent {
+  @Input() user: any;
+}
+```
+
+
+### 🔹 Parent Component – `DashboardComponent`
+
+```ts
+// dashboard.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-dashboard',
+  template: `
+    <app-user-profile [user]="selectedUser"></app-user-profile>
+  `
+})
+export class DashboardComponent {
+  selectedUser = {
+    name: 'Alice Johnson',
+    email: 'alice@example.com'
+  };
+}
+```
+
+
+## ✅ **@Output() Only Example**
+
+### Scenario: Button inside a child component emits a custom event to the parent when clicked.
+
+
+### 🔹 Child Component – `LikeButtonComponent`
+
+```ts
+// like-button.component.ts
+import { Component, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-like-button',
+  template: `<button (click)="sendLike()">👍 Like</button>`
+})
+export class LikeButtonComponent {
+  @Output() liked = new EventEmitter<void>();
+
+  sendLike() {
+    this.liked.emit();
+  }
+}
+```
+
+
+### 🔹 Parent Component – `PostComponent`
+
+```ts
+// post.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-post',
+  template: `
+    <h3>Angular Post</h3>
+    <app-like-button (liked)="onLiked()"></app-like-button>
+    <p>Likes: {{ likeCount }}</p>
+  `
+})
+export class PostComponent {
+  likeCount = 0;
+
+  onLiked() {
+    this.likeCount++;
+  }
+}
+```
 
 
 

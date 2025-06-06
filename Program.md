@@ -6,7 +6,9 @@ Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitiv
 React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  - [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook)
 
 
-Angular --  [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search)
+Angular --  [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search)   --  [Debounce Input Search](#Angular-Debounce-Input-Search)
+
+
 
 
 [polyfill programs](#polyfill-programs)
@@ -1332,5 +1334,79 @@ function UserList() {
   );
 }
 ```
+
+
+
+
+### **Angular Debounce Input Search**
+
+#### 🔧 **1. Setup (Using RxJS `Subject`)**
+
+```ts
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-debounced-search',
+  templateUrl: './debounced-search.component.html'
+})
+export class DebouncedSearchComponent implements OnInit, OnDestroy {
+  searchInput$ = new Subject<string>();
+  subscription!: Subscription;
+  searchTerm = '';
+
+  ngOnInit(): void {
+    this.subscription = this.searchInput$
+      .pipe(
+        debounceTime(300),            // wait for 300ms pause in events
+        distinctUntilChanged()        // only emit if value is different
+      )
+      .subscribe(value => {
+        this.searchTerm = value;
+        console.log('Search triggered with:', value);
+        // call API or filter here
+      });
+  }
+
+  onSearchChange(value: string): void {
+    this.searchInput$.next(value);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+}
+```
+
+---
+
+#### 📄 **2. Template: `debounced-search.component.html`**
+
+```html
+<input
+  type="text"
+  placeholder="Search..."
+  (input)="onSearchChange($event.target.value)"
+  style="padding: 8px; width: 100%;"
+/>
+
+<p *ngIf="searchTerm">You searched for: {{ searchTerm }}</p>
+```
+
+---
+
+### 🧠 **How It Works:**
+
+* `(input)="onSearchChange(...)"` emits every keystroke.
+* The `Subject` pipes the values through:
+
+  * `debounceTime(300)` → waits 300ms of silence before emitting
+  * `distinctUntilChanged()` → skips if same value
+
+
+---
+
+
 
 

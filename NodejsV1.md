@@ -21,7 +21,7 @@
 
 **Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)   **Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
 
-**Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)    - [Garbage Collection](#garbage-collection)
+**Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)    - [Garbage Collection](#garbage-collection)  - [Handle CPU intensive task](#Handle-CPU-intensive-task)
 
 **API Design & Development**  - [REST API](#rest-api)    - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [RESTful Folder Structure](#clean-restful-folder-structure)
 
@@ -3818,6 +3818,84 @@ To handle 100,000 concurrent requests efficiently in Node.js, I would focus on t
    Continuously monitor event loop lag, memory usage, and throughput to detect bottlenecks and optimize accordingly.
 
 
+
+
+
+##  Handle CPU intensive task
+
+ - Use Worker Threads
+ - Child Processes
+ - Offload Work to External Services
+ - Avoid Blocking Code
+
+---
+
+### 1. **Use Worker Threads (Since Node.js 10.5+)**
+
+* Offload CPU-heavy tasks to separate threads.
+* Keeps the main event loop free for I/O and other tasks.
+
+**Example:**
+
+```js
+// main.js
+const { Worker } = require('worker_threads');
+
+function runService(workerData) {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker('./worker.js', { workerData });
+    worker.on('message', resolve);
+    worker.on('error', reject);
+    worker.on('exit', code => {
+      if (code !== 0) reject(new Error(`Worker stopped with exit code ${code}`));
+    });
+  });
+}
+
+runService({ num: 42 })
+  .then(result => console.log('Result:', result))
+  .catch(err => console.error(err));
+```
+
+```js
+// worker.js
+const { workerData, parentPort } = require('worker_threads');
+
+// Example CPU-intensive task
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+const result = fibonacci(workerData.num);
+
+parentPort.postMessage(result);
+```
+
+---
+
+### 2. **Child Processes**
+
+* Spawn separate Node.js processes for CPU-heavy work.
+* Communicate via IPC (inter-process communication).
+
+---
+
+### 3. **Offload Work to External Services**
+
+* Use a message queue (e.g., RabbitMQ, Redis) and separate worker services.
+* Node.js handles lightweight tasks and delegates heavy lifting elsewhere.
+
+---
+
+
+
+### 4. **Avoid Blocking Code**
+
+* Use asynchronous APIs and non-blocking algorithms wherever possible.
+* Don’t run heavy loops or synchronous code on the main thread.
+
+---
 
 
 

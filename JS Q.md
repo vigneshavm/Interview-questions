@@ -258,6 +258,21 @@ JavaScript has several data types that can be classified as primitive types and 
 - **Primitive Types**: `string`, `number`, `boolean`, `null`, `undefined`, `symbol`, and `bigint`.
 - **Object Types**: `object`, `array`, `function`, and others.
 
+| Category         | Type Name | `typeof` Result                    |
+| ---------------- | --------- | ---------------------------------- |
+| **Primitive**    | string    | `"string"`                         |
+|                  | number    | `"number"`                         |
+|                  | boolean   | `"boolean"`                        |
+|                  | null      | `"object"` ❗                       |
+|                  | undefined | `"undefined"`                      |
+|                  | symbol    | `"symbol"`                         |
+|                  | bigint    | `"bigint"`                         |
+| **Object-based** | object    | `"object"`                         |
+|                  | array     | `"object"` (use `Array.isArray()`) |
+|                  | function  | `"function"`                       |
+
+
+
 ---
 
 ## **Symbol**

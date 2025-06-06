@@ -2232,9 +2232,8 @@ export class ReversePipe implements PipeTransform {
 
 ##  1. `of()` – Static Data for Testing or Defaults
 
-**Use Case**: Simulating an API response or default configuration.
-
- **Real-world scenario**: Pre-populating dropdowns, fallback data when offline, or mock data for testing UI.
+ - **Use Case**: Simulating an API response or default configuration.
+ - **Real-world scenario**: Pre-populating dropdowns, fallback data when offline, or mock data for testing UI.
 ```ts
 import { of } from 'rxjs';
 
@@ -2249,8 +2248,8 @@ loadUserRoles() {
 
 ##  2. `forkJoin()` – Combine Multiple API Calls
 
-**Use Case**: Load user profile and permissions simultaneously before showing a dashboard.
- **Real-world scenario**: You need *all* responses before proceeding (e.g., to load a settings page or summary view).
+ - **Use Case**: Load user profile and permissions simultaneously before showing a dashboard.
+ - **Real-world scenario**: You need *all* responses before proceeding (e.g., to load a settings page or summary view).
 ```ts
 import { forkJoin } from 'rxjs';
 
@@ -2271,9 +2270,9 @@ ngOnInit() {
 
 ##  3. `map()` – Transform API Data
 
-**Use Case**: Format data for display (e.g., convert dates or calculate values).
+ - **Use Case**: Format data for display (e.g., convert dates or calculate values).
 
- **Real-world scenario**: Adjust backend data for UI — format currency, add computed fields, etc.
+ - **Real-world scenario**: Adjust backend data for UI — format currency, add computed fields, etc.
 ```ts
 import { map } from 'rxjs/operators';
 
@@ -2292,8 +2291,8 @@ this.api.getOrders().pipe(
 
 ##  4. `tap()` – Debugging or Logging Without Changing Data
 
-**Use Case**: Log response or trigger analytics without modifying stream.
- **Real-world scenario**: Logging, debugging, triggering third-party services (e.g., Google Analytics), or showing toast notifications.
+ - **Use Case**: Log response or trigger analytics without modifying stream.
+ - **Real-world scenario**: Logging, debugging, triggering third-party services (e.g., Google Analytics), or showing toast notifications.
 
 ```ts
 import { tap } from 'rxjs/operators';
@@ -2310,8 +2309,8 @@ this.api.getUserProfile().pipe(
 
 ##  5. `pipe()` – Combine Multiple Operators
 
-**Use Case**: Process a stream with several RxJS steps.
- **Real-world scenario**: You almost always use `pipe()` when working with RxJS in Angular to compose logic.
+ - **Use Case**: Process a stream with several RxJS steps.
+ - **Real-world scenario**: You almost always use `pipe()` when working with RxJS in Angular to compose logic.
 ```ts
 this.api.searchProducts().pipe(
   tap(() => this.loading = true),

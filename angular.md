@@ -129,7 +129,6 @@ Use `ng.profiler.timeChangeDetection()` in the browser console (when Angular is 
 | OnPush           | Runs CD only on reference change or manual trigger                     |
 | Manual CD        | Possible using `ChangeDetectorRef.detectChanges()` or `markForCheck()` |
 
----
 
 
 
@@ -150,7 +149,6 @@ This enhances separation of concerns and improves lazy loading.
   * `providers`: services available in the DI system
   * `bootstrap`: root component (used only in root module)
 
----
 
 ###  **App Structure Best Practices**
 
@@ -159,7 +157,6 @@ This enhances separation of concerns and improves lazy loading.
 * **Shared Module**: Reusable components, directives, pipes used across modules.
 * **Core Module**: Singleton services, guards, interceptors — imported only once in `AppModule`.
 
----
 
 ###  **Typical Folder Structure**
 
@@ -172,7 +169,6 @@ src/
 │   └── app.module.ts
 ```
 
----
 
 ###  **Performance & Scalability Tips**
 
@@ -180,14 +176,12 @@ src/
 * Avoid declaring a component in multiple modules — extract it to `SharedModule` if needed.
 * Keep services in `CoreModule` to prevent duplicate instances.
 
----
 
 ###  **Angular 14+ (Optional Mention)**
 
 * Angular supports **standalone components** which don’t require NgModules.
 * Useful for lightweight components or micro-frontend setups.
 
----
 
 
 ## Standalone Components
@@ -197,25 +191,23 @@ src/
 
 ### 🎯 Sample Interview Closing
 
-> “Standalone components are Angular’s move toward a simpler, more modular architecture by removing the need for NgModules, making development faster and apps more tree-shakable.”
+- Standalone components are Angular’s move toward a simpler, more modular architecture by removing the need for NgModules, making development faster and apps more tree-shakable.”
 
 
-### ✅ **What are Standalone Components?**
+###  **What are Standalone Components?**
 
 * Introduced in **Angular 14** to simplify module management.
 * Components declared with `standalone: true` **don’t require being declared inside an NgModule**.
 * They can directly import other standalone components, directives, and pipes.
 
----
 
-### ⚙️ **Key Benefits**
+###  **Key Benefits**
 
 * **Reduces boilerplate:** No need for NgModules just to declare components.
 * Simplifies **small or isolated features** like modals, widgets, or utility components.
 * Encourages a more **functional and tree-shakable** app structure.
 * Easier for micro-frontends and library development.
 
----
 
 ### 🧩 **How It Works**
 
@@ -233,7 +225,6 @@ src/
 export class HelloComponent {}
 ```
 
----
 
 ### 🚀 **App Bootstrapping with Standalone Components**
 
@@ -243,7 +234,6 @@ export class HelloComponent {}
 bootstrapApplication(HelloComponent);
 ```
 
----
 
 ### 📁 **When to Use?**
 
@@ -251,25 +241,22 @@ bootstrapApplication(HelloComponent);
 * Small, reusable components or micro frontends.
 * When you want to reduce complexity by skipping NgModules.
 
----
 
 ### ⚠️ **Backward Compatibility**
 
 * Works seamlessly with existing NgModules and components.
 * Can gradually migrate from NgModules to standalone components.
 
----
 
 
----
 
 
 
 ## Component Communication Techniques
 
-### 🎯 Interview Summary Line
 
-> “Angular provides multiple flexible ways for components to communicate—via inputs and outputs for parent-child, shared services with RxJS for siblings or unrelated components, and advanced options like ViewChild or state management for complex apps.”
+- Angular provides multiple flexible ways for components to communicate—via inputs and outputs for parent-child, 
+ - Shared services with RxJS for siblings or unrelated components, and advanced options like ViewChild or state management for complex apps.”
 
 
 ### 1. **Parent to Child Communication**
@@ -281,7 +268,6 @@ bootstrapApplication(HelloComponent);
 @Input() userName: string;
 ```
 
----
 
 ### 2. **Child to Parent Communication**
 
@@ -292,43 +278,36 @@ bootstrapApplication(HelloComponent);
 @Output() notify = new EventEmitter<string>();
 ```
 
----
 
 ### 3. **Sibling Communication**
 
 * Use a **shared service** with RxJS `Subject` or `BehaviorSubject` for cross-component communication.
 * Both siblings inject the service and subscribe/emit events.
 
----
 
 ### 4. **Using a Shared Service**
 
 * Singleton service injected via dependency injection.
 * Common for communication between distant components or unrelated components.
 
----
 
 ### 5. **ViewChild / ContentChild**
 
 * Use `@ViewChild()` or `@ContentChild()` to access a child component, directive, or DOM element directly.
 * Useful for invoking methods or accessing properties on child components.
 
----
 
 ### 6. **Template Reference Variables**
 
 * Use template variables (`#ref`) to pass element or component references within the template.
 
----
 
 ### 7. **State Management Libraries (NgRx, Akita)**
 
 * For large-scale apps, use centralized state management for communication and state sharing.
 
----
 
 
----
 
 
 
@@ -336,17 +315,16 @@ bootstrapApplication(HelloComponent);
 
 ### 🎙️ Sample Interview Closing Statement
 
-> “OnPush lets Angular skip checking the component unless input references change or events occur, which drastically improves performance, but it requires immutable data or manual triggers to keep the view updated.”
+- OnPush lets Angular skip checking the component unless input references change or events occur, which drastically improves performance, but it requires immutable data or manual triggers to keep the view updated.”
 
 
-### ✅ **What is OnPush?**
+###  **What is OnPush?**
 
 * An Angular **Change Detection strategy** that optimizes performance by limiting when the component’s view is checked for updates.
 * Set using `changeDetection: ChangeDetectionStrategy.OnPush` in the component decorator.
 
----
 
-### ⚙️ **How It Works**
+###  **How It Works**
 
 * Angular runs change detection **only when:**
 
@@ -355,7 +333,6 @@ bootstrapApplication(HelloComponent);
   * An **Observable bound via the async pipe emits a new value**.
   * You manually trigger detection (`markForCheck()` or `detectChanges()`).
 
----
 
 ### 🚀 **Benefits**
 
@@ -363,7 +340,6 @@ bootstrapApplication(HelloComponent);
 * Ideal for **immutable data patterns**.
 * Especially useful in large or complex component trees.
 
----
 
 ### ⚠️ **Things to Watch Out For**
 
@@ -371,7 +347,6 @@ bootstrapApplication(HelloComponent);
 * Requires discipline: always use **immutable data** or trigger change detection manually.
 * Not suitable if the component depends on mutable objects without emitting new references.
 
----
 
 ### 🎯 **Typical Use Cases**
 
@@ -379,10 +354,8 @@ bootstrapApplication(HelloComponent);
 * Components relying on **Observables** with the async pipe.
 * Performance-critical parts of an app with many bindings.
 
----
 
 
----
 
 
 
@@ -390,7 +363,8 @@ bootstrapApplication(HelloComponent);
 
 ### 🎯 Sample Interview Closing Line
 
-> “Template-driven forms are great for simple scenarios with minimal logic, while reactive forms offer more power and control, making them better suited for complex and scalable applications.”
+- Template-driven forms are great for simple scenarios with minimal logic, 
+- Reactive forms offer more power and control, making them better suited for complex and scalable applications.
 
 
 ### 1. **Template-Driven Forms**
@@ -402,7 +376,6 @@ bootstrapApplication(HelloComponent);
 * Validation handled declaratively with built-in directives (e.g., `required`, `minlength`).
 * Less scalable for complex forms or dynamic form controls.
 
----
 
 ### 2. **Reactive Forms**
 
@@ -413,7 +386,6 @@ bootstrapApplication(HelloComponent);
 * Validation can be synchronous or asynchronous, applied programmatically.
 * Better suited for **large, complex, or reactive applications**.
 
----
 
 ### 3. **Comparison Summary**
 
@@ -426,27 +398,32 @@ bootstrapApplication(HelloComponent);
 | Testing      | Harder to unit test | Easier to unit test           |
 | Use case     | Simple, quick forms | Complex, large-scale forms    |
 
----
 
 
----
+###  **Reactive vs Template-Driven Forms**
+
+| Feature      | Template-Driven        | Reactive                              |
+| ------------ | ---------------------- | ------------------------------------- |
+| Approach     | Declarative            | Programmatic                          |
+| Form control | HTML-based (`ngModel`) | Component class-based (`FormControl`) |
+| Validation   | In template            | In component                          |
+| Flexibility  | Less                   | More control and scalable             |
+
+
 
 
 
 ## Custom Validators
 
-### 🎯 Interview Summary
 
-> “Custom validators allow you to enforce complex or domain-specific validation rules in Angular forms, improving form reliability and user experience.”
+- Custom validators allow you to enforce complex or domain-specific validation rules in Angular forms, improving form reliability and user experience.
 
-### ✅ **What are Custom Validators?**
 
 * Functions you write to implement **custom validation logic** beyond Angular’s built-in validators.
 * Used in **Reactive Forms** (or Template-Driven with some tweaks) to enforce specific business rules.
 
----
 
-### ⚙️ **How to Create Custom Validators**
+###  **How to Create Custom Validators**
 
 * A **validator function** takes a `FormControl` (or `FormGroup`) and returns:
 
@@ -454,14 +431,12 @@ bootstrapApplication(HelloComponent);
   * An **error object** if invalid, e.g., `{ 'customError': true }`.
 * Can be **sync** or **async** (returns `Observable` or `Promise` for async validators).
 
----
 
 ### 🔑 **Types of Validators**
 
 * **Control-level validator:** validates a single control.
 * **Group-level validator:** validates a group of controls together (cross-field validation).
 
----
 
 ### 🧩 **Example (Control-Level Validator)**
 
@@ -472,7 +447,6 @@ function forbiddenNameValidator(control: FormControl): ValidationErrors | null {
 }
 ```
 
----
 
 ### 🧩 **Example (Group-Level Validator)**
 
@@ -483,7 +457,6 @@ function passwordMatchValidator(group: FormGroup): ValidationErrors | null {
 }
 ```
 
----
 
 ### 🚀 **Usage**
 
@@ -499,7 +472,6 @@ this.form = new FormGroup({
 });
 ```
 
----
 
 
 
@@ -509,26 +481,22 @@ this.form = new FormGroup({
 ## Lazy Loading Modules
 
 
-### 🎯 Interview Summary Line
 
-> “Lazy loading defers loading feature modules until they are needed, significantly improving the initial load performance and scalability of Angular apps.”
+- Lazy loading defers loading feature modules until they are needed, significantly improving the initial load performance and scalability of Angular apps.
 
 
-### ✅ **What is Lazy Loading?**
 
 * Technique to **load Angular modules asynchronously** only when the user navigates to a route that requires them.
 * Improves **initial app load time** by splitting the app into smaller bundles.
 * Helps optimize performance, especially for large apps.
 
----
 
-### ⚙️ **How It Works**
+###  **How It Works**
 
 * Configure routes with `loadChildren` property in the main routing module.
 * Angular downloads the module **on demand**, not at app startup.
 * Uses **dynamic `import()` syntax** for lazy loading in Angular 8+.
 
----
 
 ### 🧩 **Example Route Setup**
 
@@ -541,7 +509,6 @@ const routes: Routes = [
 ];
 ```
 
----
 
 ### 🔑 **Benefits**
 
@@ -549,7 +516,6 @@ const routes: Routes = [
 * Enables **feature modules to be loaded independently**.
 * Better resource usage by loading code only when needed.
 
----
 
 ### ⚠️ **Considerations**
 
@@ -557,19 +523,17 @@ const routes: Routes = [
 * Must handle **shared services/providers** carefully to avoid duplicates.
 * Lazy loaded modules have their own **injector scope**.
 
----
 
 
 
 ## Lazy Loading Preloading Strategies
 
 
-### ✅ **What is Preloading?**
+###  **What is Preloading?**
 
 * Preloading loads lazy modules **in the background after the app is bootstrapped**.
 * Improves user experience by speeding up future navigation without blocking the initial load.
 
----
 
 ### 🔑 **Built-in Preloading Strategies**
 
@@ -587,7 +551,6 @@ const routes: Routes = [
    * Allows fine-grained control over which modules to preload based on custom logic.
    * Implemented by creating a class that implements `PreloadingStrategy`.
 
----
 
 ### 🧩 **How to Use Preloading Strategies**
 
@@ -603,7 +566,6 @@ RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules });
 RouterModule.forRoot(routes, { preloadingStrategy: NoPreloading });
 ```
 
----
 
 ### 🧩 **Example: Custom Preloading Strategy**
 
@@ -645,13 +607,10 @@ const routes = [
 export class AppModule {}
 ```
 
----
 
-### 🎯 Interview Summary
 
-> “Preloading strategies let you balance app startup speed and user experience by controlling when and which lazy modules load—default is no preload, `PreloadAllModules` loads all eagerly after startup, and custom strategies allow conditional preloading.”
-
----
+- Preloading strategies let you balance app startup speed and user experience by controlling when and which lazy modules load—default is no preload, 
+- `PreloadAllModules` loads all eagerly after startup, and custom strategies allow conditional preloading.”
 
 
 
@@ -661,7 +620,6 @@ export class AppModule {}
 **RxJS (Reactive Extensions for JavaScript)** is a powerful library for reactive programming using observables, to make it easier to compose asynchronous or callback-based code. 
 In Angular, RxJS is fundamental to managing streams of data, particularly in forms, HTTP calls, component communication, and state management.
 
----
 
 ### 🔹 Core Concepts of RxJS
 
@@ -710,9 +668,8 @@ Subjects are both observables and observers. Useful for multicasting data.
 
 Here’s a concise comparison of **Subject**, **BehaviorSubject**, **ReplaySubject**, and **AsyncSubject** — perfect for interviews:
 
----
 
-## ✅ Subject Types Comparison in RxJS
+##  Subject Types Comparison in RxJS
 
 | Type                | Initial Value          | Emits to New Subscribers                                            | Stores Previous Values?             | Use Case Example                                            |
 | ------------------- | ---------------------- | ------------------------------------------------------------------- | ----------------------------------- | ----------------------------------------------------------- |
@@ -721,7 +678,6 @@ Here’s a concise comparison of **Subject**, **BehaviorSubject**, **ReplaySubje
 | **ReplaySubject**   | Optional (buffer size) | Emits **all or buffer** values emitted before subscription + future | Stores **buffered** previous values | Replay past events (e.g., chat messages)                    |
 | **AsyncSubject**    | No                     | Emits **only the last** value **when completed**                    | Stores **last** value               | Single-value async operations (e.g., HTTP calls completion) |
 
----
 
 ### 🔍 Detailed Behavior
 
@@ -732,7 +688,6 @@ Here’s a concise comparison of **Subject**, **BehaviorSubject**, **ReplaySubje
 | **ReplaySubject**   | Buffers a number of previous values; new subscribers receive buffered values on subscribe. |
 | **AsyncSubject**    | Waits until the source completes; then emits the **last** value and completes.             |
 
----
 
 ### 🔥 Example Code Snippet
 
@@ -764,7 +719,6 @@ asyncSubject.next(3);
 asyncSubject.complete(); // Logs: 3 (only on complete)
 ```
 
----
 
 ### Summary
 
@@ -775,7 +729,6 @@ asyncSubject.complete(); // Logs: 3 (only on complete)
 | **ReplaySubject:** You want to replay a set of past values to new subscribers.                 |
 | **AsyncSubject:** You only want to emit the final value once the observable completes.         |
 
----
 
 
 ```ts
@@ -796,7 +749,6 @@ A: 2
 B: 2
 ```
 
----
 
 ### 🔸 RxJS in Angular
 
@@ -809,7 +761,6 @@ B: 2
 <p>{{ userData$ | async }}</p>
 ```
 
----
 
 ### 🔸 Common RxJS Pitfalls in Angular
 
@@ -819,7 +770,6 @@ B: 2
 * **Improper use of mapping operators** (e.g., using `mergeMap` when `switchMap` is required).
 * **Nested subscriptions** → leads to messy and hard-to-maintain code.
 
----
 
 
 
@@ -838,7 +788,6 @@ B: 2
 | `pluck()`  | Extract nested properties            | `pluck('user', 'email')` to get email from response         |
 | `scan()`   | Accumulate values (like `reduce`)    | Count clicks or form steps (`scan((acc, _) => acc + 1, 0)`) |
 
----
 
 ### 🔗 2. **Combination Operators**
 
@@ -851,7 +800,6 @@ B: 2
 | `withLatestFrom()` | Combine main source with latest from another             | Use form input value on button click                                   |
 | `zip()`            | Pair values index-wise                                   | Combine user ID and name from different sources                        |
 
----
 
 ### 🔽 3. **Flattening Operators (Higher-Order Mapping)**
 
@@ -871,7 +819,6 @@ this.searchForm.valueChanges.pipe(
 )
 ```
 
----
 
 ### ❌ 4. **Error Handling Operators**
 
@@ -891,7 +838,6 @@ this.api.getUser().pipe(
 )
 ```
 
----
 
 ### ⏱️ 5. **Time-Based Operators**
 
@@ -904,7 +850,6 @@ this.api.getUser().pipe(
 | `interval()`     | Emit sequence over time                   | Auto-refresh dashboard every 10 seconds     |
 | `timer()`        | Emit after delay, optionally at intervals | Delay splash screen or notifications        |
 
----
 
 ### 🧪 6. **Filtering Operators**
 
@@ -917,7 +862,6 @@ this.api.getUser().pipe(
 | `skip(n)`                | Skip first n values                   | Skip default/initial values                                 |
 | `distinctUntilChanged()` | Emit only when value changes          | Avoid re-rendering form controls                            |
 
----
 
 ### 🔨 7. **Creation Operators**
 
@@ -929,7 +873,6 @@ this.api.getUser().pipe(
 | `range()`     | Emit sequence of numbers               | Emit 1 to 10 for pagination             |
 | `defer()`     | Lazy Observable creation               | Create Observable only when subscribed  |
 
----
 
 ## 🎯 Quick Summary for Interview
 
@@ -942,7 +885,6 @@ this.api.getUser().pipe(
 * **debounceTime**: Prevent spamming API
 * **takeUntil**: Clean up in `ngOnDestroy`
 
----
 
 
 
@@ -957,20 +899,17 @@ this.api.getUser().pipe(
 | `exhaustMap`   | Ignore new requests while one is in progress (e.g., login form submit). |
 | `debounceTime` | Wait for user to stop typing before sending HTTP request.               |
 
----
 
-### 🎯 Interview Summary Line
 
  - RxJS mapping operators are key for handling async flows in Angular.
  - Choose `switchMap` for cancellation, `mergeMap` for concurrency, `concatMap` for order, and `exhaustMap` to ignore overlapping triggers."
 
 
-#### ✅ **What Are Mapping Operators?**
+####  **What Are Mapping Operators?**
 
 * Operators that **transform the value emitted** by one Observable into another Observable.
 * Commonly used in Angular for **chaining HTTP requests**, **form events**, or **user interactions**.
 
----
 
 ### 🔁 **Comparison Table**
 
@@ -981,7 +920,6 @@ this.api.getUser().pipe(
 | `concatMap`  | Queues inner observables, processes **one at a time in order**   | Save form steps sequentially        |
 | `exhaustMap` | Ignores new inner observables **while one is active**            | Button click that triggers API call |
 
----
 
 ### 🧩 **Code Examples**
 
@@ -996,7 +934,6 @@ searchInput.valueChanges.pipe(
 
 * Cancels the previous request if a new input comes in.
 
----
 
 #### 🔹 `mergeMap`
 
@@ -1008,7 +945,6 @@ from(userIds).pipe(
 
 * Makes parallel API calls for all user IDs.
 
----
 
 #### 🔹 `concatMap`
 
@@ -1020,7 +956,6 @@ from(orderSteps).pipe(
 
 * Processes each step **one after another**, maintaining order.
 
----
 
 #### 🔹 `exhaustMap`
 
@@ -1032,10 +967,6 @@ buttonClick$.pipe(
 
 * Ignores clicks if a request is already in progress.
 
----
-
-
----
 
 
 ## NgRx for State Management
@@ -1046,11 +977,9 @@ NgRx is suitable for large-scale applications requiring predictable state manage
 
 Here’s a concise **interview-style breakdown of NgRx for State Management** in Angular, using bullet points and practical examples:
 
----
 
-## ✅ **NgRx for State Management (Angular)**
+##  **NgRx for State Management (Angular)**
 
----
 
 ### 📌 What is NgRx?
 
@@ -1081,7 +1010,7 @@ Here’s a concise **interview-style breakdown of NgRx for State Management** in
 
 ---
 
-### ⚙️ Example Flow
+###  Example Flow
 
 1. **Component Dispatches Action**
    `store.dispatch(loadUsers());`
@@ -1127,7 +1056,7 @@ export const selectUsers = createSelector(
 
 ---
 
-### 📦 Benefits of Using NgRx
+###  Benefits of Using NgRx
 
 * Clear **separation of concerns**
 * Scales well in **enterprise applications**
@@ -1156,7 +1085,6 @@ Avoid it if:
 * Reducers and selectors are **pure** → easily testable.
 * Effects can be tested with `provideMockActions()` in `TestBed`.
 
----
 
 
 
@@ -1164,13 +1092,11 @@ Avoid it if:
 
 Here’s a **bullet-point summary of Angular Performance Optimization** strategies—ideal for interview-style answers:
 
----
 
-## ✅ **Angular Performance Optimization**
+##  **Angular Performance Optimization**
 
----
 
-### ⚡ **1. Change Detection Strategy**
+###  **1. Change Detection Strategy**
 
 * Use `ChangeDetectionStrategy.OnPush` to limit unnecessary checks.
 * Angular skips re-checking components unless:
@@ -1181,18 +1107,16 @@ Here’s a **bullet-point summary of Angular Performance Optimization** strategi
 
 **Use case:** High-frequency updates (e.g., dashboards, lists).
 
----
 
-### 💤 **2. Lazy Loading Modules**
+###  **2. Lazy Loading Modules**
 
 * Load feature modules **on demand** via routing.
 * Reduces initial bundle size → faster load time.
 
 **Use case:** Admin modules or rarely used features.
 
----
 
-### 🧠 \**3. TrackBy in *ngFor**
+### **3. TrackBy in *ngFor**
 
 * Use `trackBy` function to avoid re-rendering full lists.
 
@@ -1202,9 +1126,8 @@ Here’s a **bullet-point summary of Angular Performance Optimization** strategi
 
 **Use case:** Rendering large lists efficiently.
 
----
 
-### 🧹 **4. Detach Change Detection**
+###  **4. Detach Change Detection**
 
 * Manually detach change detection from a component:
 
@@ -1215,30 +1138,26 @@ Here’s a **bullet-point summary of Angular Performance Optimization** strategi
 
 **Use case:** Static or infrequently changing views.
 
----
 
-### 🧪 **5. Optimize Template Expressions**
+###  **5. Optimize Template Expressions**
 
 * Avoid **complex logic** or function calls inside templates.
 * Move to component class for better performance.
 
----
 
 ### 🧵 **6. Use Pure Pipes**
 
 * Pure pipes are only recalculated when input values change.
 * Avoid impure pipes unless necessary.
 
----
 
 ### 🧰 **7. Use Web Workers**
 
 * Offload **CPU-intensive tasks** (e.g., image processing, data crunching).
 * Keeps UI responsive.
 
----
 
-### 📦 **8. Bundle Optimization**
+###  **8. Bundle Optimization**
 
 * Use **Angular CLI production build**:
 
@@ -1247,7 +1166,6 @@ Here’s a **bullet-point summary of Angular Performance Optimization** strategi
   ```
 * Enables Ahead-of-Time (AOT) compilation, tree shaking, minification.
 
----
 
 ### 🚀 **9. Preloading Strategy**
 
@@ -1257,14 +1175,12 @@ Here’s a **bullet-point summary of Angular Performance Optimization** strategi
 RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
 ```
 
----
 
 ### 🧩 **10. Virtual Scrolling**
 
 * Use Angular CDK’s `cdk-virtual-scroll-viewport` for long lists.
 * Renders only visible items.
 
----
 
 ### 📡 **11. Debounce Expensive Calls**
 
@@ -1274,14 +1190,12 @@ RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
 this.search$.pipe(debounceTime(300)).subscribe(...)
 ```
 
----
 
 ### 🛡 **12. Avoid Memory Leaks**
 
 * Unsubscribe from Observables (use `takeUntil`, `async` pipe, etc.).
 * Clear intervals, event listeners in `ngOnDestroy`.
 
----
 
 
 
@@ -1290,11 +1204,9 @@ this.search$.pipe(debounceTime(300)).subscribe(...)
 
 Here’s an **interview-ready, bullet-point guide** to **Structuring Angular Libraries**, especially relevant for large-scale or enterprise Angular applications.
 
----
 
 ## 📚 Structuring Angular Libraries in Angular
 
----
 
 ### 🔍 **What Are Angular Libraries?**
 
@@ -1306,7 +1218,6 @@ Here’s an **interview-ready, bullet-point guide** to **Structuring Angular Lib
   ```
 * Can be **published** to npm or **used locally** within a mono-repo.
 
----
 
 ### 🎯 **Why Use Angular Libraries?**
 
@@ -1315,7 +1226,6 @@ Here’s an **interview-ready, bullet-point guide** to **Structuring Angular Lib
 * Faster CI/CD pipelines (build/test only affected libraries)
 * Easy versioning and sharing
 
----
 
 ### 🧱 **Recommended Library Structure**
 
@@ -1339,7 +1249,6 @@ Here’s an **interview-ready, bullet-point guide** to **Structuring Angular Lib
 * Manage API calls and state for a domain.
 * Use NgRx or services with RxJS.
 
----
 
 ### 🧭 **Example Folder Structure**
 
@@ -1359,9 +1268,8 @@ projects/
 │   └── payments/
 ```
 
----
 
-### ⚙️ **Best Practices**
+###  **Best Practices**
 
 * **One concern per library** – don't mix UI and logic.
 * Use **barrel files (`index.ts`)** for cleaner imports.
@@ -1370,7 +1278,6 @@ projects/
 * Include **unit tests** and **README** in each library.
 * Maintain **semantic versioning** for publishable libs.
 
----
 
 ### 🛠️ **Using Libraries in an App**
 
@@ -1380,9 +1287,8 @@ projects/
   import { UiButtonModule } from '@my-org/ui-button';
   ```
 
----
 
-### 📦 **Monorepo Tools**
+###  **Monorepo Tools**
 
 * Use **Nx** or **Lerna** for managing Angular libraries and apps in a mono-repo.
 * Nx supports:
@@ -1391,9 +1297,8 @@ projects/
   * Code generation
   * Dependency graphs
 
----
 
-### ✅ **When to Create a Library**
+###  **When to Create a Library**
 
 Use a library when:
 
@@ -1401,7 +1306,6 @@ Use a library when:
 * You need versioning or CI/CD for features.
 * You want better separation of concerns.
 
----
 
 
 
@@ -1409,11 +1313,9 @@ Use a library when:
 
 Here’s a **bullet-point summary for Testing Angular Components**—ideal for interviews and practical application.
 
----
 
-## ✅ **Testing Angular Components**
+##  **Testing Angular Components**
 
----
 
 ### 🧪 **1. Types of Angular Tests**
 
@@ -1421,7 +1323,6 @@ Here’s a **bullet-point summary for Testing Angular Components**—ideal for i
 * **Integration Tests:** Test interaction between components/services.
 * **End-to-End (E2E) Tests:** Test the entire app flow (usually with tools like Cypress or Playwright).
 
----
 
 ### 🧱 **2. Tools Used**
 
@@ -1429,7 +1330,6 @@ Here’s a **bullet-point summary for Testing Angular Components**—ideal for i
 * **Testing Framework:** Jasmine (default), Jest
 * **Utility:** TestBed (for configuring components and dependencies)
 
----
 
 ### 🧑‍🔬 **3. Testing a Component – Key Steps**
 
@@ -1523,7 +1423,7 @@ Angular's DI system provides services or objects where needed. We declare provid
 Here’s a concise, interview-ready bullet-point overview of **Dependency Injection (DI) in Angular**:
 
 
-## ✅ Dependency Injection in Angular
+##  Dependency Injection in Angular
 
 
 ### 🔎 What is Dependency Injection?
@@ -1532,7 +1432,7 @@ Here’s a concise, interview-ready bullet-point overview of **Dependency Inject
 * Promotes **loose coupling** and easier testing.
 
 
-### ⚙️ How DI Works in Angular
+###  How DI Works in Angular
 
 * Angular has a built-in **injector** that **provides instances** of services to components or other services.
 * Dependencies are declared in **constructor parameters**.
@@ -1542,7 +1442,7 @@ constructor(private myService: MyService) {}
 ```
 
 
-### 📦 Providers and Injector Hierarchy
+###  Providers and Injector Hierarchy
 
 * Providers tell Angular **how to create** a dependency.
 * Can be registered at different levels:
@@ -1685,7 +1585,7 @@ intercept(req: HttpRequest<any>, next: HttpHandler) {
 - The `constructor` is  not technically an Angular lifecycle hook.  
 - However, it is often the first method executed when a component is created, so it’s commonly discussed alongside Angular's lifecycle hooks.
 
-✅ Purpose of `constructor`
+ Purpose of `constructor`
 * Used for **dependency injection**.
 * Initialize **class-level variables**.
 * It runs **before** any Angular lifecycle hook, including `ngOnInit`.
@@ -1930,7 +1830,7 @@ const routes: Routes = [
 
 ---
 
-### ✅ **Use Cases**
+###  **Use Cases**
 
 * **Protect authenticated routes** like `/dashboard`, `/profile`, etc.
 * **Role-based access**: Only admins can access certain routes.
@@ -1978,7 +1878,7 @@ Add to `AppModule`:
 * Child Routes allow you to nest routes inside a parent route.
 * Useful for layouts where a part of the view (like sidebar/header) stays consistent.
 
-#### 📦 **Example:**
+####  **Example:**
 
 ```ts
 const routes: Routes = [
@@ -2019,7 +1919,7 @@ const routes: Routes = [
 
 ##  **Directives**
 
-### ✅ **What are Directives?**
+###  **What are Directives?**
 
 * Directives are **classes that add behavior** to elements in the DOM.
 * Angular provides **built-in directives**, and you can also create **custom directives**.
@@ -2123,7 +2023,7 @@ export class HighlightDirective {
 
 ##  **Pipes**
 
-### ✅ **What are Pipes?**
+###  **What are Pipes?**
 
 * Pipes are **functions** used to **transform data in templates**.
 * They are **used in interpolation ({{}})** to format and display data more cleanly.
@@ -2199,7 +2099,6 @@ export class ReversePipe implements PipeTransform {
 
   - Angular is a TypeScript-based front-end framework developed by Google. It’s used to build single-page applications (SPAs) with a component-based architecture, built-in routing, forms, HTTP services, and powerful dependency injection.
 
----
 
 
 
@@ -2214,7 +2113,6 @@ export class ReversePipe implements PipeTransform {
  -  A module is a container that groups related components, directives, pipes, and services. It’s defined using the `@NgModule` decorator.
  -  The root module is usually `AppModule`, and we can also create feature modules to organize the code better.
 
----
 
 
 
@@ -2231,7 +2129,6 @@ export class ReversePipe implements PipeTransform {
  -  `@Input()` is used to pass data **from parent to child component**.
  -  `@Output()` is used to **emit events from child to parent** using `EventEmitter`.
 
----
 
 
 
@@ -2250,7 +2147,6 @@ export class ReversePipe implements PipeTransform {
 * Event binding: `(click)="onClick()"`
 * Two-way binding: `[(ngModel)]="name"` (requires FormsModule)
 
----
 
 
 
@@ -2260,7 +2156,6 @@ export class ReversePipe implements PipeTransform {
  -  They check conditions before navigation (e.g., user is logged in).
  -  We register them in the routing module using the `canActivate` property.
 
----
 
 
 
@@ -2271,7 +2166,6 @@ export class ReversePipe implements PipeTransform {
  -  **Promises** handle one-time asynchronous operations.
  -  **Observables** (from RxJS) are more powerful – they handle multiple values over time, support cancellation, and have operators like `map`, `filter`, and `mergeMap`.
 
----
 
 
 
@@ -2284,7 +2178,6 @@ export class ReversePipe implements PipeTransform {
 * `tap()` – for side effects like logging
 * `pipe()` – chains multiple RxJS operators
 
----
 
 
 
@@ -2294,7 +2187,6 @@ export class ReversePipe implements PipeTransform {
  -  `@HostListener` listens to host element events like click, resize.
  -  `@HostBinding` binds a property or attribute to the host element of the directive/component.
 
----
 
 
 
@@ -2304,7 +2196,6 @@ export class ReversePipe implements PipeTransform {
  -  `@ViewChild` gets a reference to a single DOM element or component.
  -  `@ViewChildren` gets multiple elements as a `QueryList`.
 
----
 
 
 
@@ -2315,7 +2206,6 @@ export class ReversePipe implements PipeTransform {
  -  Lazy loading is the practice of loading feature modules **only when needed**, reducing initial load time.
  -  We define routes using `loadChildren` with dynamic imports.
 
----
 
 
 
@@ -2329,7 +2219,6 @@ export class ReversePipe implements PipeTransform {
 * None
 * Shadow DOM
 
----
 
 
 
@@ -2339,7 +2228,6 @@ export class ReversePipe implements PipeTransform {
  -  Services contain shared logic and are injected using Angular's **dependency injection** system.
  -  Injectors create and manage service instances, maintaining a hierarchy for scoped services.
 
----
 
 
 
@@ -2347,25 +2235,11 @@ export class ReversePipe implements PipeTransform {
 
  -  It’s used with `@Output()` to emit custom events from child to parent components.
 
----
 
 
 
 
 
-
-
-
-###  **Reactive vs Template-Driven Forms**
-
-| Feature      | Template-Driven        | Reactive                              |
-| ------------ | ---------------------- | ------------------------------------- |
-| Approach     | Declarative            | Programmatic                          |
-| Form control | HTML-based (`ngModel`) | Component class-based (`FormControl`) |
-| Validation   | In template            | In component                          |
-| Flexibility  | Less                   | More control and scalable             |
-
----
 
 
 
@@ -2377,14 +2251,12 @@ export class ReversePipe implements PipeTransform {
  -  `setInterval()` runs code repeatedly at a fixed interval.
  -  Used in Angular for delays, polling, etc. But should be cleared in `ngOnDestroy()`.
 
----
 
 ###  **HttpClientModule**
 
  -  `HttpClientModule` is used to make HTTP calls.
  -  It provides the `HttpClient` service, supports observables, interceptors, and typed responses.
 
----
 
 ###  **Module and Component**
 
@@ -2395,14 +2267,12 @@ export class ReversePipe implements PipeTransform {
 * Class (logic)
 * Styles
 
----
 
 ###  **Dependency Injection**
 
  -  DI is a design pattern where Angular provides services or objects that a component needs.
  -  We declare dependencies in the constructor, and Angular injects them at runtime.
 
----
 
 
 

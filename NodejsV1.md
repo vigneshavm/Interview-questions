@@ -4,7 +4,7 @@
 
 **Concurrency & Processes**  - [Event Loop](#event-loop)    - [Async Execution Order](#Async-Execution-Order)   - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture)  -[libuv](#libuv)
 
-**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)  - [Handling 100,000 concurrent requests](#Handling-100000-concurrent-requests) 
+**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)  
 
 
 **Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)    - [Rate Limiter](#Rate-Limiter) - [DDoS attack](#DDoS-attack) - [Data validation](#data-validation)  -[Input Validate](#Input-Validate) 
@@ -21,7 +21,7 @@
 
 **Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)   **Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
 
-**Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)    - [Garbage Collection](#garbage-collection)  - [Handle CPU intensive task](#Handle-CPU-intensive-task)
+**Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)    - [Garbage Collection](#garbage-collection)  - [Handle CPU intensive task](#Handle-CPU-intensive-task)   - [Concurrent CPU intensive requests](#Concurrent-CPU-intensive-requests) - [Handling 100,000 concurrent requests](#Handling-100000-concurrent-requests)  
 
 **API Design & Development**  - [REST API](#rest-api)    - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [RESTful Folder Structure](#clean-restful-folder-structure)
 
@@ -3896,6 +3896,105 @@ parentPort.postMessage(result);
 * Don’t run heavy loops or synchronous code on the main thread.
 
 ---
+
+## Concurrent CPU intensive requests
+
+
+| Load                    | Strategy                                                                |
+| ----------------------- | ----------------------------------------------------------------------- |
+| Low concurrency         | You *can* spawn a worker per task.                                      |
+| Medium–High concurrency | Use a **worker pool** to reuse threads and prevent resource exhaustion. |
+| Extreme workloads       | Offload to microservices (e.g., Go, Rust, Python) or background queues. |
+
+
+
+1. **node-worker-threads-pool** – Lightweight worker pool manager.
+2. **Thread pool via `Piscina`** – Production-grade pool, used by Fastify.
+
+
+
+## ⚠️ Problem with Creating a Worker per Request
+
+* **Each worker thread consumes memory and CPU**.
+* Spawning too many workers can:
+
+  * Increase overhead (thread creation cost).
+  * Exhaust system resources (memory, CPU cores).
+  * Lead to thread contention and degraded performance.
+
+---
+
+## ✅ Recommended Approach: Use a **Worker Pool**
+
+Instead of creating a new worker thread for each request, **reuse a fixed number of workers** via a **pooling mechanism**.
+
+### 🔁 How It Works:
+
+* Maintain a pool of `N` worker threads (usually = number of CPU cores).
+* Queue incoming tasks and assign them to available workers.
+* If all workers are busy, wait until one is free.
+
+---
+
+### 🚀 Example: Using `poolifier` (Efficient Worker Pool Library)
+
+```bash
+npm install poolifier
+```
+
+```js
+// worker.js
+const { isMainThread, workerData, parentPort } = require('worker_threads');
+
+function heavyTask(n) {
+  // Simulate CPU-intensive work
+  let result = 0;
+  for (let i = 0; i < n * 1e6; i++) result += i;
+  return result;
+}
+
+if (!isMainThread) {
+  const result = heavyTask(workerData);
+  parentPort.postMessage(result);
+}
+```
+
+```js
+// server.js
+const { StaticPool } = require('poolifier');
+const http = require('http');
+
+const pool = new StaticPool({
+  size: 4, // number of threads (match CPU cores)
+  task: './worker.js',
+});
+
+const server = http.createServer(async (req, res) => {
+  if (req.url === '/compute') {
+    try {
+      const result = await pool.exec(100); // Pass workload
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end(`Result: ${result}`);
+    } catch (err) {
+      res.writeHead(500);
+      res.end('Error');
+    }
+  } else {
+    res.writeHead(404);
+    res.end('Not Found');
+  }
+});
+
+server.listen(3000, () => console.log('Server running on port 3000'));
+```
+
+---
+
+
+
+
+
+
 
 
 

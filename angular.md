@@ -887,85 +887,91 @@ this.api.getUser().pipe(
 
 
 
+##  `switchMap` – **Search with Auto-Suggestions**
+
+###  Real-Time Scenario: Live Search Box
 
 
-### 🔸 Helpful Operators for Angular Use Cases
-
-| Operator       | Use Case                                                                |
-| -------------- | ----------------------------------------------------------------------- |
-| `switchMap`    | Cancel previous HTTP requests on input change (e.g., typeahead search). |
-| `mergeMap`     | Handle parallel HTTP requests (e.g., batch requests).                   |
-| `concatMap`    | Queue HTTP requests one after another.                                  |
-| `exhaustMap`   | Ignore new requests while one is in progress (e.g., login form submit). |
-| `debounceTime` | Wait for user to stop typing before sending HTTP request.               |
-
-
-
- - RxJS mapping operators are key for handling async flows in Angular.
- - Choose `switchMap` for cancellation, `mergeMap` for concurrency, `concatMap` for order, and `exhaustMap` to ignore overlapping triggers."
-
-
-####  **What Are Mapping Operators?**
-
-* Operators that **transform the value emitted** by one Observable into another Observable.
-* Commonly used in Angular for **chaining HTTP requests**, **form events**, or **user interactions**.
-
-
-### 🔁 **Comparison Table**
-
-| Operator     | Behavior                                                         | Use Case Example                    |
-| ------------ | ---------------------------------------------------------------- | ----------------------------------- |
-| `switchMap`  | Cancels previous inner observable and switches to the latest one | Typeahead search, autocomplete      |
-| `mergeMap`   | Subscribes to all inner observables **concurrently**             | Parallel API requests               |
-| `concatMap`  | Queues inner observables, processes **one at a time in order**   | Save form steps sequentially        |
-| `exhaustMap` | Ignores new inner observables **while one is active**            | Button click that triggers API call |
-
-
-### 🧩 **Code Examples**
-
-#### 🔹 `switchMap`
+ **Why `switchMap`?**
+Cancels the old request when a new value is typed. Useful in live search, typeahead, or address autocomplete.
 
 ```ts
-searchInput.valueChanges.pipe(
+this.searchControl.valueChanges.pipe(
   debounceTime(300),
-  switchMap(value => http.get(`/api/search?q=${value}`))
-);
+  distinctUntilChanged(),
+  switchMap(query => this.api.searchProducts(query)) // Cancels previous call
+).subscribe(results => {
+  this.searchResults = results;
+});
 ```
 
-* Cancels the previous request if a new input comes in.
+---
+
+## 🔄 `mergeMap` – **Parallel Data Loading**
+
+###  Real-Time Scenario: Load Details for Multiple Users in Parallel
 
 
-#### 🔹 `mergeMap`
+ **Why `mergeMap`?**
+Allows **parallel** requests — good when you don’t care about order and want faster results (e.g., load many profile cards).
+
 
 ```ts
-from(userIds).pipe(
-  mergeMap(id => http.get(`/api/user/${id}`))
-);
+from(this.selectedUserIds).pipe(
+  mergeMap(id => this.api.getUserDetails(id))
+).subscribe(user => {
+  this.loadedUsers.push(user);
+});
 ```
 
-* Makes parallel API calls for all user IDs.
+---
 
+##  `concatMap` – **Step-by-Step API Workflow**
 
-#### 🔹 `concatMap`
+###  Real-Time Scenario: Process Steps Sequentially (e.g., onboarding or checkout)
+
+ **Why `concatMap`?**
+Ensures **one request finishes before the next starts** — ideal for multi-step flows, payment gateways, or wizards.
 
 ```ts
-from(orderSteps).pipe(
-  concatMap(step => http.post('/api/process', step))
-);
+from(this.steps).pipe(
+  concatMap(step => this.api.processStep(step))
+).subscribe(result => {
+  console.log('Step completed:', result);
+});
 ```
 
-* Processes each step **one after another**, maintaining order.
+---
+
+##  `exhaustMap` – **Prevent Multiple Click Submissions**
+
+###  Real-Time Scenario: Save Form with Button Click (Ignore rapid double clicks)
 
 
-#### 🔹 `exhaustMap`
+ **Why `exhaustMap`?**
+**Ignores repeated triggers** (e.g., multiple button clicks) until the first request completes — great for preventing duplicate saves or accidental spamming.
 
 ```ts
-buttonClick$.pipe(
-  exhaustMap(() => http.post('/api/save', formData))
-);
+this.saveClick$.pipe(
+  exhaustMap(() => this.api.saveProfile(this.form.value))
+).subscribe(response => {
+  console.log('Form saved', response);
+});
 ```
 
-* Ignores clicks if a request is already in progress.
+
+---
+
+## 🧠 Summary Table
+
+| Operator     | Use Case                   | Request Behavior       | Ideal For                                  |
+| ------------ | -------------------------- | ---------------------- | ------------------------------------------ |
+| `switchMap`  | Live search, input changes | Cancels previous       | Autocomplete, search bars                  |
+| `mergeMap`   | Multiple independent tasks | Runs in parallel       | Load multiple users/products in parallel   |
+| `concatMap`  | Step-by-step flow          | Runs one-by-one        | Onboarding, form wizard, sequential upload |
+| `exhaustMap` | Prevent duplicate actions  | Ignores new until done | Form submission, click prevention          |
+
+---
 
 
 
@@ -2180,7 +2186,7 @@ export class ReversePipe implements PipeTransform {
 
 
 
-### 🔁 **Difference Between Property Binding and Event Binding**
+###  **Difference Between Property Binding and Event Binding**
 
 | Feature       | **Property Binding** (`[property]="value"`)                       | **Event Binding** (`(event)="handler()"`)            |
 | ------------- | ----------------------------------------------------------------- | ---------------------------------------------------- |

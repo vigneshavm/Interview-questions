@@ -1,18 +1,21 @@
 
 
-Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) 
+Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) -- [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)
 
 
-React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)
+React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  - [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook)
 
 
 Angular --  [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search)
 
 
+[polyfill programs](#polyfill-programs)
+
+
 | Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
 | --- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [Grid View](#Grid-View) | [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) | [React Form API Call](#React-Form-API-Call) || [Handling API Errors in React](#Handling-API-Errors-in-React)
-|[Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)| |  | |[TodoList](#TodoList)   | [polyfill programs](#polyfill-programs)
+| [Grid View](#Grid-View) |  | [React Form API Call](#React-Form-API-Call) || [Handling API Errors in React](#Handling-API-Errors-in-React)
+|| |  | |[TodoList](#TodoList)   | 
 
 
 ## polyfill programs

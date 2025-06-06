@@ -1,19 +1,5 @@
 
 
-| **Category**                  | **Topics**                                                                                                                                                                                                 | **Category1**                  | **Topics1**                                                                                                                                                                                                 |
-|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Core Architecture**        | [Component-Based Architecture](#component-based-architecture), [NgModules and App Structure](#ngmodules-and-app-structure), [Standalone Components](#standalone-components)                              | **Change Detection**          | [Change Detection and Zone.js](#change-detection-and-zonejs), [OnPush Change Detection Strategy](#onpush-change-detection-strategy)                                                                      |
-| **Component Communication**  | [Component Communication Techniques](#component-communication-techniques), [Lifecycle Hooks](#angular-lifecycle-hooks), [ViewChild & ViewChildren](#viewchild--viewchildren)                    | **Forms**                     | [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms), [Custom Validators](#custom-validators), [Handling Large Forms](#handling-large-forms)                                          |
-| **Routing & Navigation**     | [Lazy Loading Modules](#lazy-loading-modules), [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies), [Routing & Child Routes](#routing--child-routes), [AuthGuard](#authguard)     | **Reactive Programming**      | [RxJS](#rxjs-in-angular), [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)                               |
-| **State Management**         | [NgRx for State Management](#ngrx-for-state-management)                                                                                                                                                    | **Performance**               | [Performance Optimization](#performance-optimization), [Debugging Performance Issues](#debugging-performance-issues)                                                                                      |
-| **Code Organization**        | [Structuring Libraries](#structuring-angular-libraries)                                                                                                                                           | **Testing**                   | [Testing Components](#testing-angular-components)                                                                                                                                                  |
-| **Dependency Injection (DI)**| [Dependency Injection ](#dependency-injection-in-angular)                                                                                                                                        | **Security**                  | [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection), [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                   |
-| **Micro-Frontend**           | [Micro-Frontend Architecture](#micro-frontend-architecture)                                                                                                                                                | **Token & Auth Management**   | [Token Expiration and Refresh Logic](#token-expiration-and-refresh-logic)                                                                                                                                 |
-| **CI/CD & DevOps**           | [CI/CD Practices](#cicd-practices)                                                                                                                                                                                                                                                                                                                    |
-| **Templates & UI**           | [Directives](#directives), [Pipes](#pipes)
-| **HTTP & Interceptors**       | [HTTP Interceptors](#http-interceptors-in-angular)  
-
-
 - [Angular](#angular)
 - [Module](#module)
 - [HttpClientModule](#httpclientmodule)
@@ -32,6 +18,30 @@
 - [Protect Routes](#protect-routes)
 - [Data Binding](#data-binding)
 - [Input and Output Decorators](#input-and-output-decorators)
+ - [Component-Based Architecture](#component-based-architecture) 
+ - [NgModules and App Structure](#ngmodules-and-app-structure) 
+ - [Standalone Components](#standalone-components)     
+ - [Change Detection and Zone.js](#change-detection-and-zonejs) 
+ - [OnPush Change Detection Strategy](#onpush-change-detection-strategy)
+ -  [Component Communication Techniques](#component-communication-techniques) 
+ - [Lifecycle Hooks](#angular-lifecycle-hooks) 
+ - [ViewChild & ViewChildren](#viewchild--viewchildren)                   
+    - [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) - [Custom Validators](#custom-validators) 
+    - [Handling Large Forms](#handling-large-forms)                                    
+- [Lazy Loading Modules](#lazy-loading-modules) 
+- [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies) - [Routing & Child Routes](#routing--child-routes) 
+- [AuthGuard](#authguard)          
+- [RxJS](#rxjs-in-angular) 
+ - [Performance Optimization](#performance-optimization) 
+ - [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) 
+ - [Authentication and Role-Based Access](#authentication-and-role-based-access)                                    
+- [CI/CD Practices](#cicd-practices)                                                      
+- [Directives](#directives) - [Pipes](#pipes)
+- [HTTP Interceptors](#http-interceptors-in-angular)  
+
+
+
+
 
 
 

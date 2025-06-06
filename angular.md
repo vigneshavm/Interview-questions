@@ -981,7 +981,7 @@ Here’s a concise **interview-style breakdown of NgRx for State Management** in
 ##  **NgRx for State Management (Angular)**
 
 
-### 📌 What is NgRx?
+###  What is NgRx?
 
 * **NgRx** is a reactive state management library for Angular.
 * Inspired by **Redux** (predictable state container).
@@ -1371,7 +1371,7 @@ beforeEach(() => {
 
 ---
 
-### 📌 **5. Example: Button Click**
+###  **5. Example: Button Click**
 
 ```ts
 it('should call submit() when button is clicked', () => {
@@ -2013,7 +2013,7 @@ export class HighlightDirective {
 
 ---
 
-### 📌 **Use Cases**
+###  **Use Cases**
 
 * **Structural**: Render UI conditionally or dynamically.
 * **Attribute**: Apply reusable visual effects, validation, or behaviors.
@@ -2174,7 +2174,7 @@ export class ReversePipe implements PipeTransform {
 | **Use Case**              | Showing static/dynamic text in HTML             | Getting and updating form input values dynamically     |
 | **Module Required**       | No extra module needed                          | Requires importing `FormsModule` from `@angular/forms` |
 | **Example**               | `<p>{{ userName }}</p>`                         | `<input [(ngModel)]="userName">`                       |
-| **Can Update Component?** | ❌ No – data flows one-way only                  | ✅ Yes – data is updated both in view and component     |
+| **Can Update Component?** | ❌ No – data flows one-way only                  |  Yes – data is updated both in view and component     |
 
 ---
 
@@ -2226,6 +2226,129 @@ export class ReversePipe implements PipeTransform {
 * `tap()` – for side effects like logging
 * `pipe()` – chains multiple RxJS operators
 
+
+
+
+
+##  1. `of()` – Static Data for Testing or Defaults
+
+**Use Case**: Simulating an API response or default configuration.
+
+ **Real-world scenario**: Pre-populating dropdowns, fallback data when offline, or mock data for testing UI.
+```ts
+import { of } from 'rxjs';
+
+loadUserRoles() {
+  // Simulated default roles
+  return of(['admin', 'editor', 'viewer']);
+}
+```
+
+
+---
+
+##  2. `forkJoin()` – Combine Multiple API Calls
+
+**Use Case**: Load user profile and permissions simultaneously before showing a dashboard.
+ **Real-world scenario**: You need *all* responses before proceeding (e.g., to load a settings page or summary view).
+```ts
+import { forkJoin } from 'rxjs';
+
+ngOnInit() {
+  forkJoin({
+    user: this.api.getUserDetails(),
+    permissions: this.api.getUserPermissions()
+  }).subscribe(({ user, permissions }) => {
+    this.user = user;
+    this.permissions = permissions;
+  });
+}
+```
+
+
+
+---
+
+##  3. `map()` – Transform API Data
+
+**Use Case**: Format data for display (e.g., convert dates or calculate values).
+
+ **Real-world scenario**: Adjust backend data for UI — format currency, add computed fields, etc.
+```ts
+import { map } from 'rxjs/operators';
+
+this.api.getOrders().pipe(
+  map(orders => orders.map(order => ({
+    ...order,
+    displayDate: new Date(order.createdAt).toLocaleDateString()
+  })))
+).subscribe(transformedOrders => {
+  this.orders = transformedOrders;
+});
+```
+
+
+---
+
+##  4. `tap()` – Debugging or Logging Without Changing Data
+
+**Use Case**: Log response or trigger analytics without modifying stream.
+ **Real-world scenario**: Logging, debugging, triggering third-party services (e.g., Google Analytics), or showing toast notifications.
+
+```ts
+import { tap } from 'rxjs/operators';
+
+this.api.getUserProfile().pipe(
+  tap(profile => console.log('User loaded:', profile)),
+).subscribe(profile => {
+  this.profile = profile;
+});
+```
+
+
+---
+
+##  5. `pipe()` – Combine Multiple Operators
+
+**Use Case**: Process a stream with several RxJS steps.
+ **Real-world scenario**: You almost always use `pipe()` when working with RxJS in Angular to compose logic.
+```ts
+this.api.searchProducts().pipe(
+  tap(() => this.loading = true),
+  map(data => data.filter(p => p.available)),
+  tap(() => this.loading = false)
+).subscribe(products => {
+  this.products = products;
+});
+```
+
+
+
+---
+
+## Bonus: Combine all in one practical scenario
+
+### 🛒 Example: E-Commerce Dashboard Initialization
+
+```ts
+forkJoin({
+  user: this.api.getUser(),
+  cart: this.api.getCart(),
+  orders: this.api.getRecentOrders()
+}).pipe(
+  tap(() => this.loading = true),
+  map(response => ({
+    ...response,
+    recentOrderCount: response.orders.length
+  })),
+  tap(data => console.log('Dashboard data:', data)),
+  tap(() => this.loading = false)
+).subscribe(data => {
+  this.user = data.user;
+  this.cart = data.cart;
+  this.orderCount = data.recentOrderCount;
+});
+```
 
 
 

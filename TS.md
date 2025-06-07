@@ -1596,6 +1596,15 @@ console.log(typeof num); // "number"
 let obj = {};
 console.log(typeof obj); // "object"
 console.log(obj instanceof Object); // true
+
+
+
+console.log(typeof null);        // "object" ❗ (Legacy bug in JS)
+console.log(typeof []);          // "object"
+console.log(typeof NaN);         // "number"
+console.log(typeof function(){}); // "function"
+console.log(typeof undefined);   // "undefined"
+
 ```
 
 ---

@@ -1605,6 +1605,28 @@ console.log(typeof NaN);         // "number"
 console.log(typeof function(){}); // "function"
 console.log(typeof undefined);   // "undefined"
 
+
+const a = [];
+const b = [];
+
+console.log(a == b); // false -- Becoz of Both a and b point to different memory addresses.
+
+
+const a = [];
+const b = a;
+
+console.log(a == b); // true -- Becoz of  same array instance
+
+console.log({} == {}); // false -- Becoz of Both a and b point to different memory addresses.
+
+
+const arr1 = [1, 2];
+const arr2 = [1, 2];
+
+console.log(JSON.stringify(arr1) === JSON.stringify(arr2)); // true ✅
+
+
+
 ```
 
 ---

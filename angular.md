@@ -1,7 +1,7 @@
 | **Category**                        | **Topics**                                                                                                                                                                                                                                                    |
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Angular Concepts**          | • [Angular](#angular)  • [Module](#module)  • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
-| **Components & Templates**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) • [Component Factory and Encapsulation](#component-factory-and-encapsulation) • [Lifecycle Hooks](#angular-lifecycle-hooks) |
+| **Components & Templates**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) • [Component Factory and Encapsulation](#component-factory-and-encapsulation) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
 | **Dependency Injection & Services**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)                                                                                                                     |
 | **Routing & Navigation**           | • [Routing & Child Routes](#routing--child-routes) • [Lazy Loading](#lazy-loading) • [Lazy Loading Modules](#lazy-loading-modules) • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies) • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
@@ -10,6 +10,8 @@
 | **Security & Authentication**      | • [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) • [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                               |
 | **Performance & Optimization**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                          |
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)                                                                          |
+
+
 
 
 
@@ -2550,6 +2552,97 @@ forkJoin({
 
  -  DI is a design pattern where Angular provides services or objects that a component needs.
  -  We declare dependencies in the constructor, and Angular injects them at runtime.
+
+
+
+
+
+---
+
+##  Using One Component Inside Another
+
+Yes, ✅ **you can use one component inside another component in Angular** — this is called **component composition** and is a core feature of Angular.
+
+
+
+### 🧠 Summary:
+
+| Concept         | Description                                     |
+| --------------- | ----------------------------------------------- |
+| Component usage | `<app-child>` tag in the parent’s template      |
+| Module support  | Must be declared or imported in the same module |
+| Standalone      | Use `imports: [ChildComponent]` in parent       |
+
+---
+
+### Step 1: Create the child component
+
+```bash
+ng generate component child
+```
+
+This creates `ChildComponent` in its own folder.
+
+### `child.component.ts`
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `<p>This is the child component!</p>`
+})
+export class ChildComponent {}
+```
+
+---
+
+### Step 2: Use `<app-child>` in the parent component’s template
+
+### `parent.component.html`
+
+```html
+<h1>Parent Component</h1>
+<app-child></app-child> <!-- This is how you embed it -->
+```
+
+---
+
+### Step 3: Declare the child component in the same module
+
+If you're not using standalone components, make sure the **child is declared in the same NgModule** as the parent:
+
+```ts
+@NgModule({
+  declarations: [
+    ParentComponent,
+    ChildComponent
+  ],
+  ...
+})
+export class AppModule {}
+```
+
+---
+
+### ✅ If using **standalone components** (Angular 14+):
+
+Import the child component in the `imports` of the parent:
+
+```ts
+@Component({
+  standalone: true,
+  imports: [ChildComponent],
+  selector: 'app-parent',
+  template: `<app-child></app-child>`
+})
+export class ParentComponent {}
+```
+
+---
+
+
+
 
 
 

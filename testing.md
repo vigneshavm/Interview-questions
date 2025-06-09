@@ -6,7 +6,7 @@
 
 - **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
-**NodeJs** -[Unit testing in Node.js using Jest](#Unit-testing-in-Node.js-using-Jest)
+**NodeJs** -[Unit testing in NodeJs using Jest](#Unit-testing-in-Node.js-using-Jest)
 
  - [Scalability](#Scalability)
 
@@ -2033,7 +2033,7 @@ describe('DataService', () => {
 
 
 
-### **Unit testing in Node.js using Jest**
+### **Unit testing in NodeJs using Jest**
 
  - “In Node.js, I use **Jest** as my testing framework because it's fast, has built-in assertions, and supports mocking out of the box.
 

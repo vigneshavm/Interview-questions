@@ -6,7 +6,7 @@
 
 - **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
-**NodeJs** -[Unit testing in NodeJs using Jest](#Unit-testing-in-Node.js-using-Jest)
+**NodeJs** -[Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest)
 
  - [Scalability](#Scalability)
 

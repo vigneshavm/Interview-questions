@@ -3,7 +3,7 @@
 
    - `WHERE` filters rows **before grouping**, while `HAVING` filters **after grouping** (used with `GROUP BY`).
 
-    ## **What is the difference between `INNER JOIN`, `LEFT JOIN`, and `RIGHT JOIN`?**
+   ## **What is the difference between `INNER JOIN`, `LEFT JOIN`, and `RIGHT JOIN`?**
 
    - `INNER JOIN`: returns matching rows.
    - `LEFT JOIN`: all rows from the left table + matched rows from right.

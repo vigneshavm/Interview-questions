@@ -2196,8 +2196,35 @@ describe('getUserById', () => {
 
 
 
+## **Troubleshoot and debug issue**
 
+ - I have strong analytical skills, and I take a structured, proactive approach to debugging and troubleshooting in Node.js.
+ - I focus on isolating the root cause by breaking down problems logically.
+ -  For example, when debugging a performance bottleneck in a Node.js API, I don’t just rely on console logs —
+ -  I use tools like **Chrome DevTools for Node**, **`node --inspect`**, or **profiling with `clinic.js` or `0x`** to visualize what’s really happening under the hood.
+ -  I’m also proactive: I implement logging using tools like **Winston** or **Pino**, and I set up alerts and monitoring through **PM2**, **Elastic Stack**, or **Datadog**.
+ -  This helps catch issues early before they escalate.
+ -  I write modular, testable code so I can write **unit tests with Jest or Mocha/Chai**, and
+ -  I use **debuggers and breakpoints** instead of just `console.log()` when investigating complex issues.
 
+---
 
+### 🛠️ Example Scenario You Can Use:
 
+ - Once, a Node.js microservice was randomly hanging under load. I suspected a memory leak or unhandled promise.
 
+ - I used `node --inspect` with Chrome DevTools to trace memory snapshots, and saw growing detached DOM objects. It turned out a file stream wasn’t being closed properly. I added a proper cleanup step, wrote unit tests around it, and added metrics to ensure it wouldn’t reoccur.
+
+ - This kind of proactive root-cause analysis saves a lot of firefighting later.”
+
+---
+
+### ✅ Key Points to Emphasize
+
+* **Structured debugging**: isolate, reproduce, trace, resolve.
+* Use of **debugging tools**: `node --inspect`, Chrome DevTools, Visual Studio Code debugger.
+* **Proactive practices**: logging, monitoring, alerts, test coverage.
+* **Root-cause focus**: not just fixing symptoms, but preventing future issues.
+* Collaboration: knowing when to escalate or loop in backend/infrastructure teams if needed.
+
+---

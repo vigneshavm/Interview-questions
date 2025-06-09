@@ -30,7 +30,7 @@
 
    - `UNION` removes duplicates, while `UNION ALL` keeps all records including duplicates.
 
-    ## **How do you find duplicate rows in a table?**
+   ## **How do you find duplicate rows in a table?**
 
    ```sql
    SELECT column1, COUNT(*) 
@@ -39,7 +39,7 @@
    HAVING COUNT(*) > 1;
    ```
 
-    ## **How can you update data in one table based on another?**
+   ## **How can you update data in one table based on another?**
 
    ```sql
    UPDATE t1
@@ -48,7 +48,7 @@
    JOIN table2 t2 ON t1.id = t2.id;
    ```
 
-    ## **What is a subquery vs. a correlated subquery?**
+  ## **What is a subquery vs. a correlated subquery?**
 
    > Subquery: executes independently and returns a result.
    > Correlated subquery: depends on the outer query for its value — runs per row.

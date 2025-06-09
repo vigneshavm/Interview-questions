@@ -8,7 +8,7 @@
 
 **NodeJs** -[Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest)  -- [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai)
 
- - [Scalability](#Scalability)
+ - [Scalability](#Scalability)   -- [Troubleshoot and debug issue](#Troubleshoot-and-debug-issue)
 
 
 

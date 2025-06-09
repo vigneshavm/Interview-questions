@@ -6,7 +6,7 @@
 
 - **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
-**NodeJs** -[Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest)
+**NodeJs** -[Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest)  -- [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai)
 
  - [Scalability](#Scalability)
 
@@ -2104,6 +2104,95 @@ describe('getUserById', () => {
   });
 });
 ```
+
+
+
+
+
+## **Unit testing in Nodejs using Mocha and Chai**
+
+ - “In Node.js, I often use **Mocha** as the test runner and **Chai** for assertions.
+ - Mocha provides a flexible structure for test suites, while Chai's `expect` or `should` syntax makes assertions more readable.
+ -  I write modular functions that are easy to test in isolation. When external dependencies like databases or APIs are involved, I use **Sinon** to mock or stub them.
+ -  Here's an example where I tested a simple service that fetches a user by ID from a mocked database.”
+
+---
+
+### 🔑 Key Concepts to Mention in Interview:
+
+* **Mocha** handles `describe`, `it`, and async test cases.
+* **Chai** provides expressive assertions with `expect`, `assert`, or `should`.
+* **Sinon** is used to mock or stub external dependencies (like DB or HTTP calls).
+* You test both **positive and negative paths** — success, missing parameters, and error scenarios.
+* Using `sinon.restore()` or `afterEach` to clean up stubs/mocks between tests.
+
+---
+
+### 🚀 Optional Closing Line:
+
+> “This setup gives me fine-grained control over mocking and keeps tests fast and predictable. For integration tests, I may use Supertest to hit real HTTP routes.”
+
+
+
+### ✅ Real Example Using Mocha + Chai
+
+📁 `userService.js`
+
+```js
+const db = require('./db'); // Assume this is your database module
+
+async function getUserById(id) {
+  if (!id) throw new Error('ID is required');
+  return await db.findById(id);
+}
+
+module.exports = { getUserById };
+```
+
+---
+
+📁 `userService.test.js`
+
+```js
+const { expect } = require('chai');
+const sinon = require('sinon');
+const db = require('./db');
+const { getUserById } = require('./userService');
+
+describe('getUserById', () => {
+  afterEach(() => {
+    sinon.restore(); // Reset mocks
+  });
+
+  it('should return user when valid ID is given', async () => {
+    const mockUser = { id: '101', name: 'Alice' };
+    sinon.stub(db, 'findById').resolves(mockUser);
+
+    const user = await getUserById('101');
+    expect(user).to.deep.equal(mockUser);
+  });
+
+  it('should throw an error if ID is missing', async () => {
+    try {
+      await getUserById();
+    } catch (err) {
+      expect(err.message).to.equal('ID is required');
+    }
+  });
+
+  it('should throw error if DB call fails', async () => {
+    sinon.stub(db, 'findById').rejects(new Error('DB Error'));
+
+    try {
+      await getUserById('123');
+    } catch (err) {
+      expect(err.message).to.equal('DB Error');
+    }
+  });
+});
+```
+
+
 
 
 

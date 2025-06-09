@@ -1941,7 +1941,9 @@ Ensure backend sends headers like:
 
  - "In Angular, I use the built-in `HttpClientTestingModule` and `HttpTestingController` to mock external API calls during unit tests.
 
- - Instead of making real HTTP requests, the `HttpTestingController` intercepts and handles HTTP calls made by the service. This allows me to assert that the request was made correctly and provide a mock response.
+ - Instead of making real HTTP requests, the `HttpTestingController` intercepts and handles HTTP calls made by the service.
+ 
+ - This allows me to assert that the request was made correctly and provide a mock response.
 
  - This approach keeps my tests fast, isolated, and independent of backend availability or external APIs."
 

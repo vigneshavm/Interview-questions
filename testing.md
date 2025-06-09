@@ -6,6 +6,8 @@
 
 - **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
+**NodeJs** -[Unit testing in Node.js using Jest](#Unit-testing-in-Node.js-using-Jest)
+
  - [Scalability](#Scalability)
 
 
@@ -2026,6 +2028,80 @@ describe('DataService', () => {
 
 ---
 
+
+
+
+
+
+### **Unit testing in Node.js using Jest**
+
+ - “In Node.js, I use **Jest** as my testing framework because it's fast, has built-in assertions, and supports mocking out of the box.
+
+ - I structure my code so that business logic is separated from external services like databases or APIs. That makes it easy to test using **Jest mocks** or **manual stubs**.
+
+ - For example, if I have a service function that fetches a user by ID from a database, I mock the database module in the test to control the response. This way, I can test both successful and error paths without relying on a real database.”
+
+---
+
+### 🔑 What to Emphasize in Interview:
+
+* **Jest’s built-in mocking** (`jest.mock()`).
+* Use of **`async/await`** and `mockResolvedValue`, `mockRejectedValue`.
+* Keeping external modules (like DB or APIs) mockable.
+* Testing **both success and failure paths**.
+
+---
+
+### 🚀 Optional Follow-Up (if asked):
+
+> "For more complex logic or class-based services, I sometimes use `jest.spyOn()` to mock specific methods without mocking the entire module. And for HTTP APIs, I use `supertest` for integration tests."
+
+
+### ✅ Real Jest Example
+
+📁 `userService.js`
+
+```js
+const db = require('./db'); // external DB module
+
+async function getUserById(id) {
+  if (!id) throw new Error('ID is required');
+  return await db.findUserById(id);
+}
+
+module.exports = { getUserById };
+```
+
+---
+
+📁 `userService.test.js`
+
+```js
+const { getUserById } = require('./userService');
+const db = require('./db'); // we will mock this
+
+jest.mock('./db'); // Jest auto-mocks the module
+
+describe('getUserById', () => {
+  it('should return user when ID is valid', async () => {
+    const mockUser = { id: '123', name: 'Alice' };
+    db.findUserById.mockResolvedValue(mockUser);
+
+    const result = await getUserById('123');
+    expect(result).toEqual(mockUser);
+    expect(db.findUserById).toHaveBeenCalledWith('123');
+  });
+
+  it('should throw error if ID is missing', async () => {
+    await expect(getUserById()).rejects.toThrow('ID is required');
+  });
+
+  it('should throw if DB call fails', async () => {
+    db.findUserById.mockRejectedValue(new Error('DB failure'));
+    await expect(getUserById('123')).rejects.toThrow('DB failure');
+  });
+});
+```
 
 
 

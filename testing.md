@@ -3,6 +3,9 @@
 
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
 
+
+- **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
+
  - [Scalability](#Scalability)
 
 
@@ -1929,6 +1932,100 @@ Ensure backend sends headers like:
 
 
 ---
+
+
+**Unit test external API call**
+
+
+### 🗣️ **Strong Interview-Style Answer:**
+
+ - "In Angular, I use the built-in `HttpClientTestingModule` and `HttpTestingController` to mock external API calls during unit tests.
+
+ - Instead of making real HTTP requests, the `HttpTestingController` intercepts and handles HTTP calls made by the service. This allows me to assert that the request was made correctly and provide a mock response.
+
+ - This approach keeps my tests fast, isolated, and independent of backend availability or external APIs."
+
+### 🧠 Key Points to Emphasize in Interview:
+
+* Use `HttpClientTestingModule` for unit tests involving HTTP.
+* Use `HttpTestingController` to intercept and mock requests.
+* Avoid real API calls during unit tests.
+* Always call `httpMock.verify()` in `afterEach()` to ensure all requests are handled.
+* Use `flush()` to simulate server response.
+
+---
+
+
+### ✅ **Step-by-Step Example**
+
+Suppose you have a service that fetches data from an external API:
+
+---
+
+📁 `data.service.ts`
+
+```ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({ providedIn: 'root' })
+export class DataService {
+  constructor(private http: HttpClient) {}
+
+  getUsers() {
+    return this.http.get('https://api.example.com/users');
+  }
+}
+```
+
+---
+
+📁 `data.service.spec.ts` – **Mocking External API**
+
+```ts
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { DataService } from './data.service';
+
+describe('DataService', () => {
+  let service: DataService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [DataService]
+    });
+
+    service = TestBed.inject(DataService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify(); // Ensure no unmatched requests
+  });
+
+  it('should mock external API call and return users', () => {
+    const mockUsers = [
+      { id: 1, name: 'Alice' },
+      { id: 2, name: 'Bob' }
+    ];
+
+    service.getUsers().subscribe(users => {
+      expect(users).toEqual(mockUsers);
+    });
+
+    const req = httpMock.expectOne('https://api.example.com/users');
+    expect(req.request.method).toBe('GET');
+    req.flush(mockUsers); // Mock response
+  });
+});
+```
+
+---
+
+
+
 
 
 

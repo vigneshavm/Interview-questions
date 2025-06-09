@@ -2039,7 +2039,8 @@ describe('DataService', () => {
 
  - I structure my code so that business logic is separated from external services like databases or APIs. That makes it easy to test using **Jest mocks** or **manual stubs**.
 
- - For example, if I have a service function that fetches a user by ID from a database, I mock the database module in the test to control the response. This way, I can test both successful and error paths without relying on a real database.”
+ - For example, if I have a service function that fetches a user by ID from a database, I mock the database module in the test to control the response.
+ - This way, I can test both successful and error paths without relying on a real database.”
 
 ---
 
@@ -2054,7 +2055,8 @@ describe('DataService', () => {
 
 ### 🚀 Optional Follow-Up (if asked):
 
-> "For more complex logic or class-based services, I sometimes use `jest.spyOn()` to mock specific methods without mocking the entire module. And for HTTP APIs, I use `supertest` for integration tests."
+ - "For more complex logic or class-based services, I sometimes use `jest.spyOn()` to mock specific methods without mocking the entire module.
+ - And for HTTP APIs, I use `supertest` for integration tests."
 
 
 ### ✅ Real Jest Example

@@ -8,7 +8,7 @@
 | **Data & State Management**        | • [Data Binding](#data-binding) • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap) • [Promise and Observable](#promise-and-observable) |
 | **HTTP & Backend Integration**     | • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                                           |
 | **Security & Authentication**      | • [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) • [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                               |
-| **Performance & Optimization**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                          |
+| **Performance & Optimization**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)          |
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)                                                                          |
 
 
@@ -2638,6 +2638,67 @@ Import the child component in the `imports` of the parent:
 })
 export class ParentComponent {}
 ```
+
+---
+
+
+
+
+
+###  **performance optimization techniques**
+
+ - “To reduce load times in Angular apps, I focus on both initial load and runtime performance.
+
+ -  At build time, I use **lazy loading of modules**, **tree shaking**, and **AOT (Ahead-of-Time) compilation**.
+ -  Lazy loading ensures that only the required parts of the app are loaded initially, while AOT pre-compiles templates to speed up rendering.
+
+ -  I also enable **production builds with optimization flags**, which handle minification, dead code removal, and differential loading.
+
+ -  At runtime, I reduce load by optimizing **change detection** with `OnPush` strategy, and I use **trackBy** in `*ngFor` loops to prevent unnecessary DOM re-renders.
+
+ -  Additionally, I compress and cache static assets, load critical CSS first, and serve images via modern formats like WebP with lazy loading.
+
+ -  When needed, I use Chrome DevTools and Lighthouse to profile performance and address any bottlenecks.”
+
+---
+
+### ✅ Key Techniques You Can Mention in an Interview:
+
+#### 🛠️ **Build-Time Optimization**
+
+* **Lazy Loading** Angular modules (`loadChildren`)
+* **AOT Compilation** (`ng build --prod` uses this by default)
+* **Tree Shaking & Minification**
+* **Code Splitting**
+* **Differential Loading** for modern vs legacy browsers
+
+#### ⚙️ **Runtime Optimization**
+
+* `ChangeDetectionStrategy.OnPush` to reduce change detection cycles
+* `trackBy` function in `*ngFor` to optimize list rendering
+* **Debouncing or throttling** input handlers
+* **Avoid memory leaks** by unsubscribing from observables (e.g., using `takeUntil`)
+
+#### 🌐 **Network & Asset Optimization**
+
+* Use **lazy loading for images**
+* Use **WebP** or **AVIF** formats
+* **Preloading** for frequently accessed modules
+* Enable **HTTP caching** and **gzip** or **brotli** compression on server
+* Use **service workers** for caching (via Angular PWA)
+
+#### 🔍 **Profiling Tools**
+
+* Chrome DevTools (Performance tab)
+* Angular DevTools extension
+* Lighthouse audits for performance scoring
+* WebPageTest or PageSpeed Insights
+
+---
+
+### 🚀 Bonus Points:
+
+- “I also use route preloading strategies with `PreloadAllModules` where appropriate to balance load speed and responsiveness. And I prefer CDNs for hosting static assets.”
 
 ---
 

@@ -1,7 +1,8 @@
 
  ## **What is the difference between `WHERE` and `HAVING`?**
 
-   - `WHERE` filters rows **before grouping**, while `HAVING` filters **after grouping** (used with `GROUP BY`).
+   - `WHERE` filters rows **before grouping**,
+   -  while `HAVING` filters **after grouping** (used with `GROUP BY`).
 
    ## **What is the difference between `INNER JOIN`, `LEFT JOIN`, and `RIGHT JOIN`?**
 

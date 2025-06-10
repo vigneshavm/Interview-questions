@@ -101,6 +101,44 @@ This applies:
 * 20px padding on left and right
 
 
+Sure! Here's how you could confidently and clearly answer a CSS `position` question in an interview — especially focusing on parent-child relationships:
+
+---
+
+### ❓ **Interviewer:**
+
+*Can you explain how different `position` values work in CSS, and how they behave in a parent-child component setup?*
+
+---
+
+### ✅ **Your Ideal Answer:**
+
+ - Yes, absolutely. CSS provides several `position` values — `static`, `relative`, `absolute`, `fixed`, and `sticky`. Each determines how an element is placed in the layout.
+
+ -  The default is `static`, which just follows the normal document flow. If I use `relative`, the element still takes up space in the layout, but I can offset it using `top`, `left`, etc. It's often used as a positioning anchor for child elements.
+
+ -  `absolute` removes the element from the normal flow, and it gets positioned relative to the **nearest ancestor that has a non-static position** — usually `relative`, `absolute`, or `fixed`. This is important in component-based frameworks like Angular or React, where a parent component might define a container and child components are positioned absolutely inside it.
+
+ -  For example, if I have a `.parent` div with `position: relative`, and a `.child` div inside it with `position: absolute; top: 10px; right: 10px`, the child will stick to the top-right of the parent, not the page.
+
+ -  `fixed` makes the element stick to the viewport — useful for navbars or buttons that should stay visible during scroll. `sticky` behaves like `relative` until a scroll threshold is met, and then it behaves like `fixed`.
+
+ -  So when handling child positioning, I always make sure the parent has a proper `position` (usually `relative`) if I want the child to align within that scope.
+
+---
+
+### 🔁 Optional Add-On (if asked for an example)
+
+ - In Angular, I often use this for dropdowns or modals:
+
+ -  * I wrap the modal in a `div` with `position: relative`
+ - * Then absolutely position the modal box inside that container.
+
+ -  This makes sure the modal is scoped within the parent and doesn't float around the page unexpectedly.
+
+---
+
+Would you like me to format this answer for React, Angular, or a full visual code example as well?
 
 
 ### 5. **Difference between `em`, `rem`, `%`, `px`?**

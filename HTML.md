@@ -74,7 +74,81 @@ Specificity defines which CSS rule takes precedence:
 * Class, pseudo-class, attribute: **10**
 * Element/tag selectors: **1**
 
+
+### 📦 What is the CSS Box Model?
+
+The **CSS Box Model** describes how elements are structured and spaced on a web page. Every element is treated as a rectangular **box** made up of the following parts:
+
 ---
+
+## ✅ Box Model Structure
+
+```
++-------------------------------+
+|        Margin (outer)         |
+|  +-------------------------+  |
+|  |     Border (optional)   |  |
+|  |  +-------------------+  |  |
+|  |  |   Padding          |  |  |
+|  |  |  +-------------+   |  |  |
+|  |  |  |   Content   |   |  |  |
+|  |  |  +-------------+   |  |  |
+|  |  +-------------------+  |  |
+|  +-------------------------+  |
++-------------------------------+
+```
+
+---
+
+## 📋 Box Model Components
+
+| Part        | Description                                                   |
+| ----------- | ------------------------------------------------------------- |
+| **Content** | The actual text, image, or data inside the element.           |
+| **Padding** | Space **inside** the element, around the content.             |
+| **Border**  | Edge around the padding. Can be styled (e.g., solid, dashed). |
+| **Margin**  | Space **outside** the element, separating it from others.     |
+
+---
+
+## 🧪 Example (CSS):
+
+```css
+.box {
+  width: 200px;
+  padding: 10px;
+  border: 5px solid black;
+  margin: 20px;
+}
+```
+
+### 🧮 Total Element Size (Standard Model):
+
+```
+Total width = content width + left/right padding + border + margin
+            = 200 + (10×2) + (5×2) + (20×2) = 270px wide + margin
+```
+
+---
+
+## 🔄 `box-sizing` Property
+
+To make sizing easier, you can use:
+
+```css
+box-sizing: border-box;
+```
+
+This **includes padding and border inside the total width/height**, so:
+
+```css
+width: 200px;  /* includes padding and border */
+```
+
+---
+
+Would you like a live HTML/CSS example or visual playground of how box model values affect layout?
+
 
 ## 💠 LESS & SASS Interview Questions
 

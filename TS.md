@@ -3,7 +3,7 @@
 
 **Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  
 
-**OOPS** - [Polymorphism](#Polymorphism)
+**OOPS** - [Polymorphism](#Polymorphism) - [Class](#class)  - [Immutable Class](#Immutable-Class)
 
 **Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#Union-and-Intersection-Types)  
 
@@ -1738,4 +1738,28 @@ class Person {
 // Usage
 const person1 = new Person("Alice", 30);
 person1.greet();  // Output: Hello, my name is Alice and I am 30 years old.
+```
+
+
+## Immutable Class
+
+```javascript
+class Person {
+  // All fields are readonly
+  public readonly name: string;
+  public readonly age: number;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+
+    // Optional: freeze to prevent runtime mutations (shallow)
+    Object.freeze(this);
+  }
+
+  // Read-only method
+  describe(): string {
+    return `${this.name} is ${this.age} years old.`;
+  }
+}
 ```

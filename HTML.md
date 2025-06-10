@@ -53,6 +53,56 @@ HTML5 introduced:
 
 ---
 
+
+When you write:
+
+```css
+padding: 10px 20px;
+```
+
+It means you're setting **vertical and horizontal padding** like this:
+
+---
+
+### ✅ Breakdown:
+
+| Direction  | Value  |
+| ---------- | ------ |
+| **Top**    | `10px` |
+| **Right**  | `20px` |
+| **Bottom** | `10px` |
+| **Left**   | `20px` |
+
+---
+
+### 🔁 Shorthand Pattern (clockwise logic):
+
+CSS shorthand follows this pattern based on number of values:
+
+* `padding: 10px;` → all 4 sides
+* `padding: 10px 20px;` → top & bottom | left & right
+* `padding: 10px 20px 30px;` → top | left & right | bottom
+* `padding: 10px 20px 30px 40px;` → top | right | bottom | left (clockwise)
+
+---
+
+### 📌 Example:
+
+```css
+.box {
+  padding: 10px 20px;
+  background: lightblue;
+}
+```
+
+This applies:
+
+* 10px padding on top and bottom
+* 20px padding on left and right
+
+
+
+
 ### 5. **Difference between `em`, `rem`, `%`, `px`?**
 
 **Answer:**

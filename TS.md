@@ -1673,7 +1673,7 @@ console.log(JSON.stringify(arr1) === JSON.stringify(arr2)); // true ✅
 
 Requires behavior differences via method implementation
 
-    ```javascrip
+```javascript
 
 // Base interface
 interface Person {
@@ -1710,4 +1710,32 @@ const stu = new Student("Bob", "Computer Science");
 
 printIntroduction(emp); // Hi, I'm Alice, and I work as a Software Developer.
 printIntroduction(stu); // Hi, I'm Bob, studying Computer Science.
-    ```
+```
+
+
+
+
+## Class
+
+```javascript
+class Person {
+  // Properties
+  name: string;
+  age: number;
+
+  // Constructor
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+
+  // Method
+  greet(): void {
+    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+  }
+}
+
+// Usage
+const person1 = new Person("Alice", 30);
+person1.greet();  // Output: Hello, my name is Alice and I am 30 years old.
+```

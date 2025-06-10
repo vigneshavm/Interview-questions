@@ -3,7 +3,7 @@
 
 **Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  
 
-**OOPS** - [Polymorphism](#Polymorphism) - [Class](#class)  - [Immutable Class](#Immutable-Class)
+**OOPS** - [Polymorphism](#Polymorphism) - [Class](#class)  - [Immutable Class](#Immutable-Class) - [Inheritance](#Inheritance)
 
 **Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#Union-and-Intersection-Types)  
 
@@ -1762,4 +1762,35 @@ class Person {
     return `${this.name} is ${this.age} years old.`;
   }
 }
+```
+
+
+## Inheritance 
+
+```javascript
+
+// Parent class
+class Vehicle {
+  constructor(public brand: string) {}
+
+  start(): void {
+    console.log(`${this.brand} vehicle is starting...`);
+  }
+}
+
+// Child class
+class Car extends Vehicle {
+  constructor(brand: string, public model: string) {
+    super(brand); // Call the parent class constructor
+  }
+
+  showDetails(): void {
+    console.log(`Brand: ${this.brand}, Model: ${this.model}`);
+  }
+}
+
+// Usage
+const myCar = new Car("Toyota", "Corolla");
+myCar.start();         // Output: Toyota vehicle is starting...
+myCar.showDetails();   // Output: Brand: Toyota, Model: Corolla
 ```

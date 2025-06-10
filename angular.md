@@ -8,7 +8,7 @@
 | **Data & State Management**        | • [Data Binding](#data-binding) • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap) • [Promise and Observable](#promise-and-observable) |
 | **HTTP & Backend Integration**     | • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                                           |
 | **Security & Authentication**      | • [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) • [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                               |
-| **Performance & Optimization**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)       - [AOT](#AOT)   -[AOT vs JIT](#AOT-vs-JIT)  -[Tree Shaking](#Tree-Shaking) - [Angular CLI](#Angular-CLI)
+| **Performance & Optimization**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)       - [AOT](#AOT)   -[AOT vs JIT](#AOT-vs-JIT)  -[Tree Shaking](#Tree-Shaking) - [Angular CLI](#Angular-CLI) - [Angular 19](#Angular-19)
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)                                                                          |
 
 
@@ -2840,3 +2840,19 @@ Examples:
 
  - Provide it in @Injectable({ providedIn: 'root' })
  - Or register it in AppModule’s providers
+ - 
+
+
+
+
+
+
+### Angular 19
+ (November 2024):
+ - Incremental Hydration: Improves performance by incrementally hydrating server-rendered content on the client. 
+ - Route-level Render Mode: Offers more control over how routes are rendered, potentially improving performance. 
+ - Standalone Components by Default: Simplifies project structure and reduces boilerplate code by making standalone components the default. 
+ - Linked Signals: Provides a more efficient way to handle reactive data. 
+ - Security Enhancements: Includes features like security with Google to improve application security. 
+ - Resource and RxResource APIs: Provides new APIs for data fetching and manipulation. 
+ - Modernizing Code with Language Service: Improves the language service and tooling for better code editing and development. 

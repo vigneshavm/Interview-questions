@@ -1,8 +1,9 @@
 
-**Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)   • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  
+**Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)   • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  - [Class](#class)
 
 **Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  
 
+**OOPS** - [Polymorphism](#Polymorphism)
 
 **Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#Union-and-Intersection-Types)  
 
@@ -18,6 +19,7 @@
 **Functions & Behavior**     • [Function Overloading](#function-overloading)  • [Decorators](#decorators)  • [Declaration Merging](#declaration-merging)  
 
 **Objects & Collections**   • [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects)  • [`Map` vs `WeakMap`](#map-vs-weakmap)   • [`Set` vs `WeakSet`](#set-vs-weakset)
+
 
 
 
@@ -1665,3 +1667,47 @@ console.log(JSON.stringify(arr1) === JSON.stringify(arr2)); // true ✅
   **Key Takeaway**: JavaScript applies type coercion in ways that can lead to unexpected results, particularly when the operands are complex data types like objects and arrays.
 
 ---
+
+
+## Polymorphism 
+
+Requires behavior differences via method implementation
+
+    ```javascrip
+
+// Base interface
+interface Person {
+  name: string;
+  introduce(): string;
+}
+
+// Employee implements Person
+class Employee implements Person {
+  constructor(public name: string, public jobTitle: string) {}
+
+  introduce(): string {
+    return `Hi, I'm ${this.name}, and I work as a ${this.jobTitle}.`;
+  }
+}
+
+// Student also implements Person
+class Student implements Person {
+  constructor(public name: string, public major: string) {}
+
+  introduce(): string {
+    return `Hi, I'm ${this.name}, studying ${this.major}.`;
+  }
+}
+
+// Polymorphic function
+function printIntroduction(p: Person) {
+  console.log(p.introduce());
+}
+
+// Usage
+const emp = new Employee("Alice", "Software Developer");
+const stu = new Student("Bob", "Computer Science");
+
+printIntroduction(emp); // Hi, I'm Alice, and I work as a Software Developer.
+printIntroduction(stu); // Hi, I'm Bob, studying Computer Science.
+    ```

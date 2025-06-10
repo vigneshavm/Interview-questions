@@ -8,7 +8,7 @@
 | **Data & State Management**        | • [Data Binding](#data-binding) • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap) • [Promise and Observable](#promise-and-observable) |
 | **HTTP & Backend Integration**     | • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                                           |
 | **Security & Authentication**      | • [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) • [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                               |
-| **Performance & Optimization**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)       - [AOT](#AOT)   -[AOT vs JIT](#AOT-vs-JIT)  -[Tree Shaking](#Tree-Shaking)
+| **Performance & Optimization**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)       - [AOT](#AOT)   -[AOT vs JIT](#AOT-vs-JIT)  -[Tree Shaking](#Tree-Shaking) - [Angular CLI](#Angular-CLI)
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)                                                                          |
 
 
@@ -2817,6 +2817,12 @@ ng build --aot
  - Angular CLI with Webpack performs tree shaking automatically to optimize production builds.
 
 
+### Angular CLI
 
-
-
+ - Angular CLI is a command-line interface tool that helps scaffold, build, test, and deploy Angular apps.
+   
+Examples:
+ng new app-name
+ng generate component my-comp
+ng serve
+ng build --prod

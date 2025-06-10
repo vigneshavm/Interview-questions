@@ -318,6 +318,11 @@ bootstrapApplication(AppComponent, {
 
 * For large-scale apps, use centralized state management for communication and state sharing.
 
+ - Defined actions to express events.
+ - Defined a reducer function to manage the state of the counter.
+ - Registered the global state container that is available throughout your application.
+ - Injected the Store service to dispatch actions and select the current state of the counter.
+
 
 
 

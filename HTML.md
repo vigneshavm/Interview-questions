@@ -1,10 +1,6 @@
 
-
-## 🟧 HTML5 Interview Questions
-
 ### 1. **What is new in HTML5 compared to HTML4?**
 
-**Answer:**
 HTML5 introduced:
 
 * Semantic elements like `<header>`, `<footer>`, `<article>`, `<section>`, etc.
@@ -17,7 +13,6 @@ HTML5 introduced:
 
 ### 2. **What is the difference between `<section>` and `<div>`?**
 
-**Answer:**
 `<section>` is semantic — used for grouping related content.
 `<div>` is generic and non-semantic — used only for styling or layout.
 
@@ -32,7 +27,6 @@ HTML5 introduced:
 
 ### 3. **What are some HTML5 form enhancements?**
 
-**Answer:**
 
 * New input types: `email`, `tel`, `url`, `color`, `date`
 * New attributes: `required`, `placeholder`, `autofocus`, `pattern`
@@ -43,7 +37,6 @@ HTML5 introduced:
 
 ### 4. **What are some major features of CSS3?**
 
-**Answer:**
 
 * Media queries (for responsive design)
 * Flexbox and Grid
@@ -101,17 +94,10 @@ This applies:
 * 20px padding on left and right
 
 
-Sure! Here's how you could confidently and clearly answer a CSS `position` question in an interview — especially focusing on parent-child relationships:
 
----
-
-### ❓ **Interviewer:**
+##  **Different Position**
 
 *Can you explain how different `position` values work in CSS, and how they behave in a parent-child component setup?*
-
----
-
-### ✅ **Your Ideal Answer:**
 
  - Yes, absolutely. CSS provides several `position` values — `static`, `relative`, `absolute`, `fixed`, and `sticky`. Each determines how an element is placed in the layout.
 
@@ -138,12 +124,10 @@ Sure! Here's how you could confidently and clearly answer a CSS `position` quest
 
 ---
 
-Would you like me to format this answer for React, Angular, or a full visual code example as well?
 
 
 ### 5. **Difference between `em`, `rem`, `%`, `px`?**
 
-**Answer:**
 
 * `px`: fixed size
 * `%`: relative to parent
@@ -154,7 +138,6 @@ Would you like me to format this answer for React, Angular, or a full visual cod
 
 ### 6. **What is specificity in CSS?**
 
-**Answer:**
 Specificity defines which CSS rule takes precedence:
 
 * Inline styles: **1000**
@@ -163,13 +146,13 @@ Specificity defines which CSS rule takes precedence:
 * Element/tag selectors: **1**
 
 
-### 📦 What is the CSS Box Model?
+## 📦 What is the CSS Box Model?
 
 The **CSS Box Model** describes how elements are structured and spaced on a web page. Every element is treated as a rectangular **box** made up of the following parts:
 
 ---
 
-## ✅ Box Model Structure
+### ✅ Box Model Structure
 
 ```
 +-------------------------------+
@@ -188,7 +171,7 @@ The **CSS Box Model** describes how elements are structured and spaced on a web 
 
 ---
 
-## 📋 Box Model Components
+### 📋 Box Model Components
 
 | Part        | Description                                                   |
 | ----------- | ------------------------------------------------------------- |
@@ -199,7 +182,7 @@ The **CSS Box Model** describes how elements are structured and spaced on a web 
 
 ---
 
-## 🧪 Example (CSS):
+### 🧪 Example (CSS):
 
 ```css
 .box {
@@ -219,7 +202,7 @@ Total width = content width + left/right padding + border + margin
 
 ---
 
-## 🔄 `box-sizing` Property
+### 🔄 `box-sizing` Property
 
 To make sizing easier, you can use:
 

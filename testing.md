@@ -705,7 +705,7 @@ Handling sensitive data requires encryption, proper access control, and secure s
 
 ---
 
-#### **Content Security Policy (CSP)**
+### **Content Security Policy (CSP)**
 
 
 
@@ -718,9 +718,9 @@ In a **React project**, implementing a strong `Content-Security-Policy (CSP)` is
 
 ---
 
-## ✅ Real-World CSP Example for React
+#### ✅ Real-World CSP Example for React
 
-### 🔧 Option 1: Using a `<meta>` tag in `public/index.html`
+#### 🔧 Option 1: Using a `<meta>` tag in `public/index.html`
 
 If you're hosting with something like Netlify, GitHub Pages, or any static server:
 
@@ -747,7 +747,7 @@ If you're hosting with something like Netlify, GitHub Pages, or any static serve
 
 ---
 
-### 🔧 Option 2: Setting CSP via Express Server (for SSR or custom backend)
+#### 🔧 Option 2: Setting CSP via Express Server (for SSR or custom backend)
 
 ```ts
 import express from 'express';

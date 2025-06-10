@@ -154,4 +154,178 @@ A reusable block of code.
 
 ---
 
-Would you like **hands-on code challenges** or **more advanced SASS use cases** for interviews (like mixin with arguments, loops, conditionals)?
+Great question! Here's a clear and concise explanation of **`<div>` vs `<span>`** — often asked in frontend interviews:
+
+---
+
+## 🆚 `<div>` vs `<span>`
+
+| Feature          | `<div>`                       | `<span>`                    |
+| ---------------- | ----------------------------- | --------------------------- |
+| Type             | **Block-level** element       | **Inline** element          |
+| Default behavior | Starts on a new line          | Stays within the same line  |
+| Use case         | Layout & grouping sections    | Styling small parts of text |
+| Styling target   | Useful for containers/layouts | Ideal for inline styling    |
+| HTML5 Semantic?  | No                            | No                          |
+
+---
+
+## ✅ Example
+
+```html
+<!-- div groups content and takes full width -->
+<div style="background: lightblue; padding: 10px;">
+  <h2>Title</h2>
+  <p>This is a block of content.</p>
+</div>
+
+<!-- span styles part of a sentence -->
+<p>This is a <span style="color: red;">highlighted word</span> inside a paragraph.</p>
+```
+
+---
+
+## 🧠 When to Use:
+
+* Use **`<div>`**: when structuring or grouping content (layouts, sections, cards).
+* Use **`<span>`**: when targeting a **small portion of inline text** for styling or scripting.
+
+---
+
+
+
+### ✅ Use of Semantic Tags in HTML5
+
+**Semantic tags** clearly describe the **meaning** of the content they enclose, both for **developers** and **browsers (including screen readers & SEO engines)**.
+
+---
+
+## 🔹 Common Semantic Tags & Their Uses
+
+| Tag         | Purpose                               | Example Usage                     |
+| ----------- | ------------------------------------- | --------------------------------- |
+| `<header>`  | Defines page or section header        | Logo, nav links at top            |
+| `<nav>`     | Navigation links                      | Menus, site links                 |
+| `<main>`    | Main content (one per page)           | Article, core information         |
+| `<section>` | Thematic grouping within content      | Group of related articles, topics |
+| `<article>` | Self-contained content                | Blog post, news article           |
+| `<aside>`   | Sidebar or related info               | Ads, author bio, related links    |
+| `<footer>`  | Page or section footer                | Contact info, copyrights          |
+| `<figure>`  | Media container (with `<figcaption>`) | Images, charts with captions      |
+| `<time>`    | Machine-readable date/time            | Publishing date                   |
+
+---
+
+## 🧠 Why Use Semantic Tags?
+
+* ✅ **Accessibility** – Screen readers can navigate content better
+* ✅ **SEO** – Search engines understand page structure more effectively
+* ✅ **Maintainability** – Easier for developers to read and maintain code
+* ✅ **Consistency** – Clear separation of sections improves structure
+
+---
+
+## 💡 Example:
+
+```html
+<header>
+  <h1>My Portfolio</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <article>
+      <h2>Project One</h2>
+      <p>Description of the project...</p>
+    </article>
+  </section>
+  <aside>
+    <p>Check out my GitHub!</p>
+  </aside>
+</main>
+
+<footer>
+  <p>&copy; 2025 My Portfolio</p>
+</footer>
+```
+
+---
+
+
+In HTML5, you can **create custom tags** using non-standard element names — these are called **custom elements** (part of Web Components). However, using them properly involves JavaScript.
+
+---
+
+## ✅ 2 Ways to Create Custom Tags
+
+### 1. 🛠️ **Informal Custom Tags** (HTML only)
+
+You *can* use unknown tags in HTML — but they won't have any functionality or semantic meaning.
+
+```html
+<my-card>
+  <h2>Title</h2>
+  <p>Content inside custom tag</p>
+</my-card>
+```
+
+📌 This is valid HTML5, but it's just treated as a `div`. Use CSS to style it, if needed.
+
+```css
+my-card {
+  display: block;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+```
+
+---
+
+### 2. ⚙️ **Formal Custom Elements (Web Components)**
+
+To truly define a **custom component**, use JavaScript:
+
+```html
+<user-profile></user-profile>
+
+<script>
+  class UserProfile extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `<h3>Hello from a custom tag!</h3>`;
+    }
+  }
+
+  customElements.define('user-profile', UserProfile);
+</script>
+```
+
+📌 Now `<user-profile>` behaves like a real component.
+
+---
+
+## 🔒 Rules for Custom Tags
+
+* Must contain a **dash** (`-`), e.g. `my-card`, `user-profile`
+* Should be defined via `customElements.define()`
+* Can include Shadow DOM, lifecycle methods, etc.
+
+---
+
+## 🎯 Use Cases
+
+* Encapsulated UI components (`<user-profile>`, `<app-navbar>`)
+* Reusable design elements (`<product-card>`, `<fancy-button>`)
+* Progressive web apps
+
+---
+
+Would you like a demo of advanced features like **Shadow DOM**, **properties**, or **events** in a custom tag?
+
+
+
+
+

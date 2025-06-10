@@ -2822,7 +2822,7 @@ ng build --aot
  - Angular CLI is a command-line interface tool that helps scaffold, build, test, and deploy Angular apps.
    
 Examples:
-ng new app-name
-ng generate component my-comp
-ng serve
-ng build --prod
+ - ng new app-name
+ - ng generate component my-comp
+ - ng serve
+ - ng build --prod

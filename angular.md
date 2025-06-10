@@ -2327,7 +2327,12 @@ export class PostComponent {
 ###  **Promise and Observable**
 
  -  **Promises** handle one-time asynchronous operations.
- -  **Observables** (from RxJS) are more powerful – they handle multiple values over time, support cancellation, and have operators like `map`, `filter`, and `mergeMap`.
+ 
+ -  **Observables**
+       -   (from RxJS) are more powerful
+       -  they handle multiple values over time, support cancellation, and have operators like `map`, `filter`, and `mergeMap`.
+       -   for asynchronous operations (e.g., HTTP requests).
+       -    Observables provide powerful operators for composing and transforming data streams.
 
 
 

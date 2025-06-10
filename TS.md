@@ -3,7 +3,7 @@
 
 **Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  
 
-**OOPS** - [Polymorphism](#Polymorphism) - [Class](#class)  - [Immutable Class](#Immutable-Class) - [Inheritance](#Inheritance)
+**OOPS** - [Polymorphism](#Polymorphism) - [Class](#class)  - [Immutable Class](#Immutable-Class) - [Inheritance](#Inheritance) - [Encapsulation](#Encapsulation)
 
 **Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#Union-and-Intersection-Types)  
 
@@ -1794,3 +1794,87 @@ const myCar = new Car("Toyota", "Corolla");
 myCar.start();         // Output: Toyota vehicle is starting...
 myCar.showDetails();   // Output: Brand: Toyota, Model: Corolla
 ```
+
+
+
+## Encapsulation
+
+> **Encapsulation and closure are related concepts**, but they are **not the same**. They achieve **similar goals** (data hiding and access control), but they work **very differently**.
+
+### 🔍 Key Differences
+
+| Feature        | Encapsulation                | Closure                           |
+| -------------- | ---------------------------- | --------------------------------- |
+| Style          | OOP                          | Functional programming            |
+| Uses           | Classes, objects             | Functions                         |
+| Data Hidden By | Access modifiers (`private`) | Lexical scoping                   |
+| Common In      | TypeScript, Java, C#, etc.   | JavaScript, especially before ES6 |
+
+---
+
+### ✅ Summary
+
+* **Encapsulation** is a formal OOP concept using `class` and access control.
+* **Closure** is a JavaScript mechanism that lets functions "remember" variables.
+* You can use **closures to simulate encapsulation** in JavaScript.
+
+
+
+### 🔒 Encapsulation (OOP Concept)
+
+* Comes from **object-oriented programming (OOP)**
+* Achieved using **classes**, **access modifiers** (`private`, `public`, etc.)
+* Used to **protect object state** and expose only necessary methods
+
+**Example:**
+
+```ts
+class Counter {
+  private count: number = 0;
+
+  public increment() {
+    this.count++;
+  }
+
+  public getCount(): number {
+    return this.count;
+  }
+}
+```
+
+✅ `count` is hidden from outside — only accessible via `increment()` and `getCount()`.
+
+---
+
+### 🔐 Closure (Functional Concept)
+
+* A **JavaScript concept**
+* A function "remembers" the variables in its **outer lexical scope**, even after the outer function has returned
+* Often used to **simulate private variables**
+
+**Example:**
+
+```ts
+function createCounter() {
+  let count = 0;
+
+  return {
+    increment() {
+      count++;
+    },
+    getCount() {
+      return count;
+    }
+  };
+}
+
+const counter = createCounter();
+counter.increment();
+console.log(counter.getCount()); // ✅ 1
+```
+
+✅ `count` is **not accessible directly**, only via returned methods — thanks to **closure**.
+
+---
+
+

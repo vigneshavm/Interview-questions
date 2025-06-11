@@ -1,9 +1,6 @@
 
-
-
 ## **Deep Property Update Without Mutation**
 
-You have the following object:
 
 ```js
 const user = {
@@ -37,13 +34,7 @@ console.log(updatedUser);
 console.log(user); // original remains unchanged
 
 
-> **Follow-up**: How would you achieve the same with a utility like `lodash` or `immer`?
-
-Great question! Both `lodash` and `immer` offer elegant solutions to deep updates **without mutating** the original object.
-
----
-
-### ✅ **Using `lodash` (`_.set` with `cloneDeep`)**
+**Using `lodash` (`_.set` with `cloneDeep`)**
 
 To avoid mutation, clone the object first:
 
@@ -67,11 +58,11 @@ console.log(updatedUser);
 console.log(user); // remains unchanged
 ```
 
-> ✅ `_.set` modifies in place, so we clone first using `_.cloneDeep`.
+>  `_.set` modifies in place, so we clone first using `_.cloneDeep`.
 
 ---
 
-### ✅ **Using `immer`**
+###  **Using `immer`**
 
 Immer lets you write "mutating" code that produces **immutable updates**:
 
@@ -97,11 +88,11 @@ console.log(updatedUser);
 console.log(user); // original remains unchanged
 ```
 
-> ✅ `immer` creates a proxy, tracks changes, and returns a new updated object.
+>  `immer` creates a proxy, tracks changes, and returns a new updated object.
 
 ---
 
-### 🔍 Summary:
+ Summary:
 
 | Method   | Pros                              | Cons                                |
 | -------- | --------------------------------- | ----------------------------------- |
@@ -114,7 +105,7 @@ Let me know if you'd like a reusable helper function for deep updates without de
 
 ---
 
-#### **Q2: Dynamic Key Renaming**
+## **Dynamic Key Renaming**
 
 Transform this object by renaming the keys:
 
@@ -138,9 +129,28 @@ const newObj = {
 
 > Implement a dynamic function `renameKeys(obj, mapping)`.
 
+**Solution**
+```js
+function renameKeys(obj, mapping) {
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => [
+      mapping[key] || key,
+      value
+    ])
+  );
+}
+```
+**Output**
+ {
+   firstName: 'John',
+   lastName: 'Doe',
+   dateOfBirth: '1990-01-01'
+ }
+
+
 ---
 
-#### **Q3: Filter Nested Properties**
+## **Filter Nested Properties**
 
 You have:
 
@@ -153,6 +163,23 @@ const employees = [
 ```
 
 **Task**: Filter only developers in `'NY'`.
+
+**solution**
+```js
+const filtered = employees.filter(
+  emp => emp.role === 'Developer' && emp.location.city === 'NY'
+);
+
+console.log(filtered);
+```
+
+**Output**
+```js
+[
+  { id: 1, name: 'Alice', role: 'Developer', location: { city: 'NY' } },
+  { id: 3, name: 'Charlie', role: 'Developer', location: { city: 'NY' } }
+]
+```
 
 ---
 
@@ -176,12 +203,29 @@ const employees = [
   HR: ['Bob']
 }
 ```
-
 > Bonus: Implement a reusable function `groupByKey(arr, key)`.
+
+**Solution**
+```js
+function groupByKey(arr, key) {
+  return arr.reduce((acc, item) => {
+    const group = item[key];
+    if (!acc[group]) {
+      acc[group] = [];
+    }
+    acc[group].push(item.name); // Customize this if needed
+    return acc;
+  }, {});
+}
+
+
+const grouped = groupByKey(employees, 'dept');
+```
+
 
 ---
 
-#### **Q5: Convert Array of Objects into a Lookup Object**
+## **Convert Array of Objects into a Lookup Object**
 
 Input:
 
@@ -201,9 +245,30 @@ const users = [
 }
 ```
 
+**solution**
+```js
+const userMap = users.reduce((acc, user) => {
+  acc[user.id] = user;
+  return acc;
+}, {});
+```
+
+**Opt solution**
+```js
+function keyBy(arr, key) {
+  return arr.reduce((acc, item) => {
+    acc[item[key]] = item;
+    return acc;
+  }, {});
+}
+
+// Usage
+const userMap = keyBy(users, 'id');
+```
+
 ---
 
-#### **Q6: Merge Two Arrays by ID**
+## **Merge Two Arrays by ID**
 
 ```js
 const users = [
@@ -226,9 +291,42 @@ const emails = [
 ]
 ```
 
+**Solution**
+```js
+const emailMap = emails.reduce((acc, curr) => {
+  acc[curr.id] = curr.email;
+  return acc;
+}, {});
+
+const merged = users.map(user => ({
+  ...user,
+  email: emailMap[user.id] || null
+}));
+
+console.log(merged);
+```
+
+**Optm Solution**
+```js
+
+function joinById(primary, secondary, key = 'id', joinKey = 'email') {
+  const lookup = secondary.reduce((acc, item) => {
+    acc[item[key]] = item[joinKey];
+    return acc;
+  }, {});
+  return primary.map(item => ({
+    ...item,
+    [joinKey]: lookup[item[key]] || null
+  }));
+}
+
+// Usage
+const merged = joinById(users, emails);
+```
+
 ---
 
-#### **Q7: Flatten a Nested Object**
+## **Flatten a Nested Object**
 
 Given:
 
@@ -254,9 +352,26 @@ const input = {
 
 > Create a `flattenObject(obj)` function.
 
+**solution**
+
+```js
+function flattenObject(obj, parentKey = '', result = {}) {
+  for (const [key, value] of Object.entries(obj)) {
+    const newKey = parentKey ? `${parentKey}.${key}` : key;
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      flattenObject(value, newKey, result); // recurse
+    } else {
+      result[newKey] = value;
+    }
+  }
+  return result;
+}
+```
+
+
 ---
 
-#### **Q8: Remove Keys Based on Condition**
+## **Remove Keys Based on Condition**
 
 Remove all keys from an object where the value is `null`, `undefined`, or `''`.
 
@@ -278,9 +393,20 @@ const input = {
 }
 ```
 
+**solution**
+```js
+function removeEmptyValues(obj) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(
+      ([_, value]) => value !== null && value !== '' && value !== undefined
+    )
+  );
+}
+```
+
 ---
 
-#### **Q9: Convert Object to Query String**
+## **Convert Object to Query String**
 
 ```js
 const input = {
@@ -293,11 +419,29 @@ const input = {
 **Output:**
 `"name=Alice&age=25&city=New%20York"`
 
+
+**solution**
+```js
+const queryString = new URLSearchParams(input).toString();
+console.log(queryString);
+```
+**Manual solution**
+```js
+function toQueryString(obj) {
+  return Object.entries(obj)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+    .join('&');
+}
+
+console.log(toQueryString(input));
+```
+
+
 ---
 
-#### **Q10: Transform and Sort Based on Nested Value**
+## **Transform and Sort Based on Nested Value**
 
-Input:
+**Input:**
 
 ```js
 const students = [
@@ -306,27 +450,45 @@ const students = [
 ];
 ```
 
+**Output**
+
+```js
+[
+  { id: 2, name: 'John', scores: { math: 90, eng: 60 } },
+  { id: 1, name: 'Sam', scores: { math: 80, eng: 70 } }
+]
+```
+
 **Task**: Return sorted list by math score descending.
 
----
-
-### 🧠 Bonus: Functional Programming/Immutability
-
-* What is the benefit of immutability in JavaScript object manipulation?
-* Difference between `map()`, `forEach()`, and `reduce()` when working with objects?
-* How would you deep clone an object with circular references?
+You can sort the array of students by their `math` scores in **descending** order using `.sort()`:
 
 ---
 
-Absolutely! Here are **additional advanced JavaScript questions** based on **object/array transformation, filtering, and mutation**, ideal for a **10+ years experienced developer** interviewing at EPAM or similar firms.
+**Solution**
+
+```js
+const sortedByMath = students.slice().sort((a, b) => b.scores.math - a.scores.math);
+console.log(sortedByMath);
+```
+
+
+**Notes**
+
+* `.slice()` creates a copy so the original array is not mutated.
+* You can easily change the key or direction (e.g., ascending) as needed.
+
+
 
 ---
 
-### 🔁 Advanced JS Data Structure Questions (More)
+
+
 
 ---
 
-#### **Q11: Convert Flat List to Tree Structure**
+
+## **Convert Flat List to Tree Structure**
 
 Input:
 
@@ -362,9 +524,41 @@ const items = [
 ]
 ```
 
+**solution**
+```js
+
+const tree = buildTree(items);
+
+
+function buildTree(items) {
+  const map = new Map();
+  const roots = [];
+
+  // Step 1: Initialize nodes with children
+  for (const item of items) {
+    map.set(item.id, { ...item, children: [] });
+  }
+
+  // Step 2: Build the tree structure
+  for (const item of items) {
+    const node = map.get(item.id);
+    if (item.parent === null) {
+      roots.push(node);
+    } else {
+      const parent = map.get(item.parent);
+      if (parent) {
+        parent.children.push(node);
+      }
+    }
+  }
+
+  return roots;
+}
+```
+
 ---
 
-#### **Q12: Extract Unique Values by Key from Array of Objects**
+## **Extract Unique Values by Key from Array of Objects**
 
 Input:
 
@@ -382,9 +576,25 @@ const records = [
 ['js', 'react']
 ```
 
----
+**solution**
+```js
+const uniqueTags = [...new Set(records.map(r => r.tag))];
+console.log(uniqueTags);
+```
 
-#### **Q13: Find Deepest Nested Key Path**
+**solution 2**
+```js
+const uniqueTags = records.reduce((acc, curr) => {
+  if (!acc.includes(curr.tag)) acc.push(curr.tag);
+  return acc;
+}, []);
+
+console.log(uniqueTags);
+
+```
+
+---
+## **Find Deepest Nested Key Path**
 
 Input:
 
@@ -406,9 +616,24 @@ const input = {
 ['a', 'b', 'c', 'd']
 ```
 
+**solution**
+```js
+function getKeyPath(obj) {
+  const path = [];
+
+  while (typeof obj === 'object' && obj !== null) {
+    const [key] = Object.keys(obj);
+    path.push(key);
+    obj = obj[key];
+  }
+
+  return path;
+}
+```
+
 ---
 
-#### **Q14: Remove Duplicates from Array of Objects by Value**
+## **Remove Duplicates from Array of Objects by Value**
 
 ```js
 const input = [
@@ -427,11 +652,31 @@ const input = [
 ]
 ```
 
+**solution**
+```js
+const unique = Array.from(
+  new Map(input.map(item => [item.id, item])).values()
+);
+
+console.log(unique);
+```
+
+**solution 2**
+```js
+function uniqueBy(arr, key) {
+  return Array.from(new Map(arr.map(item => [item[key], item])).values());
+}
+
+const result = uniqueBy(input, 'id');
+
+
+```
+
 > Must be immutable and optimized for performance.
 
 ---
 
-#### **Q15: Recursive Merge of Two Nested Objects**
+## **Recursive Merge of Two Nested Objects**
 
 ```js
 const obj1 = {
@@ -464,9 +709,57 @@ const obj2 = {
 }
 ```
 
+**solution**
+```js
+function deepMerge(target, source) {
+  for (const key in source) {
+    if (
+      source[key] &&
+      typeof source[key] === 'object' &&
+      !Array.isArray(source[key])
+    ) {
+      if (!target[key] || typeof target[key] !== 'object') {
+        target[key] = {};
+      }
+      deepMerge(target[key], source[key]);
+    } else {
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+```
+
+**solution with array merge**
+```js
+function deepMerge(target, source) {
+  for (const key in source) {
+    const sourceVal = source[key];
+    const targetVal = target[key];
+
+    if (Array.isArray(sourceVal) && Array.isArray(targetVal)) {
+      // Merge arrays (you can customize: concat, dedupe, etc.)
+      target[key] = [...targetVal, ...sourceVal];
+    } else if (
+      sourceVal &&
+      typeof sourceVal === 'object' &&
+      !Array.isArray(sourceVal)
+    ) {
+      if (!targetVal || typeof targetVal !== 'object') {
+        target[key] = {};
+      }
+      deepMerge(target[key], sourceVal);
+    } else {
+      target[key] = sourceVal;
+    }
+  }
+  return target;
+}
+```
+
 ---
 
-#### **Q16: Custom `map()` for Objects**
+## **Custom `map()` for Objects**
 
 Implement your own `mapObject()` function:
 
@@ -480,9 +773,27 @@ mapObject({ a: 1, b: 2 }, (key, value) => [key.toUpperCase(), value * 2])
 { A: 2, B: 4 }
 ```
 
+
+
+**Solution**
+
+```js
+function mapObject(obj, callback) {
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => callback(key, value))
+  );
+}
+```
+
+**How it works**
+
+* `Object.entries(obj)` turns the object into `[key, value]` pairs.
+* `.map(...)` transforms each entry.
+* `Object.fromEntries(...)` converts the modified pairs back into an object.
+
 ---
 
-#### **Q17: Chainable Data Transform Utility**
+## **Chainable Data Transform Utility**
 
 Design a utility that can chain `.filter()`, `.map()`, `.reduce()` over arrays like:
 
@@ -493,9 +804,71 @@ chain(data)
   .value();
 ```
 
+You can build a simple chaining utility using a wrapper object that stores intermediate data and exposes chainable `.filter()`, `.map()`, `.reduce()`, and `.value()` methods.
+
 ---
 
-#### **Q18: Transform Data Based on External Schema**
+**`chain()` Utility Implementation**
+
+```js
+function chain(data) {
+  const wrapper = {
+    _value: [...data], // Clone to avoid mutation
+
+    filter(fn) {
+      this._value = this._value.filter(fn);
+      return this;
+    },
+
+    map(fn) {
+      this._value = this._value.map(fn);
+      return this;
+    },
+
+    reduce(fn, init) {
+      this._value = [this._value.reduce(fn, init)];
+      return this;
+    },
+
+    value() {
+      return this._value.length === 1 ? this._value[0] : this._value;
+    }
+  };
+
+  return wrapper;
+}
+```
+
+
+**Example Usage**
+
+```js
+const data = [
+  { name: 'Alice', active: true },
+  { name: 'Bob', active: false },
+  { name: 'Charlie', active: true }
+];
+
+const result = chain(data)
+  .filter(x => x.active)
+  .map(x => x.name)
+  .value();
+
+console.log(result); // ['Alice', 'Charlie']
+```
+
+---
+
+**Notes**
+
+* You can add `.sort()`, `.find()`, etc., by extending the wrapper.
+* `.reduce()` wraps the result back in an array to allow further chaining (if needed).
+* `.value()` unwraps the final result.
+
+
+---
+
+## **Transform Data Based on External Schema**
 
 Given a schema:
 
@@ -514,9 +887,28 @@ const input = { fname: 'John', lname: 'Doe' };
 { firstName: 'John', lastName: 'Doe' }
 ```
 
+**solution**
+```js
+
+
+function transformBySchema(input, schema) {
+  const result = {};
+  for (const [newKey, oldKey] of Object.entries(schema)) {
+    if (oldKey in input) {
+      result[newKey] = input[oldKey];
+    }
+  }
+  return result;
+}
+
+const output = transformBySchema(input, schema);
+console.log(output); // { firstName: 'John', lastName: 'Doe' }
+
+```
+
 ---
 
-#### **Q19: Invert Key-Value Pairs**
+## **Invert Key-Value Pairs**
 
 ```js
 const input = {
@@ -534,9 +926,24 @@ const input = {
 }
 ```
 
+**solution**
+```js
+function invertObject(obj) {
+  const result = {};
+  for (const [key, value] of Object.entries(obj)) {
+    result[value] = key;
+  }
+  return result;
+}
+
+const output = invertObject(input);
+
+console.log(output); // { x: 'a', y: 'b' }
+```
+
 ---
 
-#### **Q20: Extract Fields from Nested Array of Objects**
+## **Extract Fields from Nested Array of Objects**
 
 ```js
 const data = [
@@ -559,5 +966,26 @@ const data = [
 ['A', 'AA', 'B', 'BB']
 ```
 
+
+**Solution**
+```js
+function extractNames(data) {
+  const result = [];
+
+  function traverse(items) {
+    for (const item of items) {
+      result.push(item.name);
+      if (item.children) {
+        traverse(item.children);
+      }
+    }
+  }
+
+  traverse(data);
+  return result;
+}
+
+console.log(extractNames(data)); // ['A', 'AA', 'B', 'BB']
+```
 ---
 

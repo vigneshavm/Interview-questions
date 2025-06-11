@@ -1,5 +1,51 @@
 
-## **Deep Property Update Without Mutation**
+
+## **Nested Property - Filter**
+
+You have:
+
+```js
+const employees = [
+  { id: 1, name: 'Alice', role: 'Developer', location: { city: 'NY' } },
+  { id: 2, name: 'Bob', role: 'Tester', location: { city: 'LA' } },
+  { id: 3, name: 'Charlie', role: 'Developer', location: { city: 'NY' } },
+];
+```
+
+**Task**: Filter only developers in `'NY'`.
+
+**solution**
+```js
+const filtered = employees.filter(
+  emp => emp.role === 'Developer' && emp.location.city === 'NY'
+);
+console.log(filtered);
+```
+
+**Solution reusable**
+```js
+const filterEmployees = (employees, dept, minAge) => {
+  return employees.filter(emp => 
+    emp.dept === dept && emp.age >= minAge
+  );
+};
+console.log(filtered);
+```
+
+
+
+
+**Output**
+```js
+[
+  { id: 1, name: 'Alice', role: 'Developer', location: { city: 'NY' } },
+  { id: 3, name: 'Charlie', role: 'Developer', location: { city: 'NY' } }
+]
+```
+
+---
+
+## **Nested Property Update Without Mutation**
 
 
 ```js
@@ -105,7 +151,272 @@ Let me know if you'd like a reusable helper function for deep updates without de
 
 ---
 
-## **Dynamic Key Renaming**
+
+## **Nested Object - Flatten**
+
+Given:
+
+```js
+const input = {
+  name: 'John',
+  address: {
+    city: 'NY',
+    zip: '10001'
+  }
+};
+```
+
+**Output:**
+
+```js
+{
+  'name': 'John',
+  'address.city': 'NY',
+  'address.zip': '10001'
+}
+```
+
+> Create a `flattenObject(obj)` function.
+
+**solution**
+
+```js
+function flattenObject(obj, parentKey = '', result = {}) {
+  for (const [key, value] of Object.entries(obj)) {
+    const newKey = parentKey ? `${parentKey}.${key}` : key;
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      flattenObject(value, newKey, result); // recurse
+    } else {
+      result[newKey] = value;
+    }
+  }
+  return result;
+}
+```
+
+
+---
+
+
+## **Nested Property Sort**
+
+**Input:**
+
+```js
+const students = [
+  { id: 1, name: 'Sam', scores: { math: 80, eng: 70 } },
+  { id: 2, name: 'John', scores: { math: 90, eng: 60 } }
+];
+```
+
+**Output**
+
+```js
+[
+  { id: 2, name: 'John', scores: { math: 90, eng: 60 } },
+  { id: 1, name: 'Sam', scores: { math: 80, eng: 70 } }
+]
+```
+
+**Task**: Return sorted list by math score descending.
+
+You can sort the array of students by their `math` scores in **descending** order using `.sort()`:
+
+---
+
+**Solution**
+
+```js
+const sortedByMath = students.slice().sort((a, b) => b.scores.math - a.scores.math);
+console.log(sortedByMath);
+```
+
+
+**Notes**
+
+* `.slice()` creates a copy so the original array is not mutated.
+* You can easily change the key or direction (e.g., ascending) as needed.
+
+
+
+---
+
+
+
+## **Nested - Find Deepest Key Path**
+
+Input:
+
+```js
+const input = {
+  a: {
+    b: {
+      c: {
+        d: 'value'
+      }
+    }
+  }
+};
+```
+
+**Output:**
+
+```js
+['a', 'b', 'c', 'd']
+```
+
+**solution**
+```js
+function getKeyPath(obj) {
+  const path = [];
+
+  while (typeof obj === 'object' && obj !== null) {
+    const [key] = Object.keys(obj);
+    path.push(key);
+    obj = obj[key];
+  }
+
+  return path;
+}
+```
+
+---
+
+## **Nested Objects Recursive Merge of Two**
+
+```js
+const obj1 = {
+  user: {
+    name: 'John',
+    address: { city: 'NY' }
+  }
+};
+
+const obj2 = {
+  user: {
+    age: 30,
+    address: { zip: '10001' }
+  }
+};
+```
+
+**Output:**
+
+```js
+{
+  user: {
+    name: 'John',
+    age: 30,
+    address: {
+      city: 'NY',
+      zip: '10001'
+    }
+  }
+}
+```
+
+**solution**
+```js
+function deepMerge(target, source) {
+  for (const key in source) {
+    if (
+      source[key] &&
+      typeof source[key] === 'object' &&
+      !Array.isArray(source[key])
+    ) {
+      if (!target[key] || typeof target[key] !== 'object') {
+        target[key] = {};
+      }
+      deepMerge(target[key], source[key]);
+    } else {
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+```
+
+**solution with array merge**
+```js
+function deepMerge(target, source) {
+  for (const key in source) {
+    const sourceVal = source[key];
+    const targetVal = target[key];
+
+    if (Array.isArray(sourceVal) && Array.isArray(targetVal)) {
+      // Merge arrays (you can customize: concat, dedupe, etc.)
+      target[key] = [...targetVal, ...sourceVal];
+    } else if (
+      sourceVal &&
+      typeof sourceVal === 'object' &&
+      !Array.isArray(sourceVal)
+    ) {
+      if (!targetVal || typeof targetVal !== 'object') {
+        target[key] = {};
+      }
+      deepMerge(target[key], sourceVal);
+    } else {
+      target[key] = sourceVal;
+    }
+  }
+  return target;
+}
+```
+
+---
+
+
+## **Nested Array of Objects - Extract Fields**
+
+```js
+const data = [
+  {
+    id: 1,
+    name: 'A',
+    children: [{ id: 11, name: 'AA' }]
+  },
+  {
+    id: 2,
+    name: 'B',
+    children: [{ id: 21, name: 'BB' }]
+  }
+];
+```
+
+**Extract all names** into a flat array:
+
+```js
+['A', 'AA', 'B', 'BB']
+```
+
+
+**Solution**
+```js
+function extractNames(data) {
+  const result = [];
+
+  function traverse(items) {
+    for (const item of items) {
+      result.push(item.name);
+      if (item.children) {
+        traverse(item.children);
+      }
+    }
+  }
+
+  traverse(data);
+  return result;
+}
+
+console.log(extractNames(data)); // ['A', 'AA', 'B', 'BB']
+```
+---
+
+
+
+
+
+## **Key Renaming**
 
 Transform this object by renaming the keys:
 
@@ -160,52 +471,8 @@ const newObj = renameKeys(oldObj, mapping);
 
 ---
 
-## **Filter Nested Properties**
 
-You have:
-
-```js
-const employees = [
-  { id: 1, name: 'Alice', role: 'Developer', location: { city: 'NY' } },
-  { id: 2, name: 'Bob', role: 'Tester', location: { city: 'LA' } },
-  { id: 3, name: 'Charlie', role: 'Developer', location: { city: 'NY' } },
-];
-```
-
-**Task**: Filter only developers in `'NY'`.
-
-**solution**
-```js
-const filtered = employees.filter(
-  emp => emp.role === 'Developer' && emp.location.city === 'NY'
-);
-console.log(filtered);
-```
-
-**Solution reusable**
-```js
-const filterEmployees = (employees, dept, minAge) => {
-  return employees.filter(emp => 
-    emp.dept === dept && emp.age >= minAge
-  );
-};
-console.log(filtered);
-```
-
-
-
-
-**Output**
-```js
-[
-  { id: 1, name: 'Alice', role: 'Developer', location: { city: 'NY' } },
-  { id: 3, name: 'Charlie', role: 'Developer', location: { city: 'NY' } }
-]
-```
-
----
-
-## **Grouping by Key**
+## **Key Grouping**
 
 Group the data based on department:
 
@@ -247,7 +514,7 @@ const grouped = groupByKey(employees, 'dept');
 
 ---
 
-## **Convert Array of Objects into a Lookup Object**
+## **Array of Objects into a Lookup Object**
 
 Input:
 
@@ -348,50 +615,6 @@ const merged = joinById(users, emails);
 
 ---
 
-## **Flatten a Nested Object**
-
-Given:
-
-```js
-const input = {
-  name: 'John',
-  address: {
-    city: 'NY',
-    zip: '10001'
-  }
-};
-```
-
-**Output:**
-
-```js
-{
-  'name': 'John',
-  'address.city': 'NY',
-  'address.zip': '10001'
-}
-```
-
-> Create a `flattenObject(obj)` function.
-
-**solution**
-
-```js
-function flattenObject(obj, parentKey = '', result = {}) {
-  for (const [key, value] of Object.entries(obj)) {
-    const newKey = parentKey ? `${parentKey}.${key}` : key;
-    if (value && typeof value === 'object' && !Array.isArray(value)) {
-      flattenObject(value, newKey, result); // recurse
-    } else {
-      result[newKey] = value;
-    }
-  }
-  return result;
-}
-```
-
-
----
 
 ## **Remove Keys Based on Condition**
 
@@ -457,54 +680,6 @@ function toQueryString(obj) {
 
 console.log(toQueryString(input));
 ```
-
-
----
-
-## **Transform and Sort Based on Nested Value**
-
-**Input:**
-
-```js
-const students = [
-  { id: 1, name: 'Sam', scores: { math: 80, eng: 70 } },
-  { id: 2, name: 'John', scores: { math: 90, eng: 60 } }
-];
-```
-
-**Output**
-
-```js
-[
-  { id: 2, name: 'John', scores: { math: 90, eng: 60 } },
-  { id: 1, name: 'Sam', scores: { math: 80, eng: 70 } }
-]
-```
-
-**Task**: Return sorted list by math score descending.
-
-You can sort the array of students by their `math` scores in **descending** order using `.sort()`:
-
----
-
-**Solution**
-
-```js
-const sortedByMath = students.slice().sort((a, b) => b.scores.math - a.scores.math);
-console.log(sortedByMath);
-```
-
-
-**Notes**
-
-* `.slice()` creates a copy so the original array is not mutated.
-* You can easily change the key or direction (e.g., ascending) as needed.
-
-
-
----
-
-
 
 
 ---
@@ -580,7 +755,7 @@ function buildTree(items) {
 
 ---
 
-## **Extract Unique Values by Key from Array of Objects**
+## **Extract Unique Values by Key**
 
 Input:
 
@@ -616,46 +791,8 @@ console.log(uniqueTags);
 ```
 
 ---
-## **Find Deepest Nested Key Path**
 
-Input:
-
-```js
-const input = {
-  a: {
-    b: {
-      c: {
-        d: 'value'
-      }
-    }
-  }
-};
-```
-
-**Output:**
-
-```js
-['a', 'b', 'c', 'd']
-```
-
-**solution**
-```js
-function getKeyPath(obj) {
-  const path = [];
-
-  while (typeof obj === 'object' && obj !== null) {
-    const [key] = Object.keys(obj);
-    path.push(key);
-    obj = obj[key];
-  }
-
-  return path;
-}
-```
-
----
-
-## **Remove Duplicates from Array of Objects by Value**
+## **Remove Duplicates by Value**
 
 ```js
 const input = [
@@ -698,88 +835,6 @@ const result = uniqueBy(input, 'id');
 
 ---
 
-## **Recursive Merge of Two Nested Objects**
-
-```js
-const obj1 = {
-  user: {
-    name: 'John',
-    address: { city: 'NY' }
-  }
-};
-
-const obj2 = {
-  user: {
-    age: 30,
-    address: { zip: '10001' }
-  }
-};
-```
-
-**Output:**
-
-```js
-{
-  user: {
-    name: 'John',
-    age: 30,
-    address: {
-      city: 'NY',
-      zip: '10001'
-    }
-  }
-}
-```
-
-**solution**
-```js
-function deepMerge(target, source) {
-  for (const key in source) {
-    if (
-      source[key] &&
-      typeof source[key] === 'object' &&
-      !Array.isArray(source[key])
-    ) {
-      if (!target[key] || typeof target[key] !== 'object') {
-        target[key] = {};
-      }
-      deepMerge(target[key], source[key]);
-    } else {
-      target[key] = source[key];
-    }
-  }
-  return target;
-}
-```
-
-**solution with array merge**
-```js
-function deepMerge(target, source) {
-  for (const key in source) {
-    const sourceVal = source[key];
-    const targetVal = target[key];
-
-    if (Array.isArray(sourceVal) && Array.isArray(targetVal)) {
-      // Merge arrays (you can customize: concat, dedupe, etc.)
-      target[key] = [...targetVal, ...sourceVal];
-    } else if (
-      sourceVal &&
-      typeof sourceVal === 'object' &&
-      !Array.isArray(sourceVal)
-    ) {
-      if (!targetVal || typeof targetVal !== 'object') {
-        target[key] = {};
-      }
-      deepMerge(target[key], sourceVal);
-    } else {
-      target[key] = sourceVal;
-    }
-  }
-  return target;
-}
-```
-
----
 
 ## **Custom `map()` for Objects**
 
@@ -965,54 +1020,8 @@ console.log(output); // { x: 'a', y: 'b' }
 
 ---
 
-## **Extract Fields from Nested Array of Objects**
 
-```js
-const data = [
-  {
-    id: 1,
-    name: 'A',
-    children: [{ id: 11, name: 'AA' }]
-  },
-  {
-    id: 2,
-    name: 'B',
-    children: [{ id: 21, name: 'BB' }]
-  }
-];
-```
-
-**Extract all names** into a flat array:
-
-```js
-['A', 'AA', 'B', 'BB']
-```
-
-
-**Solution**
-```js
-function extractNames(data) {
-  const result = [];
-
-  function traverse(items) {
-    for (const item of items) {
-      result.push(item.name);
-      if (item.children) {
-        traverse(item.children);
-      }
-    }
-  }
-
-  traverse(data);
-  return result;
-}
-
-console.log(extractNames(data)); // ['A', 'AA', 'B', 'BB']
-```
----
-
-
-## Group Products by key then count
+## **Group Products by key then count**
 
 
 **input**

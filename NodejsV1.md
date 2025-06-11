@@ -17,7 +17,8 @@
 
 **Database Interaction**  - [SQL connection](#sql-connection)  - [MongoDB connection](#mongodb-connection)  - [Database connections](#database-connections)    - [Database Transactions](#database-transactions)  - [Data consistency across distributed services](#data-consistency-across-distributed-services)
 
-**Authentication & Authorization**  - [Authentication vs Authorization](#authentication-vs-authorization)   [JWT](#implementing-jwt-authentication) - [Session-based vs Token-based](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)   - [Refresh Tokens](#refresh-tokens)  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers)   - [Role-Based Access Control](#role-based-access-control-rbac)
+**Authentication & Authorization**  - [Authentication vs Authorization](#authentication-vs-authorization)   - [JWT](#implementing-jwt-authentication) - [Single Sign On](#Single-Sign-On)
+- [Session-based vs Token-based](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)   - [Refresh Tokens](#refresh-tokens)  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers)   - [Role-Based Access Control](#role-based-access-control-rbac)
 
 **Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)   **Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
 
@@ -4003,10 +4004,31 @@ server.listen(3000, () => console.log('Server running on port 3000'));
 
 ---
 
+## Single Sign On
 
+- Single Sign On (SSO) allows users to authenticate once and gain access to multiple related systems without re-entering credentials. 
+- For example, using providers like Google Workspace, Azure AD, or Okta, a user logs in once and gets federated access across applications. 
+- I’ve implemented SSO using OAuth 2.0 and OpenID Connect flows — especially for enterprise dashboards where identity federation is critical.
 
+- **"Yes, I’ve implemented Single Sign-On (SSO) in enterprise-grade applications where users needed seamless access across multiple platforms with a single authentication step.**
 
+**Real-World Example 1: Internal Enterprise Dashboard with Azure AD (OAuth2 + OpenID Connect)**
 
+- In one of our projects, we had multiple internal apps — HR portal, timesheet, project tracker — and users wanted a **centralized login** using their corporate credentials.
+
+* We integrated **Azure Active Directory (Azure AD)** as the identity provider.
+* We used the **Authorization Code Flow with PKCE** via **OAuth2 + OpenID Connect**.
+* After authenticating through Microsoft, the user was redirected back to the app with an **ID token (for authentication)** and an **access token (for calling APIs)**.
+* The React frontend stored the token in an **HTTP-only cookie** and sent it with every API request.
+* Backend (Node.js/Express) verified the token signature using **Microsoft’s public keys**.
+
+- This allowed our users to:
+
+- * Log in once via Microsoft and get access to all internal tools.
+- * Avoid multiple logins or password fatigue.
+- * Ensure secure access based on **organizational group membership and roles** (e.g., `admin`, `manager`, etc.).
+
+---
 
 
 

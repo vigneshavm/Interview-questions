@@ -62,7 +62,7 @@ console.log(user); // remains unchanged
 
 ---
 
-###  **Using `immer`**
+**Using `immer`**
 
 Immer lets you write "mutating" code that produces **immutable updates**:
 

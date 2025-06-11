@@ -1011,3 +1011,68 @@ console.log(extractNames(data)); // ['A', 'AA', 'B', 'BB']
 ```
 ---
 
+
+## Group Products by key then count
+
+
+**input**
+input
+const employees = [
+  { id: 1, name: 'Alice', department: 'Engineering', skills: ['JavaScript', 'React'] },
+  { id: 2, name: 'Bob', department: 'Engineering', skills: ['JavaScript', 'Node.js'] },
+  { id: 3, name: 'Charlie', department: 'HR', skills: ['Communication', 'Recruiting'] },
+  { id: 4, name: 'Dave', department: 'Engineering', skills: ['React', 'Node.js'] },
+];
+
+
+**output**
+
+{
+  Engineering: {
+    JavaScript: 2,
+    React: 2,
+    Node.js: 2
+  },
+  HR: {
+    Communication: 1,
+    Recruiting: 1
+  }
+}
+
+
+
+
+
+
+
+
+
+**Solution**
+```js
+function generateSkillReport(employees) {
+  return employees.reduce((deptMap, { department, skills }) => {
+    // Initialize department entry if not exists
+    if (!deptMap[department]) {
+      deptMap[department] = {};
+    }
+
+    // Count each skill
+    for (const skill of skills) {
+      deptMap[department][skill] = (deptMap[department][skill] || 0) + 1;
+    }
+
+    return deptMap;
+  }, {});
+}
+
+// Run it
+console.log(generateSkillReport(employees));
+```
+---
+
+
+
+
+
+
+

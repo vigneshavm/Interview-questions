@@ -62,7 +62,7 @@ console.log(user); // remains unchanged
 
 ---
 
-**Using `immer`**
+###  **Using `immer`**
 
 Immer lets you write "mutating" code that produces **immutable updates**:
 
@@ -179,9 +179,21 @@ const employees = [
 const filtered = employees.filter(
   emp => emp.role === 'Developer' && emp.location.city === 'NY'
 );
-
 console.log(filtered);
 ```
+
+**Solution reusable**
+```js
+const filterEmployees = (employees, dept, minAge) => {
+  return employees.filter(emp => 
+    emp.dept === dept && emp.age >= minAge
+  );
+};
+console.log(filtered);
+```
+
+
+
 
 **Output**
 ```js

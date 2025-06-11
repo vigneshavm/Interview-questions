@@ -1016,17 +1016,17 @@ console.log(extractNames(data)); // ['A', 'AA', 'B', 'BB']
 
 
 **input**
-input
+```js
 const employees = [
   { id: 1, name: 'Alice', department: 'Engineering', skills: ['JavaScript', 'React'] },
   { id: 2, name: 'Bob', department: 'Engineering', skills: ['JavaScript', 'Node.js'] },
   { id: 3, name: 'Charlie', department: 'HR', skills: ['Communication', 'Recruiting'] },
   { id: 4, name: 'Dave', department: 'Engineering', skills: ['React', 'Node.js'] },
 ];
-
+```
 
 **output**
-
+```js
 {
   Engineering: {
     JavaScript: 2,
@@ -1038,7 +1038,7 @@ const employees = [
     Recruiting: 1
   }
 }
-
+```
 
 
 

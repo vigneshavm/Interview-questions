@@ -1410,3 +1410,152 @@ export class DebouncedSearchComponent implements OnInit, OnDestroy {
 
 
 
+
+
+// ✅ 1. Debounced Search Component
+```ts
+import React, { useState, useEffect } from 'react';
+
+function useDebounce(value, delay) {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const handler = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+  return debounced;
+}
+
+function DebouncedSearch() {
+  const [query, setQuery] = useState('');
+  const debouncedQuery = useDebounce(query, 300);
+
+  useEffect(() => {
+    if (debouncedQuery) {
+      // fetch API call
+    }
+  }, [debouncedQuery]);
+
+  return <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search..." />;
+}
+```
+
+// ✅ 2. Autocomplete Component
+```ts
+function Autocomplete() {
+  const [input, setInput] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      const res = await fetch(`/api/suggest?q=${input}`);
+      const data = await res.json();
+      setSuggestions(data);
+    };
+    if (input) fetchSuggestions();
+  }, [input]);
+
+  return (
+    <div>
+      <input value={input} onChange={(e) => setInput(e.target.value)} />
+      <ul>
+        {suggestions.map((s, i) => <li key={i}>{s}</li>)}
+      </ul>
+    </div>
+  );
+}
+```
+// ✅ 3. Todo List
+```ts
+function TodoList() {
+  const [todos, setTodos] = useState([]);
+  const [task, setTask] = useState('');
+
+  const addTodo = () => {
+    if (!task) return;
+    setTodos([...todos, { id: Date.now(), text: task, done: false }]);
+    setTask('');
+  };
+
+  const toggleDone = (id) => {
+    setTodos(todos.map(todo => todo.id === id ? { ...todo, done: !todo.done } : todo));
+  };
+
+  return (
+    <div>
+      <input value={task} onChange={e => setTask(e.target.value)} />
+      <button onClick={addTodo}>Add</button>
+      <ul>
+        {todos.map(t => (
+          <li key={t.id} style={{ textDecoration: t.done ? 'line-through' : '' }} onClick={() => toggleDone(t.id)}>
+            {t.text}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+// ✅ 4. React Table with Sorting
+```ts
+function SortableTable({ data }) {
+  const [sortKey, setSortKey] = useState(null);
+  const [asc, setAsc] = useState(true);
+
+  const sorted = [...data].sort((a, b) => {
+    if (!sortKey) return 0;
+    return asc ? a[sortKey] > b[sortKey] ? 1 : -1 : a[sortKey] < b[sortKey] ? 1 : -1;
+  });
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          {Object.keys(data[0] || {}).map(k => (
+            <th key={k} onClick={() => { setSortKey(k); setAsc(!asc); }}>{k}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {sorted.map((row, i) => (
+          <tr key={i}>
+            {Object.values(row).map((cell, j) => <td key={j}>{cell}</td>)}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+```
+// ✅ 5. Infinite Scroll
+```ts
+function InfiniteScrollList() {
+  const [items, setItems] = useState([]);
+  const [page, setPage] = useState(1);
+
+  const fetchMore = async () => {
+    const res = await fetch(`/api/items?page=${page}`);
+    const data = await res.json();
+    setItems(prev => [...prev, ...data]);
+  };
+
+  useEffect(() => {
+    fetchMore();
+  }, [page]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+        setPage(p => p + 1);
+      }
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return <ul>{items.map((item, i) => <li key={i}>{item}</li>)}</ul>;
+}  
+```
+// More: Let me know if you'd like solutions for forms, highlight, custom hooks, etc.
+
+
+

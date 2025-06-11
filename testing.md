@@ -28,16 +28,24 @@
 
 
 
-The `<script>` tag is used to include JavaScript files in an HTML document. By default, when a `<script>` is encountered, the HTML parsing is paused until the script is loaded and executed, which can lead to delays in rendering. The `async` and `defer` attributes help optimize script loading behavior.
+ - The `<script>` tag is used to include JavaScript files in an HTML document. 
+ - By default, when a `<script>` is encountered, the HTML parsing is paused until the script is loaded and executed, which can lead to delays in rendering.
+ - The `async` and `defer` attributes help optimize script loading behavior.
 
-- **`async`**: The script is fetched asynchronously (in parallel with the HTML parsing) and executed as soon as it is available, without waiting for the HTML parsing to finish. This can cause the script to execute before the HTML parsing is complete.
+- **`async`**:
+-  The script is fetched asynchronously (in parallel with the HTML parsing) and executed as soon as it is available,
+-  without waiting for the HTML parsing to finish.
+-  This can cause the script to execute before the HTML parsing is complete.
   
   **Example**:
   ```html
   <script src="script.js" async></script>
   ```
 
-- **`defer`**: The script is fetched asynchronously, but it is executed only after the HTML document has been completely parsed. It ensures that scripts are executed in the order they appear in the document.
+- **`defer`**:
+- The script is fetched asynchronously,
+- but it is executed only after the HTML document has been completely parsed.
+-  It ensures that scripts are executed in the order they appear in the document.
 
   **Example**:
   ```html
@@ -51,23 +59,17 @@ The `<script>` tag is used to include JavaScript files in an HTML document. By d
 ---
 
 
-\
-
-
-
-
-
-
-
 
 
 
 #### **Tree Shaking in Modern Bundlers**
 
-- **Tree shaking** is a feature of modern JavaScript bundlers (like Webpack and Rollup) that eliminates unused code from the final bundle. It works by statically analyzing the code to determine which exports are used and which can be safely removed.
+- **Tree shaking** is a feature of modern JavaScript bundlers (like Webpack and Rollup) that eliminates unused code from the final bundle.
+- It works by statically analyzing the code to determine which exports are used and which can be safely removed.
 
 - **How it Works**:
-  - Tree shaking works on **ES Modules** because of their static structure (i.e., imports/exports are known at compile time). This allows bundlers to "shake" out any unused code, leading to smaller bundle sizes.
+  - Tree shaking works on **ES Modules** because of their static structure (i.e., imports/exports are known at compile time).
+  - This allows bundlers to "shake" out any unused code, leading to smaller bundle sizes.
 
 - **Example**:
   ```javascript
@@ -94,7 +96,8 @@ The `<script>` tag is used to include JavaScript files in an HTML document. By d
 
 
 
-- **Transpiling** is the process of converting modern JavaScript (ES6+) code into an older version of JavaScript (such as ES5) that is compatible with older browsers or environments. This is usually done to ensure compatibility with older browsers that don’t support new JavaScript features.
+- **Transpiling** is the process of converting modern JavaScript (ES6+) code into an older version of JavaScript (such as ES5) that is compatible with older browsers or environments.
+- This is usually done to ensure compatibility with older browsers that don’t support new JavaScript features.
 
 - **Example**:
   - **ES6+ Code**:

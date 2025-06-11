@@ -62,7 +62,7 @@ console.log(user); // remains unchanged
 
 ---
 
-**Using `immer`**
+###  **Using `immer`**
 
 Immer lets you write "mutating" code that produces **immutable updates**:
 
@@ -131,6 +131,13 @@ const newObj = {
 
 **Solution**
 ```js
+
+const mapping = {
+  fname: 'firstName',
+  lname: 'lastName',
+  dob: 'dateOfBirth'
+};
+
 function renameKeys(obj, mapping) {
   return Object.fromEntries(
     Object.entries(obj).map(([key, value]) => [
@@ -139,14 +146,17 @@ function renameKeys(obj, mapping) {
     ])
   );
 }
+const newObj = renameKeys(oldObj, mapping);
 ```
+
 **Output**
+```js
  {
    firstName: 'John',
    lastName: 'Doe',
    dateOfBirth: '1990-01-01'
  }
-
+```
 
 ---
 

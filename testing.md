@@ -236,6 +236,77 @@ module.exports = {
 
 
 
+
+- I’ve worked extensively with **Webpack**, especially in large-scale React applications. I understand both the configuration and optimization aspects of it.
+- "Webpack gives you full control over your front-end build pipeline. I've used it to optimize bundle size, configure multi-stage environments, and integrate it into CI/CD for production-ready apps. While I now use Vite in newer projects, I’m very comfortable debugging and extending Webpack setups."
+
+- Webpack is a **module bundler**. It takes all of your project files — JavaScript, CSS, images, etc. — and bundles them into optimized assets for the browser.
+
+* It uses a **dependency graph** starting from entry points (like `index.js`)
+* Applies **loaders** to transform files (e.g., transpile TS/JSX, compile SCSS)
+* Uses **plugins** for advanced functionality (e.g., minification, environment injection)
+* Outputs bundled assets to the **`/dist`** folder
+
+---
+
+### ⚙️ **Example of My Webpack Setup:**
+
+```js
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.[contenthash].js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+  },
+  module: {
+    rules: [
+      { test: /\.jsx?$/, use: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+};
+```
+
+---
+
+### 🚀 **How I’ve Used Webpack in Projects:**
+
+* Customized Webpack to support **code splitting** with `React.lazy()` and dynamic imports.
+* Used **`BundleAnalyzerPlugin`** to identify and reduce bundle size.
+* Configured **aliases** to simplify imports (e.g., `@components/...`)
+* Set up separate **dev/prod configs** for fast HMR during development and optimized builds for production.
+* Integrated with **Babel**, **TypeScript**, and **SASS loaders**.
+* Used **`dotenv-webpack`** to manage environment variables cleanly.
+* Set up **multi-entry builds** for a microfrontend architecture.
+
+---
+
+### 🧪 **Optimization Techniques I've Applied:**
+
+| Optimization           | Purpose                  |
+| ---------------------- | ------------------------ |
+| `SplitChunksPlugin`    | Extract vendor libraries |
+| Tree shaking           | Remove unused code       |
+| `TerserPlugin`         | Minify JS                |
+| `MiniCssExtractPlugin` | Separate and cache CSS   |
+| Lazy loading           | Improve TTI              |
+| Cache busting          | Via `[contenthash]`      |
+
+---
+
+
+
+ ---------------
+
+
 ## Vite
 
 * **Vite** is a **next-generation frontend build tool**.

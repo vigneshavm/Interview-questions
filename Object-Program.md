@@ -62,7 +62,7 @@ console.log(user); // remains unchanged
 
 ---
 
-###  **Using `immer`**
+**Using `immer`**
 
 Immer lets you write "mutating" code that produces **immutable updates**:
 
@@ -183,7 +183,7 @@ console.log(filtered);
 
 ---
 
-#### **Q4: Grouping by Key**
+## **Grouping by Key**
 
 Group the data based on department:
 

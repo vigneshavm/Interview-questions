@@ -162,7 +162,8 @@ The `<script>` tag is used to include JavaScript files in an HTML document. By d
  - Webpack works by building a dependency graph starting from a defined entry point like index.js, applying loaders to transform files, and using plugins to optimize or customize the build process.
  - The output typically goes into a dist/ folder, with hashed filenames for caching.
 
- - In real-world projects, I’ve set up separate configurations for development and production, integrated features like code splitting with React.lazy, optimized bundle sizes with tree shaking, and configured hot module replacement for a faster developer experience. 
+ - In real-world projects, I’ve set up separate configurations for development and production,
+ - Integrated features like code splitting with React.lazy, optimized bundle sizes with tree shaking, and configured hot module replacement for a faster developer experience. 
  - I’ve also used plugins like HtmlWebpackPlugin, MiniCssExtractPlugin, and DefinePlugin for injecting environment variables and handling CSS properly.
 
  - I've integrated Webpack into CI/CD pipelines, added support for SCSS, CSS Modules, and used babel-loader for transpiling JSX and modern ES features.

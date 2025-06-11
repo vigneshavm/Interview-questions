@@ -2308,3 +2308,68 @@ describe('getUserById', () => {
 * Collaboration: knowing when to escalate or loop in backend/infrastructure teams if needed.
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+## ESLint
+
+ - Yes, I’ve used ESLint extensively in all my modern JavaScript and TypeScript projects. 
+ - ESLint is a static code analysis tool that helps identify and fix problems in your code — from simple syntax errors to complex style and consistency issues.
+ - It’s especially useful for enforcing coding standards across teams.
+ - I usually integrate ESLint with Prettier for formatting and set up strict rules using popular configs like eslint:recommended or @typescript-eslint.
+ - For React projects, I use the eslint-plugin-react and eslint-plugin-react-hooks packages to ensure best practices with hooks and JSX.
+ - In larger teams, I’ve set up shared ESLint configurations to maintain consistency across multiple apps or packages — especially in monorepos using Nx.
+ - ESLint also integrates well with CI/CD, so I’ve configured it to run as part of pull request checks to catch issues early.
+ - One of the key benefits is that ESLint is highly customizable
+ -  I can write custom rules, override rules per file or directory, and even auto-fix a large percentage of issues with eslint --fix.
+ -  Overall, ESLint is essential for improving code quality, catching bugs early, and enforcing consistent code styles — especially when working in collaborative or large-scale environments."
+
+```js
+// eslint.config.js
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import globals from 'globals';
+
+export default [
+  js.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
+  {
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.json'],
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+    plugins: {
+      react,
+      'react-hooks': reactHooks,
+    },
+    rules: {
+      'react/jsx-uses-react': 'off', // Not needed with React 17+
+      'react/react-in-jsx-scope': 'off',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+];
+```
+
+This config uses:
+ - @eslint/js: base rules
+ - @typescript-eslint: for TypeScript support
+ - eslint-plugin-react & react-hooks: for React + hooks linting
+ - globals: enables window, document, etc.

@@ -3,7 +3,16 @@
 Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) -- [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)
 
 
-React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  - [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook)
+React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  - [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) 
+- [Debounced Search Component](#debounced-search-component)
+- [Autocomplete Component](#autocomplete-component)
+- [Todo List](#todo-list)
+- [React Table with Sorting](#react-table-with-sorting)
+- [Infinite Scroll](#infinite-scroll)
+- [Custom Hook - useToggle](#custom-hook-usetoggle)
+- [Form with Validation](#form-with-validation)
+- [Highlight Text](#highlight-text)
+
 
 
 Angular --  [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search)   --  [Debounce Input Search](#Angular-Debounce-Input-Search)
@@ -1412,7 +1421,7 @@ export class DebouncedSearchComponent implements OnInit, OnDestroy {
 
 
 
-// ✅ 1. Debounced Search Component
+## Debounced Search Component
 ```ts
 import React, { useState, useEffect } from 'react';
 
@@ -1439,7 +1448,7 @@ function DebouncedSearch() {
 }
 ```
 
-// ✅ 2. Autocomplete Component
+## Autocomplete Component
 ```ts
 function Autocomplete() {
   const [input, setInput] = useState('');
@@ -1464,7 +1473,7 @@ function Autocomplete() {
   );
 }
 ```
-// ✅ 3. Todo List
+## Todo List
 ```ts
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -1495,7 +1504,7 @@ function TodoList() {
   );
 }
 ```
-// ✅ 4. React Table with Sorting
+## React Table with Sorting
 ```ts
 function SortableTable({ data }) {
   const [sortKey, setSortKey] = useState(null);
@@ -1526,7 +1535,7 @@ function SortableTable({ data }) {
   );
 }
 ```
-// ✅ 5. Infinite Scroll
+## Infinite Scroll
 ```ts
 function InfiniteScrollList() {
   const [items, setItems] = useState([]);
@@ -1555,7 +1564,57 @@ function InfiniteScrollList() {
   return <ul>{items.map((item, i) => <li key={i}>{item}</li>)}</ul>;
 }  
 ```
-// More: Let me know if you'd like solutions for forms, highlight, custom hooks, etc.
+
+
+## Custom Hook useToggle
+```ts
+function useToggle(initial = false) {
+  const [state, setState] = useState(initial);
+  const toggle = () => setState(prev => !prev);
+  return [state, toggle];
+}
+```
+
+## Form with Validation
+```ts
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!email.includes('@')) newErrors.email = 'Invalid email';
+    if (password.length < 6) newErrors.password = 'Too short';
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length > 0) setErrors(errs);
+    else console.log('Login success');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
+      {errors.email && <div>{errors.email}</div>}
+      <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
+      {errors.password && <div>{errors.password}</div>}
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+```
+## Highlight Text
+```ts
+function Highlight({ text, highlight }) {
+  if (!highlight) return <span>{text}</span>;
+  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+  return <span>{parts.map((part, i) => part.toLowerCase() === highlight.toLowerCase() ? <mark key={i}>{part}</mark> : part)}</span>;
+}
+```
 
 
 

@@ -2442,11 +2442,24 @@ npm install -g pm2
 
 
 ## **[Implementing JWT Authentication](#Implementing-JWT-Authentication)**
+
+
+- Token-based authentication especially using JWTs (JSON Web Tokens).
+- When a user logs in, the backend issues a signed JWT, 
+- which the frontend stores (typically in memory or secure HTTP-only cookies). 
+- This token is then sent with every API request via the Authorization header. 
+- The backend verifies the signature and grants access.
+- It’s **stateless** and scales well.
+
+- I also implement refresh tokens to securely renew access tokens without forcing the user to log in again.
+- This helps maintain session continuity while avoiding security issues like token reuse or session hijacking.
+
+
 - **JWT (JSON Web Token)** is used for stateless authentication in web applications.
 - **Login process**: 
   -  after successful login , Server generates a token, using user details and a secret key.
   - The token includes encoded user information and expiration data.
-  - The token is sent to the client and stored (usually in `localStorage` or `sessionStorage`).
+  - The token is sent to the client and stored  (typically in memory or secure HTTP-only cookies). 
 - **On each request**:
   - The client includes the token in the `Authorization` header (`Bearer <token>`).
   - The server verifies the token using a secret key and grants access to protected resources.

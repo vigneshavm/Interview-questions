@@ -1,5 +1,19 @@
 
-### 1. **What is new in HTML5 compared to HTML4?**
+
+| Topic             | Key Concepts                                            |
+| ----------------- | ------------------------------------------------------- |
+| HTML5             | Semantic tags, audio/video, form APIs, `localStorage`   |
+| Semantic Tags     | `<header>`, `<section>`, `<article>`, `<aside>`, etc.   |
+| Form Enhancements | New input types, `required`, `pattern`, `autofocus`     |
+| Position          | `relative`, `absolute`, `fixed`, `sticky`               |
+| Box Model         | Margin > Border > Padding > Content                     |
+| Units             | `px` (fixed), `%` (parent), `em` (parent), `rem` (root) |
+| Specificity       | Inline > ID > Class > Element                           |
+| CSS Features      | Media queries, Flexbox/Grid, transitions, variables     |
+| Custom Tags       | Use `-`, `customElements.define`, optional Shadow DOM   |
+
+
+### 1. **HTML5 compared to HTML4?**
 
 HTML5 introduced:
 
@@ -11,7 +25,7 @@ HTML5 introduced:
 
 ---
 
-### 2. **What is the difference between `<section>` and `<div>`?**
+### 2. **difference between `<section>` and `<div>`?**
 
 `<section>` is semantic — used for grouping related content.
 `<div>` is generic and non-semantic — used only for styling or layout.
@@ -25,7 +39,44 @@ HTML5 introduced:
 
 ---
 
-### 3. **What are some HTML5 form enhancements?**
+---
+
+### 🆚 `<div>` vs `<span>`
+
+| Feature          | `<div>`                       | `<span>`                    |
+| ---------------- | ----------------------------- | --------------------------- |
+| Type             | **Block-level** element       | **Inline** element          |
+| Default behavior | Starts on a new line          | Stays within the same line  |
+| Use case         | Layout & grouping sections    | Styling small parts of text |
+| Styling target   | Useful for containers/layouts | Ideal for inline styling    |
+| HTML5 Semantic?  | No                            | No                          |
+
+---
+
+#### ✅ Example
+
+```html
+<!-- div groups content and takes full width -->
+<div style="background: lightblue; padding: 10px;">
+  <h2>Title</h2>
+  <p>This is a block of content.</p>
+</div>
+
+<!-- span styles part of a sentence -->
+<p>This is a <span style="color: red;">highlighted word</span> inside a paragraph.</p>
+```
+
+---
+
+#### 🧠 When to Use:
+
+* Use **`<div>`**: when structuring or grouping content (layouts, sections, cards).
+* Use **`<span>`**: when targeting a **small portion of inline text** for styling or scripting.
+
+---
+
+
+### 3. **some HTML5 form enhancements?**
 
 
 * New input types: `email`, `tel`, `url`, `color`, `date`
@@ -33,9 +84,184 @@ HTML5 introduced:
 
 ---
 
+
+
+
+### ✅ Use of Semantic Tags in HTML5
+
+**Semantic tags** clearly describe the **meaning** of the content they enclose, both for **developers** and **browsers (including screen readers & SEO engines)**.
+
+---
+
+#### 🔹 Common Semantic Tags & Their Uses
+
+| Tag         | Purpose                               | Example Usage                     |
+| ----------- | ------------------------------------- | --------------------------------- |
+| `<header>`  | Defines page or section header        | Logo, nav links at top            |
+| `<nav>`     | Navigation links                      | Menus, site links                 |
+| `<main>`    | Main content (one per page)           | Article, core information         |
+| `<section>` | Thematic grouping within content      | Group of related articles, topics |
+| `<article>` | Self-contained content                | Blog post, news article           |
+| `<aside>`   | Sidebar or related info               | Ads, author bio, related links    |
+| `<footer>`  | Page or section footer                | Contact info, copyrights          |
+| `<figure>`  | Media container (with `<figcaption>`) | Images, charts with captions      |
+| `<time>`    | Machine-readable date/time            | Publishing date                   |
+
+---
+
+#### 🧠 Why Use Semantic Tags?
+
+* ✅ **Accessibility** – Screen readers can navigate content better
+* ✅ **SEO** – Search engines understand page structure more effectively
+* ✅ **Maintainability** – Easier for developers to read and maintain code
+* ✅ **Consistency** – Clear separation of sections improves structure
+
+---
+
+#### 💡 Example:
+
+```html
+<header>
+  <h1>My Portfolio</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <article>
+      <h2>Project One</h2>
+      <p>Description of the project...</p>
+    </article>
+  </section>
+  <aside>
+    <p>Check out my GitHub!</p>
+  </aside>
+</main>
+
+<footer>
+  <p>&copy; 2025 My Portfolio</p>
+</footer>
+```
+
+
+
+### ✅ 2 Ways to Create Custom Tags
+
+#### 1. 🛠️ **Informal Custom Tags** (HTML only)
+
+You *can* use unknown tags in HTML — but they won't have any functionality or semantic meaning.
+
+```html
+<my-card>
+  <h2>Title</h2>
+  <p>Content inside custom tag</p>
+</my-card>
+```
+
+📌 This is valid HTML5, but it's just treated as a `div`. Use CSS to style it, if needed.
+
+```css
+my-card {
+  display: block;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+```
+
+---
+
+#### 2. ⚙️ **Formal Custom Elements (Web Components)**
+
+To truly define a **custom component**, use JavaScript:
+
+```html
+<user-profile></user-profile>
+
+<script>
+  class UserProfile extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `<h3>Hello from a custom tag!</h3>`;
+    }
+  }
+
+  customElements.define('user-profile', UserProfile);
+</script>
+```
+
+📌 Now `<user-profile>` behaves like a real component.
+
+---
+
+#### 🔒 Rules for Custom Tags
+
+* Must contain a **dash** (`-`), e.g. `my-card`, `user-profile`
+* Should be defined via `customElements.define()`
+* Can include Shadow DOM, lifecycle methods, etc.
+
+---
+
+#### 🎯 Use Cases
+
+* Encapsulated UI components (`<user-profile>`, `<app-navbar>`)
+* Reusable design elements (`<product-card>`, `<fancy-button>`)
+* Progressive web apps
+
+---
+
+## 🧱 **HTML – Questions & Answers**
+
+---
+
+### **difference between `<div>` and `<section>`?**
+
+**Answer:**
+`<div>` is a generic container with no semantic meaning.
+`<section>` is a semantic tag that represents a standalone section of content (e.g., a group of related content with its own heading).
+Use `<section>` when the block has a meaningful role or heading.
+
+---
+
+### **semantic HTML elements? Give examples.**
+
+**Answer:**
+Semantic elements clearly describe their meaning to both the browser and developer.
+Examples: `<article>`, `<section>`, `<nav>`, `<header>`, `<footer>`, `<aside>`.
+They help with **accessibility**, **SEO**, and **code clarity**.
+
+---
+
+### **purpose of `alt` in `<img>`?**
+
+**Answer:**
+The `alt` attribute provides alternative text when an image can’t load and improves **accessibility** for screen readers.
+
+---
+
+### **Difference between `id` and `class`?**
+
+**Answer:**
+
+* `id`: Unique per element, used for specific styling or DOM access.
+* `class`: Reusable across multiple elements, better for styling groups.
+
+---
+
+### **difference between `async` and `defer` on script tags?**
+
+**Answer:**
+
+* `async`: Script is fetched in parallel and executed as soon as it's ready. Can block rendering.
+* `defer`: Script is fetched in parallel but executed **after HTML parsing** is done. Keeps render non-blocking.
+
+---
+
+
 ## 🟦 CSS3 Interview Questions
 
-### 4. **What are some major features of CSS3?**
+### **major features of CSS3?**
 
 
 * Media queries (for responsive design)
@@ -54,7 +280,7 @@ padding: 10px 20px;
 ```
 
 
-### 4. **vertical and horizontal padding**
+### **vertical and horizontal padding**
 
 It means you're setting **vertical and horizontal padding** like this:
 
@@ -129,7 +355,7 @@ This applies:
 
 
 
-### 5. **Difference between `em`, `rem`, `%`, `px`?**
+### **Difference between `em`, `rem`, `%`, `px`?**
 
 
 * `px`: fixed size
@@ -139,7 +365,7 @@ This applies:
 
 ---
 
-### 6. **What is specificity in CSS?**
+### **specificity in CSS?**
 
 Specificity defines which CSS rule takes precedence:
 
@@ -149,7 +375,7 @@ Specificity defines which CSS rule takes precedence:
 * Element/tag selectors: **1**
 
 
-### 📦 What is the CSS Box Model?
+### **CSS Box Model**
 
 The **CSS Box Model** describes how elements are structured and spaced on a web page. Every element is treated as a rectangular **box** made up of the following parts:
 
@@ -221,24 +447,44 @@ width: 200px;  /* includes padding and border */
 
 ---
 
-Would you like a live HTML/CSS example or visual playground of how box model values affect layout?
+
+
 
 
 ## 💠 LESS & SASS Interview Questions
 
-### 7. **What are LESS and SASS?**
+---
+
+### **CSS Preprocessor**
 
 **Answer:**
-They are CSS preprocessors — they extend CSS with:
+A CSS preprocessor extends CSS with features like:
 
 * Variables
 * Nesting
 * Mixins
 * Functions
+* Partials and Modules
+
+Popular preprocessors include **SASS**, **LESS**, and **Stylus**. They compile to regular CSS before the browser can use it.
 
 ---
 
-### 8. **Example of variables and nesting in SASS/LESS**
+### **SASS and LESS**
+
+**Answer:**
+Both are CSS preprocessors, but they differ slightly:
+
+| Feature     | SASS (`.scss` / `.sass`)  | LESS                   |
+| ----------- | ------------------------- | ---------------------- |
+| Syntax      | SCSS or SASS              | LESS syntax (`.less`)  |
+| Language    | Originally Ruby, now Node | JavaScript-based       |
+| Community   | Larger, more tooling      | Simpler, smaller scope |
+| Integration | Used in modern builds     | Easier with JS tooling |
+
+---
+
+### **Variables and Nesting in SASS & LESS**
 
 **SASS:**
 
@@ -274,10 +520,10 @@ nav {
 
 ---
 
-### 9. **What is a mixin in SASS/LESS?**
+### **Mixin in SASS/LESS?**
 
 **Answer:**
-A reusable block of code.
+A **mixin** is a reusable block of styles you can include in multiple selectors.
 
 **SASS Example:**
 
@@ -286,192 +532,170 @@ A reusable block of code.
   border-radius: $radius;
 }
 
-.box { @include border-radius(10px); }
-```
-
----
-
-### 10. **SASS vs LESS – What's the difference?**
-
-| Feature     | SASS                   | LESS                 |
-| ----------- | ---------------------- | -------------------- |
-| Syntax      | SCSS (`.scss`) or SASS | LESS syntax          |
-| Language    | Ruby/Node-based        | JavaScript-based     |
-| Community   | Larger, more features  | Simpler, less strict |
-| Use with JS | Not easily integrated  | Easier in some cases |
-
----
-
-Great question! Here's a clear and concise explanation of **`<div>` vs `<span>`** — often asked in frontend interviews:
-
----
-
-### 🆚 `<div>` vs `<span>`
-
-| Feature          | `<div>`                       | `<span>`                    |
-| ---------------- | ----------------------------- | --------------------------- |
-| Type             | **Block-level** element       | **Inline** element          |
-| Default behavior | Starts on a new line          | Stays within the same line  |
-| Use case         | Layout & grouping sections    | Styling small parts of text |
-| Styling target   | Useful for containers/layouts | Ideal for inline styling    |
-| HTML5 Semantic?  | No                            | No                          |
-
----
-
-#### ✅ Example
-
-```html
-<!-- div groups content and takes full width -->
-<div style="background: lightblue; padding: 10px;">
-  <h2>Title</h2>
-  <p>This is a block of content.</p>
-</div>
-
-<!-- span styles part of a sentence -->
-<p>This is a <span style="color: red;">highlighted word</span> inside a paragraph.</p>
-```
-
----
-
-#### 🧠 When to Use:
-
-* Use **`<div>`**: when structuring or grouping content (layouts, sections, cards).
-* Use **`<span>`**: when targeting a **small portion of inline text** for styling or scripting.
-
----
-
-
-
-### ✅ Use of Semantic Tags in HTML5
-
-**Semantic tags** clearly describe the **meaning** of the content they enclose, both for **developers** and **browsers (including screen readers & SEO engines)**.
-
----
-
-#### 🔹 Common Semantic Tags & Their Uses
-
-| Tag         | Purpose                               | Example Usage                     |
-| ----------- | ------------------------------------- | --------------------------------- |
-| `<header>`  | Defines page or section header        | Logo, nav links at top            |
-| `<nav>`     | Navigation links                      | Menus, site links                 |
-| `<main>`    | Main content (one per page)           | Article, core information         |
-| `<section>` | Thematic grouping within content      | Group of related articles, topics |
-| `<article>` | Self-contained content                | Blog post, news article           |
-| `<aside>`   | Sidebar or related info               | Ads, author bio, related links    |
-| `<footer>`  | Page or section footer                | Contact info, copyrights          |
-| `<figure>`  | Media container (with `<figcaption>`) | Images, charts with captions      |
-| `<time>`    | Machine-readable date/time            | Publishing date                   |
-
----
-
-#### 🧠 Why Use Semantic Tags?
-
-* ✅ **Accessibility** – Screen readers can navigate content better
-* ✅ **SEO** – Search engines understand page structure more effectively
-* ✅ **Maintainability** – Easier for developers to read and maintain code
-* ✅ **Consistency** – Clear separation of sections improves structure
-
----
-
-#### 💡 Example:
-
-```html
-<header>
-  <h1>My Portfolio</h1>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-  </nav>
-</header>
-
-<main>
-  <section>
-    <article>
-      <h2>Project One</h2>
-      <p>Description of the project...</p>
-    </article>
-  </section>
-  <aside>
-    <p>Check out my GitHub!</p>
-  </aside>
-</main>
-
-<footer>
-  <p>&copy; 2025 My Portfolio</p>
-</footer>
-```
-
----
-
-
-In HTML5, you can **create custom tags** using non-standard element names — these are called **custom elements** (part of Web Components). However, using them properly involves JavaScript.
-
----
-
-### ✅ 2 Ways to Create Custom Tags
-
-#### 1. 🛠️ **Informal Custom Tags** (HTML only)
-
-You *can* use unknown tags in HTML — but they won't have any functionality or semantic meaning.
-
-```html
-<my-card>
-  <h2>Title</h2>
-  <p>Content inside custom tag</p>
-</my-card>
-```
-
-📌 This is valid HTML5, but it's just treated as a `div`. Use CSS to style it, if needed.
-
-```css
-my-card {
-  display: block;
-  border: 1px solid #ccc;
-  padding: 1rem;
+.box {
+  @include border-radius(10px);
 }
 ```
 
 ---
 
-#### 2. ⚙️ **Formal Custom Elements (Web Components)**
+### **difference between `@mixin` and `@extend` in SASS?**
 
-To truly define a **custom component**, use JavaScript:
+**Answer:**
 
-```html
-<user-profile></user-profile>
+| Concept         | `@mixin`      | `@extend`        |
+| --------------- | ------------- | ---------------- |
+| Reusability     | ✅ Yes         | ✅ Yes            |
+| With Parameters | ✅ Yes         | ❌ No             |
+| Code Output     | Repeats code  | Merges selectors |
+| Flexibility     | More flexible | Less flexible    |
 
-<script>
-  class UserProfile extends HTMLElement {
-    connectedCallback() {
-      this.innerHTML = `<h3>Hello from a custom tag!</h3>`;
-    }
-  }
+---
 
-  customElements.define('user-profile', UserProfile);
-</script>
+### **Sass Partials and How Are They Used?**
+
+**Answer:**
+A partial is a Sass file prefixed with an underscore (e.g., `_variables.scss`). It’s not compiled directly. Use `@use` or `@import` to include it in other files.
+
+```scss
+// _variables.scss
+$primary-color: #3498db;
+
+// main.scss
+@use 'variables';
 ```
 
-📌 Now `<user-profile>` behaves like a real component.
+---
+
+### **Loops and Functions Work in Sass?**
+
+**Answer:**
+Sass allows logic via loops and functions.
+
+```scss
+@for $i from 1 through 3 {
+  .col-#{$i} {
+    width: 100% / $i;
+  }
+}
+
+@function double($number) {
+  @return $number * 2;
+}
+```
+
+These features make complex styling patterns reusable and dynamic.
+
+
+
+## 🎨 **CSS-in-JS – styled-components/Emotion Questions & Answers**
 
 ---
 
-#### 🔒 Rules for Custom Tags
+### **CSS-in-JS and why use it?**
 
-* Must contain a **dash** (`-`), e.g. `my-card`, `user-profile`
-* Should be defined via `customElements.define()`
-* Can include Shadow DOM, lifecycle methods, etc.
+**Answer:**
+CSS-in-JS is a styling approach where you write CSS code directly inside JavaScript files. It allows:
 
----
+* **Component-scoped styles** (no class collisions)
+* **Dynamic styles based on props/state**
+* **Shared theme values across components**
+* **Elimination of global stylesheets**
 
-#### 🎯 Use Cases
-
-* Encapsulated UI components (`<user-profile>`, `<app-navbar>`)
-* Reusable design elements (`<product-card>`, `<fancy-button>`)
-* Progressive web apps
+Popular libraries: `styled-components`, `Emotion`, `JSS`.
 
 ---
 
-Would you like a demo of advanced features like **Shadow DOM**, **properties**, or **events** in a custom tag?
+### **create dynamic styles using styled-components?**
+
+**Answer:**
+
+```jsx
+const Button = styled.button`
+  background: ${props => props.primary ? 'blue' : 'gray'};
+`;
+```
+
+Props like `primary` can dynamically alter styles. This is great for reusable and themeable components.
+
+---
+
+### **SSR (Server-Side Rendering) handled in CSS-in-JS?**
+
+**Answer:**
+In SSR setups (like Next.js), `styled-components` or `emotion` use collectors (e.g., `ServerStyleSheet` or `extractCritical`) to extract styles during server rendering. This prevents FOUC (Flash of Unstyled Content).
+
+```jsx
+import { ServerStyleSheet } from 'styled-components';
+
+const sheet = new ServerStyleSheet();
+const html = renderToString(sheet.collectStyles(<App />));
+const styleTags = sheet.getStyleTags(); // Inject into <head>
+```
+
+---
+
+### **Handle themes in CSS-in-JS?**
+
+**Answer:**
+
+Using `ThemeProvider` from the library:
+
+```jsx
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+  primary: '#333',
+  secondary: '#999',
+};
+
+<ThemeProvider theme={theme}>
+  <App />
+</ThemeProvider>
+```
+
+In styled-components:
+
+```js
+const Title = styled.h1`
+  color: ${props => props.theme.primary};
+`;
+```
+
+---
+
+### **Pros and Cons of CSS-in-JS vs Sass**
+
+| Feature             | CSS-in-JS                          | Sass (SCSS)                     |
+| ------------------- | ---------------------------------- | ------------------------------- |
+| **Scoping**         | Scoped to components automatically | Requires naming conventions     |
+| **Dynamic Styling** | Via props/state                    | Not natively dynamic            |
+| **Theming Support** | Built-in with `ThemeProvider`      | Needs manual setup              |
+| **Performance**     | Slight runtime overhead (JS-based) | Compiled to static CSS          |
+| **Tooling**         | Tight integration with JS/React    | Good tooling in build pipelines |
+| **Learning Curve**  | Requires React knowledge           | Easier for pure CSS developers  |
+| **Debugging**       | Styled class names are auto-gen    | Original class names available  |
+| **SSR Support**     | Requires extra setup               | Native CSS — no extra handling  |
+
+---
+
+Let me know if you'd like:
+
+* Real-world **project questions**
+* A **styled-components mini project**
+* Questions on **Emotion vs styled-components**
+* Or **code exercises for CSS-in-JS** use cases.
+
+
+| Feature         | CSS-in-JS                  | Sass                     |
+| --------------- | -------------------------- | ------------------------ |
+| Scoped Styles   | ✅ Automatic                | ❌ Needs manual naming    |
+| Dynamic Styling | ✅ via props                | ❌ Requires extra setup   |
+| Performance     | ⚠ Slightly heavier bundle  | ✅ Leaner compiled output |
+| Tooling         | ✅ Theming, SSR, TS support | ✅ Good build integration |
+| Learning Curve  | Medium                     | Low                      |
+
+
 
 
 

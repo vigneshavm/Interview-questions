@@ -1162,7 +1162,11 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 - **Authentication**: Verifies user identity (e.g., JWT ).
 - **Authorization**: Determines what resources a user can access. (e.g., Role ).
 
----
+| Term               | Description                          | Example                         |
+| ------------------ | ------------------------------------ | ------------------------------- |
+| **Authentication** | Verifying **who** the user is        | Login with username/password    |
+| **Authorization**  | Verifying **what** a user can access | Only admin can access dashboard |
+
 
 
 

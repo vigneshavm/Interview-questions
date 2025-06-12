@@ -5,7 +5,7 @@
  
 
 
-**JavaScript Fundamentals Advance** - [ES6 Features](#key-es6-features)   -[Arrow funcation](#Arrow-Functions) • [Promises](#Promises)
+**JavaScript Fundamentals Advance** - [ES6 Features](#key-es6-features)   -[Arrow Functions](#Arrow-Functions) • [Promises](#Promises)
 • [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage)  
 
 
@@ -1463,6 +1463,31 @@ The primary difference between declaration and expression lies in hoisting, whil
 
 ---
 
+---
+##  Normal Function vs Arrow Function
+
+| Aspect              | Normal Function                                   | Arrow Function                              |
+|---------------------|--------------------------------------------------|---------------------------------------------|
+| `this` Binding       | Dynamic (`this` depends on call)                 | Lexical (`this` inherits from parent scope) |
+| `arguments` Object   |  Available                                      |  Not available                             |
+| Constructor Use      |  Yes                                            |  No                                        |
+| Hoisting             |  Fully hoisted (if declaration)                |  Not hoisted                               |
+| Usage as Methods     |  Recommended                                   | ⚠️ Not ideal for object methods              |
+
+```js
+function normalFunc() {
+  console.log(this);
+  console.log(arguments);
+}
+
+const arrowFunc = () => {
+  console.log(this);
+  // console.log(arguments); //  Error
+};
+```
+
+---
+
 ## **Arrow Functions**
 
 
@@ -1492,31 +1517,218 @@ const obj = {
 obj.greet(); // Outputs: Alice
 ```
 
----
-##  Normal Function vs Arrow Function
 
-| Aspect              | Normal Function                                   | Arrow Function                              |
-|---------------------|--------------------------------------------------|---------------------------------------------|
-| `this` Binding       | Dynamic (`this` depends on call)                 | Lexical (`this` inherits from parent scope) |
-| `arguments` Object   |  Available                                      |  Not available                             |
-| Constructor Use      |  Yes                                            |  No                                        |
-| Hoisting             |  Fully hoisted (if declaration)                |  Not hoisted                               |
-| Usage as Methods     |  Recommended                                   | ⚠️ Not ideal for object methods              |
+### ✅ **Q1: `this` Binding with Arrow vs Regular Function**
 
 ```js
-function normalFunc() {
-  console.log(this);
-  console.log(arguments);
-}
-
-const arrowFunc = () => {
-  console.log(this);
-  // console.log(arguments); //  Error
+const user = {
+  name: "Vignesh",
+  greet: function () {
+    setTimeout(function () {
+      console.log(`Hello, ${this.name}`);
+    }, 100);
+  }
 };
+
+user.greet();
+```
+
+> **Output:** `Hello, undefined`
+> Because regular function has its own `this` (global or `window` in browser)
+
+✅ **Fix with Arrow Function:**
+
+```js
+setTimeout(() => {
+  console.log(`Hello, ${this.name}`);
+}, 100);
+```
+
+> Output: `Hello, Vignesh` – arrow uses lexical `this` from `greet`
+
+---
+
+### ✅ **Q2: Implicit Return Confusion**
+
+```js
+const fn = () => 
+  { name: "JS" };
+
+console.log(fn());
+```
+
+> **Output:** `undefined`
+> Because `{}` is interpreted as a block, not an object.
+
+✅ **Fix:**
+
+```js
+const fn = () => ({ name: "JS" });
 ```
 
 ---
 
+### ✅ **Q3: Arrow Function in `map()` with `this`**
+
+```js
+function Person() {
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++;
+    console.log(this.age);
+  }, 1000);
+}
+
+new Person();
+```
+
+> ✅ Output: `1, 2, 3...` – `this` inside arrow function refers to `Person` instance
+> Arrow functions don't bind their own `this`, so it uses the constructor context.
+
+---
+
+### ✅ **Q4: Arrow Function as Constructor**
+
+```js
+const Person = (name) => {
+  this.name = name;
+};
+
+const p = new Person("John");
+```
+
+> ❌ **Error:** `Person is not a constructor`
+> Arrow functions **cannot be used with `new`**, they have no `[[Construct]]`.
+
+---
+
+### ✅ **Q5: Nested Arrow Function Scope**
+
+```js
+let length = 4;
+
+function callback() {
+  console.log(this.length);
+}
+
+const obj = {
+  length: 5,
+  method: function () {
+    arguments[0]();
+  }
+};
+
+obj.method(callback, 1);
+```
+
+> **Output:** `2`
+> `arguments[0]()` is called with `arguments` as `this`, and `arguments.length === 2`.
+
+---
+
+### ✅ **Q6: Arrow in Event Listeners**
+
+```js
+const button = {
+  label: "Click Me",
+  onClick: () => {
+    console.log(this.label);
+  }
+};
+
+button.onClick();
+```
+
+> **Output:** `undefined`
+> `this` inside arrow refers to global context, not `button`.
+
+✅ **Fix:**
+
+```js
+onClick: function () {
+  console.log(this.label);
+}
+```
+
+---
+
+### ✅ **Q7: Currying with Arrow Functions**
+
+```js
+const add = a => b => c => a + b + c;
+
+console.log(add(1)(2)(3));
+```
+
+> ✅ **Output:** `6`
+> Arrow functions are great for currying.
+
+---
+
+### ✅ **Q8: `arguments` Object in Arrow Functions**
+
+```js
+const fn = () => {
+  console.log(arguments);
+};
+
+fn(1, 2, 3);
+```
+
+> ❌ **Error:** `arguments is not defined`
+> Arrow functions do **not have their own `arguments`** object.
+
+✅ **Fix with normal function:**
+
+```js
+function fn() {
+  console.log(arguments);
+}
+```
+
+---
+
+### ✅ **Q9: Default Parameters + Arrow**
+
+```js
+const greet = (name = "Guest") => `Hello, ${name}`;
+
+console.log(greet());
+```
+
+> ✅ **Output:** `Hello, Guest`
+
+---
+
+### ✅ **Q10: Arrow Function Return with `reduce()`**
+
+```js
+const nums = [1, 2, 3];
+
+const total = nums.reduce((acc, val) => {
+  acc + val;
+}, 0);
+
+console.log(total);
+```
+
+> ❌ **Output:** `undefined`
+> Missing `return` – block arrow function requires explicit `return`.
+
+✅ Fix:
+
+```js
+nums.reduce((acc, val) => acc + val, 0);
+```
+
+---
+
+
+
+
+
+----
 
 
 #### **Anonymous Functions - Use Cases**

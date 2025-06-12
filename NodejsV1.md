@@ -1684,13 +1684,14 @@ Accept: application/vnd.company.v1+json
 
 ## request response query params
 
-| Part         | Example                                | Used For                       |
-| ------------ | -------------------------------------- | ------------------------------ |
-| `req.params` | `/users/:id` → `req.params.id`         | URL path variables             |
-| `req.query`  | `/users?role=admin` → `req.query.role` | Filtering, sorting, pagination |
-| `req.body`   | `{ "email": "a@b.com" }`               | JSON or form data in POST/PUT  |
-| `res.send()` | `res.send('Done')`                     | Send plain text response       |
-| `res.json()` | `res.json({ ok: true })`               | Send structured JSON           |
+| **Property / Method** | **Example**                                 | **Definition**                                                                    | **Used For**                               |
+| --------------------- | ------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------ |
+| `req.params`          | `/users/:id` → `req.params.id`              | Captures **dynamic values from URL path segments**                                | URL path variables (e.g., `/users/123`)    |
+| `req.query`           | `/users?role=admin` → `req.query.role`      | Parses **key-value pairs from the URL query string** (after `?`)                  | Filtering, sorting, pagination             |
+| `req.body`            | `{ "email": "a@b.com" }` → `req.body.email` | Holds **data sent in the request body**, typically JSON or form data              | POST/PUT requests (e.g., login, form data) |
+| `res.send()`          | `res.send('Done')`                          | Sends a **plain-text or HTML response** to the client                             | Simple text or HTML responses              |
+| `res.json()`          | `res.json({ ok: true })`                    | Sends a **JSON-formatted response**, auto-sets content-type to `application/json` | Structured API responses                   |
+
 
 
 

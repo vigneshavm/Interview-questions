@@ -4,7 +4,7 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
 
 
-**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern)
+**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders)
 
 **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
@@ -3410,6 +3410,149 @@ new ModuleFederationPlugin({
 ```
 
 ---
+
+
+
+
+
+## **Webpack Loaders**
+
+
+## ✅ Summary
+
+* Loaders handle **file transformations**.
+* Declared inside `module.rules` using `test`, `use`, etc.
+* They **chain**, and order matters!
+
+---
+
+**Loaders** in Webpack transform the source code of a module **before** it is added to the dependency graph (i.e., before bundling).
+
+> Loaders let Webpack process **non-JS files** like `.css`, `.scss`, `.ts`, `.png`, `.vue`, etc.
+
+---
+
+## 🔍 2. **Why Use Loaders?**
+
+| File Type         | Loader Used                   | Purpose                                 |
+| ----------------- | ----------------------------- | --------------------------------------- |
+| JavaScript (ES6+) | `babel-loader`                | Convert ES6+ to ES5 for browser support |
+| TypeScript        | `ts-loader` / `babel-loader`  | Compile `.ts` to `.js`                  |
+| CSS/SCSS          | `css-loader` + `style-loader` | Load CSS and inject into DOM            |
+| Images            | `file-loader` / `url-loader`  | Import images into JS                   |
+| HTML              | `html-loader`                 | Load HTML files into JS                 |
+| Vue               | `vue-loader`                  | Process `.vue` single-file components   |
+
+---
+
+## 🧰 3. **How Loaders Work**
+
+You define **rules** in `webpack.config.js` using the `module.rules` array.
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,          // Files to apply this rule to
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+---
+
+## 🔁 4. **Loader Execution Order**
+
+* If you use **multiple loaders**, they run **from right to left (or bottom to top)**.
+
+```js
+use: ['style-loader', 'css-loader']
+// 1. css-loader transforms CSS into CommonJS
+// 2. style-loader injects it into the DOM
+```
+
+---
+
+## 📦 5. **Common Loader Config Examples**
+
+### ✅ JavaScript with Babel
+
+```js
+{
+  test: /\.js$/,
+  exclude: /node_modules/,
+  use: 'babel-loader',
+}
+```
+
+### ✅ TypeScript
+
+```js
+{
+  test: /\.tsx?$/,
+  use: 'ts-loader',
+  exclude: /node_modules/,
+}
+```
+
+### ✅ CSS
+
+```js
+{
+  test: /\.css$/,
+  use: ['style-loader', 'css-loader'],
+}
+```
+
+### ✅ SCSS/SASS
+
+```js
+{
+  test: /\.scss$/,
+  use: ['style-loader', 'css-loader', 'sass-loader'],
+}
+```
+
+### ✅ Image Files
+
+```js
+{
+  test: /\.(png|jpg|gif|svg)$/,
+  type: 'asset/resource', // Webpack 5 built-in alternative to file-loader
+}
+```
+
+---
+
+## ⚙️ 6. Loaders vs Plugins
+
+| Aspect   | Loaders                             | Plugins                            |
+| -------- | ----------------------------------- | ---------------------------------- |
+| Purpose  | Transform files during bundling     | Extend Webpack’s capabilities      |
+| Use Case | Compile TS, load CSS, import images | Bundle optimization, env injection |
+| Executes | Per file                            | At specific build lifecycle stages |
+
+---
+
+## 🧠 Bonus: Inline Loader (rare)
+
+```js
+import styles from 'style-loader!css-loader!./styles.css';
+```
+
+(Not recommended – use `webpack.config.js` instead.)
+
+---
+
 
 
 

@@ -1,5 +1,5 @@
 
-**Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)   • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  - [Class](#class)  - [JavaScript & TypeScript Performance Optimization Checklist](#JavaScript-&-TypeScript-Performance-Optimization-Checklist)
+**Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)   • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  - [Class](#class)  - [JavaScript & TypeScript Performance Optimization Checklist](#JavaScript-TypeScript-Performance-Optimization-Checklist)
 
 **Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  
 
@@ -1915,7 +1915,7 @@ obj = null; // Now eligible for garbage collection
 
 
 
-## **JavaScript & TypeScript Performance Optimization Checklist**
+## **JavaScript TypeScript Performance Optimization Checklist**
 
 ### 🔁 **Code & Loop Optimization**
 

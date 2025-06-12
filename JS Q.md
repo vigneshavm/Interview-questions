@@ -4965,3 +4965,113 @@ for (const num of obj) {
 
 
 
+
+## **Web Communication Protocols**
+
+### ✅ **Comparison Table (Interview Quick Reference)**
+
+| Protocol  | Direction                        | Persistent?  | Real-Time?             | Use Case                  |
+| --------- | -------------------------------- | ------------ | ---------------------- | ------------------------- |
+| HTTP      | Request-Response                 | No           | ❌                      | REST APIs, web pages      |
+| HTTPS     | Secure HTTP                      | No           | ❌                      | Login, sensitive data     |
+| WebSocket | Bi-directional                   | Yes          | ✅                      | Chat, multiplayer games   |
+| SSE       | Server → Client                  | Yes          | ✅                      | Live news, logs           |
+| gRPC      | Request/Stream                   | Yes (HTTP/2) | ✅                      | Internal services, mobile |
+| MQTT      | Pub/Sub                          | Yes          | ✅                      | IoT, sensors              |
+| GraphQL   | Request/Response / Subscriptions | Depends      | ✅ (with Subscriptions) | Frontend APIs             |
+
+---
+
+
+ - Web communication protocols define **how data is transmitted between clients (e.g., browsers) and servers** over a network.
+ - Here are the main ones used in modern web development:
+
+---
+
+### 1. **HTTP (Hypertext Transfer Protocol)**
+
+* **Type:** Stateless, request-response
+* **Use case:** Most common protocol for REST APIs and web pages
+* **Ports:** 80 (HTTP), 443 (HTTPS)
+* **Example:**
+
+  ```http
+  GET /api/products HTTP/1.1
+  ```
+
+🔹 **Interview Tip:**
+HTTP is stateless — each request is independent unless you use cookies or tokens.
+
+---
+
+### 2. **HTTPS (Secure HTTP)**
+
+* **HTTP + SSL/TLS** encryption
+* Protects data from **MITM (man-in-the-middle)** attacks
+* Required for most modern APIs, login flows, and third-party integrations (e.g., Stripe)
+
+---
+
+### 3. **WebSocket**
+
+* **Type:** Full-duplex, persistent connection
+* **Use case:** Real-time apps like chat, games, live dashboards
+* **Port:** 80 (ws), 443 (wss)
+* **Key Feature:** Server can push data to client without polling
+
+```js
+const socket = new WebSocket("ws://localhost:3000");
+socket.onmessage = e => console.log(e.data);
+```
+
+---
+
+### 4. **SSE (Server-Sent Events)**
+
+* **Type:** One-way server → client stream
+* **Use case:** Live feeds, notifications
+* **Unlike WebSockets**, it doesn't allow client → server communication
+
+```js
+const evtSource = new EventSource('/events');
+evtSource.onmessage = e => console.log(e.data);
+```
+
+---
+
+### 5. **gRPC (Google Remote Procedure Call)**
+
+* **Type:** Binary, based on HTTP/2
+* **Use case:** Microservices or backend-to-backend systems needing high performance
+* **Data format:** Protocol Buffers (not JSON)
+
+🔹 **Example use:** Real-time communication between Node.js and Go microservices
+
+---
+
+### 6. **MQTT (Message Queuing Telemetry Transport)**
+
+* **Type:** Publish/subscribe protocol
+* **Use case:** IoT, low-bandwidth communication
+* **Example:** Smart devices, sensors sending updates to a broker
+
+---
+
+### 7. **GraphQL over HTTP/WebSocket**
+
+* **Type:** Query-based API over HTTP or WebSockets
+* **Use case:** Flexible API for frontend apps to fetch exactly the data needed
+* **Supports:** Subscriptions for real-time updates using WebSocket
+
+---
+
+
+### 💬 **Q: When would you choose WebSockets over HTTP?**
+
+* When the app needs **low-latency, real-time** updates (e.g., chat apps, stock tickers)
+* WebSockets maintain a persistent connection, unlike HTTP which is **stateless and short-lived**
+
+
+
+
+

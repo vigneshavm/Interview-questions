@@ -11,7 +11,9 @@
 | Specificity       | Inline > ID > Class > Element                           |
 | CSS Features      | Media queries, Flexbox/Grid, transitions, variables     |
 | Custom Tags       | Use `-`, `customElements.define`, optional Shadow DOM   |
+## 🧱 **HTML – Questions & Answers**
 
+---
 
 ### **HTML5 compared to HTML4?**
 
@@ -25,10 +27,14 @@ HTML5 introduced:
 
 ---
 
-### **difference between `<section>` and `<div>`?**
+### **Difference between `<section>` and `<div>`?**
 
 `<section>` is semantic — used for grouping related content.
 `<div>` is generic and non-semantic — used only for styling or layout.
+
+`<div>` is a generic container with no semantic meaning.
+`<section>` is a semantic tag that represents a standalone section of content (e.g., a group of related content with its own heading).
+Use `<section>` when the block has a meaningful role or heading.
 
 ```html
 <section>
@@ -37,11 +43,10 @@ HTML5 introduced:
 </section>
 ```
 
----
 
 ---
 
-### 🆚 `<div>` vs `<span>`
+### `<div>` vs `<span>`
 
 | Feature          | `<div>`                       | `<span>`                    |
 | ---------------- | ----------------------------- | --------------------------- |
@@ -76,7 +81,7 @@ HTML5 introduced:
 ---
 
 
-### **some HTML5 form enhancements?**
+### **HTML5 form enhancements?**
 
 
 * New input types: `email`, `tel`, `url`, `color`, `date`
@@ -87,7 +92,7 @@ HTML5 introduced:
 
 
 
-### ✅ Use of Semantic Tags in HTML5
+### Semantic Tags in HTML5
 
 **Semantic tags** clearly describe the **meaning** of the content they enclose, both for **developers** and **browsers (including screen readers & SEO engines)**.
 
@@ -148,7 +153,7 @@ HTML5 introduced:
 
 
 
-### ✅ 2 Ways to Create Custom Tags
+### Create Custom Tags
 
 #### 1. 🛠️ **Informal Custom Tags** (HTML only)
 
@@ -211,18 +216,9 @@ To truly define a **custom component**, use JavaScript:
 
 ---
 
-## 🧱 **HTML – Questions & Answers**
 
----
 
-### **difference between `<div>` and `<section>`?**
 
-**Answer:**
-`<div>` is a generic container with no semantic meaning.
-`<section>` is a semantic tag that represents a standalone section of content (e.g., a group of related content with its own heading).
-Use `<section>` when the block has a meaningful role or heading.
-
----
 
 ### **semantic HTML elements? Give examples.**
 
@@ -262,8 +258,6 @@ The `alt` attribute provides alternative text when an image can’t load and imp
 ## 🟦 CSS3 Interview Questions
 
 ### **major features of CSS3?**
-
-
 * Media queries (for responsive design)
 * Flexbox and Grid
 * Animations & transitions

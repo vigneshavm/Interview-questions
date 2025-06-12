@@ -841,6 +841,12 @@ console.log("4");
 
 Modules **split** code into reusable files.
 
+| Module System       | Synchronous or Asynchronous?  | Explanation                                                                                                                                                                                               |
+| ------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `require()`         | ✅ **Synchronous**             | Executes immediately when called. Loads modules **at runtime**, blocking until loaded.                                                                                                                    |
+| `import` / `export` | ⚠️ **Asynchronous (sort of)** | ES Modules are **loaded asynchronously**, but the `import` statement itself is **hoisted and static**. They must be declared **at the top-level** and cannot be wrapped inside functions or conditionals. |
+
+
 **Exporting (`math.js`)**  
 ```js
 export function add(a, b) {

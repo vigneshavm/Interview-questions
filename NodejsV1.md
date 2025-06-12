@@ -786,11 +786,22 @@ Absolutely! Here's an **interview-style breakdown** of the four main **child pro
 
 ---
 
-### 🧠 **Why Child Processes?**
+## 🧾 Interview Summary Table
 
-> Node.js is single-threaded, but for CPU-heavy tasks or running external scripts, you can create **child processes** to offload work without blocking the event loop.
+| Method       | Shell | Output | Best Use Case                        | Supports IPC | Suitable For Large Output |
+| ------------ | ----- | ------ | ------------------------------------ | ------------ | ------------------------- |
+| `spawn()`    | ❌     | Stream | Long-running or big output tasks     | ❌            | ✅                         |
+| `exec()`     | ✅     | Buffer | Short shell commands, pipelines      | ❌            | ❌                         |
+| `execFile()` | ❌     | Buffer | Run binaries securely                | ❌            | ❌                         |
+| `fork()`     | ❌     | IPC    | Node module child with communication | ✅            | ✅                         |
 
 ---
+
+### 🧠 Bonus Q: *Why use `fork()` instead of `spawn('node', [...])`?*
+
+> `fork()` is optimized for Node.js scripts, and it **automatically enables IPC** between parent and child. It simplifies communication and avoids manually setting up messaging channels.
+
+
 
 ## 🔧 1. `spawn()`
 
@@ -921,48 +932,7 @@ process.on('message', (msg) => {
 
 ---
 
-## 🧾 Interview Summary Table
 
-| Method       | Shell | Output | Best Use Case                        | Supports IPC | Suitable For Large Output |
-| ------------ | ----- | ------ | ------------------------------------ | ------------ | ------------------------- |
-| `spawn()`    | ❌     | Stream | Long-running or big output tasks     | ❌            | ✅                         |
-| `exec()`     | ✅     | Buffer | Short shell commands, pipelines      | ❌            | ❌                         |
-| `execFile()` | ❌     | Buffer | Run binaries securely                | ❌            | ❌                         |
-| `fork()`     | ❌     | IPC    | Node module child with communication | ✅            | ✅                         |
-
----
-
-### 🧠 Bonus Q: *Why use `fork()` instead of `spawn('node', [...])`?*
-
-> `fork()` is optimized for Node.js scripts, and it **automatically enables IPC** between parent and child. It simplifies communication and avoids manually setting up messaging channels.
-
----
-
-
----
-
-### 📦 **Example: Using `fork()`**
-```js
-const { fork } = require('child_process');
-
-const child = fork('child.js');
-
-child.on('message', (msg) => {
-  console.log('Message from child:', msg);
-});
-
-child.send({ hello: 'from parent' });
-```
-
-**child.js**
-```js
-process.on('message', (msg) => {
-  console.log('Message from parent:', msg);
-  process.send({ reply: 'hello back!' });
-});
-```
-
----
 
 
 

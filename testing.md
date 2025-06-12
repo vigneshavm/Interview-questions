@@ -4,7 +4,7 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
 
 
-**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders)
+**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
 
 **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
@@ -3553,6 +3553,219 @@ import styles from 'style-loader!css-loader!./styles.css';
 
 ---
 
+
+
+
+
+
+##  Webpack Optimization
+
+Webpack's optimization features help you:
+
+* Reduce **bundle size**
+* Improve **performance**
+* Enable **better caching**
+* Decrease **load times**
+
+> These features are mostly configured under the `optimization` field in `webpack.config.js`.
+
+---
+
+## 🛠️ Key Optimization Techniques
+
+### 1. **Mode: 'production'**
+
+```js
+mode: 'production'
+```
+
+Enables many optimizations by default:
+
+* Minification
+* Tree-shaking
+* Scope hoisting
+* Module concatenation
+
+---
+
+### 2. **Tree Shaking (Remove Unused Code)**
+
+Works automatically in production mode **with ES6 modules** (`import/export`).
+
+**Don't use `require()`** if you want tree shaking to work.
+
+```js
+// Only what is used will be included
+import { usefulFunction } from './utils';
+```
+
+---
+
+### 3. **Code Splitting**
+
+Split code into smaller chunks:
+
+```js
+optimization: {
+  splitChunks: {
+    chunks: 'all',
+  },
+}
+```
+
+This will:
+
+* Extract vendor code (`node_modules`) into a separate bundle
+* Enable lazy loading of routes/components
+
+---
+
+### 4. **Minification**
+
+#### JavaScript
+
+```js
+optimization: {
+  minimize: true,
+  minimizer: [new TerserPlugin()],
+}
+```
+
+#### CSS
+
+```js
+optimization: {
+  minimizer: [new CssMinimizerPlugin()]
+}
+```
+
+---
+
+### 5. **Caching Optimization**
+
+Use **content hashing** in filenames to take advantage of browser caching:
+
+```js
+output: {
+  filename: '[name].[contenthash].js',
+}
+```
+
+---
+
+### 6. **Tree Shakable Libraries**
+
+Prefer:
+
+* **lodash-es** over `lodash`
+* **date-fns** over `moment.js`
+
+These are modular and shakeable.
+
+---
+
+### 7. **Remove Dead Code with `sideEffects: false`**
+
+In `package.json`:
+
+```json
+"sideEffects": false
+```
+
+Or more selectively:
+
+```json
+"sideEffects": ["./src/styles.css"]
+```
+
+Helps Webpack know what’s safe to eliminate.
+
+---
+
+### 8. **Compression Plugins**
+
+Use gzip or Brotli:
+
+```js
+const CompressionPlugin = require('compression-webpack-plugin');
+
+plugins: [
+  new CompressionPlugin({
+    algorithm: 'gzip',
+    test: /\.(js|css|html|svg)$/,
+  })
+]
+```
+
+---
+
+### 9. **Bundle Analysis**
+
+See what’s inside your bundle:
+
+```sh
+npm install --save-dev webpack-bundle-analyzer
+```
+
+```js
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+plugins: [new BundleAnalyzerPlugin()]
+```
+
+---
+
+### 10. **Scope Hoisting**
+
+Enabled in production mode using **module concatenation**.
+
+```js
+optimization: {
+  concatenateModules: true,
+}
+```
+
+---
+
+## 🧠 Extra: Performance Hints
+
+```js
+performance: {
+  hints: 'warning', // or 'error'
+  maxAssetSize: 200000, // 200 KB
+}
+```
+
+---
+
+## ✅ Summary Table
+
+| Optimization         | Purpose                         |
+| -------------------- | ------------------------------- |
+| `mode: 'production'` | Enables all basic optimizations |
+| Tree shaking         | Remove unused code              |
+| SplitChunksPlugin    | Code splitting                  |
+| TerserPlugin         | JS minification                 |
+| CssMinimizerPlugin   | CSS minification                |
+| Content hashing      | Long-term caching               |
+| CompressionPlugin    | Smaller network transfers       |
+| BundleAnalyzerPlugin | Visualize bundle size           |
+
+---
+
+## 🧪 Sample `optimization` Block
+
+```js
+optimization: {
+  minimize: true,
+  minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+  splitChunks: {
+    chunks: 'all',
+  },
+  runtimeChunk: 'single',
+  concatenateModules: true,
+}
+```
 
 
 

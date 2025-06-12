@@ -1,6 +1,6 @@
 | **Category**                          | **Topics**                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **React Basics** | • [React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) •  [Virtual DOM](#virtual-dom) • [Single Page Applications (SPA)](#single-page-applications-spa) • [JSX vs HTML](#jsx-vs-html) • [Why Use React](#why-use-react) |
+| **React Basics** | • [React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) •  [Virtual DOM](#virtual-dom) • [Single Page Applications (SPA)](#single-page-applications-spa) • [JSX vs HTML](#jsx-vs-html) • [Why Use React](#why-use-react) - [React 18 key changes](#React-18-key-changes)
 | **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  |
@@ -4660,6 +4660,89 @@ Let me know if you'd like a **follow-up response** for:
 | Mobile web app (older browsers)              | Use **Touch Events**                  |
 | Stylus input (drawing apps, pressure data)   | ✅ Use **Pointer Events**              |
 | Fine control of input types                  | ✅ Use `pointerType`, `pressure`, etc. |
+
+
+
+Here’s how to **convert your explanation into an interview-style answer** for React 18’s new root API:
+
+---
+
+## React 18 key changes
+
+---
+
+### 🔑 **Summary (Key Points to Mention):**
+
+* New `createRoot` API replaces `render`
+* Enables **Concurrent Rendering**
+* `root.unmount()` replaces `unmountComponentAtNode`
+* Render callback removed — replaced by `useEffect` for side-effects
+* Designed for **better control and future scalability**
+
+This modernization aligns React’s architecture with future features like **automatic batching, transitions**, and **React Server Components**.
+
+
+In React 18, one of the major updates is the **introduction of a new root API** using `createRoot`, which replaces the legacy `render` method from `react-dom`.
+
+#### 🔧 **Before React 18 (Legacy Render API):**
+
+```js
+import { render } from 'react-dom';
+const container = document.getElementById('app');
+render(<App tab="home" />, container);
+```
+
+#### ⚡ **After React 18 (Concurrent Root API):**
+
+```js
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('app');
+const root = createRoot(container); // Enables concurrent features
+root.render(<App tab="home" />);
+```
+
+This change enables **Concurrent Rendering**, allowing React to interrupt rendering work and prioritize updates more efficiently — which helps improve user experience, especially in large apps.
+
+---
+
+### 🧹 **Unmounting Components:**
+
+Previously, we used:
+
+```js
+unmountComponentAtNode(container);
+```
+
+In React 18, this is handled by the root instance:
+
+```js
+root.unmount();
+```
+
+---
+
+### 🕒 **Handling Callback After Render:**
+
+In earlier versions, `render` supported a callback:
+
+```js
+render(<App />, container, () => console.log("rendered"));
+```
+
+This callback has been **removed in React 18**, especially because it behaves unpredictably with features like `Suspense`. Instead, React encourages using the `useEffect` hook:
+
+```js
+function AppWithCallbackAfterRender() {
+  useEffect(() => {
+    console.log("rendered");
+  }, []);
+
+  return <App tab="home" />;
+}
+```
+
+---
+
 
 
 

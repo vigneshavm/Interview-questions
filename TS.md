@@ -18,7 +18,7 @@
 
 **Functions & Behavior**     • [Function Overloading](#function-overloading)  • [Decorators](#decorators)  • [Declaration Merging](#declaration-merging)  
 
-**Objects & Collections**   • [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects)  • [`Map` vs `WeakMap`](#map-vs-weakmap)   • [`Set` vs `WeakSet`](#set-vs-weakset)
+**Objects & Collections**   • [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects)  • [`Map` vs `WeakMap`](#map-vs-weakmap)   • [`Set` vs `WeakSet`](#set-vs-weakset)  - [WeakMap and WeakSet Usage](#WeakMap-and-WeakSet-Usage)
 
 
 
@@ -1499,94 +1499,6 @@ Let me know if you’d like a cheat sheet or visual chart for this!
 
 
 
-## Map vs WeakMap
-
-| Feature                    | `Map`                                   | `WeakMap`                              |
-|---------------------------|------------------------------------------|----------------------------------------|
-| **Key types**             | Any value (primitives or objects)        | **Only objects** (not primitives)      |
-| **Garbage collection**    | Keys are **strongly referenced**         | Keys are **weakly referenced**         |
-| **Iterable**              | Yes (can use `forEach`, `for...of`)   | ❌ No (not iterable)                   |
-| **Size property**         | Has `.size` to get number of entries  | ❌ No `.size` property                 |
-| **Use case**              | General-purpose key-value storage        | Private data storage tied to objects   |
-| **Memory leak risk**      | Possible if not cleared manually         | Lower risk due to GC when keys die     |
-
----
-
-| **Example**
-```ts
-const map = new Map();
-map.set("key", "value");
-map.set({ id: 1 }, "object value");
-console.log(map.size); // 2
-```
-
-| **Example**
-```ts
-const weakMap = new WeakMap();
-let obj = { name: "Alice" };
-weakMap.set(obj, "some private data");
-
-// After `obj` is no longer referenced, it's eligible for garbage collection
-obj = null;
-```
-
-**When to use**
-- **Use `Map`**: when you need to iterate, count, or use non-object keys.
-- **Use `WeakMap`**: when storing **private data per object** that should not prevent garbage collection.
-
-
-
-
-
-
-## Set vs WeakSet
-
-
-
-| Feature                     | `Set`                                        | `WeakSet`                                      |
-|----------------------------|----------------------------------------------|------------------------------------------------|
-| **Value types**            | Any type (primitives or objects)             | **Only objects** (no primitives)               |
-| **Garbage collection**     | Values are strongly referenced               | Values are **weakly referenced**               |
-| **Iterable**               | Yes (`forEach`, `for...of`, spread, etc.) | ❌ No (not iterable, no `forEach`, no spread)  |
-| **Size property**          | Has `.size`                               | ❌ No `.size`                                   |
-| **Duplicates allowed?**    | ❌ No duplicates (same value only once)      | ❌ No duplicates                                |
-| **Use case**               | Unique list of values                       | Track object presence without preventing GC    |
-| **Memory management**      | Manual                                       | Automatic (objects are GC-ed when unreferenced) |
-
----
-
-
-| **Example**
-```ts
-const set = new Set();
-set.add(1);
-set.add(2);
-set.add(2); // Ignored (duplicate)
-set.add({ name: "Alice" });
-
-for (const val of set) {
-  console.log(val); // Iterates over values
-}
-```
-
-| **Example**
-```ts
-const weakSet = new WeakSet();
-let obj = { id: 1 };
-weakSet.add(obj);
-
-console.log(weakSet.has(obj)); // true
-obj = null; // Now eligible for garbage collection
-```
-
----
-
-**When to use**
-- **Use `Set`**: when you need a list of **unique values** and want to **iterate or check size**.
-- **Use `WeakSet`**: when you want to **track objects without preventing their garbage collection**, such as for **caching or tracking object state** internally.
-
-
-
 ## **Type Checking**
 To check the data type of a variable, you can use the `typeof` operator for primitives and `instanceof` for objects.
 
@@ -1874,6 +1786,128 @@ console.log(counter.getCount()); // ✅ 1
 ```
 
 ✅ `count` is **not accessible directly**, only via returned methods — thanks to **closure**.
+
+---
+
+
+
+
+
+## Map vs WeakMap
+
+| Feature                    | `Map`                                   | `WeakMap`                              |
+|---------------------------|------------------------------------------|----------------------------------------|
+| **Key types**             | Any value (primitives or objects)        | **Only objects** (not primitives)      |
+| **Garbage collection**    | Keys are **strongly referenced**         | Keys are **weakly referenced**         |
+| **Iterable**              | Yes (can use `forEach`, `for...of`)   | ❌ No (not iterable)                   |
+| **Size property**         | Has `.size` to get number of entries  | ❌ No `.size` property                 |
+| **Use case**              | General-purpose key-value storage        | Private data storage tied to objects   |
+| **Memory leak risk**      | Possible if not cleared manually         | Lower risk due to GC when keys die     |
+
+---
+
+| **Example**
+```ts
+const map = new Map();
+map.set("key", "value");
+map.set({ id: 1 }, "object value");
+console.log(map.size); // 2
+```
+
+| **Example**
+```ts
+const weakMap = new WeakMap();
+let obj = { name: "Alice" };
+weakMap.set(obj, "some private data");
+
+// After `obj` is no longer referenced, it's eligible for garbage collection
+obj = null;
+```
+
+**When to use**
+- **Use `Map`**: when you need to iterate, count, or use non-object keys.
+- **Use `WeakMap`**: when storing **private data per object** that should not prevent garbage collection.
+
+
+
+
+
+
+## Set vs WeakSet
+
+
+
+| Feature                     | `Set`                                        | `WeakSet`                                      |
+|----------------------------|----------------------------------------------|------------------------------------------------|
+| **Value types**            | Any type (primitives or objects)             | **Only objects** (no primitives)               |
+| **Garbage collection**     | Values are strongly referenced               | Values are **weakly referenced**               |
+| **Iterable**               | Yes (`forEach`, `for...of`, spread, etc.) | ❌ No (not iterable, no `forEach`, no spread)  |
+| **Size property**          | Has `.size`                               | ❌ No `.size`                                   |
+| **Duplicates allowed?**    | ❌ No duplicates (same value only once)      | ❌ No duplicates                                |
+| **Use case**               | Unique list of values                       | Track object presence without preventing GC    |
+| **Memory management**      | Manual                                       | Automatic (objects are GC-ed when unreferenced) |
+
+---
+
+
+| **Example**
+```ts
+const set = new Set();
+set.add(1);
+set.add(2);
+set.add(2); // Ignored (duplicate)
+set.add({ name: "Alice" });
+
+for (const val of set) {
+  console.log(val); // Iterates over values
+}
+```
+
+| **Example**
+```ts
+const weakSet = new WeakSet();
+let obj = { id: 1 };
+weakSet.add(obj);
+
+console.log(weakSet.has(obj)); // true
+obj = null; // Now eligible for garbage collection
+```
+
+---
+
+**When to use**
+- **Use `Set`**: when you need a list of **unique values** and want to **iterate or check size**.
+- **Use `WeakSet`**: when you want to **track objects without preventing their garbage collection**, such as for **caching or tracking object state** internally.
+
+
+#### **WeakMap and WeakSet Usage**
+
+- "**WeakMap** is a special kind of collection in JavaScript where we store key-value pairs."
+- "The **keys** must be **objects**, and the **values** can be anything."
+- "What makes it 'weak' is that the keys are **held weakly**, meaning if the object is no longer used elsewhere, it can be **garbage collected** automatically, and its entry in the WeakMap also disappears."
+- "**Use case**: It's helpful when we want to attach some data to an object **without stopping it from being cleaned up** when it's no longer needed."
+
+  **Example**:
+  ```javascript
+  let obj = {};
+  const weakMap = new WeakMap();
+  weakMap.set(obj, 'some data');
+  obj = null;  // The entry in WeakMap will be garbage collected
+  ```
+
+- **`WeakSet`**:
+
+- "**WeakSet** is very similar to a `Set`, but it only stores **objects** as its members."
+- "The key difference is that the objects are stored **weakly**, meaning they don't prevent garbage collection."
+- "**Use case**: You would use a `WeakSet` when you need to track objects, but you don't want their presence in the set to **prevent them from being garbage collected** when they're no longer in use."
+
+  **Example**:
+  ```javascript
+  let obj = {};
+  const weakSet = new WeakSet();
+  weakSet.add(obj);
+  obj = null;  // The object will be garbage collected
+  ```
 
 ---
 

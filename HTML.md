@@ -13,7 +13,7 @@
 | Custom Tags       | Use `-`, `customElements.define`, optional Shadow DOM   |
 
 
-### 1. **HTML5 compared to HTML4?**
+### **HTML5 compared to HTML4?**
 
 HTML5 introduced:
 
@@ -25,7 +25,7 @@ HTML5 introduced:
 
 ---
 
-### 2. **difference between `<section>` and `<div>`?**
+### **difference between `<section>` and `<div>`?**
 
 `<section>` is semantic — used for grouping related content.
 `<div>` is generic and non-semantic — used only for styling or layout.
@@ -76,7 +76,7 @@ HTML5 introduced:
 ---
 
 
-### 3. **some HTML5 form enhancements?**
+### **some HTML5 form enhancements?**
 
 
 * New input types: `email`, `tel`, `url`, `color`, `date`

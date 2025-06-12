@@ -14,7 +14,7 @@
 
 
 
-**Security**  - [Security](#Security) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    
+**Security**  - [Security](#Security)  - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    
 
 
 • [Input Validation](#input-validation-and-its-importance) |
@@ -2994,3 +2994,89 @@ const userService = new UserService(mysqlDB);
 In this example, we composed `add` and `multiply` functions, which means `multiply(5)` is executed first, and the result is passed into `add(15)`.
 
 ---
+
+
+
+
+
+
+
+
+
+
+---
+
+## **CORS**
+
+
+
+**CORS** stands for **Cross-Origin Resource Sharing**. It's a **security feature implemented by browsers** to restrict web pages from making **requests to a different origin** than the one that served the page.
+
+By default, browsers block **cross-origin AJAX calls** for security. CORS is a protocol that allows the **server** to indicate which origins are permitted.
+
+It’s primarily a **backend concern**. The **frontend** just makes the request; the **backend must respond with the correct headers** to allow or deny it.
+
+---
+
+
+
+An **origin** is defined as a combination of:
+
+* **Scheme** (http or https) +  * **Domain** + * **Port**
+
+Example:
+`http://example.com:3000` ≠ `https://example.com` ≠ `http://api.example.com`
+
+---
+
+
+
+Your **frontend** (React app) runs on `http://localhost:3000`, and your **backend API** runs on `http://localhost:5000`.
+
+If you try this in React:
+
+```js
+fetch('http://localhost:5000/api/data')
+```
+
+The browser will block it unless the **backend includes CORS headers**.
+
+---
+
+### 🔐 **CORS Response Header Example (from backend):**
+
+```http
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE
+Access-Control-Allow-Headers: Content-Type, Authorization
+```
+
+---
+
+### ⚙️ **How to enable CORS in Node.js (Express):**
+
+```js
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
+```
+
+---
+
+
+ - For **non-simple requests** (e.g., using `PUT`, `DELETE`, or custom headers), the browser sends an **OPTIONS** request first to check permissions.
+ - Your server must respond properly, or the main request will be blocked.
+
+ - * **Same-origin policy** is the default browser behavior that **blocks cross-origin requests**.
+ - * **CORS** is the mechanism to **relax** that restriction by letting the **server** explicitly **allow certain origins**.
+
+| Type          | Characteristics                                                               |
+| ------------- | ----------------------------------------------------------------------------- |
+| **Simple**    | `GET`, `POST`, `HEAD`, no custom headers, content-type is text/plain or form  |
+| **Preflight** | Uses methods like `PUT`, `DELETE`, or has custom headers like `Authorization` |
+
+
+

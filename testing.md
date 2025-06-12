@@ -4,7 +4,9 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
 
 
-- **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
+**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns) 
+
+**Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
 **NodeJs** -[Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest)  -- [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai)
 
@@ -18,8 +20,10 @@
 • [Input Validation](#input-validation-and-its-importance) |
 
 
-**Performance Optimization**
- | • [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    • [Lazy Loading](#lazy-loading)    • [Caching](#leveraging-caching-strategies-for-performance-optimization)    • [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    • [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    
+**Performance Optimization**  • [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    • [Lazy Loading](#lazy-loading)    • [Caching](#leveraging-caching-strategies-for-performance-optimization)    • [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    • [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    
+
+
+  
 
 ---
 
@@ -2376,3 +2380,422 @@ This config uses:
  - @typescript-eslint: for TypeScript support
  - eslint-plugin-react & react-hooks: for React + hooks linting
  - globals: enables window, document, etc.
+ - 
+
+
+
+
+ ## **Design Patterns**
+
+
+ 
+Design patterns are proven, reusable solutions to common problems in software design. They are not code templates but rather general solutions that can be adapted to specific needs. Design patterns improve code readability, reusability, maintainability, and scalability. They help developers avoid reinventing the wheel by providing standard approaches to solving design issues.
+
+**Example**:
+For instance, the **Singleton Pattern** ensures that a class has only one instance, which is useful in situations like managing database connections or configuration settings.
+
+---
+
+---
+
+### 📦 Creational Patterns
+
+| #  | Pattern         | Purpose                                          | JavaScript Example/Usage              |
+|:--:|------------------|--------------------------------------------------|---------------------------------------|
+| 1  | **Builder**       | Build complex objects step by step               | Fluent APIs, chainable methods        |
+| 2  | **Prototype**     | Clone or reuse existing objects                  | `Object.create()`, prototypes         |
+| 3  | **Singleton**     | Ensure only one instance exists                  | Module pattern, shared config state   |
+
+---
+
+### 🏗️ Structural Patterns
+
+| #  | Pattern            | Purpose                                           | JavaScript Example/Usage                  |
+|:--:|--------------------|---------------------------------------------------|-------------------------------------------|
+| 4  | **Adapter**         | Convert one interface to another                  | API format converters, wrapper classes    |
+| 5  | **Bridge**          | Separate abstraction from implementation          | UI platform adapters                      |
+| 6  | **Composite**       | Treat individual and composite objects uniformly  | DOM trees, React/Vue component trees      |
+| 7  | **Decorator**       | Add behavior to objects without modifying them    | Higher-order functions, decorators        |
+| 8  | **Facade**          | Simplify complex subsystems with one interface     | Utility libraries like jQuery             |
+| 9  | **Flyweight**       | Share small reusable objects                      | DOM optimization, game asset sharing      |
+| 10 | **Proxy**           | Control access to objects                         | ES6 `Proxy`, API calls, validation layers |
+
+---
+
+### 🧠 Behavioral Patterns
+
+| #  | Pattern                  | Purpose                                           | JavaScript Example/Usage               |
+|:--:|---------------------------|---------------------------------------------------|----------------------------------------|
+| 11 | **Chain of Responsibility** | Pass requests along a chain until handled        | Express.js middleware flow             |
+| 12 | **Command**               | Encapsulate a request as an object                | UI buttons triggering actions          |
+| 13 | **Iterator**              | Access elements of a collection sequentially      | `Symbol.iterator`, custom generators   |
+| 14 | **Mediator**              | Centralize communication between components       | Event bus, chat applications           |
+| 15 | **Memento**               | Save and restore object state                     | Undo/redo in text editors               |
+| 16 | **Observer**              | Notify objects on state changes                   | DOM events, Reactive programming (RxJS)|
+| 17 | **Visitor**               | Add new operations without changing structures    | Operations on data trees, AST traversal |
+
+
+
+| **Design Pattern**   | **Description** |
+|----------------------|-----------------|
+| **Singleton Pattern** | Ensures that a class has only one instance and provides a global point of access to it. Useful for services like logging or configuration where a single shared instance is needed. |
+| **Factory Pattern** | Provides a way to create objects without specifying the exact class. Defines an interface for object creation, but the instantiation is handled by methods or subclasses. Promotes loose coupling. |
+| **Module Pattern** | Encapsulates code in a self-contained unit to maintain a clean global namespace. Uses closures to expose public members while keeping other functionality private. |
+| **Observer Pattern** | A behavioral pattern where an object (subject) maintains a list of dependents (observers) and notifies them of changes. Useful in UI event handling or real-time systems. |
+| [Prototype Pattern](#prototype-pattern) | Creates new objects by cloning an existing object (prototype). Useful when object creation is costly. In JavaScript, implemented using `Object.create()`. |
+
+
+#### **Singleton Pattern**
+
+
+ 
+The **Singleton Pattern** ensures that a class has only one instance and provides a global point of access to that instance. This pattern is particularly useful for scenarios where only one object is needed to coordinate actions (like a logging service or a configuration manager).
+
+**Example**:
+```javascript
+class Singleton {
+  constructor() {
+    if (!Singleton.instance) {
+      Singleton.instance = this;
+    }
+    return Singleton.instance;
+  }
+
+  show() {
+    console.log("Singleton instance");
+  }
+}
+
+const instance1 = new Singleton();
+const instance2 = new Singleton();
+
+instance1.show();  // Outputs: Singleton instance
+console.log(instance1 === instance2);  // Outputs: true
+```
+
+Here, even though we create two instances of `Singleton`, they both point to the same object.
+
+---
+
+#### **Factory Pattern**
+
+
+ 
+The **Factory Pattern** provides a way to create objects without specifying the exact class of the object that will be created. It defines an interface for creating objects, but the actual creation is deferred to subclasses or methods. It helps in abstracting the instantiation logic and promotes loose coupling.
+
+**Example**:
+```javascript
+class Car {
+  drive() {
+    console.log("Driving a car");
+  }
+}
+
+class Bike {
+  drive() {
+    console.log("Riding a bike");
+  }
+}
+
+class VehicleFactory {
+  static createVehicle(type) {
+    if (type === "car") {
+      return new Car();
+    } else if (type === "bike") {
+      return new Bike();
+    }
+  }
+}
+
+const myCar = VehicleFactory.createVehicle("car");
+myCar.drive();  // Outputs: Driving a car
+```
+
+In this example, `VehicleFactory` abstracts the creation logic of different vehicle types.
+
+---
+
+#### **Module Pattern**
+
+
+ 
+The **Module Pattern** is used to encapsulate code in a self-contained unit, often to maintain a clean global namespace. It allows you to expose only the methods and properties you want to be publicly accessible, keeping other functionality private. This is typically done using closures.
+
+**Example**:
+```javascript
+const counterModule = (function() {
+  let count = 0;
+
+  return {
+    increment: function() {
+      count++;
+      console.log(count);
+    },
+    decrement: function() {
+      count--;
+      console.log(count);
+    },
+    getCount: function() {
+      return count;
+    }
+  };
+})();
+
+counterModule.increment();  // Outputs: 1
+counterModule.increment();  // Outputs: 2
+console.log(counterModule.getCount());  // Outputs: 2
+```
+
+In this example, the `counterModule` encapsulates the `count` variable, exposing only the public methods.
+
+---
+
+#### **Observer Pattern**
+
+
+ 
+The **Observer Pattern** is a behavioral design pattern where an object (the **subject**) maintains a list of its dependent objects (the **observers**) and notifies them of any state changes, typically by calling one of their methods. This pattern is useful in scenarios where multiple objects need to be updated when the state of another object changes, like in UI event handling or real-time notifications.
+
+**Example**:
+```javascript
+class Subject {
+  constructor() {
+    this.observers = [];
+  }
+
+  addObserver(observer) {
+    this.observers.push(observer);
+  }
+
+  notifyObservers(data) {
+    this.observers.forEach(observer => observer.update(data));
+  }
+}
+
+class Observer {
+  update(data) {
+    console.log("Received data:", data);
+  }
+}
+
+const subject = new Subject();
+const observer1 = new Observer();
+const observer2 = new Observer();
+
+subject.addObserver(observer1);
+subject.addObserver(observer2);
+
+subject.notifyObservers("New update available!");
+// Outputs:
+// Received data: New update available!
+// Received data: New update available!
+```
+
+Here, when the `Subject` notifies its observers, all registered observers react to the change.
+
+---
+
+#### **Prototype Pattern**
+
+
+ 
+The **Prototype Pattern** is a creational design pattern used to create new objects by cloning an existing object (prototype). It is particularly useful when object creation is costly, and you need to produce several identical objects. In JavaScript, this can be implemented using the `Object.create()` method to clone an object.
+
+**Example**:
+```javascript
+const carPrototype = {
+  drive() {
+    console.log("Driving a car");
+  },
+  stop() {
+    console.log("Stopping the car");
+  }
+};
+
+const car1 = Object.create(carPrototype);
+car1.drive();  // Outputs: Driving a car
+
+const car2 = Object.create(carPrototype);
+car2.stop();  // Outputs: Stopping the car
+```
+
+Here, `car1` and `car2` are clones of the `carPrototype`, sharing the same methods.
+
+---
+
+#### **Dependency Injection**
+
+
+ 
+**Dependency Injection (DI)** is a design pattern used to implement **inversion of control**, where an object’s dependencies (like services or components) are injected into it rather than the object creating them itself. DI promotes loose coupling between classes, making it easier to manage dependencies, test components, and scale applications.
+
+**Example**:
+```javascript
+class Engine {
+  start() {
+    console.log("Engine started");
+  }
+}
+
+class Car {
+  constructor(engine) {
+    this.engine = engine;
+  }
+
+  drive() {
+    this.engine.start();
+    console.log("Car is driving");
+  }
+}
+
+const engine = new Engine();
+const car = new Car(engine);  // Injecting the engine dependency
+car.drive();
+// Outputs:
+// Engine started
+// Car is driving
+```
+
+In this example, `Car` depends on `Engine`. Instead of `Car` creating its own engine, it receives an `Engine` instance via its constructor, making it easier to replace the `Engine` with a mock or a different implementation for testing.
+
+---
+
+
+
+### Input Validate 
+
+
+
+- In Node.js, input validation ensures that incoming data (from APIs, forms, etc.) meets required formats, types, and constraints.
+- It’s a **critical security measure** to prevent injection attacks and ensure data integrity.
+- Input validation in Node.js is best done using schema-based libraries like **Joi** or **express-validator**, which are **robust, readable, and secure**, making them ideal for production APIs and microservices.
+
+---
+
+---
+
+### 🔍 Common Approaches:
+
+#### 1. **Using Validation Libraries (Preferred)**
+
+* Popular and widely used:
+
+  * **Joi** (part of hapi ecosystem)
+  * **express-validator** (middleware for Express.js)
+  * **yup** (schema-based validation)
+
+##### ✅ Joi Example:
+
+```js
+const Joi = require('joi');
+
+const schema = Joi.object({
+  username: Joi.string().min(3).max(30).required(),
+  age: Joi.number().integer().min(0)
+});
+
+const { error, value } = schema.validate(req.body);
+if (error) return res.status(400).send(error.details[0].message);
+```
+
+##### ✅ express-validator Example:
+
+```js
+const { body, validationResult } = require('express-validator');
+
+app.post('/user', [
+  body('email').isEmail(),
+  body('password').isLength({ min: 5 })
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+});
+```
+
+---
+
+### 🔐 Why Input Validation Matters:
+
+* Prevents **SQL/NoSQL injection**
+* Avoids **application crashes** from unexpected input
+* Protects against **XSS** and other exploits
+* Enforces **data quality and contracts**
+
+---
+
+### 📦 Validation Best Practices:
+
+* Validate **on both frontend and backend**
+* Sanitize input to remove harmful content
+* Use **centralized validation schemas**
+* Reject unknown/unexpected fields (`stripUnknown: true` in Joi)
+
+---
+
+
+## Circuit Breaker
+
+- The **Circuit Breaker** is a **resilience pattern** used in distributed systems to **prevent cascading failures** and allow systems to recover gracefully when a downstream service is failing or unresponsive.
+
+- The **Circuit Breaker pattern** is a crucial component in **fault-tolerant microservices**, helping isolate failures and allowing systems to degrade gracefully instead of collapsing entirely.
+
+
+### 🧠 Why It's Important:
+
+* Prevents **system overload** from repeated failed calls.
+* Enables **fast failure**, improving user experience.
+* Allows **recovery** without restarting the entire service.
+
+---
+
+### 📦 Example (Microservices):
+
+Service A calls Service B. If B is down:
+
+* With Circuit Breaker:
+
+  * A stops calling B after repeated failures.
+  * It retries after a delay instead of hammering B continuously.
+
+---
+
+### 🔌 Real-World Analogy:
+
+Think of it like an electrical circuit breaker — it “trips” to **prevent overload or damage** when something goes wrong.
+
+---
+
+### 🔁 How It Works:
+
+The circuit breaker can be in one of **three states**:
+
+1. **Closed**:
+
+   * All requests pass through.
+   * If failures exceed a threshold, it **trips** (moves to Open).
+
+2. **Open**:
+
+   * Requests are **immediately rejected** (fail fast).
+   * A timeout begins (cool-down period).
+
+3. **Half-Open**:
+
+   * A limited number of requests are allowed to check if the service has recovered.
+   * If successful, the circuit **closes**; otherwise, it goes back to **Open**.
+
+---
+
+
+### 🛠️ Tools/Libraries:
+
+* **Node.js**: `opossum`
+
+
+
+
+
+
+
+
+---

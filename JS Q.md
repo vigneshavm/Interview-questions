@@ -6,7 +6,7 @@
 
 
 **JavaScript Fundamentals Advance** - [ES6 Features](#key-es6-features)   -[Arrow Functions](#Arrow-Functions) • [Promises](#Promises)
-• [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage)  
+• [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage)   - [Iterator](#Iterator) - [Generator function](#Generator-function)
 
 
 **Scope and `this`** - [Scope](#scope)    • [Global, Function, and Block Scope](#global-and-function-and-block-scope)    • [Lexical Scoping](#Lexical-Scoping)   • [THIS Keyword Behavior](#this-keyword-behavior)  • [new Keyword](#new-keyword)  • [Memory Leaks](#common-causes-of-memory-leaks) • [Memoization Techniques](#memoization-techniques) 
@@ -4861,6 +4861,105 @@ function deepClone(value) {
 
 const deepCopy = deepClone(original);
 ```
+
+
+
+
+
+###  **Iterator**
+
+
+
+ - Yes. In JavaScript, an **iterator** is an object that follows the **iterator protocol**, meaning it has a `next()` method which returns an object with two properties:
+
+- * `value`: the next value in the sequence,
+- * `done`: a boolean indicating if the sequence has ended.
+
+- You typically see iterators behind the scenes in constructs like `for...of`, `spread`, or with arrays, maps, sets, etc.
+
+```js
+const arr = [10, 20];
+const iter = arr[Symbol.iterator]();
+
+console.log(iter.next()); // { value: 10, done: false }
+```
+
+- This is especially useful when you want **custom control over iteration**.
+
+---
+
+###  **Generator function**
+
+ - A **generator function** in JavaScript is declared using `function*` and can pause its execution using the `yield` keyword.
+
+ - It automatically implements both the **iterator** and **iterable** protocols, so you can directly use it in `for...of` loops.
+
+ - The difference is that:
+
+ - * **Iterator** must be created and maintained manually.
+ - * **Generator** abstracts that logic; it internally tracks the state and simplifies the code.
+
+```js
+function* myGenerator() {
+  yield 1;
+  yield 2;
+}
+const gen = myGenerator();
+console.log(gen.next()); // { value: 1, done: false }
+```
+
+---
+
+###  **Generators - Real-world**
+
+
+
+ - Definitely. Generators are great for:
+
+ - * **Lazy evaluation** – yielding values on demand instead of computing everything up front.
+ - * **Streaming data** – for example, reading large files line by line.
+ - * **Asynchronous flows** – Redux-Saga uses generator functions to manage side effects in a more synchronous-looking way.
+ - * **Infinite sequences** – like a Fibonacci series or infinite counters.
+
+Example:
+
+```js
+function* idGenerator() {
+  let id = 1;
+  while (true) yield id++;
+}
+```
+
+---
+
+### **custom object iterable using a generator**
+
+- I'd define a generator function under the `Symbol.iterator` key of the object:
+
+```js
+const obj = {
+  *[Symbol.iterator]() {
+    yield 1;
+    yield 2;
+    yield 3;
+  }
+};
+
+for (const num of obj) {
+  console.log(num); // 1, 2, 3
+}
+```
+
+ - This allows the object to be looped using `for...of`, even though it's not a built-in iterable like Array or Set.
+
+---
+
+###  **Generator different from an async function?**
+
+ - A generator yields values **synchronously** using `yield`.
+ - In contrast, `async function`s return **promises** and use `await` to pause execution until the promise resolves.
+ - There’s also a special type of generator — `async function*` — which allows you to use `for await...of` to process async streams, such as from file systems or network sources.
+
 
 
 

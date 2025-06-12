@@ -884,7 +884,7 @@ display(); // Outputs: I'm global
 
 
 
-#### **Hoisting**
+## **Hoisting**
 
 - **Hoisting** is a JavaScript mechanism where:
   - Variable and function **declarations** are moved to the **top of their containing scope** during the compile phase.
@@ -907,6 +907,317 @@ function foo() {
 }
 ```
 In this example, `a` is hoisted but only the declaration (`var a;`) is hoisted, not the initialization. However, function declarations are hoisted fully, so `foo()` can be called before it’s defined.
+
+
+
+Sure! Here are some **JavaScript hoisting-based code snippet questions**, tailored for interviews. These test your understanding of how **variables** and **functions** are hoisted and initialized:
+
+---
+
+
+
+```js
+console.log(a);
+var a = 5;
+```
+
+> **Answer:** `undefined`
+> Because `var a` is hoisted but **not initialized**, so the variable exists at the top but has the value `undefined`.
+
+---
+
+
+
+```js
+console.log(b);
+let b = 10;
+```
+
+> **Answer:** ❌ `ReferenceError: Cannot access 'b' before initialization`
+> `let` is hoisted but placed in the **Temporal Dead Zone (TDZ)** until its declaration is evaluated.
+
+---
+
+
+
+```js
+sayHi();
+
+function sayHi() {
+  console.log("Hi!");
+}
+```
+
+> **Answer:** ✅ `"Hi!"`
+> Function declarations are **fully hoisted** — both name and body.
+
+---
+
+
+
+```js
+sayHello();
+
+var sayHello = function () {
+  console.log("Hello!");
+};
+```
+
+> **Answer:** ❌ `TypeError: sayHello is not a function`
+> Only the `var sayHello` declaration is hoisted (not the function assignment). So it's `undefined` at runtime.
+
+---
+
+
+
+```js
+function test() {
+  console.log(x);
+  var x = 2;
+}
+test();
+```
+
+> **Answer:** `undefined`
+> Inside the function, `var x` is hoisted to the top, but not initialized until the assignment.
+
+---
+
+
+
+```js
+console.log(typeof greet);
+function greet() {
+  return "Hello";
+}
+```
+
+> **Answer:** `"function"`
+> Because the function `greet` is fully hoisted before `typeof` is evaluated.
+
+---
+
+
+
+```js
+function foo() {
+  console.log(bar);
+  var bar = 1;
+  console.log(bar);
+}
+foo();
+```
+
+> **Answer:**
+
+```
+undefined
+1
+```
+
+
+Great! Let's go deeper with **complex hoisting questions** that cover a mix of `var`, `let`, `const`, functions, shadowing, and scope — perfect for **10+ years JavaScript interviews**.
+
+---
+
+###  **Function + Variable Hoisting Combo**
+
+```js
+var x = 21;
+
+var fun = function () {
+  console.log(x);
+  var x = 20;
+};
+
+fun();
+```
+
+> **Answer:** `undefined`
+> Inside the function:
+
+```js
+function () {
+  var x;          // hoisted
+  console.log(x); // undefined
+  x = 20;
+}
+```
+
+---
+
+###  **Let + Block Scope**
+
+```js
+let a = 10;
+
+{
+  console.log(a);
+  let a = 20;
+}
+```
+
+> **Answer:** `ReferenceError: Cannot access 'a' before initialization`
+> Because `let a` inside the block is hoisted but in TDZ.
+
+---
+
+###  **Function Declaration vs Function Expression**
+
+```js
+foo(); // ?
+
+function foo() {
+  console.log("Function Declaration");
+}
+
+bar(); // ?
+
+var bar = function () {
+  console.log("Function Expression");
+};
+```
+
+> **Answer:**
+
+```
+Function Declaration  
+TypeError: bar is not a function
+```
+
+> Because `foo` is hoisted with its body.
+> `bar` is hoisted as `undefined`.
+
+---
+
+###  **IIFE & Hoisting**
+
+```js
+(function () {
+  console.log(typeof myVar);
+  var myVar = "Hoisted?";
+})();
+```
+
+> **Answer:** `undefined`
+> `myVar` is hoisted inside the IIFE.
+
+---
+
+###  **let in Loop (Closure Trap)**
+
+```js
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+```
+
+> **Answer:** `3 3 3`
+> Because `var` is function-scoped — all callbacks reference the same `i`.
+
+✅ **Follow-up variant (fix using `let`):**
+
+```js
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+```
+
+> **Output:** `0 1 2` (each loop iteration has its own `i` binding due to `let` block scope)
+
+---
+
+###  **Shadowing With Function and Variable**
+
+```js
+var a = 1;
+
+function test() {
+  console.log(a);
+  function a() {}
+}
+
+test();
+```
+
+> **Answer:** `function a() {}`
+> Here, `function a()` is hoisted above the `console.log(a)`.
+
+---
+
+### **const Hoisting in TDZ**
+
+```js
+console.log(x);
+const x = 5;
+```
+
+> **Answer:** ❌ `ReferenceError: Cannot access 'x' before initialization`
+> `const` is hoisted but in the Temporal Dead Zone.
+
+---
+
+###  **Default Parameters + Hoisting**
+
+```js
+let x = 10;
+
+function demo(val = x) {
+  let x = 20;
+  console.log(val);
+}
+
+demo();
+```
+
+> **Answer:** ❌ `ReferenceError: Cannot access 'x' before initialization`
+> Because the `x` inside the function is in TDZ **even for default param evaluation**.
+
+---
+
+###  **Class Hoisting**
+
+```js
+const obj = new User();
+
+class User {
+  constructor() {
+    console.log("User created");
+  }
+}
+```
+
+> **Answer:** ❌ `ReferenceError: Cannot access 'User' before initialization`
+> Classes are **not hoisted** like functions.
+
+---
+
+###  **Multiple `var` Hoisting**
+
+```js
+function test() {
+  console.log(a);
+  var a = 1;
+  if (true) {
+    var a = 2;
+    console.log(a);
+  }
+  console.log(a);
+}
+test();
+```
+
+> **Answer:**
+
+```
+undefined
+2
+2
+```
+
+> Because `var a` is function-scoped. Redeclaration inside `if` block doesn't create a new scope.
+
+
 
 ---
 

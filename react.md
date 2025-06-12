@@ -4673,16 +4673,16 @@ Here’s how to **convert your explanation into an interview-style answer** for 
 
 ### 🔑 **Summary (Key Points to Mention):**
 
-* New `createRoot` API replaces `render`
-* Enables **Concurrent Rendering**
-* `root.unmount()` replaces `unmountComponentAtNode`
-* Render callback removed — replaced by `useEffect` for side-effects
-* Designed for **better control and future scalability**
-* React 18 enables **automatic batching across async boundaries**
-* Previously only React events were batched
-* Now works with timeouts, promises, native events
-* Improves **performance and efficiency** of updates
-* Can opt out using `flushSync` when needed
+| Feature            | Purpose                              |
+| ------------------ | ------------------------------------ |
+| `createRoot`       | Enables concurrent rendering         |
+| Automatic Batching | Fewer re-renders, better performance |
+| `useTransition`    | Mark updates as non-urgent           |
+| `useId`            | Avoid hydration mismatches           |
+| Improved Suspense  | For data fetching and SSR            |
+| Streaming SSR      | Faster server rendering              |
+| `flushSync`        | Opt-out of batching                  |
+
 
 This modernization aligns React’s architecture with future features like **automatic batching, transitions**, and **React Server Components**.
 

@@ -1403,7 +1403,32 @@ Promise.any([p1, p2]).then(console.log); // "Success!"
 
 A REST (Representational State Transfer) API is an architectural style that uses HTTP methods (GET, POST, PUT, DELETE) to perform CRUD operations on resources. Resources are identified by URIs.
 
+For example, when designing APIs in Node.js using Express, I follow these REST principles by structuring endpoints cleanly (/api/products/:id), keeping them stateless, and using HTTP methods semantically. I also handle proper status codes and ensure APIs are versioned and cacheable when needed.
+
 ---
+
+## **REST API design principles?**
+- Use **nouns**, not verbs in URIs: `/users`, not `/getUsers`
+- Use proper HTTP methods
+- Use **plural nouns** for collections
+- Return appropriate status codes
+- Version your API: `/api/v1/users`
+- Support filtering, pagination, and sorting with query params
+
+---
+
+## **Versioning in REST APIs?**
+
+Via URL versioning:
+```ts
+GET /api/v1/users
+```
+Or via headers (less common):
+```http
+GET /users
+Accept: application/vnd.company.v1+json
+```
+
 
 ## **HTTP methods && use cases?**
 | Method | Use Case |
@@ -1429,29 +1454,6 @@ router.delete('/users/:id', deleteUser);
 
 
 
----
-
-## **REST API design principles?**
-- Use **nouns**, not verbs in URIs: `/users`, not `/getUsers`
-- Use proper HTTP methods
-- Use **plural nouns** for collections
-- Return appropriate status codes
-- Version your API: `/api/v1/users`
-- Support filtering, pagination, and sorting with query params
-
----
-
-## **Versioning in REST APIs?**
-
-Via URL versioning:
-```ts
-GET /api/v1/users
-```
-Or via headers (less common):
-```http
-GET /users
-Accept: application/vnd.company.v1+json
-```
 
 ---
 

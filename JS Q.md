@@ -1,8 +1,8 @@
 **JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   
 
 
-**Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy)
-
+**Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects)  
+ 
 
 
 **JavaScript Fundamentals Advance** - [ES6 Features](#key-es6-features)    • [Promises](#Promises)
@@ -18,7 +18,7 @@
 **Asynchronous JavaScript** - [Sync vs Async Fn](#synchronous-vs-asynchronous-functions)    • [Async Errors](#handling-async-errors)    • [setTimeout vs setImmediate vs process.nextTick()](#settimeout-and-setimmediate-and-processnexttick)    • [Event Loop & Call Stack](#event-loop--call-stack)      • [Garbage Collection](#javascript-garbage-collection)    • [Extend Built-in Objects](#extending-built-in-objects)  
 
 
-**Objects and Classes** • [Prototypes](#understanding-__proto__-and-prototypes)  - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)     • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)   • [Map Key References](#map-key-references-with-objects)  
+**Objects and Classes** • [Prototypes](#understanding-__proto__-and-prototypes)  - [Mutable vs Immutable Objects](#mutable-vs-immutable-objects)    • [Object.assign() vs Spread Operator](#objectassign-vs-spread-operator)    • [Object.create() and Prototype Chains](#object-create-and-prototype-chains)    • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions)    • [Static Class Members](#static-class-members)    • [Getters and Setters](#getters-and-setters)    • [Inheritance](#inheritance)    • [Usage of `super()`](#usage-of-super-in-classes)     • [in Operator vs hasOwnProperty()](#in-operator-vs-hasownproperty)   
 
 
 **CSS and DOM Manipulation** - [innerHTML vs textContent](#innerhtml-vs-textcontent)    • [CSS Manipulation](#css-manipulation)  

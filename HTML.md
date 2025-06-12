@@ -694,4 +694,255 @@ Let me know if you'd like:
 
 
 
+## **SCSS**
+
+---
+
+### **1. What is SCSS? How is it different from CSS?**
+
+**Answer:**
+SCSS (Sassy CSS) is a syntax of Sass (Syntactically Awesome Stylesheets), a CSS preprocessor that adds powerful features such as:
+
+* Variables
+* Nesting
+* Mixins
+* Functions
+* Partials and imports
+
+**Difference:**
+
+* SCSS uses **CSS-like syntax** (curly braces and semicolons).
+* SCSS files use `.scss` extension.
+* SCSS is a superset of CSS, so every valid CSS file is also a valid SCSS file.
+
+---
+
+### **2. What are variables in SCSS? How are they useful?**
+
+**Answer:**
+Variables allow you to **store reusable values** like colors, fonts, or sizes.
+
+```scss
+$primary-color: #3498db;
+
+.button {
+  background-color: $primary-color;
+}
+```
+
+They reduce repetition and improve maintainability.
+
+---
+
+### **3. How does nesting work in SCSS?**
+
+**Answer:**
+SCSS allows **nesting of selectors**, which mirrors the HTML structure and improves readability.
+
+```scss
+.navbar {
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+```
+
+**⚠️ Caution:** Over-nesting can lead to **specificity issues** and large CSS files.
+
+---
+
+### **4. What are mixins in SCSS?**
+
+**Answer:**
+Mixins allow you to **reuse groups of styles** with optional parameters.
+
+```scss
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  @include flex-center;
+}
+```
+
+You can also pass arguments:
+
+```scss
+@mixin theme($color) {
+  background-color: $color;
+}
+```
+
+---
+
+### **5. What are functions in SCSS?**
+
+**Answer:**
+Functions return a value and can be used in calculations:
+
+```scss
+@function half($value) {
+  @return $value / 2;
+}
+
+.box {
+  width: half(100px);
+}
+```
+
+---
+
+## ⚙️ **Intermediate SCSS Questions**
+
+---
+
+### **6. Difference between mixins and functions in SCSS?**
+
+| Feature | Mixin                     | Function                  |
+| ------- | ------------------------- | ------------------------- |
+| Purpose | Apply styles              | Return values             |
+| Usage   | `@include`                | Can be used in properties |
+| Output  | Multiple CSS declarations | Single value (usually)    |
+
+---
+
+### **7. What is `@extend` and when to use it?**
+
+**Answer:**
+`@extend` lets you inherit styles from another selector.
+
+```scss
+.btn {
+  padding: 10px;
+  color: white;
+}
+
+.btn-primary {
+  @extend .btn;
+  background-color: blue;
+}
+```
+
+**⚠️ Use sparingly** — overuse may create bloated CSS due to selector duplication.
+
+---
+
+### **8. What are partials in SCSS?**
+
+**Answer:**
+Partials are small SCSS files that can be **imported into other SCSS files** using `@use` or `@import`.
+
+```scss
+// _variables.scss
+$primary-color: #333;
+
+// main.scss
+@use 'variables';
+```
+
+By convention, partial filenames start with an underscore (`_`).
+
+---
+
+### **9. Difference between `@use` and `@import` in SCSS?**
+
+| Feature | `@import`                      | `@use` (Recommended)   |
+| ------- | ------------------------------ | ---------------------- |
+| Scope   | Global                         | Namespaced             |
+| Reuse   | Can be imported multiple times | Imported once per file |
+| Future  | Deprecated in Dart Sass        | Preferred and modular  |
+
+---
+
+### **10. How can you organize SCSS files in a large project?**
+
+**Answer:**
+Use the **7–1 pattern**:
+
+```
+scss/
+|– abstracts/ (variables, mixins, functions)
+|– base/      (reset, typography)
+|– components/ (buttons, cards)
+|– layout/     (header, footer)
+|– pages/      (page-specific styles)
+|– themes/     (theme files)
+|– vendors/    (3rd party libs)
+main.scss
+```
+
+---
+
+## 🧠 **Advanced & Real-World Questions**
+
+---
+
+### **11. What are control directives in SCSS?**
+
+SCSS supports loops and conditionals:
+
+* `@if` / `@else`
+* `@for`
+* `@each`
+* `@while`
+
+```scss
+@for $i from 1 through 5 {
+  .m-#{$i} {
+    margin: $i * 10px;
+  }
+}
+```
+
+---
+
+### **12. How do you debug SCSS?**
+
+Use:
+
+* **Source maps** in dev mode
+* Break code into small partials
+* Avoid deeply nested selectors
+* Linting with tools like **stylelint**
+
+---
+
+### **13. Can SCSS variables be used in JavaScript?**
+
+Not directly. To share values:
+
+* Extract common variables to a separate file (like JSON)
+* Or use CSS variables (`--var`) and access via JavaScript
+
+---
+
+### **14. How does SCSS improve maintainability?**
+
+SCSS makes CSS:
+
+* More **modular**
+* Easier to **reuse**
+* Easier to **scale** in large apps
+* More **DRY** (Don't Repeat Yourself)
+
+---
+
+### **15. What are some common pitfalls with SCSS?**
+
+* Over-nesting leads to **high specificity**
+* Overuse of `@extend` creates large selectors
+* Deep inheritance chains reduce readability
+* Using global variables everywhere
+
+---
+
+
+
 

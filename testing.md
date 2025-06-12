@@ -3008,13 +3008,10 @@ In this example, we composed `add` and `multiply` functions, which means `multip
 
 ## **CORS**
 
-
-
-**CORS** stands for **Cross-Origin Resource Sharing**. It's a **security feature implemented by browsers** to restrict web pages from making **requests to a different origin** than the one that served the page.
-
-By default, browsers block **cross-origin AJAX calls** for security. CORS is a protocol that allows the **server** to indicate which origins are permitted.
-
-It’s primarily a **backend concern**. The **frontend** just makes the request; the **backend must respond with the correct headers** to allow or deny it.
+ - **CORS** stands for **Cross-Origin Resource Sharing**. 
+ - It's a **security feature implemented by browsers** to restrict web pages from making **requests to a different origin** than the one that served the page.
+ - By default, browsers block **cross-origin AJAX calls** for security. CORS is a protocol that allows the **server** to indicate which origins are permitted.
+ - It’s primarily a **backend concern**. The **frontend** just makes the request; the **backend must respond with the correct headers** to allow or deny it.
 
 ---
 

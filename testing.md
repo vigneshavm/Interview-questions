@@ -4,7 +4,7 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
 
 
-**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns) 
+**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern)
 
 **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
@@ -3074,6 +3074,72 @@ app.use(cors({
 | ------------- | ----------------------------------------------------------------------------- |
 | **Simple**    | `GET`, `POST`, `HEAD`, no custom headers, content-type is text/plain or form  |
 | **Preflight** | Uses methods like `PUT`, `DELETE`, or has custom headers like `Authorization` |
+
+
+
+##  **Microfrontend design pattern**
+
+
+- The **Microfrontend** design pattern applies the concept of **microservices to the frontend**.
+- It breaks a large monolithic frontend into **smaller, independent, and loosely coupled applications**
+- Each owned by different teams and responsible for a specific business feature.
+
+Each microfrontend can:
+
+- * Be developed using **different frameworks** (e.g., React, Angular, Vue)
+- * Be **deployed independently**
+- * Integrate at runtime into a **shell or container app**
+
+- This pattern improves **team autonomy**, **scalability**, and allows **incremental upgrades** without rewriting the entire app.
+
+
+- In my experience, microfrontends work best when the organization is structured for it — with cross-functional teams owning features end-to-end. 
+- I've used tools like Webpack Module Federation to integrate and deploy independent React apps into a container seamlessly.
+
+---
+
+### ✅ **Example:**
+
+In an e-commerce platform:
+
+* The **Product page** might be a React app,
+* The **Cart module** might be built in Angular,
+* The **User profile** in Vue — all loaded into one unified frontend.
+
+---
+
+### 🔧 **Common Tools & Technologies:**
+
+* **Webpack Module Federation** – for sharing code and modules at runtime
+* **Single-SPA** – for orchestrating microfrontends
+* **Web Components** – for framework-agnostic encapsulation
+* **Nx or Turborepo** – for monorepo support
+
+---
+
+### 🚧 **Challenges & Solutions:**
+
+| Challenge        | Solution                                         |
+| ---------------- | ------------------------------------------------ |
+| Shared state     | Use global events, Redux, or shared context APIs |
+| CSS conflicts    | Use CSS Modules or Shadow DOM                    |
+| Auth/session     | Centralized auth layer or shared tokens          |
+| Version mismatch | Align shared dependencies via Module Federation  |
+
+---
+
+### ✅ **When to use:**
+
+* Large teams working on different frontend features
+* Need for independent deployment
+* Migrating from monolith to modular
+
+### ❌ **Avoid when:**
+
+* The app is small or single-team owned — adds unnecessary complexity
+
+---
+
 
 
 

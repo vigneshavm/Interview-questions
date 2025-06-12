@@ -30,7 +30,7 @@
 
 **Browser APIs** - [Cookies vs sessionStorage vs localStorage](#cookies-and-sessionStorage-and-localStorage)    • [Window vs Document](#window-vs-document)    • [window.history API](#using-window-history-api)    • [Web Workers](#web-workers)    • [WebSocket API](#websocket-api)  
 
-**Error Handling** - [Custom Error](#custom-error)    • [Unexpected Outputs](#understanding-unexpected-outputs)  
+**Error Handling** - [Custom Error](#custom-error)    • [Unexpected Outputs](#understanding-unexpected-outputs)  - [Web Communication Protocols](#Web-Communication-Protocols)
 
 
 

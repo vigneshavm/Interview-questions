@@ -1,6 +1,6 @@
 **Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues) 
 
-**Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [HTTP Status Codes](#status-codes)
+**Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [request response query params][#request-response-query-params] - [HTTP Status Codes](#status-codes)
 
 **Concurrency & Processes**  - [Event Loop](#event-loop)    - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks)  - [Async Execution Order](#Async-Execution-Order)   - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture)  -[libuv](#libuv)
 
@@ -1681,6 +1681,18 @@ Or via headers (less common):
 GET /users
 Accept: application/vnd.company.v1+json
 ```
+
+## request response query params
+
+| Part         | Example                                | Used For                       |
+| ------------ | -------------------------------------- | ------------------------------ |
+| `req.params` | `/users/:id` → `req.params.id`         | URL path variables             |
+| `req.query`  | `/users?role=admin` → `req.query.role` | Filtering, sorting, pagination |
+| `req.body`   | `{ "email": "a@b.com" }`               | JSON or form data in POST/PUT  |
+| `res.send()` | `res.send('Done')`                     | Send plain text response       |
+| `res.json()` | `res.json({ ok: true })`               | Send structured JSON           |
+
+
 
 
 ## **HTTP methods && use cases?**

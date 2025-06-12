@@ -2395,9 +2395,6 @@ socket.onmessage = function(event) {
 
 #### **Web Workers**
 
-
-
-**Web Workers** 
  - Web Workers allow you to run JavaScript code in the background, on a separate thread, without blocking the main execution thread. 
  - This is especially useful for tasks that involve heavy computation or long-running processes, preventing the UI from freezing.
 

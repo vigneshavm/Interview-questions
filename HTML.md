@@ -58,7 +58,7 @@ Use `<section>` when the block has a meaningful role or heading.
 
 ---
 
-#### ✅ Example
+  Example
 
 ```html
 <!-- div groups content and takes full width -->
@@ -73,7 +73,7 @@ Use `<section>` when the block has a meaningful role or heading.
 
 ---
 
-#### 🧠 When to Use:
+  When to Use:
 
 * Use **`<div>`**: when structuring or grouping content (layouts, sections, cards).
 * Use **`<span>`**: when targeting a **small portion of inline text** for styling or scripting.
@@ -98,7 +98,7 @@ Use `<section>` when the block has a meaningful role or heading.
 
 ---
 
-#### 🔹 Common Semantic Tags & Their Uses
+ 🔹 Common Semantic Tags & Their Uses
 
 | Tag         | Purpose                               | Example Usage                     |
 | ----------- | ------------------------------------- | --------------------------------- |
@@ -114,16 +114,16 @@ Use `<section>` when the block has a meaningful role or heading.
 
 ---
 
-#### 🧠 Why Use Semantic Tags?
+  Why Use Semantic Tags?
 
-* ✅ **Accessibility** – Screen readers can navigate content better
-* ✅ **SEO** – Search engines understand page structure more effectively
-* ✅ **Maintainability** – Easier for developers to read and maintain code
-* ✅ **Consistency** – Clear separation of sections improves structure
+*  **Accessibility** – Screen readers can navigate content better
+*  **SEO** – Search engines understand page structure more effectively
+*  **Maintainability** – Easier for developers to read and maintain code
+*  **Consistency** – Clear separation of sections improves structure
 
 ---
 
-#### 💡 Example:
+ 💡 Example:
 
 ```html
 <header>
@@ -155,7 +155,7 @@ Use `<section>` when the block has a meaningful role or heading.
 
 ### Create Custom Tags
 
-#### 1. 🛠️ **Informal Custom Tags** (HTML only)
+ 1. 🛠️ **Informal Custom Tags** (HTML only)
 
 You *can* use unknown tags in HTML — but they won't have any functionality or semantic meaning.
 
@@ -178,7 +178,7 @@ my-card {
 
 ---
 
-#### 2. ⚙️ **Formal Custom Elements (Web Components)**
+ 2. ⚙️ **Formal Custom Elements (Web Components)**
 
 To truly define a **custom component**, use JavaScript:
 
@@ -200,7 +200,7 @@ To truly define a **custom component**, use JavaScript:
 
 ---
 
-#### 🔒 Rules for Custom Tags
+ 🔒 Rules for Custom Tags
 
 * Must contain a **dash** (`-`), e.g. `my-card`, `user-profile`
 * Should be defined via `customElements.define()`
@@ -208,7 +208,7 @@ To truly define a **custom component**, use JavaScript:
 
 ---
 
-#### 🎯 Use Cases
+ 🎯 Use Cases
 
 * Encapsulated UI components (`<user-profile>`, `<app-navbar>`)
 * Reusable design elements (`<product-card>`, `<fancy-button>`)
@@ -280,7 +280,7 @@ It means you're setting **vertical and horizontal padding** like this:
 
 ---
 
-#### ✅ Breakdown:
+  Breakdown:
 
 | Direction  | Value  |
 | ---------- | ------ |
@@ -291,7 +291,7 @@ It means you're setting **vertical and horizontal padding** like this:
 
 ---
 
-#### 🔁 Shorthand Pattern (clockwise logic):
+ 🔁 Shorthand Pattern (clockwise logic):
 
 CSS shorthand follows this pattern based on number of values:
 
@@ -302,7 +302,7 @@ CSS shorthand follows this pattern based on number of values:
 
 ---
 
-#### 📌 Example:
+ 📌 Example:
 
 ```css
 .box {
@@ -336,7 +336,7 @@ This applies:
 
 ---
 
-#### 🔁 Optional Add-On (if asked for an example)
+ 🔁 Optional Add-On (if asked for an example)
 
  - In Angular, I often use this for dropdowns or modals:
 
@@ -375,7 +375,7 @@ The **CSS Box Model** describes how elements are structured and spaced on a web 
 
 ---
 
-#### ✅ Box Model Structure
+  Box Model Structure
 
 ```
 +-------------------------------+
@@ -394,7 +394,7 @@ The **CSS Box Model** describes how elements are structured and spaced on a web 
 
 ---
 
-#### 📋 Box Model Components
+ 📋 Box Model Components
 
 | Part        | Description                                                   |
 | ----------- | ------------------------------------------------------------- |
@@ -405,7 +405,7 @@ The **CSS Box Model** describes how elements are structured and spaced on a web 
 
 ---
 
-#### 🧪 Example (CSS):
+ 🧪 Example (CSS):
 
 ```css
 .box {
@@ -416,7 +416,7 @@ The **CSS Box Model** describes how elements are structured and spaced on a web 
 }
 ```
 
-#### 🧮 Total Element Size (Standard Model):
+ 🧮 Total Element Size (Standard Model):
 
 ```
 Total width = content width + left/right padding + border + margin
@@ -425,7 +425,7 @@ Total width = content width + left/right padding + border + margin
 
 ---
 
-#### 🔄 `box-sizing` Property
+ 🔄 `box-sizing` Property
 
 To make sizing easier, you can use:
 
@@ -539,8 +539,8 @@ A **mixin** is a reusable block of styles you can include in multiple selectors.
 
 | Concept         | `@mixin`      | `@extend`        |
 | --------------- | ------------- | ---------------- |
-| Reusability     | ✅ Yes         | ✅ Yes            |
-| With Parameters | ✅ Yes         | ❌ No             |
+| Reusability     |  Yes         |  Yes            |
+| With Parameters |  Yes         | ❌ No             |
 | Code Output     | Repeats code  | Merges selectors |
 | Flexibility     | More flexible | Less flexible    |
 
@@ -683,10 +683,10 @@ Let me know if you'd like:
 
 | Feature         | CSS-in-JS                  | Sass                     |
 | --------------- | -------------------------- | ------------------------ |
-| Scoped Styles   | ✅ Automatic                | ❌ Needs manual naming    |
-| Dynamic Styling | ✅ via props                | ❌ Requires extra setup   |
-| Performance     | ⚠ Slightly heavier bundle  | ✅ Leaner compiled output |
-| Tooling         | ✅ Theming, SSR, TS support | ✅ Good build integration |
+| Scoped Styles   |  Automatic                | ❌ Needs manual naming    |
+| Dynamic Styling |  via props                | ❌ Requires extra setup   |
+| Performance     | ⚠ Slightly heavier bundle  |  Leaner compiled output |
+| Tooling         |  Theming, SSR, TS support |  Good build integration |
 | Learning Curve  | Medium                     | Low                      |
 
 

@@ -978,11 +978,19 @@ const UserList = () => {
   const [search, setSearch] = useState('');
 
   // Fetch users on component mount
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users') // Dummy API
-      .then(res => res.json())
-      .then(data => setUsers(data))
-      .catch(err => console.error('Error fetching users:', err));
+ useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users');
+        const data = await res.json();
+        console.log(data, "user API data");
+        setUsers(data);
+      } catch (err) {
+        console.log("Error fetching user details", err);
+      }
+    };
+
+    fetchData();
   }, []);
 
   // Filter users based on search

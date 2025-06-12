@@ -1,6 +1,6 @@
 **Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues) 
 
-**Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [request response query params][#request-response-query-params] - [HTTP Status Codes](#status-codes)
+**Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [request response query params](#request-response-query-params) - [HTTP Status Codes](#status-codes)
 
 **Concurrency & Processes**  - [Event Loop](#event-loop)    - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks)  - [Async Execution Order](#Async-Execution-Order)   - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture)  -[libuv](#libuv)
 

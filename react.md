@@ -1891,14 +1891,14 @@ In React, **component composition** is favored over **inheritance** as the prima
 
 - **Inheritance**, in contrast, is a traditional OOP approach where a class extends another to inherit behavior. React avoids this pattern because it can lead to rigid and complex hierarchies.
 
-🔸 **Why React prefers Composition**:
+**Why React prefers Composition**:
 - Easier to manage and understand
 - More flexible and modular
 - Encourages functional design
 
 🎯 **Summary**:  
 React promotes **composition** for sharing behavior and building components, because it's **simpler, more maintainable, and aligns better with React’s declarative model**, unlike inheritance which introduces tight coupling and complexity.
-🔸 **Example – Composition**:
+**Example – Composition**:
 ```jsx
 function Card({ title, children }) {
   return (
@@ -1954,7 +1954,7 @@ In other words, the input's value is **bound to a state variable**, and any chan
 Controlled components let React manage the input state, making them more predictable and powerful for building interactive forms.
 
 
-🔸 **Example:**
+**Example:**
 ```jsx
 function NameForm() {
   const [name, setName] = React.useState("");
@@ -2027,7 +2027,7 @@ You might choose **Uncontrolled Components** when:
  - Use **Controlled Components** when you need real-time updates, validation, or tighter control.
 
 ---
-🔸 **Example – Uncontrolled Input:**
+**Example – Uncontrolled Input:**
 ```jsx
 function LoginForm() {
   const inputRef = React.useRef();
@@ -2055,7 +2055,7 @@ It allows components to be **more flexible and reusable**, because you can injec
 
 ---
 
-### 🔸 **Example:**
+### **Example:**
 
 ```jsx
 function Wrapper({ children }) {
@@ -2127,7 +2127,7 @@ The `children` prop lets you **pass nested JSX content** to components, enabling
 ###  **Summary**:  
 Dynamic Routing allows React apps to respond to URL changes with **dynamic values**, enabling powerful and scalable navigation structures.
 
-### 🔸 **Example with `react-router-dom` v6:**
+### **Example with `react-router-dom` v6:**
 
 ```jsx
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
@@ -4678,6 +4678,11 @@ Here’s how to **convert your explanation into an interview-style answer** for 
 * `root.unmount()` replaces `unmountComponentAtNode`
 * Render callback removed — replaced by `useEffect` for side-effects
 * Designed for **better control and future scalability**
+* React 18 enables **automatic batching across async boundaries**
+* Previously only React events were batched
+* Now works with timeouts, promises, native events
+* Improves **performance and efficiency** of updates
+* Can opt out using `flushSync` when needed
 
 This modernization aligns React’s architecture with future features like **automatic batching, transitions**, and **React Server Components**.
 
@@ -4741,7 +4746,87 @@ function AppWithCallbackAfterRender() {
 }
 ```
 
+Here’s how to **frame this explanation of Automatic Batching in React 18** in a **clear, interview-ready format**:
+
 ---
+
+### **Interviewer:** Can you explain what automatic batching is in React 18 and how it's different from earlier versions?
+
+---
+
+### **automatic batching across async boundaries**
+
+Yes, in React, **batching** is the process of **grouping multiple state updates into a single re-render**, which improves performance.
+
+#### **Before React 18:**
+
+Batching was only supported **inside React event handlers** (like onClick, onChange).
+
+```js
+function handleClick() {
+  setCount(c => c + 1);
+  setFlag(f => !f);
+  // ✅ React batches and re-renders once
+}
+
+setTimeout(() => {
+  setCount(c => c + 1);
+  setFlag(f => !f);
+  // ❌ React re-renders twice (no batching)
+}, 1000);
+```
+
+Updates triggered in **non-React events** like `setTimeout`, `Promise`, or `native DOM listeners` were not batched — they caused multiple renders.
+
+---
+
+#### **In React 18:**
+
+With the introduction of `createRoot`, **automatic batching** is extended **across all contexts**, including:
+
+* `setTimeout`
+* `Promise.then`
+* `fetch().then`
+* Native DOM events
+
+```js
+setTimeout(() => {
+  setCount(c => c + 1);
+  setFlag(f => !f);
+  // ✅ React now batches and re-renders only once!
+}, 1000);
+```
+
+This drastically improves performance by **reducing unnecessary renders**, especially in complex asynchronous flows.
+
+---
+
+### 🚫 **Need to Opt-Out?**
+
+React 18 allows you to opt out of batching using `flushSync`:
+
+```js
+import { flushSync } from 'react-dom';
+
+function handleClick() {
+  flushSync(() => {
+    setCounter(c => c + 1);
+  });
+  flushSync(() => {
+    setFlag(f => !f);
+  });
+}
+```
+
+Using `flushSync`, React flushes updates immediately, forcing DOM updates **between each call** — useful in rare cases where immediate updates are critical (e.g., measuring layout).
+
+---
+
+
+
+This change is **backward-incompatible**, but typically **results in fewer re-renders and better app responsiveness**.
+
+
 
 
 

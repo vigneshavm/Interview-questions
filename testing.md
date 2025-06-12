@@ -4,7 +4,8 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
 
 
-**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
+**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  
+• [KISS](#KISS)  • [DRY](#DRY)  • [SOLID](#SOLID) • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
 
 **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
@@ -3768,6 +3769,244 @@ optimization: {
 ```
 
 
+
+
+Absolutely! Here's a **real-time use case** applying **DRY**, **KISS**, and **SOLID** principles in a typical **React + Node.js** application scenario.
+
+---
+
+## 🧪 **Use Case: E-Commerce Product Management System**
+
+> You’re building a system to manage products: create, edit, list, apply discounts, and log actions.
+
+---
+
+## 🔁 1. **DRY**
+
+- (Don't Repeat Yourself)
+- **Real-time Benefit**: If business logic changes to 15%, you only update **one place**, not many.
+
+---
+
+### ❌ Bad (duplicate discount logic in backend):
+
+```js
+// controller.js
+function applyDiscount(price) {
+  return price - (price * 0.1);
+}
+
+// somewhere else
+function calculateLoyaltyDiscount(price) {
+  return price - (price * 0.1); // repeated logic
+}
+```
+
+### ✅ Good:
+
+```js
+// utils/discount.js
+export function applyDiscount(price, rate = 0.1) {
+  return price - (price * rate);
+}
+
+// Usage
+applyDiscount(100); // apply 10% discount everywhere consistently
+```
+
+
+
+## **KISS**
+
+-  (Keep It Simple, Stupid)
+-  **Real-time Benefit**  - Cleaner, readable code. and Easy to unit test `getFinalPrice`.
+
+---
+
+### ❌ Bad React Example: Over-engineered product card
+
+```jsx
+function ProductCard({ product }) {
+  const [discountedPrice, setDiscountedPrice] = useState(null);
+
+  useEffect(() => {
+    if (product && product.price > 0) {
+      let price = product.price;
+      if (product.category === 'Electronics' && product.discount) {
+        price -= price * 0.1;
+      } else if (product.category === 'Clothing') {
+        price -= price * 0.2;
+      }
+      setDiscountedPrice(price);
+    }
+  }, [product]);
+  // ...complex UI
+}
+```
+
+### ✅ Good (KISS):
+
+```jsx
+function getFinalPrice(product) {
+  const discountRate = product.discount || 0;
+  return product.price - product.price * discountRate;
+}
+
+function ProductCard({ product }) {
+  return (
+    <div>
+      <h3>{product.name}</h3>
+      <p>₹{getFinalPrice(product)}</p>
+    </div>
+  );
+}
+```
+
+
+
+## **SOLID**
+
+---
+
+### ✅ **S – Single Responsibility Principle**
+
+Each file/class/function should do **one thing only**.
+
+```js
+// services/ProductService.js
+class ProductService {
+  addProduct(data) { /* DB logic */ }
+  getProducts() { /* DB logic */ }
+}
+
+// services/Logger.js
+class Logger {
+  log(message) { /* write to file or DB */ }
+}
+```
+
+### ✅ Real-time Benefit:
+
+* Easy to test
+* Easy to modify one feature without breaking another
+
+---
+
+### ✅ **O – Open/Closed Principle**
+
+Want to apply multiple discount strategies?
+
+```js
+class DiscountStrategy {
+  getDiscount(price) {
+    return price;
+  }
+}
+
+class FlatDiscount extends DiscountStrategy {
+  getDiscount(price) {
+    return price * 0.9;
+  }
+}
+
+class LoyaltyDiscount extends DiscountStrategy {
+  getDiscount(price) {
+    return price * 0.8;
+  }
+}
+
+// Usage:
+function applyDiscount(price, strategy) {
+  return strategy.getDiscount(price);
+}
+```
+
+➡ Add a new discount type without modifying existing code.
+
+---
+
+### ✅ **L – Liskov Substitution**
+
+Subclasses should behave like their parents.
+
+```js
+class Product {
+  getPrice() {
+    return this.price;
+  }
+}
+
+class DiscountedProduct extends Product {
+  getPrice() {
+    return this.price * 0.9;
+  }
+}
+```
+
+✅ You can use `DiscountedProduct` anywhere `Product` is expected.
+
+---
+
+### ✅ **I – Interface Segregation Principle**
+
+Don't force classes to implement unused methods.
+
+```ts
+// In TypeScript:
+interface Printable {
+  print(): void;
+}
+
+interface Scannable {
+  scan(): void;
+}
+
+class Printer implements Printable {
+  print() { console.log("Printing..."); }
+}
+```
+
+✅ Avoid bloated interfaces.
+
+---
+
+### ✅ **D – Dependency Inversion Principle**
+
+Depend on abstractions (interfaces), not on concrete classes.
+
+```js
+// controller.js
+class ProductController {
+  constructor(productService) {
+    this.productService = productService;
+  }
+
+  list() {
+    return this.productService.getProducts();
+  }
+}
+
+// Inject dependency
+const controller = new ProductController(new ProductService());
+```
+
+✅ Easy to mock `ProductService` for unit tests.
+
+---
+
+## 🧩 Summary Table with Real Use Case
+
+| Principle | Real Use Case Example                             |
+| --------- | ------------------------------------------------- |
+| DRY       | Shared discount logic in utility file             |
+| KISS      | Keep `ProductCard` logic minimal                  |
+| S         | Separate ProductService and Logger                |
+| O         | Use `DiscountStrategy` classes                    |
+| L         | Replace `Product` with `DiscountedProduct` safely |
+| I         | Use separate interfaces for scan/print devices    |
+| D         | Inject services instead of hard coding            |
+
+---
 
 
 

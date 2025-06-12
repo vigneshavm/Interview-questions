@@ -5,7 +5,7 @@
  
 
 
-**JavaScript Fundamentals Advance** - [ES6 Features](#key-es6-features)    • [Promises](#Promises)
+**JavaScript Fundamentals Advance** - [ES6 Features](#key-es6-features)   -[Arrow funcation](#arrow-funcations) • [Promises](#Promises)
 • [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage)  
 
 

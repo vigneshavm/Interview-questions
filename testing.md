@@ -24,7 +24,7 @@
 
 
 
-**Security**  - [Security](#Security)  - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    
+**Security**  - [Security](#Security)  - [React Security](#React-Security) - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    
 
 
 - [Input Validation](#input-validation-and-its-importance) |
@@ -4182,7 +4182,7 @@ const controller = new ProductController(new ProductService());
 
 
 
-## **Security:**
+## **React Security**
 
  - Security is critical in any frontend application, especially in React, which runs entirely in the browser.
  -  While React itself helps reduce some risks, we still need to be proactive about common web vulnerabilities like:

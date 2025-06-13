@@ -4,7 +4,11 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks)    - [TDD](#test-driven-development)    - [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) 
 
 
-**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)  - [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation)
+**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)  
+
+**MicroFrontend** - [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation)
+**Webpack** - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
+
 
 
 
@@ -13,7 +17,6 @@
 **Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  - [KISS](#KISS)  - [DRY](#DRY)  - [SOLID](#SOLID) - [SOLID Principles](#solid-principles)    - [Dependency Injection](#dependency-injection)   - [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) 
 
 
-**Webpack** - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
 
 **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 

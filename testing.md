@@ -3770,6 +3770,23 @@ Each type of testing serves a specific purpose in the software development lifec
 
 **Key Difference**: Unit testing focuses on small, isolated units of code, integration testing focuses on how different parts of the application work together, and E2E testing ensures the entire application functions as intended.
 
+
+
+### 🔍 **Comparison Table: Unit vs Integration vs E2E Testing**
+
+| **Aspect**                | **Unit Testing**                                 | **Integration Testing**                          | **End-to-End (E2E) Testing**                      |
+|---------------------------|--------------------------------------------------|-------------------------------------------------|---------------------------------------------------|
+| **Scope**                 | Tests individual functions or components         | Tests interaction between components or services | Tests the entire application flow (frontend + backend) |
+| **Isolation**             | Isolated from external dependencies              | Tests interactions with real or simulated dependencies | Tests the full system with real user scenarios      |
+| **Speed**                 | Fast (since it tests minimal logic)              | Slower than unit tests, but faster than E2E       | Slow (because it simulates entire user interactions) |
+| **Tools**                 | Jest, Mocha, Jasmine, AVA                       | Jest, Mocha, Supertest, React Testing Library    | Cypress, Selenium, Puppeteer, Playwright           |
+| **Dependencies**          | Mocks or stubs dependencies                      | May use real or simulated external dependencies  | Uses actual services, databases, or the full stack |
+| **Focus**                 | Correctness of logic                            | Correctness of interactions between components   | Correctness of the entire user journey and system behavior |
+| **Example**               | Testing a simple function like `add()`           | Testing a component that fetches data from an API | Testing a user login flow on a web app             |
+| **When to Use**           | To verify individual pieces of logic             | To test how different modules or components work together | To simulate real user behavior and verify system integration |
+
+---
+
 ---
 
 

@@ -411,6 +411,16 @@ The `key` prop helps React **track changes in a list** of elements efficiently d
 {users.map(user => <li key={user.id}>{user.name}</li>)}
 ```
 
+**Without Keys**
+ - If keys are missing or unstable (like using array index), React:
+
+ - * May **reuse DOM nodes incorrectly**
+ - * Can **break component state**
+ - * May cause **extra re-renders**, hurting performance
+
+ - This becomes especially noticeable when dynamically modifying lists (e.g., filtering, inserting, deleting rows).
+
+
 ---
 
 ## React Fragments 

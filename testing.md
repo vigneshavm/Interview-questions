@@ -4,7 +4,7 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks)    - [TDD](#test-driven-development)    - [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) 
 
 
-**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)  - [Single SPA](#Single-SPA)
+**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)  - [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation)
 
 
 
@@ -4468,6 +4468,134 @@ Using Single-SPA:
 
 ---
 
+## **Module Federation**
+
+ - **Module Federation** is a **Webpack 5 feature** that enables multiple independently built and deployed applications (or "microfrontends") to **share code** 
+ - like components, utils, or even full apps — **at runtime**.
+ - Module Federation allows applications to share modules across runtime boundaries. 
+ - It enables dynamic, on-demand loading of components, helps avoid code duplication, and is perfect for microfrontend architecture. 
+ - It's highly efficient when you want to scale large apps or load plugins remotely without hard dependencies.
+
+---
+
+
+### Common Pitfalls
+
+* Ensure **matching React versions** in host and remote
+* All apps must use **Webpack 5**
+* Always use `React.lazy` and `Suspense` for dynamic loading
+
+---
+
+
+
+### 🔁 Module Federation vs Single-SPA
+
+| Feature                 | Module Federation                      | Single-SPA                    |
+| ----------------------- | -------------------------------------- | ----------------------------- |
+| **Granularity**         | Module/Component level                 | App level (microfrontend)     |
+| **Runtime loading**     | ✅ via remoteEntry                      | ✅ via SystemJS                |
+| **Routing management**  | ❌ Handled by host (e.g., React Router) | ✅ Built-in to Single-SPA      |
+| **Build-time coupling** | Minimal                                | Minimal                       |
+| **Shared libraries**    | ✅ via `shared` field                   | ✅ (manually or via externals) |
+
+---
+
+
+
+### **Module Federation - Solve?**
+
+> Traditionally, microfrontends needed to bundle shared libraries (like React) with every app, causing duplication and load time bloat. Module Federation allows **shared libraries and components to be loaded from a remote app** dynamically — no duplication, no rebuilds needed.
+
+---
+
+### **Module Federation work**
+
+> Apps are classified into:
+
+* **Host (Container)** – the app that consumes remote code
+* **Remote** – the app exposing modules
+
+Both apps are configured to **expose and consume modules** using Webpack’s `ModuleFederationPlugin`.
+
+---
+
+### **Module Federation - Configure**
+
+#### Example: Sharing a React Button from a remote app
+
+### 🔧 Remote App (`app1`)
+
+```js
+// webpack.config.js
+plugins: [
+  new ModuleFederationPlugin({
+    name: 'app1',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './Button': './src/components/Button',
+    },
+    shared: ['react', 'react-dom'],
+  }),
+],
+```
+
+### 🔧 Host App (`app2`)
+
+```js
+plugins: [
+  new ModuleFederationPlugin({
+    name: 'app2',
+    remotes: {
+      app1: 'app1@http://localhost:3001/remoteEntry.js',
+    },
+    shared: ['react', 'react-dom'],
+  }),
+],
+```
+
+### Usage in Host App
+
+```js
+import React from 'react';
+const RemoteButton = React.lazy(() => import('app1/Button'));
+
+export default function App() {
+  return (
+    <React.Suspense fallback="Loading...">
+      <RemoteButton />
+    </React.Suspense>
+  );
+}
+```
+
+---
+
+### **`exposes` and `remotes`**
+
+* **`exposes`**: what modules you make available to others
+* **`remotes`**: what modules you want to consume from other apps
+
+---
+
+### **`remoteEntry.js`**
+
+ - It’s a **manifest file** Webpack generates that lists all the modules the app exposes. 
+ - The host app reads it to know what’s available to import.
+
+---
+
+### 🏗️ Real-World Use Case
+
+| App         | Responsibility              | Example Shared         |
+| ----------- | --------------------------- | ---------------------- |
+| `dashboard` | Shell/Container             | Imports charts         |
+| `user-app`  | Auth and profile management | Exposes login form     |
+| `admin-app` | CMS for admin users         | Exposes settings panel |
+
+Each team deploys their app separately. The shell app (`dashboard`) dynamically pulls shared modules from these.
+
+---
 
 
 

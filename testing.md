@@ -342,35 +342,36 @@ module.exports = {
 ## Vite
 
 
-- *"Yes, I’ve used Vite extensively in recent projects — especially for React and TypeScript-based applications."*
+- "Yes, I’ve used Vite extensively in recent projects — especially for React and TypeScript-based applications."*
 
-- *Vite is a modern frontend build tool developed by Evan You, and although it originated in the Vue ecosystem, it works seamlessly with React, Svelte, and other frameworks. 
+- Vite is a modern frontend build tool developed by Evan You, and although it originated in the Vue ecosystem, it works seamlessly with React, Svelte, and other frameworks. 
 - What sets Vite apart is its incredible speed — both during development and for production builds.*
 
-- *In development mode, Vite uses native **ES modules** and leverages **esbuild**, a Go-based bundler, to transform code on demand. 
+- In development mode, Vite uses native **ES modules** and leverages **esbuild**, a Go-based bundler, to transform code on demand. 
 - This results in near-instant server startup and **blazing-fast hot module replacement (HMR)** — even in large codebases.*
 
-- *For production builds, Vite internally switches to **Rollup**, ensuring tree-shaken and optimized bundles. The output is highly efficient and performance-friendly.*
+- For production builds, Vite internally switches to **Rollup**, ensuring tree-shaken and optimized bundles. The output is highly efficient and performance-friendly.*
 
-- *Compared to Webpack, Vite offers a far simpler and faster development experience. Webpack needs to bundle everything upfront, which slows down dev startup time, but Vite serves source files as-needed — leading to a more responsive feedback loop.*
+- Compared to Webpack, Vite offers a far simpler and faster development experience. Webpack needs to bundle everything upfront, which slows down dev startup time, but Vite serves source files as-needed — leading to a more responsive feedback loop.*
 
-- *Setting up a React app with Vite is as simple as:*
+- Setting up a React app with Vite is as simple as:*
 
 ```bash
 npm create vite@latest my-app --template react
 ```
 
-- *The configuration is minimal — typically just a `vite.config.js` file with the React plugin, optional path aliases, and environment variables. Vite also has built-in support for TypeScript, JSX, CSS Modules, and dynamic imports (`React.lazy`).*
+- The configuration is minimal — typically just a `vite.config.js` file with the React plugin, optional path aliases, and environment variables. Vite also has built-in support for TypeScript, JSX, CSS Modules, and dynamic imports (`React.lazy`).*
 
-- *In my projects, I’ve also integrated plugins like:*
-- * `vite-plugin-pwa` for Progressive Web App features
-- * Tailwind CSS for utility-first styling
-- * `vite-tsconfig-paths` for resolving TypeScript aliases
+- In my projects, I’ve also integrated plugins like:*
+-  `vite-plugin-pwa` for Progressive Web App features
+-  Tailwind CSS for utility-first styling
+-  `vite-tsconfig-paths` for resolving TypeScript aliases
 
-- *Vite’s plugin ecosystem is growing rapidly and it aligns well with modern frontend tooling needs. It’s especially beneficial in greenfield projects where speed, DX, and simplicity are top priorities.*
+- Vite’s plugin ecosystem is growing rapidly and it aligns well with modern frontend tooling needs. It’s especially beneficial in greenfield projects where speed, DX, and simplicity are top priorities.*
 
-- *That said, I still use Webpack in legacy codebases where advanced custom configurations or enterprise-specific plugins are required. But for new projects, Vite has become my go-to build tool."*
+- That said, I still use Webpack in legacy codebases where advanced custom configurations or enterprise-specific plugins are required. But for new projects, Vite has become my go-to build tool."*
 
+---
 
 
 ```

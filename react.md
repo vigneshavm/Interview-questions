@@ -5003,7 +5003,7 @@ Avoid recursive rendering when:
  - It uses **tag-based invalidation**, where you can assign tags to endpoints (`providesTags`) and invalidate them on mutations (`invalidatesTags`). This way, it only re-fetches the required data when necessary.
 
  - `query` is used for **GET-like operations** (fetching data), 
-while `mutation` is used for **POST/PUT/DELETE** operations that **alter server-side state**.
+ - while `mutation` is used for **POST/PUT/DELETE** operations that **alter server-side state**.
  - Each provides different lifecycle methods and caching behavior — mutations don’t cache the response but trigger invalidation or re-fetch.
 
 **Assessing:** Knowledge of RTK Query’s re-fetching optimizations.

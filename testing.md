@@ -1,5 +1,5 @@
 
-**Build** - [`<script>`, async, defer](#script-and-async-and-defer)    - [Tree Shaking](#tree-shaking-in-modern-bundlers)    - [Transpiling](#transpiling-javascript-code)    - [Polyfills](#polyfills-and-backward-compatibility)    - [Babel](#role-of-babel-in-modern-development)    - [Webpack & Vite](#webpack-and-vite-bundling-process) | 
+**Build** - [`<script>`, async, defer](#script-and-async-and-defer)    - [Tree Shaking](#tree-shaking-in-modern-bundlers)    - [Transpiling](#transpiling-javascript-code)    - [Polyfills](#polyfills-and-backward-compatibility)    - [Babel](#role-of-babel-in-modern-development)    - [Webpack & Vite](#webpack-and-vite-bundling-process) 
 
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript)  -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)  - [Mock Testing](#mock-testing)  - [Mocking APIs Tests](#Mocking-APIs-Tests)
 

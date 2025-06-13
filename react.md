@@ -7,7 +7,7 @@
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
-| **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux-Saga](#Redux-Saga)   •  [Redux Virtualized](#react-virtualized) |
+| **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query) •  [Redux-Saga](#Redux-Saga)   •  [Redux Virtualized](#react-virtualized) |
 | **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
@@ -4967,6 +4967,146 @@ Avoid recursive rendering when:
 
 * The tree is **too deep**, leading to performance issues
 * **Circular references** exist (e.g., `node.child === node`)
+
+---
+
+
+
+
+
+
+## Redux Toolkit Query
+
+ - **RTK Query** is a powerful data fetching and caching tool built into **Redux Toolkit**.
+ - It simplifies managing **server-side state** by auto-generating API logic, including **caching**, **loading**, **error handling**, and **re-fetching** — all with minimal boilerplate.
+ - Instead of writing manual actions, reducers, or thunks, RTK Query provides **auto-generated hooks** like `useGetUsersQuery()`.
+ - It handles **data caching**, **tag-based invalidation**, and **automatic re-fetching** out of the box.
+ - It integrates tightly with **Redux DevTools** and supports advanced features like **polling**, **optimistic updates**, and even **SSR compatibility** with frameworks like **Next.js**.
+
+---
+
+### ✅ Why I Use RTK Query
+
+ - In my recent projects, I’ve used RTK Query because it provides a **declarative and efficient** way to manage API state with Redux.
+ - It **eliminates boilerplate**—no need to manually write actions, reducers, or thunk logic.
+ - It provides **loading, success, and error states** automatically through generated hooks.
+ - The **built-in caching** and **tag-based invalidation** help keep client data in sync without manual re-fetch logic.
+ - RTK Query improves **developer productivity** and leads to **cleaner, maintainable code**—especially in apps that make frequent REST or GraphQL calls.
+ - It scales well in large apps due to its consistent structure and deep integration with the Redux ecosystem.
+
+---
+
+
+
+### 🔧 How RTK Query Works (Simple Setup)
+
+### 1. **Create an API Slice**
+
+```ts
+// services/api.ts
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+export const userApi = createApi({
+  reducerPath: 'userApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.example.com/' }),
+  endpoints: (builder) => ({
+    getUsers: builder.query({
+      query: () => 'users',
+    }),
+    getUserById: builder.query({
+      query: (id) => `users/${id}`,
+    }),
+  }),
+});
+
+export const { useGetUsersQuery, useGetUserByIdQuery } = userApi;
+```
+
+---
+
+### 2. **Add to Redux Store**
+
+```ts
+// store.ts
+import { configureStore } from '@reduxjs/toolkit';
+import { userApi } from './services/api';
+
+export const store = configureStore({
+  reducer: {
+    [userApi.reducerPath]: userApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(userApi.middleware),
+});
+```
+
+---
+
+### 3. **Use in React Component**
+
+```tsx
+import { useGetUsersQuery } from './services/api';
+
+function UserList() {
+  const { data, error, isLoading } = useGetUsersQuery();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching users</div>;
+
+  return (
+    <ul>
+      {data.map((user) => <li key={user.id}>{user.name}</li>)}
+    </ul>
+  );
+}
+```
+
+---
+
+
+## 📦 Bonus: Mutation Example
+
+```ts
+addUser: builder.mutation({
+  query: (newUser) => ({
+    url: 'users',
+    method: 'POST',
+    body: newUser,
+  }),
+}),
+```
+
+```ts
+const [addUser, { isLoading }] = useAddUserMutation();
+```
+
+---
+
+## 💡 Features at a Glance
+
+| Feature                 | Supported?       |
+| ----------------------- | ---------------- |
+| Auto-generated hooks    | ✅                |
+| Caching and re-fetching | ✅                |
+| Pagination/offset       | ✅                |
+| Mutation support        | ✅                |
+| Invalidating cache      | ✅                |
+| Polling                 | ✅                |
+| SSR                     | ✅ (with Next.js) |
+| DevTools Integration    | ✅                |
+
+---
+
+## 🔁 Comparison: RTK Query vs Axios vs React Query
+
+| Feature                | **RTK Query** | **Axios** | **React Query**  |
+| ---------------------- | ------------- | --------- | ---------------- |
+| Built-in Redux support | ✅             | ❌         | ❌ (external lib) |
+| Auto caching           | ✅             | ❌         | ✅                |
+| Boilerplate-free       | ✅             | ❌         | ✅                |
+| Manual setup required  | ❌             | ✅         | ✅                |
+| Mutations support      | ✅             | ✅         | ✅                |
+| Redux DevTools support | ✅             | ❌         | ❌                |
 
 ---
 

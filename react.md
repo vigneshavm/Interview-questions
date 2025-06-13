@@ -5034,6 +5034,7 @@ Avoid recursive rendering when:
 * Selective polling
 * `skip` and `refetch` params
 * Custom `selectFromResult` to reduce re-renders
+  
 **Assessing:** Efficient component rendering.
  - `selectFromResult` allows you to **pick only part of the query result**, helping prevent re-renders.
  - It's especially useful when only a specific field or object needs to be tracked inside a large data response.

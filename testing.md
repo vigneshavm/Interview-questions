@@ -195,25 +195,37 @@ var count = 10;
 
 ## Webpack
 
- - Yes, I’ve worked extensively with Webpack, especially in large-scale React applications. 
- - I’m very comfortable with both configuring and optimizing it. 
- - I’ve used it to bundle modern JavaScript, JSX, CSS, and static assets — turning them into efficient, production-ready builds.
+ 
+- Yes, I’ve worked extensively with Webpack, especially in large-scale React applications. 
+- I’m very comfortable both configuring it from scratch and optimizing it for performance.”*
 
- - Webpack works by building a dependency graph starting from a defined entry point like index.js, applying loaders to transform files, and using plugins to optimize or customize the build process.
- - The output typically goes into a dist/ folder, with hashed filenames for caching.
+- In my projects, I’ve used Webpack to **bundle modern JavaScript, JSX, CSS, SCSS, and static assets into efficient, production-ready builds**. 
+- Webpack constructs a dependency graph starting from a defined entry point — usually `index.js` — 
+- Applies **loaders** to transform files 
+- **plugins** to extend or optimize the build process.
 
- - In real-world projects, I’ve set up separate configurations for development and production,
- - Integrated features like code splitting with React.lazy, optimized bundle sizes with tree shaking, and configured hot module replacement for a faster developer experience. 
- - I’ve also used plugins like HtmlWebpackPlugin, MiniCssExtractPlugin, and DefinePlugin for injecting environment variables and handling CSS properly.
+- I typically separate configuration for development and production. 
+- For example, in dev mode I enable **Hot Module Replacement (HMR)** for faster feedback, 
+- while in production I enable features like **code splitting**, **tree shaking**, and **cache busting** using hashed filenames in the `dist/` directory.*
 
- - I've integrated Webpack into CI/CD pipelines, added support for SCSS, CSS Modules, and used babel-loader for transpiling JSX and modern ES features.
- - I’ve also analyzed build performance using webpack-bundle-analyzer and optimized chunking strategies to improve load time.
+- *Some of the common plugins I’ve worked with include:*
+-  *`HtmlWebpackPlugin` to inject assets into HTML.*
+-  *`MiniCssExtractPlugin` to extract CSS into separate files.*
+-  *`DefinePlugin` to inject environment-specific variables.*
 
- - While I now prefer using Vite for newer projects because of its speed and simplicity, 
- - I still maintain and enhance Webpack-based setups in legacy apps — especially when deep customization or specific plugin usage is needed.
+- *On the loader side, I use `babel-loader` to transpile JSX and modern ES syntax, 
+-  I’ve added support for SCSS and CSS Modules for better style encapsulation.*
 
- - Overall, I see Webpack as a powerful tool that gives full control over the front-end build pipeline, 
- - I’m confident working with it across different stages of development and deployment."**
+- *For performance, I’ve used tools like `webpack-bundle-analyzer` to visualize bundle sizes and optimize chunking strategies — especially for large apps with dynamic imports using `React.lazy` and `Suspense`.*
+
+- *I’ve also integrated Webpack into CI/CD pipelines, ensuring clean builds, environment-specific configurations, and minimized bundles for production.*
+
+- *While I prefer using **Vite** in newer projects for its speed and simplicity, I continue to maintain and optimize **Webpack-based setups** in legacy apps — especially when advanced customization is required.*
+
+- *Overall, I view Webpack as a highly powerful and flexible bundler that offers complete control over the frontend build pipeline. I’m confident working with it across development, optimization, and deployment stages.”*
+
+
+
 
 ### Key Concepts in Webpack
 

@@ -292,7 +292,7 @@ In legacy projects, I prefer refactoring class components into functional ones t
 React now recommends **functional components** for most use cases using **hooks**.
 
 ---
-## Pure Component
+## Pure Components
 
 - Pure Component in React helps improve performance by avoiding unnecessary re-renders. 
 - In class components, we use `React.PureComponent`. which implements a shallow comparison of props and state in shouldComponentUpdate().”

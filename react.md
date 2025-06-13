@@ -292,6 +292,72 @@ In legacy projects, I prefer refactoring class components into functional ones t
 React now recommends **functional components** for most use cases using **hooks**.
 
 ---
+## Pure Component
+
+- Pure Component in React helps improve performance by avoiding unnecessary re-renders. 
+- In class components, we use `React.PureComponent`. which implements a shallow comparison of props and state in shouldComponentUpdate().”
+- For functional components, we use React.memo() to achieve the same behavior. 
+- It wraps the component and ensures it only re-renders when the props actually change. 
+- so if props contain nested objects or arrays, the component might re-render even if the data hasn’t actually changed.
+- I typically use Pure Components when the component is controlled by props that are either primitives or stable references, 
+-  when optimizing performance becomes necessary in complex UI structures.
+
+
+
+### Use Case
+
+- In one of my projects, we had a list of user cards updating every second due to a parent re-render. 
+- Wrapping the individual card components in `React.memo` prevented them from re-rendering unless their actual data changed — which gave us a significant performance gain.”*
+
+---
+
+### Shallow Comparison
+
+- The optimization works well when props are primitives or stable references. 
+- But with nested objects or arrays, React may still re-render unnecessarily unless we memoize or ensure reference equality.”*
+
+```jsx
+const obj1 = { a: 1 };
+const obj2 = { a: 1 };
+obj1 === obj2 // false (different references)
+```
+
+---
+
+
+
+### Class Component Example (`React.PureComponent`)
+
+```jsx
+import React, { PureComponent } from 'react';
+
+class Greeting extends PureComponent {
+  render() {
+    console.log('Rendering Greeting...');
+    return <h2>Hello, {this.props.name}</h2>;
+  }
+}
+
+// Will only re-render if props.name changes
+```
+
+---
+
+### Functional Component Example (`React.memo`)
+
+```jsx
+import React from 'react';
+
+const Greeting = React.memo(({ name }) => {
+  console.log('Rendering Greeting...');
+  return <h2>Hello, {name}</h2>;
+});
+
+// Same: re-renders only if props.name changes
+```
+
+---
+
 
 
 
@@ -1929,9 +1995,11 @@ function Card({ title, children }) {
 ## **Components**
 
 - [Stateless vs Stateful Components](#stateless-vs-stateful-components)
-- [Controlled Components](#controlled-components)  
-- [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components)  
+- [Controlled Components](#controlled-components)
 - [Uncontrolled Components](#uncontrolled-components)
+- [Pure Components](#Pure-components)
+- [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components)  
+
 
 ###  Controlled Components
 

@@ -4,8 +4,7 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks)    - [TDD](#test-driven-development)    - [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) 
 
 
-**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)
-
+**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)  - [Single SPA](#Single-SPA)
 
 
 
@@ -4329,5 +4328,150 @@ But also validate `DELETE` API permissions on the backend.
 6. Regularly audit and update dependencies
 
 ---
+
+
+
+
+
+
+
+
+##  Single SPA
+
+ - **Single-SPA** (Single Single Page Application) is a **microfrontend framework** that allows multiple independent JavaScript applications (built with React, Angular, Vue, etc.) to coexist and run in a single page.
+
+
+ - Single-SPA is a powerful framework for orchestrating multiple microfrontends in a single browser page. 
+ - It lets teams build, test, and deploy independently, even in different frameworks. 
+ - It handles routing, lifecycle, and app loading dynamically via SystemJS. 
+ - Each app implements `bootstrap`, `mount`, and `unmount` functions, and the root shell manages everything based on URL or route. 
+ - It's ideal for large-scale enterprise apps needing scalability, team autonomy, and tech diversity.
+
+---
+
+### 🧪 Advanced Topics You Can Mention
+
+| Topic                        | Summary                                                                          |
+| ---------------------------- | -------------------------------------------------------------------------------- |
+| **Parcel Configs**           | To simplify lifecycles, use `single-spa-react` or `single-spa-angular` packages. |
+| **Lazy loading**             | Apps are loaded on demand based on route.                                        |
+| **Shared State**             | Via global store (e.g., Redux in a shared package), or by using an event bus.    |
+| **Independent deployments**  | Each app is deployed to a different URL. SystemJS loads them dynamically.        |
+| **Versioned microfrontends** | Use dynamic import maps that point to specific versions.                         |
+
+---
+
+
+###  **Single-SPA solve**
+
+- Single-SPA solves the challenge of scaling frontend applications by **breaking a monolithic frontend into smaller, independently deployable units**, 
+- each managed by different teams or using different frameworks.
+
+**Use Case:**
+- Your company has a large React monolith that’s hard to scale. 
+- One team wants to start using Vue or build new features without modifying the entire codebase. 
+- Single-SPA enables that.
+
+---
+
+###  **Single-SPA work under the hood**
+
+
+- Single-SPA works like a **meta-router and lifecycle manager**:
+-  1. You define **routes or conditions** to load different apps.
+-  2. It dynamically loads the microfrontend via **SystemJS import maps**.
+-  3. Each microfrontend exports `bootstrap`, `mount`, and `unmount` lifecycle functions.
+-  4. Single-SPA handles routing and invokes the correct lifecycle methods as the user navigates.
+
+---
+
+###  **Single-SPA lifecycle functions**
+
+Each microfrontend must export:
+
+```js
+export const bootstrap = () => Promise.resolve();
+export const mount = () => { /* render logic */ };
+export const unmount = () => { /* cleanup */ };
+```
+
+These are invoked by the root Single-SPA shell based on URL or condition.
+
+---
+
+###  **Single-SPA Routing**
+
+Routing is managed at the **root level**, not inside each microfrontend.
+
+Example:
+
+```js
+registerApplication({
+  name: 'navbar',
+  app: () => System.import('navbar'),
+  activeWhen: ['/']
+});
+```
+
+This tells Single-SPA:
+
+ - "When URL starts with `/`, load the `navbar` microfrontend."
+
+---
+
+###  **Share dependencies between microfrontends**
+
+ - Using **SystemJS** with `externals` and **import maps**, you can load `react`, `react-dom`, etc., **once in the root app**, -  mark them as **external** in other apps' webpack configs.
+
+```js
+externals: ['react', 'react-dom']
+```
+
+```html
+<script type="systemjs-importmap">
+  {
+    "imports": {
+      "react": "https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"
+    }
+  }
+</script>
+```
+
+---
+
+###  **Single-SPA alternatives**
+
+| Alternative                    | Description                                                 |
+| ------------------------------ | ----------------------------------------------------------- |
+| **Webpack Module Federation**  | Shares modules/components, not whole apps                   |
+| **Nx Monorepo**                | Not true microfrontend, but enables app separation          |
+| **qiankun** (by Ant Financial) | A powerful microfrontend library built on top of Single-SPA |
+| **Piral**                      | Plugin-based microfrontend system                           |
+
+---
+
+###  **Real-time Example Scenario**
+
+**Scenario:**
+
+You’re building a large B2B dashboard where:
+
+* HR team builds a **People Management** app in React.
+* Finance team owns **Billing** built with Angular.
+* Admin builds a shared **Navbar** in Vue.
+
+Using Single-SPA:
+
+* You define each as a separate app.
+* You register them in the **root-config** with SystemJS.
+* Teams work in isolation, but users experience it as a single seamless SPA.
+
+---
+
+
+
+
+
+
 
 

@@ -154,14 +154,14 @@ var count = 10;
 
 - Yes, I've worked extensively with Babel, especially in React and large-scale JavaScript projects.
 - Babel is a powerful JavaScript transpiler that plays a crucial role in modern frontend development. 
-- Its primary purpose is to convert modern JavaScript (ES6 and beyond) into backward-compatible ES5, 
-- Ensuring compatibility across all major browsers — including older ones.
+- Its primary purpose is to **convert modern JavaScript (ES6 and beyond) into backward-compatible ES5**, 
+- **Ensuring compatibility across all major browsers — including older ones**.
 - For example, when I write modern features like arrow functions, optional chaining, or class properties, 
-- Babel transpiles these down to equivalent ES5 syntax. This lets me use the latest language features without worrying about browser support.
+- Babel transpiles these down to equivalent ES5 syntax. This lets me use the **latest language features without worrying about browser support**.
 - In React development, Babel is essential. 
 - It uses presets like @babel/preset-react to convert JSX into React.createElement() calls that browsers can interpret. 
 - It also supports TypeScript and Flow when configured with the appropriate plugins.
-- I typically integrate Babel with Webpack using babel-loader to transpile .js and .jsx files. 
+- I typically integrate Babel with Webpack using **babel-loader** to transpile .js and .jsx files. 
 - In modern setups with Vite, Babel support is often handled via plugins or built-in.
 
 **To summarize**

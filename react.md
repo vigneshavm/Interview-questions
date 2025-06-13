@@ -4998,6 +4998,66 @@ Avoid recursive rendering when:
 
 
 
+**Assessing:** Your understanding of how RTK Query avoids unnecessary network calls(caching and invalidation)
+ - RTK Query uses **normalized caching** by default. Each query is cached based on its arguments (e.g., URL and params).
+ - It uses **tag-based invalidation**, where you can assign tags to endpoints (`providesTags`) and invalidate them on mutations (`invalidatesTags`). This way, it only re-fetches the required data when necessary.
+
+ - `query` is used for **GET-like operations** (fetching data), 
+while `mutation` is used for **POST/PUT/DELETE** operations that **alter server-side state**.
+ - Each provides different lifecycle methods and caching behavior — mutations don’t cache the response but trigger invalidation or re-fetch.
+
+**Assessing:** Knowledge of RTK Query’s re-fetching optimizations.
+ - These options allow queries to **auto-refetch**:
+* `refetchOnFocus`: re-fetch when the window regains focus.
+* `refetchOnReconnect`: re-fetch after a lost network reconnects.
+  These can be set globally or per endpoint.
+
+
+**Assessing:** Testing strategy and mocking (test components)
+ - Use **MSW (Mock Service Worker)** to mock API responses in tests.
+ - RTK Query also exposes a `setupListeners` method and mock store integration, 
+ - so you can test hooks with React Testing Library easily.
+
+**Assessing:** Flexibility and customization.
+ - `fetchBaseQuery` is a wrapper around the native `fetch` API with built-in support for headers, query params, and error formatting.
+ - You can also write a **custom baseQuery** (e.g., using Axios or interceptors) by returning `{ data, error }` in the same format RTK Query expects.
+
+
+**Assessing:** Advanced data management (handle pagination or infinite scroll)
+ - You can pass pagination params (like `page`, `limit`) as query args.
+ - Each unique combination is cached separately.
+ - For infinite scroll, you manage page keys and use `useLazyQuery` or custom logic to combine paginated results in the component state.
+
+**Assessing:** performance optimizations - Practical use of tuning.
+* Tag-based cache invalidation
+* `keepUnusedDataFor` to control cache lifespan
+* Selective polling
+* `skip` and `refetch` params
+* Custom `selectFromResult` to reduce re-renders
+**Assessing:** Efficient component rendering.
+ - `selectFromResult` allows you to **pick only part of the query result**, helping prevent re-renders.
+ - It's especially useful when only a specific field or object needs to be tracked inside a large data response.
+**Assessing:** State prediction and UX.
+ - `onQueryStarted` lifecycle method in a mutation to optimistically update the cache using `updateQueryData`.
+ -  `patchResult.undo()` - If the mutation fails, you can rollback changes .
+
+**Assessing:** How you handle real-world API security.(authentication headers)
+ - RTK Query allows custom headers using the `prepareHeaders` option in the `baseQuery`.
+ - Example:
+
+```ts
+baseQuery: fetchBaseQuery({
+  baseUrl: '/api',
+  prepareHeaders: (headers, { getState }) => {
+    const token = getState().auth.token
+    if (token) headers.set('Authorization', `Bearer ${token}`)
+    return headers
+  }
+})
+```
+
+
+
 ### 🔧 How RTK Query Works (Simple Setup)
 
 ### 1. **Create an API Slice**

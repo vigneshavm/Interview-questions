@@ -11,29 +11,18 @@
 **Webpack** - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
 
 
-
-
-
-
 **Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  - [KISS](#KISS)  - [DRY](#DRY)  - [SOLID](#SOLID) - [SOLID Principles](#solid-principles)    - [Dependency Injection](#dependency-injection)   - [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) 
-
 
 
 **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
 **NodeJs** - [Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest)  -- [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai)
 
- - [Scalability](#Scalability)   -- [Troubleshoot and debug issue](#Troubleshoot-and-debug-issue)
+ 
+**Security**  - [Security](#Security)  - [React Security](#React-Security) - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    - [Input Validation](#input-validation-and-its-importance) |
 
 
-
-**Security**  - [Security](#Security)  - [React Security](#React-Security) - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    
-
-
-- [Input Validation](#input-validation-and-its-importance) |
-
-
-**Performance Optimization**  - [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    - [Lazy Loading](#lazy-loading)    - [Caching](#leveraging-caching-strategies-for-performance-optimization)    - [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    - [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    
+**Performance Optimization**  - [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    - [Lazy Loading](#lazy-loading)    - [Caching](#leveraging-caching-strategies-for-performance-optimization)    - [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    - [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    - [Scalability](#Scalability)   -- [Troubleshoot and debug issue](#Troubleshoot-and-debug-issue)
 
 
   

@@ -1,15 +1,21 @@
 
-**Build** • [`<script>`, async, defer](#script-and-async-and-defer)    • [Tree Shaking](#tree-shaking-in-modern-bundlers)    • [Transpiling](#transpiling-javascript-code)    • [Polyfills](#polyfills-and-backward-compatibility)    • [Babel](#role-of-babel-in-modern-development)    • [Webpack & Vite](#webpack-and-vite-bundling-process) | 
+**Build** - [`<script>`, async, defer](#script-and-async-and-defer)    - [Tree Shaking](#tree-shaking-in-modern-bundlers)    - [Transpiling](#transpiling-javascript-code)    - [Polyfills](#polyfills-and-backward-compatibility)    - [Babel](#role-of-babel-in-modern-development)    - [Webpack & Vite](#webpack-and-vite-bundling-process) | 
 
-**Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) - [SonarQube](#SonarQube) • [ESLint](#EsLint) - [Code Quality](#Code-Quality)
+**Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks)    - [TDD](#test-driven-development)    - [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) 
+
+
+**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)
 
 
 
-- [CI CD](#CI-CD)
+
 
 
 **Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  
-• [KISS](#KISS)  • [DRY](#DRY)  • [SOLID](#SOLID) • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
+- [KISS](#KISS)  - [DRY](#DRY)  - [SOLID](#SOLID) - [SOLID Principles](#solid-principles)    - [Dependency Injection](#dependency-injection)   - [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) 
+
+
+**Webpack** - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
 
 **Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
 
@@ -22,10 +28,10 @@
 **Security**  - [Security](#Security)  - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    
 
 
-• [Input Validation](#input-validation-and-its-importance) |
+- [Input Validation](#input-validation-and-its-importance) |
 
 
-**Performance Optimization**  • [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    • [Lazy Loading](#lazy-loading)    • [Caching](#leveraging-caching-strategies-for-performance-optimization)    • [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    • [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    
+**Performance Optimization**  - [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    - [Lazy Loading](#lazy-loading)    - [Caching](#leveraging-caching-strategies-for-performance-optimization)    - [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    - [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    
 
 
   

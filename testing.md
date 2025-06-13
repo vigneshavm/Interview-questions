@@ -1,7 +1,7 @@
 
 **Build** • [`<script>`, async, defer](#script-and-async-and-defer)  • [EsLint](#EsLint)   • [Tree Shaking](#tree-shaking-in-modern-bundlers)    • [Transpiling](#transpiling-javascript-code)    • [Polyfills](#polyfills-and-backward-compatibility)    • [Babel](#role-of-babel-in-modern-development)    • [Webpack & Vite](#webpack-and-vite-bundling-process) | 
 
-**Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)
+**Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) -[SonarQube](#SonarQube)
 
 
 **Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  
@@ -4009,6 +4009,82 @@ const controller = new ProductController(new ProductService());
 ---
 
 
+##  **SonarQube:** 
 
+---
+
+###  **SonarQube Details:** 
+
+
+ - SonarQube is a **static code analysis tool** we’ve used regularly to maintain code quality in both frontend and backend projects.
+
+ - It helps detect **bugs**, **code smells**, **security vulnerabilities**, and even **test coverage gaps** automatically.
+
+ - In my recent project — a React + Node.js microservices architecture — we integrated SonarQube with **GitHub Actions**. Every pull request would trigger the Sonar scan, and if the code didn’t meet the **quality gate criteria** (like minimum coverage, no critical issues), the build would fail.
+
+ - This really helped enforce clean, maintainable, and secure code across the team.
+
+---
+
+### **SonarQube typically catch:**
+
+
+ - It catches a wide range of issues. For example:
+
+ - * In React apps, it flags **unused imports**, **duplicate JSX blocks**, and complex component logic as **code smells**.
+ - * In Node.js APIs, it warns about **potential null checks**, **unused variables**, and even flags **security issues** like using `eval` or missing input validation.
+
+ - It also analyzes **code duplication**, so we can refactor repetitive logic into reusable utilities or hooks.
+
+---
+
+### **Sonar quality gate** 
+
+
+ - A **Quality Gate** is basically a set of thresholds or rules Sonar applies to decide if the code passes or fails a scan.
+
+ - For example, we had a quality gate that required:
+
+ - * No new **critical bugs or vulnerabilities**
+ - * At least **80% code coverage** on new code
+ - * Less than **3% code duplication**
+
+ - If a PR didn’t meet these, Sonar would fail the check and block the merge — which was super helpful for maintaining discipline across teams.
+
+---
+
+### **Sonar - Real issue**
+
+
+ - Absolutely. In one case, Sonar flagged a critical issue in our Node.js backend where a function was returning early without sanitizing user input.
+
+ - It didn’t break the app immediately, but it could have opened a security hole. Thanks to Sonar, we caught it during code review — before it reached staging.
+
+---
+
+### **SonarQube CI/CD process** 
+
+
+ - We added a **`sonar-scanner` step in our GitHub Actions pipeline**. On every push or pull request, Sonar:
+
+ - 1. Runs static analysis on JS/TS code
+ - 2. Collects test coverage reports from Jest
+ - 3. Pushes the results to our **SonarQube dashboard**
+
+ - If the quality gate fails, the build stops right there. This automation helped reduce manual review load and kept our codebase consistently clean.
+
+---
+
+### **Sonar practices followed**
+
+
+ - A few that worked really well:
+
+ - * We **customized quality profiles** to focus only on relevant rules for our tech stack.
+ - * Integrated **test coverage reports** (`lcov.info`) for both backend and frontend using Jest.
+ - * Educated the team to **treat Sonar issues like failed builds**, not optional warnings.
+ - * Scheduled **weekly Sonar checks** on the `develop` branch to catch long-term issues, not just new PRs.
+
+---
 
 

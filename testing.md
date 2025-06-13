@@ -4,6 +4,10 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) - [SonarQube](#SonarQube) • [ESLint](#EsLint) - [Code Quality](#Code-Quality)
 
 
+
+- [CI CD](#CI-CD)
+
+
 **Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  
 • [KISS](#KISS)  • [DRY](#DRY)  • [SOLID](#SOLID) • [SOLID Principles](#solid-principles)    • [Dependency Injection](#dependency-injection)   • [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
 
@@ -4110,3 +4114,63 @@ const controller = new ProductController(new ProductService());
  - Type Safety (TypeScript)
  - Code Review Culture
  - Feature Toggle for safe deployment
+
+
+
+
+
+
+## **CI CD** 
+
+
+ - Yes, definitely. **CI/CD** stands for:
+ - * **CI – Continuous Integration**: Automatically builds and tests the code whenever developers push changes to a shared repository.
+ - * **CD – Continuous Deployment/Delivery**: Automatically deploys the validated code to staging or production environments.
+ - In my React + Node.js projects, I’ve used tools like **GitHub Actions** and **Jenkins** to set up CI/CD pipelines that:
+ - 1. **Install dependencies**
+ - 2. **Lint** the code
+ - 3. **Run unit tests**
+ - 4. **Build the React app**
+ - 5. **Run backend tests**
+ - 6. Deploy to **Netlify / Vercel** (for React) and **Heroku / AWS / Docker** (for Node.js APIs)
+
+---
+
+### 🧰 **Tools Commonly Used**
+
+| Tool              | Purpose                     |
+| ----------------- | --------------------------- |
+| GitHub Actions    | CI/CD workflow automation   |
+| Jest              | Testing (React + Node.js)   |
+| ESLint + Prettier | Code linting and formatting |
+| Docker            | Containerizing the app      |
+| Netlify/Vercel    | React app hosting           |
+| Heroku/AWS        | Node.js API hosting         |
+
+---
+
+
+
+
+
+### ✅ **CI/CD Benefits in Real Projects**
+
+* **Immediate feedback** on pull requests (faster bug detection)
+* **Prevents bad code** from reaching production (through quality gates)
+* **Ensures test coverage** is maintained
+* **Faster, safer deployments** via automation
+* Supports **zero-downtime releases** when integrated with Docker + Kubernetes
+
+---
+
+### 🧠 **Bonus: Best Practices**
+
+* Keep your pipeline **fast and modular**
+* Fail the pipeline if **lint or tests fail**
+* Use **Secrets Manager** (e.g., GitHub Secrets) to store tokens and keys
+* Use **Docker** for consistent builds
+* Add **Slack or Email notifications** for pipeline status
+
+---
+
+

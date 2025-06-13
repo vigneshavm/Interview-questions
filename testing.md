@@ -1,7 +1,7 @@
 
 **Build** • [`<script>`, async, defer](#script-and-async-and-defer)    • [Tree Shaking](#tree-shaking-in-modern-bundlers)    • [Transpiling](#transpiling-javascript-code)    • [Polyfills](#polyfills-and-backward-compatibility)    • [Babel](#role-of-babel-in-modern-development)    • [Webpack & Vite](#webpack-and-vite-bundling-process) | 
 
-**Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) - [SonarQube](#SonarQube) • [ESLint](#EsLint) 
+**Testing** - [Testing Types](#types-of-testing-in-software-development)    • [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e)    • [Writing Unit Tests](#writing-unit-tests)    • [Mocks and Stubs](#mocks-and-stubs-in-testing)    • [Testing Frameworks](#popular-javascript-testing-frameworks)    • [TDD](#test-driven-development)    • [Testing Async Code](#testing-asynchronous-code-in-javascript) - [Testing Asynchronous Code](#testing-asynchronous-code)  - [Mock Testing](#mock-testing) -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library) - [SonarQube](#SonarQube) • [ESLint](#EsLint) - [Code Quality](#Code-Quality)
 
 
 **Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  
@@ -4088,3 +4088,25 @@ const controller = new ProductController(new ProductService());
 ---
 
 
+
+
+## **Code Quality** 
+
+
+
+ - To me, **code quality** means writing software that is:
+ 	- Readable** – easy for others to understand
+ 	- Maintainable** – easy to change or extend
+ 	- Reliable** – free from obvious bugs or fragile logic
+ 	- Testable** – covered by unit/integration tests
+ 	- Consistent** – follows agreed coding standards
+ - It’s not just about whether the code “works,” but whether it’s **clean, scalable, and production-ready**.
+
+
+ - Static Analysis Tools (SonarQube, ESLint)
+ - Test Coverage, Cyclomatic Complexity
+ - CI/CD Integration (GitHub Actions, Jenkins)
+ - Clean Code Principles (SOLID, DRY, KISS)
+ - Type Safety (TypeScript)
+ - Code Review Culture
+ - Feature Toggle for safe deployment

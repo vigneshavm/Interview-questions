@@ -11,8 +11,7 @@
 
 
 
-**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  
-- [KISS](#KISS)  - [DRY](#DRY)  - [SOLID](#SOLID) - [SOLID Principles](#solid-principles)    - [Dependency Injection](#dependency-injection)   - [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) 
+**Design Pattern** - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  - [KISS](#KISS)  - [DRY](#DRY)  - [SOLID](#SOLID) - [SOLID Principles](#solid-principles)    - [Dependency Injection](#dependency-injection)   - [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) 
 
 
 **Webpack** - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)

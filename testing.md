@@ -4095,11 +4095,11 @@ const controller = new ProductController(new ProductService());
 
 
  - To me, **code quality** means writing software that is:
- 	- Readable** – easy for others to understand
- 	- Maintainable** – easy to change or extend
- 	- Reliable** – free from obvious bugs or fragile logic
- 	- Testable** – covered by unit/integration tests
- 	- Consistent** – follows agreed coding standards
+ 	- **Readable** – easy for others to understand
+ 	- **Maintainable** – easy to change or extend
+ 	- **Reliable** – free from obvious bugs or fragile logic
+ 	- **Testable** – covered by unit/integration tests
+ 	- **Consistent** – follows agreed coding standards
  - It’s not just about whether the code “works,” but whether it’s **clean, scalable, and production-ready**.
 
 

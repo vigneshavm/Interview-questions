@@ -121,7 +121,7 @@ var count = 10;
 ---
 
 
-#### **Transpiling JavaScript Code**
+## **Transpiling JavaScript Code**
 
 
 - Transpiling means converting JavaScript from one version to another, like ES6 to ES5 using Babel.

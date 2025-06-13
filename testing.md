@@ -4,7 +4,7 @@
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript)  -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)  - [Mock Testing](#mock-testing)  - [Mocking APIs Tests](#Mocking-APIs-Tests) - [Testing Hooks](#Testing-Hooks)
 
 
-**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)  
+**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)   -[Web Communication Protocols](#Web-Communication-Protocols)
 
 **MicroFrontend** - [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation)
 
@@ -4624,6 +4624,109 @@ This process ensures your custom hooks work as expected, both in isolation and w
 ---
 
 
+
+## **Web Communication Protocols**
+
+ - Web communication protocols are **rules and standards** that define how data is exchanged between clients (like browsers or apps) and servers over the internet.
+
+
+### Comparison Table
+
+| Protocol   | Direction                      | Persistent | Use Case                       |
+| ---------- | ------------------------------ | ---------- | ------------------------------ |
+| HTTP/HTTPS | Client → Server                | ❌          | REST APIs, page loads          |
+| WebSocket  | Client ↔ Server                | ✅          | Chat, stock tickers, games     |
+| SSE        | Server → Client                | ✅          | Real-time feeds, notifications |
+| GraphQL    | Client → Server (+ WS for sub) | ✅          | API flexibility, data fetching |
+| gRPC       | Client ↔ Server                | ✅ (HTTP/2) | Internal APIs, microservices   |
+
+---
+
+
+
+### 1. **HTTP/HTTPS** – *HyperText Transfer Protocol (Secure)*
+
+| Feature        | Description                                                   |
+| -------------- | ------------------------------------------------------------- |
+| Method-based   | `GET`, `POST`, `PUT`, `DELETE`, etc.                          |
+| Stateless      | No memory of previous requests (unless cookies/sessions used) |
+| Secure Version | **HTTPS** uses SSL/TLS for encryption                         |
+| Usage          | REST APIs, websites, form submissions                         |
+
+🔹 **Example**:
+
+```bash
+GET https://api.example.com/users/123
+```
+
+---
+
+### 2. **WebSockets** – *Real-time, Full-duplex Communication*
+
+| Feature       | Description                                    |
+| ------------- | ---------------------------------------------- |
+| Persistent    | Keeps the connection open after handshake      |
+| Bidirectional | Client ↔ Server can both send messages anytime |
+| Real-Time     | Low latency – ideal for chats, games, etc.     |
+| Protocol      | `ws://` or `wss://` (secure)                   |
+
+🔹 **Example**:
+
+```js
+const socket = new WebSocket("wss://chat.example.com");
+socket.onmessage = (e) => console.log("Server says:", e.data);
+```
+
+---
+
+### 3. **SSE (Server-Sent Events)**
+
+| Feature    | Description                           |
+| ---------- | ------------------------------------- |
+| One-way    | Server ➡️ Client only                 |
+| Persistent | Keeps the connection open             |
+| Use Case   | Live feeds, dashboards, notifications |
+
+🔹 **Example**:
+
+```js
+const eventSource = new EventSource("/events");
+eventSource.onmessage = (event) => console.log(event.data);
+```
+
+---
+
+### 4. **GraphQL over HTTP/WebSockets**
+
+| Feature       | Description                           |
+| ------------- | ------------------------------------- |
+| Declarative   | Client asks for exactly what it needs |
+| Over HTTP     | Typically uses `POST /graphql`        |
+| Subscriptions | Real-time updates via **WebSocket**   |
+
+🔹 **Example**:
+
+```graphql
+query {
+  user(id: "1") {
+    name
+    email
+  }
+}
+```
+
+---
+
+### 5. **gRPC (Google Remote Procedure Call)**
+
+| Feature           | Description                          |
+| ----------------- | ------------------------------------ |
+| Binary Protocol   | Uses **Protocol Buffers** (Protobuf) |
+| High Performance  | Much faster than JSON over HTTP      |
+| HTTP/2 Based      | Multiplexing & streaming support     |
+| Language-agnostic | Used in microservices architecture   |
+
+---
 
 
 

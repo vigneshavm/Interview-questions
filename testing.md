@@ -1,7 +1,7 @@
 
 **Build** - [`<script>`, async, defer](#script-and-async-and-defer)    - [Tree Shaking](#tree-shaking-in-modern-bundlers)    - [Transpiling](#transpiling-javascript-code)    - [Polyfills](#polyfills-and-backward-compatibility)    - [Babel](#role-of-babel-in-modern-development)    - [Webpack & Vite](#webpack-and-vite-bundling-process) 
 
-**Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript)  -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)  - [Mock Testing](#mock-testing)  - [Mocking APIs Tests](#Mocking-APIs-Tests)
+**Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript)  -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)  - [Mock Testing](#mock-testing)  - [Mocking APIs Tests](#Mocking-APIs-Tests) - [Testing Hooks](#Testing-Hooks)
 
 
 **Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)  
@@ -4334,5 +4334,200 @@ test('should throw an error when fetch fails', async () => {
 
 ---
 
+
+
+
+
+
+
+
+
+## **Testing Hooks**
+
+
+ - React hooks are a crucial part of modern React development. 
+ - Since hooks allow you to manage state, side effects, and context within functional components, it's important to ensure they behave as expected. 
+ - Here, we will explore how to effectively test React hooks using **React Testing Library** and **Jest**.
+
+
+###  **Testing Custom Hooks**
+
+Custom hooks are reusable logic that encapsulate stateful logic and effects. 
+Testing them ensures they work as expected when used within components.
+
+#### Key Tools:
+- **React Testing Library** (for rendering components and accessing hooks)
+- **Jest** (for assertions and mocking functions)
+
+### Steps for Testing React Hooks:
+
+---
+
+### 1. **Test a Hook with `renderHook` from `@testing-library/react-hooks`**
+
+`@testing-library/react-hooks` is a library specifically designed to test hooks in isolation. 
+It provides a function called `renderHook()` that can be used to mount hooks outside of a component.
+
+#### Example: Testing a Custom Hook
+
+```javascript
+import { renderHook, act } from '@testing-library/react-hooks';
+import useCounter from './useCounter'; // Your custom hook
+
+test('should initialize counter with 0', () => {
+  const { result } = renderHook(() => useCounter()); // Render hook
+  expect(result.current.count).toBe(0); // Check initial state
+});
+
+test('should increment the counter', () => {
+  const { result } = renderHook(() => useCounter()); // Render hook
+  
+  act(() => { // Perform actions in the hook (important for updates)
+    result.current.increment();
+  });
+  
+  expect(result.current.count).toBe(1); // Check updated state
+});
+
+test('should decrement the counter', () => {
+  const { result } = renderHook(() => useCounter()); // Render hook
+  
+  act(() => { 
+    result.current.decrement();
+  });
+  
+  expect(result.current.count).toBe(-1); // Check updated state
+});
+```
+
+#### Key Notes:
+- **`renderHook()`** is used to render the hook in a test environment.
+- **`act()`** is used to simulate state updates, ensuring React updates the state correctly.
+- **`result.current`** contains the values returned from the hook (like state or functions).
+
+---
+
+### 2. **Test a Hook inside a Component**
+
+If you want to test a hook inside a component, you can render the component using **React Testing Library** and assert the behavior of the component based on the hook’s state.
+
+#### Example: Testing Hook Behavior in a Component
+
+```javascript
+import { render, screen, fireEvent } from '@testing-library/react';
+import CounterComponent from './CounterComponent'; // Component using the hook
+
+test('counter should increment when button is clicked', () => {
+  render(<CounterComponent />); // Render component that uses hook
+  
+  const incrementButton = screen.getByText('Increment'); // Find the button
+  fireEvent.click(incrementButton); // Simulate button click
+  
+  const counter = screen.getByTestId('counter'); // Get the counter
+  expect(counter).toHaveTextContent('1'); // Assert counter has incremented
+});
+```
+
+In this example:
+- **`CounterComponent`** uses the hook.
+- **`fireEvent.click()`** simulates the user clicking a button that updates the hook's state.
+- We assert that the **counter** displays the expected result after the state change.
+
+---
+
+### 3. **Mocking Dependencies in Hooks**
+
+Sometimes, hooks may depend on external services (e.g., an API request). 
+You can mock these dependencies to test how the hook behaves under different conditions.
+
+#### Example: Mocking an API call in a hook:
+
+```javascript
+import { renderHook, act } from '@testing-library/react-hooks';
+import useFetchData from './useFetchData';
+import axios from 'axios';
+
+// Mock axios
+jest.mock('axios');
+
+test('should fetch data successfully', async () => {
+  // Set up the mock response
+  axios.get.mockResolvedValue({ data: { name: 'John' } });
+
+  const { result, waitForNextUpdate } = renderHook(() => useFetchData('https://api.example.com/user'));
+  
+  // Wait for the hook to update after the fetch request
+  await waitForNextUpdate();
+  
+  expect(result.current.data).toEqual({ name: 'John' }); // Assert data is fetched correctly
+  expect(result.current.loading).toBe(false); // Assert loading state is false
+});
+
+test('should handle fetch error', async () => {
+  // Set up the mock error response
+  axios.get.mockRejectedValue(new Error('Request failed'));
+
+  const { result, waitForNextUpdate } = renderHook(() => useFetchData('https://api.example.com/user'));
+  
+  // Wait for the hook to update after the fetch request
+  await waitForNextUpdate();
+  
+  expect(result.current.error).toEqual('Request failed'); // Assert error is handled
+});
+```
+
+In this case:
+- We use **jest.mock()** to mock the `axios.get()` method.
+- The hook **`useFetchData`** is tested to verify it handles both successful and failed API calls.
+
+---
+
+### 4. **Test Effects (e.g., `useEffect`)**
+
+Testing effects, such as those triggered by `useEffect()`, 
+Involves ensuring that side effects occur as expected (e.g., data fetching, subscriptions, etc.).
+
+#### Example: Testing `useEffect` for data fetching:
+
+```javascript
+import { renderHook, act } from '@testing-library/react-hooks';
+import useDataFetcher from './useDataFetcher'; // Custom hook with useEffect
+import axios from 'axios';
+
+// Mock axios
+jest.mock('axios');
+
+test('should fetch data on mount', async () => {
+  axios.get.mockResolvedValue({ data: { name: 'John' } });
+  
+  const { result, waitForNextUpdate } = renderHook(() => useDataFetcher('https://api.example.com/user'));
+  
+  await waitForNextUpdate(); // Wait for useEffect to complete
+  
+  expect(result.current.data).toEqual({ name: 'John' }); // Verify data is fetched
+});
+```
+
+In this example:
+- The `useDataFetcher` hook triggers an effect to fetch data using `useEffect()`.
+- We mock the API call and use **`waitForNextUpdate()`** to ensure the effect completes before making assertions.
+
+---
+
+### 📜 **Summary:**
+
+Testing hooks involves two main approaches:
+1. **Testing hooks in isolation** using `renderHook` and asserting their returned values.
+2. **Testing hooks as part of a component** to ensure they work within a real component lifecycle and handle UI interactions.
+
+Key methods:
+- **`renderHook()`**: Used for testing hooks directly in isolation.
+- **`act()`**: Ensures updates in hooks trigger state changes in React.
+- **Mocking dependencies**: Mock services (like API calls) to isolate and control test environments.
+- **Effect testing**: Ensure side effects (e.g., `useEffect`) behave as expected.
+
+This process ensures your custom hooks work as expected, both in isolation and when integrated into components.
+
+---
 
 

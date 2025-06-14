@@ -1,7 +1,7 @@
 
 **Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)   • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  - [Class](#class)  - [JavaScript & TypeScript Performance Optimization Checklist](#JavaScript-TypeScript-Performance-Optimization-Checklist)
 
-**Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  
+**Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  • [Type Decorators](#decorators)
 
 **OOPS** - [Polymorphism](#Polymorphism) - [Class](#class)  - [Immutable Class](#Immutable-Class) - [Inheritance](#Inheritance) - [Encapsulation](#Encapsulation)
 
@@ -16,7 +16,7 @@
 
 **Modules, Namespaces & Compiler**   • [Namespaces and Modules](#namespaces-and-modules)  • [Module System in TypeScript](#module-system-in-typescript)  • [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options)  • [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)  
 
-**Functions & Behavior**     • [Function Overloading](#function-overloading)  • [Type Decorators](#decorators)  • [Declaration Merging](#declaration-merging)  
+**Functions & Behavior**     • [Function Overloading](#function-overloading)    • [Declaration Merging](#declaration-merging)  
 
 **Objects & Collections**   • [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects)  • [`Map` vs `WeakMap`](#map-vs-weakmap)   • [`Set` vs `WeakSet`](#set-vs-weakset)  - [WeakMap and WeakSet Usage](#WeakMap-and-WeakSet-Usage)
 

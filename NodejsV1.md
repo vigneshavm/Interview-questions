@@ -628,15 +628,97 @@ chat.sendMessage('Alice', 'Hello!');
 - Handle large data chunks efficiently.
 - Types: Readable, Writable, Duplex, Transform.
 
- Code Sample
+
+- **Streams** in Node.js are **abstract interfaces** for working with streaming data — data that **doesn’t have to be available all at once**, but can be processed **in chunks**.
+
+- They’re essential when working with **large files**, **network sockets**, or **I/O-heavy operations**, 
+- enabling you to process data efficiently with **low memory usage**.
+
+
+- In Node.js, streams are crucial for handling large or continuous data efficiently. 
+- They allow us to read/write data piece by piece without blocking the event loop. 
+- For example, instead of reading a 1GB file into memory, 
+- we can stream it in small chunks using `fs.createReadStream()` and pipe it directly to a writable stream. 
+- This makes applications scalable and performant."*
+
+
+
+### 🧩 **Types of Streams in Node.js**
+
+1. **Readable** – stream from which data can be read
+   *(e.g., `fs.createReadStream()` for reading files)*
+
+2. **Writable** – stream to which data can be written
+   *(e.g., `fs.createWriteStream()` to write to files)*
+
+3. **Duplex** – both readable and writable (e.g., TCP socket)
+
+4. **Transform** – a duplex stream that modifies data as it’s written and read (e.g., compression)
+
+
+### 🎯 **Use Cases of Streams**
+
+* Reading/writing large files
+* HTTP request and response (e.g., serving a video)
+* Real-time data processing (e.g., logs)
+* Compression and decompression (using zlib)
+* Audio/video streaming
+
+
+### 📌 **Benefits of Using Streams**
+
+* **Memory-efficient** (processes chunks instead of loading everything)
+* **Faster I/O** (process while reading/writing)
+* **Composable** (can be chained with `pipe()`)
+
+
+### 📜 **Readable Stream Example**
+
 ```js
 const fs = require('fs');
 
-const readable = fs.createReadStream('file.txt');
-readable.on('data', (chunk) => {
-  console.log(`Received ${chunk.length} bytes of data.`);
+const readable = fs.createReadStream('file.txt', { encoding: 'utf8' });
+
+readable.on('data', chunk => {
+  console.log('Received chunk:', chunk);
+});
+
+readable.on('end', () => {
+  console.log('No more data.');
 });
 ```
+
+---
+
+### ✏️ **Writable Stream Example**
+
+```js
+const fs = require('fs');
+
+const writable = fs.createWriteStream('output.txt');
+
+writable.write('Hello World\n');
+writable.end('Done writing');
+```
+
+---
+
+### 🔄 **Piping Streams**
+
+> `pipe()` is a method to connect the output of a readable stream to the input of a writable stream.
+
+```js
+const fs = require('fs');
+
+fs.createReadStream('input.txt')
+  .pipe(fs.createWriteStream('output.txt'));
+```
+
+This approach is **memory-efficient** and great for **large file operations**.
+
+---
+
+
 
 ---
 

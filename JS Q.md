@@ -333,9 +333,45 @@ but === checks both value and type exactly.
 Type coercion is the process where JavaScript automatically converts values from one data type to another when doing operations — especially comparisons or arithmetic.
 
 **Example:**
-```javascript
-console.log(5 == '5');  // true (due to type coercion)
-console.log(5 === '5'); // false (different types)
+---
+
+### 🔍 **Strict Equality (`===`) – No Type Coercion**
+
+| Expression           | Result | Explanation                             |
+| -------------------- | ------ | --------------------------------------- |
+| `[1] === true`       | false  | Array is object type, `true` is boolean |
+| `[] === false`       | false  | `[]` is object, `false` is boolean      |
+| `null === undefined` | false  | Different types (`null` ≠ `undefined`)  |
+| `false === '0'`      | false  | Boolean vs string                       |
+| `0 === '0'`          | false  | Number vs string                        |
+
+---
+
+### 🔄 **Abstract Equality (`==`) – Allows Type Coercion**
+
+| Expression          | Result | Explanation                                  |
+| ------------------- | ------ | -------------------------------------------- |
+| `0 == '0'`          | true   | `'0'` coerces to number → `0 == 0`           |
+| `false == '0'`      | true   | `false` → `0`, `'0'` → `0` → `0 == 0`        |
+| `null == undefined` | true   | Exception case — loosely equal               |
+| `[] == false`       | true   | `[]` → `''` → `0`, `false` → `0` → `0 == 0`  |
+| `[1] == true`       | true   | `[1]` → `'1'` → `1`, `true` → `1` → `1 == 1` |
+
+---
+
+### 🧠 **Reference Equality – Arrays & Objects**
+
+| Expression   | Result | Explanation                                           |
+| ------------ | ------ | ----------------------------------------------------- |
+| `[] == []`   | false  | Two different array instances                         |
+| `{}` == `{}` | false  | Two different object instances                        |
+| `[] == {}`   | false  | Different types: coerces to `'' == '[object Object]'` |
+
+| `[] === []`    | false  | Different array references                           |
+| `{}` === `{}`  | false  | Different object references                          |
+| `[] === {}`    | false  | Array ≠ Object → different internal \[\[Class]] types  |
+
+---
 ```
 
 ---

@@ -2,7 +2,7 @@
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **React Basics** | • [React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) •  [Virtual DOM](#virtual-dom) • [Single Page Applications (SPA)](#single-page-applications-spa) • [JSX vs HTML](#jsx-vs-html) • [Why Use React](#why-use-react) - [React 18 key changes](#React-18-key-changes)
 | **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
-| **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
+| **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) - [Render Props](Render-Props) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  |
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
@@ -5239,6 +5239,72 @@ const [addUser, { isLoading }] = useAddUserMutation();
 
 ---
 
+
+
+
+
+## **Render Props**
+
+- Render Props is a **design pattern** in React used for **sharing code between components** using a **prop whose value is a function**.
+
+- Instead of hardcoding what a component renders, the component accepts a **function as a prop** (commonly named `render` or `children`) and calls that function to determine what to render.
+
+- This gives flexibility to the consumer of the component, allowing dynamic rendering while still reusing common logic or behavior.
+
+---
+
+### ✅ **Simple Example (Explain in Interview)**
+
+```jsx
+function MouseTracker({ render }) {
+  const [position, setPosition] = React.useState({ x: 0, y: 0 });
+
+  function handleMouseMove(event) {
+    setPosition({ x: event.clientX, y: event.clientY });
+  }
+
+  return (
+    <div style={{ height: '100vh' }} onMouseMove={handleMouseMove}>
+      {render(position)} {/* ✅ Function as a prop (Render Prop) */}
+    </div>
+  );
+}
+```
+
+```jsx
+function App() {
+  return (
+    <MouseTracker
+      render={({ x, y }) => (
+        <h1>The mouse position is ({x}, {y})</h1>
+      )}
+    />
+  );
+}
+```
+
+---
+
+### ✅ Why/When Do We Use Render Props?
+
+* When multiple components **share behavior** (like mouse tracking, form validation, subscriptions, etc.) but need to **render differently**.
+* A flexible alternative to **Higher-Order Components (HOCs)**.
+* Was widely used **before Hooks** were introduced in React 16.8.
+
+---
+
+### ✅ Key Points to Mention in Interview
+
+* It’s a pattern, not an API.
+* Enables code reuse by abstracting behavior.
+* Can lead to **"wrapper hell"** or **deep nesting**, which is why Hooks are now preferred.
+* Still relevant when dealing with **legacy code** or **non-Hook environments**.
+
+---
+
+### ✅ Bonus (One-liner Summary for the End)
+
+> In short, Render Props allow a component to **delegate its rendering logic** to another function, giving the consumer more control over what to render while reusing shared logic.
 
 
 

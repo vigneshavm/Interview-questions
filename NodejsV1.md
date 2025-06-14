@@ -140,7 +140,12 @@ Each tick of the event loop is divided into **phases**, which are executed in a 
 | **Check**             | Executes callbacks from `setImmediate()`                                      |
 | **Close Callbacks**   | Executes callbacks for closed resources (e.g., `socket.on('close')`)          |
 
----
+**Event Queue**
+
+- The event queue is FIFO (First In, First Out).
+- It handles macrotasks like setTimeout, setInterval, DOM events.
+- Microtasks (like Promise.then) are handled by the microtask queue, which has higher priority than the event queue.
+
 
 ### 3. How the Event Loop Works (Step-by-Step)
 

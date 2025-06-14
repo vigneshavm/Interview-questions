@@ -335,7 +335,8 @@ Type coercion is the process where JavaScript automatically converts values from
 **Example:**
 ---
 
-### 🔍 **Strict Equality (`===`) – No Type Coercion**
+
+**Strict Equality (`===`) – No Type Coercion**
 
 | Expression           | Result | Explanation                             |
 | -------------------- | ------ | --------------------------------------- |
@@ -345,9 +346,8 @@ Type coercion is the process where JavaScript automatically converts values from
 | `false === '0'`      | false  | Boolean vs string                       |
 | `0 === '0'`          | false  | Number vs string                        |
 
----
 
-### 🔄 **Abstract Equality (`==`) – Allows Type Coercion**
+**Abstract Equality (`==`) – Allows Type Coercion**
 
 | Expression          | Result | Explanation                                  |
 | ------------------- | ------ | -------------------------------------------- |
@@ -357,9 +357,7 @@ Type coercion is the process where JavaScript automatically converts values from
 | `[] == false`       | true   | `[]` → `''` → `0`, `false` → `0` → `0 == 0`  |
 | `[1] == true`       | true   | `[1]` → `'1'` → `1`, `true` → `1` → `1 == 1` |
 
----
-
-### 🧠 **Reference Equality – Arrays & Objects**
+**Reference Equality – Arrays & Objects**
 
 | Expression   | Result | Explanation                                           |
 | ------------ | ------ | ----------------------------------------------------- |
@@ -371,8 +369,9 @@ Type coercion is the process where JavaScript automatically converts values from
 | `{}` === `{}`  | false  | Different object references                          |
 | `[] === {}`    | false  | Array ≠ Object → different internal \[\[Class]] types  |
 
----
-```
+
+
+
 
 ---
 

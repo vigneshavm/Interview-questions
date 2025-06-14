@@ -364,7 +364,6 @@ Type coercion is the process where JavaScript automatically converts values from
 | `[] == []`   | false  | Two different array instances                         |
 | `{}` == `{}` | false  | Two different object instances                        |
 | `[] == {}`   | false  | Different types: coerces to `'' == '[object Object]'` |
-
 | `[] === []`    | false  | Different array references                           |
 | `{}` === `{}`  | false  | Different object references                          |
 | `[] === {}`    | false  | Array ≠ Object → different internal \[\[Class]] types  |

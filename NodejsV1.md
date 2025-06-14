@@ -2,7 +2,8 @@
 
 **Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [request response query params](#request-response-query-params) - [HTTP Status Codes](#status-codes)
 
-**Concurrency & Processes**  - [Event Loop](#event-loop)    - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks)  - [Async Execution Order](#Async-Execution-Order)   - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture)  -[libuv](#libuv)
+**Concurrency & Processes**  - [Event Loop](#event-loop)    - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks)  - [Async Execution Order](#Async-Execution-Order)   - [SetImmediate vs processnextTick](#SetImmediate-vs-processnextTick)
+- [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture)  -[libuv](#libuv)
 
 **Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)  
 
@@ -195,14 +196,7 @@ Each tick of the event loop is divided into **phases**, which are executed in a 
  - Macrotasks: Scheduled in specific phases of the event loop.
 
 
-### **Behavior of `setImmediate()` vs `process.nextTick()`**:
 
-* **`setImmediate()`**:
-  * Executes in the **Check Phase**, after I/O events.
-* **`process.nextTick()`**:
-  * Executes immediately after the current operation, before any I/O tasks, including `setImmediate()`.
-
----
 
 ---
 
@@ -315,6 +309,111 @@ Timeout
 2. `process.nextTick()` → runs before other microtasks
 3. `setImmediate()` → check phase
 4. `setTimeout()` → timer phase
+
+
+### **SetImmediate vs processnextTick**:
+
+* **`setImmediate()`**:
+  * Executes in the **Check Phase**, after I/O events.
+* **`process.nextTick()`**:
+  * Executes immediately after the current operation, before any I/O tasks, including `setImmediate()`.
+
+
+- If all three are scheduled together, `process.nextTick()` executes first, then `setTimeout(fn, 0)`, and `setImmediate()` executes last. 
+-However, under I/O conditions, `setImmediate()` may execute before `setTimeout()` due to the event loop’s phase order.”*
+
+**Summary Table**
+
+| Function             | Phase             | Priority Order         | Use Case                              |
+| -------------------- | ----------------- | ---------------------- | ------------------------------------- |
+| `process.nextTick()` | Before event loop | 🔝 Highest (microtask) | Critical deferred logic, cleanup      |
+| `setImmediate()`     | Check phase       | After I/O              | Run after I/O, lowest-priority tasks  |
+| `setTimeout(fn, 0)`  | Timers phase      | After check phase      | General deferral, non-critical timing |
+
+---
+
+
+### 🔁 **1. `process.nextTick()`**
+
+* Executes **after the current operation**, **before** the event loop continues.
+* Runs **before any I/O events** or timers.
+* Part of the **nextTick queue**, **not** the event loop phases.
+
+**Use Case:**
+
+* Deferring execution while staying in the **same phase**.
+* Useful for short tasks, cleanup, or recursively avoiding stack overflow.
+
+```js
+console.log('Start');
+
+process.nextTick(() => {
+  console.log('nextTick');
+});
+
+console.log('End');
+
+// Output:
+// Start
+// End
+// nextTick
+```
+
+---
+
+### 🕓 **2. `setImmediate()`**
+
+* Executes **after I/O events** in the **check phase** of the event loop.
+* Runs **after** `process.nextTick()` and any synchronous code.
+
+**Use Case:**
+
+* Deferring execution until the I/O phase is complete.
+* Suitable for **I/O-bound operations** or tasks after the current phase.
+
+```js
+console.log('Start');
+
+setImmediate(() => {
+  console.log('setImmediate');
+});
+
+console.log('End');
+
+// Output:
+// Start
+// End
+// setImmediate
+```
+
+---
+
+### ⏱️ **3. `setTimeout(fn, 0)`**
+
+* Executes after a **minimum of 0ms delay**, in the **timers phase** of the event loop.
+* Delay is **not guaranteed to be immediate**, especially under load.
+
+**Use Case:**
+
+* Simple deferral with timing control.
+* Less precise than `setImmediate()` for deferring to next cycle.
+
+```js
+console.log('Start');
+
+setTimeout(() => {
+  console.log('setTimeout');
+}, 0);
+
+console.log('End');
+
+// Output:
+// Start
+// End
+// setTimeout
+```
+
+---
 
 
 

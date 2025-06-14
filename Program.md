@@ -1,7 +1,7 @@
 
 
 Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) -- [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)
-
+- [Rate Limit only using express](#Rate-Limit-only-using-express)
 
 React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  - [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) 
 - [Debounced Search Component](#debounced-search-component)
@@ -1678,3 +1678,56 @@ export default function App() {
 }
 ```
 
+
+## Rate Limit only using express
+
+```ts
+const express = require('express');
+const app = express();
+
+const rateLimitWindowMs = 15 * 60 * 1000; // 15 minutes
+const maxRequests = 100; // max requests per IP per window
+
+// In-memory store: { "ip": { count: x, startTime: Date } }
+const ipRequestMap = new Map();
+
+const rateLimiter = (req, res, next) => {
+  const ip = req.ip;
+
+  const currentTime = Date.now();
+  const requestInfo = ipRequestMap.get(ip);
+
+  if (!requestInfo) {
+    // First request from this IP
+    ipRequestMap.set(ip, { count: 1, startTime: currentTime });
+    return next();
+  }
+
+  const elapsedTime = currentTime - requestInfo.startTime;
+
+  if (elapsedTime < rateLimitWindowMs) {
+    // Still within the time window
+    if (requestInfo.count < maxRequests) {
+      requestInfo.count += 1;
+      return next();
+    } else {
+      res.status(429).send('Too many requests. Please try again later.');
+    }
+  } else {
+    // Reset window
+    ipRequestMap.set(ip, { count: 1, startTime: currentTime });
+    return next();
+  }
+};
+
+app.use(rateLimiter);
+
+app.get('/', (req, res) => {
+  res.send('Hello, this is a rate-limited endpoint!');
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
+
+```

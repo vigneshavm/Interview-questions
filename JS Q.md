@@ -4109,9 +4109,13 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 #### **Map Key References with Objects**
 
+- In JavaScript, **`Map`** objects allow you to use **any type of value as a key, including objects**.
+-  Unlike regular objects, **`Map`** uses the **object’s reference**, not its value, as the key.
+- **Key Concept**: When using objects as keys in a `Map`, JavaScript stores a reference to the actual object. This means that two different object instances, even if they contain the same data, will be treated as distinct keys.
 
+- **Maps** retain the reference of objects as keys, unlike regular JavaScript objects, where the keys are always coerced to strings.
+- **Maps** provide better performance when dealing with frequent key lookups, especially for non-string keys.
 
-- In JavaScript, **`Map`** objects allow you to use any type of value as a key, including objects. Unlike regular objects, **`Map`** uses the **object’s reference**, not its value, as the key.
 
   **Example**:
   ```javascript
@@ -4126,7 +4130,7 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
   console.log(map.get(obj2)); // 'Hi'
   ```
 
-  - **Key Concept**: When using objects as keys in a `Map`, JavaScript stores a reference to the actual object. This means that two different object instances, even if they contain the same data, will be treated as distinct keys.
+ 
   
   ```javascript
   let obj3 = { name: 'Alice' };
@@ -4134,10 +4138,7 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
   console.log(map.get(obj3)); // undefined (obj3 is not in the map)
   ```
 
-  **Why this is useful**:
-  - **Maps** retain the reference of objects as keys, unlike regular JavaScript objects, where the keys are always coerced to strings.
-  - **Maps** provide better performance when dealing with frequent key lookups, especially for non-string keys.
-
+ 
 ---
 
 ## **Understanding Unexpected Outputs**

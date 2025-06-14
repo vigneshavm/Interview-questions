@@ -5,7 +5,7 @@
 **Concurrency & Processes**  - [Event Loop](#event-loop)    - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks)  - [Async Execution Order](#Async-Execution-Order)   - [SetImmediate vs processnextTick](#SetImmediate-vs-processnextTick)
 - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture)  -[libuv](#libuv)
 
-**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)  - [Streams](#Streams) - [Buffer](#Buffer)
+**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)  - [Streams](#Streams) - [Buffer](#Buffer) - [Handle Concurrency](#Handle-Concurrency)
 
 **Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)    - [Rate Limiter](#Rate-Limiter) - [DDoS attack](#DDoS-attack) - [Data validation](#data-validation)  -[Input Validate](#Input-Validate) 
 
@@ -4070,4 +4070,35 @@ server.listen(3000, () => console.log('Server running on port 3000'));
 
 
 
+
+
+
+
+
+## **Handle Concurrency**
+
+- Node.js operates on a single-threaded event loop, which simplifies a lot of concurrency issues, especially around CPU-bound locking.
+- However, concurrency challenges still arise when multiple asynchronous operations try to access or mutate a shared resource—like writing to the same file, updating an in-memory cache, or modifying a database record simultaneously.
+- So overall, I choose between in-memory locking, queues, DB transactions, or distributed locks depending on the resource and deployment scale.
+- These patterns help me ensure data consistency, avoid race conditions, and keep the system reliable even under concurrent load.
+
+To handle such cases, I use different strategies depending on the context:
+
+1. **In-memory locks or mutexes**:
+   For simple, single-instance applications, I use structures like `Set` or third-party packages like `async-mutex` to create critical sections in code where only one async operation can proceed at a time.
+
+2. **Queues (like `p-queue` or `bullmq`)**:
+   For jobs like uploading or processing files, I often queue requests to ensure sequential access, especially when operations must not overlap (like processing the same video multiple times).
+
+3. **Database-level transactions**:
+   When working with relational databases like Postgres, I wrap critical operations inside transactions to ensure atomicity and prevent dirty reads or race conditions.
+
+4. **Redis-based distributed locks**:
+   In microservices or horizontally scaled applications, I’ve used Redis locks—specifically using the Redlock algorithm—to coordinate access to shared resources like files or shared counters across multiple Node instances.
+
+5. **Optimistic concurrency control**:
+   For high-scale applications, I use versioning or timestamps to detect stale updates and retry failed operations, which reduces contention and improves performance.
+
+
+---
 

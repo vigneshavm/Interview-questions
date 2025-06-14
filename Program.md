@@ -12,6 +12,7 @@ React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user
 - [Custom Hook - useToggle](#custom-hook-usetoggle)
 - [Form with Validation](#form-with-validation)
 - [Highlight Text](#highlight-text)
+- [Counter](#Counter)
 
 
 
@@ -1624,5 +1625,56 @@ function Highlight({ text, highlight }) {
 }
 ```
 
+## Counter
 
+```ts
+import React, { useState, useEffect, useRef } from "react";
+
+export default function App() {
+  const [seconds, setSeconds] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    if (isRunning) {
+      timerRef.current = setInterval(() =>
+        setSeconds(prev => {
+          if (prev + 1 === 10) {
+            return 0;
+          }
+          return prev + 1;
+        }), 1000
+      );
+    }
+
+    return () => clearInterval(timerRef.current); // cleanup on unmount or isRunning change
+  }, [isRunning]);
+
+  const start = () => {
+    if (!isRunning) {
+      setIsRunning(true);
+    }
+  };
+
+  const pause = () => {
+    if (isRunning) {
+      setIsRunning(false);
+    }
+  };
+
+  const stop = () => {
+    setIsRunning(false);
+    setSeconds(0);
+  };
+
+  return (
+    <div>
+      <h2>Timer: {seconds} secs</h2>
+      <button onClick={start}>Start</button>
+      <button onClick={pause}>Pause</button>
+      <button onClick={stop}>Stop</button>
+    </div>
+  );
+}
+```
 

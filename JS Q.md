@@ -391,6 +391,80 @@ Type coercion is the process where JavaScript automatically converts values from
 | **Modules (import/export)** | `import React from 'react';` <br> `export const add = (a, b) => a + b;`                            | Use reusable code across files                           |
 | **Optional Chaining (`?.`)** | `const username = user?.profile?.name;`                                                          | Avoid errors when accessing nested properties             |
 
+
+
+**ES7 (2016)**
+
+| Feature                      | Description                                 |
+| ---------------------------- | ------------------------------------------- |
+| `Array.prototype.includes()` | Check if value exists: `[1, 2].includes(1)` |
+| Exponentiation operator      | `2 ** 3` instead of `Math.pow(2, 3)`        |
+
+---
+
+**ES8 (2017)**
+
+| Feature                               | Description                    |
+| ------------------------------------- | ------------------------------ |
+| `Object.values()`, `Object.entries()` | Easy object iteration          |
+| `String.prototype.padStart/padEnd`    | Padding strings                |
+| `async/await`                         | Async functions using promises |
+
+
+
+**ES9 (2018)**
+
+| Feature                | Description                              |
+| ---------------------- | ---------------------------------------- |
+| Rest/Spread in objects | `{...obj}`                               |
+| Asynchronous iteration | `for await...of` with `async generators` |
+
+
+
+ **ES10 (2019)**
+
+| Feature                     | Description                       |
+| --------------------------- | --------------------------------- |
+| `Array.prototype.flat()`    | Flatten nested arrays             |
+| `Object.fromEntries()`      | Convert key-value pairs to object |
+| `trimStart()` / `trimEnd()` | String trimming                   |
+| `Optional catch binding`    | Catch block without param         |
+
+
+**ES11 (2020)**
+
+| Feature                     | Description                                |
+| --------------------------- | ------------------------------------------ |
+| `Nullish coalescing` (`??`) | Fallback only if `null` or `undefined`     |
+| `Optional chaining` (`?.`)  | Safe nested access                         |
+| Dynamic `import()`          | Lazy load modules                          |
+| `Promise.allSettled()`      | Wait for all promises (fulfilled/rejected) |
+
+
+
+ **ES12 (2021)**
+
+| Feature                                 | Description                     |             |                            |
+| --------------------------------------- | ------------------------------- | ----------- | -------------------------- |
+| Logical assignment operators (`&&=`, \` |                                 | =`, `??=\`) | Concise logic + assignment |
+| `String.replaceAll()`                   | Replace all matches in a string |             |                            |
+| Numeric separators                      | `1_000_000` for readability     |             |                            |
+
+
+**ES13–ES14 (2022–2023)**
+
+| Feature                        | Description                               |
+| ------------------------------ | ----------------------------------------- |
+| Top-level `await`              | Await outside async function (in modules) |
+| `.at()` method                 | Negative indexing in arrays/strings       |
+| `Array findLast/findLastIndex` | Better reverse search                     |
+| `Error.cause`                  | Attach original error to new one          |
+| `Object.hasOwn()`              | Better alternative to `hasOwnProperty()`  |
+
+
+
+
+
 ---
 
 ## **Promises**

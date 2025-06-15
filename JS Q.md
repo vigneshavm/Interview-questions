@@ -5181,7 +5181,7 @@ evtSource.onmessage = e => console.log(e.data);
 
 ---
 
-### ✅ **1. Object Key Coercion**
+### **1. Object Key Coercion**
 
 ```js
 let a = {};            // a is an empty object
@@ -5195,7 +5195,7 @@ console.log(a[b]);     // a["[object Object]"] → 2
 
 ---
 
-### ✅ **2. Number to String Coercion**
+### **2. Number to String Coercion**
 
 ```js
 let obj = {};
@@ -5208,7 +5208,7 @@ console.log(obj[1]);    // obj["1"] → "ONE"
 
 ---
 
-### ✅ **3. Array to String Coercion**
+### **3. Array to String Coercion**
 
 ```js
 let a = {};
@@ -5223,7 +5223,7 @@ console.log(a[x]);      // a["1"] → "B"
 
 ---
 
-### ✅ **4. Object Reference Comparison**
+### **4. Object Reference Comparison**
 
 ```js
 let x = {a: 1};
@@ -5235,7 +5235,7 @@ console.log(x == y);    // Different objects in memory → false
 
 ---
 
-### ✅ **5. Object Key Ordering**
+### **5. Object Key Ordering**
 
 ```js
 let obj = {3:"three", 1:"one", 2:"two", "b":"bee", "a":"ay"};
@@ -5246,7 +5246,7 @@ console.log(Object.keys(obj));  // Numeric keys sorted → "1", "2", "3"; string
 
 ---
 
-### ✅ **6. Dot vs Bracket Notation**
+### **6. Dot vs Bracket Notation**
 
 ```js
 let obj = {};
@@ -5259,7 +5259,7 @@ console.log(obj.key);   // looks for "key", not "some key"
 
 ---
 
-### ✅ **7. Object as Key in Object**
+### **7. Object as Key in Object**
 
 ```js
 let obj = {};
@@ -5273,7 +5273,7 @@ console.log(obj[a]);    // obj["[object Object]"] → "B"
 
 ---
 
-### ✅ **8. Object as Key in Map**
+### **8. Object as Key in Map**
 
 ```js
 let map = new Map();
@@ -5287,7 +5287,7 @@ console.log(map.get(a)); // returns "A", since a !== b
 
 ---
 
-### ✅ **9. Type Coercion with `[] + {}`**
+### **9. Type Coercion with `[] + {}`**
 
 ```js
 console.log([] + {});   // [] → "", {} → "[object Object]"
@@ -5298,7 +5298,7 @@ console.log([] + {});   // [] → "", {} → "[object Object]"
 
 ---
 
-### ✅ **10. `{}` + `[]` Ambiguity**
+### **10. `{}` + `[]` Ambiguity**
 
 ```js
 console.log({} + []);   // Interpreted as block `{}` and `+[]`
@@ -5309,7 +5309,6 @@ console.log({} + []);   // Interpreted as block `{}` and `+[]`
 **Output:** `0` (in most engines)
 
 ---
-
 
 
 

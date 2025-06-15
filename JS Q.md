@@ -5178,47 +5178,79 @@ evtSource.onmessage = e => console.log(e.data);
 ### **JS Object Coercion**
 
 
-| Code Snippet        | Output | Concept             | Why?                                                                   |
-| ------------------- | ------ | ------------------- | ---------------------------------------------------------------------- |
-| **Example 1**       | `2`    | Object key coercion | Object keys are converted to strings → `b` becomes `"[object Object]"` |
-| \`\`\`js            |        |                     |                                                                        |
-| let a = {};         |        |                     |                                                                        |
-| let b = { k: 1 };   |        |                     |                                                                        |
-| a\[b] = 1;          |        |                     |                                                                        |
-| a\[b] = 2;          |        |                     |                                                                        |
-| console.log(a\[b]); |        |                     |                                                                        |
-
-
-| Code Snippet                                                                              | Output  | Concept                   | Why?                                                                   |
-| ----------------------------------------------------------------------------------------- | ------- | ------------------------- | ---------------------------------------------------------------------- |
-| `js<br>let a = {}; <br>let b = {k:1}; <br>a[b] = 1; <br>a[b] = 2; <br>console.log(a[b]);` | `2`     | Object key coercion       | Object keys are converted to strings → `b` becomes `"[object Object]"` |
-| `js<br>let obj = {}; <br>obj[1] = "one"; <br>obj["1"] = "ONE"; <br>console.log(obj[1]);`  | `"ONE"` | Number to string coercion | Keys `1` and `"1"` both coerce to the same string key `"1"`            |
-
-
-| Code Snippet                                                                                        | Output                     | Concept                       | Why?                                                         |
-| --------------------------------------------------------------------------------------------------- | -------------------------- | ----------------------------- | ------------------------------------------------------------ |
-| ```js
-let a = {}; 
-let b = {k:1}; 
-a[b] = 1; 
-a[b] = 2; 
-console.log(a[b]);```                                 | `2`                        | Object key coercion           | `b` → `"[object Object]"` key; overwritten                   |
-| `let obj = {}; obj[1] = "one"; obj["1"] = "ONE"; console.log(obj[1]);`                              | `"ONE"`                    | Number to string coercion     | `1` and `"1"` become `"1"`                                   |
-| `let a = {}; let x = [1]; let y = [1]; a[x] = "A"; a[y] = "B"; console.log(a[x]);`                  | `"B"`                      | Array to string coercion      | `x` and `y` → `"1"`                                          |
-| `typeof null`                                                                                       | `"object"`                 | Type checking                 | Historical bug                                               |
-| `let x = {a:1}, y = {a:1}; console.log(x == y);`                                                    | `false`                    | Object reference              | Different memory locations                                   |
-| `let obj = {3:"three", 1:"one", 2:"two", "b":"bee", "a":"ay"};`<br>`console.log(Object.keys(obj));` | `[1,2,3,"b","a"]`          | Key ordering                  | Numeric keys first (sorted), then strings in insertion order |
-| `NaN === NaN`                                                                                       | `false`                    | NaN comparison                | NaN is never equal to itself                                 |
-| `console.log({} + []);`                                                                             | `0` or `"[object Object]"` | Expression vs block ambiguity | Depends on context (object vs block scope)                   |
-| `let obj = {}; let k = "some key"; obj[k] = "v"; console.log(obj.key);`                             | `undefined`                | Dot vs bracket notation       | `obj.key` is not `obj["some key"]`                           |
-| `let a = {}; let b = {};`<br>`obj[a] = "A"; obj[b] = "B";`<br>`console.log(obj[a]);`                | `"B"`                      | Object as key in object       | Both keys are `"[object Object]"`                            |
-| `let map = new Map();`<br>`map.set(a, "A"); map.set(b, "B");`<br>`console.log(map.get(a));`         | `"A"`                      | Using `Map`                   | Map preserves object identity                                |
-| `let a = 5; a = a++; console.log(a);`                                                               | `5`                        | Post-increment in assignment  | Value returned before increment overwrites change            |
-| `let a = 5; let b = a++ + ++a; console.log(b);`                                                     | `12`                       | Pre vs Post combined          | `a++ → 5`, `++a → 7`, sum = 12                               |
-| `let a = 3; let b = a++ + a++ + a++; console.log(a, b);`                                            | `6 12`                     | Repeated post-increments      | Adds 3 + 4 + 5, `a` becomes 6                                |
-| `for (let i = 0; i < 3; i++) console.log(i);`                                                       | `0 1 2`                    | Loop iteration                | Post-increment works after each loop cycle                   |
-| `console.log([] + {});`                                                                             | `"[object Object]"`        | Type coercion                 | `[]` → `""`, `{}` → `"[object Object]"`                      |
+Excellent collection! Here's your complete and **well-formatted version of JavaScript tricky behavior table** — organized cleanly with separated code blocks for better readability and accurate explanations:
 
 ---
+
+### 🔍 **JavaScript Tricky Snippets Table**
+
+| Code Snippet                                                  | Output                        | Concept                       | Why?                                                                         |
+| ------------------------------------------------------------- | ----------------------------- | ----------------------------- | ---------------------------------------------------------------------------- |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| let a = {};                                                   |                               |                               |                                                                              |
+| let b = {k:1};                                                |                               |                               |                                                                              |
+| a\[b] = 1;                                                    |                               |                               |                                                                              |
+| a\[b] = 2;                                                    |                               |                               |                                                                              |
+| console.log(a\[b]);                                           |                               |                               |                                                                              |
+| \`\`\`                                                        | `2`                           | Object key coercion           | Object keys are converted to strings → `b` becomes `"[object Object]"`       |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| let obj = {};                                                 |                               |                               |                                                                              |
+| obj\[1] = "one";                                              |                               |                               |                                                                              |
+| obj\["1"] = "ONE";                                            |                               |                               |                                                                              |
+| console.log(obj\[1]);                                         |                               |                               |                                                                              |
+| \`\`\`                                                        | `"ONE"`                       | Number to string coercion     | Keys `1` and `"1"` both coerce to the string key `"1"`                       |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| let a = {};                                                   |                               |                               |                                                                              |
+| let x = \[1];                                                 |                               |                               |                                                                              |
+| let y = \[1];                                                 |                               |                               |                                                                              |
+| a\[x] = "A";                                                  |                               |                               |                                                                              |
+| a\[y] = "B";                                                  |                               |                               |                                                                              |
+| console.log(a\[x]);                                           |                               |                               |                                                                              |
+| \`\`\`                                                        | `"B"`                         | Array to string coercion      | `x` and `y` both stringify to `"1"`                                          |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| typeof null;                                                  |                               |                               |                                                                              |
+| \`\`\`                                                        | `"object"`                    | Type checking                 | A historical bug in JavaScript spec (not fixable for backward compatibility) |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| let x = {a:1}, y = {a:1};                                     |                               |                               |                                                                              |
+| console.log(x == y);                                          |                               |                               |                                                                              |
+| \`\`\`                                                        | `false`                       | Object reference              | Different objects in memory, so reference inequality                         |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| let obj = {3:"three", 1:"one", 2:"two", "b":"bee", "a":"ay"}; |                               |                               |                                                                              |
+| console.log(Object.keys(obj));                                |                               |                               |                                                                              |
+| \`\`\`                                                        | `[ '1', '2', '3', 'b', 'a' ]` | Key ordering                  | Numeric keys are sorted; string keys follow insertion order                  |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| NaN === NaN;                                                  |                               |                               |                                                                              |
+| \`\`\`                                                        | `false`                       | NaN comparison                | `NaN` is not equal to itself — use `Number.isNaN()`                          |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| console.log({} + \[]);                                        |                               |                               |                                                                              |
+| \`\`\`                                                        | `0` or `"[object Object]"`    | Expression vs block ambiguity | In global scope, `{}` may be treated as a block; context-sensitive           |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| let obj = {};                                                 |                               |                               |                                                                              |
+| let k = "some key";                                           |                               |                               |                                                                              |
+| obj\[k] = "v";                                                |                               |                               |                                                                              |
+| console.log(obj.key);                                         |                               |                               |                                                                              |
+| \`\`\`                                                        | `undefined`                   | Dot vs bracket notation       | `obj.key` ≠ `obj["some key"]`; dot expects a literal key name                |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| let obj = {};                                                 |                               |                               |                                                                              |
+| let a = {}, b = {};                                           |                               |                               |                                                                              |
+| obj\[a] = "A";                                                |                               |                               |                                                                              |
+| obj\[b] = "B";                                                |                               |                               |                                                                              |
+| console.log(obj\[a]);                                         |                               |                               |                                                                              |
+| \`\`\`                                                        | `"B"`                         | Object as key in object       | Both `a` and `b` stringify to `"[object Object]"`                            |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| let map = new Map();                                          |                               |                               |                                                                              |
+| let a = {}, b = {};                                           |                               |                               |                                                                              |
+| map.set(a, "A");                                              |                               |                               |                                                                              |
+| map.set(b, "B");                                              |                               |                               |                                                                              |
+| console.log(map.get(a));                                      |                               |                               |                                                                              |
+| \`\`\`                                                        | `"A"`                         | Using `Map`                   | `Map` maintains object identity as keys — not stringified                    |
+| \`\`\`js                                                      |                               |                               |                                                                              |
+| console.log(\[] + {});                                        |                               |                               |                                                                              |
+| \`\`\`                                                        | `"[object Object]"`           | Type coercion                 | `[]` → `""`, `{}` → string, so `"" + "[object Object]"`                      |
+
+---
+
+
+
 
 

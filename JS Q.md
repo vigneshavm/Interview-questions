@@ -1,4 +1,4 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#++---]
 
 
 **Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects)  - [Shadowing](#Shadowing)
@@ -5149,4 +5149,24 @@ evtSource.onmessage = e => console.log(e.data);
 
 - Variable shadowing occurs when a variable declared within a certain scope (like a function or block) has the same name as a variable in an outer scope,
 - thus the inner variable "shadows" or overrides access to the outer variable within its own scope.
+
+
+
+
+
+
+
+## ++ --
+
+
+| Expression | Returns | Final Value | Comment                         |
+| ---------- | ------- | ----------- | ------------------------------- |
+| `a++`      | a       | a+1         | Post-increment                  |
+| `++a`      | a+1     | a+1         | Pre-increment                   |
+| `a--`      | a       | a-1         | Post-decrement                  |
+| `--a`      | a-1     | a-1         | Pre-decrement                   |
+| `a = a++`  | a       | no change   | Assignment overwrites increment |
+| `a = ++a`  | a+1     | a+1         | Assignment keeps increment      |
+| `a = a--`  | a       | no change   | Same as a++                     |
+| `a = --a`  | a-1     | a-1         | Keeps decrement                 |
 

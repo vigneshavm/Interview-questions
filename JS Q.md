@@ -5175,17 +5175,16 @@ evtSource.onmessage = e => console.log(e.data);
 
 
 
-
-
-### **JS Object Coercion**
+### **JS Object & Coercion Interview Questions**
 
 | Code Snippet                                                                                        | Output                     | Concept                       | Why?                                                         |
 | --------------------------------------------------------------------------------------------------- | -------------------------- | ----------------------------- | ------------------------------------------------------------ |
-| `let a = {}; 
+| ```js
+let a = {}; 
 let b = {k:1}; 
 a[b] = 1; 
 a[b] = 2; 
-console.log(a[b]);`                                 | `2`                        | Object key coercion           | `b` → `"[object Object]"` key; overwritten                   |
+console.log(a[b]);```                                 | `2`                        | Object key coercion           | `b` → `"[object Object]"` key; overwritten                   |
 | `let obj = {}; obj[1] = "one"; obj["1"] = "ONE"; console.log(obj[1]);`                              | `"ONE"`                    | Number to string coercion     | `1` and `"1"` become `"1"`                                   |
 | `let a = {}; let x = [1]; let y = [1]; a[x] = "A"; a[y] = "B"; console.log(a[x]);`                  | `"B"`                      | Array to string coercion      | `x` and `y` → `"1"`                                          |
 | `typeof null`                                                                                       | `"object"`                 | Type checking                 | Historical bug                                               |
@@ -5203,4 +5202,5 @@ console.log(a[b]);`                                 | `2`                       
 | `console.log([] + {});`                                                                             | `"[object Object]"`        | Type coercion                 | `[]` → `""`, `{}` → `"[object Object]"`                      |
 
 ---
+
 

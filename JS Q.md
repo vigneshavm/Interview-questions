@@ -5177,6 +5177,18 @@ evtSource.onmessage = e => console.log(e.data);
 
 ### **JS Object Coercion**
 
+
+| Code Snippet        | Output | Concept             | Why?                                                                   |
+| ------------------- | ------ | ------------------- | ---------------------------------------------------------------------- |
+| **Example 1**       | `2`    | Object key coercion | Object keys are converted to strings → `b` becomes `"[object Object]"` |
+| \`\`\`js            |        |                     |                                                                        |
+| let a = {};         |        |                     |                                                                        |
+| let b = { k: 1 };   |        |                     |                                                                        |
+| a\[b] = 1;          |        |                     |                                                                        |
+| a\[b] = 2;          |        |                     |                                                                        |
+| console.log(a\[b]); |        |                     |                                                                        |
+
+
 | Code Snippet                                                                              | Output  | Concept                   | Why?                                                                   |
 | ----------------------------------------------------------------------------------------- | ------- | ------------------------- | ---------------------------------------------------------------------- |
 | `js<br>let a = {}; <br>let b = {k:1}; <br>a[b] = 1; <br>a[b] = 2; <br>console.log(a[b]);` | `2`     | Object key coercion       | Object keys are converted to strings → `b` becomes `"[object Object]"` |

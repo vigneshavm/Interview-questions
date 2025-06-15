@@ -5178,11 +5178,6 @@ evtSource.onmessage = e => console.log(e.data);
 ### **JS Object Coercion**
 
 
-Excellent collection! Here's your complete and **well-formatted version of JavaScript tricky behavior table** — organized cleanly with separated code blocks for better readability and accurate explanations:
-
----
-
-### 🔍 **JavaScript Tricky Snippets Table**
 
 | Code Snippet                                                  | Output                        | Concept                       | Why?                                                                         |
 | ------------------------------------------------------------- | ----------------------------- | ----------------------------- | ---------------------------------------------------------------------------- |

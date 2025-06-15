@@ -1,4 +1,4 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#Post-increment-and-Pre-increment) - [#JS Object & Coercion](#JS-Object-&-Coercion)
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#Post-increment-and-Pre-increment) - [#JS Object & Coercion](#JS-Object-Coercion)
 
 
 **Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects)  - [Shadowing](#Shadowing)
@@ -5177,7 +5177,7 @@ evtSource.onmessage = e => console.log(e.data);
 
 
 
-### **JS Object & Coercion**
+### **JS Object Coercion**
 
 | Code Snippet                                                                                        | Output                     | Concept                       | Why?                                                         |
 | --------------------------------------------------------------------------------------------------- | -------------------------- | ----------------------------- | ------------------------------------------------------------ |

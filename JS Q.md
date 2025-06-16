@@ -1,4 +1,4 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#Post-increment-and-Pre-increment) - [#JS Object & Coercion](#JS-Object-Coercion)
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#Post-increment-and-Pre-increment) - [JS Object & Coercion](#JS-Object-Coercion) - [Dyanmic Keys](#Dyanmic-Keys)
 
 
 **Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects)  - [Shadowing](#Shadowing)
@@ -5180,7 +5180,34 @@ evtSource.onmessage = e => console.log(e.data);
 
 
 
----
+
+| Code Snippet                        | Output                     | Concept / Explanation                              |
+| ----------------------------------- | -------------------------- | -------------------------------------------------- |
+| `console.log(!!"");`                | `false`                    | Empty string is falsy                              |
+| `console.log(!!"hello");`           | `true`                     | Non-empty string is truthy                         |
+| `console.log(!!0);`                 | `false`                    | 0 is falsy                                         |
+| `console.log(!!1);`                 | `true`                     | 1 is truthy                                        |
+| `console.log(!!null);`              | `false`                    | null is falsy                                      |
+| `console.log(typeof null);`         | `"object"`                 | JavaScript quirk (legacy bug)                      |
+| `console.log("5" - 1);`             | `4`                        | "5" coerced to number                              |
+| `console.log("5" + 1);`             | `"51"`                     | String + Number = string concatenation             |
+| `console.log(true + 1);`            | `2`                        | true → 1                                           |
+| `console.log(false + 1);`           | `1`                        | false → 0                                          |
+| `console.log(null + 1);`            | `1`                        | null → 0                                           |
+| `console.log(undefined + 1);`       | `NaN`                      | undefined → NaN                                    |
+| `console.log(Object.is(NaN, NaN));` | `true`                     | Object.is handles NaN correctly                    |
+| `console.log([] + []);`             | `""`                       | Arrays to string → "" + ""                         |
+| `console.log([] + {});`             | `"[object Object]"`        | \[] → "", {} → "\[object Object]"                  |
+| `console.log({} + []);`             | `0` or `"[object Object]"` | Depends on parsing context ({} as block or object) |
+| `console.log([1, 2] + [3, 4]);`     | `"1,23,4"`                 | Arrays to string → "1,2" + "3,4"                   |
+| `console.log([] && {});`            | `{}`                       | Both truthy, returns second operand                |
+
+
+
+
+
+## **Dyanmic Keys**
+
 
 ### **1. Object Key Coercion**
 
@@ -5224,17 +5251,6 @@ console.log(a[x]);      // a["1"] → "B"
 
 ---
 
-### **4. Object Reference Comparison**
-
-```js
-let x = {a: 1};
-let y = {a: 1};
-console.log(x == y);    // Different objects in memory → false
-```
-
-**Output:** `false`
-
----
 
 ### **5. Object Key Ordering**
 
@@ -5287,30 +5303,4 @@ console.log(map.get(a)); // returns "A", since a !== b
 **Output:** `"A"`
 
 ---
-
-### **9. Type Coercion with `[] + {}`**
-
-```js
-console.log([] + {});   // [] → "", {} → "[object Object]"
-                        // "" + "[object Object]" → "[object Object]"
-```
-
-**Output:** `"[object Object]"`
-
----
-
-### **10. `{}` + `[]` Ambiguity**
-
-```js
-console.log({} + []);   // Interpreted as block `{}` and `+[]`
-                        // +[] → 0, nothing from the block → result is `0`
-                        // In some contexts it could be interpreted differently
-```
-
-**Output:** `0` (in most engines)
-
----
-
-
-
 

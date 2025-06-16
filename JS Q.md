@@ -345,7 +345,7 @@ Type coercion is the process where JavaScript automatically converts values from
 | `null === undefined` | false  | Different types (`null` ≠ `undefined`)  |
 | `false === '0'`      | false  | Boolean vs string                       |
 | `0 === '0'`          | false  | Number vs string                        |
-
+| `NaN === NaN;`       | `false`| NaN is never equal to anything               |
 
 **Abstract Equality (`==`) – Allows Type Coercion**
 
@@ -356,6 +356,7 @@ Type coercion is the process where JavaScript automatically converts values from
 | `null == undefined` | true   | Exception case — loosely equal               |
 | `[] == false`       | true   | `[]` → `''` → `0`, `false` → `0` → `0 == 0`  |
 | `[1] == true`       | true   | `[1]` → `'1'` → `1`, `true` → `1` → `1 == 1` |
+| `NaN == NaN;`       | `false`| NaN is never equal to anything               |
 
 **Reference Equality – Arrays & Objects**
 

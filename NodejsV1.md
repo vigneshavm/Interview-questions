@@ -19,10 +19,11 @@
 
 **Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) - [WebSockets Drawbacks](#drawbacks-of-WebSockets)
 
-**Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)   
+**Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)     **Memory**  - [Memory-leak](#Memory-leak)  - [Garbage Collection](#garbage-collection) 
 
 
-**Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)    - [Garbage Collection](#garbage-collection)  - [Handle CPU intensive task](#Handle-CPU-intensive-task)   - [Concurrent CPU intensive requests](#Concurrent-CPU-intensive-requests) - [Handling 100,000 concurrent requests](#Handling-100000-concurrent-requests)  
+
+**Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)     - [Handle CPU intensive task](#Handle-CPU-intensive-task)   - [Concurrent CPU intensive requests](#Concurrent-CPU-intensive-requests) - [Handling 100,000 concurrent requests](#Handling-100000-concurrent-requests)  
 
 
 **Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
@@ -4105,4 +4106,106 @@ To handle such cases, I use different strategies depending on the context:
 
 
 ---
+
+
+## **Memory leak**
+---
+
+
+- A **memory leak in Node.js** occurs when the **application holds references to objects that are no longer needed**, preventing the garbage collector from reclaiming that memory.
+- Over time, this **leads to increased memory usage, performance degradation, and potential crashes**.
+- Memory leaks in Node.js happen when unused memory isn’t freed due to retained references.
+- I prevent them through scoped variables, proper cleanup of timers and listeners, use of `WeakMap`, and bounded caching. 
+- I detect leaks via heap snapshots, Chrome DevTools, and tools like `clinic.js` or `heapdump`.”
+
+
+
+### 🔍 **Common Causes:**
+
+1. **Unintentional Global Variables** – Declared without `let/const`, they persist for the app’s lifetime.
+2. **Uncleared Timers/Intervals** – Active timers referencing closures retain memory.
+3. **Unremoved Event Listeners** – E.g., using `emitter.on()` but never calling `.off()`.
+4. **Retained Closures** – Functions capturing variables unintentionally.
+5. **Unbounded In-memory Caching** – Caches growing without a limit.
+
+---
+
+### 🛡️ **Prevention Strategies:**
+
+* **Use `let`/`const` with `'use strict'`** to avoid accidental globals.
+* **Clear `setTimeout` / `setInterval`** when no longer needed.
+* **Always remove unused event listeners** using `off()` or `removeListener()`.
+* **Use `WeakMap` / `WeakSet`** for temporary object storage — they allow automatic garbage collection.
+* **Limit cache size** using tools like `lru-cache` to prevent uncontrolled growth.
+* **Avoid long-lived closures** holding onto large objects.
+
+---
+
+### 🔍 **Detection Techniques:**
+
+#### 1. **Runtime Monitoring:**
+
+```js
+console.log(process.memoryUsage());
+```
+
+Track `heapUsed`, `heapTotal`, `rss`. Continuous growth = suspicious.
+
+#### 2. **DevTools Profiling:**
+
+```bash
+node --inspect app.js
+```
+
+Use Chrome DevTools (`chrome://inspect`) to:
+
+* Take heap snapshots
+* Analyze memory timeline
+* Identify retained objects
+
+#### 3. **Heap Snapshots via Code:**
+
+```js
+const heapdump = require('heapdump');
+heapdump.writeSnapshot(`./${Date.now()}.heapsnapshot`);
+```
+
+Compare snapshots before and after load.
+
+#### 4. **Tooling:**
+
+| Tool                     | Use Case                          |
+| ------------------------ | --------------------------------- |
+| `clinic.js`              | Profiling memory, CPU, event loop |
+| `memwatch-next`          | Emits warnings on memory growth   |
+| `v8.getHeapStatistics()` | Detailed V8-level memory stats    |
+
+#### 5. **Red Flags to Watch:**
+
+* Heap grows after GC
+* `MaxListenersExceededWarning`
+* High memory usage without corresponding load
+
+#### 6. **Stress Testing:**
+
+Use tools like **Artillery**, **Apache Benchmark**, or **Postman Runner** to simulate traffic and detect leaks under load.
+
+---
+
+### 📌 **Example: EventEmitter Leak Prevention**
+
+```js
+const emitter = new EventEmitter();
+function onMessage(msg) {
+  console.log(msg);
+}
+emitter.on('message', onMessage);
+
+// ✅ Prevent leak
+emitter.off('message', onMessage);
+```
+
+---
+
+
 

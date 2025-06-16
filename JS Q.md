@@ -3493,7 +3493,26 @@ person.greet();       // Hi, I'm Alice
 
 
 
+
+
+
+| Code Snippet                                                                                                                                        | Output      | Concept / Explanation                                                      |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------------- |
+| `js let obj = { a: 10, getA() { return this.a; } }; console.log(obj.getA()); `                                                                      | `10`        | `this` refers to the object calling the method                             |
+| `js let obj = { a: 10 }; let getA = function() { return this.a; }; console.log(getA()); `                                                           | `undefined` | In non-strict mode, `this` refers to `window`; `a` is not defined globally |
+| `js "use strict"; let getA = function() { return this; }; console.log(getA()); `                                                                    | `undefined` | In strict mode, `this` is `undefined` for plain functions                  |
+| `js let obj = { a: 10 }; let getA = () => this.a; console.log(getA()); `                                                                            | `undefined` | Arrow functions don't have their own `this`; inherits from enclosing scope |
+| `js let obj = { a: 10, getA: () => this.a }; console.log(obj.getA()); `                                                                             | `undefined` | Arrow function's `this` does **not** refer to `obj`, but to outer scope    |
+| `js let obj = { a: 10, getA() { const arrow = () => this.a; return arrow(); } }; console.log(obj.getA()); `                                         | `10`        | Arrow inherits `this` from the method (obj)                                |
+| `js function A() { this.name = "foo"; return { name: "bar" }; } console.log(new A().name); `                                                        | `"bar"`     | Object returned explicitly replaces the instance                           |
+| `js function A() { this.name = "foo"; } console.log(new A().name); `                                                                                | `"foo"`     | `new` sets `this` to the new object                                        |
+| `js let a = { x: 1 }; let b = { x: 2, getX: function() { return this.x; } }; a.getX = b.getX; console.log(a.getX()); `                              | `1`         | `this` depends on the caller — here, it's `a`                              |
+| `js const obj = { count: 0, inc() { setTimeout(function() { this.count++; }, 100); } }; obj.inc(); setTimeout(() => console.log(obj.count), 200); ` | `0`         | `this` inside `setTimeout` refers to `window`, not `obj`                   |
+| `js const obj = { count: 0, inc() { setTimeout(() => { this.count++; }, 100); } }; obj.inc(); setTimeout(() => console.log(obj.count), 200); `      | `1`         | Arrow function uses lexical `this`, i.e., `obj`                            |
+
 ---
+
+
 
 ### 🔴 Original Code (Arrow Function — Not Working)
 

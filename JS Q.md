@@ -3605,6 +3605,89 @@ function Counter() {
 new Counter();
 ```
 
+```js
+
+// ✅ this refers to the calling object
+let obj1 = { a: 10, getA() { return this.a; } };
+console.log(obj1.getA()); // 10
+
+// ❌ this is window/global in non-strict mode
+let obj2 = { a: 10 };
+let getA2 = function () { return this.a; };
+console.log(getA2()); // undefined
+
+// ❌ strict mode: this is undefined in a standalone function
+"use strict";
+let getA3 = function () { return this; };
+console.log(getA3()); // undefined
+
+// ❌ Arrow function inherits this from enclosing (global) scope
+let obj4 = { a: 10 };
+let getA4 = () => this.a;
+console.log(getA4()); // undefined
+
+// ❌ Arrow function used as a method — wrong this
+let obj5 = { a: 10, getA: () => this.a };
+console.log(obj5.getA()); // undefined
+
+// ✅ Arrow function inside method — captures correct this
+let obj6 = {
+  a: 10,
+  getA() {
+    const arrow = () => this.a;
+    return arrow();
+  }
+};
+console.log(obj6.getA()); // 10
+
+// ❌ new returns custom object, not instance
+function A1() {
+  this.name = "foo";
+  return { name: "bar" };
+}
+console.log(new A1().name); // "bar"
+
+// ✅ new with no return: instance is used
+function A2() {
+  this.name = "foo";
+}
+console.log(new A2().name); // "foo"
+
+// ✅ this depends on calling object
+let a = { x: 1 };
+let b = {
+  x: 2,
+  getX: function () { return this.x; }
+};
+a.getX = b.getX;
+console.log(a.getX()); // 1
+
+// ❌ this inside regular setTimeout is global (not obj)
+const obj7 = {
+  count: 0,
+  inc() {
+    setTimeout(function () {
+      this.count++; // this is global or undefined
+    }, 100);
+  }
+};
+obj7.inc();
+setTimeout(() => console.log(obj7.count), 200); // 0
+
+// ✅ this inside arrow in setTimeout points to obj
+const obj8 = {
+  count: 0,
+  inc() {
+    setTimeout(() => {
+      this.count++; // this is correctly `obj8`
+    }, 100);
+  }
+};
+obj8.inc();
+setTimeout(() => console.log(obj8.count), 200); // 1
+```
+
+
 
 
 ---

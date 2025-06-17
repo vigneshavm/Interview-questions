@@ -51,8 +51,12 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 ---
 ## **Type Inference**
 
-- Type Inference is the compiler's ability to **automatically deduce the type** of a variable, parameter, or expression based on its value or context.
+- TypeScript infers types automatically,
+- Type Inference is the **compiler's ability to automatically deduce the type** (variable, parameter, or expression)
+- but can infer them too broadly or narrowly.
 - It helps write **cleaner, less verbose code** without compromising on **type safety**.
+- Over-reliance may lead to any or incorrect assumptions if types are not explicitly declared.
+
 
 ---
 

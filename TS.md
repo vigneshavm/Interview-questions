@@ -526,19 +526,19 @@ const employee: Employee = {
 ## Template literal types
 
 
-> **Template literal types** in TypeScript allow us to create **dynamic string types** by combining strings and types using template syntax, similar to JavaScript's template literals.  
->  
-> They are useful when we need to generate new types based on existing ones, such as creating `"GET /api/user"` or `"POST /api/post"` types dynamically.  
->  
-> **Example:**  
-> ```ts
-> type Method = "GET" | "POST";
-> type Resource = "user" | "post";
-> type APIEndpoint = `${Method} /api/${Resource}`;
-> ```
-> Here, `APIEndpoint` becomes a union of all combinations like `"GET /api/user"`, `"POST /api/post"`, etc.
->
-> This helps with **type safety**, **autocompletion**, and **avoiding string mismatches** in large applications.
+- **Template literal types** in TypeScript allow us to **create dynamic string types by combining strings and types** using template syntax, similar to JavaScript's template literals.  
+  
+- They are useful when we need to **generate new types based on existing ones**, such as creating `"GET /api/user"` or `"POST /api/post"` types dynamically.  
+  
+**Example:**  
+ ```ts
+ type Method = "GET" | "POST";
+ type Resource = "user" | "post";
+ type APIEndpoint = `${Method} /api/${Resource}`;
+ ```
+- Here, `APIEndpoint` becomes a union of all combinations like `"GET /api/user"`, `"POST /api/post"`, etc.
+
+- This helps with **type safety**, **autocompletion**, and **avoiding string mismatches** in large applications.
 
 ---
 ## keyof Vs typeof

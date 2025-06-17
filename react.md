@@ -853,7 +853,9 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 
 ## Error Handling in Components
 
-Use **Error Boundaries** in class components to catch JavaScript errors in child components.
+- Use **Error Boundaries** in class components to catch JavaScript errors in child components.
+- Error boundaries only work in class components, 
+- but you can wrap functional components in an error boundary HOC or use libraries like react-error-boundary.
 
 ```jsx
 class ErrorBoundary extends React.Component {
@@ -866,7 +868,21 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Functional components still require class-based boundaries or external libraries.
+- Functional components still require class-based boundaries or external libraries.
+```jsx
+import { ErrorBoundary } from 'react-error-boundary';
+function ErrorFallback({ error }: { error: Error }) {
+  return <div role="alert">Something went wrong: {error.message}</div>;
+}
+
+function App() {
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <MyComponent />
+    </ErrorBoundary>
+  );
+}
+```
 
 ---
 

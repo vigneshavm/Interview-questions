@@ -7,7 +7,8 @@
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
-| **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query) •  [Redux-Saga](#Redux-Saga)   •  [Redux Virtualized](#react-virtualized)  - [Recursion](#Recursion)
+| **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query) •  [Redux-Saga](#Redux-Saga)   •  [Redux Virtualized](#react-virtualized)  - [Recursion](#Recursion) - [Reacts Concurrent Mode](#Reacts-Concurrent-Mode)
+
 | **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
@@ -5306,6 +5307,27 @@ function App() {
 
 > In short, Render Props allow a component to **delegate its rendering logic** to another function, giving the consumer more control over what to render while reusing shared logic.
 
+
+
+
+
+
+## **Reacts Concurrent Mode**
+
+- "React's Concurrent Mode is a set of features introduced in React 18 to make rendering more responsive and non-blocking. 
+- Traditionally, React would render everything synchronously, 
+- which could lead to noticeable UI lags during heavy operations. Concurrent Mode changes that by making rendering interruptible.**
+
+- With Concurrent Mode, React can pause a render, handle more urgent tasks like user input, and then resume. 
+- This leads to smoother user experiences, especially in complex apps. 
+- It uses features like `startTransition()` to mark non-urgent updates, `useDeferredValue()` to delay expensive computations, and `<Suspense>` to coordinate asynchronous loading like fetching data.**
+
+- While it doesn't run in parallel (since JavaScript is single-threaded), it allows React to prioritize tasks intelligently. 
+- This improves perceived performance and interactivity."**
+
+- For example, when typing in a search box that filters a large list, I use `startTransition()` to defer the list update. 
+- This keeps the input responsive while the list updates in the background. 
+- That’s a real-world use case where Concurrent Mode enhances UX significantly.”
 
 
 

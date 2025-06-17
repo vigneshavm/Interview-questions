@@ -335,6 +335,11 @@ Type coercion is the process where JavaScript automatically converts values from
 **Example:**
 ---
 
+var a = { age: 20, name: 20 };
+var b = { age: 20, name: 20, address: undefined };
+JSON.stringify(a) === JSON.stringify(b)  --> true ie)Because JSON.stringify removes undefined values from objects
+JSON.stringify(a) == JSON.stringify(b)  --> true  ie)Because JSON.stringify removes undefined values from objects
+
 
 **Strict Equality (`===`) – No Type Coercion**
 

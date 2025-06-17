@@ -388,9 +388,13 @@ Mapped types are useful for creating reusable and flexible transformations of ty
 
 
 
-> **Utility types** in TypeScript are built-in **generics** that allow you to **transform** or **manipulate** types in a variety of useful ways. They help you **create new types** based on existing ones, making the development process **more efficient** and **type-safe**.
+- **Utility types** in TypeScript are built-in **generics** that allow you to **transform** or **manipulate** types in a variety of useful ways.
+- They help you **create new types** based on existing ones, making the development process **more efficient** and **type-safe**.
 
 ---
+```ts
+type ReadOnlyOptional<T> = Partial<Readonly<T>>;
+```
 
 ** 🧠 **1. `Partial<T>`** — Makes all properties **optional** in a given type `T`.
 

@@ -770,13 +770,11 @@ console.log(`Platform: ${process.platform}`);
  - [Cluster Module](#cluster-module)
 
 
-
-## Summary of Key Differences:
-
 * **Cluster Module**:
 
   * Creates multiple processes to handle requests across multiple CPU cores.
   * Used for **load balancing** and **multi-core utilization**.
+  * Clustering spawns multiple Node.js processes to handle concurrent requests on multiple cores. 
 * **Child Process**:
 
   * Executes external commands or scripts in separate processes.
@@ -787,6 +785,7 @@ console.log(`Platform: ${process.platform}`);
   * Ideal for **CPU-intensive tasks** that need parallel execution without blocking the main event loop.
   * Worker threads allow Node.js to perform CPU-intensive operations in parallel, as Node.js is single-threaded by default.
   * Use them for heavy computations (e.g., image processing, large data parsing).
+  * Worker threads share memory and run inside a single process.
 
 
 

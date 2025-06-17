@@ -133,6 +133,21 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 ## **Any vs Unknown**
 
 
+> In TypeScript:
+- **`unknown`** is a **safer version of `any`**. It represents **any value**, but unlike `any`, you must **narrow its type** before using it (e.g., through type checks or type assertions).
+- **`any`** allows **any operation** to be performed on it without restrictions, making it **more permissive but less safe**.
+
+- **`never Type`** - The never type represents values that never occur. It’s used in functions or variables that should never return or never be reachable.
+
+**Key Differences**
+| Type      | `any`                                | `unknown`                           |
+|-----------|--------------------------------------|-------------------------------------|
+| Safety    | **No safety** — any operation is allowed | **Requires type checking** before use |
+| Use case  | When you don't care about types (use carefully) | When you want to ensure proper type handling |
+
+
+
+
 | **Feature**          | **`any`**                                       | **`unknown`**                                      |
 |----------------------|-------------------------------------------------|----------------------------------------------------|
 | **Type Safety**      | No type safety. You can perform any operation on a variable of type `any` without restrictions. | Requires type checks before performing operations. TypeScript forces you to verify the type first. |
@@ -142,10 +157,6 @@ TypeScript ensures that only numbers are passed into the `add` function, prevent
 | **Example**          | ```typescript<br>let value: any = 42;<br>value = "hello";  // No error<br>``` | ```typescript<br>let value: unknown = 42;<br>if (typeof value === "string") {<br>  console.log(value.length);  // Valid<br>}<br>``` |
 
 
-
-> In TypeScript:
-> - **`unknown`** is a **safer version of `any`**. It represents **any value**, but unlike `any`, you must **narrow its type** before using it (e.g., through type checks or type assertions).
-> - **`any`** allows **any operation** to be performed on it without restrictions, making it **more permissive but less safe**.
 
 ---
 
@@ -166,12 +177,6 @@ if (typeof value2 === "string") {
   console.log(value2.toUpperCase());  // OK, after type narrowing
 }
 ```
-
-**Key Differences**
-| Type      | `any`                                | `unknown`                           |
-|-----------|--------------------------------------|-------------------------------------|
-| Safety    | **No safety** — any operation is allowed | **Requires type checking** before use |
-| Use case  | When you don't care about types (use carefully) | When you want to ensure proper type handling |
 
 ---
 

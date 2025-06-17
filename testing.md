@@ -26,6 +26,10 @@
 
 
   
+- [CSR vs SSR](#CSR-vs-SSR) - [Client-Side Rendering  vs Server-Side Rendering](#CSR-vs-SSR)
+
+## **Client-Side Rendering  vs Server-Side Rendering**
+
 
 ---
 
@@ -4771,4 +4775,26 @@ query {
 ---
 
 
+## **CSR-vs-SSR**
+
+
+
+- **Client-Side Rendering (CSR)** means the browser downloads a minimal HTML page and then uses JavaScript (usually via a framework like React, Angular, or Vue) to render content dynamically.
+- It’s commonly used in **Single Page Applications** where the initial load might be slow, but subsequent navigation is fast.
+- However, SEO can be a challenge since the content isn't immediately available in the HTML.
+
+- **Server-Side Rendering (SSR)**, on the other hand, generates the complete HTML on the **server** and sends it to the client.
+- This improves **initial load performance** and **SEO**, as search engines can crawl fully-rendered pages.
+- It’s especially useful for content-heavy or public-facing pages.
+
+- In practice,
+- I often prefer **hybrid frameworks like Next.js**, which allow me to choose SSR for SEO-critical pages and
+-  CSR for dynamic, user-interactive areas like dashboards.
+
+---
+
+### ✅ **Optional Follow-up:**
+
+> For example, in my previous project, we used **Next.js** to SSR marketing pages for SEO benefits and
+> used **CSR** for logged-in dashboard views to ensure faster transitions and interactivity.
 

@@ -785,6 +785,9 @@ console.log(`Platform: ${process.platform}`);
 
   * Runs JavaScript code in separate threads within the same process.
   * Ideal for **CPU-intensive tasks** that need parallel execution without blocking the main event loop.
+  * Worker threads allow Node.js to perform CPU-intensive operations in parallel, as Node.js is single-threaded by default.
+  * Use them for heavy computations (e.g., image processing, large data parsing).
+
 
 
 
@@ -808,9 +811,6 @@ console.log(`Platform: ${process.platform}`);
 | 🌐 Port Sharing         | Yes (workers share server port)             | No                                            | Not applicable                              |
 
 ---
-
-
- ## Worker Threads
 
 
  ## **Worker Threads**

@@ -1,15 +1,13 @@
 
 **Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)   • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  - [Class](#class)  - [JavaScript & TypeScript Performance Optimization Checklist](#JavaScript-TypeScript-Performance-Optimization-Checklist)
 
-**Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  • [Type Decorators](#decorators)
+**Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  • [Type Decorators](#decorators) • [Conditional Types](#conditional-types)  • [Template Literal Types](#template-literal-types) • [Generics Types](#generics) 
 
 **OOPS** - [Polymorphism](#Polymorphism) - [Class](#class)  - [Immutable Class](#Immutable-Class) - [Inheritance](#Inheritance) - [Encapsulation](#Encapsulation)
 
 **Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#Union-and-Intersection-Types)  
 
-
-
-**Advanced Types** • [Template Literal Types](#template-literal-types)  • [`keyof` and `typeof` Operators](#keyof-vs-typeof)  • [Conditional Types](#conditional-types)  • [`readonly` vs `const`](#readonly-vs-const)   
+**Advanced Types**  • [`keyof` and `typeof` Operators](#keyof-vs-typeof)   • [`readonly` vs `const`](#readonly-vs-const)   
 
 
 **Generics** • [Generic Functions and Classes](#generics)  • [Constraining Generics with `extends`](#constraining-generics-with-extends)  

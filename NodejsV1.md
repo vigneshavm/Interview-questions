@@ -2488,6 +2488,7 @@ app.use(helmet({
 - **Identifying Memory Leaks**:
   - Use **Chrome DevTools** or **Node.js memory profiling** to track memory consumption.
   - Look for objects in heap snapshots that should have been collected but aren’t.
+  -  Use tools like heapdump, clinic.js, or Chrome DevTools for profiling.
 
 ---
 

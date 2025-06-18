@@ -156,3 +156,41 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 
 
+### **Lead Code Reviews**
+
+#### **Code Quality & Best Practices**
+
+* Conducted thorough code reviews to ensure **clean, readable, and maintainable code**.
+* Emphasized **SOLID principles**, proper modularization, and avoiding code duplication.
+* Reviewed both frontend (React/Next.js) and backend (Node.js/TypeScript) code for adherence to **project architecture and design patterns**.
+
+#### **Consistency & Standards**
+
+* Enforced **consistent code formatting** using tools like **ESLint, Prettier**, and custom rules defined in `.eslintrc`.
+* Promoted consistent naming conventions, folder structures, and interface design across the codebase.
+* Helped maintain a **centralized style guide** and updated it as the codebase evolved.
+
+#### **Bug Prevention & Edge Case Handling**
+
+* Checked for potential **runtime errors**, improper async/await usage, and unhandled exceptions.
+* Identified edge cases and encouraged adding **unit tests or fallback conditions** to improve reliability.
+* Validated TypeScript types/interfaces and ensured use of strict typing to avoid hidden bugs.
+
+#### **Knowledge Sharing & Feedback**
+
+* Provided **actionable, respectful feedback** during reviews, treating them as learning opportunities.
+* Explained not just *what* to change, but also *why*, to help junior developers understand the reasoning behind best practices.
+* Used reviews to mentor teammates on **performance optimization, state management (React), API handling**, and proper use of hooks or middleware.
+
+#### **CI Integration & Review Tools**
+
+* Integrated code review workflows with **CI/CD pipelines** (e.g., GitHub Actions, GitLab CI) to automate linting and testing before merging.
+* Used tools like **GitHub PR templates**, **SonarQube**, and **CodeCov** to standardize review checklists and surface code smells or low coverage.
+
+#### **Team Impact**
+
+* Improved team velocity by reducing the number of bugs found in QA through better review coverage.
+* Encouraged a **review culture** where everyone contributes to maintaining high-quality code, not just senior devs.
+
+---
+

@@ -17,7 +17,7 @@
 
 **Authentication & Authorization**  - [Authentication vs Authorization](#authentication-vs-authorization) - [JWT](#implementing-jwt-authentication) - [Single Sign On](#Single-Sign-On) - [Session-based vs Token-based](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)   - [Refresh Tokens](#refresh-tokens)  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers)   - [Role-Based Access Control](#role-based-access-control-rbac)
 
-**Event Handling**  - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) - [WebSockets Drawbacks](#drawbacks-of-WebSockets)
+**Event Handling**  -[Event Driven Architecture](#Event-Driven-Architecture) - [Event Emitters](#event-emitters)  - [Process Object](#process-object)  - [WebSockets](#websockets-socketio-basics) - [WebSockets Drawbacks](#drawbacks-of-WebSockets)
 
 **Error Handling & Debugging**  - [Error Handling](#error-handling-in-nodejs-applications)  - [Logging Errors](#logging-errors)  - [Debugging](#debugging-nodejs-applications)  - [Error handling in REST APIs](#error-handling-in-rest-apis)     **Memory**  - [Memory-leak](#Memory-leak)  - [Garbage Collection](#garbage-collection) 
 
@@ -480,6 +480,67 @@ console.log('End');
 | **CLI tools**          | Fast execution with JS scripting capabilities    |
 
 ---
+
+
+
+
+## **Event Driven Architecture**
+
+- Event-Driven Architecture (EDA) is a software design pattern where components communicate through events. 
+- Instead of direct method calls, components emit events when something happens, and other components listen for and react to those events. 
+- This decouples producers from consumers, making systems more scalable, reactive, and flexible.
+- It supports loose coupling, meaning services don’t need to know about each other. 
+- This makes it easier to scale, test, and modify systems independently.
+- However, it can be harder to debug and trace flows, so proper observability and logging are key.
+
+---
+
+### 🔁 **Core Concepts**
+
+* **Event**: A message that signals that *something happened* (e.g., 'userRegistered').
+* **Producer**: Sends (emits) the event.
+* **Consumer**: Listens for and reacts to that event.
+* **Event Bus or Broker**: The system that routes events (e.g., Node.js EventEmitter, Kafka, RabbitMQ, Redis Pub/Sub).
+
+---
+
+### 🧠 Example (Node.js - Micro Level)
+
+```js
+const EventEmitter = require('events');
+
+const eventBus = new EventEmitter();
+
+// Listener (consumer)
+eventBus.on('userRegistered', (user) => {
+  console.log(`Welcome email sent to ${user.email}`);
+});
+
+// Emitter (producer)
+function registerUser(email) {
+  const user = { email };
+  console.log(`User registered: ${email}`);
+  eventBus.emit('userRegistered', user);
+}
+
+registerUser('test@example.com');
+```
+
+---
+
+### 📦 Real-World Use Cases
+
+* **Microservices**: Services publish/subscribe to events instead of calling each other directly.
+* **UIs**: React or Angular use events (clicks, changes) to trigger updates.
+* **Serverless**: AWS Lambda triggered by events like S3 uploads or API Gateway calls.
+* **Analytics pipelines**: Events like "itemPurchased" feed into Kafka for processing and insights.
+
+---
+
+
+
+
+
 
 
 ##  **Event Emitters**

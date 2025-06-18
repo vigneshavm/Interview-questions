@@ -5,7 +5,7 @@
 
 - [Troubleshooting](#Troubleshooting-Debugging-and-Upgrading-existing-software)
 - [Microservice Communication Using Queue](#Microservice-Communication-Using-Queue)
-
+- [microservice communication using HTTP](#microservice-communication-using-HTTP)
 
 
 
@@ -407,6 +407,153 @@ curl -X POST http://localhost:3001/order \
 You’ll see the **Order Service** logs order creation, and **Payment Service** logs payment processing.
 
 ---
+
+
+
+
+
+
+
+
+
+## microservice communication using HTTP
+**Two microservices** communicate using **HTTP (REST)** in **Node.js** — a common, synchronous communication method.
+
+---
+
+**Scenario: Orders & Payments via HTTP**
+
+* **Order Service** creates an order and **calls Payment Service** over HTTP to process the payment.
+* **Payment Service** exposes a `/pay` endpoint.
+* Communication is **synchronous**: Order waits for a response from Payment.
+
+---
+
+**Folder Structure**
+
+```
+/order-service
+  - index.js
+  - package.json
+
+/payment-service
+  - index.js
+  - package.json
+```
+
+---
+
+**payment-service/index.js**
+
+```js
+// payment-service/index.js
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+app.post('/pay', (req, res) => {
+  const { orderId, amount, userId } = req.body;
+
+  console.log(`✅ Payment received for order ${orderId}, amount ₹${amount}, user ${userId}`);
+
+  // Simulate payment success
+  res.status(200).json({
+    message: 'Payment successful',
+    paymentId: Math.floor(Math.random() * 100000),
+  });
+});
+
+app.listen(3002, () => {
+  console.log('🟢 Payment Service running on http://localhost:3002');
+});
+```
+
+---
+
+**order-service/index.js**
+
+```js
+// order-service/index.js
+const express = require('express');
+const axios = require('axios');
+const app = express();
+app.use(express.json());
+
+app.post('/order', async (req, res) => {
+  const order = {
+    orderId: Math.floor(Math.random() * 10000),
+    userId: req.body.userId,
+    amount: req.body.amount,
+  };
+
+  console.log(`📝 Order Created: ${JSON.stringify(order)}`);
+
+  try {
+    // Communicate with Payment Service over HTTP
+    const response = await axios.post('http://localhost:3002/pay', order);
+
+    console.log('💵 Payment Service Response:', response.data);
+
+    res.status(200).json({
+      message: 'Order placed and payment processed',
+      order,
+      payment: response.data,
+    });
+  } catch (error) {
+    console.error('❌ Payment Service Error:', error.message);
+    res.status(500).json({ message: 'Payment failed', error: error.message });
+  }
+});
+
+app.listen(3001, () => {
+  console.log('🟡 Order Service running on http://localhost:3001');
+});
+```
+
+---
+
+**Test the Setup**
+
+1. Install dependencies:
+
+```bash
+cd order-service && npm install express axios
+cd ../payment-service && npm install express
+```
+
+2. Run both services in separate terminals:
+
+```bash
+node payment-service/index.js
+node order-service/index.js
+```
+
+3. Make a POST request to the Order Service:
+
+```bash
+curl -X POST http://localhost:3001/order \
+  -H "Content-Type: application/json" \
+  -d '{"userId": 101, "amount": 500}'
+```
+
+**Expected Output:**
+
+* **Order Service** logs the order and calls Payment.
+* **Payment Service** logs the payment.
+* Response includes both order and payment confirmation.
+
+---
+
+**Summary**
+
+| Component       | Port | Responsibility                    |
+| --------------- | ---- | --------------------------------- |
+| Order Service   | 3001 | Accepts orders, calls Payment API |
+| Payment Service | 3002 | Handles payment logic             |
+
+
+
+
 
 
 

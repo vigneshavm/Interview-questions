@@ -2818,8 +2818,46 @@ ng build --aot
 
 
 ### Tree Shaking
- - Tree shaking removes unused code from the final bundle. 
- - Angular CLI with Webpack performs tree shaking automatically to optimize production builds.
+- Tree shaking removes unused code from the final bundle. 
+- Angular CLI with Webpack performs tree shaking automatically to optimize production builds.
+- Tree shaking is a **build-time optimization** technique used  to **remove unused code** from the final JavaScript bundle, 
+- Reducing file size and improving performance.
+
+In Angular, tree shaking is automatically applied during **production builds** using:
+
+```bash
+ng build --configuration production
+```
+
+It works by leveraging:
+
+* **ES6 module syntax** (`import/export`) for static code analysis
+* **Webpack**, which identifies and removes unused exports
+* **AOT (Ahead-of-Time) compilation**, which simplifies the app structure for better optimization
+
+
+**Example**
+
+If I have a utility file with two functions, and I import only one:
+
+```ts
+// utils.ts
+export function usedFunc() { }
+export function unusedFunc() { }
+```
+
+- Only `usedFunc` will be included in the final bundle. 
+- `unusedFunc` is "shaken off" because it's not referenced anywhere.
+
+**Tools I Use**
+
+To verify tree shaking, I use:
+
+```bash
+npm install -g source-map-explorer
+source-map-explorer dist/*.js
+```
+
 
 
 ### Angular CLI

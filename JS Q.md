@@ -1,12 +1,12 @@
 **JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#Post-increment-and-Pre-increment) - [JS Object & Coercion](#JS-Object-Coercion) - [Dyanmic Keys](#Dyanmic-Keys)
 
 
-**Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects)  - [Shadowing](#Shadowing)
+**Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects) 
  
 
 
 **JavaScript Fundamentals Advance** - [ES6 Features](#key-es6-features)   -[Arrow Functions](#Arrow-Functions) • [Promises](#Promises)
-• [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage)   - [Iterator](#Iterator) - [Generator function](#Generator-function)
+• [Async Await](#Async-Await) • [async await vs Promises](#async-await-vs-Promises) • [Optional Chaining (`?.`)](#optional-chaining-operator)    • [Nullish Coalescing (`??`)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage)   - [Iterator](#Iterator) - [Generator function](#Generator-function)  - [Shadowing](#Shadowing)
 
 
 **Scope and `this`** - [Scope](#scope)    • [Global, Function, and Block Scope](#global-and-function-and-block-scope)    • [Lexical Scoping](#Lexical-Scoping)   • [THIS Keyword Behavior](#this-keyword-behavior)  • [new Keyword](#new-keyword)  • [Memory Leaks](#common-causes-of-memory-leaks)  • [Garbage Collection](#javascript-garbage-collection)  • [Memoization Techniques](#memoization-techniques) 

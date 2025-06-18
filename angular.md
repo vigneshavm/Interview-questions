@@ -5,7 +5,7 @@
 | **Dependency Injection & Services**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      - [Singleton service](#Singleton-service)                                                                                                               |
 | **Routing & Navigation**           | • [Routing & Child Routes](#routing--child-routes) • [Lazy Loading](#lazy-loading) • [Lazy Loading Modules](#lazy-loading-modules) • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies) • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
-| **Data & State Management**        | • [Data Binding](#data-binding) • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap) • [Promise and Observable](#promise-and-observable) |
+| **Data & State Management**        | • [Data Binding](#data-binding) • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap) • [Promise and Observable](#promise-and-observable)  - [Step by Step Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)
 | **HTTP & Backend Integration**     | • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                                           |
 | **Security & Authentication**      | • [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) • [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                               |
 | **Performance & Optimization**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)       - [AOT](#AOT)   -[AOT vs JIT](#AOT-vs-JIT)  -[Tree Shaking](#Tree-Shaking) - [Angular CLI](#Angular-CLI) - [Angular 19](#Angular-19)
@@ -2855,4 +2855,119 @@ Examples:
  - Linked Signals: Provides a more efficient way to handle reactive data. 
  - Security Enhancements: Includes features like security with Google to improve application security. 
  - Resource and RxResource APIs: Provides new APIs for data fetching and manipulation. 
- - Modernizing Code with Language Service: Improves the language service and tooling for better code editing and development. 
+ - Modernizing Code with Language Service: Improves the language service and tooling for better code editing and development.
+
+---
+   
+## Step by Step Implementation with NgRx
+
+---
+
+###  1. **Define Actions**
+
+Actions represent user or system events that change the state.
+
+```ts
+// cart.actions.ts
+import { createAction, props } from '@ngrx/store';
+
+export const addItem = createAction(
+  '[Cart] Add Item',
+  props<{ productId: number, quantity: number }>()
+);
+
+export const removeItem = createAction(
+  '[Cart] Remove Item',
+  props<{ productId: number }>()
+);
+```
+
+---
+
+###  2. **Define the State & Reducer**
+
+```ts
+// cart.reducer.ts
+import { createReducer, on } from '@ngrx/store';
+import { addItem, removeItem } from './cart.actions';
+
+export interface CartState {
+  items: { productId: number, quantity: number }[];
+}
+
+export const initialState: CartState = {
+  items: [],
+};
+
+export const cartReducer = createReducer(
+  initialState,
+  on(addItem, (state, { productId, quantity }) => {
+    const updatedItems = [...state.items, { productId, quantity }];
+    return { ...state, items: updatedItems };
+  }),
+  on(removeItem, (state, { productId }) => {
+    const filteredItems = state.items.filter(item => item.productId !== productId);
+    return { ...state, items: filteredItems };
+  })
+);
+```
+
+---
+
+###  3. **Register Global State**
+
+```ts
+// app.module.ts
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './store/cart.reducer';
+
+@NgModule({
+  imports: [
+    StoreModule.forRoot({ cart: cartReducer }),
+  ],
+})
+export class AppModule {}
+```
+
+---
+
+###  4. **Inject Store & Dispatch Actions**
+
+#### Add item from Product Component:
+
+```ts
+// product.component.ts
+import { Store } from '@ngrx/store';
+import { addItem } from '../store/cart.actions';
+
+constructor(private store: Store) {}
+
+addToCart(productId: number) {
+  this.store.dispatch(addItem({ productId, quantity: 1 }));
+}
+```
+
+#### View cart in Cart Component:
+
+```ts
+// cart.component.ts
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+cartItems$: Observable<any[]>;
+
+constructor(private store: Store<{ cart: CartState }>) {}
+
+ngOnInit() {
+  this.cartItems$ = this.store.pipe(select(state => state.cart.items));
+}
+```
+
+
+Using NgRx or Akita, you:
+
+* Define **actions** (events)
+* Use **reducers/stores** to manage state
+* Access state and dispatch changes via the **Store service**
+* Ensure **predictable state management** in complex applications
+

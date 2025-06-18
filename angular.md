@@ -3224,3 +3224,88 @@ Note: The property name in context must match the `@Input()` name in the dynamic
 
 ---
 
+
+### **Signals**
+
+
+- Signals introduce a **lightweight, reactive system** in Angular that improves **performance**, reduces **boilerplate**, and simplifies **state handling** — especially for **UI state and derived values**.
+- **Signals** are a new **reactivity model** in Angular (from v16) that allow components and services to **track and respond to state changes** in a more **explicit, fine-grained**, and **predictable** way.
+- They are designed to **improve performance** and make reactive state management simpler — **without needing RxJS** in basic cases.
+- A **signal** is a reactive primitive that **holds a value** and **notifies dependents** when that value changes.
+
+
+
+**Key Concepts**
+
+| Concept      | Description                                   |
+| ------------ | --------------------------------------------- |
+| `signal()`   | Creates a reactive value                      |
+| `set()`      | Updates the signal’s value                    |
+| `update()`   | Applies a function to current value           |
+| `computed()` | Derives a new value from existing signals     |
+| `effect()`   | Runs a function when dependent signals change |
+
+---
+
+**Use Cases in Angular**
+
+* Component-local state (like `useState` in React)
+* Simplifying `@Input()` and `@Output()` usage
+* Replacing `BehaviorSubject` for simpler scenarios
+* Avoiding overuse of RxJS in small reactive flows
+
+**Basic Example**
+
+```ts
+import { signal, computed, effect } from '@angular/core';
+
+const count = signal(0);
+
+// Reading value
+console.log(count()); // 0
+
+// Updating value
+count.set(1);
+
+// Computed signal
+const double = computed(() => count() * 2);
+console.log(double()); // 2
+
+// Effect: Reacts when count changes
+effect(() => {
+  console.log('Count changed to:', count());
+});
+```
+
+
+**Real-world Example in Component**
+
+```ts
+export class CounterComponent {
+  count = signal(0);
+
+  increment() {
+    this.count.update(c => c + 1);
+  }
+}
+```
+
+In the template:
+
+```html
+<p>{{ count() }}</p>
+<button (click)="increment()">+</button>
+```
+
+---
+
+### **Signals vs Observables**
+
+| Feature    | Signals                     | Observables (RxJS)              |
+| ---------- | --------------------------- | ------------------------------- |
+| Push/Pull  | Pull-based (pull value)     | Push-based (subscribe to value) |
+| Simplicity | Simple, minimal boilerplate | More powerful, more complex     |
+| Lifecycle  | Automatic tracking          | Manual subscription/unsubscribe |
+| Use Case   | Local state                 | Async streams, events, timers   |
+
+

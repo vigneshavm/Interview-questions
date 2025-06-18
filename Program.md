@@ -13,6 +13,7 @@ React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user
 - [Form with Validation](#form-with-validation)
 - [Highlight Text](#highlight-text)
 - [Counter](#Counter)
+- [React Pagination](#React-pagination)
 
 
 
@@ -1714,6 +1715,74 @@ export default function App() {
     </div>
   );
 }
+```
+
+
+## React Pagination
+
+
+```ts
+import React, { useEffect, useState } from 'react';
+
+function App() {
+  const [data, setData] = useState([
+    { id: 1, name: 'John Doe', email: 'john.doe@example.com', role: 'Admin', status: 'Active' },
+    { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com', role: 'User', status: 'Inactive' },
+    { id: 3, name: 'Sam Wilson', email: 'sam.wilson@example.com', role: 'Moderator', status: 'Active' },
+    { id: 4, name: 'Emily Davis', email: 'emily.davis@example.com', role: 'User', status: 'Active' },
+    { id: 5, name: 'Michael Brown', email: 'michael.brown@example.com', role: 'Admin', status: 'Inactive' },
+    { id: 6, name: 'Sarah Johnson', email: 'sarah.johnson@example.com', role: 'User', status: 'Active' },
+    { id: 7, name: 'Chris Lee', email: 'chris.lee@example.com', role: 'Moderator', status: 'Active' },
+    { id: 8, name: 'Anna Martinez', email: 'anna.martinez@example.com', role: 'Admin', status: 'Inactive' },
+    { id: 9, name: 'David Clark', email: 'david.clark@example.com', role: 'User', status: 'Active' },
+    { id: 10, name: 'Sophia Lopez', email: 'sophia.lopez@example.com', role: 'Moderator', status: 'Inactive' },
+    { id: 11, name: 'Daniel Harris', email: 'daniel.harris@example.com', role: 'User', status: 'Active' },
+    { id: 12, name: 'Olivia Moore', email: 'olivia.moore@example.com', role: 'Admin', status: 'Active' },
+  ]);
+
+  const [displayCount, setDisplayCount] = useState(3); // Start with 3 records
+  const limit = 2;
+
+  const showMore = () => {
+    // Don't go beyond data length
+    setDisplayCount((prev) => Math.min(prev + limit, data.length));
+  };
+
+  const showLess = () => {
+    // Don't go below 3
+    setDisplayCount((prev) => Math.max(3, prev - limit));
+  };
+
+  const styles = {
+    main: { padding: '20px' },
+    title: { color: '#5C6AC4' },
+  };
+
+  return (
+    <div style={styles.main}>
+      <h1 style={styles.title}>User List</h1>
+      <ul>
+        {data.slice(0, displayCount).map((record) => (
+          <li key={record.id}>
+            {record.name} - {record.status}
+          </li>
+        ))}
+      </ul>
+      <div>
+        {displayCount < data.length && (
+          <button onClick={showMore}>Show More</button>
+        )}
+        {displayCount > 3 && (
+          <button onClick={showLess}>Show Less</button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+
 ```
 
 

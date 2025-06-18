@@ -5,7 +5,7 @@
 | **Dependency Injection & Services**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      - [Singleton service](#Singleton-service)                                                                                                               |
 | **Routing & Navigation**           | • [Routing & Child Routes](#routing--child-routes) • [Lazy Loading](#lazy-loading) • [Lazy Loading Modules](#lazy-loading-modules) • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies) • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
-| **Data & State Management**        | • [Data Binding](#data-binding) • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap) • [Promise and Observable](#promise-and-observable)  - [Step by Step Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)
+| **Data & State Management**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding) • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap) • [Promise and Observable](#promise-and-observable)  - [Step by Step Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)
 | **HTTP & Backend Integration**     | • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                                           |
 | **Security & Authentication**      | • [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) • [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                               |
 | **Performance & Optimization**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)       - [AOT](#AOT)   -[AOT vs JIT](#AOT-vs-JIT)  -[Tree Shaking](#Tree-Shaking) - [Angular CLI](#Angular-CLI) - [Angular 19](#Angular-19)
@@ -2284,7 +2284,7 @@ export class PostComponent {
 
 
 
-### 🔍 **Difference Between Interpolation and Two-Way Binding**
+### **Difference Between Interpolation and Two Way Binding**
 
 | Feature                   | **Interpolation (`{{ data }}`)**                | **Two-Way Binding (`[(ngModel)]="name"`)**             |
 | ------------------------- | ----------------------------------------------- | ------------------------------------------------------ |

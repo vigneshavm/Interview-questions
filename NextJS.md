@@ -1,4 +1,103 @@
 
+
+## SSR vs CSR vs ISR
+
+| Rendering Type | Meaning                         | When It Happens                              | Key Next.js Method                |
+| -------------- | ------------------------------- | -------------------------------------------- | --------------------------------- |
+| **CSR**        | Client-Side Rendering           | In browser (after load)                      | No special method (default React) |
+| **SSR**        | Server-Side Rendering           | On **every request**                         | `getServerSideProps`              |
+| **ISR**        | Incremental Static Regeneration | At **build**, then **rebuild** in background | `getStaticProps` + `revalidate`   |
+
+---
+
+### **CSR - Client Side Rendering**
+
+* **What**: The HTML is mostly empty initially. JavaScript takes over and renders the UI **in the browser**.
+* **Next.js Behavior**: Only uses React without any `getStaticProps` or `getServerSideProps`.
+* **Use When**:
+
+  * SEO is **not important** (e.g., dashboards, internal tools)
+  * Heavy user interactivity, charts, or client-specific data
+
+✅ *Example*: Admin panel, chat app, user dashboard.
+
+---
+
+### **SSR - Server Side Rendering**
+
+* **What**: HTML is generated **on the server** for **every request**. The latest data is fetched server-side.
+* **Next.js Function**: `getServerSideProps`
+* **Use When**:
+
+  * SEO **is important**
+  * Content is **dynamic** and changes often
+  * Data needs to be fresh **on every request**
+
+✅ *Example*: News website homepage, logged-in user profile, live sports scores.
+
+```ts
+// SSR Example
+export async function getServerSideProps(context) {
+  const res = await fetch('https://api.example.com/data');
+  const data = await res.json();
+  return { props: { data } };
+}
+```
+
+---
+
+### **ISR - Incremental Static Regeneration**
+
+* **What**: Pre-renders page at **build time**, but **regenerates** it **in background** after a set time.
+* **Next.js Function**: `getStaticProps` with `revalidate` key
+* **Use When**:
+
+  * SEO **is important**
+  * Content is mostly static but updates periodically (every few seconds/minutes)
+  * You want the performance of static but some freshness
+
+✅ *Example*: Blog posts, product listings, marketing pages.
+
+```ts
+// ISR Example
+export async function getStaticProps() {
+  const res = await fetch('https://api.example.com/products');
+  const products = await res.json();
+  return {
+    props: { products },
+    revalidate: 60, // Regenerate the page every 60 seconds
+  };
+}
+```
+
+
+
+### When to Use Which?
+
+| Scenario                                     | Recommended Strategy                    |
+| -------------------------------------------- | --------------------------------------- |
+| **Marketing site with rarely changing info** | **Static/ISR**                          |
+| **Blog site with updates every few hours**   | **ISR** (e.g., revalidate every 10 min) |
+| **User profile page with private data**      | **SSR**                                 |
+| **Internal admin dashboard**                 | **CSR**                                 |
+| **Product page with daily updates**          | **ISR**                                 |
+
+
+### Summary Table
+
+| Feature      | CSR                  | SSR                | ISR                           |
+| ------------ | -------------------- | ------------------ | ----------------------------- |
+| SEO Friendly | ❌ No                 | ✅ Yes              | ✅ Yes                         |
+| Fresh Data   | ✅ (fetch in browser) | ✅ (every request)  | ✅ (after revalidate interval) |
+| Performance  | 🟡 Medium            | 🔴 Slower          | ✅ Fast (cached static)        |
+| Use Case     | Dashboards, SPAs     | News feed, Profile | Blogs, Product Pages, FAQs    |
+
+---
+
+
+
+
+
 ## SSR and SSG
 
 - In Next.js, we can implement both **Server-Side Rendering (SSR)** and **Static Site Generation (SSG)** using two special data-fetching functions.

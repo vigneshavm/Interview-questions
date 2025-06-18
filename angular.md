@@ -2863,6 +2863,15 @@ Examples:
 
 ---
 
+Using NgRx :
+
+* Define **actions** (events)
+* Use **reducers/stores** to manage state
+* Access state and dispatch changes via the **Store service**
+* Ensure **predictable state management** in complex applications
+
+
+
 ###  1. **Define Actions**
 
 Actions represent user or system events that change the state.
@@ -2962,12 +2971,4 @@ ngOnInit() {
   this.cartItems$ = this.store.pipe(select(state => state.cart.items));
 }
 ```
-
-
-Using NgRx or Akita, you:
-
-* Define **actions** (events)
-* Use **reducers/stores** to manage state
-* Access state and dispatch changes via the **Store service**
-* Ensure **predictable state management** in complex applications
 

@@ -4,8 +4,11 @@
 
 
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
+- 
 **Microservice Communication** - [Using Queue](#microservice-communication-using-queue) - [Using HTTP](#microservice-communication-using-http)
+  
 **Upgrade** - [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13) - [Upgrade Node.js](#nodejs-upgrade) - [Upgrade TypeScript](#typescript-upgrade)
+
 - [Architectural Decisions](#architectural-decisions)
 - [Technical Leadership](#technical-leadership)
 - [Mentor and Guide Junior Developers](#mentor-and-guide-junior-developers)

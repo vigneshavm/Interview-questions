@@ -380,8 +380,8 @@ bootstrapApplication(AppComponent, {
 
 ### 🎯 Sample Interview Closing Line
 
-- Template-driven forms are great for simple scenarios with minimal logic, 
-- Reactive forms offer more power and control, making them better suited for complex and scalable applications.
+- **Template-driven forms** are great for **simple scenarios with minimal logic** 
+- **Reactive forms** offer more power and control, making them better suited for **complex and scalable applications**
 
 
 ### 1. **Template-Driven Forms**

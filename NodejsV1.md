@@ -1,6 +1,6 @@
 **Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  - [Scalability issues](#scalability-issues) 
 
-**Express.js Framework**  - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [request response query params](#request-response-query-params) - [HTTP Status Codes](#status-codes)
+**Express.js Framework**  -[HTTP Module](#HTTP-Module) - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [request response query params](#request-response-query-params) - [HTTP Status Codes](#status-codes)
 
 **Concurrency & Processes**  - [Event Loop](#event-loop)    - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks)  - [Async Execution Order](#Async-Execution-Order)   - [SetImmediate vs processnextTick](#SetImmediate-vs-processnextTick) - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   - [Event-Driven Architecture](#Event-Driven-Architecture)  -[libuv](#libuv) - [spawn vs fork](#spawn-vs-fork)
 
@@ -4257,5 +4257,40 @@ emitter.off('message', onMessage);
 
 ---
 
+## HTTP Module
 
 
+- A Node.js HTTP server is created using Node’s built-in http module, 
+- which allows us to handle requests and send responses without any external dependencies. 
+- It follows an event-driven, non-blocking I/O model—ideal for handling many concurrent connections efficiently.
+- The server listens on a specified port and handles HTTP methods like GET, POST, etc., using a callback that provides req (request) and res (response) objects. 
+- It’s low-level compared to frameworks like Express, but it gives fine-grained control over how the server behaves.
+
+
+
+```js
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  const { url, method } = req;
+
+  if (url === '/' && method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Welcome to the homepage!');
+  } else if (url === '/about' && method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('About us page');
+  } else if (url === '/api' && method === 'GET') {
+    const data = { message: 'Hello from API', success: true };
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(data));
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('404 Not Found');
+  }
+});
+
+server.listen(3000, () => {
+  console.log('Server running at http://localhost:3000');
+});
+```

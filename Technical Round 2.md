@@ -84,3 +84,28 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 - As a result, we reduced runtime errors by \~25% in the next release cycle, and onboarding new developers became easier thanks to improved type safety and updated documentation.
 
 
+
+
+
+### **Architectural Decisions:**
+
+- I’ve had the opportunity to participate in key architectural decisions and provide technical leadership across several projects — particularly involving full-stack development with React, Next.js, Node.js, and TypeScript."**
+- I help design **scalable and modular architectures** — whether it’s deciding between CSR, SSR, or ISR in Next.js, or structuring backend services using REST or GraphQL.
+- I contribute to **data modeling** decisions, ensuring normalized, performant schemas for SQL/NoSQL databases.
+- I’ve implemented **middleware-based backend architecture** in Node.js using Express or NestJS, separating concerns like auth, logging, and error handling.
+- In frontend projects, I’ve led decisions around **component structure**, **state management (e.g., Redux vs. Context API)**, and **code-splitting strategies** for performance.
+
+### **Technical Leadership:**
+
+- I conduct **code reviews** with a focus on readability, performance, and adherence to best practices.
+- I mentor junior developers, helping them understand TypeScript, React hooks, and debugging techniques.
+- I’ve led **refactoring efforts** to reduce tech debt — like migrating class components to functional components and adopting hooks.
+- I define **coding standards**, enforce them via tools like ESLint, Prettier, and set up **CI pipelines** for testing and linting.
+- I often act as a bridge between developers and product stakeholders, converting business requirements into scalable technical solutions.
+- In one project, we rebuilt a monolithic backend into a modular service-based structure using Node.js and PostgreSQL. 
+- I led the initial design, defined API contracts, set up TypeScript interfaces for request/response models, and introduced a central error-handling mechanism. 
+- I also guided the team on integrating the new architecture into an existing React frontend with minimal disruption."**
+- Overall, I enjoy taking ownership of technical decisions that improve long-term code quality, team velocity, and product reliability.
+
+
+

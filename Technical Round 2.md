@@ -3,11 +3,19 @@
 
 
 
-- [Troubleshooting](#Troubleshooting-Debugging-and-Upgrading-existing-software)
-- [Microservice Communication Using Queue](#Microservice-Communication-Using-Queue)
-- [Microservice communication using HTTP](#microservice-communication-using-HTTP)
-
-
+- [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
+- [Microservice Communication Using Queue](#microservice-communication-using-queue)
+- [Microservice Communication Using HTTP](#microservice-communication-using-http)
+- [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13)
+- [Node.js Upgrade](#nodejs-upgrade)
+- [TypeScript Upgrade](#typescript-upgrade)
+- [Architectural Decisions](#architectural-decisions)
+- [Technical Leadership](#technical-leadership)
+- [Mentor and Guide Junior Developers](#mentor-and-guide-junior-developers)
+- [Lead Code Reviews](#lead-code-reviews)
+- [Optimize Applications](#optimize-applications)
+- [SDLC](#sdlc)
+- [Cross Functional Collaboration](#cross-functional-collaboration)
 
 
 
@@ -78,12 +86,12 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 - **The main goals** were to align with LTS support, take advantage of new language features, and address security vulnerabilities reported by tools like `npm audit`.
 
-#### **Node.js Upgrade:**
+#### **Nodejs Upgrade**
 - First, I reviewed the **official Node.js release notes** and identified breaking changes in Node.js 16 and 18 (e.g., V8 engine updates, removal of legacy APIs like `fs.promises`, changes in OpenSSL defaults, etc.).
 - We had some third-party native modules that were not compatible with Node 18. I used `nvm` to test multiple versions locally and contributed to a minimal patch that resolved compilation issues.
 - I also switched some modules to modern alternatives — for example, moved from `request` (deprecated) to `axios` or native `fetch` (available in Node 18).
 
-#### **TypeScript Upgrade:**
+#### **TypeScript Upgrade**
 - For the TypeScript upgrade, I updated the compiler and adjusted `tsconfig.json` to include stricter type checks (`noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`).
 - We had to refactor several parts of the codebase where **implicit `any` types or enum usage** caused new errors.
 - I leveraged new TypeScript 5.x features like **const type assertions** and **satisfies operator** to improve code expressiveness and reduce boilerplate.
@@ -99,7 +107,7 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 
 
-### **Architectural Decisions:**
+### **Architectural Decisions**
 
 - I’ve had the opportunity to participate in key architectural decisions and provide technical leadership across several projects — particularly involving full-stack development with React, Next.js, Node.js, and TypeScript."**
 - I help design **scalable and modular architectures** — whether it’s deciding between CSR, SSR, or ISR in Next.js, or structuring backend services using REST or GraphQL.
@@ -107,7 +115,7 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 - I’ve implemented **middleware-based backend architecture** in Node.js using Express or NestJS, separating concerns like auth, logging, and error handling.
 - In frontend projects, I’ve led decisions around **component structure**, **state management (e.g., Redux vs. Context API)**, and **code-splitting strategies** for performance.
 
-### **Technical Leadership:**
+### **Technical Leadership**
 
 - I conduct **code reviews** with a focus on readability, performance, and adherence to best practices.
 - I mentor junior developers, helping them understand TypeScript, React hooks, and debugging techniques.
@@ -168,6 +176,9 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 
 
+
+
+
 ### **Lead Code Reviews**
 
 #### **Code Quality & Best Practices**
@@ -208,6 +219,9 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 
 
+
+
+
 ### **Optimize applications**
 
 **Front-End**
@@ -233,6 +247,9 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 ---
 
 
+
+
+
 ### **SDLC**
 
 * Led and contributed across all SDLC phases — including **requirement analysis, architecture design, development, testing, deployment, and support**.
@@ -256,6 +273,7 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 * Provided technical input during feature discussions to highlight feasibility, suggest alternatives, and manage trade-offs.
 * Supported QA teams by defining **clear acceptance criteria**, setting up test environments, and assisting in defect triage and resolution.
 * Ensured clear communication and documentation throughout the SDLC to avoid blockers and promote team efficiency.
+
 
 
 

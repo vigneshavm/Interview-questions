@@ -221,4 +221,17 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 ---
 
 
+### **SDLC**
+
+* Led and contributed across all SDLC phases — including **requirement analysis, architecture design, development, testing, deployment, and support**.
+* Collaborated with cross-functional teams (Product, QA, DevOps) to define **technical specifications and delivery timelines** for complex features.
+* Designed scalable backend architecture using **Node.js, TypeScript**, and RESTful APIs, ensuring long-term maintainability and performance.
+* Implemented CI/CD pipelines using **GitHub Actions**, automating testing, linting, and deployment workflows to staging and production.
+* Wrote unit and integration tests with **Jest** and **Supertest**, ensuring high test coverage and early defect detection.
+* Deployed applications to cloud platforms (e.g., **AWS**, **Azure**) and containerized services using **Docker**, ensuring seamless rollouts and rollback strategies.
+* Monitored production systems using **logging (Winston/Morgan)** and performance tools (**PM2**, **New Relic**), ensuring stability and uptime.
+* Handled post-deployment maintenance and issue resolution through **incident tracking**, **hotfixes**, and continuous improvement cycles.
+
+---
+
 

@@ -1,19 +1,13 @@
 
-### 🎯 **Interview Question:**
+## "SSR and SSG"
 
-**"How do you implement SSR and SSG in Next.js?"**
+- In Next.js, we can implement both **Server-Side Rendering (SSR)** and **Static Site Generation (SSG)** using two special data-fetching functions.
 
----
 
-### ✅ **Sample Interview Answer:**
+### **SSR – `getServerSideProps()`**
 
-In Next.js, we can implement both **Server-Side Rendering (SSR)** and **Static Site Generation (SSG)** using two special data-fetching functions.
-
----
-
-### 🔹 **1. SSR – `getServerSideProps()`**
-
-If a page requires fresh data on every request, we use `getServerSideProps()`. This function runs **on the server at request time**, and the result is sent to the browser.
+- If a page requires fresh data on every request, we use `getServerSideProps()`. 
+- This function runs **on the server at request time**, and the result is sent to the browser.
 
 **Example:**
 
@@ -30,7 +24,7 @@ This ensures the content is always up to date — perfect for dashboards, authen
 
 ---
 
-### 🔹 **2. SSG – `getStaticProps()`**
+### **SSG – `getStaticProps()`**
 
 For content that doesn’t change frequently, we use `getStaticProps()`. It runs **at build time**, generating static HTML for fast performance and better SEO.
 
@@ -68,18 +62,13 @@ Next.js lets us use SSR and SSG on different pages within the same application. 
 | Use Case    | Authenticated pages, dynamic data | Blogs, product pages, SEO pages |
 | Bonus       | SEO-friendly                      | Supports ISR with `revalidate`  |
 
----
 
-Absolutely! Here are **more advanced and real-world Next.js interview questions**, grouped by topic for easy preparation:
 
----
+## **Routing & Navigation**
 
-## 🔧 **Routing & Navigation**
+### **Dynamic routing**
 
-### 1. **How does dynamic routing work in Next.js?**
-
-**Answer:**
-Dynamic routes use file naming with square brackets. Example:
+- Dynamic routes use file naming with square brackets. Example:
 
 ```bash
 pages/post/[id].js → /post/123
@@ -89,10 +78,9 @@ Use `getStaticPaths` with `getStaticProps` for SSG or `getServerSideProps` for S
 
 ---
 
-### 2. **What is shallow routing in Next.js?**
+### **Shallow routing**
 
-**Answer:**
-Shallow routing allows you to change the URL without running data-fetching methods again.
+- Shallow routing allows you to change the URL without running data-fetching methods again.
 
 ```js
 router.push('/about?name=John', undefined, { shallow: true });
@@ -100,16 +88,16 @@ router.push('/about?name=John', undefined, { shallow: true });
 
 ---
 
-## ⚙️ **Data Fetching**
+## **Data Fetching**
 
-### 3. **Can you use both `getServerSideProps` and `getStaticProps` in the same file?**
+### 3. **getServerSideProps and getStaticProps in the same file**
 
 **Answer:**
 No. A page can use only one of `getStaticProps`, `getServerSideProps`, or `getInitialProps`.
 
 ---
 
-### 4. **What’s the difference between client-side fetching and SSR?**
+### **client side fetching vs SSR**
 
 | Client-Side                           | Server-Side (SSR)                    |
 | ------------------------------------- | ------------------------------------ |
@@ -119,16 +107,14 @@ No. A page can use only one of `getStaticProps`, `getServerSideProps`, or `getIn
 
 ---
 
-## 🧠 **Performance & Optimization**
 
-### 5. **How does Next.js do code splitting?**
+### **Code splitting?**
 
-**Answer:**
 Next.js automatically splits code per route. Only the JavaScript required for the current page is loaded.
 
 ---
 
-### 6. **How do you optimize images in Next.js?**
+### **Optimize images**
 
 **Answer:**
 Use the `<Image />` component from `next/image`:
@@ -142,7 +128,7 @@ It supports lazy loading, resizing, and optimization out of the box.
 
 ---
 
-### 7. **What is Incremental Static Regeneration (ISR)?**
+### **Incremental Static Regeneration (ISR)?**
 
 **Answer:**
 ISR lets you update static pages **after deployment** without rebuilding the whole site. Use `revalidate`:
@@ -158,9 +144,8 @@ export async function getStaticProps() {
 
 ---
 
-## 🌐 **Deployment & Production**
 
-### 8. **How do you deploy a Next.js app?**
+### 8. **Deployment**
 
 **Answer:**
 

@@ -11,7 +11,7 @@
 | **HTTP**     | • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                                           |
 | **Security & Authentication**      | • [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) • [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                               |
 | **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)      
-| **Optimization**     | - [AOT](#AOT)   - [AOT vs JIT](#AOT-vs-JIT)  - [Tree Shaking](#Tree-Shaking) - [Angular CLI](#Angular-CLI) - [Angular 19](#Angular-19)
+| **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19)
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)                                                                          |
 
 

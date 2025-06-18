@@ -1,7 +1,8 @@
 | **Category**                        | **Topics**                                                                                                                                                                                                                                                    |
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Angular Concepts**          | • [Angular](#angular)  • [Module](#module)  • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
-| **Components & Templates**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) • [Component Factory and Encapsulation](#component-factory-and-encapsulation) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
+| **Components**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
+| **Templates**         | • [Component Factory](#component-factory) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
 | **Dependency Injection**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      - [Singleton service](#Singleton-service)                                                                                                               |
 | **Routing & Navigation**           | • [Routing & Child Routes](#routing--child-routes) • [Lazy Loading](#lazy-loading) • [Lazy Loading Modules](#lazy-loading-modules) • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies) • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
@@ -3080,4 +3081,75 @@ ngOnInit() {
   this.cartItems$ = this.store.pipe(select(state => state.cart.items));
 }
 ```
+
+
+
+### **Component Factory**
+
+
+- A **Component Factory** in Angular is a low-level API that allows us to **dynamically create components** at runtime — without declaring them in the template.
+
+- It's part of Angular’s **Dynamic Component Loader mechanism** and is useful when the component to be rendered is not known at compile time (e.g., modal dialogs, dynamic forms, dashboards, etc.).
+
+- A Component Factory enables **dynamic component creation** at runtime, giving Angular apps **flexibility and scalability** for dynamic UIs.
+
+- Angular uses the `ComponentFactoryResolver` or `ViewContainerRef.createComponent()` to instantiate the component dynamically.
+
+---
+
+**Basic Steps to Use Component Factory**
+
+1. **Create the component you want to load dynamically**
+
+   ```ts
+   @Component({
+     selector: 'app-alert',
+     template: `<p>{{ message }}</p>`
+   })
+   export class AlertComponent {
+     @Input() message: string = '';
+   }
+   ```
+
+2. **Create a container with `ViewContainerRef`**
+
+   ```html
+   <ng-template #container></ng-template>
+   ```
+
+3. **Use `ViewContainerRef` to create the component**
+
+   ```ts
+   @ViewChild('container', { read: ViewContainerRef }) container!: ViewContainerRef;
+
+   constructor(private resolver: ComponentFactoryResolver) {}
+
+   loadAlert() {
+     const factory = this.resolver.resolveComponentFactory(AlertComponent);
+     const componentRef = this.container.createComponent(factory);
+     componentRef.instance.message = 'This is a dynamic alert!';
+   }
+   ```
+
+---
+
+**Pre-Angular 13 vs Angular 13+**
+
+* **Before Angular 13**: Used `ComponentFactoryResolver`
+* **From Angular 13 onwards**: Can directly pass the component class to `createComponent()` without using a resolver:
+
+  ```ts
+  this.container.createComponent(AlertComponent);
+  ```
+
+---
+
+**Real-Time Use Cases**
+
+* Dynamic modals/popups
+* CMS-style applications (rendering unknown components from JSON config)
+* Plugin-based architectures
+* Dashboards where widgets are loaded at runtime
+
+
 

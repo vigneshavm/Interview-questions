@@ -6,6 +6,7 @@
 - [SSR - Server Side Rendering](#SSR)
 - [CSR - Client Side Rendering](#CSR)
 - [ISR - Incremental Static Regeneration](#ISR)
+- [SSG - Static Site Generation](#SSG)
 
 
 ## SSR vs CSR vs ISR
@@ -119,17 +120,19 @@ export async function getStaticProps() {
 
 
 
-## SSR and SSG
-
-- In Next.js, we can implement both **Server-Side Rendering (SSR)** and **Static Site Generation (SSG)** using two special data-fetching functions.
-
 
 
 ## **SSG**
 
 - `getStaticProps()`
-
-For content that doesn’t change frequently, we use `getStaticProps()`. It runs **at build time**, generating static HTML for fast performance and better SEO.
+- For content that doesn’t change frequently, we use getStaticProps().
+- It runs at build time, generating static HTML for each page.
+- These pages are then served from a CDN, ensuring very low TTFB and fast performance.
+- SSG is SEO-friendly since HTML is pre-rendered and ready for search engine crawlers.
+- Ideal for marketing pages, blogs, documentation, and similar static content.
+- For dynamic routes, we use getStaticPaths() along with getStaticProps.
+- If content needs periodic updates without full rebuilds, we use Incremental Static Regeneration (ISR) by adding a revalidate key.
+- SSG improves scalability by offloading rendering from server to build time.
 
 **Example:**
 

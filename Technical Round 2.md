@@ -1,5 +1,17 @@
 
-### **Troubleshooting, Debugging, and Upgrading existing software**
+
+
+
+
+- [Troubleshooting](#Troubleshooting-Debugging-and-Upgrading-existing-software)
+- [Microservice Communication Using Queue](#Microservice-Communication-Using-Queue)
+
+
+
+
+
+
+### **Troubleshooting Debugging and Upgrading existing software**
 
 - Troubleshooting, debugging, and upgrading existing software are core parts of my development process.
 - I approach this systematically to ensure stability and long-term maintainability.
@@ -245,6 +257,156 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 * Supported QA teams by defining **clear acceptance criteria**, setting up test environments, and assisting in defect triage and resolution.
 * Ensured clear communication and documentation throughout the SDLC to avoid blockers and promote team efficiency.
 
+
+
+
+
+
+## Microservice Communication Using Queue
+
+* Node.js + Express.js
+* REST API (for synchronous calls)
+* RabbitMQ (for async/event-based communication)
+
+---
+
+**Microservices**
+**Order Service** -  Creates an order then Notifies Payment Service
+**Payment Service** - Listens for new order events then Processes the payment
+
+
+**Folder Structure**
+
+```
+/order-service
+  - index.js
+  - package.json
+
+/payment-service
+  - index.js
+  - package.json
+
+/shared
+  - rabbitmq.js
+```
+
+
+**shared/rabbitmq.js – RabbitMQ connection**
+
+```js
+// shared/rabbitmq.js
+const amqp = require('amqplib');
+
+let channel, connection;
+
+async function connect() {
+  connection = await amqp.connect('amqp://localhost');
+  channel = await connection.createChannel();
+  await channel.assertQueue('ORDER_CREATED');
+}
+
+function publishToQueue(queue, data) {
+  channel.sendToQueue(queue, Buffer.from(JSON.stringify(data)));
+}
+
+function subscribe(queue, callback) {
+  channel.consume(queue, msg => {
+    const data = JSON.parse(msg.content.toString());
+    callback(data);
+    channel.ack(msg);
+  });
+}
+
+module.exports = { connect, publishToQueue, subscribe };
+```
+
+---
+
+**order-service/index.js**
+
+```js
+// order-service/index.js
+const express = require('express');
+const { connect, publishToQueue } = require('../shared/rabbitmq');
+const app = express();
+app.use(express.json());
+
+app.post('/order', async (req, res) => {
+  const order = {
+    orderId: Math.floor(Math.random() * 10000),
+    userId: req.body.userId,
+    amount: req.body.amount,
+  };
+
+  console.log('Order Created:', order);
+
+  // Publish order created event
+  publishToQueue('ORDER_CREATED', order);
+
+  res.send({ message: 'Order Created', order });
+});
+
+connect().then(() => {
+  app.listen(3001, () => {
+    console.log('Order Service listening on port 3001');
+  });
+});
+```
+
+**payment-service/index.js**
+
+```js
+// payment-service/index.js
+const { connect, subscribe } = require('../shared/rabbitmq');
+
+function processPayment(order) {
+  console.log(`Processing payment for order ${order.orderId}, Amount: ${order.amount}`);
+  // Simulate DB save or API call here
+}
+
+connect().then(() => {
+  subscribe('ORDER_CREATED', processPayment);
+  console.log('Payment Service listening for ORDER_CREATED events');
+});
+```
+
+
+**How to Run**
+
+1. Install RabbitMQ locally or use Docker:
+
+```bash
+docker run -d --hostname rabbit --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
+
+2. Install dependencies in both services:
+
+```bash
+cd order-service && npm install express amqplib
+cd ../payment-service && npm install amqplib
+```
+
+3. Run both services:
+
+```bash
+Terminal 1
+node order-service/index.js
+
+Terminal 2
+node payment-service/index.js
+```
+
+4. Trigger an order:
+
+```bash
+curl -X POST http://localhost:3001/order \
+  -H "Content-Type: application/json" \
+  -d '{"userId":1,"amount":200}'
+```
+
+You’ll see the **Order Service** logs order creation, and **Payment Service** logs payment processing.
+
+---
 
 
 

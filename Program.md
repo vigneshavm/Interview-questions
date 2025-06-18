@@ -38,7 +38,7 @@ Angular --  [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-
 - [Function.prototype.call](#functionprototypecall)
 - [Object.create](#objectcreate)
 - [Promise](#Promise)
-
+- [Debounce](#debounce-polyfill)
 
 
 ## Grid View
@@ -1225,6 +1225,31 @@ console.log(child.greet()); // "hi"
 ```
 
 ---
+
+#### Debounce Polyfill 
+
+```js
+// Define the debounce function that accepts the target function and a delay
+function debounce(fn, delay) {
+  // This will hold the timeout ID between calls
+  let timer = null;
+
+  // Return a new function that wraps the original `fn`
+  return function (...args) {
+    // Capture the current `this` context to use inside setTimeout
+    const context = this;
+
+    // Clear any previously scheduled execution
+    clearTimeout(timer);
+
+    // Schedule a new execution after the delay
+    timer = setTimeout(() => {
+      // Call the original function with the correct context and arguments
+      fn.apply(context, args);
+    }, delay);
+  };
+}
+```
 
 
 #### Promise

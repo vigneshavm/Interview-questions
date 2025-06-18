@@ -3,9 +3,9 @@
 
 - [TTFB](#TTFB)
 - [SSR vs CSR vs ISR](SSR-vs-CSR-vs-ISR)
-- [SSR](#SSR)
-- [CSR](#CSR)
-- [ISR](#ISR)
+- [SSR - Server Side Rendering](#SSR)
+- [CSR - Client Side Rendering](#CSR)
+- [ISR - Incremental Static Regeneration](#ISR)
 
 
 ## SSR vs CSR vs ISR
@@ -33,7 +33,7 @@
 ---
 
 ## **SSR**
-- Server Side Rendering**
+- Server Side Rendering
 * **What**: HTML is generated **on the server** for **every request**. The latest data is fetched server-side.
 * **Next.js Function**: `getServerSideProps`
 * **Use When**:

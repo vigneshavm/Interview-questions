@@ -109,3 +109,50 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 
 
+
+
+### **Mentor and guide junior developers**
+
+#### **Onboarding & Knowledge Sharing**
+
+* Helped **onboard new developers** by walking them through the codebase, project architecture, and development workflows.
+* Created **internal documentation** and developer setup guides to speed up ramp-up time.
+* Conducted **intro sessions on key tech stacks** like React, Node.js, and TypeScript to build foundational knowledge.
+
+#### **Code Reviews & Best Practices**
+
+* Regularly conducted **constructive code reviews**, focusing on:
+
+  * Code readability
+  * Type safety (especially in TypeScript)
+  * Performance and scalability
+  * Aligning with team’s coding standards
+* Provided **explanations during reviews**, turning feedback into learning opportunities instead of simple corrections.
+
+#### **Skill Development**
+
+* Identified areas of improvement (e.g., debugging skills, clean code, async programming) and recommended **learning resources, articles, and hands-on tasks**.
+* Shared insights on **design patterns**, reusable components, and architecture decisions during team discussions.
+* Introduced junior developers to modern tooling (e.g., ESLint, Prettier, Git best practices, VS Code extensions) to improve code quality and workflow.
+
+#### **1-on-1 Mentorship**
+
+* Scheduled regular **check-ins with junior devs** to discuss blockers, clarify concepts, or provide guidance on growth.
+* Encouraged open communication to foster a safe learning environment and improve confidence in contributing to the team.
+
+#### **Encouraging Ownership & Growth**
+
+* Assigned **small but meaningful tasks** to help them take ownership and build confidence.
+* Guided them on writing tests, thinking in terms of edge cases, and understanding the business impact of their work.
+* Encouraged participation in sprint planning, retrospectives, and architecture discussions to build product awareness.
+
+#### **Team Capability Building**
+
+* Hosted **internal workshops or tech talks** on topics like React Hooks, API design in Node.js, or Next.js SSR/ISR.
+* Promoted a **culture of continuous learning**, pair programming, and shared accountability across the team.
+
+---
+
+
+
+

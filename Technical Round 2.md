@@ -235,3 +235,16 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 ---
 
 
+### **Cross Functional Collaboration**
+
+* Collaborated with **product managers** to refine requirements, prioritize features, and align technical implementation with business goals.
+* Worked closely with **UI/UX designers** to translate wireframes and mockups into responsive, accessible, and performant interfaces.
+* Coordinated with **frontend and backend developers** to define API contracts, data models, and integration strategies for smooth end-to-end delivery.
+* Participated in **agile ceremonies** (daily stand-ups, sprint planning, retrospectives) to ensure continuous alignment and timely delivery of features.
+* Provided technical input during feature discussions to highlight feasibility, suggest alternatives, and manage trade-offs.
+* Supported QA teams by defining **clear acceptance criteria**, setting up test environments, and assisting in defect triage and resolution.
+* Ensured clear communication and documentation throughout the SDLC to avoid blockers and promote team efficiency.
+
+
+
+

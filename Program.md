@@ -1,6 +1,7 @@
 
 
 Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) -- [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)
+- [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort)
 
 
 React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  - [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) 
@@ -1783,6 +1784,82 @@ function App() {
 export default App;
 
 
+```
+
+## Node Pagination Search Filter and Sort
+
+
+```ts
+const express = require('express');
+const app = express();
+
+const users = [
+  { id: 1, name: 'John Doe', status: 'Active' },
+  { id: 2, name: 'Jane Smith', status: 'Inactive' },
+  { id: 3, name: 'Sam Wilson', status: 'Active' },
+  { id: 4, name: 'Emily Davis', status: 'Active' },
+  { id: 5, name: 'Michael Brown', status: 'Inactive' },
+  { id: 6, name: 'Sarah Johnson', status: 'Active' },
+  { id: 7, name: 'Chris Lee', status: 'Active' },
+  { id: 8, name: 'Anna Martinez', status: 'Inactive' },
+  { id: 9, name: 'David Clark', status: 'Active' },
+  { id: 10, name: 'Sophia Lopez', status: 'Inactive' },
+];
+
+// GET /users?page=1&limit=3&search=sam&status=Active&sort=name
+app.get('/users', (req, res) => {
+  let { page = 1, limit = 3, search = '', status, sort } = req.query;
+  page = parseInt(page);
+  limit = parseInt(limit);
+
+  let filtered = [...users];
+
+  // 🔍 Search by name
+  if (search) {
+    filtered = filtered.filter(user =>
+      user.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  // 🎯 Filter by status
+  if (status) {
+    filtered = filtered.filter(user => user.status.toLowerCase() === status.toLowerCase());
+  }
+
+  // 🔃 Sorting
+  if (sort) {
+    const isDescending = sort.startsWith('-');
+    const sortField = isDescending ? sort.slice(1) : sort;
+
+    filtered.sort((a, b) => {
+      const aVal = a[sortField]?.toLowerCase?.() || '';
+      const bVal = b[sortField]?.toLowerCase?.() || '';
+
+      if (aVal < bVal) return isDescending ? 1 : -1;
+      if (aVal > bVal) return isDescending ? -1 : 1;
+      return 0;
+    });
+  }
+
+  // 📄 Pagination
+  const totalUsers = filtered.length;
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit;
+
+  const results = filtered.slice(startIndex, endIndex);
+
+  res.json({
+    page,
+    limit,
+    totalUsers,
+    totalPages: Math.ceil(totalUsers / limit),
+    data: results
+  });
+});
+
+app.listen(3000, () => {
+  console.log('✅ Server running on http://localhost:3000');
+});
 ```
 
 

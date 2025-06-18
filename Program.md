@@ -1249,6 +1249,19 @@ function debounce(fn, delay) {
     }, delay);
   };
 }
+
+
+// A simple function we want to debounce
+function onResize() {
+  console.log('Resized:', new Date().toISOString());
+}
+
+// Create a debounced version of `onResize`, with 500ms delay
+const debouncedResize = debounce(onResize, 500);
+
+// Add event listener to the window's resize event
+window.addEventListener('resize', debouncedResize);
+
 ```
 
 

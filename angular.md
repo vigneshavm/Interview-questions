@@ -2,7 +2,7 @@
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Angular Concepts**          | • [Angular](#angular)  • [Module](#module)  • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
 | **Components**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
-| **Templates**         | • [Component Factory](#component-factory) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
+| **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
 | **Dependency Injection**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      - [Singleton service](#Singleton-service)                                                                                                               |
 | **Routing & Navigation**           | • [Routing & Child Routes](#routing--child-routes) • [Lazy Loading](#lazy-loading) • [Lazy Loading Modules](#lazy-loading-modules) • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies) • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
@@ -3152,4 +3152,75 @@ ngOnInit() {
 * Dashboards where widgets are loaded at runtime
 
 
+
+### **ngComponentOutlet**
+
+- `ngComponentOutlet` is a declarative, cleaner way to render dynamic components in Angular — best suited for **straightforward, template-driven scenarios**.
+- `ngComponentOutlet` is a **structural directive** in Angular that allows us to **dynamically render a component** using its class — **directly in the template**, without writing imperative code.
+
+- It’s a simpler alternative to using **ComponentFactory** and is ideal for **dynamic component rendering** when you know the component type at runtime.
+
+
+```html
+<ng-container *ngComponentOutlet="componentType"></ng-container>
+```
+
+
+**Real-World Example**
+
+```ts
+@Component({
+  selector: 'app-alert',
+  template: `<p>{{ message }}</p>`
+})
+export class AlertComponent {
+  @Input() message = 'Default alert';
+}
+```
+
+```ts
+@Component({
+  selector: 'app-host',
+  template: `
+    <ng-container *ngComponentOutlet="dynamicComponent"></ng-container>
+  `
+})
+export class HostComponent {
+  dynamicComponent = AlertComponent;
+}
+```
+
+
+**Passing Data to Dynamic Components**
+
+To pass `@Input()` values, you can use `ngComponentOutletContext`:
+
+```html
+<ng-container 
+  *ngComponentOutlet="dynamicComponent; 
+                      ngModuleFactory: dynamicModule; 
+                      ngComponentOutletContext: context">
+</ng-container>
+```
+
+Where `context` is:
+
+```ts
+context = { message: 'Dynamic alert via context!' };
+```
+
+Note: The property name in context must match the `@Input()` name in the dynamic component.
+
+---
+
+**When to Use `ngComponentOutlet` vs ComponentFactory**
+
+| Use Case                                                    | Recommended API                |
+| ----------------------------------------------------------- | ------------------------------ |
+| Simple dynamic rendering                                    | ✅ `ngComponentOutlet`          |
+| Need full control (e.g., destroy, detect changes, injector) | ✅ `ComponentFactory`           |
+| Rendering from config/JSON                                  | ✅ `ngComponentOutlet`          |
+| Complex lifecycle management                                | ✅ `ViewContainerRef` / Factory |
+
+---
 

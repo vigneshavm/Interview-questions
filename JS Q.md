@@ -1,6 +1,6 @@
 **JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        
 
-**Operator**  • [== vs ===](#loose-equality-vs-strict-equality)    • [++/--](#Post-increment-and-Pre-increment) • [JS Object & Coercion (+ operator)](#JS-Object-Coercion) • [Dyanmic Keys](#Dyanmic-Keys) • [`!` &&  `!!` Operator JavaScript](#logical-NOT)
+**Operator**  • [== vs ===](#loose-equality-vs-strict-equality)    • [++/--](#Post-increment-and-Pre-increment) • [JS Object & Coercion (+ operator)](#JS-Object-Coercion) • [Dyanmic Keys](#Dyanmic-Keys) • [`!` &&  `!!` Operator JavaScript](#logical-NOT)  • [Prototype Deletion](#Prototype-Deletion)
 
 
 
@@ -5594,4 +5594,40 @@ You can use `!!value` to convert **any value to its Boolean equivalent**:
 | `!!" "`        | `true`     | Space is a non-empty string (truthy) |
 
 ---
+
+## **Prototype Deletion**
+
+```js
+
+function Car(make) {
+  this.make = make;
+}
+
+Car.prototype.wheels = 4;
+
+const myCar = new Car("Tesla");
+
+// Step 1: Delete wheels from instance (not present directly)
+console.log(delete myCar.wheels);      // true        // Step 1: No own property `wheels` on `myCar`, so delete returns true (no-op)
+
+// Step 2: Access wheels before deleting from prototype
+console.log(myCar.wheels);             // 4           // Step 2: Found `wheels` on prototype
+
+// Step 3: Delete wheels from prototype
+console.log(delete Car.prototype.wheels); // true        // Step 3: Successfully deletes from prototype
+
+// Step 4: Access wheels again
+console.log(myCar.wheels);             // undefined   // Step 4: Now prototype no longer has `wheels`, so it's undefined
+
+//Shadowing Effect
+myCar.wheels = 6;
+console.log(myCar.wheels);          // 6 (own property)
+
+delete myCar.wheels;
+console.log(myCar.wheels);          // undefined (after prototype deletion earlier)
+
+```
+
+
+
 

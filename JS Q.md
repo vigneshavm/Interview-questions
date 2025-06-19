@@ -1,6 +1,6 @@
 **JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        
 
-**Operator**  - [== vs ===](#loose-equality-vs-strict-equality)    - [++/--](#Post-increment-and-Pre-increment) - [JS Object & Coercion (+ operator)](#JS-Object-Coercion) - [Dyanmic Keys](#Dyanmic-Keys) - [`!` &&  `!!` Operator JavaScript](#logical-NOT)
+**Operator**  • [== vs ===](#loose-equality-vs-strict-equality)    • [++/--](#Post-increment-and-Pre-increment) • [JS Object & Coercion (+ operator)](#JS-Object-Coercion) • [Dyanmic Keys](#Dyanmic-Keys) • [`!` &&  `!!` Operator JavaScript](#logical-NOT)
 
 
 

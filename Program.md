@@ -761,8 +761,65 @@ export const apiLimiter = rateLimit({
 });
 
 ```
+**Without rate limit npm package**
+```tsx
+const express = require('express');
+const app = express();
 
+// ✅ Configuration
+const whitelist = ['::1', '127.0.0.1']; // Add allowed IPs (localhost included)
+const rateLimitMap = new Map(); // Store per-IP request info
+const RATE_LIMIT = 5; // max requests
+const WINDOW_MS = 60 * 1000; // 1 minute
 
+// ✅ Rate limiter middleware
+function rateLimiter(req, res, next) {
+  const ip = req.ip;
+
+  // Allow whitelisted IPs
+  if (whitelist.includes(ip)) {
+    return next();
+  }
+
+  const now = Date.now();
+  const record = rateLimitMap.get(ip) || { count: 0, timestamp: now };
+
+  // Reset count if time window has passed
+  if (now - record.timestamp > WINDOW_MS) {
+    record.count = 1;
+    record.timestamp = now;
+  } else {
+    record.count += 1;
+  }
+
+  rateLimitMap.set(ip, record);
+
+  if (record.count > RATE_LIMIT) {
+    return res.status(429).json({ message: 'Too many requests. Please try again later.' });
+  }
+
+  next();
+}
+
+// ✅ Enable if behind a proxy (e.g., nginx, cloud)
+app.set('trust proxy', true);
+
+// ✅ Apply the middleware globally
+app.use(rateLimiter);
+
+// ✅ Sample endpoint
+app.get('/', (req, res) => {
+  res.send(`Hello from Express! Your IP ${req.ip} passed the rate limiter.`);
+});
+
+// ✅ Start server
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Server running at http://localhost:${PORT}`);
+});
+```
+
+-----
  ## Location based IP-based restrictions
 ```tsx
  import { Request, Response, NextFunction } from "express";

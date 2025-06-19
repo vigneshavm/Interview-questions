@@ -1,4 +1,24 @@
 
+* [HTML5 vs HTML4](#html5-vs-html4)  * [`<section>` vs `<div>`](#section-vs-div)
+* [`<div>` vs `<span>`](#div-vs-span)  * [HTML5 Form Enhancements](#html5-form-enhancements)
+* [Semantic Tags in HTML5](#semantic-tags-in-html5) * [Creating Custom Tags in HTML5](#creating-custom-tags-in-html5)
+* [Purpose of `alt` in `<img>`](#purpose-of-alt-in-img) * [`id` vs `class`](#id-vs-class)
+* [`async` vs `defer`](#async-vs-defer) * [CSS3 Features](#css3-features)
+* [CSS Padding Shorthand](#css-padding-shorthand) * [CSS Positioning](#css-positioning)
+* [`em`, `rem`, `%`, and `px`](#em-rem--and-px) * [CSS Specificity](#css-specificity)
+* [CSS Box Model](#css-box-model)
+
+## LESS & SASS 
+- [CSS Preprocessor](#css-preprocessor)  - [SASS vs LESS](#sass-vs-less)  - [Variables and Nesting](#variables-and-nesting)
+- [Mixins in SASS and LESS](#mixins-in-sass-and-less) - [@mixin vs @extend](#mixin-vs-extend) - [SASS Partials](#sass-partials) - [Loops and Functions](#loops-and-functions)
+- [SCSS vs CSS](#scss-vs-css)  - [SCSS Variables](#scss-variables) - [SCSS Nesting](#scss-nesting)
+- [SCSS Mixins](#scss-mixins) - [SCSS Functions](#scss-functions) - [Mixins and Functions](#mixins-and-functions)
+- [@extend](#extend) - [SCSS Modularity](#scss-modularity)
+  - [Partials](#partials)
+  - [@use and @import](#use-and-import)
+- [SCSS File Organization](#scss-file-organization) - [SCSS Control Directives](#scss-control-directives) - [SCSS Debug](#scss-debug)
+- [SCSS Variables Sharing](#scss-variables-sharing) - [SCSS Maintainability](#scss-maintainability) - [SCSS Pitfalls](#scss-pitfalls)
+
 
 | Topic             | Key Concepts                                            |
 | ----------------- | ------------------------------------------------------- |
@@ -11,30 +31,31 @@
 | Specificity       | Inline > ID > Class > Element                           |
 | CSS Features      | Media queries, Flexbox/Grid, transitions, variables     |
 | Custom Tags       | Use `-`, `customElements.define`, optional Shadow DOM   |
-## 🧱 **HTML – Questions & Answers**
 
----
 
-### **HTML5 compared to HTML4?**
+## 🔶 HTML5 & CSS3 Interview Questions
+
+
+### HTML5 vs HTML4
 
 HTML5 introduced:
 
-* Semantic elements like `<header>`, `<footer>`, `<article>`, `<section>`, etc.
-* Multimedia support with `<audio>` and `<video>`
-* New input types (`date`, `range`, `email`, etc.)
-* Local storage APIs (`localStorage`, `sessionStorage`)
-* Canvas and SVG support for graphics
+* Semantic tags: `<header>`, `<footer>`, `<article>`, `<section>`, etc.
+* Multimedia elements: `<audio>`, `<video>`
+* New input types: `email`, `date`, `range`, etc.
+* Storage APIs: `localStorage`, `sessionStorage`
+* Graphics: `<canvas>`, SVG support
 
 ---
 
-### **Difference between `<section>` and `<div>`?**
+### `<section>` vs `<div>`
 
-`<section>` is semantic — used for grouping related content.
-`<div>` is generic and non-semantic — used only for styling or layout.
+| Element     | Semantic | Use Case                             |
+| ----------- | -------- | ------------------------------------ |
+| `<div>`     | ❌ No     | Generic container/layout only        |
+| `<section>` |  Yes    | Group related content with a heading |
 
-`<div>` is a generic container with no semantic meaning.
-`<section>` is a semantic tag that represents a standalone section of content (e.g., a group of related content with its own heading).
-Use `<section>` when the block has a meaningful role or heading.
+🔹 Use `<section>` for thematic grouping with a heading.
 
 ```html
 <section>
@@ -43,144 +64,82 @@ Use `<section>` when the block has a meaningful role or heading.
 </section>
 ```
 
-
 ---
 
-### `<div>` vs `<span>`
+###  `<div>` vs `<span>`
 
-| Feature          | `<div>`                       | `<span>`                    |
-| ---------------- | ----------------------------- | --------------------------- |
-| Type             | **Block-level** element       | **Inline** element          |
-| Default behavior | Starts on a new line          | Stays within the same line  |
-| Use case         | Layout & grouping sections    | Styling small parts of text |
-| Styling target   | Useful for containers/layouts | Ideal for inline styling    |
-| HTML5 Semantic?  | No                            | No                          |
-
----
-
-  Example
+| Feature        | `<div>`                   | `<span>`               |
+| -------------- | ------------------------- | ---------------------- |
+| Type           | Block-level               | Inline                 |
+| Use case       | Layout/grouping sections  | Styling inline content |
+| Styling target | Full blocks or containers | Text fragments         |
+| Semantic?      | ❌ No                      | ❌ No                   |
 
 ```html
-<!-- div groups content and takes full width -->
-<div style="background: lightblue; padding: 10px;">
-  <h2>Title</h2>
+<div>
+  <h2>Block title</h2>
   <p>This is a block of content.</p>
 </div>
 
-<!-- span styles part of a sentence -->
-<p>This is a <span style="color: red;">highlighted word</span> inside a paragraph.</p>
+<p>This is a <span style="color:red">red word</span>.</p>
 ```
 
 ---
 
-  When to Use:
+###  HTML5 Form Enhancements
 
-* Use **`<div>`**: when structuring or grouping content (layouts, sections, cards).
-* Use **`<span>`**: when targeting a **small portion of inline text** for styling or scripting.
+* **New input types**: `email`, `url`, `tel`, `color`, `date`
+* **Attributes**: `required`, `placeholder`, `autofocus`, `pattern`
 
----
-
-
-### **HTML5 form enhancements?**
-
-
-* New input types: `email`, `tel`, `url`, `color`, `date`
-* New attributes: `required`, `placeholder`, `autofocus`, `pattern`
+These improve validation and UX without JavaScript.
 
 ---
 
+###  Semantic Tags in HTML5
 
+| Tag         | Purpose                      | Example Use                |
+| ----------- | ---------------------------- | -------------------------- |
+| `<header>`  | Page/section header          | Logo, nav                  |
+| `<nav>`     | Navigation links             | Menu                       |
+| `<main>`    | Core content (once per page) | Article, primary info      |
+| `<section>` | Thematic group               | Related articles or topics |
+| `<article>` | Self-contained content       | Blog post                  |
+| `<aside>`   | Side content                 | Ads, related links         |
+| `<footer>`  | Footer content               | Contact, copyright         |
+| `<figure>`  | Media with caption           | Images, charts             |
+| `<time>`    | Machine-readable time/date   | Publish date               |
 
+🔹 Benefits:
 
-### Semantic Tags in HTML5
-
-**Semantic tags** clearly describe the **meaning** of the content they enclose, both for **developers** and **browsers (including screen readers & SEO engines)**.
-
----
-
- 🔹 Common Semantic Tags & Their Uses
-
-| Tag         | Purpose                               | Example Usage                     |
-| ----------- | ------------------------------------- | --------------------------------- |
-| `<header>`  | Defines page or section header        | Logo, nav links at top            |
-| `<nav>`     | Navigation links                      | Menus, site links                 |
-| `<main>`    | Main content (one per page)           | Article, core information         |
-| `<section>` | Thematic grouping within content      | Group of related articles, topics |
-| `<article>` | Self-contained content                | Blog post, news article           |
-| `<aside>`   | Sidebar or related info               | Ads, author bio, related links    |
-| `<footer>`  | Page or section footer                | Contact info, copyrights          |
-| `<figure>`  | Media container (with `<figcaption>`) | Images, charts with captions      |
-| `<time>`    | Machine-readable date/time            | Publishing date                   |
+*  Accessibility (screen readers)
+*  SEO improvement
+*  Maintainability
 
 ---
 
-  Why Use Semantic Tags?
+###  Creating Custom Tags in HTML5
 
-*  **Accessibility** – Screen readers can navigate content better
-*  **SEO** – Search engines understand page structure more effectively
-*  **Maintainability** – Easier for developers to read and maintain code
-*  **Consistency** – Clear separation of sections improves structure
+#### 🛠️ Informal Custom Tags
 
----
-
- 💡 Example:
-
-```html
-<header>
-  <h1>My Portfolio</h1>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-  </nav>
-</header>
-
-<main>
-  <section>
-    <article>
-      <h2>Project One</h2>
-      <p>Description of the project...</p>
-    </article>
-  </section>
-  <aside>
-    <p>Check out my GitHub!</p>
-  </aside>
-</main>
-
-<footer>
-  <p>&copy; 2025 My Portfolio</p>
-</footer>
-```
-
-
-
-### Create Custom Tags
-
- 1. 🛠️ **Informal Custom Tags** (HTML only)
-
-You *can* use unknown tags in HTML — but they won't have any functionality or semantic meaning.
+HTML5 allows unknown elements like:
 
 ```html
 <my-card>
-  <h2>Title</h2>
-  <p>Content inside custom tag</p>
+  <h3>Custom Tag</h3>
 </my-card>
 ```
 
-📌 This is valid HTML5, but it's just treated as a `div`. Use CSS to style it, if needed.
+Use CSS:
 
 ```css
 my-card {
   display: block;
-  border: 1px solid #ccc;
-  padding: 1rem;
 }
 ```
 
----
+📌 Treated like a `<div>`, no functionality.
 
- 2. ⚙️ **Formal Custom Elements (Web Components)**
-
-To truly define a **custom component**, use JavaScript:
+#### ⚙️ Formal Custom Elements (Web Components)
 
 ```html
 <user-profile></user-profile>
@@ -191,267 +150,168 @@ To truly define a **custom component**, use JavaScript:
       this.innerHTML = `<h3>Hello from a custom tag!</h3>`;
     }
   }
-
   customElements.define('user-profile', UserProfile);
 </script>
 ```
 
-📌 Now `<user-profile>` behaves like a real component.
+ Rules:
+
+* Must include a **dash** (e.g. `user-profile`)
+* Defined via `customElements.define()`
 
 ---
 
- 🔒 Rules for Custom Tags
+###  Purpose of `alt` in `<img>`
 
-* Must contain a **dash** (`-`), e.g. `my-card`, `user-profile`
-* Should be defined via `customElements.define()`
-* Can include Shadow DOM, lifecycle methods, etc.
-
----
-
- 🎯 Use Cases
-
-* Encapsulated UI components (`<user-profile>`, `<app-navbar>`)
-* Reusable design elements (`<product-card>`, `<fancy-button>`)
-* Progressive web apps
+* Describes image for screen readers
+* Displays fallback if image fails
+* Improves accessibility & SEO
 
 ---
 
+###  `id` vs `class`
 
-
-
-
-### **semantic HTML elements? Give examples.**
-
-**Answer:**
-Semantic elements clearly describe their meaning to both the browser and developer.
-Examples: `<article>`, `<section>`, `<nav>`, `<header>`, `<footer>`, `<aside>`.
-They help with **accessibility**, **SEO**, and **code clarity**.
+| Attribute | Unique? | Reusable? | Use Case                              |
+| --------- | ------- | --------- | ------------------------------------- |
+| `id`      |  Yes   | ❌ No      | Specific element styling or JS access |
+| `class`   | ❌ No    |  Yes     | Reusable styles                       |
 
 ---
 
-### **purpose of `alt` in `<img>`?**
+###  `async` vs `defer`
 
-**Answer:**
-The `alt` attribute provides alternative text when an image can’t load and improves **accessibility** for screen readers.
-
----
-
-### **Difference between `id` and `class`?**
-
-**Answer:**
-
-* `id`: Unique per element, used for specific styling or DOM access.
-* `class`: Reusable across multiple elements, better for styling groups.
+| Attribute | Load Behavior     | Execution Time        | Render Blocking |
+| --------- | ----------------- | --------------------- | --------------- |
+| `async`   | Loads in parallel | As soon as downloaded |  May block     |
+| `defer`   | Loads in parallel | After HTML parsed     | ❌ No            |
 
 ---
-
-### **difference between `async` and `defer` on script tags?**
-
-**Answer:**
-
-* `async`: Script is fetched in parallel and executed as soon as it's ready. Can block rendering.
-* `defer`: Script is fetched in parallel but executed **after HTML parsing** is done. Keeps render non-blocking.
-
----
-
 
 ## 🟦 CSS3 Interview Questions
 
-### **major features of CSS3?**
-* Media queries (for responsive design)
-* Flexbox and Grid
-* Animations & transitions
+###  CSS3 Features
+
+* Media queries
+* Flexbox & CSS Grid
+* Transitions & animations
 * Rounded corners (`border-radius`)
 * Shadows (`box-shadow`, `text-shadow`)
 
 ---
 
-
-When you write:
+###  CSS Padding Shorthand
 
 ```css
 padding: 10px 20px;
 ```
 
+| Side   | Value |
+| ------ | ----- |
+| Top    | 10px  |
+| Right  | 20px  |
+| Bottom | 10px  |
+| Left   | 20px  |
 
-### **vertical and horizontal padding**
+📌 Shorthand rules:
 
-It means you're setting **vertical and horizontal padding** like this:
-
----
-
-  Breakdown:
-
-| Direction  | Value  |
-| ---------- | ------ |
-| **Top**    | `10px` |
-| **Right**  | `20px` |
-| **Bottom** | `10px` |
-| **Left**   | `20px` |
+* 1 value → all sides
+* 2 values → top/bottom, left/right
+* 3 values → top, left/right, bottom
+* 4 values → top, right, bottom, left
 
 ---
 
- 🔁 Shorthand Pattern (clockwise logic):
+###  CSS Positioning
 
-CSS shorthand follows this pattern based on number of values:
+| Value      | Behavior                                                            |
+| ---------- | ------------------------------------------------------------------- |
+| `static`   | Default, follows normal flow                                        |
+| `relative` | Positioned relative to itself (can offset with `top`, `left`, etc.) |
+| `absolute` | Positioned relative to nearest non-static parent                    |
+| `fixed`    | Sticks to viewport on scroll                                        |
+| `sticky`   | Behaves `relative` until threshold, then becomes `fixed`            |
 
-* `padding: 10px;` → all 4 sides
-* `padding: 10px 20px;` → top & bottom | left & right
-* `padding: 10px 20px 30px;` → top | left & right | bottom
-* `padding: 10px 20px 30px 40px;` → top | right | bottom | left (clockwise)
-
----
-
- 📌 Example:
+📌 Best Practice:
 
 ```css
-.box {
-  padding: 10px 20px;
-  background: lightblue;
+.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 ```
 
-This applies:
+---
 
-* 10px padding on top and bottom
-* 20px padding on left and right
+###  `em`, `rem`, `%`, and `px`
 
-
-
-###  **Different Position**
-
-*Can you explain how different `position` values work in CSS, and how they behave in a parent-child component setup?*
-
- - Yes, absolutely. CSS provides several `position` values — `static`, `relative`, `absolute`, `fixed`, and `sticky`. Each determines how an element is placed in the layout.
-
- -  The default is `static`, which just follows the normal document flow. If I use `relative`, the element still takes up space in the layout, but I can offset it using `top`, `left`, etc. It's often used as a positioning anchor for child elements.
-
- -  `absolute` removes the element from the normal flow, and it gets positioned relative to the **nearest ancestor that has a non-static position** — usually `relative`, `absolute`, or `fixed`. This is important in component-based frameworks like Angular or React, where a parent component might define a container and child components are positioned absolutely inside it.
-
- -  For example, if I have a `.parent` div with `position: relative`, and a `.child` div inside it with `position: absolute; top: 10px; right: 10px`, the child will stick to the top-right of the parent, not the page.
-
- -  `fixed` makes the element stick to the viewport — useful for navbars or buttons that should stay visible during scroll. `sticky` behaves like `relative` until a scroll threshold is met, and then it behaves like `fixed`.
-
- -  So when handling child positioning, I always make sure the parent has a proper `position` (usually `relative`) if I want the child to align within that scope.
+| Unit  | Relative To             | Use Case                       |
+| ----- | ----------------------- | ------------------------------ |
+| `px`  | Fixed                   | Precise control                |
+| `%`   | Parent’s value          | Responsive layout              |
+| `em`  | Parent’s font-size      | Inheritable typography spacing |
+| `rem` | Root (`html`) font-size | Consistent across components   |
 
 ---
 
- 🔁 Optional Add-On (if asked for an example)
+###  CSS Specificity
 
- - In Angular, I often use this for dropdowns or modals:
+| Selector Type      | Specificity Score |
+| ------------------ | ----------------- |
+| Inline style       | 1000              |
+| `#id`              | 100               |
+| `.class`, `:hover` | 10                |
+| `div`, `h1`        | 1                 |
 
- -  * I wrap the modal in a `div` with `position: relative`
- - * Then absolutely position the modal box inside that container.
-
- -  This makes sure the modal is scoped within the parent and doesn't float around the page unexpectedly.
-
----
-
-
-
-### **Difference between `em`, `rem`, `%`, `px`?**
-
-
-* `px`: fixed size
-* `%`: relative to parent
-* `em`: relative to the font-size of the parent
-* `rem`: relative to the root (`html`) font size
+📌 Higher specificity wins if multiple rules apply.
 
 ---
 
-### **specificity in CSS?**
-
-Specificity defines which CSS rule takes precedence:
-
-* Inline styles: **1000**
-* ID selectors: **100**
-* Class, pseudo-class, attribute: **10**
-* Element/tag selectors: **1**
-
-
-### **CSS Box Model**
-
-The **CSS Box Model** describes how elements are structured and spaced on a web page. Every element is treated as a rectangular **box** made up of the following parts:
-
----
-
-  Box Model Structure
+###  CSS Box Model
 
 ```
 +-------------------------------+
-|        Margin (outer)         |
+|        Margin (outside)       |
 |  +-------------------------+  |
-|  |     Border (optional)   |  |
-|  |  +-------------------+  |  |
-|  |  |   Padding          |  |  |
-|  |  |  +-------------+   |  |  |
-|  |  |  |   Content   |   |  |  |
-|  |  |  +-------------+   |  |  |
-|  |  +-------------------+  |  |
+|  |     Border             |  |
+|  |  +-------------------+ |  |
+|  |  |   Padding         | |  |
+|  |  |  +-------------+  | |  |
+|  |  |  |   Content   |  | |  |
+|  |  |  +-------------+  | |  |
+|  |  +-------------------+ |  |
 |  +-------------------------+  |
 +-------------------------------+
 ```
 
----
+| Part    | Description                      |
+| ------- | -------------------------------- |
+| Content | Text or image inside the element |
+| Padding | Space **inside** around content  |
+| Border  | Edge surrounding the padding     |
+| Margin  | Space **outside** element        |
 
- 📋 Box Model Components
-
-| Part        | Description                                                   |
-| ----------- | ------------------------------------------------------------- |
-| **Content** | The actual text, image, or data inside the element.           |
-| **Padding** | Space **inside** the element, around the content.             |
-| **Border**  | Edge around the padding. Can be styled (e.g., solid, dashed). |
-| **Margin**  | Space **outside** the element, separating it from others.     |
-
----
-
- 🧪 Example (CSS):
+🔹 Use `box-sizing: border-box` to include padding & border in total width/height:
 
 ```css
-.box {
-  width: 200px;
-  padding: 10px;
-  border: 5px solid black;
-  margin: 20px;
+* {
+  box-sizing: border-box;
 }
 ```
 
- 🧮 Total Element Size (Standard Model):
-
-```
-Total width = content width + left/right padding + border + margin
-            = 200 + (10×2) + (5×2) + (20×2) = 270px wide + margin
-```
-
----
-
- 🔄 `box-sizing` Property
-
-To make sizing easier, you can use:
-
-```css
-box-sizing: border-box;
-```
-
-This **includes padding and border inside the total width/height**, so:
-
-```css
-width: 200px;  /* includes padding and border */
-```
-
 ---
 
 
 
 
 
-## 💠 LESS & SASS Interview Questions
 
----
 
 ### **CSS Preprocessor**
 
-**Answer:**
 A CSS preprocessor extends CSS with features like:
 
 * Variables
@@ -460,27 +320,24 @@ A CSS preprocessor extends CSS with features like:
 * Functions
 * Partials and Modules
 
-Popular preprocessors include **SASS**, **LESS**, and **Stylus**. They compile to regular CSS before the browser can use it.
+Popular preprocessors include **SASS**, **LESS**, and **Stylus**. They compile to plain CSS before the browser can use it.
 
 ---
 
-### **SASS and LESS**
-
-**Answer:**
-Both are CSS preprocessors, but they differ slightly:
+### **SASS vs LESS**
 
 | Feature     | SASS (`.scss` / `.sass`)  | LESS                   |
 | ----------- | ------------------------- | ---------------------- |
-| Syntax      | SCSS or SASS              | LESS syntax (`.less`)  |
-| Language    | Originally Ruby, now Node | JavaScript-based       |
+| Syntax      | SCSS or indented SASS     | LESS syntax (`.less`)  |
+| Language    | Originally Ruby, now Dart | JavaScript-based       |
 | Community   | Larger, more tooling      | Simpler, smaller scope |
-| Integration | Used in modern builds     | Easier with JS tooling |
+| Integration | Widely used in builds     | Easier with JS tooling |
 
 ---
 
-### **Variables and Nesting in SASS & LESS**
+### **Variables and Nesting**
 
-**SASS:**
+####  SASS Example
 
 ```scss
 $primary-color: #3498db;
@@ -496,7 +353,7 @@ nav {
 }
 ```
 
-**LESS:**
+####  LESS Example
 
 ```less
 @primary-color: #3498db;
@@ -514,12 +371,11 @@ nav {
 
 ---
 
-### **Mixin in SASS/LESS?**
+### **Mixins in SASS and LESS**
 
-**Answer:**
-A **mixin** is a reusable block of styles you can include in multiple selectors.
+Mixins are reusable blocks of styles.
 
-**SASS Example:**
+####  SASS Example
 
 ```scss
 @mixin border-radius($radius) {
@@ -531,25 +387,36 @@ A **mixin** is a reusable block of styles you can include in multiple selectors.
 }
 ```
 
+####  LESS Example
+
+```less
+.border-radius(@radius) {
+  border-radius: @radius;
+}
+
+.box {
+  .border-radius(10px);
+}
+```
+
 ---
 
-### **difference between `@mixin` and `@extend` in SASS?**
+### **@mixin vs @extend**
 
-**Answer:**
+| Feature     | `@mixin`                 | `@extend`                  |
+| ----------- | ------------------------ | -------------------------- |
+| Reusability |  Yes                    |  Yes                      |
+| Parameters  |  Supports parameters    | ❌ No                       |
+| Code Output | Repeats styles per usage | Merges selectors           |
+| Flexibility | More flexible            | Less flexible, more global |
 
-| Concept         | `@mixin`      | `@extend`        |
-| --------------- | ------------- | ---------------- |
-| Reusability     |  Yes         |  Yes            |
-| With Parameters |  Yes         | ❌ No             |
-| Code Output     | Repeats code  | Merges selectors |
-| Flexibility     | More flexible | Less flexible    |
+**Note:** Use `@extend` sparingly to avoid bloated selectors.
 
 ---
 
-### **Sass Partials and How Are They Used?**
+### **SASS Partials**
 
-**Answer:**
-A partial is a Sass file prefixed with an underscore (e.g., `_variables.scss`). It’s not compiled directly. Use `@use` or `@import` to include it in other files.
+A **partial** is a Sass file that is not compiled on its own (starts with `_`):
 
 ```scss
 // _variables.scss
@@ -559,149 +426,48 @@ $primary-color: #3498db;
 @use 'variables';
 ```
 
+**Best Practice:** Group partials by purpose and organize them using the **7–1 pattern**.
+
 ---
 
-### **Loops and Functions Work in Sass?**
+### **Loops and Functions**
 
-**Answer:**
-Sass allows logic via loops and functions.
+SASS supports logic with loops and functions:
 
 ```scss
+// Loop
 @for $i from 1 through 3 {
   .col-#{$i} {
     width: 100% / $i;
   }
 }
 
+// Function
 @function double($number) {
   @return $number * 2;
 }
 ```
 
-These features make complex styling patterns reusable and dynamic.
-
-
-
-## 🎨 **CSS-in-JS – styled-components/Emotion Questions & Answers**
+This enables dynamic and reusable styles.
 
 ---
-
-### **CSS-in-JS and why use it?**
-
-**Answer:**
-CSS-in-JS is a styling approach where you write CSS code directly inside JavaScript files. It allows:
-
-* **Component-scoped styles** (no class collisions)
-* **Dynamic styles based on props/state**
-* **Shared theme values across components**
-* **Elimination of global stylesheets**
-
-Popular libraries: `styled-components`, `Emotion`, `JSS`.
-
----
-
-### **create dynamic styles using styled-components?**
-
-**Answer:**
-
-```jsx
-const Button = styled.button`
-  background: ${props => props.primary ? 'blue' : 'gray'};
-`;
-```
-
-Props like `primary` can dynamically alter styles. This is great for reusable and themeable components.
-
----
-
-### **SSR (Server-Side Rendering) handled in CSS-in-JS?**
-
-**Answer:**
-In SSR setups (like Next.js), `styled-components` or `emotion` use collectors (e.g., `ServerStyleSheet` or `extractCritical`) to extract styles during server rendering. This prevents FOUC (Flash of Unstyled Content).
-
-```jsx
-import { ServerStyleSheet } from 'styled-components';
-
-const sheet = new ServerStyleSheet();
-const html = renderToString(sheet.collectStyles(<App />));
-const styleTags = sheet.getStyleTags(); // Inject into <head>
-```
-
----
-
-### **Handle themes in CSS-in-JS?**
-
-**Answer:**
-
-Using `ThemeProvider` from the library:
-
-```jsx
-import { ThemeProvider } from 'styled-components';
-
-const theme = {
-  primary: '#333',
-  secondary: '#999',
-};
-
-<ThemeProvider theme={theme}>
-  <App />
-</ThemeProvider>
-```
-
-In styled-components:
-
-```js
-const Title = styled.h1`
-  color: ${props => props.theme.primary};
-`;
-```
-
----
-
-### **Pros and Cons of CSS-in-JS vs Sass**
-
-| Feature             | CSS-in-JS                          | Sass (SCSS)                     |
-| ------------------- | ---------------------------------- | ------------------------------- |
-| **Scoping**         | Scoped to components automatically | Requires naming conventions     |
-| **Dynamic Styling** | Via props/state                    | Not natively dynamic            |
-| **Theming Support** | Built-in with `ThemeProvider`      | Needs manual setup              |
-| **Performance**     | Slight runtime overhead (JS-based) | Compiled to static CSS          |
-| **Tooling**         | Tight integration with JS/React    | Good tooling in build pipelines |
-| **Learning Curve**  | Requires React knowledge           | Easier for pure CSS developers  |
-| **Debugging**       | Styled class names are auto-gen    | Original class names available  |
-| **SSR Support**     | Requires extra setup               | Native CSS — no extra handling  |
-
----
-
-Let me know if you'd like:
-
-* Real-world **project questions**
-* A **styled-components mini project**
-* Questions on **Emotion vs styled-components**
-* Or **code exercises for CSS-in-JS** use cases.
-
-
-| Feature         | CSS-in-JS                  | Sass                     |
-| --------------- | -------------------------- | ------------------------ |
-| Scoped Styles   |  Automatic                | ❌ Needs manual naming    |
-| Dynamic Styling |  via props                | ❌ Requires extra setup   |
-| Performance     | ⚠ Slightly heavier bundle  |  Leaner compiled output |
-| Tooling         |  Theming, SSR, TS support |  Good build integration |
-| Learning Curve  | Medium                     | Low                      |
-
-
 
 
 
 
 ## **SCSS**
 
----
+ - [SCSS vs CSS](#SCSS vs CSS)
+ - [SCSS variables](#SCSS variables)
+ - [SCSS nesting work](#SCSS nesting work)
+ - [SCSS mixins](#SCSS mixins)
+ - [SCSS functions](SCSS functions)
 
-### **1. What is SCSS? How is it different from CSS?**
+### **SCSS vs CSS**
 
-**Answer:**
-SCSS (Sassy CSS) is a syntax of Sass (Syntactically Awesome Stylesheets), a CSS preprocessor that adds powerful features such as:
+
+- SCSS (Sassy CSS) is a syntax of Sass (Syntactically Awesome Stylesheets), 
+- a CSS preprocessor that adds powerful features such as:
 
 * Variables
 * Nesting
@@ -717,9 +483,9 @@ SCSS (Sassy CSS) is a syntax of Sass (Syntactically Awesome Stylesheets), a CSS 
 
 ---
 
-### **2. What are variables in SCSS? How are they useful?**
+### **SCSS variables**
 
-**Answer:**
+
 Variables allow you to **store reusable values** like colors, fonts, or sizes.
 
 ```scss
@@ -734,9 +500,9 @@ They reduce repetition and improve maintainability.
 
 ---
 
-### **3. How does nesting work in SCSS?**
+### **SCSS nesting work**
 
-**Answer:**
+
 SCSS allows **nesting of selectors**, which mirrors the HTML structure and improves readability.
 
 ```scss
@@ -755,9 +521,9 @@ SCSS allows **nesting of selectors**, which mirrors the HTML structure and impro
 
 ---
 
-### **4. What are mixins in SCSS?**
+### **SCSS mixins**
 
-**Answer:**
+
 Mixins allow you to **reuse groups of styles** with optional parameters.
 
 ```scss
@@ -782,9 +548,9 @@ You can also pass arguments:
 
 ---
 
-### **5. What are functions in SCSS?**
+### **SCSS functions**
 
-**Answer:**
+
 Functions return a value and can be used in calculations:
 
 ```scss
@@ -797,13 +563,9 @@ Functions return a value and can be used in calculations:
 }
 ```
 
----
 
-## ⚙️ **Intermediate SCSS Questions**
 
----
-
-### **6. Difference between mixins and functions in SCSS?**
+### **Mixins and functions**
 
 | Feature | Mixin                     | Function                  |
 | ------- | ------------------------- | ------------------------- |
@@ -812,10 +574,9 @@ Functions return a value and can be used in calculations:
 | Output  | Multiple CSS declarations | Single value (usually)    |
 
 ---
+### **@extend**
 
-### **7. What is `@extend` and when to use it?**
 
-**Answer:**
 `@extend` lets you inherit styles from another selector.
 
 ```scss
@@ -834,9 +595,9 @@ Functions return a value and can be used in calculations:
 
 ---
 
-### **8. What are partials in SCSS?**
+### **Partials**
 
-**Answer:**
+
 Partials are small SCSS files that can be **imported into other SCSS files** using `@use` or `@import`.
 
 ```scss
@@ -851,7 +612,7 @@ By convention, partial filenames start with an underscore (`_`).
 
 ---
 
-### **9. Difference between `@use` and `@import` in SCSS?**
+### **@use and @import**
 
 | Feature | `@import`                      | `@use` (Recommended)   |
 | ------- | ------------------------------ | ---------------------- |
@@ -861,9 +622,9 @@ By convention, partial filenames start with an underscore (`_`).
 
 ---
 
-### **10. How can you organize SCSS files in a large project?**
+### **SCSS File Organization**
 
-**Answer:**
+
 Use the **7–1 pattern**:
 
 ```
@@ -880,11 +641,8 @@ main.scss
 
 ---
 
-## 🧠 **Advanced & Real-World Questions**
 
----
-
-### **11. What are control directives in SCSS?**
+### **SCSS control directives**
 
 SCSS supports loops and conditionals:
 
@@ -903,7 +661,7 @@ SCSS supports loops and conditionals:
 
 ---
 
-### **12. How do you debug SCSS?**
+### **SCSS Debug**
 
 Use:
 
@@ -914,7 +672,7 @@ Use:
 
 ---
 
-### **13. Can SCSS variables be used in JavaScript?**
+### **SCSS Variables Sharing**
 
 Not directly. To share values:
 
@@ -923,7 +681,7 @@ Not directly. To share values:
 
 ---
 
-### **14. How does SCSS improve maintainability?**
+### **SCSS Maintainability**
 
 SCSS makes CSS:
 
@@ -934,7 +692,7 @@ SCSS makes CSS:
 
 ---
 
-### **15. What are some common pitfalls with SCSS?**
+### **SCSS Pitfalls**
 
 * Over-nesting leads to **high specificity**
 * Overuse of `@extend` creates large selectors

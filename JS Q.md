@@ -5402,6 +5402,48 @@ evtSource.onmessage = e => console.log(e.data);
 ### **JS Object Coercion**
 
 
+| Expression           | Result               | Type   | Explanation                                     |
+| -------------------- | -------------------- | ------ | ----------------------------------------------- |
+| `"5" + 1`            | `"51"`               | string | Number `1` is converted to string → `"5" + "1"` |
+| `"5" + true`         | `"5true"`            | string | Boolean `true` → `"true"`                       |
+| `"5" + false`        | `"5false"`           | string | Boolean `false` → `"false"`                     |
+| `"5" + null`         | `"5null"`            | string | `null` → `"null"`                               |
+| `"5" + undefined`    | `"5undefined"`       | string | `undefined` → `"undefined"`                     |
+| `"5" + NaN`          | `"5NaN"`             | string | NaN → `"NaN"`                                   |
+| `"5" + {} `          | `"5[object Object]"` | string | Object → `"5" + "[object Object]"`              |
+| `"5" + []`           | `"5"`                | string | `[]` → `""`, so `"5" + ""` = `"5"`              |
+| `"5" + [1, 2]`       | `"51,2"`             | string | `[1, 2]` → `"1,2"`                              |
+| `"5" + function(){}` | `"5function(){}"`    | string | Function coerced to string                      |
+| `console.log("5" + 1);`             | `"51"`                     | String + Number = string concatenation             |
+| `console.log(true + 1);`            | `2`                        | true → 1                                           |
+| `console.log(false + 1);`           | `1`                        | false → 0                                          |
+| `console.log(null + 1);`            | `1`                        | null → 0                                           |
+| `console.log(undefined + 1);`       | `NaN`                      | undefined → NaN                                    |
+| `console.log([] + []);`             | `""`                       | Arrays to string → "" + ""                         |
+| `console.log([] + {});`             | `"[object Object]"`        | \[] → "", {} → "\[object Object]"                  |
+| `console.log({} + []);`             | `0` or `"[object Object]"` | Depends on parsing context ({} as block or object) |
+| `console.log([1, 2] + [3, 4]);`     | `"1,23,4"`                 | Arrays to string → "1,2" + "3,4"                   |
+
+| Expression                   | Result                   | Type   | Explanation                                            |
+| ---------------------------- | ------------------------ | ------ | ------------------------------------------------------ |
+| `"5" + 1 + 2`                | `"512"`                  | string | `"5" + 1 → "51"` → `"51" + 2` → `"512"`                |
+| `1 + 2 + "5"`                | `"35"`                   | string | `1 + 2 → 3` → `3 + "5"` → `"35"`                       |
+| `"5" + true + null`          | `"5truenull"`            | string | All coerced to strings                                 |
+| `"5" + [] + {} + null`       | `"5[object Object]null"` | string | `[] → ""`, `{}` → `[object Object]`, `null` → `"null"` |
+| `"5" + [1, 2] + [3, 4]`      | `"51,23,4"`              | string | Arrays coerced to comma-separated strings              |
+| `"5" + undefined + NaN`      | `"5undefinedNaN"`        | string | All become strings                                     |
+| `"5" + 1 + true + null + []` | `"51truenull"`           | string | Everything coerced to string                           |
+| `"5" + (1 + 2)`              | `"53"`                   | string | `1 + 2` = `3`, then `"5" + 3` → `"53"`                 |
+| `"5" + {} + [] + 10`         | `"5[object Object]10"`   | string | Object → string, Array → `""`, number → string         |
+
+| Expression        | Result | Explanation                           |
+| ----------------- | ------ | ------------------------------------- |
+| `"5" + + "1"`     | `"51"` | `+"1"` → `1`, then `"5" + 1` → `"51"` |
+| `"5" - -1`        | `6`    | `- -1` → `+1`, so `5 + 1 = 6`         |
+| `"5" + + + + "2"` | `"52"` | all unary `+` → number `2`            |
+
+
+
 
 
 | Code Snippet                        | Output                     | Concept / Explanation                              |
@@ -5413,16 +5455,7 @@ evtSource.onmessage = e => console.log(e.data);
 | `console.log(!!null);`              | `false`                    | null is falsy                                      |
 | `console.log(typeof null);`         | `"object"`                 | JavaScript quirk (legacy bug)                      |
 | `console.log("5" - 1);`             | `4`                        | "5" coerced to number                              |
-| `console.log("5" + 1);`             | `"51"`                     | String + Number = string concatenation             |
-| `console.log(true + 1);`            | `2`                        | true → 1                                           |
-| `console.log(false + 1);`           | `1`                        | false → 0                                          |
-| `console.log(null + 1);`            | `1`                        | null → 0                                           |
-| `console.log(undefined + 1);`       | `NaN`                      | undefined → NaN                                    |
 | `console.log(Object.is(NaN, NaN));` | `true`                     | Object.is handles NaN correctly                    |
-| `console.log([] + []);`             | `""`                       | Arrays to string → "" + ""                         |
-| `console.log([] + {});`             | `"[object Object]"`        | \[] → "", {} → "\[object Object]"                  |
-| `console.log({} + []);`             | `0` or `"[object Object]"` | Depends on parsing context ({} as block or object) |
-| `console.log([1, 2] + [3, 4]);`     | `"1,23,4"`                 | Arrays to string → "1,2" + "3,4"                   |
 | `console.log([] && {});`            | `{}`                       | Both truthy, returns second operand                |
 
 

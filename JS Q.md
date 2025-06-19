@@ -3506,63 +3506,70 @@ const person = {
   age: 30,
   type: ['work', 'job', 'Lead'],
 
-// ❌ Incorrect: Regular function inside forEach doesn't capture `this`
   regularFunctionLoop: function () {
     this.type.forEach(function (eType) {
       console.log("Hello", this.name, "from", eType); 
-      // Output: Hello undefined from work/job/Lead ❌
+      
     });
   },
+  // ❌ Incorrect: Regular function inside forEach doesn't capture `this`
+  // ❌ Output: Hello undefined from work/job/Lead 
   // This inner function (inside forEach) is a normal function.
   // So its `this` is either the global object (in non-strict mode) or `undefined` (in strict mode).
   // Hence, `this.name` does NOT refer to `person.name`.
 
 
-  // ✅ Correct: Arrow function inside forEach captures `this` from `arrowFunctionLoop`
   arrowFunctionLoop: function () {
     this.type.forEach((eType) => {
       console.log("Hello", this.name, "from", eType); 
-      // Output: Hello Vignesh from work/job/Lead ✅
+      
     });
   },
+  // ✅ Correct: Arrow function inside forEach captures `this` from `arrowFunctionLoop`
+  // Output: Hello Vignesh from work/job/Lead ✅
   // Arrow functions do NOT have their own `this`. They lexically capture `this` from the enclosing context.
   // Since `this` in `arrowFunctionLoop` refers to the `person` object, it works correctly.
 
-  // ✅ Works fine: Regular function method – uses calling object as 'this'
+  
   regularFunction: function () {
-    console.log("regularFunction:", this.name); // Output: Vignesh
+    console.log("regularFunction:", this.name);
   },
+  // ✅ Works fine: Regular function method – uses calling object as 'this'
+  // Output: Vignesh
   // This is a traditional method call on an object.
   // The value of 'this' here will refer to the object (`person`) that invoked the method.
 
 
-  // ❌ Arrow function – no own 'this'; 'this' here refers to the outer lexical scope
   arrowFunction: () => {
-    console.log("arrowFunction:", this.name); // Output: undefined
+    console.log("arrowFunction:", this.name); 
   },
+  // ❌ Arrow function – no own 'this'; 'this' here refers to the outer lexical scope
+  // Output: undefined
   // Arrow functions capture 'this' from the enclosing lexical context (e.g., window/global).
   // Since it's defined directly inside an object literal, not inside another function,
   // `this.name` will be undefined (or global/window in browser).
 
 
-  // ❌ Wrong usage: setTimeout's callback is a normal function,
-  // and so `this` refers to global object
   timeoutFunction: function () {
     setTimeout(function () {
-      console.log("setTimeout (regular):", this.name); // Output: undefined
+      console.log("setTimeout (regular):", this.name); 
     }, 100);
   },
+  // ❌ Wrong usage: setTimeout's callback is a normal function,
+  // and so `this` refers to global object
+  // Output: undefined
   // Inside setTimeout, the callback function is a regular function.
   // So the value of 'this' is not inherited from the enclosing method.
   // It defaults to the global object (or undefined in strict mode).
 
 
-  // ✅ Correct: Arrow function in setTimeout retains 'this' from enclosing method
   timeoutArrow: function () {
     setTimeout(() => {
-      console.log("setTimeout (arrow):", this.name); // Output: Vignesh
+      console.log("setTimeout (arrow):", this.name); 
     }, 100);
   },
+  // ✅ Correct: Arrow function in setTimeout retains 'this' from enclosing method
+  // Output: Vignesh
   // By using an arrow function inside setTimeout, we ensure that
   // 'this' refers to the surrounding context — which is the object (`person`) calling it.
   // This way, we retain access to `this.name`.
@@ -3582,32 +3589,35 @@ console.log("----------");
 function Counter() {
   this.count = 0;
 
-  // ❌ Incorrect: Regular function in setInterval loses `this`
   setInterval(function () {
     this.count++;
-    console.log("Wrong Counter:", this.count); // Output: NaN NaN NaN ...
+    console.log("Wrong Counter:", this.count);
   }, 1000);
+  // ❌ Incorrect: Regular function in setInterval loses `this`
+  // Output: NaN NaN NaN ...
   // This is a classic example of why `this` behaves unexpectedly inside asynchronous functions.
   // Here, 'this' inside the setInterval callback refers to the global object (not the Counter instance),
   // hence `this.count++` actually tries to increment `undefined`, resulting in NaN.
 
 
 
-  // ✅ Correct: Arrow function binds 'this' lexically to the constructor
   setInterval(() => {
     this.count++;
-    console.log("Correct Counter:", this.count); // Output: 1, 2, 3, ...
+    console.log("Correct Counter:", this.count); 
   }, 1000);
+  // ✅ Correct: Arrow function binds 'this' lexically to the constructor
+  // Output: 1, 2, 3, ...
   // We use an arrow function which captures 'this' from the surrounding context (i.e., the Counter function).
   // Thus, `this.count` refers to the correct Counter instance.
 
-  // ✅ Another correct approach using .bind(this)
+  
   /*
   setInterval(function () {
     this.count++;
     console.log("Bound Counter:", this.count);
   }.bind(this), 1000);
   */
+  // ✅ Another correct approach using .bind(this)
 }
 
 new Counter();

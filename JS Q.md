@@ -3623,32 +3623,73 @@ function Counter() {
 new Counter();
 ```
 
+
+---
+
+### ✅ `this` refers to the calling object
+
 ```js
-
-// ✅ this refers to the calling object
-let obj1 = { a: 10, getA() { return this.a; } };
+let obj1 = { 
+  a: 10, 
+  getA() { 
+    return this.a; 
+  } 
+};
 console.log(obj1.getA()); // 10
+```
 
-// ❌ this is window/global in non-strict mode
+---
+
+### ❌ `this` is global (or undefined in strict mode) in a standalone function
+
+```js
 let obj2 = { a: 10 };
-let getA2 = function () { return this.a; };
-console.log(getA2()); // undefined
+let getA2 = function () { 
+  return this.a; 
+};
+console.log(getA2()); // undefined (in non-strict mode it refers to global object)
+```
 
-// ❌ strict mode: this is undefined in a standalone function
+---
+
+### ❌ `this` is `undefined` in strict mode
+
+```js
 "use strict";
-let getA3 = function () { return this; };
-console.log(getA3()); // undefined
 
-// ❌ Arrow function inherits this from enclosing (global) scope
+let getA3 = function () { 
+  return this; 
+};
+console.log(getA3()); // undefined
+```
+
+---
+
+### ❌ Arrow function inherits `this` from enclosing (global) scope
+
+```js
 let obj4 = { a: 10 };
 let getA4 = () => this.a;
 console.log(getA4()); // undefined
+```
 
-// ❌ Arrow function used as a method — wrong this
-let obj5 = { a: 10, getA: () => this.a };
+---
+
+### ❌ Arrow function used as method – wrong `this`
+
+```js
+let obj5 = { 
+  a: 10, 
+  getA: () => this.a 
+};
 console.log(obj5.getA()); // undefined
+```
 
-// ✅ Arrow function inside method — captures correct this
+---
+
+### ✅ Arrow function inside method – captures correct `this`
+
+```js
 let obj6 = {
   a: 10,
   getA() {
@@ -3657,53 +3698,86 @@ let obj6 = {
   }
 };
 console.log(obj6.getA()); // 10
+```
 
-// ❌ new returns custom object, not instance
+---
+
+### ❌ `new` with return object – returned object overrides `this`
+
+```js
 function A1() {
   this.name = "foo";
   return { name: "bar" };
 }
 console.log(new A1().name); // "bar"
+```
 
-// ✅ new with no return: instance is used
+---
+
+### ✅ `new` with no return – uses instance
+
+```js
 function A2() {
   this.name = "foo";
 }
 console.log(new A2().name); // "foo"
+```
 
-// ✅ this depends on calling object
+---
+
+### ✅ `this` depends on the calling object
+
+```js
 let a = { x: 1 };
 let b = {
   x: 2,
-  getX: function () { return this.x; }
+  getX: function () { 
+    return this.x; 
+  }
 };
+
 a.getX = b.getX;
 console.log(a.getX()); // 1
+```
 
-// ❌ this inside regular setTimeout is global (not obj)
+---
+
+### ❌ `this` in regular `setTimeout` is global/undefined
+
+```js
 const obj7 = {
   count: 0,
   inc() {
     setTimeout(function () {
-      this.count++; // this is global or undefined
+      this.count++; // `this` is not `obj7`
     }, 100);
   }
 };
+
 obj7.inc();
 setTimeout(() => console.log(obj7.count), 200); // 0
+```
 
-// ✅ this inside arrow in setTimeout points to obj
+---
+
+### ✅ Arrow function in `setTimeout` captures `this`
+
+```js
 const obj8 = {
   count: 0,
   inc() {
     setTimeout(() => {
-      this.count++; // this is correctly `obj8`
+      this.count++; // `this` is correctly `obj8`
     }, 100);
   }
 };
+
 obj8.inc();
 setTimeout(() => console.log(obj8.count), 200); // 1
 ```
+
+---
+
 
 
 

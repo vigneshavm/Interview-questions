@@ -5398,6 +5398,18 @@ evtSource.onmessage = e => console.log(e.data);
 | `a = --a`  | a-1     | a-1         | Keeps decrement                 |
 
 
+| **Expression**                        | **Value Returned** | **Final Value of Variable** | **Explanation**                                           |
+| ------------------------------------- | ------------------ | --------------------------- | --------------------------------------------------------- |
+| `let x = 5; x++`                      | `5`                | `6`                         | Returns original value, then increments (post-increment). |
+| `let x = 5; ++x`                      | `6`                | `6`                         | Increments first, then returns value (pre-increment).     |
+| `x = 5; x++ + ++x`                    | `5 + 7 = 12`       | `7`                         | `x++` → 5 (x becomes 6), `++x` → 7, sum is 12.            |
+| `x = 5; x++ + x++`                    | `5 + 6 = 11`       | `7`                         | Both are post-increments; x becomes 7 after both.         |
+| `x = 1; ++x + ++x + x++`              | `2 + 3 + 3 = 8`    | `4`                         | Pre-increment twice (x becomes 3), then post-increment.   |
+| `x = 0; if (x++ === 0 && ++x === 2)`  | `"Yes"`            | `2`                         | `x++` is 0 (becomes 1), `++x` makes it 2, condition true. |
+| `x = 5; x = x++ + x++`                | `5 + 6 = 11`       | `7`                         | Expression evaluates to 11, `x` finally becomes 7.        |
+| `arr = [10, 20, 30]; i = 0; arr[i++]` | `10`               | `i = 1`                     | Access 0th index, then `i` becomes 1.                     |
+| `arr[++i]` (when `i = 1`)             | `30`               | `i = 2`                     | Increments `i` before accessing the array.                |
+| `const x = 5; x++`                    | ❌ Error            | —                           | `++` not allowed on `const` variables.                    |
 
 
 

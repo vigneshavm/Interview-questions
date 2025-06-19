@@ -1,4 +1,5 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#Post-increment-and-Pre-increment) - [JS Object & Coercion](#JS-Object-Coercion) - [Dyanmic Keys](#Dyanmic-Keys)
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#Post-increment-and-Pre-increment) - [JS Object & Coercion](#JS-Object-Coercion) - [Dyanmic Keys](#Dyanmic-Keys) - [`!` Operator JavaScript](#!-Operator-JavaScript)
+
 
 
 **Array** • [Create Array](#create-array)  • [JavaScript Array Methods](#javascript-array-methods) • [`slice()` and `splice()`](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [`map()`, `filter()`, and `reduce()`](#map-filter-and-reduce) • [Shallow Copy and Deep Copy`](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects) 
@@ -5534,6 +5535,53 @@ map.set(b, "B");        // b is another unique key
 console.log(map.get(a)); // returns "A", since a !== b
 **Output:** `"A"`
 ```
+
+---
+
+
+
+## `!` Operator JavaScript
+
+
+* `!value` → inverts the truthiness.
+* `"5"` is a **truthy** string → `!"5"` is `false`.
+* Empty string `""`, `0`, `null`, `undefined`, `NaN` → all are **falsy**.
+
+
+**The `!` operator**
+
+* Converts the **value to a boolean**, then **negates** it.
+* It is often used to check for **truthy** or **falsy** values.
+
+
+| Expression   | Result  | Explanation                                                  |
+| ------------ | ------- | ------------------------------------------------------------ |
+| `!"5"`       | `false` | `"5"` is a **non-empty string** → truthy → `!truthy = false` |
+| `!""`        | `true`  | `""` (empty string) is falsy → `!falsy = true`               |
+| `!0`         | `true`  | `0` is falsy                                                 |
+| `!1`         | `false` | `1` is truthy                                                |
+| `!null`      | `true`  | `null` is falsy                                              |
+| `!undefined` | `true`  | `undefined` is falsy                                         |
+| `!NaN`       | `true`  | `NaN` is falsy                                               |
+| `![]`        | `false` | Empty array is truthy (yes, strange!)                        |
+| `!{}`        | `false` | Empty object is also truthy                                  |
+| `!"0"`       | `false` | `"0"` is a non-empty string → truthy → `!truthy = false`     |
+
+---
+
+**Double `!!` — Force to Boolean**
+
+You can use `!!value` to convert **any value to its Boolean equivalent**:
+
+| Expression    | Result                              |
+| ------------- | ----------------------------------- |
+| `!!"5"`       | `true`                              |
+| `!!""`        | `false`                             |
+| `!!0`         | `false`                             |
+| `!![]`        | `true`                              |
+| `!!null`      | `false`                             |
+| `!!undefined` | `false`                             |
+| `!!" "`       | `true` (space is still a character) |
 
 ---
 

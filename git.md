@@ -6,22 +6,13 @@
 * [Git Basics](#git-basics)
 * [git fetch vs git pull](#git-fetch-vs-git-pull)
 * [Undoing Commits](#undoing-commits)
-
-  * [Revert a Commit](#revert-a-commit)
-  * [Revert the Last 10 Commits](#revert-the-last-10-commits)
-  * [View Last 10 Commits](#view-last-10-commits)
-* [.gitignore](#gitignore)
-* [Git Branches](#git-branches)
-* [Merge vs Rebase](#merge-vs-rebase)
-* [Pull Requests](#pull-requests)
-* [git stash](#git-stash)
+  * [Revert a Commit](#revert-a-commit)   * [Revert the Last 10 Commits](#revert-the-last-10-commits)   * [View Last 10 Commits](#view-last-10-commits)
+* [.gitignore](#gitignore) * [Git Branches](#git-branches) * [Merge vs Rebase](#merge-vs-rebase)
+* [Pull Requests](#pull-requests) * [git stash](#git-stash) 
 * [GitFlow vs GitHub Flow](#gitflow-vs-github-flow)
-* [Resolving Merge Conflicts](#resolving-merge-conflicts)
-* [Release Branch Strategy](#release-branch-strategy)
-* [Git + Jenkins Integration](#git--jenkins-integration)
-* [Branching Strategies](#branching-strategies)
-* [Tagging Releases](#tagging-releases)
-* [Bonus Git Interview Questions](#bonus-git-interview-questions)
+* [Resolving Merge Conflicts](#resolving-merge-conflicts) * [Release Branch Strategy](#release-branch-strategy)
+* [Git + Jenkins Integration](#git--jenkins-integration) * [Branching Strategies](#branching-strategies)
+* [Tagging Releases](#tagging-releases) * [Bonus Git Interview Questions](#bonus-git-interview-questions)
 
 ---
 

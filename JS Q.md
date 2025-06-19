@@ -5471,11 +5471,6 @@ evtSource.onmessage = e => console.log(e.data);
 
 | Code Snippet                        | Output                     | Concept / Explanation                              |
 | ----------------------------------- | -------------------------- | -------------------------------------------------- |
-| `console.log(!!"");`                | `false`                    | Empty string is falsy                              |
-| `console.log(!!"hello");`           | `true`                     | Non-empty string is truthy                         |
-| `console.log(!!0);`                 | `false`                    | 0 is falsy                                         |
-| `console.log(!!1);`                 | `true`                     | 1 is truthy                                        |
-| `console.log(!!null);`              | `false`                    | null is falsy                                      |
 | `console.log(typeof null);`         | `"object"`                 | JavaScript quirk (legacy bug)                      |
 | `console.log("5" - 1);`             | `4`                        | "5" coerced to number                              |
 | `console.log(Object.is(NaN, NaN));` | `true`                     | Object.is handles NaN correctly                    |
@@ -5586,16 +5581,17 @@ console.log(map.get(a)); // returns "A", since a !== b
 **Double `!!` — Force to Boolean**
 
 You can use `!!value` to convert **any value to its Boolean equivalent**:
-
-| Expression    | Result                              |
-| ------------- | ----------------------------------- |
-| `!!"5"`       | `true`                              |
-| `!!""`        | `false`                             |
-| `!!0`         | `false`                             |
-| `!![]`        | `true`                              |
-| `!!null`      | `false`                             |
-| `!!undefined` | `false`                             |
-| `!!" "`       | `true` (space is still a character) |
+| **Expression** | **Result** | **Explanation**                      |
+| -------------- | ---------- | ------------------------------------ |
+| `!!1`          | `true`     | 1 is truthy                          |
+| `!!"5"`        | `true`     | Non-empty strings are truthy         |
+| `!!""`         | `false`    | Empty string is falsy                |
+| `!!"hello"`    | `true`     | Non-empty string is truthy           |
+| `!!0`          | `false`    | 0 is falsy                           |
+| `!![]`         | `true`     | Empty arrays are truthy              |
+| `!!null`       | `false`    | null is falsy                        |
+| `!!undefined`  | `false`    | undefined is falsy                   |
+| `!!" "`        | `true`     | Space is a non-empty string (truthy) |
 
 ---
 

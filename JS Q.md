@@ -1,4 +1,4 @@
-**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#Post-increment-and-Pre-increment) - [JS Object & Coercion](#JS-Object-Coercion) - [Dyanmic Keys](#Dyanmic-Keys) - [`!` Operator JavaScript](#!-Operator-JavaScript)
+**JavaScript Fundamentals** - [let vs var vs const](#let-and-var-and-const)  • [const with primitive and non primitive](#const-with-primitive-and-non-primitive)  • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const)    • [use strict Directive](#use-strict-directive)    • [Data Types](#data-types)    • [Symbol](#symbol)    • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)        • [== vs ===](#loose-equality-vs-strict-equality)   - [++/--](#Post-increment-and-Pre-increment) - [JS Object & Coercion](#JS-Object-Coercion) - [Dyanmic Keys](#Dyanmic-Keys) - [`!` Operator JavaScript](#logical-NOT)
 
 
 
@@ -5540,15 +5540,15 @@ console.log(map.get(a)); // returns "A", since a !== b
 
 
 
-## `!` Operator JavaScript
+## logical NOT
 
+
+**The `!` operator**
 
 * `!value` → inverts the truthiness.
 * `"5"` is a **truthy** string → `!"5"` is `false`.
 * Empty string `""`, `0`, `null`, `undefined`, `NaN` → all are **falsy**.
 
-
-**The `!` operator**
 
 * Converts the **value to a boolean**, then **negates** it.
 * It is often used to check for **truthy** or **falsy** values.

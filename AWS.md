@@ -55,38 +55,39 @@
 
 ###  AWS Lambda
 
-**Answer:**
-AWS Lambda is a **serverless compute service** that lets you run code in response to events (e.g., HTTP requests, S3 uploads, DynamoDB updates) **without managing servers**. You only pay for the execution time.
 
----
+* AWS Lambda is a **serverless compute service**.
+* Runs code in response to **events** (e.g., HTTP requests, file uploads).
+* **No server management** required — fully managed by AWS.
+* **Auto-scales** and you only pay for the **actual execution time** (per millisecond).
+
+
 
 ###  AWS Lambda Supported Languages
 
-**Answer:**
-Officially supported:
+* **Officially supported runtimes**:
 
-* Node.js
-* Python
-* Java
-* Go
-* Ruby
-* .NET Core
-* Custom runtimes via Lambda Layers (e.g., PHP, Rust)
+  * Node.js
+  * Python
+  * Java
+  * Go
+  * Ruby
+  * .NET Core
+* **Custom runtimes** via Lambda Layers (e.g., PHP, Rust, etc.)
 
----
 
 ###  Maximum Execution Time of an AWS Lambda Function
 
 
-AWS Lambda functions have a **maximum allowed execution time (timeout)** of **15 minutes (900 seconds)** per invocation.
-
+* Maximum execution time: **15 minutes (900 seconds)**.
+* Configurable from **1 second to 900 seconds**.
+* If the function exceeds the timeout, it is **terminated automatically**.
+* Set timeout based on expected execution time to avoid unnecessary cost.
+- AWS Lambda functions have a **maximum allowed execution time (timeout)** of **15 minutes (900 seconds)** per invocation.
 * If the function runs longer than this timeout, AWS Lambda **automatically terminates** the execution and returns a timeout error.
 * You can configure the timeout duration for each Lambda function anywhere between **1 second and 900 seconds** depending on your workload needs.
 * It's important to set an appropriate timeout to balance between completing your task and avoiding unnecessary charges or delays.
 
----
-
-Let me know if you want details on how to configure timeout or best practices for handling long-running tasks in Lambda!
 
 
 ---
@@ -108,38 +109,61 @@ AWS Lambda can be invoked by a variety of event sources (triggers), enabling it 
 * **Alexa Skills Kit:** Voice commands invoke Lambda functions.
 * **AWS IoT Core:** IoT device events can trigger Lambda.
 
+Lambda can be triggered by various AWS services:
+
+* **API Gateway** → HTTP API requests
+* **S3** → File/object creation, deletion, or update
+* **DynamoDB Streams** → Data change events
+* **SNS** → Pub/Sub notifications
+* **SQS** → Message queues
+* **CloudWatch Events / EventBridge** → Scheduled or custom events
+* **CloudWatch Logs** → Log processing
+* **Cognito** → Authentication-related events (e.g., pre-signup, post-login)
+* **Kinesis** → Real-time data streams
+* **Alexa Skills Kit**, **IoT Core**, and more
+
+
 ---
 
 
 ###  Typical Architecture of Using AWS Lambda for APIs
 
-
 A common serverless API architecture with AWS Lambda includes the following components:
 
-1. **Client Application:**
-   Mobile app, web frontend, or any client sending API requests.
+* **Client**: Web app or mobile app initiates the request
+* **API Gateway**:
+  * Entry point for HTTP(S) requests
+  * Handles routing, security (auth), rate limiting
+* **AWS Lambda**:
 
-2. **API Gateway:**
-   Acts as the **front door** for API requests. It receives HTTP(S) calls from clients, handles routing, authorization, throttling, and request/response transformations.
+  * Executes backend logic on demand
+  * Stateless and short-lived
+* **Database (DynamoDB/RDS)**:
 
-3. **AWS Lambda Functions:**
-   The core **backend logic** lives here. Lambda functions execute code in response to API Gateway triggers. They process requests, interact with databases, and return responses.
+  * Lambda reads/writes app data
+* **S3 (Optional)**:
 
-4. **Database (e.g., DynamoDB):**
-   Lambda functions read/write data to a database like **DynamoDB** for storing application data, request states, user info, etc.
+  * Used for storing assets like images, videos, or documents
+* **Other Services (Optional)**:
 
-5. **S3 (Optional):**
-   Used for storing and serving static assets like images, videos, or files that might be uploaded or requested by the client.
+  * **SNS/SQS** for messaging
+  * **CloudWatch** for logging/monitoring
 
-6. **Additional Services (Optional):**
-   Could include services like **SNS, SQS, CloudWatch**, or third-party APIs depending on use cases.
-
----
-
-**Flow Summary:**
-Client → API Gateway → Lambda → DynamoDB/S3 → Lambda returns response → API Gateway sends back to client
-
----
+```
+Client
+  ↓
+API Gateway
+  ↓
+Lambda (Business logic)
+  ↓
+DynamoDB / S3 (Data Layer)
+  ↑
+  Return response
+  ↑
+API Gateway
+  ↑
+Client receives response
+```
 
 
 ```
@@ -266,7 +290,7 @@ Example for SNS:
 
 ###  Handling Large File Uploads in AWS
 
-**Answer:**
+
 Do **not** upload directly via Lambda. Instead:
 
 1. Client requests a **presigned S3 URL** via Lambda
@@ -333,7 +357,7 @@ const url = s3.getSignedUrl('putObject', params);
 
 ###  Cold Start 
 
-**Answer:**
+
 A **cold start** occurs when Lambda needs to **initialize a new container**, which causes additional latency. Common with the **first invocation** or after idle time. Can be reduced using:
 
 * Provisioned concurrency
@@ -385,7 +409,7 @@ A **cold start** occurs when AWS Lambda **initializes a new instance** of your f
 
 ###  How Lambda Scales
 
-**Answer:**
+
 Lambda scales **automatically and horizontally** by running multiple instances in parallel. By default:
 
 
@@ -444,7 +468,7 @@ If your API receives 5000 requests per second:
 
 ###  provisioned concurrency
 
-**Answer:**
+
 It ensures a **pre-warmed number of Lambda instances**, eliminating cold starts. It’s suitable for latency-sensitive workloads (e.g., APIs, gaming, ML inference).
 
 
@@ -530,7 +554,7 @@ aws lambda put-provisioned-concurrency-config \
 
 ###  Monitoring Lambda Functions
 
-**Answer:**
+
 Use:
 
 * **CloudWatch Logs**: View logs using `console.log` or equivalents
@@ -542,14 +566,14 @@ Use:
 
 ###  Assigning Permissions to Lambda Functions
 
-**Answer:**
+
 You assign an **IAM execution role** to the Lambda function. This role defines what AWS services (e.g., S3, DynamoDB) the function can access.
 
 ---
 
 ###  Securely Storing Secrets in Lambda
 
-**Answer:**
+
 
 * Use **AWS Secrets Manager** or **SSM Parameter Store**
 * Use **IAM policies** to restrict access to secrets
@@ -560,7 +584,7 @@ You assign an **IAM execution role** to the Lambda function. This role defines w
 
 ###  Lambda Layers
 
-**Answer:**
+
 Lambda Layers allow you to **package and share code libraries or dependencies** (e.g., Node.js modules, Python packages) across multiple Lambda functions.
 
 ---
@@ -576,7 +600,7 @@ Lambda Layers allow you to **package and share code libraries or dependencies** 
 
 ###  Building a Serverless Video Upload and Processing System Using Lambda
 
-**Answer:**
+
 
 1. **Client uploads** to S3 via **presigned URL**
 2. **S3 triggers Lambda** on upload (`sObjectCreated`)
@@ -599,14 +623,14 @@ Would you like me to generate **practice coding questions**, a **mock interview*
 
 ###   AWS API Gateway
 
-**Answer:**
+
 AWS API Gateway is a fully managed service that makes it easy to **create, publish, maintain, monitor, and secure REST, HTTP, and WebSocket APIs** at any scale. It acts as a **gateway between clients and backend services** (e.g., AWS Lambda, EC2, etc.).
 
 ---
 
 ###  Types of APIs in API Gateway
 
-**Answer:**
+
 
 * **REST APIs** – Full-featured APIs with caching, throttling, etc.
 * **HTTP APIs** – Lightweight, low-latency APIs for Lambda, ALB, etc.
@@ -628,7 +652,7 @@ AWS API Gateway is a fully managed service that makes it easy to **create, publi
 
 ###  integration types supported by API Gateway
 
-**Answer:**
+
 
 1. **AWS Lambda** – Most common for serverless
 2. **HTTP/HTTPS Endpoints** – Proxy to external APIs
@@ -638,7 +662,7 @@ AWS API Gateway is a fully managed service that makes it easy to **create, publi
 ---
 ###  How API Gateway Integrates with AWS Lambda
 
-**Answer:**
+
 
 * API Gateway acts as a **trigger** for the Lambda function.
 * You define **methods** (GET, POST, etc.) and **routes**, and map them to the Lambda.
@@ -647,14 +671,14 @@ AWS API Gateway is a fully managed service that makes it easy to **create, publi
 ---
 ###  Stages in API Gateway
 
-**Answer:**
+
 A **stage** is a named reference to a deployment of your API (e.g., `dev`, `staging`, `prod`). It allows versioning and separates environments.
 
 ---
 
 ###  usage plans in API Gateway
 
-**Answer:**
+
 Usage plans allow you to:
 
 * **Throttle** API requests (rate + burst)
@@ -665,7 +689,7 @@ Usage plans allow you to:
 
 ###  throttling in API Gateway
 
-**Answer:**
+
 Throttling controls how many requests can be handled:
 
 * **Rate**: requests per second
@@ -678,7 +702,7 @@ Prevents abuse and ensures backend stability.
 
 ###  Securing Your API in API Gateway
 
-**Answer:**
+
 
 * **API Keys + Usage Plans**
 * **IAM-based access** (SigV4 signing)
@@ -690,21 +714,21 @@ Prevents abuse and ensures backend stability.
 
 ###  Lambda Authorizer
 
-**Answer:**
+
 A Lambda Authorizer (previously known as a custom authorizer) is a Lambda function that controls access to your API by **validating headers, tokens, or other context** before the main handler runs.
 
 ---
 
 ###  Can API Gateway serve static content
 
-**Answer:**
+
 No, API Gateway doesn’t serve static files. You should serve static assets like HTML, CSS, JS, or videos from **Amazon S3 with CloudFront**. API Gateway is best for dynamic APIs.
 
 ---
 
 ###  payload limit for API Gateway
 
-**Answer:**
+
 
 * **Request payload size limit:** 10 MB for REST/HTTP APIs
 * For larger file uploads, use **presigned S3 URLs** instead of going through API Gateway.
@@ -714,7 +738,7 @@ No, API Gateway doesn’t serve static files. You should serve static assets lik
 
 ###  Building a Secure Video Upload System
 
-**Answer:**
+
 
 1. API Gateway + Lambda generates a **presigned S3 URL**.
 2. Client uses that URL to upload the video **directly to S3**.
@@ -725,7 +749,7 @@ No, API Gateway doesn’t serve static files. You should serve static assets lik
 
 ###  Handling CORS in API Gateway
 
-**Answer:**
+
 
 * Enable **CORS headers** (`Access-Control-Allow-Origin`, etc.) in method response.
 * For Lambda integration, ensure the Lambda returns these headers as part of its response.
@@ -734,7 +758,7 @@ No, API Gateway doesn’t serve static files. You should serve static assets lik
 ---
 
 ###  How API Gateway Handles Caching
-**Answer:**
+
 
 * You can enable **response caching** at the method level (for REST APIs).
 * Cached data is stored in **edge locations**, reducing backend load.
@@ -752,14 +776,14 @@ No, API Gateway doesn’t serve static files. You should serve static assets lik
 
 ### Amazon DynamoDB
 
-**Answer:**
+
 Amazon DynamoDB is a fully managed NoSQL database service provided by AWS that offers fast and predictable performance with seamless scalability. It stores data as key-value pairs and supports document data structures, making it suitable for applications that require low latency and flexible schema design.
 
 ---
 
 ### DynamoDB features
 
-**Answer:**
+
 
 * Fully managed and serverless
 * Single-digit millisecond latency
@@ -774,7 +798,7 @@ Amazon DynamoDB is a fully managed NoSQL database service provided by AWS that o
 
 ### primary key in DynamoDB
 
-**Answer:**
+
 The primary key uniquely identifies each item in a DynamoDB table. There are two types:
 
 
@@ -786,7 +810,7 @@ The primary key uniquely identifies each item in a DynamoDB table. There are two
 
 ### difference between a partition key and a sort key
 
-**Answer:**
+
 
 * The **partition key** determines the partition (physical storage) where data is stored and must be unique if no sort key is present.
 * The **sort key** allows multiple items with the same partition key but different sort keys, enabling sorted data retrieval within a partition.
@@ -795,7 +819,7 @@ The primary key uniquely identifies each item in a DynamoDB table. There are two
 
 ### Global Secondary Index (GSI) and Local Secondary Index (LSI)
 
-**Answer:**
+
 
 * **Global Secondary Index (GSI):** An index with a partition key and optional sort key different from the base table’s primary key. It can span all partitions and supports eventually consistent reads.
 * **Local Secondary Index (LSI):** An index that uses the same partition key as the base table but a different sort key. It is limited to 5 LSIs per table and supports strongly consistent reads.
@@ -804,21 +828,21 @@ The primary key uniquely identifies each item in a DynamoDB table. There are two
 
 ### DynamoDB handle scaling
 
-**Answer:**
+
 DynamoDB supports **automatic scaling** by adjusting read and write throughput capacity based on demand. It also supports **on-demand capacity mode**, which allows the table to scale instantly without pre-provisioning.
 
 ---
 
 ### DynamoDB Streams
 
-**Answer:**
+
 DynamoDB Streams capture a time-ordered sequence of item-level changes in a DynamoDB table. It can be used to trigger AWS Lambda functions or other processing tasks for event-driven architectures.
 
 ---
 
 ### read/write capacity modes in DynamoDB
 
-**Answer:**
+
 
 * **Provisioned Capacity:** You specify the number of reads and writes per second (RCUs and WCUs) you need.
 * **On-Demand Capacity:** DynamoDB automatically scales to handle any amount of traffic without capacity planning.
@@ -827,14 +851,14 @@ DynamoDB Streams capture a time-ordered sequence of item-level changes in a Dyna
 
 ### handle transactions in DynamoDB
 
-**Answer:**
+
 DynamoDB supports ACID transactions using **TransactWriteItems** and **TransactGetItems** APIs that allow multiple Put, Update, Delete, and ConditionCheck operations in a single all-or-nothing operation.
 
 ---
 
 ### limits of DynamoDB
 
-**Answer:**
+
 
 * Maximum item size: 400 KB
 * Maximum provisioned throughput per table varies by region but can be scaled
@@ -845,21 +869,21 @@ DynamoDB supports ACID transactions using **TransactWriteItems** and **TransactG
 
 ### DynamoDB ensure data durability and availability
 
-**Answer:**
+
 DynamoDB replicates data across multiple Availability Zones in an AWS region to provide high availability and durability. For global applications, **Global Tables** replicate data across multiple regions.
 
 ---
 
 ### perform a query in DynamoDB
 
-**Answer:**
+
 You use the **Query** API to retrieve items based on the partition key and optionally filter by the sort key. Queries are efficient because they only search within a single partition.
 
 ---
 
 ### difference between Query and Scan in DynamoDB
 
-**Answer:**
+
 
 * **Query:** Retrieves items based on primary key values, efficient and fast.
 * **Scan:** Reads every item in the table, which can be expensive and slow for large tables.
@@ -868,7 +892,7 @@ You use the **Query** API to retrieve items based on the partition key and optio
 
 ### secure DynamoDB data
 
-**Answer:**
+
 
 * Use IAM policies to control access
 * Enable encryption at rest (AWS-managed or customer-managed keys via KMS)
@@ -879,7 +903,7 @@ You use the **Query** API to retrieve items based on the partition key and optio
 
 ### best practice for designing DynamoDB tables
 
-**Answer:**
+
 
 * Use composite keys for efficient data access
 * Design your table and indexes based on query patterns
@@ -937,14 +961,14 @@ You use the **Query** API to retrieve items based on the partition key and optio
 
 ### S3 Bucket Policy
 
-**Answer:**
+
 A bucket policy is a JSON-based access policy attached to an S3 bucket that defines permissions for principals (users, accounts, or services) to perform actions on that bucket and its objects.
 
 ---
 
 ###  Bucket Policy different from IAM Policy
 
-**Answer:**
+
 
 * **Bucket Policy:** Attached directly to a bucket, controls access to that bucket’s objects.
 * **IAM Policy:** Attached to users, groups, or roles, controls what AWS resources those identities can access.
@@ -953,55 +977,55 @@ A bucket policy is a JSON-based access policy attached to an S3 bucket that defi
 
 ### common actions controlled by S3 policies
 
-**Answer:**
+
 Examples include: `s3:GetObject`, `s3:PutObject`, `s3:DeleteObject`, `s3:ListBucket`, `s3:GetBucketPolicy`.
 
 ---
 
 ### restrict access to an S3 bucket to a specific IP range
 
-**Answer:**
+
 Use a condition in the bucket policy with the `IpAddress` operator specifying the allowed IP range under `"Condition"`.
 
 ---
 
 ### S3 bucket publicly accessible
 
-**Answer:**
+
 Add a bucket policy allowing `"Principal": "*"` and `"Action": "s3:GetObject"` on the bucket’s resource. Also, ensure **Block Public Access** settings are disabled.
 
 ---
 
 ### purpose of **Block Public Access** settings
 
-**Answer:**
+
 To prevent accidental public exposure of S3 buckets or objects by blocking public policies and ACLs.
 
 ---
 
 ### S3 Access Control Lists (ACLs)
 
-**Answer:**
+
 ACLs are legacy access control mechanisms allowing you to grant read/write permissions on buckets or objects to AWS accounts and predefined groups.
 
 ---
 ### Bucket Policies vs ACLs
 
-**Answer:**
+
 Use bucket policies for fine-grained, scalable permissions. ACLs are generally discouraged except for legacy support or cross-account access.
 
 ---
 
 ### S3 Cross-Origin Resource Sharing (CORS)
 
-**Answer:**
+
 CORS enables browsers to make cross-origin requests to S3 buckets. You configure allowed origins, methods, and headers in a CORS configuration on the bucket.
 
 ---
 
 ### encrypt objects in S3
 
-**Answer:**
+
 Options include:
 
 * Server-side encryption with Amazon S3-managed keys (SSE-S3)
@@ -1012,20 +1036,20 @@ Options include:
 
 ### Pre-Signed URL in S3
 
-**Answer:**
+
 A URL generated with a signature that allows temporary access to private objects without requiring AWS credentials.
 
 ---
 ### S3 lifecycle policies work
 
-**Answer:**
+
 Lifecycle policies automate moving objects between storage classes or deleting them after a set period.
 
 ---
 
 ### common S3 storage classes
 
-**Answer:**
+
 
 * STANDARD
 * STANDARD\_IA (Infrequent Access)
@@ -1038,7 +1062,7 @@ Lifecycle policies automate moving objects between storage classes or deleting t
 
 ### secure S3 buckets
 
-**Answer:**
+
 
 * Use IAM policies and bucket policies with least privilege
 * Enable Block Public Access
@@ -1050,41 +1074,41 @@ Lifecycle policies automate moving objects between storage classes or deleting t
 
 ### S3 handle versioning
 
-**Answer:**
+
 Versioning keeps multiple variants of an object in the same bucket, enabling recovery from unintended overwrites or deletions.
 
 ---
 ### handle large file uploads in S3
 
-**Answer:**
+
 Use Multipart Upload to upload parts in parallel, improving efficiency and reliability.
 
 ---
 
 ### S3 Transfer Acceleration
 
-**Answer:**
+
 A feature to speed up content transfers to S3 using optimized network paths via Amazon CloudFront edge locations.
 
 ---
 
 ### S3 event notifications work
 
-**Answer:**
+
 S3 can send event notifications to AWS Lambda, SNS, or SQS when specified events happen (e.g., object created, deleted).
 
 ---
 
 ### prevent unauthorized deletion of objects
 
-**Answer:**
+
 Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to restrict `s3:DeleteObject`.
 
 ---
 
 ### maximum size of an S3 object
 
-**Answer:**
+
 5 TB per object. For objects larger than 5 GB, Multipart Upload is recommended.
 
 ---

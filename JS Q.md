@@ -5443,6 +5443,14 @@ evtSource.onmessage = e => console.log(e.data);
 | `"5" + + + + "2"` | `"52"` | all unary `+` → number `2`            |
 
 
+| Expression    | Result | Type   | Explanation                          |
+| ------------- | ------ | ------ | ------------------------------------ |
+| `"5" - 1`     | `4`    | number | `"5"` → `5`, then `5 - 1`            |
+| `"5" * 2`     | `10`   | number | `"5"` → `5`, then `5 * 2`            |
+| `"5" / 2`     | `2.5`  | number | `"5"` → `5`, then `5 / 2`            |
+| `"5" % 2`     | `1`    | number | `"5"` → `5`, then `5 % 2`            |
+| `"5" - "2"`   | `3`    | number | Both strings converted to numbers    |
+| `"5" * "two"` | `NaN`  | number | `"two"` can't be converted to number |
 
 
 

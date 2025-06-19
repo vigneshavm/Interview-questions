@@ -1,7 +1,7 @@
 
 
 Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) -- [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)
-- [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort)
+- [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort) - [Prevent multiple duplicates API calls](#Prevent-multiple-API-calls-Ignore-or-block-duplicates)
 
 
 React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  - [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) 
@@ -1862,4 +1862,99 @@ app.listen(3000, () => {
 });
 ```
 
+
+## **Prevent multiple API calls Ignore or block duplicates**.
+
+
+**Node.js**
+
+**1.Debounce / Ignore If In Progress (Per User)**
+
+Use an **in-memory map** to track active payment requests per user or session.
+
+```ts
+// paymentController.ts
+const paymentInProgress = new Map<string, boolean>();
+
+app.post('/pay', async (req, res) => {
+  const userId = req.body.userId;
+
+  if (paymentInProgress.get(userId)) {
+    return res.status(429).json({ message: 'Payment already in progress' });
+  }
+
+  paymentInProgress.set(userId, true);
+
+  try {
+    // simulate payment processing
+    await processPayment(req.body);
+
+    res.json({ message: 'Payment successful' });
+  } catch (err) {
+    res.status(500).json({ message: 'Payment failed' });
+  } finally {
+    paymentInProgress.set(userId, false);
+  }
+});
+```
+
+> ✅ Works per user. Replace `userId` with session or IP if needed.
+
+---
+
+**2. Use Unique Transaction ID (Idempotency Key)**
+
+Let frontend send a `transactionId` or `idempotencyKey` with the request and store the result on the backend.
+
+```ts
+const processedTransactions = new Set<string>();
+
+app.post('/pay', async (req, res) => {
+  const key = req.body.idempotencyKey;
+
+  if (processedTransactions.has(key)) {
+    return res.status(409).json({ message: 'Duplicate payment attempt' });
+  }
+
+  processedTransactions.add(key);
+
+  try {
+    await processPayment(req.body);
+    res.json({ message: 'Payment processed' });
+  } catch (err) {
+    res.status(500).json({ message: 'Payment error' });
+    processedTransactions.delete(key); // allow retry
+  }
+});
+```
+
+> ✅ Can also be persisted in DB for robustness and horizontal scaling.
+
+---
+
+### 🔸 3. **Lock Using Redis (For Multiple Servers)**
+
+If running multiple Node.js instances, use a **Redis lock**.
+
+```ts
+// Using 'redlock' package
+const Redlock = require('redlock');
+const redis = require('ioredis');
+const redlock = new Redlock([new redis()]);
+
+app.post('/pay', async (req, res) => {
+  const userKey = `lock:user:${req.body.userId}`;
+
+  try {
+    const lock = await redlock.acquire([userKey], 5000);
+
+    await processPayment(req.body);
+
+    await lock.release();
+    res.json({ message: 'Payment successful' });
+  } catch (e) {
+    res.status(429).json({ message: 'Payment is already processing' });
+  }
+});
+```
 

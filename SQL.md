@@ -3,7 +3,9 @@
 - [Primary Key vs Foreign Key vs Composite Key](#Primary-Key-vs-Foreign-Key-vs-Composite-Key)
 - [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)  - [`IN` Operator](#in-operator) - [`TRUNCATE` vs `DELETE` vs `DROP`](#TRUNCATE-vs-DELETE-vs-DROP)
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Normalization](#Normalization) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
-- [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions) 
+- [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
+
+- [Zero Downtime Migration](#Zero-Downtime-Migration)
 
 **Program**
 
@@ -872,6 +874,116 @@ TRUNCATE TABLE employees;
 ```sql
 DROP TABLE employees;
 ```
+
+
+
+
+
+## Zero Downtime Migration
+
+
+### Zero-downtime migration
+- A deployment or schema change that **does not interrupt service** or break existing functionality — critical for high-availability systems.
+
+---
+
+### Zero downtime important
+- Prevents user disruption
+- Ensures 24/7 uptime
+- Protects transactional consistency during schema changes
+
+---
+
+### Challenges in zero-downtime DB migrations
+- Schema incompatibility between old and new code
+- Data loss or inconsistency
+- Long-running locks
+- Application crashes due to removed/renamed columns
+
+---
+
+### Practices for zero-downtime schema changes
+
+| Change Type        | Strategy                                 |
+|--------------------|-------------------------------------------|
+| Add Column         | ✅ Safe (default nullable)                |
+| Remove Column      | ❌ Avoid immediately — use soft-deprecate |
+| Rename Column      | ❌ Breaks old code — add alias + migrate  |
+| Add NOT NULL Field | Fill with default values in advance       |
+
+---
+
+### Expand and Contract pattern
+- A **3-phase** strategy:
+1. **Expand**: Add new columns, tables, or structures
+2. **Migrate**: Populate data and dual-write
+3. **Contract**: Safely remove old structures once unused
+
+---
+
+### **Handle column renames with zero downtime**
+- Add the **new column** (with default or NULL)
+- Update application to **write to both columns**
+- Gradually migrate data
+- Switch reads to new column
+- Drop old column in a later deploy
+
+---
+
+### **Dual writing**
+- Writing to both **old and new schema versions** during transition.
+- Ensures backward compatibility
+- Used in **blue-green deployments** or gradual cutovers
+
+---
+
+### **Application compatibility during a migration**
+- Use **feature flags**
+- Update schema in a **backward-compatible way**
+- Deploy code changes in **multiple phases**
+
+---
+
+### **zero downtime migrations**
+- Use **staging environments**
+- Run migrations inside a transaction (if supported)
+- Test rollback scripts
+- Monitor query performance and logs
+
+### **Platforms help with zero-downtime DB migrations**
+- **Flyway**, **Liquibase**, **Prisma Migrate**, **Alembic** (Python)
+- CI/CD platforms: **GitHub Actions**, **GitLab CI**, **ArgoCD**
+- Blue-Green or Canary Deployments with **Kubernetes**
+
+
+### **TRUNCATE or DROP in zero-downtime migrations**
+- ⚠ Generally **not safe**, as they lock or destroy objects. Use:
+- `DELETE` in small batches
+- Mark columns as deprecated first, drop later
+
+
+### **Handle long-running migrations**
+- **Break into batches**
+- **Copy to shadow table** and swap with minimal downtime
+- Use **online schema change tools** (e.g., pt-online-schema-change for MySQL)
+
+
+### **Rollback strategy for schema changes**
+- Back up the database before changes
+- Write **down** migrations (revert scripts)
+- Keep deployments **idempotent**
+- Monitor for issues before proceeding to next phase
+
+
+
+### Common Mistake Scenarios
+
+| Scenario               | Problem                         | Solution                          |
+| ---------------------- | ------------------------------- | --------------------------------- |
+| Dropping a column      | Causes app crash                | Use soft deprecate + remove later |
+| Renaming column        | Breaks API integration          | Add alias or migration layer      |
+| Adding NOT NULL column | Fails if existing rows are null | Fill default values first         |
+
 
 
 

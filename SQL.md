@@ -6,6 +6,7 @@
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
 
 - [Zero Downtime Migration](#Zero-Downtime-Migration)
+- [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration)
 
 **Program**
 
@@ -973,6 +974,93 @@ DROP TABLE employees;
 | Renaming column        | Breaks API integration          | Add alias or migration layer      |
 | Adding NOT NULL column | Fails if existing rows are null | Fill default values first         |
 
+
+
+
+
+## Rollback Strategy in DB Migration
+
+- A **rollback strategy** ensures that if something goes wrong during a migration (schema or data), 
+- The system can **safely revert** to the previous stable state.
+
+
+**Why is Rollback Important**
+- Prevents data corruption
+- Minimizes downtime
+- Ensures application stability
+- Supports CI/CD and production safety
+
+
+**Rollback Strategy Components**
+
+**1. Backups Before Migration**
+- Always back up the database (snapshot, export, or dump).
+```sh
+pg_dump db_name > backup.sql
+```
+
+**2. Transactional Migrations**
+
+* Wrap schema/data changes inside a **transaction**, so failure auto-rolls back.
+
+```sql
+BEGIN;
+
+-- migration steps
+
+COMMIT; -- or ROLLBACK on error
+```
+
+✅ Supported in: PostgreSQL, Oracle
+❌ Not fully supported in: MySQL (for some DDL operations)
+
+---
+
+**3. Reversible Migrations**
+
+* Write both **`up`** (apply) and **`down`** (revert) migration scripts.
+
+**Example (Flyway or Liquibase style):**
+
+```sql
+-- V1__add_email_column.sql (UP)
+ALTER TABLE users ADD COLUMN email VARCHAR(100);
+
+-- V1__add_email_column_down.sql (DOWN)
+ALTER TABLE users DROP COLUMN email;
+```
+
+---
+
+**4. Version Control for DB Schema**
+
+* Use migration tools to version schema (e.g., Flyway, Liquibase, Prisma, Alembic).
+
+
+**5. Feature Flags**
+
+* Roll out DB changes in conjunction with **code toggles** to isolate new behavior.
+
+
+**6. Staged/Phased Rollouts**
+
+* Use **dual writes** and **shadow tables**.
+* Phase changes to ensure no hard dependency breaks.
+
+
+## Rollback Considerations
+
+| Scenario                | Rollback Risk/Approach             |
+| ----------------------- | ---------------------------------- |
+| Dropping a column/table | ✅ Back up or delay — hard to undo  |
+| Data transformation     | ✅ Snapshot before change           |
+| Renaming columns        | ✅ Use aliasing + phased read/write |
+| Large data change       | ✅ Run in chunks + audit logs       |
+
+* ✅ Test migrations & rollbacks in **staging**
+* ✅ Monitor logs/queries during migration
+* ✅ Document each migration and its fallback plan
+* ✅ Avoid irreversible changes in a single deploy
 
 
 

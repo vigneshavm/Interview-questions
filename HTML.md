@@ -1,11 +1,11 @@
 
-* [HTML5 vs HTML4](#html5-vs-html4)  * [`<section>` vs `<div>`](#section-vs-div)
-* [`<div>` vs `<span>`](#div-vs-span)  * [HTML5 Form Enhancements](#html5-form-enhancements)
-* [Semantic Tags in HTML5](#semantic-tags-in-html5) * [Creating Custom Tags in HTML5](#creating-custom-tags-in-html5)
-* [Purpose of `alt` in `<img>`](#purpose-of-alt-in-img) * [`id` vs `class`](#id-vs-class)
-* [`async` vs `defer`](#async-vs-defer) * [CSS3 Features](#css3-features)
-* [CSS Padding Shorthand](#css-padding-shorthand) * [CSS Positioning](#css-positioning)
-* [`em`, `rem`, `%`, and `px`](#em-rem--and-px) * [CSS Specificity](#css-specificity)
+* [HTML5 vs HTML4](#html5-vs-html4)            - [`<section>` vs `<div>`](#section-vs-div)
+* [`<div>` vs `<span>`](#div-vs-span)          - [HTML5 Form Enhancements](#html5-form-enhancements)
+* [Semantic Tags in HTML5](#semantic-tags-in-html5)       - [Creating Custom Tags in HTML5](#creating-custom-tags-in-html5)
+* [Purpose of `alt` in `<img>`](#purpose-of-alt-in-img)       - [`id` vs `class`](#id-vs-class)
+* [`async` vs `defer`](#async-vs-defer)         - [CSS3 Features](#css3-features)
+* [CSS Padding Shorthand](#css-padding-shorthand)       - [CSS Positioning](#css-positioning)
+* [`em`, `rem`, `%`, and `px`](#em-rem--and-px)     - [CSS Specificity](#css-specificity)
 * [CSS Box Model](#css-box-model)
 
 ## LESS & SASS 

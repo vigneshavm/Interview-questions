@@ -35,3 +35,86 @@ WHERE salary > 30000
 GROUP BY department
 HAVING AVG(salary) > 45000;
 ```
+
+
+
+
+
+## `INNER JOIN` vs `LEFT JOIN` vs `RIGHT JOIN`
+
+
+- **`INNER JOIN`**: Returns only rows with **matching keys** in both tables.
+- **`LEFT JOIN`**: Returns **all rows from the left** table + matched rows from the right.
+- **`RIGHT JOIN`**: Returns **all rows from the right** table + matched rows from the left.
+* Use `INNER JOIN` when you need **only matches**.
+* Use `LEFT JOIN` when you need **all left rows**, even without matches.
+* Use `RIGHT JOIN` when you need **all right rows**, even without matches.
+
+---
+
+### 🧱 Sample Tables
+
+#### 🔹 `employees`
+| id | name    | dept_id |
+|----|---------|---------|
+| 1  | Alice   | 10      |
+| 2  | Bob     | 20      |
+| 3  | Charlie | NULL    |
+
+#### 🔹 `departments`
+| id  | dept_name   |
+|-----|-------------|
+| 10  | IT          |
+| 30  | HR          |
+
+---
+
+### ✅ 1. `INNER JOIN`
+```sql
+SELECT e.name, d.dept_name
+FROM employees e
+INNER JOIN departments d ON e.dept_id = d.id;
+````
+
+**Output:**
+
+| name  | dept\_name |
+| ----- | ---------- |
+| Alice | IT         |
+
+---
+
+### ✅ 2. `LEFT JOIN`
+
+```sql
+SELECT e.name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.id;
+```
+
+**Output:**
+
+| name    | dept\_name |
+| ------- | ---------- |
+| Alice   | IT         |
+| Bob     | NULL       |
+| Charlie | NULL       |
+
+---
+
+### ✅ 3. `RIGHT JOIN`
+
+```sql
+SELECT e.name, d.dept_name
+FROM employees e
+RIGHT JOIN departments d ON e.dept_id = d.id;
+```
+
+**Output:**
+
+| name  | dept\_name |
+| ----- | ---------- |
+| Alice | IT         |
+| NULL  | HR         |
+
+---

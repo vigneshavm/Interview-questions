@@ -9,7 +9,7 @@
 - [Common Table Expression](#CTE)
 - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection)
 - [Window Functions](#Window-Functions)
-- [`TRUNCATE` vs `DELETE` vs `DROP`](#`TRUNCATE`-vs-`DELETE`-vs-`DROP`)
+- [`TRUNCATE` vs `DELETE` vs `DROP`](#TRUNCATE-vs-DELETE-vs-DROP)
 
 **Program**
 
@@ -823,7 +823,7 @@ SELECT * FROM emp_cte;
 
 
 
-## `TRUNCATE` vs `DELETE` vs `DROP`
+## TRUNCATE vs DELETE vs DROP
 
 
 * Use `DELETE` when you need to **conditionally remove rows**.

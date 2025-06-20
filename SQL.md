@@ -3,6 +3,8 @@
 - [`INNER JOIN` vs `LEFT JOIN` vs `RIGHT JOIN`](#INNER-JOIN-vs-LEFT-JOIN-vs-RIGHT-JOIN)
 - [Primary Key vs Foreign Key vs Composite Key](#Primary-Key-vs-Foreign-Key-vs-Composite-Key)
 - [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)
+- [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery)
+- [Normalization](#Normalization)
 
 
 ## WHERE Vs HAVING Vs GROUP BY
@@ -255,3 +257,58 @@ SELECT name FROM employees_2024;
 
 ---
 
+
+ ## Normalization
+
+- A process of organizing data to reduce redundancy and improve data integrity 
+- Involves dividing tables into smaller ones and defining relationships.
+
+
+
+## Subquery vs Correlated Subquery
+
+| Feature     | Subquery                    | Correlated Subquery                        |
+| ----------- | --------------------------- | ------------------------------------------ |
+| Execution   | Runs once                   | Runs per row of outer query                |
+| Dependency  | Independent                 | Depends on outer query                     |
+| Performance | Generally faster            | Can be slower (due to multiple executions) |
+| Use Case    | Comparing with fixed result | Row-by-row comparison with context         |
+
+
+### ✅ Subquery
+- A subquery (or nested query) is executed **once**, independently of the outer query, and its result is used by the main query.
+
+```sql
+-- Find employees with salary greater than the average salary
+SELECT name, salary
+FROM employees
+WHERE salary > (
+    SELECT AVG(salary) FROM employees
+);
+```
+
+🔹 **Explanation**:
+
+* The subquery `SELECT AVG(salary)` runs **once**.
+* Its result is compared with each employee's salary.
+
+
+### ✅ Correlated Subquery
+
+- A correlated subquery **depends on values from the outer query**. It runs **once per row** of the outer query.
+
+```sql
+-- Find employees who earn more than the average salary of their department
+SELECT e1.name, e1.salary, e1.department_id
+FROM employees e1
+WHERE e1.salary > (
+    SELECT AVG(e2.salary)
+    FROM employees e2
+    WHERE e2.department_id = e1.department_id
+);
+```
+
+🔹 **Explanation**:
+
+* The subquery uses `e1.department_id` from the outer query.
+* It runs **for each row** in the outer query.

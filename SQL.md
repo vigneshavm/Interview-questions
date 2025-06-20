@@ -5,8 +5,7 @@
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Normalization](#Normalization) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
 
-- [Zero Downtime Migration](#Zero-Downtime-Migration)
-- [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration)
+- [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration)
 
 **Program**
 

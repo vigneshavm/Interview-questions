@@ -885,22 +885,16 @@ DROP TABLE employees;
 ### Zero-downtime migration
 - A deployment or schema change that **does not interrupt service** or break existing functionality — critical for high-availability systems.
 
----
-
 ### Zero downtime important
 - Prevents user disruption
 - Ensures 24/7 uptime
 - Protects transactional consistency during schema changes
-
----
 
 ### Challenges in zero-downtime DB migrations
 - Schema incompatibility between old and new code
 - Data loss or inconsistency
 - Long-running locks
 - Application crashes due to removed/renamed columns
-
----
 
 ### Practices for zero-downtime schema changes
 
@@ -911,7 +905,6 @@ DROP TABLE employees;
 | Rename Column      | ❌ Breaks old code — add alias + migrate  |
 | Add NOT NULL Field | Fill with default values in advance       |
 
----
 
 ### Expand and Contract pattern
 - A **3-phase** strategy:
@@ -919,7 +912,6 @@ DROP TABLE employees;
 2. **Migrate**: Populate data and dual-write
 3. **Contract**: Safely remove old structures once unused
 
----
 
 ### **Handle column renames with zero downtime**
 - Add the **new column** (with default or NULL)
@@ -928,21 +920,18 @@ DROP TABLE employees;
 - Switch reads to new column
 - Drop old column in a later deploy
 
----
 
 ### **Dual writing**
 - Writing to both **old and new schema versions** during transition.
 - Ensures backward compatibility
 - Used in **blue-green deployments** or gradual cutovers
 
----
 
 ### **Application compatibility during a migration**
 - Use **feature flags**
 - Update schema in a **backward-compatible way**
 - Deploy code changes in **multiple phases**
 
----
 
 ### **zero downtime migrations**
 - Use **staging environments**

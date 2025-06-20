@@ -4,6 +4,7 @@
 ### 🔗 Table of Contents
 
 * [Git Basics](#git-basics)
+* [Git vs GitHub ](#Git-vs-GitHub)
 * [git fetch vs git pull](#git-fetch-vs-git-pull)
 * [Undoing Commits](#undoing-commits)
   * [Revert a Commit](#revert-a-commit)   * [Revert the Last 10 Commits](#revert-the-last-10-commits)   * [View Last 10 Commits](#view-last-10-commits)
@@ -15,6 +16,90 @@
 * [Tagging Releases](#tagging-releases) * [Bonus Git Interview Questions](#bonus-git-interview-questions)
 
 ---
+
+## Git vs GitHub 
+
+**Git** - Tracks code changes, supports branching, merging 
+**GitHub** - Hosts remote Git repositories, enables collaboration
+
+| Task                | Git Required | GitHub Required |
+| ------------------- | ------------ | --------------- |
+| Local versioning    | ✅ Yes        | ❌ No            |
+| Collaboration       | ✅ Yes        | ✅ Yes           |
+| Branching & Merging | ✅ Yes        | ❌ No            |
+| Online Backup       | ❌ No         | ✅ Yes           |
+
+
+### 🔧 **Git** – Version Control Tool
+
+| Feature          | Description                                      |
+| ---------------- | ------------------------------------------------ |
+| **Type**         | Command-line version control tool                |
+| **Purpose**      | Tracks code changes, supports branching, merging |
+| **Runs On**      | Local machine (fully offline capable)            |
+| **Key Commands** | `git init`, `git add`, `git commit`, `git merge` |
+| **Created By**   | Linus Torvalds (2005)                            |
+| **Dependency**   | Works independently, GitHub is optional          |
+
+🧪 **Example:**
+You can `git commit` changes locally without any internet access.
+
+---
+
+### 🌐 **GitHub** – Git Repository Hosting Platform
+
+| Feature          | Description                                          |
+| ---------------- | ---------------------------------------------------- |
+| **Type**         | Cloud-based platform                                 |
+| **Purpose**      | Hosts remote Git repositories, enables collaboration |
+| **Runs On**      | Internet (cloud)                                     |
+| **Key Features** | Pull Requests, Issues, CI/CD, Code Review            |
+| **Created By**   | GitHub, Inc. (acquired by Microsoft)                 |
+| **Dependency**   | Requires Git to function                             |
+
+🧪 **Example:**
+Push your code using `git push origin main` and collaborate with others via pull requests.
+
+---
+
+### 🧠 Simple Analogy
+
+* **Git** is the **engine** (version control).
+* **GitHub** is the **garage** (online collaboration & storage).
+
+---
+
+### ✅ Common Interview Question
+
+**Q:** *Can you use Git without GitHub?*
+**A:** Yes. Git is a fully functional local version control system. GitHub is only needed for remote hosting or collaboration. You can work, commit, and manage history offline using just Git.
+
+---
+
+### 🧪 Git Without GitHub – Example Workflow
+
+```bash
+git init
+echo "Hello" > app.py
+git add app.py
+git commit -m "Initial commit"
+git checkout -b feature-x
+git checkout main
+git merge feature-x
+```
+
+👉 All local. No GitHub involved.
+
+---
+
+### 🔄 Alternatives to GitHub
+* **GitLab** – Open-source and self-hosted options
+* **Bitbucket** – By Atlassian, integrates with Jira
+* **Azure Repos** – For Microsoft ecosystem
+
+
+
+
 
 ### Git Basics
 

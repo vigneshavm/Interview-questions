@@ -19,8 +19,16 @@
 
 ## Git vs GitHub 
 
-**Git** - Tracks code changes, supports branching, merging 
-**GitHub** - Hosts remote Git repositories, enables collaboration
+- **Git** - Tracks code changes, supports branching, merging 
+- **GitHub** - Hosts remote Git repositories, enables collaboration
+
+* **Git** is the **engine** (version control).
+* **GitHub** is the **garage** (online collaboration & storage).
+
+* Yes. Git is a fully functional local version control system.
+* **We can use Git without GitHub**
+* GitHub is only needed for remote hosting or collaboration. You can work, commit, and manage history offline using just Git.
+
 
 | Task                | Git Required | GitHub Required |
 | ------------------- | ------------ | --------------- |
@@ -64,15 +72,8 @@ Push your code using `git push origin main` and collaborate with others via pull
 
 ### 🧠 Simple Analogy
 
-* **Git** is the **engine** (version control).
-* **GitHub** is the **garage** (online collaboration & storage).
 
----
 
-### ✅ Common Interview Question
-
-**Q:** *Can you use Git without GitHub?*
-**A:** Yes. Git is a fully functional local version control system. GitHub is only needed for remote hosting or collaboration. You can work, commit, and manage history offline using just Git.
 
 ---
 

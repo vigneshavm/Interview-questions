@@ -6,6 +6,7 @@
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
 
 - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration)
+- [Data Safety During Migrations](#Data-Safety-During-Migrations)
 
 **Program**
 
@@ -1061,6 +1062,17 @@ ALTER TABLE users DROP COLUMN email;
 * ✅ Document each migration and its fallback plan
 * ✅ Avoid irreversible changes in a single deploy
 
+
+## Data Safety During Migrations
+
+- Data safety ensures that during database schema or data migrations, 
+- **no data is lost**, **corrupted**, or made **inconsistent**, especially in production environments.
+
+1. Take backups
+2. Use transactions
+3. Test in staging
+4. Write reversible scripts
+5. Monitor during & after
 
 
 

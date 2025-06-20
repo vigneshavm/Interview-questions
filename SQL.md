@@ -5,7 +5,7 @@
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Normalization](#Normalization) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
 
-**Database Migration** - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration) - [Data Safety During Migrations](#Data-Safety-During-Migrations)
+**Database Migration**  - [Database migration](#Database-migration) - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration) - [Data Safety During Migrations](#Data-Safety-During-Migrations)
 
 **Program**
 
@@ -1072,6 +1072,16 @@ ALTER TABLE users DROP COLUMN email;
 3. Test in staging
 4. Write reversible scripts
 5. Monitor during & after
+
+
+
+## **Database migration**
+
+* Moving database schema/data from one version or system to another.
+* Includes: schema changes, data transformation, and versioning.
+* Use tools like **Flyway**, **Liquibase**, or ORM-based migration systems (e.g., Sequelize, Prisma).
+* Use **version-controlled scripts** and CI/CD pipelines.
+
 
 
 

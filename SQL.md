@@ -1075,7 +1075,7 @@ ALTER TABLE users DROP COLUMN email;
 
 
 
-## **Database migration**
+## Database migration
 
 * Moving database schema/data from one version or system to another.
 * Includes: schema changes, data transformation, and versioning.

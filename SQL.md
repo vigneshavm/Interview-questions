@@ -1,6 +1,7 @@
 
 - [WHERE Vs HAVING Vs GROUP BY](#WHERE-Vs-HAVING-Vs-GROUP-BY)
 - [`INNER JOIN` vs `LEFT JOIN` vs `RIGHT JOIN`](#INNER-JOIN-vs-LEFT-JOIN-vs-RIGHT-JOIN)
+- [Primary Key vs Foreign Key vs Composite Key](#Primary-Key-vs-Foreign-Key-vs-Composite-Key)
 
 
 ## WHERE Vs HAVING Vs GROUP BY
@@ -119,3 +120,64 @@ RIGHT JOIN departments d ON e.dept_id = d.id;
 | NULL  | HR         |
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Primary Key vs Foreign Key vs Composite Key
+
+* **Primary key** when one field is enough to identify a record.
+* **Foreign key** to create relationships across tables.
+* **Composite key** when a combination is required for uniqueness.
+
+
+### Primary Key
+- Uniquely identifies each record in a table.
+- Cannot contain `NULL`.
+- Only one primary key allowed per table.
+
+```sql
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+```
+
+
+### Foreign Key
+
+* References the **primary key** of another table.
+* Ensures **referential integrity** between related tables.
+
+```sql
+CREATE TABLE enrollments (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+```
+
+
+### Composite Key
+
+* A **primary key made of two or more columns**.
+* Useful when a single column cannot uniquely identify a row.
+
+```sql
+CREATE TABLE student_course (
+    student_id INT,
+    course_id INT,
+    enrollment_date DATE,
+    PRIMARY KEY (student_id, course_id)
+);
+```
+

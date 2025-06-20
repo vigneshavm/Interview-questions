@@ -2,6 +2,7 @@
 - [WHERE Vs HAVING Vs GROUP BY](#WHERE-Vs-HAVING-Vs-GROUP-BY)
 - [`INNER JOIN` vs `LEFT JOIN` vs `RIGHT JOIN`](#INNER-JOIN-vs-LEFT-JOIN-vs-RIGHT-JOIN)
 - [Primary Key vs Foreign Key vs Composite Key](#Primary-Key-vs-Foreign-Key-vs-Composite-Key)
+- [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)
 
 
 ## WHERE Vs HAVING Vs GROUP BY
@@ -180,4 +181,77 @@ CREATE TABLE student_course (
     PRIMARY KEY (student_id, course_id)
 );
 ```
+
+
+
+
+
+## `UNION` and `UNION ALL`
+
+- **`UNION`**: Combines results from two queries and **removes duplicates**.
+- **`UNION ALL`**: Combines results and **includes all duplicates**.
+
+| Feature     | `UNION`                          | `UNION ALL`                   |
+| ----------- | -------------------------------- | ----------------------------- |
+| Duplicates  | Removed                          | Kept                          |
+| Performance | Slower (due to sorting)          | Faster (no sorting)           |
+| Use case    | When you need **unique** results | When you want **all records** |
+
+---
+
+### ✅ Example
+
+#### 🔹 Table: `employees_2023`
+| name    |
+|---------|
+| Alice   |
+| Bob     |
+
+#### 🔹 Table: `employees_2024`
+| name    |
+|---------|
+| Bob     |
+| Charlie |
+
+---
+
+### ✅ Using `UNION`
+```sql
+SELECT name FROM employees_2023
+UNION
+SELECT name FROM employees_2024;
+````
+
+**Result:**
+
+| name    |
+| ------- |
+| Alice   |
+| Bob     |
+| Charlie |
+
+> ✅ Duplicates like "Bob" are removed.
+
+---
+
+### ✅ Using `UNION ALL`
+
+```sql
+SELECT name FROM employees_2023
+UNION ALL
+SELECT name FROM employees_2024;
+```
+
+**Result:**
+
+| name    |
+| ------- |
+| Alice   |
+| Bob     |
+| Bob     |
+| Charlie |
+
+> 🔁 Keeps **all occurrences**, including duplicates.
+
+---
 

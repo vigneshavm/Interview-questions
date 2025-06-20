@@ -1,24 +1,12 @@
 
-Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) -- [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)
-- [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort) - [Prevent multiple duplicates API calls](#Prevent-multiple-API-calls-Ignore-or-block-duplicates)
+Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) -- [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter) - [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort) - [Prevent multiple duplicates API calls](#Prevent-multiple-API-calls-Ignore-or-block-duplicates)
 
 
-React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  
-- [Debounced Search Component](#debounced-search-component)
-- [Autocomplete Component](#autocomplete-component)
-- [Todo List](#todo-list) - [TodoList with Delete](#TodoList)
-- [React Table with Sorting](#react-table-with-sorting)
-- [Infinite Scroll](#infinite-scroll)
-- [Form with Validation](#form-with-validation)
-- [Highlight Text](#highlight-text)
-- [Counter](#Counter)
-- [React Pagination](#React-pagination)
-- [Grid View](#Grid-View)
-- [React Form API Call](#React-Form-API-Call)
-- [Handling API Errors in React](#Handling-API-Errors-in-React)
+React - [Debounced Search Component](#debounced-search-component) - [Autocomplete Component](#autocomplete-component) - [Todo List](#todo-list) - [TodoList with Delete](#TodoList)
+-   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  - [React Table with Sorting](#react-table-with-sorting) - [React Pagination](#React-pagination) - [Grid View](#Grid-View)
+- [Infinite Scroll](#infinite-scroll) - [Form with Validation](#form-with-validation) - [Highlight Text](#highlight-text) - [Counter](#Counter)
+- [React Form API Call](#React-Form-API-Call) - [Handling API Errors in React](#Handling-API-Errors-in-React)
 - [Custom Hook](#Custom-Hook)
- -
-
 
 
 Angular --  [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search)   --  [Debounce Input Search](#Angular-Debounce-Input-Search)

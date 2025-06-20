@@ -6,7 +6,7 @@
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery)
 - [Normalization](#Normalization)
 - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
-- [Common Table Expression](#Common-Table-Expression)
+- [Common Table Expression](#CTE)
 
 
 ## WHERE Vs HAVING Vs GROUP BY

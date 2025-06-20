@@ -3,7 +3,7 @@
 - [`INNER JOIN` vs `LEFT JOIN` vs `RIGHT JOIN`](#INNER-JOIN-vs-LEFT-JOIN-vs-RIGHT-JOIN)
 
 
-## **WHERE Vs HAVING Vs GROUP BY**
+## WHERE Vs HAVING Vs GROUP BY
 
 - `WHERE` filters rows **before grouping**,
 - `HAVING` filters **after grouping** (used with `GROUP BY`).

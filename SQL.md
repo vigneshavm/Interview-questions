@@ -9,6 +9,7 @@
 - [Common Table Expression](#CTE)
 - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection)
 - [Window Functions](#Window-Functions)
+- [`TRUNCATE` vs `DELETE` vs `DROP`](#`TRUNCATE`-vs-`DELETE`-vs-`DROP`)
 
 **Program**
 
@@ -820,6 +821,69 @@ SELECT * FROM emp_cte;
 
 
 
+
+
+## `TRUNCATE` vs `DELETE` vs `DROP`
+
+
+* Use `DELETE` when you need to **conditionally remove rows**.
+* Use `TRUNCATE` for **quickly clearing tables**, especially in staging/testing.
+* Use `DROP` when you want to **remove the table entirely**.
+
+| Feature                 | DELETE    | TRUNCATE        | DROP            |
+| ----------------------- | --------- | --------------- | --------------- |
+| Removes Data            | ✅ Yes     | ✅ Yes           | ✅ Yes           |
+| Can Use `WHERE`         | ✅ Yes     | ❌ No            | ❌ No            |
+| Rollback Possible       | ✅ Yes     | ⚠ Depends on DB | ❌ Usually No    |
+| Fires Triggers          | ✅ Yes     | ❌ No            | ❌ No            |
+| Affects Table Structure | ❌ No      | ❌ No            | ✅ Yes           |
+| Resets Auto-Increment   | ❌ No      | ✅ Yes           | ✅ N/A (removed) |
+| Speed                   | 🐢 Slower | ⚡ Fast          | ⚡ Fastest       |
+
+
+
+### ✅ 1. `DELETE`
+
+- Removes **rows** from a table **one by one**.
+
+- Can include a `WHERE` clause
+- Can be **rolled back** (if inside a transaction)
+- Triggers **are fired**
+- Table structure & schema remain
+
+```sql
+DELETE FROM employees WHERE department = 'HR';
+````
+
+---
+
+### ✅ 2. `TRUNCATE`
+
+- Removes **all rows** from a table **instantly** (bulk operation).
+
+* ❌ No `WHERE` clause allowed
+* ⚡ Very fast (less logging)
+* ✅ Resets auto-increment counter
+* ⚠ Cannot be rolled back in some DBs (e.g., MySQL)
+* ❌ Triggers are **not** fired
+
+```sql
+TRUNCATE TABLE employees;
+```
+
+---
+
+### ✅ 3. `DROP`
+
+- Completely **removes the table structure**, data, and definition.
+
+* Table is **gone** from the database
+* ❌ Cannot be rolled back (unless inside a transaction in PostgreSQL)
+* ❌ All dependent objects (indexes, constraints) are also removed
+
+```sql
+DROP TABLE employees;
+```
 
 
 

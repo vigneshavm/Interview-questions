@@ -1,46 +1,50 @@
 
-
 Nodejs ---  [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes)   -- [Location based IP-based restrictions](#Location-based-IP-based-restrictions)  -- [Build simple API](#Build-simple-API) --  [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations)  --  [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview)  --  [Rate Limiter Middleware](#Rate-Limiter-Middleware) -- [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter)
 - [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort) - [Prevent multiple duplicates API calls](#Prevent-multiple-API-calls-Ignore-or-block-duplicates)
 
 
-React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  - [search input with debouncing using a custom useDebounce hook](#search-input-with-debouncing-using-a-custom-useDebounce-hook) 
+React -   [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search)  
 - [Debounced Search Component](#debounced-search-component)
 - [Autocomplete Component](#autocomplete-component)
-- [Todo List](#todo-list)
+- [Todo List](#todo-list) - [TodoList with Delete](#TodoList)
 - [React Table with Sorting](#react-table-with-sorting)
 - [Infinite Scroll](#infinite-scroll)
-- [Custom Hook - useToggle](#custom-hook-usetoggle)
 - [Form with Validation](#form-with-validation)
 - [Highlight Text](#highlight-text)
 - [Counter](#Counter)
 - [React Pagination](#React-pagination)
+- [Grid View](#Grid-View)
+- [React Form API Call](#React-Form-API-Call)
+- [Handling API Errors in React](#Handling-API-Errors-in-React)
+- [Custom Hook](#Custom-Hook)
+ -
 
 
 
 Angular --  [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search)   --  [Debounce Input Search](#Angular-Debounce-Input-Search)
 
 
-
-
-[polyfill programs](#polyfill-programs)
-
-
-| Questions1 | Questions2 | Questions3 |Questions4 | Questions5 | Questions6 | Questions7 |
-| --- | :-- | :-- | :-- | :-- | :-- | :-- |
-| [Grid View](#Grid-View) |  | [React Form API Call](#React-Form-API-Call) || [Handling API Errors in React](#Handling-API-Errors-in-React)
-|| |  | |[TodoList](#TodoList)   | 
-
+JS --  [polyfill programs](#polyfill-programs)
 
 ## polyfill programs
 
-- [Array.prototype.map](#arrayprototypemap)
-- [Array.prototype.filter](#arrayprototypefilter)
-- [Array.prototype.reduce](#arrayprototypereduce)
-- [Function.prototype.call](#functionprototypecall)
-- [Object.create](#objectcreate)
-- [Promise](#Promise)
-- [Debounce](#debounce-polyfill)
+- [Array.prototype.map](#arrayprototypemap) - [Array.prototype.filter](#arrayprototypefilter) - [Array.prototype.reduce](#arrayprototypereduce)
+- [Function.prototype.call](#functionprototypecall) - [Object.create](#objectcreate) - [Promise](#Promise)
+- [Debounce](#debounce-polyfill) - [Throttle](#throttle-polyfill)
+
+
+## Custom Hook
+
+- [useToggle Hook](#custom-hook-usetoggle)
+- [useDebounce Hook](#Custom-useDebounce-hook) 
+* [useToggle – Toggle a boolean](#usetoggle--toggle-a-boolean)
+* [usePrevious – Track previous value](#useprevious--track-previous-value)
+* [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic)
+* [useWindowWidth – Track window width](#usewindowwidth--track-window-width)
+
+
+
+
 
 
 ## Grid View
@@ -166,11 +170,8 @@ export default Grid;
 
 
 
-## **search input with debouncing using a custom useDebounce hook**.
+## **Custom useDebounce hook**.
 
----
-
-### ✅ Step 1: Create `useDebounce` Hook
 
 ```js
 import { useEffect, useState } from "react";
@@ -1323,6 +1324,36 @@ window.addEventListener('resize', debouncedResize);
 
 ```
 
+#### Throttle Polyfill 
+
+```js
+function throttle(func, limit) {
+  let inThrottle;
+  return function (...args) {
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args); // only allow this once per "limit"
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit); // reset lock after delay
+    }
+  };
+}
+
+// A simple function we want to debounce
+function onResize() {
+  console.log('Resized:', new Date().toISOString());
+}
+// Create a debounced version of `onResize`, with 500ms delay
+const debouncedResize = debounce(onResize, 500);
+// Add event listener to the window's resize event
+window.addEventListener('resize', debouncedResize);
+```
+**Breakdown**
+- inThrottle: Acts like a lock.
+- First call: Executes the function.
+- Locks further calls for limit ms (e.g., 1000ms).
+- After that, unlocks and allows one more call.
+
 
 #### Promise
 
@@ -1547,6 +1578,7 @@ function DebouncedSearch() {
   useEffect(() => {
     if (debouncedQuery) {
       // fetch API call
+      console.log(debouncedQuery,"Debounce after 300 mins")
     }
   }, [debouncedQuery]);
 
@@ -2015,3 +2047,112 @@ app.post('/pay', async (req, res) => {
 });
 ```
 
+
+
+### useWindowWidth – Track window width
+```jsx
+import { useState, useEffect } from 'react';
+
+function useWindowWidth() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return width;
+}
+
+// Usage:
+function App() {
+  const width = useWindowWidth();
+  return <p>Window width: {width}px</p>;
+}
+```
+
+
+---
+### useFetch – Generic fetch logic
+```jsx
+import { useState, useEffect } from 'react';
+
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        if (isMounted) {
+          setData(data);
+          setLoading(false);
+        }
+      });
+
+    return () => { isMounted = false };
+  }, [url]);
+
+  return { data, loading };
+}
+
+// Usage:
+function Posts() {
+  const { data, loading } = useFetch('https://jsonplaceholder.typicode.com/posts');
+  if (loading) return <p>Loading...</p>;
+  return <ul>{data.slice(0, 5).map(post => <li key={post.id}>{post.title}</li>)}</ul>;
+}
+```
+
+---
+### useToggle – Toggle a boolean
+
+
+```jsx
+function useToggle(initial = false) {
+  const [value, setValue] = useState(initial);
+  const toggle = () => setValue(v => !v);
+  return [value, toggle];
+}
+
+// Usage:
+function ToggleExample() {
+  const [on, toggle] = useToggle();
+  return <button onClick={toggle}>{on ? 'ON' : 'OFF'}</button>;
+}
+```
+
+---
+
+
+
+
+### usePrevious – Track previous value
+```jsx
+import { useRef, useEffect } from 'react';
+
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+}
+
+// Usage:
+function Counter() {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+  return (
+    <>
+      <p>Now: {count}, Before: {prevCount}</p>
+      <button onClick={() => setCount(c => c + 1)}>+1</button>
+    </>
+  );
+}
+```
+
+---

@@ -7,7 +7,7 @@
 - [Normalization](#Normalization)
 - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE)
-
+- [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection)
 
 ## WHERE Vs HAVING Vs GROUP BY
 
@@ -542,3 +542,7 @@ SELECT * FROM cte;
 * Dependency chains
 
 
+ ## **Detect and avoid SQL injection**
+
+- Always use parameterized queries or ORM methods that escape input. 
+- Avoid string concatenation in queries.

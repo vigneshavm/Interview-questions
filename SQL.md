@@ -1,3 +1,7 @@
+
+- [WHERE Vs HAVING Vs GROUP BY](#WHERE-Vs-HAVING-Vs-GROUP-BY)
+
+
 ## **WHERE Vs HAVING Vs GROUP BY**
 
 - `WHERE` filters rows **before grouping**,

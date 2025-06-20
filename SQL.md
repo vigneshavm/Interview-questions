@@ -2,12 +2,25 @@
 - [WHERE Vs HAVING Vs GROUP BY](#WHERE-Vs-HAVING-Vs-GROUP-BY)
 - [`INNER JOIN` vs `LEFT JOIN` vs `RIGHT JOIN`](#INNER-JOIN-vs-LEFT-JOIN-vs-RIGHT-JOIN)
 - [Primary Key vs Foreign Key vs Composite Key](#Primary-Key-vs-Foreign-Key-vs-Composite-Key)
-- [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)
+- [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)  - [`IN` Operator](#in-operator)
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery)
 - [Normalization](#Normalization)
 - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE)
 - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection)
+- [Window Functions](#Window-Functions)
+
+**Program**
+
+- [Second Highest Salary](#second-highest-salary) - [3rd Largest Value](#3rd-largest-value)
+- [Return Records Without NULL `name`](#return-records-without-null-name)
+- [Pagination](#pagination)
+- [Update Gender Vice Versa](#single-update-gender-vice-versa)  - [Update Data in One Table Based on Another](#update-data-in-one-table-based-on-another)
+- [Find Duplicate Rows](#find-duplicate-rows) - [Find Duplicate Salaries](#find-duplicate-salaries)
+- [Get Total Salary by Department](#get-total-salary-by-department)
+- [Window Function to Rank Salaries Within Departments](#window-function-to-rank-salaries-within-departments)
+- [Recursive CTE – Build Employee Hierarchy (Self-Join Style)](#recursive-cte--build-employee-hierarchy-self-join-style)
+
 
 ## WHERE Vs HAVING Vs GROUP BY
 
@@ -546,3 +559,268 @@ SELECT * FROM cte;
 
 - Always use parameterized queries or ORM methods that escape input. 
 - Avoid string concatenation in queries.
+
+
+
+## Window Functions
+
+- A **window function** performs a calculation across a **set of rows related to the current row**, 
+- without collapsing rows like `GROUP BY` does.
+
+---
+
+### 🔍 Key Features:
+- Retains **individual rows**.
+- Works over a **"window" of rows** defined by `OVER()` clause.
+- Useful for **rankings**, **running totals**, **moving averages**, etc.
+
+---
+
+### 🗂️ Common Window Functions:
+- `ROW_NUMBER()`
+- `RANK()`, `DENSE_RANK()`
+- `SUM()`, `AVG()` over a partition
+- `LEAD()`, `LAG()` for previous/next row access
+
+---
+
+### 🧱 Sample Table: `sales`
+
+| id | salesperson | region | amount |
+|----|-------------|--------|--------|
+| 1  | Alice       | East   | 500    |
+| 2  | Bob         | East   | 700    |
+| 3  | Alice       | East   | 600    |
+| 4  | Carol       | West   | 300    |
+| 5  | Bob         | East   | 400    |
+
+---
+
+### ✅ Example 1: Running Total Using `SUM() OVER()`
+
+```sql
+SELECT
+  salesperson,
+  amount,
+  SUM(amount) OVER (PARTITION BY salesperson ORDER BY id) AS running_total
+FROM sales;
+````
+
+**🔍 Explanation:**
+
+* `PARTITION BY salesperson`: Window restarts per salesperson
+* `ORDER BY id`: Running total in row order
+
+---
+
+### ✅ Example 2: Row Number
+
+```sql
+SELECT
+  salesperson,
+  amount,
+  ROW_NUMBER() OVER (PARTITION BY region ORDER BY amount DESC) AS row_num
+FROM sales;
+```
+
+**🔍 Explanation:**
+
+* Assigns a unique row number **within each region**, ordered by amount
+
+
+### 🧠 Summary
+
+| Clause         | Purpose                                                  |
+| -------------- | -------------------------------------------------------- |
+| `OVER()`       | Defines the window of rows                               |
+| `PARTITION BY` | Divides data into groups (like GROUP BY, but keeps rows) |
+| `ORDER BY`     | Specifies order within the partition                     |
+
+
+### 📌 Use Cases:
+
+* Ranking within groups
+* Running totals
+* Percentiles
+* First/Last value per group
+* Gap detection using `LEAD()` / `LAG()`
+
+
+
+### **3rd Largest Value**
+
+```sql
+SELECT DISTINCT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 2; -- 3rd highest
+```
+
+
+### **`IN` Operator**
+
+- Used to check if a value is within a list of values.
+
+```sql
+SELECT * FROM employees
+WHERE department_id IN (1, 3, 5);
+```
+
+### **Return records without NULL `name`**
+
+```sql
+SELECT * FROM employees
+WHERE name IS NOT NULL;
+```
+
+### **Pagination**
+
+- Using `LIMIT` and `OFFSET` to paginate results.
+
+```sql
+-- Page 2, 10 records per page
+SELECT * FROM employees
+LIMIT 10 OFFSET 10;
+```
+
+
+### **Single update Gender vice versa**
+
+```sql
+UPDATE employees
+SET gender = CASE
+    WHEN gender = 'M' THEN 'F'
+    WHEN gender = 'F' THEN 'M'
+    ELSE gender
+END;
+```
+
+
+
+### **Find duplicate rows**
+   ```sql
+   SELECT column1, COUNT(*) 
+   FROM table_name 
+   GROUP BY column1 
+   HAVING COUNT(*) > 1;
+   ```
+
+### **Update data in one table based on another**
+   ```sql
+   UPDATE t1
+   SET t1.column = t2.value
+   FROM table1 t1
+   JOIN table2 t2 ON t1.id = t2.id;
+   ```
+
+### **Second highest salary**
+```sql
+SELECT MAX(salary)
+FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees);
+```
+
+### **Find duplicate salaries**
+
+```sql
+SELECT salary, COUNT(*) as count
+FROM employees
+GROUP BY salary
+HAVING COUNT(*) > 1;
+```
+
+📌 **Output:**
+
+| salary | count |
+| ------ | ----- |
+| 80000  | 2     |
+
+---
+
+### **Get total salary by department**
+
+```sql
+SELECT department, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department;
+```
+
+📌 **Output:**
+
+| department | total\_salary |
+| ---------- | ------------- |
+| HR         | 110000        |
+| IT         | 235000        |
+| Finance    | 90000         |
+
+---
+
+### **window function to rank salaries within departments**
+
+```sql
+SELECT name, department, salary,
+  RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS dept_rank
+FROM employees;
+```
+
+📌 **Output:**
+
+| name    | department | salary | dept\_rank |
+| ------- | ---------- | ------ | ---------- |
+| Alice   | HR         | 60000  | 1          |
+| Dave    | HR         | 50000  | 2          |
+| Bob     | IT         | 80000  | 1          |
+| Frank   | IT         | 80000  | 1          |
+| Charlie | IT         | 75000  | 3          |
+| Eve     | Finance    | 90000  | 1          |
+
+---
+
+### **Recursive CTE – Build employee hierarchy (self-join style)**
+
+Assume a simplified table:
+
+**`employee_hierarchy`**
+
+| id | name     | manager\_id |
+| -- | -------- | ----------- |
+| 1  | CEO      | NULL        |
+| 2  | VP1      | 1           |
+| 3  | VP2      | 1           |
+| 4  | Manager1 | 2           |
+| 5  | Dev1     | 4           |
+
+```sql
+WITH RECURSIVE emp_cte AS (
+  SELECT id, name, manager_id, 1 AS level
+  FROM employee_hierarchy
+  WHERE manager_id IS NULL
+
+  UNION ALL
+
+  SELECT e.id, e.name, e.manager_id, c.level + 1
+  FROM employee_hierarchy e
+  JOIN emp_cte c ON e.manager_id = c.id
+)
+SELECT * FROM emp_cte;
+```
+
+📌 **Output:**
+
+| id | name     | manager\_id | level |
+| -- | -------- | ----------- | ----- |
+| 1  | CEO      | NULL        | 1     |
+| 2  | VP1      | 1           | 2     |
+| 3  | VP2      | 1           | 2     |
+| 4  | Manager1 | 2           | 3     |
+| 5  | Dev1     | 4           | 4     |
+
+---
+
+
+
+
+
+
+
+

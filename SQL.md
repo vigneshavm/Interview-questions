@@ -4,6 +4,7 @@
 - [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)  - [`IN` Operator](#in-operator) - [`TRUNCATE` vs `DELETE` vs `DROP`](#TRUNCATE-vs-DELETE-vs-DROP)
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Normalization](#Normalization) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
+- [Triggers](#Triggers)
 
 **Database Migration**  - [Database migration](#Database-migration) - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration) - [Data Safety During Migrations](#Data-Safety-During-Migrations)
 
@@ -1082,6 +1083,75 @@ ALTER TABLE users DROP COLUMN email;
 * Use tools like **Flyway**, **Liquibase**, or ORM-based migration systems (e.g., Sequelize, Prisma).
 * Use **version-controlled scripts** and CI/CD pipelines.
 
+
+
+
+## **Triggers**
+
+
+### **Trigger**
+
+* A **stored procedure** that runs **automatically** on `INSERT`, `UPDATE`, or `DELETE`.
+* Used for **audit logging**, **data validation**, **auto-updates**, and **business rules**.
+
+
+### **Trigger Use Case**
+
+* **Audit Log Example**:
+  On `BEFORE UPDATE` of a `users` table, insert `OLD.name` and `OLD.email` into `users_audit`.
+
+
+### **How to Configure a Trigger (MySQL example)**
+
+```sql
+DELIMITER $$
+
+CREATE TRIGGER before_user_update
+BEFORE UPDATE ON users
+FOR EACH ROW
+BEGIN
+  INSERT INTO users_audit (user_id, old_name, old_email)
+  VALUES (OLD.id, OLD.name, OLD.email);
+END $$
+
+DELIMITER ;
+```
+
+
+### **Trigger Integration in Node.js**
+
+* Triggers run **automatically** after a DB operation.
+* Works with **ORMs like Sequelize** or **raw SQL queries**.
+* No special code needed in Node.js.
+
+
+### **How to Check Triggers**
+
+* **MySQL**: `SHOW TRIGGERS LIKE 'users';`\n
+* **PostgreSQL**: Query `information_schema.triggers`.
+
+
+### **When to Use Triggers**
+
+* Lightweight tasks like:
+
+  * Logging
+  * Field auto-population
+  * Soft deletes
+
+
+###  **When *Not* to Use Triggers**
+
+* For **complex business logic** or workflows → better in application layer.
+* Hard to test, debug, and version in large systems.
+
+
+### Best Practices
+
+* Use **`BEFORE`** for validation.
+* Use **`AFTER`** for logging.
+* Always document and keep logic minimal.
+* Test by performing actual data changes and verifying results.
 
 
 

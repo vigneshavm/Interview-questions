@@ -102,7 +102,7 @@ INSERT INTO employ2 VALUES (3,5, 'Ava', 'Sales');
 SELECT employ1.id, employ1.name, employ1.gender
 FROM employ1
 INNER JOIN employ2 ON employ2.employ1ID = employ1.id;
-| id | name  | gender |
+
 +----+------+--------+
 | id | name | gender |
 +----+------+--------+

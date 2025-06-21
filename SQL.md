@@ -14,7 +14,9 @@
 
 **Program**
 
-- [Second Highest Salary](#second-highest-salary) - [3rd Largest Value](#3rd-largest-value) - [Pagination](#pagination) - [Return Records Without NULL `name`](#return-records-without-null-name) - [Update Gender Vice Versa](#single-update-gender-vice-versa)  - [Update Data in One Table Based on Another](#update-data-in-one-table-based-on-another) - [Find Duplicate Rows](#find-duplicate-rows) - [Find Duplicate Salaries](#find-duplicate-salaries)
+- [Second Highest Salary](#second-highest-salary) - [3rd Largest Value](#3rd-largest-value) - [Pagination](#pagination) - [Return Records Without NULL `name`](#return-records-without-null-name)
+- [Update Gender Vice Versa](#single-update-gender-vice-versa)  - [Update Data in One Table Based on Another](#update-data-in-one-table-based-on-another)
+- [Find Duplicate Rows](#find-duplicate-rows) - [Find Duplicate Salaries](#find-duplicate-salaries)
 - [Get Total Salary by Department](#get-total-salary-by-department) - [Window Function to Rank Salaries Within Departments](#window-function-to-rank-salaries-within-departments) - [Recursive CTE – Build Employee Hierarchy (Self-Join Style)](#recursive-cte--build-employee-hierarchy-self-join-style)
 
 

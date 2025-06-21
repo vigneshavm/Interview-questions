@@ -1,4 +1,5 @@
 
+**key and operators** 
 - [WHERE Vs HAVING Vs GROUP BY](#WHERE-Vs-HAVING-Vs-GROUP-BY)  - [`INNER JOIN` vs `LEFT JOIN` vs `RIGHT JOIN`](#INNER-JOIN-vs-LEFT-JOIN-vs-RIGHT-JOIN)
 - [Primary Key vs Foreign Key vs Composite Key](#Primary-Key-vs-Foreign-Key-vs-Composite-Key)
 - [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)  - [`IN` Operator](#in-operator) - [`TRUNCATE` vs `DELETE` vs `DROP`](#TRUNCATE-vs-DELETE-vs-DROP)
@@ -6,7 +7,8 @@
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
 - [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key)
 
-- [Normalization](#Normalization) - [Normal Form](#Normal-Form)
+**Design DB** - [Designing a database](#Designing-a-database) - [Normalization](#Normalization) - [Normal Form](#Normal-Form)
+
 
 **Database Migration**  - [Database migration](#Database-migration) - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration) - [Data Safety During Migrations](#Data-Safety-During-Migrations)
 
@@ -1474,5 +1476,13 @@ All original combinations can be derived correctly without loss or incorrect add
 
 ---
 
+### **Designing a database**
+
+1. **Requirement Analysis** – Understand what data needs to be stored.
+2. **Conceptual Design (ER Diagram)** – Identify entities and their relationships.
+3. **Logical Design** – Define tables, fields, data types, primary/foreign keys.
+4. **Normalization** – Eliminate redundancy and improve consistency.
+5. **Physical Design** – Indexes, constraints, performance tuning.
+6. **Security and Backup Planning** – Secure sensitive data and define backup strategy.
 
 

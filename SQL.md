@@ -5,6 +5,7 @@
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
 - [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key)
+- [Delete and Rollback](#Delete-and-Rollback)
 
 **Design DB** - [Designing a database](#Designing-a-database) - [Normalization](#Normalization) - [Normal Form](#Normal-Form) - [Denormalization](#denormalization)
 - [One to One, One to Many, Many to Many Relationships](#one-to-one-one-to-many-many-to-many-relationships)
@@ -1721,5 +1722,17 @@ ALTER TABLE StudentCourses
   ADD FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
   ADD FOREIGN KEY (CourseID) REFERENCES Courses(CourseID);
 ```
+
+## Delete and Rollback
+
+| Option                           | Reversible? | Recommended Use Case                    |
+| -------------------------------- | ----------- | --------------------------------------- |
+| `START TRANSACTION` + `ROLLBACK` | ✅ Yes       | Short-term manual delete inside session |
+| Soft Delete (`is_deleted`)       | ✅ Yes       | Almost always – best practice           |
+| Backup Table                     | ✅ Yes       | Batch deletes or scheduled cleanups     |
+| Binary Log Recovery              | ✅ Yes       | Production-level undo, needs setup      |
+| Trigger for Delete Log           | ✅ Yes       | Real-time audit trail                   |
+| Foreign Key Constraints          | ❌ Prevents  | Structural protection, not rollback     |
+
 
 

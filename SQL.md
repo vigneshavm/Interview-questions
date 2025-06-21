@@ -137,6 +137,18 @@ RIGHT JOIN employ2 ON employ2.employ1ID = employ1.id;
 |  2 | Accounting | Dave   |          3 |
 |  3 | Sales      | Ava    |       NULL |
 +----+------------+--------+------------+
+
+SELECT employ1.id, employ1.name, employ2.gender
+FROM employ1
+RIGHT JOIN employ2 ON employ2.employ1ID = employ1.id;
+
++------+------+--------+
+| id   | name | gender |
++------+------+--------+
+| NULL | NULL | Clark  |
+|    3 | Ava  | Dave   |
+| NULL | NULL | Ava    |
++------+------+--------+
 ```
 
 

@@ -72,6 +72,75 @@ HAVING AVG(salary) > 45000;
 
 ### 🧱 Sample Tables
 
+
+
+```sql
+-- create
+CREATE TABLE employ1 (
+  id INTEGER PRIMARY KEY,  name TEXT NOT NULL,  gender TEXT NOT NULL
+);
+
+
+CREATE TABLE employ2 (
+  id INTEGER PRIMARY KEY,  employ1ID TEXT NOT NULL,  gender TEXT NOT NULL,
+  name TEXT NOT NULL
+);
+```
+
+```sql
+-- insert
+INSERT INTO employ1 VALUES (1, 'Clark', 'Sales');
+INSERT INTO employ1 VALUES (2, 'Dave', 'Accounting');
+INSERT INTO employ1 VALUES (3, 'Ava', 'Sales');
+
+INSERT INTO employ2 VALUES (1,4, 'Clark', 'Sales');
+INSERT INTO employ2 VALUES (2,3, 'Dave', 'Accounting');
+INSERT INTO employ2 VALUES (3,5, 'Ava', 'Sales');
+```
+
+```sql
+SELECT employ1.id, employ1.name, employ1.gender
+FROM employ1
+INNER JOIN employ2 ON employ2.employ1ID = employ1.id;
+| id | name  | gender |
++----+------+--------+
+| id | name | gender |
++----+------+--------+
+|  3 | Ava  | Sales  |
++----+------+--------+
+```
+
+```sql
+SELECT employ1.id, employ1.name, employ2.gender
+FROM employ1
+LEFT JOIN employ2 ON employ2.employ1ID = employ1.id;
+
++----+-------+--------+
+| id | name  | gender |
++----+-------+--------+
+|  1 | Clark | NULL   |
+|  2 | Dave  | NULL   |
+|  3 | Ava   | Dave   |
++----+-------+--------+
+```
+
+```sql
+SELECT employ2.id, employ2.name, employ2.gender, employ1.id AS employ1_id
+FROM employ1
+RIGHT JOIN employ2 ON employ2.employ1ID = employ1.id;
+
+
++----+------------+--------+------------+
+| id | name       | gender | employ1_id |
++----+------------+--------+------------+
+|  1 | Sales      | Clark  |       NULL |
+|  2 | Accounting | Dave   |          3 |
+|  3 | Sales      | Ava    |       NULL |
++----+------------+--------+------------+
+```
+
+
+
 #### 🔹 `employees`
 | id | name    | dept_id |
 |----|---------|---------|

@@ -4,7 +4,7 @@
 - [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)  - [`IN` Operator](#in-operator) - [`TRUNCATE` vs `DELETE` vs `DROP`](#TRUNCATE-vs-DELETE-vs-DROP)
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Normalization](#Normalization) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
-- [Triggers](#Triggers) -[Stored Procedure](#Stored-Procedure)
+- [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure)
 
 **Database Migration**  - [Database migration](#Database-migration) - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration) - [Data Safety During Migrations](#Data-Safety-During-Migrations)
 

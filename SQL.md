@@ -4,7 +4,7 @@
 - [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)  - [`IN` Operator](#in-operator) - [`TRUNCATE` vs `DELETE` vs `DROP`](#TRUNCATE-vs-DELETE-vs-DROP)
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Normalization](#Normalization) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
-- [Triggers](#Triggers)
+- [Triggers](#Triggers) -[Stored Procedure](#Stored-Procedure)
 
 **Database Migration**  - [Database migration](#Database-migration) - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration) - [Data Safety During Migrations](#Data-Safety-During-Migrations)
 
@@ -1152,6 +1152,60 @@ DELIMITER ;
 * Use **`AFTER`** for logging.
 * Always document and keep logic minimal.
 * Test by performing actual data changes and verifying results.
+
+
+
+## **Stored Procedure**
+
+
+###  **Stored Procedure**
+
+* A **precompiled set of SQL statements** stored in the **database**.
+* Used to **encapsulate logic** like insert, update, delete, and return values.
+
+
+###  **Why Use Stored Procedures?**
+
+| Benefit                | Notes                                                |
+| ---------------------- | ---------------------------------------------------- |
+| 🚀 **Performance**     | Faster execution due to precompilation               |
+| 🔁 **Reusability**     | Can be called from multiple app modules              |
+| 🔒 **Security**        | Access control via procedure, not directly to tables |
+| 🧹 **Maintainability** | Keeps complex logic out of the application layer     |
+
+
+###  **Real Use Case Example**
+
+* Insert a user and **return the inserted ID** using `LAST_INSERT_ID()` via `OUT` parameter.
+* Avoids logic duplication and keeps Node.js code minimal.
+
+
+###  **Node.js Integration**
+
+```js
+await db.query('CALL insert_user(?, ?, @id)', ['John', 'john@example.com']);
+const [[{ '@id': id }]] = await db.query('SELECT @id');
+```
+
+* Works smoothly with `mysql2` or `mysql2/promise`.
+* Easy to integrate with async/await workflows.
+
+
+###  **Best Practices**
+
+* Clear naming of `IN`, `OUT`, `INOUT` parameters.
+* Use `DECLARE HANDLER` for error handling inside the procedure.
+* Keep the logic focused and efficient.
+* Test independently in DB before application integration.
+
+
+###  **When to Avoid Stored Procedures**
+
+* Complex business logic that needs frequent changes → better in app code.
+* Difficult to version and test as part of a CI/CD pipeline.
+* Can reduce visibility when using ORMs.
+
+
 
 
 

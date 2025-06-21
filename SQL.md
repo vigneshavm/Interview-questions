@@ -7,6 +7,7 @@
 - [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key)
 
 **Design DB** - [Designing a database](#Designing-a-database) - [Normalization](#Normalization) - [Normal Form](#Normal-Form) - [Denormalization](#denormalization)
+- [One to One, One to Many, Many to Many Relationships](#one-to-one-one-to-many-many-to-many-relationships)
 
 
 **Database Migration**  - [Database migration](#Database-migration) - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration) - [Data Safety During Migrations](#Data-Safety-During-Migrations)
@@ -1498,3 +1499,144 @@ Denormalization is the process of combining tables or duplicating data to improv
 * Read-heavy systems.
 * Reporting and analytics.
 * When joins negatively affect performance.
+
+
+
+
+
+
+
+
+
+
+
+ ## One to One One to Many Many to Many relationships
+
+- In database design, 
+- I use One-to-One for tightly coupled data, 
+- One-to-Many for hierarchical structures like customers and orders, and 
+- Many-to-Many for flexible mappings using a join table — like users and roles, or students and courses.”
+
+
+
+## ✅ **1. One-to-One (1:1)**
+
+### 📌 Definition:
+
+Each row in **Table A** is linked to exactly one row in **Table B**, and vice versa.
+
+### 💡 Example:
+
+* Each **User** has **one Profile**.
+* Each **Passport** is assigned to **one Person**.
+
+### 🧱 Table Design:
+
+```sql
+-- Users Table
+UserID | Name
+-------|---------
+1      | John
+
+-- Profiles Table
+ProfileID | UserID | Bio
+----------|--------|------------
+1         | 1      | "Developer"
+```
+
+### 🔗 Relationship:
+
+* `Profiles.UserID` is a **foreign key** to `Users.UserID`.
+* It should also be **UNIQUE** to enforce 1:1.
+
+```sql
+ALTER TABLE Profiles ADD CONSTRAINT fk_user FOREIGN KEY (UserID) REFERENCES Users(UserID);
+ALTER TABLE Profiles ADD CONSTRAINT unique_user UNIQUE (UserID);
+```
+
+---
+
+## ✅ **2. One-to-Many (1\:N)**
+
+### 📌 Definition:
+
+Each row in **Table A** can relate to **many rows** in **Table B**, but each row in B belongs to only **one row** in A.
+
+### 💡 Example:
+
+* One **Customer** can have many **Orders**.
+* One **Author** writes many **Books**.
+
+### 🧱 Table Design:
+
+```sql
+-- Customers Table
+CustomerID | Name
+-----------|-------
+1          | Alice
+
+-- Orders Table
+OrderID | CustomerID | Amount
+--------|------------|--------
+101     | 1          | 500
+102     | 1          | 300
+```
+
+### 🔗 Relationship:
+
+* `Orders.CustomerID` is a **foreign key** to `Customers.CustomerID`.
+
+```sql
+ALTER TABLE Orders ADD CONSTRAINT fk_customer FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID);
+```
+
+---
+
+## ✅ **3. Many-to-Many (M\:N)**
+
+### 📌 Definition:
+
+Each row in **Table A** can relate to **many rows** in **Table B**, and vice versa.
+
+### 💡 Example:
+
+* A **Student** can enroll in many **Courses**.
+* A **Product** can belong to many **Categories**, and a **Category** can contain many **Products**.
+
+### 🧱 Table Design:
+
+You must use a **junction table** to manage the relationship.
+
+```sql
+-- Students Table
+StudentID | Name
+----------|------
+1         | John
+2         | Sarah
+
+-- Courses Table
+CourseID | Title
+---------|---------
+101      | Math
+102      | Science
+
+-- StudentCourses Table (Junction Table)
+StudentID | CourseID
+----------|---------
+1         | 101
+1         | 102
+2         | 101
+```
+
+### 🔗 Relationships:
+
+* `StudentCourses.StudentID` → `Students.StudentID`
+* `StudentCourses.CourseID` → `Courses.CourseID`
+
+```sql
+ALTER TABLE StudentCourses
+  ADD FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+  ADD FOREIGN KEY (CourseID) REFERENCES Courses(CourseID);
+```
+
+

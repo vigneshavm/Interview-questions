@@ -1178,6 +1178,24 @@ DELIMITER ;
 
 * Insert a user and **return the inserted ID** using `LAST_INSERT_ID()` via `OUT` parameter.
 * Avoids logic duplication and keeps Node.js code minimal.
+* 
+
+### Example
+```sql
+DELIMITER $$
+CREATE PROCEDURE insert_user(
+  IN in_name VARCHAR(100),
+  IN in_email VARCHAR(100),
+  OUT out_id INT
+)
+BEGIN
+  INSERT INTO users(name, email)
+  VALUES (in_name, in_email);
+
+  SET out_id = LAST_INSERT_ID();
+END $$
+DELIMITER ;
+```
 
 
 ###  **Node.js Integration**

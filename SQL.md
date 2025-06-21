@@ -4,7 +4,7 @@
 - [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)  - [`IN` Operator](#in-operator) - [`TRUNCATE` vs `DELETE` vs `DROP`](#TRUNCATE-vs-DELETE-vs-DROP)
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Normalization](#Normalization) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
-- [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure)
+- [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto--Increment-or-Primary-Key)
 
 **Database Migration**  - [Database migration](#Database-migration) - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration) - [Data Safety During Migrations](#Data-Safety-During-Migrations)
 
@@ -1221,6 +1221,113 @@ const [[{ '@id': id }]] = await db.query('SELECT @id');
 * Complex business logic that needs frequent changes → better in app code.
 * Difficult to version and test as part of a CI/CD pipeline.
 * Can reduce visibility when using ORMs.
+
+
+
+
+## Approaches to Insert Unique IDs Without Auto-Increment or Primary Key
+
+- If I don’t have a primary key or auto-increment
+- I usually go with a UUID strategy for global uniqueness or a sequence table for controlled numeric IDs.
+- In one project, I used a sequence table with transaction locks to safely generate IDs across inserts. 
+- In Node.js, I typically generate UUIDs using the `uuid` package before inserting data.
+
+| Concern               | Recommendation                                   |
+| --------------------- | ------------------------------------------------ |
+| 🔄 **Uniqueness**     | Enforce uniqueness with a `UNIQUE` constraint    |
+| 🔍 **Query Speed**    | Index the custom ID field                        |
+| 🔒 **Collision Risk** | Use UUID or sequence to avoid duplicates         |
+| 💾 **Readability**    | UUIDs are long; sequences are better for reports |
+
+---
+
+### **UUID (Universally Unique Identifier)**
+
+- Best for distributed systems or when strict ordering is not needed.
+
+#### 💡 SQL Example (MySQL):
+
+```sql
+CREATE TABLE users (
+  user_id CHAR(36) NOT NULL,
+  name VARCHAR(100)
+);
+```
+
+#### ✅ Insert using `UUID()`:
+
+```sql
+INSERT INTO users (user_id, name)
+VALUES (UUID(), 'John Doe');
+```
+
+#### ✅ From Node.js:
+
+```js
+const { v4: uuidv4 } = require('uuid');
+
+const id = uuidv4();
+await db.query('INSERT INTO users (user_id, name) VALUES (?, ?)', [id, 'John']);
+```
+
+---
+
+### **Custom Sequence Table (Manual Counter)**
+
+✅ Good if you need numeric IDs but don’t have auto-increment.
+
+#### 💡 Create a sequence table:
+
+```sql
+CREATE TABLE id_sequence (
+  entity_name VARCHAR(50) PRIMARY KEY,
+  current_id INT NOT NULL
+);
+
+INSERT INTO id_sequence VALUES ('users', 1000);
+```
+
+#### 💡 Use Stored Procedure or App Code to Generate ID:
+
+```sql
+START TRANSACTION;
+
+UPDATE id_sequence
+SET current_id = current_id + 1
+WHERE entity_name = 'users';
+
+SELECT current_id FROM id_sequence
+WHERE entity_name = 'users';
+
+COMMIT;
+```
+
+Then use that `current_id` in your insert.
+
+---
+
+### **Use TIMESTAMP + RANDOM (Low collision but not guaranteed unique)**
+
+```sql
+INSERT INTO users (user_id, name)
+VALUES (CONCAT(UNIX_TIMESTAMP(), '-', FLOOR(RAND() * 10000)), 'Jane Doe');
+```
+
+Not recommended for production-level uniqueness guarantees.
+
+---
+
+### **4. Hash-Based ID (e.g., SHA1 or MD5 of meaningful fields)**
+
+✅ Use when you can hash stable fields like email/username + timestamp.
+
+```sql
+INSERT INTO users (user_id, name)
+VALUES (SHA1(CONCAT('john@example.com', NOW())), 'John');
+```
+
+---
+
 
 
 

@@ -1178,7 +1178,6 @@ DELIMITER ;
 
 * Insert a user and **return the inserted ID** using `LAST_INSERT_ID()` via `OUT` parameter.
 * Avoids logic duplication and keeps Node.js code minimal.
-* 
 
 ### Example
 ```sql

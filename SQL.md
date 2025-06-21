@@ -1337,8 +1337,7 @@ VALUES (SHA1(CONCAT('john@example.com', NOW())), 'John');
 
 
 - I normalize all schemas to at least **3NF** to ensure data integrity. 
-- In performance-critical or reporting scenarios, 
-- I might denormalize or apply **BCNF**/**4NF** selectively. 
+- In performance-critical or reporting scenarios, I might denormalize or apply **BCNF**/**4NF** selectively. 
 - I also analyze access patterns to balance performance and consistency.”
 
 ## ✅ **1NF – First Normal Form (Atomic Columns)**

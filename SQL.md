@@ -1735,4 +1735,34 @@ ALTER TABLE StudentCourses
 | Foreign Key Constraints          | ❌ Prevents  | Structural protection, not rollback     |
 
 
+**Transaction – Delete with Rollback** 
+```sql
+START TRANSACTION;
 
+DELETE FROM employees WHERE id = 5;
+
+-- Optional: Check if delete worked
+SELECT * FROM employees WHERE id = 5;
+
+-- Now rollback the delete
+ROLLBACK;
+
+-- Confirm rollback
+SELECT * FROM employees WHERE id = 5;
+```
+
+**Triggers to Log Deletes**
+```sql
+CREATE TABLE employees_deleted_log (
+  id INT, name VARCHAR(100), deleted_at DATETIME
+);
+
+DELIMITER $$
+CREATE TRIGGER log_employee_delete
+BEFORE DELETE ON employees
+FOR EACH ROW
+BEGIN
+  INSERT INTO employees_deleted_log VALUES (OLD.id, OLD.name, NOW());
+END$$
+DELIMITER ;
+```

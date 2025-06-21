@@ -2,9 +2,11 @@
 - [WHERE Vs HAVING Vs GROUP BY](#WHERE-Vs-HAVING-Vs-GROUP-BY)  - [`INNER JOIN` vs `LEFT JOIN` vs `RIGHT JOIN`](#INNER-JOIN-vs-LEFT-JOIN-vs-RIGHT-JOIN)
 - [Primary Key vs Foreign Key vs Composite Key](#Primary-Key-vs-Foreign-Key-vs-Composite-Key)
 - [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL)  - [`IN` Operator](#in-operator) - [`TRUNCATE` vs `DELETE` vs `DROP`](#TRUNCATE-vs-DELETE-vs-DROP)
-- [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Normalization](#Normalization) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
+- [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
 - [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key)
+
+- [Normalization](#Normalization) - [Normal Form](#Normal-Form)
 
 **Database Migration**  - [Database migration](#Database-migration) - [Zero Downtime Migration](#Zero-Downtime-Migration) - [Rollback Strategy in DB Migration](#Rollback-Strategy-in-DB-Migration) - [Data Safety During Migrations](#Data-Safety-During-Migrations)
 
@@ -1330,6 +1332,148 @@ VALUES (SHA1(CONCAT('john@example.com', NOW())), 'John');
 
 
 
+
+# Normal Form
+
+
+- I normalize all schemas to at least **3NF** to ensure data integrity. 
+- In performance-critical or reporting scenarios, 
+- I might denormalize or apply **BCNF**/**4NF** selectively. 
+- I also analyze access patterns to balance performance and consistency.”
+
+## ✅ **1NF – First Normal Form (Atomic Columns)**
+
+### 🔸 Rule: No repeating groups or arrays; atomic values only.
+
+### ❌ **Violation Example**:
+
+| StudentID | Name | PhoneNumbers |
+| --------- | ---- | ------------ |
+| 1         | John | 12345, 67890 |
+
+Here, `PhoneNumbers` has multiple values in one cell – violates 1NF.
+
+### ✅ **1NF Fix**:
+
+| StudentID | Name | PhoneNumber |
+| --------- | ---- | ----------- |
+| 1         | John | 12345       |
+| 1         | John | 67890       |
+
+---
+
+## ✅ **2NF – Second Normal Form (No Partial Dependency)**
+
+### 🔸 Rule: Must be in 1NF and all non-key columns should depend on the whole **composite key**.
+
+### ❌ **Violation Example**:
+
+| OrderID | ProductID | ProductName |
+| ------- | --------- | ----------- |
+
+Assume primary key is `(OrderID, ProductID)`
+But `ProductName` depends only on `ProductID`, not the full key.
+
+### ✅ **2NF Fix**:
+
+Split into two tables:
+
+1. `Orders(OrderID, ProductID)`
+2. `Products(ProductID, ProductName)`
+
+---
+
+## ✅ **3NF – Third Normal Form (No Transitive Dependency)**
+
+### 🔸 Rule: Must be in 2NF and **no transitive dependency** (i.e., A → B → C)
+
+### ❌ **Violation Example**:
+
+| EmpID | EmpName | DeptID | DeptName |
+| ----- | ------- | ------ | -------- |
+
+Here, `DeptName` depends on `DeptID`, which depends on `EmpID`.
+
+### ✅ **3NF Fix**:
+
+Split into:
+
+1. `Employees(EmpID, EmpName, DeptID)`
+2. `Departments(DeptID, DeptName)`
+
+---
+
+## ✅ **BCNF – Boyce-Codd Normal Form**
+
+### 🔸 Rule: Every determinant must be a candidate key.
+
+### ❌ **Violation Example**:
+
+| Professor | Subject | Department |
+| --------- | ------- | ---------- |
+
+Assume:
+
+* A subject is taught by multiple professors
+* Each subject belongs to only one department
+  So: `Subject → Department` (not a candidate key) → violates BCNF.
+
+### ✅ **BCNF Fix**:
+
+Split into:
+
+1. `Subjects(Subject, Department)`
+2. `ProfessorSubjects(Professor, Subject)`
+
+---
+
+## ✅ **4NF – Fourth Normal Form (No Multi-Valued Dependencies)**
+
+### 🔸 Rule: No table should have two independent multi-valued facts.
+
+### ❌ **Violation Example**:
+
+| Student | Language | Hobby    |
+| ------- | -------- | -------- |
+| John    | English  | Football |
+| John    | Hindi    | Football |
+| John    | English  | Music    |
+| John    | Hindi    | Music    |
+
+Here, `Language` and `Hobby` are independent multi-valued attributes → violates 4NF.
+
+### ✅ **4NF Fix**:
+
+Split into:
+
+1. `StudentLanguages(Student, Language)`
+2. `StudentHobbies(Student, Hobby)`
+
+---
+
+## ✅ **5NF – Fifth Normal Form (No Join Dependency Loss)**
+
+### 🔸 Rule: No loss of information when joining decomposed tables.
+
+### ❌ **Example Scenario**:
+
+You decompose a table like:
+
+\| Supplier | Product | Region |
+
+into:
+
+* `SupplierProducts(Supplier, Product)`
+* `ProductRegions(Product, Region)`
+* `SupplierRegions(Supplier, Region)`
+
+But when joined back, **some combinations may be incorrect**.
+
+### ✅ 5NF ensures:
+
+All original combinations can be derived correctly without loss or incorrect additions.
+
+---
 
 
 

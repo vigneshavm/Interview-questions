@@ -272,6 +272,12 @@ SELECT name FROM employees_2024;
 
 - A process of organizing data to reduce redundancy and improve data integrity 
 - Involves dividing tables into smaller ones and defining relationships.
+- Normalization is the process of organizing data to reduce redundancy and dependency.
+- It improves data integrity and reduces storage cost. Key normal forms include:
+
+* **1NF**: Eliminate repeating groups, ensure atomicity.
+* **2NF**: Remove partial dependencies.
+* **3NF**: Remove transitive dependencies.
 
 
 

@@ -4,7 +4,8 @@
 
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
-- [View](#View) - [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key) 
+- [View](#View) - [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key)
+- [Triggers vs Stored Procedures](#Triggers-vs-Stored Procedures)
 - [Delete and Rollback](#Delete-and-Rollback)
 
 **Design DB** - [Designing a database](#Designing-a-database) - [Normalization](#Normalization) - [Normal Form](#Normal-Form) - [Denormalization](#denormalization)
@@ -1862,5 +1863,37 @@ SELECT * FROM EmployeeWithDepartment;
   ```
 
 ---
+
+
+
+
+## **Triggers vs Stored Procedures**
+
+| Feature               | **Trigger**                                                                | **Stored Procedure**                                                               |
+| --------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **Definition**        | A block of SQL code that **automatically executes** in response to events. | A **named block** of SQL code that executes when **explicitly called**.            |
+| **Invocation**        | Automatically triggered by **DML events** (INSERT, UPDATE, DELETE).        | Manually invoked by **application code** or a SQL command (`CALL procedure_name`). |
+| **Purpose**           | Used to **enforce business rules**, auditing, or validation at DB level.   | Used for **modularizing logic**, data processing, or repeated DB operations.       |
+| **Execution Context** | Tied to a **table or view**. Executes as part of the transaction.          | Independent and can include **complex logic and flow control**.                    |
+| **Performance**       | Can be **hard to debug** and impact performance silently.                  | Easier to monitor, test, and optimize.                                             |
+| **Parameters**        | Cannot accept parameters.                                                  | Can accept **input/output/inout parameters**.                                      |
+| **Use Case Examples** | - Audit table changes<br>- Enforce constraints                             | - Batch updates<br>- Reporting<br>- Encapsulate logic                              |
+
+---
+
+### ✅ **When to Use Which**
+
+* **Use Triggers** when:
+
+  * You need **automatic actions** based on DB changes.
+  * Enforcing **auditing, logging, or integrity rules**.
+
+* **Use Stored Procedures** when:
+
+  * You want **reusable logic** with parameters.
+  * Performing **multi-step operations** (e.g., data processing, reports).
+
+---
+
 
 

@@ -4,7 +4,7 @@
 
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
-- [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key) - [View][#View]
+- [View](#View) - [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key) 
 - [Delete and Rollback](#Delete-and-Rollback)
 
 **Design DB** - [Designing a database](#Designing-a-database) - [Normalization](#Normalization) - [Normal Form](#Normal-Form) - [Denormalization](#denormalization)

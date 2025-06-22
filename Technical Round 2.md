@@ -5,6 +5,7 @@
 - [Project Handled Both Backend and Frontend](#Project-Handled-Both-Backend-and-Frontend)
 - [Manage full stack development in sprints](#Manage-full-stack-development-in-sprints)
 - [Help junior developers get up to speed](#Help-junior-developers-get-up-to-speed)
+- [Handle poor code or performance from a team member](#Handle-poor-code-or-performance-from-a-team-member)
 
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
 
@@ -627,4 +628,12 @@ curl -X POST http://localhost:3001/order \
 **5. Support System:**
 - I encouraged them to ask questions freely and even set up a dedicated Slack thread for dev Q\&A. I also created Postman collections so they could test APIs independently.
 - As a result, they became independent contributors by the third sprint, owning full features like user notification APIs and booking history retrieval. Our ramp-up time dropped significantly, and team productivity improved by \~30%."\*
+
+
+## **Handle poor code or performance from a team member**
+- "At **LAppsys**, one junior dev introduced redundant DB queries causing latency. 
+- I reviewed the code, explained efficient MongoDB aggregation usage, and created a reusable service layer. 
+- I then added a logging interceptor to track API timings. 
+- With peer support, his performance improved, and our average API response time dropped by 35%."*
+
 

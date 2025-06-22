@@ -19,13 +19,9 @@
  
 **Upgrade** - [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13) - [Upgrade Node.js](#nodejs-upgrade) - [Upgrade TypeScript](#typescript-upgrade)
 
-- [Architectural Decisions](#architectural-decisions)
-- [Technical Leadership](#technical-leadership)
-- [Mentor and Guide Junior Developers](#mentor-and-guide-junior-developers)
-- [Lead Code Reviews](#lead-code-reviews)
-- [Optimize Applications](#optimize-applications)
-- [SDLC](#sdlc)
-- [Cross Functional Collaboration](#cross-functional-collaboration)
+- [Architectural Decisions](#architectural-decisions) - [Technical Leadership](#technical-leadership)
+- [Mentor and Guide Junior Developers](#mentor-and-guide-junior-developers) - [Lead Code Reviews](#lead-code-reviews)
+- [Optimize Applications](#optimize-applications) - [SDLC](#sdlc)  - [Cross Functional Collaboration](#cross-functional-collaboration)
 
 
 

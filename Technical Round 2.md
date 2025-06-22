@@ -8,6 +8,16 @@
 - [Handle poor code or performance from a team member](#Handle-poor-code-or-performance-from-a-team-member)
 - [Manage requirements when clients frequently change](#Manage-requirements-when-clients-frequently-change)
 - [Handle production issues when a client is upset](#Handle-production-issues-when-a-client-is-upset)
+- [Track project progress](#track-project-progress)
+- [Estimate story points](#estimate-story-points)
+- [Conflict with colleague or manager](#conflict-with-colleague-or-manager)
+- [Handle negative feedback](#handle-negative-feedback)
+- [Performant and Secure Backend APIs](#performant-and-secure-backend-apis)
+- [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs)
+- [Leading a team and 2 devs are stuck on different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues)
+- [Security issue on production](#security-issue-on-production)
+- [Why join Encora](#why-join-encora)
+
 
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
 
@@ -687,3 +697,61 @@ I immediately took the following steps:
  * Enhanced QA coverage for all possible form configurations
 
 - As a result, similar issues never occurred again. The client appreciated our responsiveness, and our team gained credibility for being proactive under pressure."\*
+- 
+
+
+## **Track project progress**
+
+> *"Across all projects, I use **JIRA** for sprint planning, **Slack** for internal comms, and **Confluence** for documentation. In **IAppsys**, we used GitHub Projects and tracked unit test coverage via Jest. Stand-ups and burndown charts helped us stay on track — we consistently delivered 85–90% of committed sprint items."*
+
+---
+
+## **Estimate story points**
+
+> *"I base estimates on prior complexity and edge case handling. In **Shoutout**, a payment module involving Razorpay integration was assigned 8 points due to external dependencies and testing. We balanced velocity over time and maintained historical velocity tracking. This allowed realistic sprint planning and prevented burnout."*
+
+---
+
+## **Conflict with colleague or manager**
+
+> *"During **BITS PSMS**, a teammate insisted on procedural-style coding in Angular services. I preferred DI and RxJS pipelines. I proposed we spike both versions and test with live data. The reactive version proved more scalable. By letting facts guide decisions, we avoided conflict and improved maintainability."*
+
+---
+
+## **Handle negative feedback**
+
+> *"In **LAppsys**, a product owner questioned the value of server-side validation. I explained our decision using security standards and showed logs of previous validation bypass attempts. I also demoed user-facing validation messages. This changed their mind, and we made input handling a reusable module."*
+
+---
+
+## **Performant and Secure Backend APIs**
+
+> *"In **Shoutout**, I optimized Node.js APIs with pagination, indexing, and Redis caching for high-read endpoints like celebrity listings. Security was handled with JWT, IP throttling, and validation via `express-validator`. For video uploads, we used signed URLs with Azure Blob Storage, ensuring time-bound access. We also followed PCI-DSS guidelines for payment flow."*
+
+---
+
+## **Release gets delayed due to unexpected bugs**
+
+> *"In **LAppsys**, a TANF form validation logic crashed for edge cases during UAT. I immediately organized a triage meeting, isolated the logic, wrote test cases to replicate it, and patched the bug. I documented the change, and we pushed a hotfix within 12 hours, avoiding any downstream processing delays."*
+
+---
+
+## **Leading a team and 2 devs are stuck on different issues**
+
+> *"This happened in **Shoutout** — one dev struggled with JWT auth expiry issues, another with payment webhook inconsistencies. I stepped in on the JWT issue directly due to its urgency and paired the webhook task with another mid-level dev. Both issues were resolved in the same day due to delegation and priority handling."*
+
+---
+
+## **security issue on production**
+
+> *"In **Shoutout**, a user discovered they could access other video links using guessable URLs. We hotfixed it by generating UUID-based URLs and restricting access with signed tokens. I added a server-side access check based on user-booking ID, wrote a test case, and enabled Sentry to track any further access attempts."*
+
+---
+
+## **Why join Encora**
+
+> *"Encora’s focus on digital innovation and end-to-end product delivery aligns well with my experience in full-stack leadership roles. I've worked on scalable systems like LAppsys and secure, user-driven platforms like Shoutout. I'm looking for a team where I can continue driving impactful solutions, mentor engineers, and grow with global client exposure."*
+
+---
+
+

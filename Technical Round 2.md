@@ -631,9 +631,13 @@ curl -X POST http://localhost:3001/order \
 
 
 ## **Handle poor code or performance from a team member**
-- "At **LAppsys**, one junior dev introduced redundant DB queries causing latency. 
-- I reviewed the code, explained efficient MongoDB aggregation usage, and created a reusable service layer. 
-- I then added a logging interceptor to track API timings. 
-- With peer support, his performance improved, and our average API response time dropped by 35%."*
+- *"In the **TANFApp** project at **IAppsys**, we were migrating a legacy MS Access system into a modern full-stack platform using **Node.js and Express** with a **PostgreSQL backend**. During a sprint, I noticed one team member repeatedly wrote inefficient SQL queries within the Node.js service layer — like fetching entire tables and filtering in JS instead of using SQL `WHERE` clauses. This caused increased API response time and unnecessary memory usage.*
+- Instead of just flagging the issue, I did a **code walkthrough** with him and pointed out specific anti-patterns — like N+1 queries and missing joins. I also showed how to use **parameterized queries** safely with `pg-promise` to avoid SQL injection and improve performance.\*
+To help him improve:
+- I created a **query optimization guide** (e.g., using `LIMIT`, `JOIN`, and indexing)
+- We pair-programmed to refactor the worst-performing endpoint
+- I introduced a **logging wrapper** using `winston` to log query execution times for profiling
+- We implemented basic integration tests with realistic data to validate the logic end-to-end
+- Within a couple of sprints, his understanding of SQL inside Node.js improved, and he optimized a benefits calculation endpoint, reducing average response time from **4.5 seconds to under 1.2 seconds**. This also helped improve database load handling under peak conditions."\*
 
 

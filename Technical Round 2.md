@@ -10,7 +10,7 @@
 - [Handle negative feedback](#handle-negative-feedback)
 - [Performant and Secure Backend APIs](#performant-and-secure-backend-apis)
 - [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs)
-- [Unblocking Teams and Prioritizing Support]](#leading-a-team-and-2-devs-are-stuck-on-different-issues)
+- [Unblocking Teams and Prioritizing Support](#leading-a-team-and-2-devs-are-stuck-on-different-issues)
 - [Security issue on production](#security-issue-on-production)
 - [Why join Encora](#why-join-encora)
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)

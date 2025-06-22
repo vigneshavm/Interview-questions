@@ -1,54 +1,67 @@
+## **Project & Team Leadership**
 
-**Project & Team Leadership**
-
-- [Full-Stack Project Ownership](#Project-Handled-Both-Backend-and-Frontend)
-- [Managing Full-Stack Development in Sprints](#Manage-full-stack-development-in-sprints)
-- [Onboarding and Mentoring Junior Developers](#Help-junior-developers-get-up-to-speed)
+- [Full-Stack Project Ownership](#project-handled-both-backend-and-frontend)
+- [Managing Full-Stack Development in Sprints](#manage-full-stack-development-in-sprints)
+- [Onboarding and Mentoring Junior Developers](#help-junior-developers-get-up-to-speed)
 - [Onboard New Developer](#onboard-new-developer)
-- [Improving Team Code Quality and Performance](#Handle-poor-code-or-performance-from-a-team-member)
-- [Teammate consistently miss deadlines](#teammate-consistently-miss-deadlines)
-- [Teammate is blocked and waiting for help](#teammate-is-blocked-and-waiting-for-help)
+- [Improving Team Code Quality and Performance](#handle-poor-code-or-performance-from-a-team-member)
+- [Teammate Consistently Miss Deadlines](#teammate-consistently-miss-deadlines)
+- [Teammate is Blocked and Waiting for Help](#teammate-is-blocked-and-waiting-for-help)
 
-**Architecture & System Design**
-- [Approach system design for a new product](#approach-system-design-for-a-new-product)
-- [Design a system that is scalable and highly available](#design-a-system-that-is-scalable-and-highly-available)
-- [Design a system like YouTube / Uber / WhatsApp?](#design-a-system-like-youtube--uber--whatsapp)
-- [Recent architectural decision](#recent-architectural-decision)
-- [Decide Between Inhouse vs Thirdparty service](#decide-between-inhouse-vs-thirdparty-service)
+## **Architecture & System Design**
 
-**System Design Concepts**
+- [Approach System Design for a New Product](#approach-system-design-for-a-new-product)
+- [Design a System That is Scalable and Highly Available](#design-a-system-that-is-scalable-and-highly-available)
+- [Design a System like YouTube / Uber / WhatsApp?](#design-a-system-like-youtube--uber--whatsapp)
+- [Recent Architectural Decision](#recent-architectural-decision)
+- [Decide Between Inhouse vs Thirdparty Service](#decide-between-inhouse-vs-thirdparty-service)
 
-- [Server side rendering vs Client side rendering](#server-side-rendering-vs-client-side-rendering)
-- [Decide between SQL and NoSQL](#decide-between-sql-and-nosql)
-- [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems)
-- [Implement rate limiting](#implement-rate-limiting)
-- [Ensure observability](#ensure-observability)
-- [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices)
-- [Ensure data integrity across microservices?](#ensure-data-integrity-across-microservices)
-- [Prevent single points of failure in a system design](#prevent-single-points-of-failure-in-a-system-design)
+## **System Design Concepts**
 
-**Client Facing** 
-- [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change)
-- [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset)
-- [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs)
-- [Security issue on production](#security-issue-on-production)
+- [Server Side Rendering vs Client Side Rendering](#server-side-rendering-vs-client-side-rendering)
+- [Decide Between SQL and NoSQL](#decide-between-sql-and-nosql)
+- [Handle Consistency in Distributed Systems](#handle-consistency-in-distributed-systems)
+- [Implement Rate Limiting](#implement-rate-limiting)
+- [Ensure Observability](#ensure-observability)
+- [Tradeoffs Between Monolith and Microservices](#tradeoffs-between-monolith-and-microservices)
+- [Ensure Data Integrity Across Microservices?](#ensure-data-integrity-across-microservices)
+- [Prevent Single Points of Failure in a System Design](#prevent-single-points-of-failure-in-a-system-design)
 
-- [Project Tracking and Progress Monitoring](#track-project-progress) - [Estimate story points](#estimate-story-points)
-- [Conflict with colleague or manager](#conflict-with-colleague-or-manager)
-- [Handle negative feedback](#handle-negative-feedback)
+## **Client Facing**
+
+- [Handling Frequent Client Requirement Changes](#manage-requirements-when-clients-frequently-change)
+- [Production Issues Under Pressure (Client Upset)](#handle-production-issues-when-a-client-is-upset)
+- [Release Gets Delayed Due to Unexpected Bugs](#release-gets-delayed-due-to-unexpected-bugs)
+- [Security Issue on Production](#security-issue-on-production)
+- [Project Tracking and Progress Monitoring](#track-project-progress)
+- [Estimate Story Points](#estimate-story-points)
+- [Conflict with Colleague or Manager](#conflict-with-colleague-or-manager)
+- [Handle Negative Feedback](#handle-negative-feedback)
 - [Performant and Secure Backend APIs](#performant-and-secure-backend-apis)
 - [Unblocking Teams and Prioritizing Support](#leading-a-team-and-2-devs-are-stuck-on-different-issues)
-- [Why join Encora](#why-join-encora)
+- [Why Join Encora](#why-join-encora)
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
 
-**Microservice Communication** - [Using Queue](#microservice-communication-using-queue) - [Using HTTP](#microservice-communication-using-http)
- 
-**Upgrade** - [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13) - [Upgrade Node.js](#nodejs-upgrade) - [Upgrade TypeScript](#typescript-upgrade)
+## **Microservice Communication**
 
-- [Architectural Decisions](#architectural-decisions) - [Technical Leadership](#technical-leadership)
-- [Mentor and Guide Junior Developers](#mentor-and-guide-junior-developers) - [Lead Code Reviews](#lead-code-reviews)
-- [Optimize Applications](#optimize-applications) - [SDLC](#sdlc)  - [Cross Functional Collaboration](#cross-functional-collaboration)
+- [Using Queue](#microservice-communication-using-queue)
+- [Using HTTP](#microservice-communication-using-http)
 
+## **Upgrade**
+
+- [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13)
+- [Upgrade Node.js](#nodejs-upgrade)
+- [Upgrade TypeScript](#typescript-upgrade)
+
+## **Additional Leadership Topics**
+
+- [Architectural Decisions](#architectural-decisions)
+- [Technical Leadership](#technical-leadership)
+- [Mentor and Guide Junior Developers](#mentor-and-guide-junior-developers)
+- [Lead Code Reviews](#lead-code-reviews)
+- [Optimize Applications](#optimize-applications)
+- [SDLC](#sdlc)
+- [Cross Functional Collaboration](#cross-functional-collaboration)
 
 
 ### **Troubleshooting Debugging and Upgrading existing software**

@@ -4,7 +4,7 @@
 
 - [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) - [Indexes](#Indexes)  - [Index Drawbacks](#Index-Drawbacks)
 - [Common Table Expression](#CTE) - [Detect and avoid SQL injection](#Detect-and-avoid-SQL-injection) - [Window Functions](#Window-Functions)
-- [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key)
+- [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key) - [View][#View]
 - [Delete and Rollback](#Delete-and-Rollback)
 
 **Design DB** - [Designing a database](#Designing-a-database) - [Normalization](#Normalization) - [Normal Form](#Normal-Form) - [Denormalization](#denormalization)
@@ -1766,3 +1766,101 @@ BEGIN
 END$$
 DELIMITER ;
 ```
+
+
+
+## VIEW
+
+- In MySQL, a **VIEW** is a **virtual table** based on the result of an SQL query. 
+- It does **not store data** itself but provides a way to simplify complex queries, improve readability, or abstract certain logic.
+
+---
+
+### **Syntax to Create a View**
+
+```sql
+CREATE VIEW view_name AS
+SELECT columns
+FROM tables
+WHERE conditions;
+```
+
+---
+
+### **Example**
+
+Suppose you have the following tables:
+
+```sql
+CREATE TABLE Employees (
+    id INT,
+    name VARCHAR(50),
+    department_id INT
+);
+
+CREATE TABLE Departments (
+    id INT,
+    dept_name VARCHAR(50)
+);
+```
+
+Insert Sample Data:
+
+```sql
+INSERT INTO Employees VALUES (1, 'Alice', 101), (2, 'Bob', 102), (3, 'Carol', 101);
+INSERT INTO Departments VALUES (101, 'Engineering'), (102, 'HR');
+```
+
+Create a View to show employee name and department:
+
+```sql
+CREATE VIEW EmployeeWithDepartment AS
+SELECT e.name, d.dept_name
+FROM Employees e
+JOIN Departments d ON e.department_id = d.id;
+```
+
+Use the View:
+
+```sql
+SELECT * FROM EmployeeWithDepartment;
+```
+
+🧾 **Output:**
+
+```
++--------+--------------+
+| name   | dept_name    |
++--------+--------------+
+| Alice  | Engineering  |
+| Bob    | HR           |
+| Carol  | Engineering  |
++--------+--------------+
+```
+
+---
+
+### **Additional View Commands**
+
+* **Update a View:**
+
+  ```sql
+  CREATE OR REPLACE VIEW view_name AS
+  SELECT ...
+  ```
+
+* **Drop a View:**
+
+  ```sql
+  DROP VIEW view_name;
+  ```
+
+* **Check View Definition:**
+
+  ```sql
+  SHOW CREATE VIEW view_name;
+  ```
+
+---
+
+

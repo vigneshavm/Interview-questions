@@ -2,6 +2,13 @@
 - [Managing Full-Stack Development in Sprints](#Manage-full-stack-development-in-sprints)
 - [Onboarding and Mentoring Junior Developers](#Help-junior-developers-get-up-to-speed)
 - [Improving Team Code Quality and Performance](#Handle-poor-code-or-performance-from-a-team-member)
+- [Teammate consistently miss deadlines](#teammate-consistently-miss-deadlines)
+- [Teammate is blocked and waiting for help](#teammate-is-blocked-and-waiting-for-help)
+- [Onboard New Developer](#onboard-new-developer)
+- [Decide Between Inhouse vs Thirdparty service](#decide-between-inhouse-vs-thirdparty-service)
+- [Recent architectural decision](#recent-architectural-decision)
+- [Server side rendering vs Client side rendering](#server-side-rendering-vs-client-side-rendering)
+
   
 **Client Facing** - [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change) - [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset) - [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs) - [Security issue on production](#security-issue-on-production)
 
@@ -774,4 +781,60 @@ I immediately took the following steps:
 - I schedule **regular check-ins** during the first month, ensure access to **documentation**, and foster **early integration into team culture**.
 
 ---
+
+
+
+###  **Decide Between Inhouse vs Thirdparty service**
+
+- My approach is **cost-benefit and risk driven**, with a focus on **time-to-market, scalability**, and **long-term maintainability**.
+ I consider:
+* **Time Sensitivity**: If we need a quick solution or **MVP**, I prefer **third-party services**.
+* **Core vs Non-Core Functionality**: If it’s **not our core business logic** (e.g., authentication, email delivery, payments), I lean toward **well-established third-party tools**.
+* **Customization Needs**: If heavy **customization or tight integration** is required, I consider **building in-house**.
+* **Cost & Licensing**: I assess **licensing costs**, vendor lock-in, and compare it with the **development + maintenance cost** in-house.
+* **Security & Compliance**: For **sensitive domains** like healthcare or finance, compliance (e.g., HIPAA) might **force in-house development**.
+
+- The goal is to **balance development effort, flexibility, and sustainability**.
+
+---
+
+### **Recent architectural decision**
+
+
+- In a recent project for a **multi-tenant education platform**, we needed **scalability, modularity**, and **fast feature delivery**.
+I proposed a **microservices-based architecture** with:
+ * **Node.js + Express** for backend services for **performance and developer familiarity**.
+ * **MongoDB** for fast and flexible **schema-less design** to handle varied course content.
+ * **React + Redux** on the frontend for **component reuse, state management**, and **SEO-friendly SSR fallback** for some pages.
+ * **Docker + Kubernetes** for **scalable deployments**, and **GitHub Actions** for CI/CD.
+
+ We chose this stack because it aligned with:
+
+ * Our team's **existing expertise** (MEAN/MERN)
+ * **API-first needs**
+ * A roadmap that included **adding mobile apps via React Native** later
+
+- This helped us **deliver modules faster**, enabled **independent scaling**, and improved **fault isolation**.
+
+---
+
+### **server side rendering vs client side rendering**
+
+
+- I decide between SSR and CSR based on **SEO, performance, and user experience needs**:
+ * **Server-Side Rendering (SSR)**:
+
+   * Best when **SEO is critical** (e.g., landing pages, marketing, eCommerce).
+   * Improves **initial load time** on slow networks.
+   * Useful for **social media previews** and **public-facing content**.
+ * **Client-Side Rendering (CSR)**:
+
+   * Better for **dynamic, user-authenticated apps** (e.g., dashboards, portals).
+   * Once loaded, it offers a **more fluid SPA experience**.
+   * Reduces server load and is easier to **scale horizontally**.
+
+- I also sometimes use **hybrid approaches** like **Next.js** or **Nuxt** that provide **SSR where needed** and **CSR fallback** for user interactions—best of both worlds.
+
+---
+
 

@@ -605,20 +605,25 @@ curl -X POST http://localhost:3001/order \
 
 ## **Help junior developers get up to speed**
 
-- *"In the **Shoutout project**, where I worked on the Node.js backend, I helped onboard two junior developers who were new to both the codebase and the overall architecture.*
-- To get them up to speed quickly, I followed a structured approach:
+- *"In the **Shoutout project**, where I worked on the Node.js backend, I helped onboard two junior developers who were new to both the codebase and the overall architecture."*
+- "To get them up to speed quickly, I followed a structured approach":
+  
 **1. Knowledge Transfer & Documentation:**
 - I created a **developer onboarding guide** that included:
 - * API architecture overview
 - * Database schema (ER diagrams)
 - * Key flows like video request lifecycle, payment via Razorpay, and escrow logic
 - * Environment setup steps and useful CLI scripts
+    
 **2. Pair Programming & Walkthroughs:**
 - For the first couple of weeks, I did **pair programming** with them — especially on complex flows like the Razorpay integration and video delivery status updates. I explained async patterns, middleware logic, and error-handling strategies (try/catch, async/await, and centralized error middleware).
+  
 **3. Small Wins & First PRs:**
 - I assigned them small, low-risk tasks initially — like updating logging, adding request validation with `express-validator`, or writing unit tests using Jest. This helped build their confidence.
+  
 **4. Code Reviews & Feedback:**
 - I made sure to review their PRs constructively — offering suggestions on structure, naming, and logic — and also praised clean and thoughtful code. I used comments as coaching tools, not just corrections.
+  
 **5. Support System:**
 - I encouraged them to ask questions freely and even set up a dedicated Slack thread for dev Q\&A. I also created Postman collections so they could test APIs independently.
 - As a result, they became independent contributors by the third sprint, owning full features like user notification APIs and booking history retrieval. Our ramp-up time dropped significantly, and team productivity improved by \~30%."\*

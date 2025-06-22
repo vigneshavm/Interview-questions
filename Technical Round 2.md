@@ -6,6 +6,7 @@
 - [Manage full stack development in sprints](#Manage-full-stack-development-in-sprints)
 - [Help junior developers get up to speed](#Help-junior-developers-get-up-to-speed)
 - [Handle poor code or performance from a team member](#Handle-poor-code-or-performance-from-a-team-member)
+- [Manage requirements when clients frequently change](#Manage-requirements-when-clients-frequently-change)
 
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
 
@@ -641,3 +642,18 @@ To help him improve:
 - Within a couple of sprints, his understanding of SQL inside Node.js improved, and he optimized a benefits calculation endpoint, reducing average response time from **4.5 seconds to under 1.2 seconds**. This also helped improve database load handling under peak conditions."\*
 
 
+## **Manage requirements when clients frequently change**
+
+- *"In the **BITS PSMS** project, I led the frontend (Angular) and helped coordinate full-stack delivery. Our client was BITS faculty and program coordinators — and they often revised requirements based on internal academic policy changes.*
+- For example, mid-sprint, they introduced a new rule: students should be able to **edit internship preferences** within a limited time window — a feature not part of the original scope.\*
+To handle this smoothly, I followed these steps:
+**Document the Change Clearly:**
+- I updated the user story in our backlog, documented the new rule in Confluence, and worked with the stakeholder to finalize the logic.
+**Feature Flag & Config-Based Logic:**
+- I modified the Angular app to check configuration flags from the backend and enabled/disabled form fields dynamically. This helped us make changes without hardcoding policy logic.
+**Backend Adjustments:**
+- Coordinated with the backend developer to add time-window validation at the API level to ensure data consistency.
+**Impact Analysis & Re-prioritization:**
+- I reviewed what work had to be paused or rescheduled and discussed the trade-offs during the sprint review. We moved lower-priority items to the next sprint.
+- As a result, we were able to integrate the change without missing our demo milestone. 
+- Over time, we also added a **‘policy config’ module** to handle such changes more dynamically, reducing the impact of future scope changes."

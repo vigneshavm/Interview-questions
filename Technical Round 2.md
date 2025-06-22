@@ -589,19 +589,14 @@ curl -X POST http://localhost:3001/order \
 
 - *In the **TANFApp migration project** at IAppsys, we were tasked with modernizing a legacy **MS Access-based application** into a **React + Node.js full-stack web application**. I was responsible for leading and coordinating full-stack development during 2-week sprints.*
 
-**Sprint Planning:**
-- *We started each sprint by analyzing legacy MS Access forms, VBA logic, and database structure. I then worked with the BA and stakeholders to convert those into **modular user stories** for both frontend and backend teams. For example, one epic like 'Eligibility Determination' was split into UI form design, business rules API, and backend DB mapping logic.*
+**Sprint Planning:** - *We started each sprint by analyzing legacy MS Access forms, VBA logic, and database structure. I then worked with the BA and stakeholders to convert those into **modular user stories** for both frontend and backend teams. For example, one epic like 'Eligibility Determination' was split into UI form design, business rules API, and backend DB mapping logic.*
 
-**Backend Tasks:**
-- *Using **Node.js + Express**, I created REST APIs that abstracted business rules previously embedded in MS Access queries and VBA. We used **Sequelize ORM** with a new **PostgreSQL schema**, handling validations, lookup table mappings, and user sessions securely with JWT.*
+**Backend Tasks:** - *Using **Node.js + Express**, I created REST APIs that abstracted business rules previously embedded in MS Access queries and VBA. We used **Sequelize ORM** with a new **PostgreSQL schema**, handling validations, lookup table mappings, and user sessions securely with JWT.*
 
-**Frontend Tasks:**
-- *On the frontend, I used **React with Redux** for state management and built dynamic forms with reusable components. I ensured accessibility (A11Y compliance), form validation using Yup, and controlled form flow matching legacy business logic.*
+**Frontend Tasks:** - *On the frontend, I used **React with Redux** for state management and built dynamic forms with reusable components. I ensured accessibility (A11Y compliance), form validation using Yup, and controlled form flow matching legacy business logic.*
 
-**Coordination & Integration:**
-- *I ensured frontend and backend teams were aligned via shared **OpenAPI (Swagger) docs**, created mock APIs for parallel development, and used Postman collections for QA. We maintained our sprint board in **JIRA**, held daily stand-ups, and had weekly reviews with product stakeholders.*
+**Coordination & Integration:** - *I ensured frontend and backend teams were aligned via shared **OpenAPI (Swagger) docs**, created mock APIs for parallel development, and used Postman collections for QA. We maintained our sprint board in **JIRA**, held daily stand-ups, and had weekly reviews with product stakeholders.*
 
-**Outcome:**
-- *This sprint-driven, structured approach helped us replace 100+ legacy MS Access screens in phased sprints and improved the user onboarding experience. We also reduced page load time by over 60% compared to the old system."*
+**Outcome:** - *This sprint-driven, structured approach helped us replace 100+ legacy MS Access screens in phased sprints and improved the user onboarding experience. We also reduced page load time by over 60% compared to the old system."*
 
 ---

@@ -1,19 +1,25 @@
+
+**Project & Team Leadership**
+
 - [Full-Stack Project Ownership](#Project-Handled-Both-Backend-and-Frontend)
 - [Managing Full-Stack Development in Sprints](#Manage-full-stack-development-in-sprints)
 - [Onboarding and Mentoring Junior Developers](#Help-junior-developers-get-up-to-speed)
+- [Onboard New Developer](#onboard-new-developer)
 - [Improving Team Code Quality and Performance](#Handle-poor-code-or-performance-from-a-team-member)
 - [Teammate consistently miss deadlines](#teammate-consistently-miss-deadlines)
 - [Teammate is blocked and waiting for help](#teammate-is-blocked-and-waiting-for-help)
-- [Onboard New Developer](#onboard-new-developer)
-- [Decide Between Inhouse vs Thirdparty service](#decide-between-inhouse-vs-thirdparty-service)
-- [Recent architectural decision](#recent-architectural-decision)
-- [Server side rendering vs Client side rendering](#server-side-rendering-vs-client-side-rendering)
 
-
+**Architecture & System Design**
 - [Approach system design for a new product](#approach-system-design-for-a-new-product)
 - [Design a system that is scalable and highly available](#design-a-system-that-is-scalable-and-highly-available)
-- [Decide between SQL and NoSQL](#decide-between-sql-and-nosql)
 - [Design a system like YouTube / Uber / WhatsApp?](#design-a-system-like-youtube--uber--whatsapp)
+- [Recent architectural decision](#recent-architectural-decision)
+- [Decide Between Inhouse vs Thirdparty service](#decide-between-inhouse-vs-thirdparty-service)
+
+**System Design Concepts**
+
+- [Server side rendering vs Client side rendering](#server-side-rendering-vs-client-side-rendering)
+- [Decide between SQL and NoSQL](#decide-between-sql-and-nosql)
 - [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems)
 - [Implement rate limiting](#implement-rate-limiting)
 - [Ensure observability](#ensure-observability)
@@ -21,9 +27,6 @@
 - [Ensure data integrity across microservices?](#ensure-data-integrity-across-microservices)
 - [Prevent single points of failure in a system design](#prevent-single-points-of-failure-in-a-system-design)
 
-
-
-  
 **Client Facing** - [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change) - [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset) - [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs) - [Security issue on production](#security-issue-on-production)
 
 - [Project Tracking and Progress Monitoring](#track-project-progress) - [Estimate story points](#estimate-story-points)

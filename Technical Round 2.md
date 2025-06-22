@@ -4,7 +4,7 @@
 - [Improving Team Code Quality and Performance](#Handle-poor-code-or-performance-from-a-team-member)
 - [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change)
 - [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset)
-- [Project Tracking and Progress Monitoring]](#track-project-progress)
+- [Project Tracking and Progress Monitoring](#track-project-progress)
 - [Estimate story points](#estimate-story-points)
 - [Conflict with colleague or manager](#conflict-with-colleague-or-manager)
 - [Handle negative feedback](#handle-negative-feedback)

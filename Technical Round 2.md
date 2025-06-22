@@ -1,7 +1,3 @@
-
-
-
-
 - [Project Handled Both Backend and Frontend](#Project-Handled-Both-Backend-and-Frontend)
 - [Manage full stack development in sprints](#Manage-full-stack-development-in-sprints)
 - [Help junior developers get up to speed](#Help-junior-developers-get-up-to-speed)

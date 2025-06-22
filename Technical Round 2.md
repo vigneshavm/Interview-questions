@@ -743,3 +743,35 @@ I immediately took the following steps:
 ---
 
 
+
+
+###  **Teammate consistently miss deadlines**
+
+- First, I avoid jumping to conclusions and start by **gathering context**. I’d schedule **1:1 meetings** with each developer to understand the root cause—whether it’s **unclear requirements, overcommitment, lack of skills**, or **personal challenges**.
+- If it's a **skill or estimation issue**, I pair them with a senior dev or adjust **task breakdown and estimations**. If it’s related to unclear scope, I collaborate with **product or BA teams** to improve clarity.
+- I also review our **sprint planning process** to ensure we're setting **realistic expectations**. I focus on **coaching first**, but if the pattern continues, I set **clear improvement expectations and timelines**.
+- The key is to **minimize delivery impact** while **supporting team growth**.
+
+---
+
+### **Teammate is blocked and waiting for help**
+
+
+- I act quickly to ensure the **junior developer isn’t stuck for long**—that’s both a **delivery and morale risk**.
+- I speak to the **senior dev** to understand their workload and help them **reprioritize**. Often, a **10-minute unblock** prevents **hours of lost time**.
+- If the senior truly can’t assist, I explore options: **Can I or someone else help?** Is there **documentation** or past code available?
+- Long-term, I promote a **team-first culture** where **unblocking others is prioritized**, not seen as a distraction. Everyone understands that a **short unblocking task is often more valuable** than finishing individual tickets.
+
+---
+
+### **Onboard New Developer**
+
+
+- I follow a **structured onboarding plan** with three main stages:
+* **Day 1–3:** Ensure **environment setup, repo access**, and **basic system walkthroughs**.
+* **Week 1:** Assign a **buddy**, introduce them to the **product, architecture, dev workflow**, and tools like **Git, Postman, Jira, CI/CD pipelines**.
+* **Week 2 onward:** Assign **low-risk tasks** like **bug fixes or minor features** to build **confidence and code familiarity**.
+- I schedule **regular check-ins** during the first month, ensure access to **documentation**, and foster **early integration into team culture**.
+
+---
+

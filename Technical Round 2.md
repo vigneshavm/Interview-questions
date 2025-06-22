@@ -2,16 +2,14 @@
 - [Managing Full-Stack Development in Sprints](#Manage-full-stack-development-in-sprints)
 - [Onboarding and Mentoring Junior Developers](#Help-junior-developers-get-up-to-speed)
 - [Improving Team Code Quality and Performance](#Handle-poor-code-or-performance-from-a-team-member)
-- [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change)
-- [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset)
-- [Project Tracking and Progress Monitoring](#track-project-progress)
-- [Estimate story points](#estimate-story-points)
+  
+**Client Facing** - [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change) - [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset) - [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs) - [Security issue on production](#security-issue-on-production)
+
+- [Project Tracking and Progress Monitoring](#track-project-progress) - [Estimate story points](#estimate-story-points)
 - [Conflict with colleague or manager](#conflict-with-colleague-or-manager)
 - [Handle negative feedback](#handle-negative-feedback)
 - [Performant and Secure Backend APIs](#performant-and-secure-backend-apis)
-- [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs)
 - [Unblocking Teams and Prioritizing Support](#leading-a-team-and-2-devs-are-stuck-on-different-issues)
-- [Security issue on production](#security-issue-on-production)
 - [Why join Encora](#why-join-encora)
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
 

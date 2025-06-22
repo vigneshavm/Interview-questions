@@ -9,6 +9,18 @@
 - [Recent architectural decision](#recent-architectural-decision)
 - [Server side rendering vs Client side rendering](#server-side-rendering-vs-client-side-rendering)
 
+- [Approach system design for a new product](#approach-system-design-for-a-new-product)
+- [Design a system that is scalable and highly available](#design-a-system-that-is-scalable-and-highly-available)
+- [Decide between SQL and NoSQL](#decide-between-sql-and-nosql)
+- [Design a system like YouTube / Uber / WhatsApp?](#design-a-system-like-youtube--uber--whatsapp)
+- [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems)
+- [Implement rate limiting](#implement-rate-limiting)
+- [Ensure observability](#ensure-observability)
+- [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices)
+- [Ensure data integrity across microservices?](#ensure-data-integrity-across-microservices)
+- [Prevent single points of failure in a system design](#prevent-single-points-of-failure-in-a-system-design)
+
+
   
 **Client Facing** - [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change) - [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset) - [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs) - [Security issue on production](#security-issue-on-production)
 
@@ -836,5 +848,115 @@ I proposed a **microservices-based architecture** with:
 - I also sometimes use **hybrid approaches** like **Next.js** or **Nuxt** that provide **SSR where needed** and **CSR fallback** for user interactions—best of both worlds.
 
 ---
+
+
+##  **Approach system design for a new product**
+
+> I follow a structured approach:
+>
+> 1. **Understand the Requirements** – Both functional and non-functional (scalability, latency, consistency).
+> 2. **Identify Key Components** – Divide the system into services, APIs, databases, and interfaces.
+> 3. **Define Data Flow & Communication** – Synchronous vs. asynchronous, REST/gRPC/message queues.
+> 4. **Plan for Scalability** – Horizontal scaling, caching, load balancing.
+> 5. **Ensure Fault Tolerance** – Retry logic, circuit breakers, redundancy.
+> 6. **Address Data Storage** – SQL vs NoSQL, indexing, sharding.
+> 7. **Security & Compliance** – Authentication (OAuth2/JWT), rate limiting, encryption.
+> 8. **Monitoring & Observability** – Logs, metrics, alerts.
+
+---
+
+##  **Design a system that is scalable and highly available**
+
+> * **Scalability**: I use stateless services with horizontal scaling (e.g., auto-scaling groups in AWS), database sharding, and distributed caches like Redis or Memcached.
+> * **High Availability**: I ensure redundancy at every layer: multiple instances, active-passive DB replicas, and use of load balancers with health checks.
+> * **Resilience**: Use patterns like circuit breakers (e.g., Hystrix), retries with exponential backoff, and message queues for decoupling services.
+
+---
+
+##  **Decide between SQL and NoSQL**
+
+> * I choose **SQL** when I need ACID compliance, complex joins, and transactional integrity (e.g., payment systems).
+> * I choose **NoSQL** (MongoDB, DynamoDB) for high write throughput, flexible schema, and horizontal scalability (e.g., logging, real-time analytics).
+> * Sometimes, I use both in the same system—polyglot persistence—depending on the use case.
+
+---
+
+##  **Design a system like YouTube / Uber / WhatsApp?**
+
+These types of questions test your **end-to-end architecture thinking**.
+
+**Answer (high level):**
+
+> * **Frontend**: Web and mobile clients with responsive design.
+> * **Backend Services**: Microservices architecture using REST/gRPC. Services include user management, video management, chat, notifications, analytics.
+> * **Storage**: Media stored in object storage (like AWS S3), metadata in PostgreSQL, real-time data in Redis.
+> * **Streaming**: Use a CDN and video transcoding services like Mux or FFmpeg pipeline.
+> * **Real-time**: Use WebSockets or MQTT for instant notifications/chat.
+> * **Scalability**: Auto-scaling Kubernetes clusters, load balancing via Nginx/Envoy.
+> * **Security**: OAuth2 for auth, HTTPS everywhere, audit logs.
+
+---
+
+##  **Handle consistency in distributed systems**
+
+
+> * I evaluate the **CAP theorem** trade-offs first.
+> * For critical systems, I prefer **strong consistency** (e.g., Paxos/Raft, leader-follower models).
+> * For user-facing systems like feeds, I use **eventual consistency** with background sync.
+> * I use **idempotent operations**, **retries**, and **conflict resolution** to ensure consistency across services.
+
+---
+
+##  **Implement rate limiting**
+
+> * Use a **Token Bucket or Leaky Bucket** algorithm.
+> * Store usage counters in a fast in-memory store like Redis.
+> * Apply at different levels: IP-level, user-level, API key-level.
+> * Integrate with NGINX or API Gateway tools like Kong, AWS API Gateway, or Envoy.
+
+---
+
+##  **Ensure observability**
+
+> * **Logging**: Structured logs with correlation IDs using ELK or EFK stack.
+> * **Monitoring**: Prometheus + Grafana for metrics.
+> * **Tracing**: Distributed tracing with Jaeger or OpenTelemetry.
+> * **Alerting**: Use thresholds and anomaly detection with PagerDuty or Opsgenie.
+
+---
+
+##  **Tradeoffs between monolith and microservices**
+
+> | Monolith | Microservices |
+> | -------- | ------------- |
+>
+> * Easier to develop/test initially | + Better scalability & isolation
+>
+> - Harder to scale | - Needs DevOps maturity
+> - Tight coupling | - Requires service discovery, monitoring, distributed tracing
+
+> I usually start with a **modular monolith** and migrate to microservices when the team and product maturity allow it.
+
+---
+
+##  **Ensure data integrity across microservices?**
+
+> * Use **sagas** or **eventual consistency patterns**.
+> * Implement **outbox pattern** to store events with DB transaction and publish asynchronously.
+> * Use **correlation IDs** for debugging and tracing.
+> * Validate inputs via shared schemas (e.g., Protobuf, JSON Schema).
+
+---
+
+##  **Prevent single points of failure in a system design**
+
+> * Ensure **redundancy** at every layer (multi-AZ, replicas).
+> * Use **load balancers** to distribute traffic.
+> * Rely on **managed services** (like RDS Multi-AZ).
+> * Design for **failover and health checks** (e.g., Kubernetes probes).
+> * Have **circuit breakers and retry logic** in place.
+
+---
+
 
 

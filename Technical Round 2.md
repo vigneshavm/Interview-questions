@@ -7,6 +7,7 @@
 - [Help junior developers get up to speed](#Help-junior-developers-get-up-to-speed)
 - [Handle poor code or performance from a team member](#Handle-poor-code-or-performance-from-a-team-member)
 - [Manage requirements when clients frequently change](#Manage-requirements-when-clients-frequently-change)
+- [Handle production issues when a client is upset](#Handle-production-issues-when-a-client-is-upset)
 
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
 
@@ -661,3 +662,28 @@ To handle this smoothly, I followed these steps:
 - I reviewed what work had to be paused or rescheduled and discussed the trade-offs during the sprint review. We moved lower-priority items to the next sprint.
 - As a result, we were able to integrate the change without missing our demo milestone. 
 - Over time, we also added a **‘policy config’ module** to handle such changes more dynamically, reducing the impact of future scope changes."
+
+
+
+
+
+
+
+
+## **Handle production issues when a client is upset**
+
+- *"In the **TANFApp** project at IAppsys, we had a situation where a **multi-section TANF eligibility form** started throwing errors in production — specifically when users tried to submit a subsection with conditional fields. This affected live data collection for applicants, and the client was understandably upset, as it blocked critical workflows.*
+
+I immediately took the following steps:
+
+**1. Triage and Hotfix:**
+- I replicated the issue using production data and found that a recent update had caused form state mismatches — conditional subsections weren’t being saved correctly due to missing null-checks in the Node.js backend. I patched the issue by introducing stricter validation, and we deployed a **hotfix within 3 hours** using our CI/CD pipeline.
+**2. Transparent Communication:**
+- I informed the client with a quick status update and ETA. I also reassured them that no data was lost and all pending form states were queued safely in the backend. This calmed the situation and helped restore confidence.
+**3. RCA and Preventive Measures:**
+- I led a **Root Cause Analysis** session and discovered that the issue slipped through due to lack of test coverage on conditional form logic. To prevent this in future:
+ * We added **unit and integration tests** for every dynamic section
+ * Introduced a **regression checklist** for multi-step forms
+ * Enhanced QA coverage for all possible form configurations
+
+- As a result, similar issues never occurred again. The client appreciated our responsiveness, and our team gained credibility for being proactive under pressure."\*

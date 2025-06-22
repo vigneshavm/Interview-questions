@@ -2,6 +2,7 @@
 
 
 
+- [Project Handled Both Backend and Frontend](#Project-Handled-Both-Backend-and-Frontend)
 
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
 
@@ -573,5 +574,11 @@ curl -X POST http://localhost:3001/order \
 
 
 
+## **Project Handled Both Backend and Frontend**
 
+- *"In the **Shoutout** project — a celebrity video shoutout platform — I worked as a **Node.js Backend Developer**, but I also took ownership of several **frontend features** in collaboration with the mobile and web teams.*
+-*On the backend, I designed and developed RESTful APIs using **Node.js with Express**, handling core flows such as **user authentication**, **video request lifecycle**, and **payment processing using Razorpay**. I implemented **secure escrow logic**, ensuring funds were held until video delivery and automated the payout release logic after successful delivery.*
+- *On the frontend side, although React Native was used for the mobile app, I contributed to **admin web panel screens** using **React**, where I built dashboards for managing celebrity profiles, request statuses, and payout tracking. I also worked closely with the mobile dev team to define API contracts and test UI flows via Postman and mock data sets.*
+- *Additionally, I handled **CORS configuration**, **video upload flow** using **signed URLs with Azure Blob Storage**, and coordinated **error handling UX** with the frontend team.*
+- *By bridging backend and frontend responsibilities, I ensured a smooth, end-to-end delivery pipeline — from API response structure to user-facing behaviors. This helped reduce integration bugs and improved development velocity by 30% during the final release phase."*
 

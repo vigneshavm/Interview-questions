@@ -9,6 +9,7 @@
 - [Recent architectural decision](#recent-architectural-decision)
 - [Server side rendering vs Client side rendering](#server-side-rendering-vs-client-side-rendering)
 
+
 - [Approach system design for a new product](#approach-system-design-for-a-new-product)
 - [Design a system that is scalable and highly available](#design-a-system-that-is-scalable-and-highly-available)
 - [Decide between SQL and NoSQL](#decide-between-sql-and-nosql)
@@ -19,6 +20,7 @@
 - [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices)
 - [Ensure data integrity across microservices?](#ensure-data-integrity-across-microservices)
 - [Prevent single points of failure in a system design](#prevent-single-points-of-failure-in-a-system-design)
+
 
 
   

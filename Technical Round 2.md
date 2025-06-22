@@ -27,7 +27,12 @@
 - [Ensure data integrity across microservices?](#ensure-data-integrity-across-microservices)
 - [Prevent single points of failure in a system design](#prevent-single-points-of-failure-in-a-system-design)
 
-**Client Facing** - [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change) - [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset) - [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs) - [Security issue on production](#security-issue-on-production)
+**Client Facing** 
+
+- [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change)
+- [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset)
+- [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs)
+- [Security issue on production](#security-issue-on-production)
 
 - [Project Tracking and Progress Monitoring](#track-project-progress) - [Estimate story points](#estimate-story-points)
 - [Conflict with colleague or manager](#conflict-with-colleague-or-manager)

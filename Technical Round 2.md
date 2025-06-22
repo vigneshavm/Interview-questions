@@ -28,7 +28,6 @@
 - [Prevent single points of failure in a system design](#prevent-single-points-of-failure-in-a-system-design)
 
 **Client Facing** 
-
 - [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change)
 - [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset)
 - [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs)

@@ -1,24 +1,22 @@
-- [Project Handled Both Backend and Frontend](#Project-Handled-Both-Backend-and-Frontend)
-- [Manage full stack development in sprints](#Manage-full-stack-development-in-sprints)
-- [Help junior developers get up to speed](#Help-junior-developers-get-up-to-speed)
-- [Handle poor code or performance from a team member](#Handle-poor-code-or-performance-from-a-team-member)
-- [Manage requirements when clients frequently change](#Manage-requirements-when-clients-frequently-change)
-- [Handle production issues when a client is upset](#Handle-production-issues-when-a-client-is-upset)
-- [Track project progress](#track-project-progress)
+- [Full-Stack Project Ownership](#Project-Handled-Both-Backend-and-Frontend)
+- [Managing Full-Stack Development in Sprints](#Manage-full-stack-development-in-sprints)
+- [Onboarding and Mentoring Junior Developers](#Help-junior-developers-get-up-to-speed)
+- [Improving Team Code Quality and Performance](#Handle-poor-code-or-performance-from-a-team-member)
+- [Handling Frequent Client Requirement Changes](#Manage-requirements-when-clients-frequently-change)
+- [Production Issues Under Pressure(client upset)](#Handle-production-issues-when-a-client-is-upset)
+- [Project Tracking and Progress Monitoring]](#track-project-progress)
 - [Estimate story points](#estimate-story-points)
 - [Conflict with colleague or manager](#conflict-with-colleague-or-manager)
 - [Handle negative feedback](#handle-negative-feedback)
 - [Performant and Secure Backend APIs](#performant-and-secure-backend-apis)
 - [Release gets delayed due to unexpected bugs](#release-gets-delayed-due-to-unexpected-bugs)
-- [Leading a team and 2 devs are stuck on different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues)
+- [Unblocking Teams and Prioritizing Support]](#leading-a-team-and-2-devs-are-stuck-on-different-issues)
 - [Security issue on production](#security-issue-on-production)
 - [Why join Encora](#why-join-encora)
-
-
 - [Troubleshooting](#troubleshooting-debugging-and-upgrading-existing-software)
 
 **Microservice Communication** - [Using Queue](#microservice-communication-using-queue) - [Using HTTP](#microservice-communication-using-http)
-  
+ 
 **Upgrade** - [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13) - [Upgrade Node.js](#nodejs-upgrade) - [Upgrade TypeScript](#typescript-upgrade)
 
 - [Architectural Decisions](#architectural-decisions)

@@ -86,7 +86,7 @@ CMD ["node", "index.js"]
 
 ### Docker Compose
 
-**Q5. What is Docker Compose?**
+
 A tool to **define and run multi-container applications** using `docker-compose.yml`.
 
 Example:

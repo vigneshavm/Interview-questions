@@ -32,7 +32,7 @@
 ### **Manage multiple service endpoints**
 
 * API gateways simplify client interaction and centralize cross-cutting concerns.
-* Use **API Gateway** (e.g., Kong, NGINX, Express Gateway).
+* Use **API Gateway** (e.g., Kong, NGINX, Express Gateway).`
 * Handle **rate limiting, authentication, request routing** centrally.
 
 ---
@@ -44,7 +44,19 @@
 * For cross-service consistency, implement **event-driven architecture** with **eventual consistency**.
 * Use **Sagas or outbox patterns** for transactional workflows.
 
----
+- In microservices, I always apply the database-per-service principle and model schema based on domain boundaries. 
+- I use async events and patterns like Saga to handle distributed consistency, 
+- Ensuring that each service is independently deployable and scalable.
+
+| Concern                   | Solution/Pattern                 |
+| ------------------------- | -------------------------------- |
+| DB per service            | Use isolated DB per microservice |
+| Cross-service data access | Use APIs or events               |
+| Distributed transactions  | Saga Pattern                     |
+| Joins                     | API Gateway or CQRS              |
+| Event propagation         | Event Bus + Outbox Pattern       |
+| DB selection              | Polyglot persistence             |
+
 
 ### **Authentication & Authorization**
 

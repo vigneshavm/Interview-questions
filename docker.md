@@ -9,10 +9,11 @@
 
 ### Docker Basics
 
-**Q1. What is Docker?**
-Docker is an open-source platform for **building, packaging, and running applications** in containers. It ensures consistency across different environments (dev, test, prod).
+**Docker?**
+Docker is an open-source platform for **building, packaging, and running applications** in containers.
+It ensures consistency across different environments (dev, test, prod).
 
-**Q2. What is a Docker container?**
+**Docker container**
 A lightweight, standalone, and executable software package that includes everything needed to run a piece of software: code, runtime, system tools, libraries.
 
 ---
@@ -38,8 +39,37 @@ A lightweight, standalone, and executable software package that includes everyth
 
 ### Dockerfile
 
-**Q3. What is a Dockerfile?**
 A text file containing **instructions to build a Docker image**.
+
+```js
+# Stage 1: Build
+FROM node:18-alpine AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Copy source code
+COPY . .
+
+# Stage 2: Runtime
+FROM node:18-alpine
+
+# Create app directory
+WORKDIR /app
+
+# Copy only necessary files from builder
+COPY --from=builder /app /app
+
+# Expose the app port
+EXPOSE 3000
+
+# Run the app
+CMD ["node", "index.js"]
+```
 
 **Q4. Common Dockerfile commands:**
 

@@ -1899,7 +1899,9 @@ SELECT * FROM EmployeeWithDepartment;
 
 ##  **Constraints**
 
-**Constraints** are rules applied to table columns to **enforce data integrity** and **prevent invalid data** from being inserted, updated, or deleted.
+- Constraints **prevent bad data** from entering the system.
+- Instead of relying only on application-level validations, they **add a strong layer of enforcement at the database level**, which is more secure and consistent.
+- **Constraints** are rules applied to table columns to **enforce data integrity** and **prevent invalid data** from being inserted, updated, or deleted.
 
 ---
 

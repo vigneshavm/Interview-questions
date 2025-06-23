@@ -7,6 +7,7 @@
 - [View](#View) - [Triggers](#Triggers) - [Stored Procedure](#Stored-Procedure) - [Insert Unique IDs Without Auto-Increment or Primary Key](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key)
 - [Triggers vs Stored Procedures](#Triggers-vs-Stored-Procedures)
 - [Delete and Rollback](#Delete-and-Rollback)
+- [Constraints](#Constraints)
 
 **Design DB** - [Designing a database](#Designing-a-database) - [Normalization](#Normalization) - [Normal Form](#Normal-Form) - [Denormalization](#denormalization)
 - [One to One, One to Many, Many to Many Relationships](#one-to-one-one-to-many-many-to-many-relationships)
@@ -1894,6 +1895,50 @@ SELECT * FROM EmployeeWithDepartment;
   * Performing **multi-step operations** (e.g., data processing, reports).
 
 ---
+
+
+##  **Constraints**
+
+**Constraints** are rules applied to table columns to **enforce data integrity** and **prevent invalid data** from being inserted, updated, or deleted.
+
+---
+
+### 📌 **Types of Constraints**
+
+| Constraint      | Description                                                              | Example Syntax                                    |
+| --------------- | ------------------------------------------------------------------------ | ------------------------------------------------- |
+| **NOT NULL**    | Ensures a column **cannot have NULL values**.                            | `name VARCHAR(100) NOT NULL`                      |
+| **UNIQUE**      | Ensures all values in a column are **distinct**.                         | `email VARCHAR(100) UNIQUE`                       |
+| **PRIMARY KEY** | A combination of **NOT NULL + UNIQUE**. Uniquely identifies each row.    | `PRIMARY KEY (id)`                                |
+| **FOREIGN KEY** | Ensures referential integrity by linking to another table’s primary key. | `FOREIGN KEY (dept_id) REFERENCES department(id)` |
+| **CHECK**       | Ensures values in a column meet a **specific condition**.                | `CHECK (salary >= 0)`                             |
+| **DEFAULT**     | Sets a **default value** if no value is provided.                        | `status VARCHAR(10) DEFAULT 'active'`             |
+
+---
+
+### ✅ **Constraint Use Cases**
+
+* Prevent NULLs where not allowed → `NOT NULL`
+* Ensure unique identifiers → `PRIMARY KEY`
+* Maintain consistent references → `FOREIGN KEY`
+* Enforce domain rules → `CHECK`
+* Auto-assign values → `DEFAULT`
+
+---
+
+### 🔄 **Example Table with Constraints**
+
+```sql
+CREATE TABLE Employee (
+  id INT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE,
+  salary DECIMAL(10,2) CHECK (salary > 0),
+  dept_id INT,
+  status VARCHAR(10) DEFAULT 'active',
+  FOREIGN KEY (dept_id) REFERENCES Department(id)
+);
+```
 
 
 

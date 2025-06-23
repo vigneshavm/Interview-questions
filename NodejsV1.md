@@ -13,7 +13,7 @@
 
 **Caching** - [Caching Strategies](#caching-strategies)  - [Redis(Caching)](#nodejs-with-redis-caching)      **Secure** -  [Secure Node.js](#secure-nodejs-app) - [Securing Sensitive Data](#securing-sensitive-data)  - [Secure REST APIs](#secure-rest-apis)
 
-**API Design & Development**  - [REST API](#rest-api)    - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [RESTful Folder Structure](#clean-restful-folder-structure)
+**API Design & Development**  - [REST API](#rest-api)    - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [RESTful Folder Structure](#clean-restful-folder-structure) - [Scalable REST APIs](#Scalable-REST-APIs)
 
 **Authentication & Authorization**  - [Authentication vs Authorization](#authentication-vs-authorization) - [JWT](#implementing-jwt-authentication) - [Single Sign On](#Single-Sign-On) - [Session-based vs Token-based](#session-based-vs-token-based-authentication)  - [Protecting Routes](#protecting-sensitive-routes)   - [Refresh Tokens](#refresh-tokens)  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers)   - [Role-Based Access Control](#role-based-access-control-rbac)
 
@@ -4706,5 +4706,27 @@ npm start
 * You’ll see real-time messages on both tabs!
 
 
+
+## **Scalable REST APIs**
+
+- To ensure REST API scalability, I follow several key practices.
+
+- First, I design APIs to be **stateless**, so any request can be handled by any server. This makes it easy to scale horizontally by adding more instances behind a load balancer.
+
+- Second, I implement **caching** where appropriate — using tools like Redis or in-memory caches for frequently accessed data — and set proper HTTP caching headers to reduce repeated load.
+
+- I also make sure to use **pagination, filtering, and sorting** to avoid sending large datasets in a single response, which helps manage memory and performance under load.
+
+- For background tasks, I offload them using **message queues** like RabbitMQ or Kafka so the main API stays responsive.
+
+- I add **rate limiting and throttling** to protect the API from overuse and keep it stable during traffic spikes.
+
+- On the infrastructure side, I use **auto-scaling** policies — for example, in Azure or AWS — based on CPU or request metrics, and I monitor performance with tools like Prometheus, Grafana, or Azure Monitor.
+
+- Lastly, if the system grows large, I prefer breaking it into **microservices**, so each one can be scaled independently depending on demand.
+
+- In one project, we handled a sudden 5x traffic spike by horizontally scaling the Node.js containers and leveraging Redis caching. The API maintained low response times even under load."
+
+---
 
 

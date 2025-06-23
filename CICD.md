@@ -39,7 +39,7 @@ CI/CD stands for:
 
 ### Tools used for CI/CD
 
-**Answer**:
+
 Examples:
 
 * **CI Tools**: Jenkins, GitHub Actions, GitLab CI, CircleCI
@@ -61,7 +61,7 @@ Examples:
 
 ### set up a CI/CD pipeline
 
-**Answer**:
+
 
 Steps:
 
@@ -98,7 +98,7 @@ Typical steps:
 
 ### manage environment variables in CI/CD
 
-**Answer**:
+
 
 * Store secrets in:
 
@@ -111,7 +111,7 @@ Typical steps:
 
 ### test both backend and frontend in a pipeline
 
-**Answer**:
+
 
 ```yaml
 # Example GitHub Actions
@@ -126,7 +126,7 @@ jobs:
 
 ### rollback a deployment
 
-**Answer**:
+
 
 * Keep previous release artifacts (versioning)
 * Use CI/CD tools that support rollback (e.g., GitHub Actions + deployment scripts)
@@ -141,7 +141,7 @@ jobs:
 
 ### manage CI/CD for microservices
 
-**Answer**:
+
 
 * Each microservice has its own pipeline.
 * Use monorepo tools (e.g., Nx, Lerna) or split repos.
@@ -153,7 +153,7 @@ jobs:
 
 ### handle frontend and backend version mismatch
 
-**Answer**:
+
 
 * Deploy frontend and backend together via a single pipeline (if tightly coupled)
 * Use versioning/tagging
@@ -163,7 +163,7 @@ jobs:
 
 ### zero-downtime deployment strategy
 
-**Answer**:
+
 
 * **Blue-Green Deployment**: Deploy to a standby (green) environment, switch traffic once validated.
 * **Rolling Deployment**: Gradually replace old pods/instances.
@@ -173,7 +173,7 @@ jobs:
 
 ### integrate linting, testing, and code quality in CI
 
-**Answer**:
+
 In pipeline:
 
 ```bash
@@ -188,7 +188,7 @@ Fail pipeline if any of these fail.
 
 ### notify your team about build/deploy status
 
-**Answer**:
+
 
 * Jenkins: Slack plugin, email notifications
 * GitHub Actions: Slack Webhooks

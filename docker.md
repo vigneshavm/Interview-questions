@@ -41,6 +41,18 @@ A lightweight, standalone, and executable software package that includes everyth
 
 A text file containing **instructions to build a Docker image**.
 
+
+| Command   | Purpose                             |
+| --------- | ----------------------------------- |
+| `FROM`    | Base image                          |
+| `COPY`    | Copy files into image               |
+| `RUN`     | Execute commands in build process   |
+| `CMD`     | Default command when container runs |
+| `EXPOSE`  | Open a port                         |
+| `ENV`     | Set environment variables           |
+| `WORKDIR` | Set working directory               |
+
+
 ```js
 # Stage 1: Build
 FROM node:18-alpine AS builder
@@ -71,19 +83,6 @@ EXPOSE 3000
 CMD ["node", "index.js"]
 ```
 
-**Q4. Common Dockerfile commands:**
-
-| Command   | Purpose                             |
-| --------- | ----------------------------------- |
-| `FROM`    | Base image                          |
-| `COPY`    | Copy files into image               |
-| `RUN`     | Execute commands in build process   |
-| `CMD`     | Default command when container runs |
-| `EXPOSE`  | Open a port                         |
-| `ENV`     | Set environment variables           |
-| `WORKDIR` | Set working directory               |
-
----
 
 ### Docker Compose
 

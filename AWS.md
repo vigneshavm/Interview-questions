@@ -1,4 +1,7 @@
 
+
+**Azure** - [Azure](#Azure)
+
 ---
 
 **AWS Lambda**
@@ -1113,4 +1116,81 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 ---
 
+
+
+
+# **Azure**
+
+---
+
+## ✅ **Deployment & Environment Management**
+
+* Use **Azure App Services** for quick Node.js deployments.
+* Handle configs securely with **App Settings** and **Azure Key Vault**.
+* Use **Managed Identity** to avoid exposing secrets.
+
+---
+
+## ✅ **CI/CD and DevOps (Azure DevOps + Node.js)**
+
+* Set up **YAML-based pipelines** in Azure DevOps.
+* Automate build, test, and deploy stages.
+* Implement **approvals, rollback, environment variables**, and **stage gates**.
+* Use **GitHub Actions** as an alternative CI/CD strategy.
+
+---
+
+## ✅ **Monitoring & Logging**
+
+* Integrate **Azure Application Insights** using the `applicationinsights` package.
+* Capture:
+
+  * Request durations,
+  * Exceptions,
+  * Custom metrics.
+* Use **Live Metrics** and **Kusto Queries (KQL)** for deep diagnostics.
+
+---
+
+## ✅ **Scalability & Serverless**
+
+* Use **Azure Functions** for event-driven, cost-effective workloads.
+* Design for scalability using **AKS** or **App Service autoscale**.
+* Offload tasks with **Azure Service Bus**, **Event Grid**, or **Queue Storage**.
+
+---
+
+## ✅ **Data Engineering with Node.js**
+
+* Upload and manage files in **Azure Blob Storage / Data Lake** using `@azure/storage-*` SDKs.
+* Trigger and monitor **Azure Data Factory pipelines** from Node.js.
+* Stream and preprocess large datasets using **Node streams**.
+
+---
+
+## ✅ **Cosmos DB Integration (with Node.js)**
+
+* Use `@azure/cosmos` SDK for CRUD and querying.
+* Always pass **partition key** for performance.
+* Optimize throughput (RU/s), indexing, and **bulk operations**.
+* Handle **consistency levels** and **conflict resolution** in distributed systems.
+* Secure access via **RBAC, IP firewall**, and **Key Vault** or **Managed Identity**.
+
+---
+
+## ✅ **Resilience & Architecture**
+
+* Design multi-region apps using **Azure Traffic Manager** or **Front Door**.
+* Apply **retry patterns**, **circuit breakers**, and **graceful fallbacks** in Node.js.
+* Use **Cosmos DB multi-region** setup and **Redis** for caching.
+
+---
+
+## ✅ **Security & Compliance**
+
+* Avoid hardcoded secrets – use **Azure Key Vault**.
+* Leverage **Azure AD tokens** for secure API access.
+* Apply **RBAC, network restrictions**, and **auditing policies**.
+
+---
 

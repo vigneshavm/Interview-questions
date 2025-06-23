@@ -536,7 +536,7 @@ aws lambda put-provisioned-concurrency-config \
 
 ---
 
-#### ✅ **When to Use It**
+#### **When to Use It**
 
 * Cold start latency is not acceptable
 * You have **predictable traffic patterns**
@@ -1119,11 +1119,11 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 
 
-# **Azure**
+### **Azure**
 
 ---
 
-## ✅ **Deployment & Environment Management**
+#### **Deployment & Environment Management**
 
 * Use **Azure App Services** for quick Node.js deployments.
 * Handle configs securely with **App Settings** and **Azure Key Vault**.
@@ -1131,7 +1131,7 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 ---
 
-## ✅ **CI/CD and DevOps (Azure DevOps + Node.js)**
+#### **CI/CD and DevOps (Azure DevOps + Node.js)**
 
 * Set up **YAML-based pipelines** in Azure DevOps.
 * Automate build, test, and deploy stages.
@@ -1140,7 +1140,7 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 ---
 
-## ✅ **Monitoring & Logging**
+#### **Monitoring & Logging**
 
 * Integrate **Azure Application Insights** using the `applicationinsights` package.
 * Capture:
@@ -1152,7 +1152,7 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 ---
 
-## ✅ **Scalability & Serverless**
+#### **Scalability & Serverless**
 
 * Use **Azure Functions** for event-driven, cost-effective workloads.
 * Design for scalability using **AKS** or **App Service autoscale**.
@@ -1160,7 +1160,7 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 ---
 
-## ✅ **Data Engineering with Node.js**
+#### **Data Engineering with Node.js**
 
 * Upload and manage files in **Azure Blob Storage / Data Lake** using `@azure/storage-*` SDKs.
 * Trigger and monitor **Azure Data Factory pipelines** from Node.js.
@@ -1168,7 +1168,7 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 ---
 
-## ✅ **Cosmos DB Integration (with Node.js)**
+#### **Cosmos DB Integration (with Node.js)**
 
 * Use `@azure/cosmos` SDK for CRUD and querying.
 * Always pass **partition key** for performance.
@@ -1178,7 +1178,7 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 ---
 
-## ✅ **Resilience & Architecture**
+#### **Resilience & Architecture**
 
 * Design multi-region apps using **Azure Traffic Manager** or **Front Door**.
 * Apply **retry patterns**, **circuit breakers**, and **graceful fallbacks** in Node.js.
@@ -1186,7 +1186,7 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 ---
 
-## ✅ **Security & Compliance**
+#### **Security & Compliance**
 
 * Avoid hardcoded secrets – use **Azure Key Vault**.
 * Leverage **Azure AD tokens** for secure API access.

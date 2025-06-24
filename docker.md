@@ -329,6 +329,71 @@ docker run --restart always ...
 | Result                   | You can run Linux containers *transparently* on Windows with Docker |
 
 
+### Docker Layers
 
+- In Docker, **layers** are the building blocks of images.
+- Each instruction in a `Dockerfile` (like `RUN`, `COPY`, or `ADD`) creates a **new image layer**,
+- which builds on the one before it.
+
+---
+
+#### **How Docker Layers Work**
+
+1. Docker builds images **layer by layer**.
+2. Each layer is **cached**, so if nothing has changed, Docker **reuses** it.
+3. Layers are **read-only**, but the top container layer is writable when the container runs.
+
+---
+
+#### **Example: Dockerfile with Layers**
+
+```Dockerfile
+FROM node:18-alpine     # Layer 1: Base image
+WORKDIR /app            # Layer 2: Set working directory
+COPY package.json .     # Layer 3: Copy package file
+RUN npm install         # Layer 4: Install dependencies
+COPY . .                # Layer 5: Copy app source
+CMD ["node", "index.js"]# Layer 6: Command to run app
+```
+
+Each instruction creates a **new layer**, and Docker stores these layers in a **layered filesystem** (like OverlayFS).
+
+---
+
+#### Benefits of Layers
+
+| Feature           | Explanation                                               |
+| ----------------- | --------------------------------------------------------- |
+| 🧠 **Caching**    | Reuses unchanged layers to speed up builds                |
+| 💾 **Efficiency** | Shared layers between images reduce disk usage            |
+| 🚀 **Speed**      | Only changed layers need to be rebuilt                    |
+| 📦 **Modularity** | Layered changes make debugging and version control easier |
+
+---
+
+#### Layering Best Practices
+
+| Tip                      | Why                                                    |
+| ------------------------ | ------------------------------------------------------ |
+| Combine `RUN` commands   | Reduces layer count and improves caching               |
+| Order commands carefully | Place least-changing commands first to maximize reuse  |
+| Use `.dockerignore`      | Prevent unnecessary file copies from affecting caching |
+| Keep images small        | Smaller images = faster builds, less attack surface    |
+
+---
+
+#### Visual Summary
+
+```
+Image = Layer 1 (FROM)
+       + Layer 2 (WORKDIR)
+       + Layer 3 (COPY)
+       + Layer 4 (RUN)
+       + Layer 5 (COPY)
+       + Layer 6 (CMD)
+```
+
+---
+x
 
 

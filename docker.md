@@ -312,10 +312,12 @@ docker run --restart always ...
 
 ### **Linux Docker Image on a Windows Machine**
 
-- **Yes, you can run Linux Docker images on a Windows machine — but only if you’re using Docker with WSL 2 or a Linux VM under the hood.**
+- **Yes, Run Linux Docker images on a Windows machine**
+- but only if you’re **using Docker with WSL 2 or a Linux VM under the hood.**
 
 
-- **"Yes, it's possible to run Linux Docker images on a Windows machine, and this is a common practice. However, it's important to understand that Windows cannot natively run Linux containers because containers share the host OS kernel, and Linux containers require a Linux kernel.**
+- **"Yes, it's possible to run Linux Docker images on a Windows machine, and this is a common practice.
+- However, it's important to understand that Windows cannot natively run Linux containers because containers share the host OS kernel, and Linux containers require a Linux kernel.**
 
 - To solve this, Docker Desktop for Windows uses **WSL 2 (Windows Subsystem for Linux)** or **a lightweight Linux VM** (previously Hyper-V) to provide a Linux kernel environment. This allows Docker to run Linux containers seamlessly on Windows.
 

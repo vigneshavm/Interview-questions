@@ -1,6 +1,6 @@
-| Docker Basics                        | Docker vs VM                            | Images vs Containers                   | Alpine Image                             |
-|-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|
-| [Docker Basics](#docker-basics)     | [Docker vs VM](#docker-vs-vm)           | [Images vs Containers](#images-vs-containers) | [Alpine Image](#alpine-image)      |
+| Docker Basics                        | Docker Basics                        | Docker vs VM                            | Images vs Containers                   | Alpine Image                             |
+|-------------------------------------|-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|
+| **Basics**     | [Docker Basics](#docker-basics)     | [Docker vs VM](#docker-vs-vm)           | [Images vs Containers](#images-vs-containers) | [Alpine Image](#alpine-image)      |
 
 | Docker Architecture                 | Dockerfile                              | Docker Compose                         | Volumes and Bind Mounts                  |
 |-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|

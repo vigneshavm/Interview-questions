@@ -1,3 +1,21 @@
+| Docker Basics                        | Docker vs VM                            | Images vs Containers                   | Alpine Image                             |
+|-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|
+| [Docker Basics](#docker-basics)     | [Docker vs VM](#docker-vs-vm)           | [Images vs Containers](#images-vs-containers) | [Alpine Image](#alpine-image)      |
+
+| Docker Architecture                 | Dockerfile                              | Docker Compose                         | Volumes and Bind Mounts                  |
+|-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|
+| [Docker Architecture](#docker-architecture) | [Dockerfile](#dockerfile)             | [Docker Compose](#docker-compose)      | [Volumes and Bind Mounts](#volumes-and-bind-mounts) |
+
+| Networking in Docker                | Container Lifecycle                     | Common Docker Commands                 | Docker in CI/CD                          |
+|-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|
+| [Networking in Docker](#networking-in-docker) | [Container Lifecycle](#container-lifecycle) | [Common Docker Commands](#common-docker-commands) | [Docker in CI/CD](#docker-in-cicd)   |
+
+| Security Best Practices             | Real-World Scenarios                    | Linux Docker on Windows                | Windows Docker on Linux                  |
+|-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|
+| [Security Best Practices](#security-best-practices) | [Bonus: Real-World Scenarios](#bonus-real-world-scenarios) | [Linux Docker Image on a Windows Machine](#linux-docker-image-on-a-windows-machine) | [Windows Docker Image on a Linux Machine](#windows-docker-image-on-a-linux-machine) |
+
+
+
 * [Docker Basics](#docker-basics)
 * [Docker vs VM](#docker-vs-vm)
 * [Images vs Containers](#images-vs-containers)

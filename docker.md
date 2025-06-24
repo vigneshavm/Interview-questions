@@ -1,4 +1,4 @@
-| Docker Basics                        | Docker Basics                        | Docker vs VM                            | Images vs Containers                   | Alpine Image                             |
+| Category                       |                        |                             |                    |                              |
 |-------------------------------------|-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|
 | **Basics**     | [Docker Basics](#docker-basics)     | [Docker vs VM](#docker-vs-vm)           | [Images vs Containers](#images-vs-containers) | [Alpine Image](#alpine-image)      |
 

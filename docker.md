@@ -1,10 +1,7 @@
 | Category                       |                        |                             |                    |                              |
 |-------------------------------------|-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|
 | **Basics**     | [Docker Basics](#docker-basics)     | [Docker vs VM](#docker-vs-vm)           | [Images vs Containers](#images-vs-containers) | [Alpine Image](#alpine-image)      |
-
-| Docker Architecture                 | Dockerfile                              | Docker Compose                         | Volumes and Bind Mounts                  |
-|-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|
-| [Docker Architecture](#docker-architecture) | [Dockerfile](#dockerfile)             | [Docker Compose](#docker-compose)      | [Volumes and Bind Mounts](#volumes-and-bind-mounts) |
+| **Basics**     |  [Docker Architecture](#docker-architecture) | [Dockerfile](#dockerfile)             | [Docker Compose](#docker-compose)      | [Volumes and Bind Mounts](#volumes-and-bind-mounts) |
 
 | Networking in Docker                | Container Lifecycle                     | Common Docker Commands                 | Docker in CI/CD                          |
 |-------------------------------------|-----------------------------------------|----------------------------------------|------------------------------------------|

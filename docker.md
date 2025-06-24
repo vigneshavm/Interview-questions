@@ -1,18 +1,22 @@
 * [Docker Basics](#docker-basics)
-* [Docker vs VM](#Docker-vs-VM)
+* [Docker vs VM](#docker-vs-vm)
 * [Images vs Containers](#images-vs-containers)
-* [Alpine image](#Alpine-image)
-* [Docker Architecture](#docker-architecture) * [Dockerfile](#dockerfile)
-* [Docker Compose](#docker-compose) * [Volumes and Bind Mounts](#volumes-and-bind-mounts)
-* [Networking in Docker](#networking-in-docker) * [Container Lifecycle](#container-lifecycle)
-* [Common Docker Commands](#common-docker-commands) * [Docker in CI/CD](#docker-in-cicd)
-* [Security Best Practices](#security-best-practices) * [Bonus: Real-World Scenarios](#bonus-real-world-scenarios)
+* [Alpine Image](#alpine-image)
+* [Docker Architecture](#docker-architecture)
+* [Dockerfile](#dockerfile)
+* [Docker Compose](#docker-compose)
+* [Volumes and Bind Mounts](#volumes-and-bind-mounts)
+* [Networking in Docker](#networking-in-docker)
+* [Container Lifecycle](#container-lifecycle)
+* [Common Docker Commands](#common-docker-commands)
+* [Docker in CI/CD](#docker-in-cicd)
+* [Security Best Practices](#security-best-practices)
+* [Bonus: Real-World Scenarios](#bonus-real-world-scenarios)
 
-  **Cross Images** -
-  - [Linux Docker Image in Windows](#Linux-Docker-Image-on-a-Windows-Machine)
-  - [Windows Docker Image in Linux](#Windows-Docker-Image-on-a-Linux-Machine)
+**Cross-Platform Images**
+- [Linux Docker Image on a Windows Machine](#linux-docker-image-on-a-windows-machine)
+- [Windows Docker Image on a Linux Machine](#windows-docker-image-on-a-linux-machine)
 
----
 
 ### Docker Basics
 

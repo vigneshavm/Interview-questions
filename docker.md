@@ -283,11 +283,15 @@ docker run --restart always ...
 
 ### **Windows Docker Image on a Linux Machine**
 
-- **Short answer: No, you cannot directly run a Windows Docker image on a Linux host.**
+- **No, we cannot directly run a Windows Docker image on a Linux host.**
 
-- **"Windows Docker images are built for the Windows kernel, while Linux Docker images rely on the Linux kernel. Since containers share the host OS kernel, a Linux host cannot run a Windows container natively.**
+- **"Windows Docker images are built for the Windows kernel**,
+- while **Linux Docker images rely on the Linux kernel**.
+- Since **containers share the host OS kernel, a Linux host cannot run a Windows container natively.**
 
-- Docker does not emulate operating systems; it isolates applications at the OS level. This is why a Windows container needs a Windows kernel, and a Linux container needs a Linux kernel.
+- Docker does not emulate operating systems;
+- it isolates applications at the OS level.
+- This is why a Windows container needs a Windows kernel, and a Linux container needs a Linux kernel.
 
  However, if I absolutely need to run Windows containers on a Linux machine, I’d explore two options:
 

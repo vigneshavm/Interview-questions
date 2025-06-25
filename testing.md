@@ -1,5 +1,7 @@
 
-**Build** - [`<script>`, async, defer](#script-and-async-and-defer)    - [Tree Shaking](#tree-shaking-in-modern-bundlers)    - [Compiler](#Compiler)  - [Transpiling](#transpiling-javascript-code)    - [Polyfills](#polyfills-and-backward-compatibility)    - [Babel](#role-of-babel-in-modern-development)    - [Webpack & Vite](#webpack-and-vite-bundling-process)  - [Reduce large bundle size](#Reduce-large-bundle-size)
+**Build** - [`<script>`, async, defer](#script-and-async-and-defer)    - [Tree Shaking](#tree-shaking-in-modern-bundlers)    - [Compiler](#Compiler)  - [Transpiling](#transpiling-javascript-code)    - [Polyfills](#polyfills-and-backward-compatibility)    - [Babel](#role-of-babel-in-modern-development)    
+
+**Webpack** - • [Customize Webpack](#customize-webpack) - [Webpack & Vite](#webpack-and-vite-bundling-process)  - [Reduce large bundle size](#Reduce-large-bundle-size) • [Webpack](#Webpack) • [Reduce the Bundle Size](#reduce-the-bundle-size)    
 
 **Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript)  -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)  - [Mock Testing](#mock-testing)  - [Mocking APIs Tests](#Mocking-APIs-Tests) - [Testing Hooks](#Testing-Hooks)
 
@@ -4952,4 +4954,85 @@ To effectively reduce bundle size,
 | Gzip Compression      | \~70% smaller network payload |
 
 
+### **Customize Webpack**
 
+- Since Angular CLI **doesn’t expose Webpack config directly**,
+- you can use the community package `@angular-builders/custom-webpack` to extend or override the default config.
+- This allows you to **extend** the default Angular Webpack config without losing CLI support.
+
+
+🔧 **Steps:**
+
+1. Install the custom Webpack builder:
+
+```bash
+npm install @angular-builders/custom-webpack --save-dev
+```
+
+2. Update `angular.json`:
+
+```json
+"architect": {
+  "build": {
+    "builder": "@angular-builders/custom-webpack:browser",
+    "options": {
+      "customWebpackConfig": {
+        "path": "./webpack.config.js"
+      }
+    }
+  }
+}
+```
+
+3. Create `webpack.config.js` and add custom rules (e.g., loaders, aliases, plugins)
+
+---
+
+
+### **Webpack**
+
+- **Webpack** is a **static module bundler** for JavaScript applications. 
+- It takes modules (JS, CSS, images, HTML, etc.) and produces optimized bundles for the browser.
+
+**Angular CLI uses Webpack** internally to:
+
+* Bundle modules and dependencies
+* Convert TypeScript to JavaScript
+* Handle SCSS/LESS preprocessing
+* Inject compiled scripts and styles into `index.html`
+* Split code into chunks for lazy loading
+
+>  **Key Point:** While Angular hides Webpack configs, you can expose them using tools like `@angular-builders/custom-webpack` if customization is needed.
+
+---
+
+
+### **Reduce the bundle size**
+
+**Answer:**
+
+1. **Build with stats:**
+
+```bash
+ng build --configuration production --stats-json
+```
+
+2. **Analyze with Webpack Bundle Analyzer:**
+
+```bash
+npx webpack-bundle-analyzer dist/stats.json
+```
+
+3. **Steps to reduce size:**
+
+   * **Lazy load large feature modules**
+   * Remove unused dependencies
+   * Use `providedIn: 'root'` for tree-shakable services
+   * Import only what you use (e.g., lodash-es)
+   * Remove source maps and console logs in production
+   * Use CDN for external assets (fonts, icons)
+   * Compress assets via GZIP or Brotli
+
+>  **Key Point:** Bundle size impacts **FCP (First Contentful Paint)** and **TTI (Time to Interactive)**.
+
+---

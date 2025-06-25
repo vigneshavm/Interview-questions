@@ -2100,12 +2100,18 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 ---
 
-## **Secure REST APIs?**
+## **Secure REST APIs**
 - Use HTTPS
 - Implement authentication (JWT, OAuth)
 - Add rate limiting
 - Sanitize inputs to prevent XSS/SQL injection
 - Use helmet and CORS
+* Use **JWT tokens or OAuth2** with token expiration and refresh logic.
+* Apply **rate limiting**, **IP whitelisting**, and **CORS control**.
+* Validate all input using libraries like `Joi`, `zod`, or `express-validator`.
+* Store secrets securely (e.g., **AWS Secrets Manager** or **Vault**).
+* Implement **RBAC** (Role-Based Access Control).
+* Enable **HTTPS** with secure headers (`helmet`, `hpp`).
 
 Example with JWT:
 ```ts

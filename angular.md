@@ -10,7 +10,7 @@
 | **State Management**        | • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
 | **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
-| **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)  
+| **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices)  
 | **Other**      | • [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle) • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [What Happens Under the Hood](#what-happens-under-the-hood) • [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills) • [Environment-based Builds](#environment-based-builds) • [Linting and Testing Tools](#linting-and-testing-tools)    |
 | **Utilities & Miscellaneous**      | • [Authentication](#authentication) • [Secure Angular Routes](#secure-angular-routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens)   |
 
@@ -3714,4 +3714,76 @@ This improves both security and performance.
 * Tradeoff between convenience and security
 
 ---
+
+
+
+
+
+## **providedIn**
+
+`providedIn` is a property used in the `@Injectable()` decorator to declare **where** a service should be provided (i.e., its **injector scope**). It helps Angular manage **singleton instances** and enables **tree-shaking** for unused services.
+
+---
+
+### `providedIn: 'root'` — (Most Common)
+
+- It's singleton, tree-shakable, and works without extra module config.
+- Registers the service in the **root injector**, making it **singleton and available app-wide**.
+
+```ts
+@Injectable({ providedIn: 'root' })
+export class AuthService { }
+```
+
+**Benefits:**
+
+* Singleton instance shared across all modules
+* No need to manually add to `providers` array
+* Tree-shakable (excluded if not used)
+
+> 🟩 **Use it when the service is shared across multiple components or modules.**
+
+---
+
+### `providedIn: 'any'` — (Scoped per lazy-loaded module)
+
+- If you want **module-level service isolation** — e.g., different behavior or state per lazy-loaded module.
+- A **new instance** of the service is created in **each lazy-loaded module** that injects it.
+
+```ts
+@Injectable({ providedIn: 'any' })
+export class LoggerService { }
+```
+
+**Behavior:**
+
+* One instance per lazy-loaded module
+* Useful for isolating state per module
+
+> 🟨 **Use when you want services to be scoped to modules, not app-wide.**
+
+---
+
+### `providedIn: SomeModule` — Explicit module-based injection
+
+You can specify a particular module:
+
+```ts
+@Injectable({ providedIn: SomeFeatureModule })
+```
+
+This is **rarely used** since Angular prefers tree-shakable providers in `'root'` or `'any'`.
+
+> 🔴 Note: If the module isn't imported, the service **won’t be available**.
+
+---
+
+### Difference Summary (Interview-Friendly Table)
+
+| Scope                | providedIn      | Instance Behavior             | Tree-shakable | Use Case                             |
+| -------------------- | --------------- | ----------------------------- | ------------- | ------------------------------------ |
+| Root Injector        | `'root'`        | Singleton (shared app-wide)   | ✅ Yes         | AuthService, ApiService              |
+| Lazy Module Injector | `'any'`         | One instance per lazy module  | ✅ Yes         | LoggerService, feature-specific logs |
+| Specific Module      | `FeatureModule` | Only available in that module | ❌ No          | Rare; explicit module control        |
+
 

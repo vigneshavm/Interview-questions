@@ -1564,29 +1564,12 @@ I use GitHub Actions or Azure Pipelines. Lint, test, build, and deploy to enviro
 
 **Key Point:** CI should verify **code quality**, **tests**, and **build success** before deploying.
 
-
-1. **Install dependencies:**
-
-```bash
-npm ci
-```
-
-2. **Lint & test:**
-
-```bash
-npm run lint
-npm run test -- --watch=false --browsers=ChromeHeadless
-```
-
-3. **Build:**
-
-```bash
-ng build --configuration production
-```
-
+1. **Install dependencies:**   - npm ci
+2. **Lint & test:**  --> npm run lint  npm run test -- --watch=false --browsers=ChromeHeadless
+3. **Build:** --> ng build --configuration production
 4. **Deploy:** Copy `dist/` folder to your server/CDN.
 
-🔧 In **GitHub Actions**, your workflow may look like:
+In **GitHub Actions**, your workflow may look like:
 
 ```yaml
 jobs:

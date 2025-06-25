@@ -11,7 +11,7 @@
 | **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices)  
-| **Other**      | • [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle) • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [What Happens Under the Hood](#what-happens-under-the-hood) • [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills) • [Environment-based Builds](#environment-based-builds) • [Linting and Testing Tools](#linting-and-testing-tools)    |
+| **Other**      | • [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle) • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [What Happens Under the Hood](#what-happens-under-the-hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills) • [Environment-based Builds](#environment-based-builds) • [Linting and Testing Tools](#linting-and-testing-tools)    |
 | **Utilities & Miscellaneous**      | • [Authentication](#authentication) • [Secure Angular Routes](#secure-angular-routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens)   |
 
 
@@ -1562,6 +1562,45 @@ Use Reactive Forms with nested FormGroups. Load data asynchronously. Use dynamic
 
 I use GitHub Actions or Azure Pipelines. Lint, test, build, and deploy to environments. I cache dependencies, use Angular CLI for production builds, and automate versioning.
 
+**Key Point:** CI should verify **code quality**, **tests**, and **build success** before deploying.
+
+
+1. **Install dependencies:**
+
+```bash
+npm ci
+```
+
+2. **Lint & test:**
+
+```bash
+npm run lint
+npm run test -- --watch=false --browsers=ChromeHeadless
+```
+
+3. **Build:**
+
+```bash
+ng build --configuration production
+```
+
+4. **Deploy:** Copy `dist/` folder to your server/CDN.
+
+🔧 In **GitHub Actions**, your workflow may look like:
+
+```yaml
+jobs:
+  build:
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test -- --watch=false
+      - run: ng build --configuration=production
+```
+
+
+---
 
 
 
@@ -3344,47 +3383,6 @@ These options are defined in `angular.json` under the `production` configuration
 
 ---
 
-### **Angular builds into CI/CD pipelines**
-
->  **Key Point:** CI should verify **code quality**, **tests**, and **build success** before deploying.
-
-
-1. **Install dependencies:**
-
-```bash
-npm ci
-```
-
-2. **Lint & test:**
-
-```bash
-npm run lint
-npm run test -- --watch=false --browsers=ChromeHeadless
-```
-
-3. **Build:**
-
-```bash
-ng build --configuration production
-```
-
-4. **Deploy:** Copy `dist/` folder to your server/CDN.
-
-🔧 In **GitHub Actions**, your workflow may look like:
-
-```yaml
-jobs:
-  build:
-    steps:
-      - uses: actions/checkout@v2
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run test -- --watch=false
-      - run: ng build --configuration=production
-```
-
-
----
 
 ### **Build Optimizer**
 

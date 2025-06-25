@@ -1,83 +1,23 @@
-**Node.js Basics**  - [Node.js Architecture](#nodejs-architecture)  - [Node.js handle multiple requests](#nodejs-handle-multiple-requests)  - [Single-Threaded Nature](#single-threaded-nature)  
-
-**Express.js Framework**  -[HTTP Module](#HTTP-Module) - [Express.js](#expressjs)  - [Routing](#routing)  - [HTTP Methods](#http-methods--use-cases)  - [request response query params](#request-response-query-params) - [HTTP Status Codes](#status-codes)
-
-**Processes**  - [Event Loop](#event-loop)    - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks)  - [Async Execution Order](#Async-Execution-Order)   - [SetImmediate vs processnextTick](#SetImmediate-vs-processnextTick) - [Cluster Module vs Child Process vs Worker Thread](#cluster-module-vs-child-process-vs-worker-thread)   
-
-- [libuv](#libuv) 
-- [spawn vs fork](#spawn-vs-fork)
-
-**Asynchronous Programming**  - [Asynchronous I/O Handling](#asynchronous-io-handling)  - [Callback, Promise, and Async/Await](#callback-vs-promise-vs-asyncawait)  - [Callback Hell](#callback-hell)  - [Promise](#promise)   - [Promise Type](#promise-type)  - [Streams](#Streams) - [Buffer](#Buffer) 
-
-**Middleware** - [Middleware](#middleware) - [CORS](#cors)  - [Insecure CORS Configuration](#insecure-cors-configuration)  - [Helmet](#helmet)    - [Rate Limiter](#Rate-Limiter) - [DDoS attack](#DDoS-attack) - [Data validation](#data-validation)  -[Input Validate](#Input-Validate) 
-
-**Package JSON**  - [package.json](#packagejson)  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson)
-
-
-**Caching** - [Caching Strategies](#caching-strategies)  - [Redis(Caching)](#nodejs-with-redis-caching)      **Secure** -  [Secure Node.js](#secure-nodejs-app) - [Securing Sensitive Data](#securing-sensitive-data)  - [Secure REST APIs](#secure-rest-apis)
-
-**API Design & Development**  - [REST API](#rest-api)    - [Pagination REST API](#implement-pagination-in-a-rest-api)  - [RESTful Folder Structure](#clean-restful-folder-structure) 
-
-**Authentication & Authorization**  
-- [Authentication vs Authorization](#authentication-vs-authorization) 
-- [JWT](#implementing-jwt-authentication) 
-- [Single Sign On](#Single-Sign-On) 
-- [Session-based vs Token-based](#session-based-vs-token-based-authentication)  
-- [Protecting Routes](#protecting-sensitive-routes)   
-- [Refresh Tokens](#refresh-tokens)  
-- [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers)   
-- [Role-Based Access Control](#role-based-access-control-rbac)
-
-**Event Handling**  
-- [Event Driven Architecture](#Event-Driven-Architecture) 
-- [Event Emitters](#event-emitters)  
-- [Process Object](#process-object)  
-- [WebSockets](#websockets-socketio-basics) 
-- [WebSockets Drawbacks](#drawbacks-of-WebSockets) 
-- [SocketIO](#SocketIO)
-
-**Error Handling & Debugging**  
-- [Error Handling](#error-handling-in-nodejs-applications)  
-- [Logging Errors](#logging-errors)  
-- [Debugging](#debugging-nodejs-applications)  
-- [Error handling in REST APIs](#error-handling-in-rest-apis)     
-
-**Memory**  - [Memory-leak](#Memory-leak)  - [Garbage Collection](#garbage-collection) 
-
-
-
-**Performance Optimization**  
-- [Performance Optimization](#performance-optimization) 
-- [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  
-- [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  
-- [Common Performance Pitfalls](#common-performance-pitfalls)     
-- [Handle CPU intensive task](#Handle-CPU-intensive-task)   
-
-
-**Concurrent**
-- [Concurrent CPU intensive requests](#Concurrent-CPU-intensive-requests) 
-- [Handling 100,000 concurrent requests](#Handling-100000-concurrent-requests)  
-- [Handle Concurrency](#Handle-Concurrency)
-
-
-**Scaling**
-- [Scaling High Traffic](#Scaling-High-Traffic)  
-- [Scalable REST APIs](#Scalable-REST-APIs)
-- [Scalability issues](#scalability-issues) 
-
-**Deployment**  
-- [Deploying into Production](#deploying-a-nodejs-application-to-production)  
-- [PM2](#pm2)  
-- [Load Balancing](#load-balancing)  
-- [Microservices Communication](#microservices-communication)
-
-
-**Database Interaction**  
-- [SQL connection](#sql-connection)  
-- [MongoDB connection](#mongodb-connection)  
-- [Database connections](#database-connections)   
-- [Database Transactions](#database-transactions)  
-- [Data consistency across distributed services](#data-consistency-across-distributed-services)
+| **Category**                   | **Topics**                                                                                                                                                                                                                                                                                                                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Node.js Basics**             | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature)                                                                                                                                                                                                                        |
+| **Express.js Framework**       | [HTTP Module](#HTTP-Module), [Express.js](#expressjs), [Routing](#routing), [HTTP Methods](#http-methods--use-cases), [Query Params](#request-response-query-params), [HTTP Status Codes](#status-codes)                                                                                                                                                                             |
+| **Processes**                  | [Event Loop](#event-loop), [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks), [Async Execution Order](#Async-Execution-Order), [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick), [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread), [libuv](#libuv), [spawn vs fork](#spawn-vs-fork)                                           |
+| **Asynchronous Programming**   | [Async I/O Handling](#asynchronous-io-handling), [Callback, Promise, Async/Await](#callback-vs-promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise](#promise), [Promise Type](#promise-type), [Streams](#Streams), [Buffer](#Buffer)                                                                                                                                   |
+| **Middleware**                 | [Middleware](#middleware), [CORS](#cors), [Insecure CORS](#insecure-cors-configuration), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate)                                                                                                                                       |
+| **Package JSON**               | [package.json](#packagejson), [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                                                                                                                                                                                                                                  |
+| **Caching**                    | [Caching Strategies](#caching-strategies), [Redis (Caching)](#nodejs-with-redis-caching)                                                                                                                                                                                                                                                                                             |
+| **Secure**                     | [Secure Node.js](#secure-nodejs-app), [Securing Sensitive Data](#securing-sensitive-data), [Secure REST APIs](#secure-rest-apis)                                                                                                                                                                                                                                                     |
+| **API Design & Development**   | [REST API](#rest-api), [Pagination](#implement-pagination-in-a-rest-api), [Folder Structure](#clean-restful-folder-structure)                                                                                                                                                                                                                                                        |
+| **Authentication & Authz**     | [Auth vs Authz](#authentication-vs-authorization), [JWT](#implementing-jwt-authentication), [Single Sign On](#Single-Sign-On), [Session vs Token](#session-based-vs-token-based-authentication), [Protecting Routes](#protecting-sensitive-routes), [Refresh Tokens](#refresh-tokens), [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers), [RBAC](#role-based-access-control-rbac) |
+| **Event Handling**             | [Event Driven Architecture](#Event-Driven-Architecture), [Event Emitters](#event-emitters), [Process Object](#process-object), [WebSockets](#websockets-socketio-basics), [WebSockets Drawbacks](#drawbacks-of-WebSockets), [Socket.IO](#SocketIO)                                                                                                                                   |
+| **Error Handling & Debugging** | [Error Handling](#error-handling-in-nodejs-applications), [Logging Errors](#logging-errors), [Debugging](#debugging-nodejs-applications), [REST API Errors](#error-handling-in-rest-apis)                                                                                                                                                                                            |
+| **Memory**                     | [Memory Leak](#Memory-leak), [Garbage Collection](#garbage-collection)                                                                                                                                                                                                                                                                                                               |
+| **Performance Optimization**   | [Performance Optimization](#performance-optimization), [Improve Performance](#strategies-for-improving-performance-in-nodejs-applications), [Latency Profiling](#profiling-and-optimizing-latency), [Performance Pitfalls](#common-performance-pitfalls), [Handle CPU Tasks](#Handle-CPU-intensive-task)                                                                             |
+| **Concurrent**                 | [Concurrent Requests](#Concurrent-CPU-intensive-requests), [100K Concurrent](#Handling-100000-concurrent-requests), [Handle Concurrency](#Handle-Concurrency)                                                                                                                                                                                                                        |
+| **Scaling**                    | [High Traffic Scaling](#Scaling-High-Traffic), [Scalable REST APIs](#Scalable-REST-APIs), [Scalability Issues](#scalability-issues)                                                                                                                                                                                                                                                  |
+| **Deployment**                 | [Production Deployment](#deploying-a-nodejs-application-to-production), [PM2](#pm2), [Load Balancing](#load-balancing), [Microservices Communication](#microservices-communication)                                                                                                                                                                                                  |
+| **Database Interaction**       | [SQL Connection](#sql-connection), [MongoDB Connection](#mongodb-connection), [DB Connections](#database-connections), [Transactions](#database-transactions), [Distributed Data Consistency](#data-consistency-across-distributed-services)                                                                                                                                         |
 
 
 

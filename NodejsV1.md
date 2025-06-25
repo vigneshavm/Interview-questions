@@ -802,20 +802,39 @@ This approach is **memory-efficient** and great for **large file operations**.
 
 - Represents binary data.
 - Useful when dealing with streams.
+ - In Node.js, a **Buffer** is a global object used to handle **binary data directly in memory**. It’s essential for working with streams, file I/O, network sockets, or any operation requiring raw data processing.
+- Since JavaScript strings are not suitable for binary manipulation, Buffers provide an efficient way to **read, write, and manipulate raw bytes**, especially when dealing with encodings like UTF-8, base64, etc.
+- Buffers allow Node.js to efficiently process binary data, making them a core feature for handling streams, files, and network protocols.
 
- Code Sample
+
+### 🔧 **Key Use Cases:**
+
+* Reading/writing files (e.g., `fs.readFile`)
+* Handling TCP or HTTP streams
+* Encoding/decoding binary data (e.g., images, PDFs)
+
+---
+
+### 🧪 **Example:**
+
 ```js
+const buf = Buffer.from('Hello');
+console.log(buf.toString()); // Output: Hello
+
 const buf = Buffer.from('Hello');
 console.log(buf); // <Buffer 48 65 6c 6c 6f>
 console.log(buf.toString()); // Hello
 ```
 
+
+### 🧠 **Important Methods:**
+
+* `Buffer.from(str)` – Create buffer from string/data
+* `Buffer.alloc(size)` – Allocate zero-filled buffer
+* `buffer.toString()` – Convert buffer to string
+* `Buffer.concat([...])` – Merge multiple buffers
+
 ---
-
-
-
-
-
 
 
 ##  **Process Object**

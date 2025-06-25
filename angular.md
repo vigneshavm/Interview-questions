@@ -1611,7 +1611,6 @@ intercept(req: HttpRequest<any>, next: HttpHandler) {
 
  -  Angular provides lifecycle hooks to tap into key moments of a component’s lifecycle.
  -  Some important ones are:
-
 * `ngOnInit()` – used for initialization logic after the component is constructed.
 * `ngOnChanges()` – called when any `@Input()` property changes.
 * `ngOnDestroy()` – used for cleanup like unsubscribing from observables or clearing intervals.
@@ -1634,42 +1633,24 @@ intercept(req: HttpRequest<any>, next: HttpHandler) {
 * Do not trigger side effects like HTTP calls or subscriptions.
 
 
-* **ngOnChanges(changes: SimpleChanges)**
-
+* **ngOnChanges(changes: SimpleChanges)** 
   * Called **before ngOnInit** and whenever any data-bound input properties change.
   * Receives a `SimpleChanges` object detailing the changed inputs.
   * Useful for reacting to @Input() property changes.
 
-* **ngOnInit()**
+* **ngOnInit()** -  * Called **once** after the first ngOnChanges. and  Good place for component initialization, fetching data, or setup logic.
 
-  * Called **once** after the first ngOnChanges.
-  * Good place for component initialization, fetching data, or setup logic.
+* **ngDoCheck()**  -  * Called during every change detection cycle. and  Allows custom change detection logic beyond default Angular detection.
 
-* **ngDoCheck()**
+* **ngAfterContentInit()**    -  * Called once after Angular projects external content (ng-content) into the component.
 
-  * Called during every change detection cycle.
-  * Allows custom change detection logic beyond default Angular detection.
+* **ngAfterContentChecked()**  -  * Called after every check of projected content.
 
-* **ngAfterContentInit()**
+* **ngAfterViewInit()**  -  * Called once after Angular initializes the component’s views and child views.
 
-  * Called once after Angular projects external content (ng-content) into the component.
+* **ngAfterViewChecked()** -   * Called after every check of the component’s views and child views.
 
-* **ngAfterContentChecked()**
-
-  * Called after every check of projected content.
-
-* **ngAfterViewInit()**
-
-  * Called once after Angular initializes the component’s views and child views.
-
-* **ngAfterViewChecked()**
-
-  * Called after every check of the component’s views and child views.
-
-* **ngOnDestroy()**
-
-  * Called just before Angular destroys the component.
-  * Ideal for cleanup: unsubscribing Observables, clearing timers, detaching event handlers.
+* **ngOnDestroy()**   * Called just before Angular destroys the component. and  Ideal for cleanup: unsubscribing Observables, clearing timers, detaching event handlers.
 
 ---
 

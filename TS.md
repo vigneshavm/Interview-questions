@@ -1,22 +1,23 @@
+Here is your **TypeScript topic list converted into a clean Markdown table**, organized by categories. This is useful for study guides, documentation, or interview prep.
 
-**Core Concepts** • [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript)   • [`any` vs `unknown` Types](#any-vs-unknown)  • [Duck Typing](#duck-typing)  - [Class](#class)  - [JavaScript & TypeScript Performance Optimization Checklist](#JavaScript-TypeScript-Performance-Optimization-Checklist)
+---
 
-**Types** • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing)  • [Type Decorators](#decorators) • [Conditional Types](#conditional-types)  • [Template Literal Types](#template-literal-types) • [Generics Types](#generics) 
+### 📘 **TypeScript Interview Topics – Table Format**
 
-**OOPS** - [Polymorphism](#Polymorphism) - [Class](#class)  - [Immutable Class](#Immutable-Class) - [Inheritance](#Inheritance) - [Encapsulation](#Encapsulation)
+| **Category**                      | **Topics & Links**                                                                                                                                                                                                                                                                                                          |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Core Concepts**                 | [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript) • [`any` vs `unknown` Types](#any-vs-unknown) • [Duck Typing](#duck-typing) • [Class](#class) • [JavaScript & TypeScript Performance Optimization Checklist](#javascript-typescript-performance-optimization-checklist)       |
+| **Types**                         | [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing) • [Type Decorators](#decorators) • [Conditional Types](#conditional-types) • [Template Literal Types](#template-literal-types) • [Generics Types](#generics) |
+| **OOP (Object-Oriented)**         | [Polymorphism](#polymorphism) • [Class](#class) • [Immutable Class](#immutable-class) • [Inheritance](#inheritance) • [Encapsulation](#encapsulation)                                                                                                                                                                   |
+| **Types & Interfaces**            | [Interface vs Type](#interface-vs-type) • [Extending Types and Interfaces](#extending-types-and-interfaces) • [Mapped Types](#mapped-types) • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record) • [Union vs Intersection Types](#union-and-intersection-types)                            |
+| **Advanced Types**                | [`keyof` and `typeof` Operators](#keyof-vs-typeof) • [`readonly` vs `const`](#readonly-vs-const)                                                                                                                                                                                                                           |
+| **Generics**                      | [Generic Functions and Classes](#generics) • [Constraining Generics with `extends`](#constraining-generics-with-extends)                                                                                                                                                                                                   |
+| **Modules, Namespaces, Compiler** | [Namespaces and Modules](#namespaces-and-modules) • [Module System in TypeScript](#module-system-in-typescript) • [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options) • [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)                           |
+| **Functions & Behavior**          | [Function Overloading](#function-overloading) • [Declaration Merging](#declaration-merging)                                                                                                                                                                                                                                |
+| **Objects & Collections**         | [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects) • [`Map` vs `WeakMap`](#map-vs-weakmap) • [`Set` vs `WeakSet`](#set-vs-weakset) • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)                                                                                                  |
 
-**Types & Interfaces** • [Interface vs Type](#interface-vs-type)  • [Extending Types and Interfaces](#extending-types-and-interfaces)  • [Mapped Types](#mapped-types)  • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record)  • [Union vs Intersection Types](#Union-and-Intersection-Types)  
+---
 
-**Advanced Types**  • [`keyof` and `typeof` Operators](#keyof-vs-typeof)   • [`readonly` vs `const`](#readonly-vs-const)   
-
-
-**Generics** • [Generic Functions and Classes](#generics)  • [Constraining Generics with `extends`](#constraining-generics-with-extends)  
-
-**Modules, Namespaces & Compiler**   • [Namespaces and Modules](#namespaces-and-modules)  • [Module System in TypeScript](#module-system-in-typescript)  • [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options)  • [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)  
-
-**Functions & Behavior**     • [Function Overloading](#function-overloading)    • [Declaration Merging](#declaration-merging)  
-
-**Objects & Collections**   • [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects)  • [`Map` vs `WeakMap`](#map-vs-weakmap)   • [`Set` vs `WeakSet`](#set-vs-weakset)  - [WeakMap and WeakSet Usage](#WeakMap-and-WeakSet-Usage)
 
 
 

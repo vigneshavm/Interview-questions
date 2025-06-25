@@ -3,17 +3,17 @@
 | **Core Angular Concepts**          | • [Angular](#angular)  • [Module](#module)  • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
 | **Components**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
 | **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition](#Using-One-Component-Inside-Another ) • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
-| **Dependency Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      - [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                       |
-| **Routing & Lazy Loading**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) • [Lazy Loading](#lazy-loading) • [Lazy Loading Modules](#lazy-loading-modules) • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies)  - [Authentication and Role-Based Access](#authentication-and-role-based-access)  |
+| **Dependency Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                       |
+| **Routing & Lazy Loading**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) • [Lazy Loading](#lazy-loading) • [Lazy Loading Modules](#lazy-loading-modules) • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies)  • [Authentication and Role-Based Access](#authentication-and-role-based-access)  |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
-| **State Management**        | • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  - [NgRx for State Management](#NgRx-for-State-Management) - [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
-| **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)      
-| **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Build Optimizer](#build-optimizer) - [Assets Optimizes](#how-angular-optimizes-assets)
+| **State Management**        | • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
+| **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      
+| **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)  
 | **Webpack**      | • [Customize Webpack](#customize-webpack) • [Webpack](#webpack)  • [Reduce the Bundle Size](#reduce-the-bundle-size)                                                                        |
-| **Other**      | - [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle) - [Consistent Builds Across Environments](#consistent-builds-across-environments) - [What Happens Under the Hood](#what-happens-under-the-hood) - [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines) - [Automation Tools](#automation-tools) - [Differential Loading and Polyfills](#differential-loading-and-polyfills) - [Environment-based Builds](#environment-based-builds) - [Linting and Testing Tools](#linting-and-testing-tools)    |
-
+| **Other**      | • [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle) • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [What Happens Under the Hood](#what-happens-under-the-hood) • [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills) • [Environment-based Builds](#environment-based-builds) • [Linting and Testing Tools](#linting-and-testing-tools)    |
+| **Utilities & Miscellaneous**      | • [Authentication](#authentication) • [Secure Angular Routes](#secure-angular-routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements) • [Interceptor](#interceptor) • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens)   |
 
 
 
@@ -3654,4 +3654,114 @@ ng lint
 
 
 
+
+
+### **Authentication**
+
+- "I typically implement authentication in Angular using **JWT-based token authentication**. 
+- When the user logs in, I send a `POST` request to the backend with the user's credentials. 
+- Upon successful validation, the server returns a **JWT token**, which I store in `localStorage` or `sessionStorage`.
+- To secure all outgoing requests, I use an **HTTP interceptor** that automatically attaches the token to the `Authorization` header. Additionally, I implement an `AuthGuard` to restrict access to protected routes."
+
+✅ **Key Points to Mention:**
+
+* JWT token storage
+* HTTP interceptor
+* AuthGuard for route protection
+
+---
+
+### **Secure Angular routes**
+
+
+- "To implement **Role-Based Access Control (RBAC)** in Angular, I create a `RoleGuard` in addition to the standard `AuthGuard`. 
+- The guard checks if the current user's roles—retrieved from either the JWT payload or local storage—match the expected roles defined in the route’s metadata.
+- For example, I add `canActivate: [AuthGuard, RoleGuard]` to my route definitions and pass allowed roles in the `data` field. 
+- Inside the guard, I validate whether the user has at least one matching role."
+
+ **Key Points to Mention:**
+
+* `RoleGuard` based on `route.data`
+* Dynamic role checks using `localStorage` or JWT claims
+* Combined use of `AuthGuard` + `RoleGuard`
+
+---
+
+###  **Token expiration**
+
+- "For handling token expiration, I decode the JWT and check the `exp` field. 
+- I do this in either the HTTP interceptor or a token utility service. 
+- If the token is expired, I automatically log the user out or redirect them to the login screen.
+- In some cases, I also implement a **refresh token mechanism**, 
+- where a secondary token can be used to fetch a new JWT without forcing a logout."
+
+✅ **Key Points to Mention:**
+
+* Token decoding using `atob()`
+* Auto logout on expiration
+* Optionally support refresh tokens
+
+---
+
+### **Protect UI elements**
+
+- "I conditionally render UI elements using `*ngIf` based on user roles stored in a service or decoded from the token. 
+- For instance, I use something like `*ngIf="roleService.hasRole('admin')"` to show admin-specific controls.
+- However, I always emphasize that **UI-level access control is just for convenience**, not security. 
+- Real enforcement must happen on the server side."
+
+**Key Points to Mention:**
+
+* Use of `*ngIf` for UI control
+* RoleService for cleaner logic
+* Server-side checks are mandatory
+
+---
+
+### **Interceptor**
+
+- "The HTTP interceptor is a powerful Angular feature that lets me intercept and modify HTTP requests and responses. I use it to:
+- 1. **Attach the JWT token** to every outgoing request via the `Authorization` header.
+- 2. **Handle errors globally**, such as redirecting to the login page on a 401 Unauthorized response.
+- It centralizes authentication logic and keeps the code DRY and maintainable."
+
+**Key Points to Mention:**
+
+* Token injection in headers
+* 401 error handling and redirection
+* Keeps services clean
+
+---
+
+### **Secure role based routing**
+
+
+- "For lazy-loaded modules, I use `CanLoad` guards in addition to `CanActivate`. 
+- `CanLoad` prevents the module code from even being downloaded if the user lacks the required roles. 
+This improves both security and performance.
+- I reuse my `RoleGuard` logic within `CanLoad`, checking the route’s metadata before loading the module."
+
+**Key Points to Mention:**
+
+* `CanLoad` for lazy modules
+* Reuse `RoleGuard` logic
+* Security + performance optimization
+
+---
+
+### **Store authentication tokens**
+
+
+- I prefer to store tokens in `localStorage` for simplicity, 
+- But I’m aware of the **XSS risks**. 
+- In security-sensitive apps, I recommend using **HttpOnly cookies**, which are inaccessible from JavaScript.
+- However, since Angular can’t access HttpOnly cookies directly, it requires backend changes to support cookie-based authentication."
+
+**Key Points to Mention:**
+
+* `localStorage` is easy but risky (XSS)
+* `HttpOnly` cookies are safer (but backend-dependent)
+* Tradeoff between convenience and security
+
+---
 

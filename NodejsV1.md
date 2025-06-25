@@ -307,14 +307,14 @@ setTimeout(() => {
   });
 }, 0);
 setImmediate(() => {  console.log('setImmediate'); }); // 9
-process.nextTick(() => {  console.log('nextTick 1'); }); // 3
+process.nextTick(() => {  console.log('nextTick 1'); }); // 4
 Promise.resolve(() => {
-  console.log("Working inside IIFE"); // 4 (sync)
+  console.log("Working inside IIFE"); // 2 (sync)
   return "result";
 }).then((res) => {
   console.log("Then got:", res); // 5
 });
-console.log('End'); // 2
+console.log('End'); // 3
 ```
 output:
 ```js

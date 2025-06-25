@@ -11,7 +11,6 @@
 | **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)  
-| **Webpack**      | • [Customize Webpack](#customize-webpack) • [Webpack](#webpack)  • [Reduce the Bundle Size](#reduce-the-bundle-size)                                                                        |
 | **Other**      | • [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle) • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [What Happens Under the Hood](#what-happens-under-the-hood) • [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills) • [Environment-based Builds](#environment-based-builds) • [Linting and Testing Tools](#linting-and-testing-tools)    |
 | **Utilities & Miscellaneous**      | • [Authentication](#authentication) • [Secure Angular Routes](#secure-angular-routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens)   |
 
@@ -3288,35 +3287,6 @@ npm install @angular-builders/custom-webpack --save-dev
 
 ---
 
-### **Reduce the bundle size**
-
-**Answer:**
-
-1. **Build with stats:**
-
-```bash
-ng build --configuration production --stats-json
-```
-
-2. **Analyze with Webpack Bundle Analyzer:**
-
-```bash
-npx webpack-bundle-analyzer dist/stats.json
-```
-
-3. **Steps to reduce size:**
-
-   * **Lazy load large feature modules**
-   * Remove unused dependencies
-   * Use `providedIn: 'root'` for tree-shakable services
-   * Import only what you use (e.g., lodash-es)
-   * Remove source maps and console logs in production
-   * Use CDN for external assets (fonts, icons)
-   * Compress assets via GZIP or Brotli
-
->  **Key Point:** Bundle size impacts **FCP (First Contentful Paint)** and **TTI (Time to Interactive)**.
-
----
 
 ### **Angular optimize**
 
@@ -3447,22 +3417,6 @@ It is **enabled by default** in production builds.
 
 ---
 
-### **Webpack**
-
-- **Webpack** is a **static module bundler** for JavaScript applications. 
-- It takes modules (JS, CSS, images, HTML, etc.) and produces optimized bundles for the browser.
-
-**Angular CLI uses Webpack** internally to:
-
-* Bundle modules and dependencies
-* Convert TypeScript to JavaScript
-* Handle SCSS/LESS preprocessing
-* Inject compiled scripts and styles into `index.html`
-* Split code into chunks for lazy loading
-
->  **Key Point:** While Angular hides Webpack configs, you can expose them using tools like `@angular-builders/custom-webpack` if customization is needed.
-
----
 
 ### **AOT**
 

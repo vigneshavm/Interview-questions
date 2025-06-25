@@ -1462,6 +1462,13 @@ res.cookie('accessToken', token, {
 - Enable **load balancing** and **clustering**.
 - Use **Gzip compression**.
 - Implement **lazy loading** to optimize resource loading.
+* Avoid blocking operations; use **non-blocking async/await**.
+* Use **caching** (e.g., Redis) for frequent reads.
+* Use **connection pooling** for DBs (especially in PostgreSQL with `pg-pool`).
+* Apply **rate limiting** and **throttling** (e.g., `express-rate-limit`).
+* Reduce payload using **compression** (e.g., `compression` middleware).
+* Minimize DB round-trips via **batching or joins**.
+* Profile performance using **Node.js built-in profiler** or `clinic.js`.
 
 ---
 

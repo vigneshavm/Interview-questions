@@ -276,6 +276,13 @@ Timer 1
 
 ### **Async Execution Order**
 
+| Function             | Phase             | Priority Order         | Use Case                              |
+| -------------------- | ----------------- | ---------------------- | ------------------------------------- |
+| `process.nextTick()` | Before event loop | 🔝 Highest (microtask) | Critical deferred logic, cleanup      |
+| `setImmediate()`     | Check phase       | After I/O              | Run after I/O, lowest-priority tasks  |
+| `setTimeout(fn, 0)`  | Timers phase      | After check phase      | General deferral, non-critical timing |
+
+
 ```js
 setTimeout(() => console.log("Timeout"), 0);
 setImmediate(() => console.log("Immediate"));
@@ -284,17 +291,43 @@ console.log("Main");
 ```
 **Output:**
 ```
-Main
-NextTick
-Immediate
-Timeout
+Main          ----> sync
+NextTick      ----> runs before other microtasks
+Immediate     ----> check phase
+Timeout      ----> timer phase
 ```
 
-🟢 **Priority Order**:
-1. `console.log("Main")` → sync
-2. `process.nextTick()` → runs before other microtasks
-3. `setImmediate()` → check phase
-4. `setTimeout()` → timer phase
+```js
+console.log('Start'); // 1
+setTimeout(() => {
+  console.log('setTimeout 1'); // 6
+  process.nextTick(() => {console.log('nextTick in setTimeout')}); // 7 
+  Promise.resolve().then(() => {
+    console.log('Promise inside setTimeout'); // 8
+  });
+}, 0);
+setImmediate(() => {  console.log('setImmediate'); }); // 9
+process.nextTick(() => {  console.log('nextTick 1'); }); // 3
+Promise.resolve(() => {
+  console.log("Working inside IIFE"); // 4 (sync)
+  return "result";
+}).then((res) => {
+  console.log("Then got:", res); // 5
+});
+console.log('End'); // 2
+```
+output:
+```js
+Start
+Working inside IIFE
+End
+nextTick 1
+Then got: result
+setTimeout 1
+nextTick inside setTimeout
+Promise inside setTimeout
+setImmediate
+```
 
 
 ### **SetImmediate vs processnextTick**:
@@ -310,11 +343,6 @@ Timeout
 
 **Summary Table**
 
-| Function             | Phase             | Priority Order         | Use Case                              |
-| -------------------- | ----------------- | ---------------------- | ------------------------------------- |
-| `process.nextTick()` | Before event loop | 🔝 Highest (microtask) | Critical deferred logic, cleanup      |
-| `setImmediate()`     | Check phase       | After I/O              | Run after I/O, lowest-priority tasks  |
-| `setTimeout(fn, 0)`  | Timers phase      | After check phase      | General deferral, non-critical timing |
 
 ---
 

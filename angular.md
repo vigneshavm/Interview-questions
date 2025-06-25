@@ -8,29 +8,22 @@
 | **Lazy Loading**           | • [Lazy Loading](#lazy-loading) • [Lazy Loading Modules](#lazy-loading-modules) • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
-| **State Management**        | • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  - [NgRx for State Management](#NgRx-for-State-Management) - [Step by Step Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)
+| **State Management**        | • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  - [NgRx for State Management](#NgRx-for-State-Management) - [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)
 | **HTTP**     | • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                                           |
 | **Security & Authentication**      | • [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) • [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                               |
 | **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)      
-| **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19)
-| **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)                                                                          |
+| **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19)
+| **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)  
+| **Webpack**      | • [Customize Webpack](#customize-webpack) • [Webpack] • [Reduce the Bundle Size](#reduce-the-bundle-size)(#webpack)                                                                         |
 
 
-- [Customize Webpack](#customize-webpack)
 - [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle)
-- [Reduce the Bundle Size](#reduce-the-bundle-size)
 - [Angular Optimizes Assets](#how-angular-optimizes-assets)
 - [Consistent Builds Across Environments](#consistent-builds-across-environments)
 - [What Happens Under the Hood](#what-happens-under-the-hood)
 - [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines)
 - [Build Optimizer](#build-optimizer)
 - [Automation Tools](#automation-tools)
-- [Webpack](#webpack)
-- [AOT (Ahead-of-Time Compilation)](#aot-ahead-of-time-compilation)
-- [AOT and JIT Comparison](#aot-and-jit-comparison)
-- [Lazy Loading](#lazy-loading)
-- [Tree-shaking](#tree-shaking)
-- [Source Maps](#source-maps)
 - [Differential Loading and Polyfills](#differential-loading-and-polyfills)
 - [Environment-based Builds](#environment-based-builds)
 - [Linting and Testing Tools](#linting-and-testing-tools)
@@ -2582,15 +2575,6 @@ forkJoin({
 
 
 
-###  **Lazy Loading**
-
- -  Lazy loading is the practice of loading feature modules **only when needed**, reducing initial load time.
- -  We define routes using `loadChildren` with dynamic imports.
-
-
-
-
-
 ###  **Component Factory & Encapsulation**
 
  -  A component factory is used to dynamically create components at runtime using `ComponentFactoryResolver`.
@@ -2806,17 +2790,7 @@ export class ParentComponent {}
 
 
 
-## **AOT**
 
--  “AOT stands for **Ahead-of-Time Compilation** in Angular.
-
-- It means that Angular compiles the application’s HTML templates and TypeScript code **during the build phase**, instead of in the browser at runtime.
-
--  This leads to **faster rendering**, **smaller bundle size**, and **earlier error detection**, because the compiler doesn't need to run in the browser.
-
-- I always use AOT in production by running `ng build --prod`, which enables AOT, minification, tree-shaking, and other optimizations automatically.”
-
----
 
 
 ### 🧠 Optional Deep Dive (if asked):
@@ -2856,16 +2830,16 @@ ng build --aot
 
 ##  **AOT vs JIT**
 
- - “In Angular, there are two ways to compile templates: **JIT (Just-in-Time)** and **AOT (Ahead-of-Time)**.
-
--  **JIT** compiles templates in the **browser at runtime**, while **AOT** compiles them **during the build process**, before the app is deployed.
-
--  For development, JIT is useful because it’s faster to build and easier to debug.
+- In Angular, there are two ways to compile templates: **JIT (Just-in-Time)** and **AOT (Ahead-of-Time)**.
+-  **JIT** compiles templates in the **browser at runtime**, 
+- while **AOT** compiles them **during the build process**, before the app is deployed.
+- For development, JIT is useful because it’s faster to build and easier to debug.
 - But in production, I always use AOT because it improves performance, reduces bundle size, and catches errors early during the build.”
 
----
 
-### 📊 AOT vs JIT – Side-by-Side Comparison:
+
+- AOT is now the default in Angular production builds, and it’s essential for optimizing load times and ensuring better security and early validation.”
+
 
 | Feature                      | AOT (Ahead-of-Time)           | JIT (Just-in-Time)                   |
 | ---------------------------- | ----------------------------- | ------------------------------------ |
@@ -2901,53 +2875,6 @@ ng build --aot
 
 ---
 
-### 🧠 Tip to Mention:
-
-> “AOT is now the default in Angular production builds, and it’s essential for optimizing load times and ensuring better security and early validation.”
-
-
-
-
-### Tree Shaking
-- Tree shaking removes unused code from the final bundle. 
-- Angular CLI with Webpack performs tree shaking automatically to optimize production builds.
-- Tree shaking is a **build-time optimization** technique used  to **remove unused code** from the final JavaScript bundle, 
-- Reducing file size and improving performance.
-
-In Angular, tree shaking is automatically applied during **production builds** using:
-
-```bash
-ng build --configuration production
-```
-
-It works by leveraging:
-
-* **ES6 module syntax** (`import/export`) for static code analysis
-* **Webpack**, which identifies and removes unused exports
-* **AOT (Ahead-of-Time) compilation**, which simplifies the app structure for better optimization
-
-
-**Example**
-
-If I have a utility file with two functions, and I import only one:
-
-```ts
-// utils.ts
-export function usedFunc() { }
-export function unusedFunc() { }
-```
-
-- Only `usedFunc` will be included in the final bundle. 
-- `unusedFunc` is "shaken off" because it's not referenced anywhere.
-
-**Tools I Use**
-
-To verify tree shaking, I use:
-
-```bash
-npm install -g source-map-explorer
-source-map-explorer dist/*.js
-```
 
 
 
@@ -3563,8 +3490,13 @@ It is **enabled by default** in production builds.
 
 ### **AOT**
 
-**AOT** compiles Angular templates and components **during the build phase**, instead of at runtime.
-- AOT is crucial for production-grade Angular apps due to performance and security.
+- AOT stands for **Ahead-of-Time Compilation** in Angular.
+- **AOT** compiles Angular templates and components **during the build phase**, instead of at runtime.
+- AOT is crucial for **production-grade Angular apps due to performance and security**.
+- Angular compiles the application’s HTML templates and TypeScript code **during the build phase**, instead of in the browser at runtime.
+- This leads to **faster rendering**, **smaller bundle size**, and **earlier error detection**, because the compiler doesn't need to run in the browser.
+- I always use **AOT in production by running `ng build --prod`, which enables AOT, minification, tree-shaking, and other optimizations automatically**.
+
 
 - **Benefits of AOT:**
 
@@ -3596,12 +3528,13 @@ ng build --configuration=production
 ---
 
 ### **Lazy loading**
-
+-  Lazy loading is the practice of loading feature modules **only when needed**, reducing initial load time.
+-  We define routes using `loadChildren` with dynamic imports.
 - Angular uses **lazy loading** to load feature modules only when needed, reducing initial load time.
 - **Key Point:** Lazy loading + Webpack = optimized performance via **code splitting**
 
 
-🔹 **How it works:**
+**How it works:**
 
 * Define lazy-loaded routes using `loadChildren`:
 
@@ -3617,6 +3550,11 @@ ng build --configuration=production
 
 ### **Tree-shaking**
 
+- Tree shaking removes unused code from the final bundle. 
+- Angular CLI with Webpack performs tree shaking automatically to optimize production builds.
+- Tree shaking is a **build-time optimization** technique used  to **remove unused code** from the final JavaScript bundle, 
+- Reducing file size and improving performance.
+
 **Tree-shaking** is a **build optimization** that removes unused (dead) code from the final bundle.
 
 * Angular CLI + Webpack + TypeScript compiler analyze your imports
@@ -3624,9 +3562,46 @@ ng build --configuration=production
 
 >  **Key Point:** Make sure your code uses **ES6 module syntax** (i.e., `import/export`) to benefit from tree-shaking.
 
+
+In Angular, tree shaking is automatically applied during **production builds** using:
+
+```bash
+ng build --configuration production
+```
+
+It works by leveraging:
+
+* **ES6 module syntax** (`import/export`) for static code analysis
+* **Webpack**, which identifies and removes unused exports
+* **AOT (Ahead-of-Time) compilation**, which simplifies the app structure for better optimization
+
+
+**Example**
+
+If I have a utility file with two functions, and I import only one:
+
+```ts
+// utils.ts
+export function usedFunc() { }
+export function unusedFunc() { }
+```
+
+- Only `usedFunc` will be included in the final bundle. 
+- `unusedFunc` is "shaken off" because it's not referenced anywhere.
+
+**Tools I Use**
+
+To verify tree shaking, I use:
+
+```bash
+npm install -g source-map-explorer
+source-map-explorer dist/*.js
+```
+
+
 ---
 
-### **source maps**
+### **Source Maps**
 
 **Source maps** map your compiled code back to the original TypeScript or SCSS source code.
 

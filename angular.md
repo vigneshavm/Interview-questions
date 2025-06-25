@@ -13,7 +13,7 @@
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)  
 | **Webpack**      | • [Customize Webpack](#customize-webpack) • [Webpack](#webpack)  • [Reduce the Bundle Size](#reduce-the-bundle-size)                                                                        |
 | **Other**      | • [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle) • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [What Happens Under the Hood](#what-happens-under-the-hood) • [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills) • [Environment-based Builds](#environment-based-builds) • [Linting and Testing Tools](#linting-and-testing-tools)    |
-| **Utilities & Miscellaneous**      | • [Authentication](#authentication) • [Secure Angular Routes](#secure-angular-routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements) • [Interceptor](#interceptor) • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens)   |
+| **Utilities & Miscellaneous**      | • [Authentication](#authentication) • [Secure Angular Routes](#secure-angular-routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens)   |
 
 
 
@@ -1565,12 +1565,21 @@ I use GitHub Actions or Azure Pipelines. Lint, test, build, and deploy to enviro
 
 
 
+
+
 ## HTTP Interceptors in Angular
 
+-  An interceptor is a class that implements the `HttpInterceptor` interface. It intercepts all HTTP requests and responses.
+- "The HTTP interceptor is a powerful Angular feature that lets me **intercept and modify HTTP requests and responses**. I use it to:
+- 1. **Attach the JWT token** to every outgoing request via the `Authorization` header.
+- 2. **Handle errors globally**, such as redirecting to the login page on a 401 Unauthorized response.
+- It centralizes authentication logic and keeps the code DRY and maintainable."
 
- -  An interceptor is a class that implements the `HttpInterceptor` interface. It intercepts all HTTP requests and responses.
- -  We use it to:
+**Key Points to Mention:**
 
+* Token injection in headers
+* 401 error handling and redirection
+* Keeps services clean
 * Add authentication headers
 * Handle errors globally
 * Log HTTP activity
@@ -3718,20 +3727,7 @@ ng lint
 
 ---
 
-### **Interceptor**
 
-- "The HTTP interceptor is a powerful Angular feature that lets me intercept and modify HTTP requests and responses. I use it to:
-- 1. **Attach the JWT token** to every outgoing request via the `Authorization` header.
-- 2. **Handle errors globally**, such as redirecting to the login page on a 401 Unauthorized response.
-- It centralizes authentication logic and keeps the code DRY and maintainable."
-
-**Key Points to Mention:**
-
-* Token injection in headers
-* 401 error handling and redirection
-* Keeps services clean
-
----
 
 ### **Secure role based routing**
 

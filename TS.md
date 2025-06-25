@@ -1,9 +1,3 @@
-Here is your **TypeScript topic list converted into a clean Markdown table**, organized by categories. This is useful for study guides, documentation, or interview prep.
-
----
-
-### 📘 **TypeScript Interview Topics – Table Format**
-
 | **Category**                      | **Topics & Links**                                                                                                                                                                                                                                                                                                          |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Core Concepts**                 | [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript) • [`any` vs `unknown` Types](#any-vs-unknown) • [Duck Typing](#duck-typing) • [Class](#class) • [JavaScript & TypeScript Performance Optimization Checklist](#javascript-typescript-performance-optimization-checklist)       |

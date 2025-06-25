@@ -13,16 +13,8 @@
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Build Optimizer](#build-optimizer) - [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)  
 | **Webpack**      | • [Customize Webpack](#customize-webpack) • [Webpack](#webpack)  • [Reduce the Bundle Size](#reduce-the-bundle-size)                                                                        |
-
-
-- [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle)
-- [Consistent Builds Across Environments](#consistent-builds-across-environments)
-- [What Happens Under the Hood](#what-happens-under-the-hood)
-- [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines)
-- [Automation Tools](#automation-tools)
-- [Differential Loading and Polyfills](#differential-loading-and-polyfills)
-- [Environment-based Builds](#environment-based-builds)
-- [Linting and Testing Tools](#linting-and-testing-tools)
+| **Other**      | - [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle) - [Consistent Builds Across Environments](#consistent-builds-across-environments) - [What Happens Under the Hood](#what-happens-under-the-hood) - [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines) - [Automation Tools](#automation-tools)
+- [Differential Loading and Polyfills](#differential-loading-and-polyfills) - [Environment-based Builds](#environment-based-builds) - [Linting and Testing Tools](#linting-and-testing-tools)    |
 
 
 

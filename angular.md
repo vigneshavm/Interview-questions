@@ -19,7 +19,7 @@
 - [Customize Webpack](#customize-webpack)
 - [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle)
 - [Reduce the Bundle Size](#reduce-the-bundle-size)
-- [How Angular Optimizes Assets](#how-angular-optimizes-assets)
+- [Angular Optimizes Assets](#how-angular-optimizes-assets)
 - [Consistent Builds Across Environments](#consistent-builds-across-environments)
 - [What Happens Under the Hood](#what-happens-under-the-hood)
 - [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines)
@@ -3333,7 +3333,7 @@ In the template:
 
 
 
-### **customize Webpack**
+### **Customize Webpack**
 
 - Since Angular CLI **doesn’t expose Webpack config directly**,
 - you can use the community package `@angular-builders/custom-webpack` to extend or override the default config.

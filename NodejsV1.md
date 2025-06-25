@@ -26,7 +26,7 @@
 **Performance Optimization**  - [Performance Optimization](#performance-optimization) - [Strategies for Improving Performance](#strategies-for-improving-performance-in-nodejs-applications)  - [Profiling and Optimizing Latency](#profiling-and-optimizing-latency)  - [Common Performance Pitfalls](#common-performance-pitfalls)     - [Handle CPU intensive task](#Handle-CPU-intensive-task)   - [Concurrent CPU intensive requests](#Concurrent-CPU-intensive-requests) - [Handling 100,000 concurrent requests](#Handling-100000-concurrent-requests)  
 
 
-**Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling](#scaling-nodejs-applications-for-high-traffic)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
+**Deployment & Scaling**  - [Deploying into Production](#deploying-a-nodejs-application-to-production)  - [Scaling High Traffic](#Scaling-High-Traffic)  - [PM2](#pm2)  - [Load Balancing](#load-balancing)  - [Microservices Communication](#microservices-communication)
 
 
 
@@ -2886,7 +2886,7 @@ npm install -g pm2
 
 ---
 
-### **Scaling Node.js Applications for High Traffic**
+### **Scaling High Traffic**
   To design a scalable API:
 - **Stateless Design**:   - Design APIs and services to be stateless so they can scale horizontally (multiple instances).
 - **Load Balancing**:  - Use **Nginx, AWS ELB**, or **HAProxy** to distribute requests among instances.
@@ -2902,6 +2902,13 @@ npm install -g pm2
 - **Rate limiting**: Prevent abuse using libraries like express-rate-limit.
 - **Pagination**: Implement for large datasets to avoid memory pressure.
 - **Monitoring**: Use tools like Prometheus, Grafana, New Relic, or Elastic APM.
+* **Auto-scale services** using metrics (CPU, latency, etc.).
+* Use **CloudFront/CDN** for static content offload.
+* Put async tasks into **background workers** (e.g., Bull, Agenda) to decouple long operations.
+* Enable **API rate limiting and quota enforcement** for users.
+* Apply **back-pressure** techniques for APIs interacting with downstream systems.
+* Monitor using tools like **Datadog, New Relic, Prometheus**, and **trigger alerts**.
+
 
 ---
 

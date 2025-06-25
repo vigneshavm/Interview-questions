@@ -10,13 +10,12 @@
 | **State Management**        | • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  - [NgRx for State Management](#NgRx-for-State-Management) - [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)
 | **Security & Authentication**      | • [Security: XSS and CSRF Protection](#security-xss-and-csrf-protection) • [Authentication and Role-Based Access](#authentication-and-role-based-access)                                                               |
 | **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                - [performance optimization techniques](#performance-optimization-techniques)      
-| **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Build Optimizer](#build-optimizer)
+| **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Build Optimizer](#build-optimizer) - [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)  
 | **Webpack**      | • [Customize Webpack](#customize-webpack) • [Webpack](#webpack)  • [Reduce the Bundle Size](#reduce-the-bundle-size)                                                                        |
 
 
 - [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle)
-- [Angular Optimizes Assets](#how-angular-optimizes-assets)
 - [Consistent Builds Across Environments](#consistent-builds-across-environments)
 - [What Happens Under the Hood](#what-happens-under-the-hood)
 - [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines)

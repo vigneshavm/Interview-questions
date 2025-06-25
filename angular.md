@@ -16,6 +16,24 @@
 | **Utilities & Miscellaneous**      | • [setTimeout and setInterval](#settimeout-and-setinterval) • [Directives](#directives) • [Pipes](#pipes) • [CI/CD Practices](#cicd-practices)                                                                          |
 
 
+- [Customize Webpack](#customize-webpack)
+- [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle)
+- [Reduce the Bundle Size](#reduce-the-bundle-size)
+- [How Angular Optimizes Assets](#how-angular-optimizes-assets)
+- [Consistent Builds Across Environments](#consistent-builds-across-environments)
+- [What Happens Under the Hood](#what-happens-under-the-hood)
+- [Integrate Angular Builds into CI/CD Pipelines](#integrate-angular-builds-into-cicd-pipelines)
+- [Build Optimizer](#build-optimizer)
+- [Automation Tools](#automation-tools)
+- [Webpack](#webpack)
+- [AOT (Ahead-of-Time Compilation)](#aot-ahead-of-time-compilation)
+- [AOT and JIT Comparison](#aot-and-jit-comparison)
+- [Lazy Loading](#lazy-loading)
+- [Tree-shaking](#tree-shaking)
+- [Source Maps](#source-maps)
+- [Differential Loading and Polyfills](#differential-loading-and-polyfills)
+- [Environment-based Builds](#environment-based-builds)
+- [Linting and Testing Tools](#linting-and-testing-tools)
 
 
 
@@ -3308,5 +3326,390 @@ In the template:
 | Simplicity | Simple, minimal boilerplate | More powerful, more complex     |
 | Lifecycle  | Automatic tracking          | Manual subscription/unsubscribe |
 | Use Case   | Local state                 | Async streams, events, timers   |
+
+
+
+
+
+
+
+### **customize Webpack**
+
+- Since Angular CLI **doesn’t expose Webpack config directly**,
+- you can use the community package `@angular-builders/custom-webpack` to extend or override the default config.
+- This allows you to **extend** the default Angular Webpack config without losing CLI support.
+
+
+🔧 **Steps:**
+
+1. Install the custom Webpack builder:
+
+```bash
+npm install @angular-builders/custom-webpack --save-dev
+```
+
+2. Update `angular.json`:
+
+```json
+"architect": {
+  "build": {
+    "builder": "@angular-builders/custom-webpack:browser",
+    "options": {
+      "customWebpackConfig": {
+        "path": "./webpack.config.js"
+      }
+    }
+  }
+}
+```
+
+3. Create `webpack.config.js` and add custom rules (e.g., loaders, aliases, plugins)
+
+---
+
+### **lifecycle from source code to optimized production bundle**
+
+
+1. **Transpilation:** TypeScript is transpiled to JavaScript (via `tsc`)
+2. **AOT Compilation:** Angular templates are compiled to JS
+3. **Tree-shaking:** Dead code is removed using Webpack
+4. **Minification/Uglification:** Code is compressed and obfuscated
+5. **Bundling:** All modules are bundled into chunks
+6. **Lazy Modules:** Webpack generates dynamic chunks for lazy-loaded modules
+7. **Asset Optimization:** Images, CSS, and fonts are optimized
+8. **Index Injection:** Bundles and styles injected into `index.html`
+9. **Differential Loading:** Generates two JS versions (modern + legacy)
+10. **Deployment:** Final assets deployed to CDN or server
+
+>  **Key Point:** Each step optimizes performance and reduces bundle size.
+
+---
+
+### **Reduce the bundle size**
+
+**Answer:**
+
+1. **Build with stats:**
+
+```bash
+ng build --configuration production --stats-json
+```
+
+2. **Analyze with Webpack Bundle Analyzer:**
+
+```bash
+npx webpack-bundle-analyzer dist/stats.json
+```
+
+3. **Steps to reduce size:**
+
+   * **Lazy load large feature modules**
+   * Remove unused dependencies
+   * Use `providedIn: 'root'` for tree-shakable services
+   * Import only what you use (e.g., lodash-es)
+   * Remove source maps and console logs in production
+   * Use CDN for external assets (fonts, icons)
+   * Compress assets via GZIP or Brotli
+
+>  **Key Point:** Bundle size impacts **FCP (First Contentful Paint)** and **TTI (Time to Interactive)**.
+
+---
+
+### **Angular optimize**
+
+- Angular uses **Webpack loaders and plugins** to optimize assets:
+- Production builds automatically apply optimizations unless disabled in `angular.json`.
+* **Images:** Optimized using `image-webpack-loader` or other compression tools
+* **Fonts:** Included as base64 (small) or as separate files (large)
+* **Stylesheets:** SCSS/LESS compiled, minified, and merged
+* **CSS Code Splitting:** Angular CLI extracts critical CSS for lazy-loaded modules
+
+Advanced: You can use **Angular CLI Builders** to chain tools like `imagemin`, `purgecss`, etc.
+
+
+---
+
+### **Consistent builds across environments**
+
+
+1. Use **`environment.ts`** files for environment-specific values.
+2. Apply consistent **build scripts** via `npm scripts` or CI pipelines:
+
+```bash
+npm run build:staging
+npm run build:production
+```
+
+3. Lock dependency versions using:
+
+   * `package-lock.json`
+   * `npm ci` instead of `npm install`
+
+4. Use **Docker** for environment parity
+
+5. Integrate **Lint + Unit Tests** in pipelines to block broken builds
+
+
+---
+
+### **Hood**
+
+- The `--prod` flag triggers the following optimizations:
+- `--prod` is shorthand for all performance-focused flags.
+
+
+* ✅ Enables **AOT**
+* ✅ Enables **minification & uglification**
+* ✅ Enables **tree-shaking**
+* ✅ Disables **source maps**
+* ✅ Removes **debug data & console.log**
+* ✅ Applies **differential loading**
+* ✅ Compiles with **build optimizer**
+
+These options are defined in `angular.json` under the `production` configuration.
+
+
+---
+
+### **Angular builds into CI/CD pipelines**
+
+>  **Key Point:** CI should verify **code quality**, **tests**, and **build success** before deploying.
+
+
+1. **Install dependencies:**
+
+```bash
+npm ci
+```
+
+2. **Lint & test:**
+
+```bash
+npm run lint
+npm run test -- --watch=false --browsers=ChromeHeadless
+```
+
+3. **Build:**
+
+```bash
+ng build --configuration production
+```
+
+4. **Deploy:** Copy `dist/` folder to your server/CDN.
+
+🔧 In **GitHub Actions**, your workflow may look like:
+
+```yaml
+jobs:
+  build:
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test -- --watch=false
+      - run: ng build --configuration=production
+```
+
+
+---
+
+### **Build Optimizer**
+
+**Build Optimizer** is a Webpack plugin used by Angular CLI that:
+
+* Removes **Angular decorators** (e.g., `@Component`) from compiled JS
+* Marks code as **pure functions** for better tree-shaking
+* Improves performance and reduces bundle size
+
+It is **enabled by default** in production builds.
+
+>  **Key Point:** Helps Angular tree-shake code even more aggressively.
+
+---
+
+
+### **Automation Tools**
+
+- Angular CLI abstracts Webpack complexity, allowing developers to focus on features rather than configuration.
+- Angular provides a powerful tool called the **Angular CLI**, 
+- Which automates a wide range of development tasks. Behind the scenes, 
+- Angular CLI uses **Webpack** for:
+
+* **Module bundling**
+* **Code transpilation (TypeScript to JavaScript)**
+* **Minification and uglification**
+* **Asset optimization**
+* **Hot Module Replacement (HMR)** in dev mode
+
+
+---
+
+### **Webpack**
+
+- **Webpack** is a **static module bundler** for JavaScript applications. 
+- It takes modules (JS, CSS, images, HTML, etc.) and produces optimized bundles for the browser.
+
+**Angular CLI uses Webpack** internally to:
+
+* Bundle modules and dependencies
+* Convert TypeScript to JavaScript
+* Handle SCSS/LESS preprocessing
+* Inject compiled scripts and styles into `index.html`
+* Split code into chunks for lazy loading
+
+>  **Key Point:** While Angular hides Webpack configs, you can expose them using tools like `@angular-builders/custom-webpack` if customization is needed.
+
+---
+
+### **AOT**
+
+**AOT** compiles Angular templates and components **during the build phase**, instead of at runtime.
+- AOT is crucial for production-grade Angular apps due to performance and security.
+
+- **Benefits of AOT:**
+
+* **Faster rendering**: Templates are already compiled to JS
+* **Smaller bundle size**
+* **Early error detection**: Catch template errors at build time
+* **Improved security**: No need to ship the compiler to the client
+
+✅ **Enabled by default in production builds**:
+
+```bash
+ng build --configuration=production
+```
+
+
+---
+
+### **AOT and JIT**
+
+| Feature          | AOT (Ahead-of-Time) | JIT (Just-in-Time)         |
+| ---------------- | ------------------- | -------------------------- |
+| Compilation Time | During build        | In the browser at runtime  |
+| Speed            | Faster load time    | Slower initial load        |
+| Error Detection  | At build time       | At runtime                 |
+| Bundle Size      | Smaller             | Larger (includes compiler) |
+
+>  **Key Point:** Use **JIT** for development and **AOT** for production.
+
+---
+
+### **Lazy loading**
+
+- Angular uses **lazy loading** to load feature modules only when needed, reducing initial load time.
+- **Key Point:** Lazy loading + Webpack = optimized performance via **code splitting**
+
+
+🔹 **How it works:**
+
+* Define lazy-loaded routes using `loadChildren`:
+
+```ts
+{ path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
+```
+
+* Angular and Webpack **split each lazy module into a separate chunk**
+* The chunk is fetched only when the user navigates to that route
+
+
+---
+
+### **Tree-shaking**
+
+**Tree-shaking** is a **build optimization** that removes unused (dead) code from the final bundle.
+
+* Angular CLI + Webpack + TypeScript compiler analyze your imports
+* Unused services, functions, or components are excluded
+
+>  **Key Point:** Make sure your code uses **ES6 module syntax** (i.e., `import/export`) to benefit from tree-shaking.
+
+---
+
+### **source maps**
+
+**Source maps** map your compiled code back to the original TypeScript or SCSS source code.
+
+* Useful for **debugging**
+* Supported in most modern browsers
+* Generated automatically in dev builds
+
+To enable in production:
+
+```bash
+ng build --source-map=true
+```
+
+>  **Key Point:** Always disable source maps in production unless needed for debugging specific issues.
+
+---
+
+### **Differential loading and polyfills**
+
+**Differential loading** builds two separate bundles:
+
+* **Modern JavaScript (ES2015+)** for new browsers
+* **Legacy JavaScript (ES5)** for older browsers
+
+**Polyfills** provide fallback functionality for browsers that don’t support modern JS features. Managed in `polyfills.ts`.
+
+>  **Key Point:** Angular CLI handles this automatically in production builds, improving performance and compatibility.
+
+---
+
+### **Environment-based builds?**
+
+Angular uses environment files (`environment.ts`, `environment.prod.ts`) and `fileReplacements` in `angular.json`.
+>  **Key Point:** Great for managing different API URLs, logging levels, or feature flags per environment.
+
+To build for production:
+
+```bash
+ng build --configuration=production
+```
+
+This replaces:
+
+```ts
+import { environment } from '../environments/environment';
+```
+
+with:
+
+```ts
+import { environment } from '../environments/environment.prod';
+```
+
+
+---
+
+### **linting**
+
+
+🔹 **Unit Testing:**
+
+* **Framework:** Jasmine
+* **Runner:** Karma
+* Runs headless in Chrome by default
+
+🔹 **E2E Testing:**
+
+* Older: **Protractor** (now deprecated)
+* Preferred: **Cypress** or **Playwright**
+
+🔹 **Linting:**
+
+* Previously TSLint (deprecated)
+* Now use **ESLint** with Angular ESLint Plugin
+
+```bash
+ng lint
+```
+
+>  **Key Point:** Adopt **Cypress + ESLint** for modern Angular projects
+
+---
+
+
 
 

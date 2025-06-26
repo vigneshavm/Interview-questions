@@ -8,7 +8,7 @@
 | **CRUD Operations**         | [upsert](#upsert) - [Update Multiple Documents](#update-multiple-documents-in-mongodb) - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)        |
 | **Relationships & Schema**  | [Modeling patterns](#Modeling-patterns) - [Model Relationships](#model-relationships) - [Embedded and Referenced Documents](#embedded-and-referenced-documents) - [Schema Enforcement](#mongodb-handle-schema-enforcement) |
 | **Advanced Features**       | [Aggregations](#aggregations-in-mongodb) - [Aggregate examples](#Aggregate-examples) - [Transactions](#handle-transactions-in-mongodb) - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) |
-| **Scaling & Performance**   | [Sharding](#Sharding) - [Scaling MongoDB](#scaling-mongodb) - [Performance Tuning](#performance-tuning-techniques-in-mongodb)                             |
+| **Scaling & Performance**   | [Sharding](#Sharding) -[Shard Key](#Shard-Key) - [Scaling MongoDB](#scaling-mongodb) - [Performance Tuning](#performance-tuning-techniques-in-mongodb)                             |
 | **Replication & Durability**| [Replica Set](#replica-set) - [Clustering & Replication](#clustering--replication) - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb) - [Durability & Consistency](#mongodb-ensure-durability-and-consistency) - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) |
 | **Special Collections**     | [Capped Collection in MongoDB](#capped-collection-in-mongodb)                                                                                         |
 | **MongoDB with Node.js**    | [MongoDB with Node.js](#mongodb-with-nodejs) - [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose) - [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver) |
@@ -202,14 +202,16 @@ Would you like a sample Node.js script or MongoDB Compass steps for this?
 
 ## Sharding
 
-
-
-**Concept:**  
-Sharding is horizontal partitioning of data across multiple machines for high scalability.
-
-**Why it's used:**
+- Sharding is horizontal partitioning of data across multiple machines for high scalability.
 - To handle large data volumes
 - Distributes read/write load
+- **Sharding** is MongoDB’s method for **horizontally scaling** your database to handle **large amounts of data and high throughput** by **distributing data across multiple servers**.
+- Sharding = **Splitting data** across **multiple machines (shards)** to:
+
+* Handle **more data than fits on one server**
+* Improve **read/write performance**
+* Ensure **high availability** and **scalability**
+
 
 **Example:**
 ```js
@@ -217,23 +219,7 @@ sh.enableSharding("myDatabase")
 sh.shardCollection("myDatabase.users", { userId: 1 })
 ```
 
----
-
-**Sharding** is MongoDB’s method for **horizontally scaling** your database to handle **large amounts of data and high throughput** by **distributing data across multiple servers**.
-
----
-
-### What is Sharding?
-
-Sharding = **Splitting data** across **multiple machines (shards)** to:
-
-* Handle **more data than fits on one server**
-* Improve **read/write performance**
-* Ensure **high availability** and **scalability**
-
----
-
-### 🛠️ Key Components of Sharding
+**Key Components of Sharding**
 
 | Component          | Description                                                              |
 | ------------------ | ------------------------------------------------------------------------ |
@@ -241,9 +227,7 @@ Sharding = **Splitting data** across **multiple machines (shards)** to:
 | **Mongos**         | Query router that routes queries to the correct shard(s)                 |
 | **Config Servers** | Store metadata about the cluster and sharded collections                 |
 
----
-
-### 🧭 How Sharding Works
+**How Sharding Works**
 
 1. **Choose a collection to shard**
 2. **Pick a shard key** (a field used to determine how data is split)
@@ -252,41 +236,31 @@ Sharding = **Splitting data** across **multiple machines (shards)** to:
 
 ---
 
-### 🔑 Shard Key
+###  Shard Key
+- A **shard key** is a field (or set of fields) in a MongoDB document that determines how data is **distributed across shards** in a **sharded cluster**.
+- The **most important part** of sharding. The right shard key ensures **even distribution** and **query efficiency**.
 
-The **most important part** of sharding. The right shard key ensures **even distribution** and **query efficiency**.
 
 #### Good Shard Key:
-
 * High **cardinality** (many unique values)
 * Even **distribution** across shards
 * Frequently used in queries
 
 #### Bad Shard Key:
-
 * Low cardinality (e.g., `gender`)
 * Monotonically increasing (e.g., `timestamp` without hashing) → can cause **hotspots**
 
----
 
 ### 📦 Sharding Strategies
-
 1. **Range-Based Sharding**
-
    * Documents with nearby values go to the same shard.
    * Risk: **Hotspots** if most writes go to one range.
-
 2. **Hashed Sharding**
-
    * MongoDB hashes the shard key value → even distribution.
    * Best for **uniform write distribution**, not ideal for range queries.
-
 3. **Zone Sharding (Tag Aware)**
-
    * Assign certain ranges of shard keys to specific shards.
    * Good for **geographically aware** or **regulatory partitioning**.
-
----
 
 ### ✅ Pros of Sharding
 

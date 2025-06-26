@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 * [HTML5 vs HTML4](#html5-vs-html4)            - [`<section>` vs `<div>`](#section-vs-div)
 * [`<div>` vs `<span>`](#div-vs-span)          - [HTML5 Form Enhancements](#html5-form-enhancements)
 * [Semantic Tags in HTML5](#semantic-tags-in-html5)       - [Creating Custom Tags in HTML5](#creating-custom-tags-in-html5)
@@ -248,12 +254,100 @@ padding: 10px 20px;
 
 ###  `em`, `rem`, `%`, and `px`
 
+
+* Use **`%`** when sizing relative to containers.
+* Use **`vw`/`vh`** for **viewport-based scaling** (e.g., hero sections).
+* Use **`rem`** for **consistent, scalable typography and spacing**.
+
+
 | Unit  | Relative To             | Use Case                       |
 | ----- | ----------------------- | ------------------------------ |
 | `px`  | Fixed                   | Precise control                |
 | `%`   | Parent’s value          | Responsive layout              |
 | `em`  | Parent’s font-size      | Inheritable typography spacing |
 | `rem` | Root (`html`) font-size | Consistent across components   |
+
+
+### 📏 **1. \`% (Percentage)**
+
+* **Relative to**: The **parent element’s** dimension.
+* **Use case**: Making elements scale proportionally within their containers.
+
+#### ✅ Example:
+
+```css
+.container {
+  width: 80%;  /* 80% of parent’s width */
+}
+```
+
+> ✅ Good for **fluid layouts**, but depends heavily on the parent’s size.
+
+---
+
+### 📐 **2. `vw` (Viewport Width)**
+
+* **Relative to**: The **entire browser width** (viewport).
+* `1vw = 1% of the viewport's width`
+
+#### ✅ Example:
+
+```css
+.title {
+  font-size: 5vw;  /* 5% of the current viewport width */
+}
+```
+
+> ✅ Good for **full-width sections** or **scaling typography** with screen size.
+
+---
+
+### 📏 **3. `vh` (Viewport Height)**
+
+* **Relative to**: The **entire browser height** (viewport).
+* `1vh = 1% of the viewport's height`
+
+#### ✅ Example:
+
+```css
+.hero {
+  height: 100vh;  /* Full-screen hero section */
+}
+```
+
+> ✅ Useful for **fullscreen layouts** or modals.
+
+---
+
+### 🔡 **4. `rem` (Root Em)**
+
+* **Relative to**: The **root element’s (`html`) font size**
+* `1rem = root font-size`, usually `16px` by default
+
+#### ✅ Example:
+
+```css
+html {
+  font-size: 16px;
+}
+.card {
+  padding: 2rem; /* 2 × 16px = 32px */
+}
+```
+
+> ✅ Great for **scalable and accessible typography** across components.
+
+---
+
+### 🧠 **Quick Comparison Table**
+
+| Unit  | Relative To             | Common Use                              | Scales With Viewport? | Inherited? |
+| ----- | ----------------------- | --------------------------------------- | --------------------- | ---------- |
+| `%`   | Parent element          | Width/height inside containers          | ❌                     | ✅          |
+| `vw`  | Viewport width          | Fluid widths, fonts                     | ✅                     | ❌          |
+| `vh`  | Viewport height         | Fullscreen sections, banners            | ✅                     | ❌          |
+| `rem` | Root font size (`html`) | Typography, spacing (consistent sizing) | ❌                     | ❌          |
+
 
 ---
 

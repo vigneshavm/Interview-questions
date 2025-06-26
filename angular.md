@@ -3,7 +3,7 @@
 | **Core Concepts**          | • [Angular](#angular)  • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Module](#module)  • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
 | **Components**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
 | **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition](#Using-One-Component-Inside-Another ) • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
-| **Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                 • [Lazy Loading](#lazy-loading)  • [Memory Leak](#Memory-Leak)                                                                                      |
+| **Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                 • [Lazy Loading](#lazy-loading)                                                                                       |
 | **Routing**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Authentication](#authentication) • [Secure Angular Routes](#Secure-Routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
@@ -13,7 +13,10 @@
 | **Utilities**      | • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) • [NgZone](#NgZone) 
 | **Other**      | • [Optimized Production Bundle - LifeCycle](#lifecycle-from-source-code-to-optimized-production-bundle)  • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
-| **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)   • [Server Side Rendering](#Server-Side-Rendering) • [Set up Angular Universal](#Set-up-Angular-Universal)
+| **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  • [Memory Leak](#Memory-Leak)
+
+• [Server Side Rendering](#Server-Side-Rendering)
+• [Set up Angular Universal](#Set-up-Angular-Universal)
 
 ## Component-Based Architecture
 
@@ -187,21 +190,12 @@ src/
 ## Standalone Components
 
 
-
-
-### 🎯 Sample Interview Closing
-
-- Standalone components are Angular’s move toward a simpler, more modular architecture by removing the need for NgModules, making development faster and apps more tree-shakable.”
-
-
-###  **What are Standalone Components?**
-
 * Introduced in **Angular 14** to simplify module management.
+- Standalone components are Angular’s move toward a simpler, more modular architecture by removing the need for NgModules, making development faster and apps more tree-shakable.”
 * Components declared with `standalone: true` **don’t require being declared inside an NgModule**.
 * They can directly import other standalone components, directives, and pipes.
 
-
-###  **Key Benefits**
+**Key Benefits**
 
 * **Reduces boilerplate:** No need for NgModules just to declare components.
 * Simplifies **small or isolated features** like modals, widgets, or utility components.
@@ -209,7 +203,7 @@ src/
 * Easier for micro-frontends and library development.
 
 
-### 🧩 **How It Works**
+**How It Works**
 
 * Use `standalone: true` in `@Component` decorator.
 * Import necessary Angular modules (e.g., `CommonModule`) in the `imports` array inside the component metadata.
@@ -224,9 +218,7 @@ src/
 })
 export class HelloComponent {}
 ```
-
-
-### 🚀 **App Bootstrapping with Standalone Components**
+**App Bootstrapping with Standalone Components**
 
 * Instead of `NgModule`, use `bootstrapApplication()` in `main.ts` to start the app.
 
@@ -245,14 +237,14 @@ bootstrapApplication(AppComponent, {
 }).catch(err => console.error(err));
 ```
 
-### 📁 **When to Use?**
+**When to Use?**
 
 * New projects targeting Angular 14+.
 * Small, reusable components or micro frontends.
 * When you want to reduce complexity by skipping NgModules.
 
 
-### ⚠️ **Backward Compatibility**
+**Backward Compatibility**
 
 * Works seamlessly with existing NgModules and components.
 * Can gradually migrate from NgModules to standalone components.
@@ -2216,22 +2208,33 @@ export class ReversePipe implements PipeTransform {
 
 
 
-
-
-
-
 ###  **Module**
 
- -  A module is a container that groups related components, directives, pipes, and services. It’s defined using the `@NgModule` decorator.
- -  The root module is usually `AppModule`, and we can also create feature modules to organize the code better.
+- In Angular, a **module** is defined using the `@NgModule` decorator.
+- Acts as a **container** for a group of related components, directives, pipes, and services.
+- Modules improve **code structure**, enable **lazy loading**, and control **scope of services and components**.
+- The root module is usually `AppModule`, and we can also create feature modules to organize the code better.
 
+**Key Points:**
+* Every Angular app has a **root module** (`AppModule`), which bootstraps the application.
+* Modules help organize the app into **feature-based blocks**.
+* Angular supports:
 
+  * **Feature Modules** – for specific functionality (e.g., `UserModule`)
+  * **Shared Modules** – for reusable components/pipes
+  * **Core Module** – for singleton services
+  * **Lazy-Loaded Modules** – for on-demand loading via routes
 
+### 🧵 Example:
 
-
-
-
-
+```ts
+@NgModule({
+  declarations: [UserComponent],
+  imports: [CommonModule],
+  exports: [UserComponent]
+})
+export class UserModule {}
+```
 
 
 

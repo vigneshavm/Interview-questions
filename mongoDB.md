@@ -6,7 +6,7 @@
 | **Querying**                | [find() vs findOne()](#find-vs-findone) - [$in Vs $all](#difference-between-in-and-all-in-mongodb) - [Searching in MongoDB](#searching-in-mongodb)                              |
 | **Indexing**                | [Creating an Index in MongoDB](#creating-an-index-in-mongodb) - [Indexing strategies](#indexing-strategies) - [Indexing Drawbacks](#indexing-drawbacks) - [Multikey and Compound indexes](#Multikey-and-Compound-indexes) - [Compound Indexes](#Compound-Indexes) |
 | **CRUD Operations**         | [upsert](#upsert) - [Update Multiple Documents](#update-multiple-documents-in-mongodb) - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)        |
-| **Relationships & Schema**  | [Model Relationships](#model-relationships) - [Embedded and Referenced Documents](#embedded-and-referenced-documents) - [Schema Enforcement](#mongodb-handle-schema-enforcement) |
+| **Relationships & Schema**  | [Modeling patterns](#Modeling patterns) - [Model Relationships](#model-relationships) - [Embedded and Referenced Documents](#embedded-and-referenced-documents) - [Schema Enforcement](#mongodb-handle-schema-enforcement) |
 | **Advanced Features**       | [Aggregations in MongoDB](#aggregations-in-mongodb) - [Aggregate examples](#Aggregate-examples) - [Handle Transactions in MongoDB](#handle-transactions-in-mongodb) - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) |
 | **Scaling & Performance**   | [Sharding](#Sharding) - [Scaling MongoDB](#scaling-mongodb) - [Performance Tuning Techniques in MongoDB](#performance-tuning-techniques-in-mongodb)                             |
 | **Replication & Durability**| [Replica Set](#replica-set) - [Clustering & Replication](#clustering--replication) - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb) - [Durability & Consistency](#mongodb-ensure-durability-and-consistency) - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) |
@@ -2051,6 +2051,160 @@ COMMIT;
 | Trigger     | Log every vehicle status update (`log_vehicle_status_change`) |
 | Transaction | Start trip: update vehicle, driver, and insert trip safely    |
 | Index       | Speed up latest location fetch from millions of records       |
+
+---
+
+## Modeling patterns
+
+| Pattern     | Use Case                   | Pros                              | Cons                            |
+| ----------- | -------------------------- | --------------------------------- | ------------------------------- |
+| Embedded    | One-to-few, tight coupling | Fast access                       | Document size limit             |
+| Referenced  | One-to-many/many-to-many   | Normalized, reusable              | Needs joins/lookups             |
+| Bucket      | Time-series, logs          | Reduces write load                | Complex querying                |
+| Outlier     | Unbalanced subdocuments    | Prevents bloated base docs        | More queries                    |
+| Polymorphic | Heterogeneous records      | Single collection for varied data | Schema enforcement is difficult |
+
+### **Embedded Pattern**
+
+**Use When:** Data is tightly coupled and queried together frequently.
+
+**Example:** A user with an address.
+
+```js
+// Collection: users
+{
+  _id: ObjectId("..."),
+  name: "Alice",
+  email: "alice@example.com",
+  address: {
+    street: "123 Main St",
+    city: "Chennai",
+    zip: "600001"
+  }
+}
+```
+
+✅ **Pros**: Fast read/write, fewer joins
+⚠️ **Limit**: Data duplication if embedded repeatedly, document size cap (16MB)
+
+---
+
+### **Referenced Pattern**
+
+**Use When:** One-to-many or many-to-many where embedded docs would grow large or be reused.
+
+**Example:** Orders referencing users and products.
+
+```js
+// Collection: orders
+{
+  _id: ObjectId("..."),
+  userId: ObjectId("user123"),
+  productIds: [ObjectId("prod1"), ObjectId("prod2")],
+  orderDate: ISODate("2025-06-26")
+}
+```
+
+```js
+// Collection: users
+{ _id: ObjectId("user123"), name: "Alice" }
+
+// Collection: products
+{ _id: ObjectId("prod1"), name: "Shoes", price: 1999 }
+```
+
+✅ **Pros**: Normalized, avoids duplication
+⚠️ **Cons**: Requires additional queries or `$lookup`
+
+---
+
+### **Bucket Pattern**
+
+**Use When:** Storing time-series or high-frequency data (IoT, logs).
+
+**Example:** Sensor readings bucketed per day.
+
+```js
+// Collection: sensor_readings
+{
+  _id: ObjectId("..."),
+  sensorId: "sensor-001",
+  date: "2025-06-25",
+  readings: [
+    { time: "10:00", value: 20 },
+    { time: "10:05", value: 21 },
+    { time: "10:10", value: 19 }
+  ]
+}
+```
+
+✅ **Pros**: Efficient writes, avoids write amplification
+⚠️ **Cons**: Harder to query individual readings
+
+---
+
+### **Outlier Pattern**
+
+**Use When:** A subset of documents has much larger subfields.
+
+**Example:** Some users have too many login attempts or comments.
+
+```js
+// Collection: users
+{
+  _id: ObjectId("..."),
+  name: "John",
+  loginAttemptId: ObjectId("attempt123") // outlier
+}
+```
+
+```js
+// Collection: login_attempts
+{
+  _id: ObjectId("attempt123"),
+  attempts: [
+    { date: "2025-06-25", ip: "1.2.3.4" },
+    { date: "2025-06-26", ip: "5.6.7.8" }
+  ]
+}
+```
+
+✅ **Pros**: Keeps main document light
+⚠️ **Cons**: Extra queries for outlier fields
+
+---
+
+### **Polymorphic Pattern**
+
+**Use When:** Storing different types of related objects in one collection.
+
+**Example:** A log system storing various event types.
+
+```js
+// Collection: events
+{
+  _id: ObjectId("..."),
+  type: "purchase",
+  data: {
+    productId: "abc",
+    amount: 299
+  }
+}
+```
+
+```js
+{
+  _id: ObjectId("..."),
+  type: "login",
+  data: {
+    userId: "xyz",
+    ip: "1.2.3.4"
+  }
+}
+```
+
+✅ **Pros**: Unified querying
+⚠️ **Cons**: Harder to enforce schema rules
 
 ---
 

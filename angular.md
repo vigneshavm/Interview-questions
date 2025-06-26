@@ -4,7 +4,7 @@
 | **Components**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
 | **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition](#Using-One-Component-Inside-Another ) • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
 | **Dependency Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                       |
-| **Routing & Lazy Loading**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) • [Lazy Loading](#lazy-loading) • [Lazy Loading Modules](#lazy-loading-modules) • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies)  • [Authentication and Role-Based Access](#authentication-and-role-based-access)  |
+| **Routing & Lazy Loading**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) • [Lazy Loading](#lazy-loading)  • [Authentication and Role-Based Access](#authentication-and-role-based-access)  |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
 | **State Management**        | • [RxJS](#rxjs-in-angular) • [Common RxJS Operators](#common-rxjs-operators) • [RxJS Mapping Operators: switchMap, mergeMap, concatMap, exhaustMap](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
@@ -3430,6 +3430,10 @@ ng build --configuration=production
 ---
 
 ### **Lazy loading**
+
+• [Lazy Loading Modules](#lazy-loading-modules) 
+• [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies) 
+
 -  Lazy loading is the practice of loading feature modules **only when needed**, reducing initial load time.
 -  We define routes using `loadChildren` with dynamic imports.
 - Angular uses **lazy loading** to load feature modules only when needed, reducing initial load time.

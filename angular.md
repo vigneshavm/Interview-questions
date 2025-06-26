@@ -4,7 +4,7 @@
 | **Components**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
 | **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition](#Using-One-Component-Inside-Another ) • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
 | **Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                                                                                                       |
-| **Routing & Lazy Loading**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) • [Lazy Loading](#lazy-loading)  • [Authentication and Role-Based Access](#authentication-and-role-based-access)  |
+| **Routing & Lazy Loading**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Protect Routes](#protect-routes) • [Lazy Loading](#lazy-loading)  |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
 | **State Management**        | • [RxJS](#rxjs-in-angular) • [RxJS Operators](#common-rxjs-operators) • [RxJS Operators: switchMap...](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
@@ -12,7 +12,7 @@
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities & Miscellaneous**      | • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices)  
 | **Other**      | • [Lifecycle from Source Code to Optimized Production Bundle](#lifecycle-from-source-code-to-optimized-production-bundle) • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [What Happens Under the Hood](#what-happens-under-the-hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills) • [Environment-based Builds](#environment-based-builds) • [Linting and Testing Tools](#linting-and-testing-tools)    |
-| **Others**      | • [Authentication](#authentication) • [Secure Angular Routes](#secure-angular-routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens)   |
+| **Secure**      | • [Authentication](#authentication) • [Secure Angular Routes](#secure-angular-routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens)   |
 
 
 
@@ -1529,11 +1529,6 @@ providers: [{ provide: MyService, useClass: MockMyService }]
 * Implement CSRF tokens on the backend
 * Sanitize user input and never bind untrusted HTML directly
 
-## Authentication and Role-Based Access
-
-* Use interceptors for adding JWT tokens
-* Implement route guards (`CanActivate`) for protected routes
-* Store roles in a service and control access based on them
 
 ## Micro-Frontend Architecture
 
@@ -3597,6 +3592,10 @@ ng lint
 
 
 ### **Authentication**
+
+* Use interceptors for adding JWT tokens
+* Implement route guards (`CanActivate`) for protected routes
+* Store roles in a service and control access based on them
 
 - "I typically implement authentication in Angular using **JWT-based token authentication**. 
 - When the user logs in, I send a `POST` request to the backend with the user's credentials. 

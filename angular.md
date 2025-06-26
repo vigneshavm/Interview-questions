@@ -8,12 +8,14 @@
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
 | **State Management**        | • [RxJS](#rxjs-in-angular) • [RxJS Operators](#common-rxjs-operators) • [RxJS Operators: switchMap...](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
-| **Performance**     | • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      
+| **Performance**     | • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      • [Performance Bottlenecks](#Performance-Bottlenecks)   
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities**      | • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) • [NgZone](#NgZone) 
 | **Other**      | • [Optimized Production Bundle - LifeCycle](#lifecycle-from-source-code-to-optimized-production-bundle)  • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
-| **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application)
+| **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  • [Memory Leak](#Memory-Leak)
+
+
 
 ## Component-Based Architecture
 
@@ -4178,4 +4180,236 @@ const routes: Routes = [
 
 ---
 
+
+
+
+
+## **Rendering Items List Efficiently**
+
+
+- Use **CDK Virtual Scroll** for best performance, 
+- combined with `trackBy`, 
+- pagination, and 
+- `OnPush` to efficiently render large lists in Angular apps.
+
+
+**Problem:**
+
+Rendering a large list (e.g., 10,000+ items) can cause:
+
+* **Slow initial load**
+* **High memory usage**
+* **Laggy scrolling and poor UX**
+
+---
+
+**Optimization Strategies:**
+
+1.  **Virtual Scrolling (CDK Virtual Scroll)**
+
+   * Renders only **visible items** in the viewport.
+   * Uses `*cdkVirtualFor` from `@angular/cdk/scrolling`.
+
+   ```html
+   <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+     <div *cdkVirtualFor="let item of items">{{ item }}</div>
+   </cdk-virtual-scroll-viewport>
+   ```
+
+   * 🔥 Most efficient and recommended approach.
+
+---
+
+2.  **Use `trackBy` with `*ngFor`**
+
+   * Prevents unnecessary re-rendering when items are added/removed.
+
+   ```html
+   <div *ngFor="let item of items; trackBy: trackById">{{ item.name }}</div>
+   ```
+
+   ```ts
+   trackById(index: number, item: any) {
+     return item.id;
+   }
+   ```
+
+---
+
+3.  **Pagination / Infinite Scroll**
+
+   * Load only a **subset of data** initially (e.g., 50 items), then fetch more on scroll.
+   * Reduces **initial DOM size** and **memory footprint**.
+
+---
+
+4.  **Lazy Loading Data (Backend Pagination)**
+
+   * Fetch data in **chunks from the server**, based on page or scroll position.
+
+---
+
+5.  **Optimize DOM and Templates**
+
+   * Avoid **deep component trees** per row.
+   * Avoid **heavy computations** or `pipes` inside templates.
+
+---
+
+6.  **Avoid Change Detection Overhead**
+
+   * Use `ChangeDetectionStrategy.OnPush` on list items.
+   * Consider **`NgZone.runOutsideAngular()`** if needed to handle scroll events or polling.
+
+---
+
+## **Memory Leak**
+
+* A memory leak happens when **objects are not garbage collected** because something still holds a **reference** to them.
+* Over time, this causes **increased memory usage**, **slower performance**, and **eventual crashes**.
+- Use **DevTools**, leverage **`ngOnDestroy()`**, 
+- Apply **RxJS best practices** (`takeUntil`, `async pipe`) to detect and fix memory leaks in Angular apps.
+
+---
+
+**Common Causes in Angular:**
+
+1. **Unsubscribed Observables**
+2. **Detached DOM references**
+3. **Global event listeners (`window`, `document`)**
+4. **Timers (`setInterval`, `setTimeout`) not cleared**
+5. **Services holding references to components**
+
+
+**How to Debug:**
+
+1. **Use Chrome DevTools:**
+
+   * Go to **Memory tab → Take Heap Snapshot**
+   * Use **Performance tab → Record → Look for Detached DOM nodes**
+   * Monitor for **growing memory usage** on navigation or user interaction
+
+2. **Use `ngOnDestroy()` lifecycle hook:**
+
+   * Add console logs to verify component destruction.
+   * If it’s not called, memory is being held somewhere.
+
+---
+
+**Fixes & Best Practices:**
+
+1.  **Always unsubscribe from Observables**
+
+   * Use `takeUntil`, `async pipe`, or `Subscription.unsubscribe()`:
+
+   ```ts
+   private destroy$ = new Subject<void>();
+   ngOnInit() {
+     this.myService.getData().pipe(takeUntil(this.destroy$)).subscribe();
+   }
+   ngOnDestroy() {
+     this.destroy$.next(); this.destroy$.complete();
+   }
+   ```
+
+2.  **Remove event listeners**
+
+   ```ts
+   window.addEventListener('resize', this.handler);
+   ngOnDestroy() {
+     window.removeEventListener('resize', this.handler);
+   }
+   ```
+
+3.  **Clear timers**
+
+   ```ts
+   const interval = setInterval(...);
+   ngOnDestroy() {
+     clearInterval(interval);
+   }
+   ```
+
+4.  **Avoid retaining component references in services**
+
+   * Services should not hold long-lived references to components or DOM nodes.
+
+---
+
+
+
+
+
+
+
+
+## **Performance Bottlenecks**
+
+
+- Most Angular performance issues stem from **uncontrolled change detection**, **DOM bloat**, and **inefficient data binding**. 
+- Use **OnPush**, `trackBy`, **lazy loading**, and 
+- optimize **template logic** to avoid bottlenecks.
+
+
+
+ **1. Unnecessary Change Detection Cycles**
+
+* Angular runs change detection on every async event.
+* Components without `ChangeDetectionStrategy.OnPush` get re-evaluated unnecessarily.
+
+---
+
+ **2. Inefficient Use of `*ngFor`**
+
+* Missing `trackBy` causes Angular to re-render entire lists even for minor changes.
+
+---
+
+ **3. Heavy Logic in Templates**
+
+* Complex expressions or method calls in templates are re-evaluated on each CD cycle.
+
+---
+
+ **4. Memory Leaks**
+
+* Unsubscribed observables, unremoved event listeners, or timers hold memory and slow down the app.
+
+---
+
+ **5. Too Many DOM Nodes**
+
+* Rendering large lists or deeply nested components without optimization leads to slow rendering.
+
+---
+
+ **6. Overuse of Two-Way Binding (`[(ngModel)]`)**
+
+* Triggers frequent change detection and impacts form performance.
+
+---
+
+ **7. Poor Lazy Loading Strategy**
+
+* Not lazy loading feature modules leads to large initial bundle size and slow boot time.
+
+---
+
+ **8. Blocking Main Thread**
+
+* Synchronous, CPU-heavy operations in components block rendering (e.g., JSON parsing, loops).
+
+---
+
+ **9. Unoptimized Images and Assets**
+
+* Large image files, uncompressed assets increase load time and memory usage.
+
+---
+
+ **10. Excessive Use of `ngIf`/`ngSwitch` Without Proper Conditions**
+
+* Constant DOM manipulation impacts runtime performance.
+
+---
 

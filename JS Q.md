@@ -5432,12 +5432,60 @@ evtSource.onmessage = e => console.log(e.data);
 
 
 
-## Shadowing
+### **Shadowing**
 
-- Variable shadowing occurs when a variable declared within a certain scope (like a function or block) has the same name as a variable in an outer scope,
-- thus the inner variable "shadows" or overrides access to the outer variable within its own scope.
+- **Shadowing** happens when a variable declared in a **local scope** (e.g., inside a function or block) **has the same name as a variable in an outer scope**. 
+- The inner variable **“shadows”** the outer one, meaning the outer variable becomes inaccessible within that inner scope.
+- **Shadowing is not the same as overriding.**
+- In **ES6**, `let` and `const` allow **block-level shadowing**, while `var` is function-scoped.
+- Shadowing is useful for **encapsulation**, but overusing it can lead to **confusing bugs**, especially in nested scopes or loops. Always name variables carefully.
+---
+```javascript
+var x = 1;
 
+function test() {
+ console.log(x , "X1");  --> "undefined"
+  var x = 2; 
+}
 
+function test1() {
+    console.log(x,"X2"); --> "1"
+   x = 3; 
+ 
+}
+function test2() {
+   let x = 4; 
+console.log(x,"X3"); --> "4"
+ }
+
+function test3() {
+ console.log(x,"X4"); --> "Reference Error"
+  let x = 4; 
+ 
+}
+
+test(); test1();  test2();   test3();
+console.log(x);  --> "3"
+```
+
+```javascript
+var a = 10;
+
+(function () {
+  console.log(a, "A1"); // undefined A1
+  var a = 20;
+
+  (function () {
+    //console.log(a, "A2"); // Reference Error
+    let a = 30;
+    console.log(a, "A3"); // 30 A3
+  })();
+
+  console.log(a, "A4"); // 20 A4
+})();
+
+console.log(a, "A5"); // 10 A5
+```
 
 
 

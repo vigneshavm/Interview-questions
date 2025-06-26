@@ -8,11 +8,12 @@
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
 | **State Management**        | • [RxJS](#rxjs-in-angular) • [RxJS Operators](#common-rxjs-operators) • [RxJS Operators: switchMap...](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
-| **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      
+| **Performance**     | • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities**      | • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) • [NgZone](#NgZone) 
 | **Other**      | • [Optimized Production Bundle - LifeCycle](#lifecycle-from-source-code-to-optimized-production-bundle)  • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
+| **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) 
 
 
 
@@ -3937,6 +3938,64 @@ this.ngZone.runOutsideAngular(() => {
 * Avoids **performance bottlenecks**
 * Enables **fine-grained control** over when Angular checks the DOM
 * Useful for **heavy async or DOM event-driven logic**
+
+---
+
+
+
+### **Change Detection and Optimization**
+
+
+- Angular’s change detection is powerful but can become expensive. 
+- Using `OnPush`, `NgZone`, `ChangeDetectorRef`, and clean component design makes it scalable for **large enterprise applications**.
+
+* Angular uses a **unidirectional data flow** and a **change detection tree**.
+* On any async event (like `click`, `setTimeout`, `XHR`), Angular triggers **change detection** starting from the root component down.
+* It checks **component templates** against their current data model and updates the DOM if differences are found.
+* Angular relies on **Zone.js** to patch async operations and hook into them.
+
+**By Default:**
+
+* Angular runs **change detection** on **every async event**.
+* It checks **every component** in the tree, even if nothing changed → **performance bottleneck** in large apps.
+
+
+**Optimization Techniques:**
+
+1.  **`ChangeDetectionStrategy.OnPush`**
+
+   * Only checks a component when:
+
+     * **@Input() changes**
+     * **Events inside component**
+   * Skips unnecessary checks for unchanged components.
+   * Use with **immutable data** and `Observable` streams.
+
+2.  **`NgZone.runOutsideAngular()`**
+
+   * Prevents triggering change detection for non-UI tasks (scroll, polling, animations).
+
+3.  **Detach and Manually Trigger Detection**
+
+   * Use `ChangeDetectorRef.detach()` to stop auto-detection.
+   * Call `detectChanges()` or `markForCheck()` manually when needed.
+
+4.  **TrackBy in `*ngFor`**
+
+   * Prevents re-rendering the whole list; re-renders only changed items.
+
+5.  **Avoid Heavy Logic in Templates**
+
+   * Move complex computations to `getters` or lifecycle hooks, not inline.
+
+6.  **Lazy Load Feature Modules**
+
+   * Reduces the initial load and detection scope.
+
+---
+
+
+
 
 ---
 

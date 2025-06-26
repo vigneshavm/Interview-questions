@@ -10,7 +10,7 @@
 | **State Management**        | • [RxJS](#rxjs-in-angular) • [RxJS Operators](#common-rxjs-operators) • [RxJS Operators: switchMap...](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
 | **Performance**     | • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
-| **Utilities**      | • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices)  
+| **Utilities**      | • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) • [NgZone](#NgZone) 
 | **Other**      | • [Optimized Production Bundle - LifeCycle](#lifecycle-from-source-code-to-optimized-production-bundle)  • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
 
@@ -3901,4 +3901,42 @@ This is **rarely used** since Angular prefers tree-shakable providers in `'root'
 | Lazy Module Injector | `'any'`         | One instance per lazy module  | ✅ Yes         | LoggerService, feature-specific logs |
 | Specific Module      | `FeatureModule` | Only available in that module | ❌ No          | Rare; explicit module control        |
 
+
+
+
+
+### `NgZone`
+
+* **`NgZone`** helps Angular track **async operations** (like `setTimeout`, `XHR`, `Promise`) using **Zone.js** and triggers **change detection** when they complete.
+
+* By default, **any async task** triggers a **full change detection cycle**, which can be **performance-heavy** in large apps.
+
+* To **optimize**, we use:
+
+  🔹 `**ngZone.runOutsideAngular()**` – to run **non-Angular tasks** without triggering change detection (e.g., scroll listeners, animations, polling).
+
+  🔹 `**ngZone.run()**` – to re-enter Angular context only when needed (e.g., UI update).
+
+* This approach reduces **unnecessary change detection**, improving **FPS and responsiveness**.
+
+---
+
+**Example:**
+
+```ts
+this.ngZone.runOutsideAngular(() => {
+  window.addEventListener('scroll', () => {
+    // No change detection triggered
+  });
+});
+```
+
+
+**Key Benefits:**
+
+* Avoids **performance bottlenecks**
+* Enables **fine-grained control** over when Angular checks the DOM
+* Useful for **heavy async or DOM event-driven logic**
+
+---
 

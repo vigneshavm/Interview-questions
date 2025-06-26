@@ -3432,6 +3432,7 @@ ng build --configuration=production
 ### **Lazy loading**
 
 • [Lazy Loading Modules](#lazy-loading-modules) 
+
 • [Lazy Loading Preloading Strategies](#lazy-loading-preloading-strategies) 
 
 -  Lazy loading is the practice of loading feature modules **only when needed**, reducing initial load time.

@@ -125,10 +125,9 @@ You cannot reassign a value to a constant variable once it's initialized.
 Primitive types include:
 `string`, `number`, `boolean`, `null`, `undefined`, `symbol`, `bigint`
 
-When you declare a **primitive** with `const`, the **value cannot be changed**.
-
-For primitive values, they are stored directly in the variable.
-So with const, you can't change or reassign them — they behave as immutable.
+**primitive with `const`, the value cannot be changed**.
+**Primitive values are stored directly in the variable**.
+**So with const, we can't change or reassign them — they behave as immutable**.
 
 
 
@@ -144,9 +143,9 @@ age = 35; //  Error: Assignment to constant variable.
 Non-primitive types include:
 `object`, `array`, `function`, etc.
 
-For non-primitive values , the variable holds a reference to the data. 
-Const locks that reference, meaning I can't assign a new object or array to it. 
-However, I can still modify the contents of the object or array because the reference remains unchanged.
+- **Non-primitive values , the variable holds a reference to the data**. 
+- Const locks that reference, 
+- **We can't assign a new object or array to it. We still modify the contents because the reference remains unchanged**.
 
 With non-primitives, the **reference** is constant — meaning the variable always points to the same object/array/function — **but the contents can be modified.**
 

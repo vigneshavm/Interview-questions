@@ -13,8 +13,7 @@
 | **Utilities**      | • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) • [NgZone](#NgZone) 
 | **Other**      | • [Optimized Production Bundle - LifeCycle](#lifecycle-from-source-code-to-optimized-production-bundle)  • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
-| **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) 
-
+| **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application)
 
 ## Component-Based Architecture
 
@@ -4072,4 +4071,111 @@ Access elements, components, or directives after **view init** (`ngAfterViewInit
 **Best Practice:**
 
 Avoid using `ElementRef.nativeElement` for **DOM manipulation** — prefer `Renderer2` for better security and **platform agnosticism**.
+
+
+
+
+## **Structure a large Angular application**
+
+
+### 🧰 Best Practices Summary:
+
+| Practice                                  | Description                                                                |
+| ----------------------------------------- | -------------------------------------------------------------------------- |
+| ✅ Separate core/shared/feature modules    | Clear responsibility & modularity                                          |
+| ✅ Use lazy loading                        | Reduces initial load time                                                  |
+| ✅ Organize by **feature**, not type       | e.g., `/user/user.component.ts` instead of `/components/user.component.ts` |
+| ✅ Keep services in `Core`, UI in `Shared` | Maintain clean separation                                                  |
+| ✅ Use `index.ts` barrels                  | For clean imports                                                          |
+| ✅ Maintain strict TypeScript settings     | Helps prevent hidden bugs                                                  |
+| ✅ Use route guards & interceptors         | For centralized access control                                             |
+| ✅ Clean folder naming conventions         | `/feature/components/`, `/feature/services/`, `/feature/models/` etc.      |
+
+---
+
+
+In large-scale Angular applications, **modular architecture** is essential to ensure **maintainability, scalability, and performance**. Here's how I typically structure it:
+
+#### 🧱 1. **Core Modules** (singleton services & global features)
+
+* Created as `CoreModule` and imported **only in `AppModule`**.
+* Contains:
+
+  * Authentication services
+  * Global guards & interceptors
+  * Singleton APIs
+  * Global error handlers
+  * Logging services
+
+```ts
+@NgModule({
+  providers: [AuthService, GlobalHttpInterceptor]
+})
+export class CoreModule {}
+```
+
+---
+
+#### 🔄 2. **Shared Module** (reusable UI components & pipes)
+
+* Used to group **shared directives, pipes, and components** (e.g., buttons, formatters).
+* **Stateless** and used by multiple feature modules.
+* Does **not** provide services.
+
+```ts
+@NgModule({
+  declarations: [DatePipe, CardComponent],
+  exports: [CommonModule, FormsModule, DatePipe, CardComponent]
+})
+export class SharedModule {}
+```
+
+---
+
+#### 🌍 3. **Feature Modules** (domain-driven design)
+
+* One module per business domain, e.g.:
+
+  * `UserModule`, `OrdersModule`, `AdminModule`
+* Each feature module:
+
+  * Uses **lazy loading** to optimize load time.
+  * Has its own routing module (`FeatureNameRoutingModule`)
+  * Own services, components, and sub-modules
+
+```ts
+const routes: Routes = [
+  { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) }
+];
+```
+
+---
+
+#### 🔐 4. **Auth Module**
+
+* Auth flow is isolated in its own module:
+
+  * Login, Register, Forgot Password
+* Guards and interceptors live in `CoreModule`, but `AuthComponent` and routing logic remain here.
+
+---
+
+#### 🌐 5. **Routing Strategy**
+
+* Use **feature-based routing**.
+* Create a `routes.ts` file per module.
+* Use **lazy loading** + route guards + preloading strategies (if needed).
+
+---
+
+#### 💡 6. **State Management (Optional)**
+
+* For complex state:
+
+  * Use **NgRx**, **Signal Store**, or custom RxJS service-based stores.
+* Organize `store/` folder inside each domain module for local state.
+* Maintain global state in `AppState`.
+
+---
+
 

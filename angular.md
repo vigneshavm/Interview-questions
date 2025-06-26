@@ -3592,14 +3592,75 @@ ng build --source-map=true
 
 ### **Differential loading and polyfills**
 
-**Differential loading** builds two separate bundles:
-
+**Differential loading** builds **two sets of JavaScript bundles**
 * **Modern JavaScript (ES2015+)** for new browsers
-* **Legacy JavaScript (ES5)** for older browsers
+* **Legacy JavaScript (like IE11, using ES5)** for older browsers
+- Differential loading helps me deliver optimized code to modern browsers while maintaining backward compatibility with older ones. 
+- Combined with polyfills, it ensures broader accessibility without sacrificing performance."
 
 **Polyfills** provide fallback functionality for browsers that don’t support modern JS features. Managed in `polyfills.ts`.
 
->  **Key Point:** Angular CLI handles this automatically in production builds, improving performance and compatibility.
+-  **Key Point:** Angular CLI handles this automatically in production builds, improving performance and compatibility.
+
+| Concept                  | Purpose                                    |
+| ------------------------ | ------------------------------------------ |
+| **Differential Loading** | Builds for both modern and legacy browsers |
+| **Polyfills**            | Adds support for missing browser features  |
+
+
+**Why Use Differential Loading?**
+
+* Modern browsers support newer JS features (e.g., `async/await`, modules).
+* Legacy browsers (like Internet Explorer) do not.
+* Differential loading helps:
+
+  * **Reduce bundle size** for modern browsers
+  * **Improve performance** by skipping unnecessary transpilation/polyfills
+  * **Ensure compatibility** across a wider audience
+
+---
+
+**How It Works in Angular (Angular 8+):**
+
+Angular CLI generates two sets of builds:
+
+| Build Target    | Uses               | File Example     |
+| --------------- | ------------------ | ---------------- |
+| Modern (ES2015) | Chrome, Edge, etc. | `main-es2015.js` |
+| Legacy (ES5)    | IE11               | `main-es5.js`    |
+
+> The browser automatically picks the right file using the `type="module"` and `nomodule` attributes in `index.html`.
+
+```html
+<script type="module" src="main-es2015.js"></script>
+<script nomodule src="main-es5.js"></script>
+```
+
+---
+
+**Polyfills**
+
+- **Polyfills** are JavaScript shims that **emulate missing features** in older browsers.
+
+For example:
+
+* `Promise` in IE11
+* `Array.includes()` in Safari 9
+* `fetch()` in older browsers
+
+**In Angular**
+
+Polyfills are managed in the `polyfills.ts` file:
+
+```ts
+import 'core-js/es/promise';
+import 'zone.js'; // required for Angular
+```
+
+You enable or disable specific polyfills based on your browser support requirements.
+
+
+
 
 ---
 

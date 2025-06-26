@@ -12,7 +12,7 @@
 | **Replication & Durability**| [Replica Set](#replica-set) - [Clustering & Replication](#clustering--replication) - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb) - [Durability & Consistency](#mongodb-ensure-durability-and-consistency) - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) |
 | **Special Collections**     | [Capped Collection in MongoDB](#capped-collection-in-mongodb)                                                                                         |
 | **MongoDB with Node.js**    | [MongoDB with Node.js](#mongodb-with-nodejs) - [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose) - [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver) |
-| **Limitations & Considerations** | [Limitations of MongoDB and How to Overcome Them](#limitations-of-mongodb-and-how-to-overcome-them)   - [Databases for a Social Media App](#databases-for-a-social-media-app)                                                                                 |
+| **Limitations & Considerations** | [Limitations of MongoDB and How to Overcome Them](#limitations-of-mongodb-and-how-to-overcome-them) -[Key Limitations](#Key-Limitations)  - [Databases for a Social Media App](#databases-for-a-social-media-app)                                                                                 |
 | **Other Topics**            | [CAP Theorem](#CAP-Theorem) - [Time Series](#Time-Series) - [ACID properties](#ACID-properties) - [Two-Phase Commit](#Two-Phase-Commit) - [Handling large datasets efficiently in MongoDB](#Handling-large-datasets-efficiently-in-MongoDB) - [Scenario Based Questions](#Scenario-Based-Questions) - [SQL feature by feature](#feature-by-feature)
 |
 
@@ -2208,6 +2208,14 @@ COMMIT;
 
 ---
 
-
+## Key Limitations
+- 16MB Document Size – Forces decisions on when to embed vs reference.
+- No Native Transactions (pre-4.0) – In older versions, atomicity was limited to a single document.
+- Indexing Limits:
+- 64 indexes per collection.
+- Index key limit of 1024 bytes.
+- Indexes on large arrays can cause performance degradation.
+- Joins are expensive – $lookup should be used carefully on large datasets.
+- Write Amplification – With large documents, frequent updates can be inefficient.
 
 

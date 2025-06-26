@@ -20,10 +20,34 @@
 
 ## Component-Based Architecture
 
-- Angular follows a component-based architecture, where the UI is broken into smaller, reusable components. 
-- Each component controls a patch of screen called a view. 
-- Components encapsulate HTML, CSS, and logic, promoting reusability and maintainability.
-- Angular applications start with a root component and create a tree of components.
+- **Component-Based Architecture** in Angular means building the UI using **independent, reusable, and encapsulated components** — each responsible for its own **view, logic, and styling**.
+- Angular’s component-based architecture enables building **modular**, **testable**, and **scalable** UIs by breaking the app into small, focused components.
+
+**Key Concepts:**
+* **Component = View + Logic + Metadata**
+  Defined using `@Component()` decorator.
+* Follows **Single Responsibility Principle** – each component handles one piece of the UI.
+* Components form a **tree structure**, with a **root component** (`AppComponent`) and nested child components.
+
+**Benefits:**
+* 🔁 **Reusability**: Components can be reused across modules and projects.
+* 🔍 **Testability**: Easier unit testing due to isolation.
+* 🧱 **Maintainability**: Clear separation of concerns.
+* 🧠 **Scalability**: Simplifies complex UIs by breaking them into smaller parts.
+
+**Example:**
+
+```ts
+@Component({
+  selector: 'app-user-card',
+  templateUrl: './user-card.component.html'
+})
+export class UserCardComponent {
+  @Input() user: User;
+}
+```
+
+
 
 ## Change Detection and Zone.js
 
@@ -2682,11 +2706,21 @@ forkJoin({
 ###  **Module and Component**
 
  -  A **Module** is a container for a group of related features (components, services, etc.)
- -  A **Component** controls a part of the UI. It includes:
+ -  A **Component** controls a part of the UI. It includes: Template (HTML) , Class (logic) , Styles
 
-* Template (HTML)
-* Class (logic)
-* Styles
+| Aspect          | **Module (`@NgModule`)**                  | **Component (`@Component`)**                   |
+| --------------- | ----------------------------------------- | ---------------------------------------------- |
+| **Purpose**     | Groups related functionality              | Defines the UI and behavior of a specific view |
+| **Decorator**   | `@NgModule`                               | `@Component`                                   |
+| **Contains**    | Components, directives, pipes, services   | Template, styles, and class logic              |
+| **Usage**       | Organizes the app structure               | Represents a UI element                        |
+| **Bootstrap**   | App starts with `AppModule`               | App starts rendering from `AppComponent`       |
+| **Reusability** | Typically not reused individually         | Highly reusable across modules                 |
+| **Example**     | `AppModule`, `UserModule`, `SharedModule` | `HeaderComponent`, `UserCardComponent`         |
+
+- A **Module** organizes the app into functional blocks, 
+- While a **Component** defines individual **UI elements** and their behavior.
+- They work **together** — components live inside modules.
 
 
 ###  **Dependency Injection**

@@ -430,15 +430,53 @@ bootstrapApplication(AppComponent, {
 
 ## Custom Validators
 
+- [Create Custom Validators](#Create-Custom-Validators)
 
 - Custom validators allow you to enforce complex or domain-specific validation rules in Angular forms, improving form reliability and user experience.
-
-
 * Functions you write to implement **custom validation logic** beyond Angular’s built-in validators.
 * Used in **Reactive Forms** (or Template-Driven with some tweaks) to enforce specific business rules.
+  - **"In Angular, I use custom validators when I need to enforce business-specific validation logic that goes beyond built-in validators like `required` or `minLength`.**
+
+- In short, I design custom validators to be **reusable, performant, and declarative**, keeping them in separate utility files or services. I also ensure the UI reflects error messages clearly using `hasError()` in templates."\*\*
+
+- "I always follow Angular’s convention of returning `null` when valid, and an object with a key like `{ customError: true }` when invalid — making the form's status predictable and easy to debug."
+
+- For example, to prevent users from entering spaces in a username, I’d create a **synchronous custom validator** like this:
+
+```ts
+export function noSpaceValidator(control: AbstractControl): ValidationErrors | null {
+  return (control.value || '').includes(' ') ? { noSpace: true } : null;
+}
+```
+
+- Then I plug it into the form like:
+
+```ts
+this.form = this.fb.group({
+  username: ['', [Validators.required, noSpaceValidator]]
+});
+```
+
+- This keeps the logic modular, reusable, and easy to unit test.
 
 
-###  **How to Create Custom Validators**
+- For scenarios like checking if an email already exists in the database, I write an **asynchronous validator** using RxJS and connect it to an API or simulated observable.
+
+```ts
+export function emailExistsValidator(service: UserService): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return service.checkEmail(control.value).pipe(
+      map(exists => (exists ? { emailExists: true } : null))
+    );
+  };
+}
+```
+
+- I also optimize it with `updateOn: 'blur'` to reduce unnecessary API calls.
+
+
+
+###  **Create Custom Validators**
 
 * A **validator function** takes a `FormControl` (or `FormGroup`) and returns:
 

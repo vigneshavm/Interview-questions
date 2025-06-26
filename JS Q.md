@@ -7,7 +7,7 @@
 | **Scope & `this`**           | [Scope](#scope)  • [this Keyword Behavior](#this-keyword-behavior) • [new Keyword](#new-keyword) • [Memory Leaks](#common-causes-of-memory-leaks) • [Garbage Collection](#javascript-garbage-collection) • [Memoization Techniques](#memoization-techniques)                                                                                                                                                                                                                  |
 | **Events**                   | [Event Propagation](#event-propagation) • [Event Listeners](#event-listeners) • [preventDefault() vs stopPropagation()](#preventdefault-vs-stoppropagation) • [Capturing vs Bubbling vs Delegation](#event-capturing-vs-event-bubbling-vs-event-delegation)                                                                                                                                                                                                                                                                                                                                        |
 | **Functions**                | [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor) • [Functions](#functions) • [Closures](#closures) • [Currying](#currying-in-javascript)• [Call(), Apply(), Bind()](#call-and-apply-and-bind-methods) • [Debounce and Throttle](#debounce-and-throttle-functions) • [Default Parameters](#default-parameters) • [Constructor Function](#constructor-function)                                                                                                                                                          |
-| **Async JavaScript**         | [Sync vs Async](#synchronous-vs-asynchronous-functions) • [Async Errors](#handling-async-errors) • [setTimeout vs setImmediate vs process.nextTick()](#settimeout-and-setimmediate-and-processnexttick) • [Event Loop & Call Stack](#event-loop--call-stack) • [Extending Built-in Objects](#extending-built-in-objects)                                                                                                                                                                                                                                                                          |
+| **Async JavaScript**         | [Sync vs Async](#synchronous-vs-asynchronous-functions) • [Async Errors](#handling-async-errors) • [`setTimeout and setImmediate and processnextTick and setInterval`](#settimeout-and-setimmediate-and-processnexttick-and-setInterval) • [Event Loop & Call Stack](#event-loop--call-stack) • [Extending Built-in Objects](#extending-built-in-objects)                                                                                                                                                                                                                                                                          |
 | **Classes**        | [Prototypes](#understanding-__proto__-and-prototypes) • [Mutable vs Immutable](#mutable-vs-immutable-objects)  • [Static Class Members](#static-class-members) • [Getters and Setters](#getters-and-setters) • [Inheritance](#inheritance) • [Usage of super()](#usage-of-super-in-classes) • [in vs hasOwnProperty()](#in-operator-vs-hasownproperty) |
 | **Objects**        | • [Object.assign() vs Spread](#objectassign-vs-spread-operator) • [Object.create() & Prototype Chains](#object-create-and-prototype-chains) • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions) |
 | **Modules & DOM**   | [innerHTML vs textContent](#innerhtml-vs-textcontent) • [CSS Manipulation](#css-manipulation) • [JS Modules (import/export)](#javascript-modules-importexport) • [CommonJS vs ES Modules](#commonjs-vs-es-modules)                              |
@@ -2033,7 +2033,7 @@ console.log('End');
 
 ---
 
-#### **setTimeout and setImmediate and processnextTick**
+## **setTimeout and setImmediate and processnextTick and setInterval**
 
 
 🟢 **Priority Order**:
@@ -2113,6 +2113,19 @@ function doSomething(callback) {
     });
   }
 }
+```
+### 4️⃣ `setInterval(callback, delay)`
+
+* ✅ Repeatedly runs a task every `delay` milliseconds.
+* 📍 Good for polling, heartbeats, or recurring tasks.
+* ❗ Be careful: if the callback takes longer than `delay`, executions can **overlap or be delayed**.
+
+```javascript
+let count = 0;
+const intervalId = setInterval(() => {
+  console.log(`🔁 Interval count: ${++count}`);
+  if (count === 3) clearInterval(intervalId);
+}, 1000);
 ```
 
 

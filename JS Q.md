@@ -12,7 +12,7 @@
 | **Objects**        | • [Object.assign() vs Spread](#objectassign-vs-spread-operator) • [Object.create() & Prototype Chains](#object-create-and-prototype-chains) • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions) |
 | **Modules & DOM**   | [innerHTML vs textContent](#innerhtml-vs-textcontent) • [CSS Manipulation](#css-manipulation) • [JS Modules (import/export)](#javascript-modules-importexport) • [CommonJS vs ES Modules](#commonjs-vs-es-modules)                              |
 | **Browser APIs**             | [Cookies vs sessionStorage vs localStorage](#cookies-and-sessionstorage-and-localstorage) • [Window vs Document](#window-vs-document) • [window.history API](#using-window-history-api) • [Web Workers](#web-workers) • [WebSocket API](#websocket-api)                                                                                                                                                                                                                                                                                                                                           |
-| **Error Handling**           | [Custom Error](#custom-error) • [Unexpected Outputs](#understanding-unexpected-outputs) • [Web Communication Protocols](#web-communication-protocols)                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Error Handling**           | [Custom Error](#custom-error) • [Unexpected Outputs](#understanding-unexpected-outputs) • [Web Communication Protocols](#web-communication-protocols)             [Test Driven Development](#Test-Driven-Development)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 
 
@@ -258,8 +258,8 @@ JavaScript has several data types that can be classified as primitive types and 
 ---
 
 ## **Symbol**
-A `Symbol` is a unique and immutable primitive value.
-Symbols are often used as keys for object properties to avoid property name collisions.
+**`Symbol` is a unique and immutable primitive value.**
+**Symbols used as keys for object properties to avoid property name collisions**.
 
 **Example:**
 ```javascript
@@ -284,9 +284,9 @@ console.log(user["userId"]); // undefined
 
 
 ## **null and undefined and undeclared**
-- **`null`**: Represents the intentional absence of any value. It’s an object and can be explicitly assigned to variables.
-- **`undefined`**: Represents a variable that has been declared but hasn’t been assigned a value yet.
-- **Undeclared**: Refers to variables that have been used without declaration. This leads to global variables being created in non-strict mode.
+- **`null`**: Represents the **intentional absence of any value**. It’s an object and can be explicitly assigned to variables.
+- **`undefined`**: Represents a **variable declared but hasn’t been assigned a value yet**.
+- **Undeclared**: Refers to **variables that have been used without declaration**. This leads to global variables being created in non-strict mode.
 
 **Example:**
 ```javascript
@@ -306,11 +306,11 @@ console.log(a); // null
 That == tries to convert the values to the same type before comparing, 
 but === checks both value and type exactly.
 
-- **`==` (Loose Equality)**: Compares values for equality but performs type coercion. This can lead to unexpected results.
-- **`===` (Strict Equality)**: Compares both value and type, so no type conversion is done.
+- **`==` (Loose Equality)**: Compares values for **equality but performs type coercion**. This can lead to unexpected results.
+- **`===` (Strict Equality)**: Compares **both value and type, so no type conversion is done**.
 
 
-Type coercion is the process where JavaScript automatically converts values from one data type to another when doing operations — especially comparisons or arithmetic.
+Type coercion is the process where **JavaScript automatically converts values from one data type to another when doing operations** — especially comparisons or arithmetic.
 
 **Example:**
 ---
@@ -1551,9 +1551,10 @@ const arrowFunc = () => {
 ## **Arrow Functions**
 
 
- Arrow functions are a shorter syntax for writing functions in JavaScript, introduced in ES6. and have the key difference of **lexical scoping** for `this`.
- Unlike regular functions, they do not have their own `this`, `arguments`, `super`, or `new.target`.
- They're great for writing concise, readable, and expression-style code, especially in callbacks and array methods.
+- Arrow functions are a shorter syntax for writing functions in JavaScript, introduced in ES6. 
+- **The key difference of **lexical scoping** for `this`**.
+- They do not have their own `this`, `arguments`, `super`, or `new.target`.
+- They're great for writing concise, readable, and expression-style code, especially in callbacks and array methods.
 
 **Example**:
 ```javascript
@@ -1794,7 +1795,9 @@ nums.reduce((acc, val) => acc + val, 0);
 #### **Anonymous Functions - Use Cases**
 
 
- Anonymous functions are functions without a name. They are often used as arguments to other functions, or for short tasks where a function doesn’t need to be reused elsewhere.
+- Anonymous functions are **functions without a name**. 
+- **Used as arguments to other functions**, 
+- for short tasks where a function doesn’t need to be reused elsewhere.
 
 **Example**:
 ```javascript
@@ -1813,7 +1816,8 @@ setTimeout(function() {
 #### **Default Parameters**
 
 
- Default parameters allow you to specify a default value for a function parameter if no value is provided during the function call.
+- Default parameters allow you to **specify a default value for a function parameter** if no value is provided during the function call.
+- This is useful for handling cases where arguments may be missing and helps avoid errors in your code.
 
 **Example**:
 ```javascript
@@ -1825,18 +1829,15 @@ greet(); // Outputs: Hello, Guest!
 greet("Alice"); // Outputs: Hello, Alice!
 ```
 
-This is useful for handling cases where arguments may be missing and helps avoid errors in your code.
 
 ---
 
 #### **Higher-Order Functions**
 
 
- A **higher-order function** is a function that either:
-Takes one or more functions as arguments.
-Returns a function as its result.
-
-They are often used for tasks like transformations or creating function pipelines.
+- A **higher-order function** is a function that either:
+- **Takes one or more functions as arguments.Returns a function as its result**.
+- They are often used for tasks like **transformations or creating function pipelines**.
 
 **Example**:
 ```javascript
@@ -1857,8 +1858,9 @@ In this case, `applyOperation` is a higher-order function because it accepts `ad
 
 #### **Callback Functions**
 
-
- A **callback function** is a function passed into another function as an argument that is executed at a later time. They are often used for **asynchronous operations** like handling API responses, timers, or events.
+- **callback function is a function passed into another function as an argument that is executed at a later time**. 
+- They are often used for **asynchronous operations** like handling API responses, timers, or events.
+- Callbacks allow us to **handle asynchronous operations in a non-blocking way**.
 
 **Example**:
 ```javascript
@@ -1875,17 +1877,13 @@ fetchData('https://api.example.com', function(data) {
 });
 ```
 
-Callbacks allow us to handle asynchronous operations in a non-blocking way.
-
----
-
 ---
 
 ### **Closures**
 
  - [Closures Drawbacks](#Common-Pitfalls-of-Closures)
 
-- A closure where an inner function has access to variables from its outer function scope(lexical scope), even after the outer function has finished execution.
+- A closure where an **inner function has access to variables from its outer function scope(lexical scope), even after the outer function has finished execution**.
 - In other words, the inner function "remembers" the environment in which it was created.
 - Useful for:
   - **Data privacy**
@@ -1907,10 +1905,31 @@ function createCounter() {
 
 ---
 
-### 🧠 **Closures & Memory Management**
 
+
+###  **Common Pitfalls of Closures**
+
+- 🔄 **Memory Leaks**: Retained variables can't be garbage-collected.
+- 🧩 **Unexpected Retention**: Hidden data may persist longer than needed.
+- ⏱ **Async Confusion**: Closures in loops can reference incorrect values.
 - **Closures retain variables** from the outer function, keeping them in memory.
 - Can **prevent garbage collection**, leading to **memory leaks**.
+####  Problematic Async Example
+
+```javascript
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1000); // Outputs: 3, 3, 3
+}
+```
+
+##### Fixed with `let`
+
+```javascript
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1000); // Outputs: 0, 1, 2
+}
+```
+
 
 #### 🔁 Example:
 
@@ -1938,29 +1957,6 @@ function createLargeObject() {
 - **Manually dereference** variables if needed (e.g., `largeArray = null`).
 - Be cautious when binding closures to UI elements or persistent states.
 
----
-
-### ⚠️ **Common Pitfalls of Closures**
-
-- 🔄 **Memory Leaks**: Retained variables can't be garbage-collected.
-- 🧩 **Unexpected Retention**: Hidden data may persist longer than needed.
-- ⏱ **Async Confusion**: Closures in loops can reference incorrect values.
-
-####  Problematic Async Example
-
-```javascript
-for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 1000); // Outputs: 3, 3, 3
-}
-```
-
-##### Fixed with `let`
-
-```javascript
-for (let i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 1000); // Outputs: 0, 1, 2
-}
-```
 
 ---
 
@@ -1971,7 +1967,9 @@ for (let i = 0; i < 3; i++) {
 #### **Immediately Invoked Function Expressions**
 
 
- An **IIFE** is a function expression that is defined and immediately invoked (called) right after its declaration. It is used to create a new scope, often to avoid polluting the global namespace.
+- **IIFE** is a **function expression defined and immediately invoked (called) right after its declaration**.
+- It is used to create a new scope, often to avoid polluting the global namespace.
+-  IIFEs are often used for **module patterns** or **self-contained logic** in JavaScript.
 
 **Example**:
 ```javascript
@@ -1981,7 +1979,6 @@ for (let i = 0; i < 3; i++) {
 })(); // Outputs: Hello, world!
 ```
 
-IIFEs are often used for **module patterns** or **self-contained logic** in JavaScript.
 
 ---
 
@@ -1989,7 +1986,9 @@ IIFEs are often used for **module patterns** or **self-contained logic** in Java
 
 
  
-- **Synchronous functions** are executed one after another, blocking further execution until the current function completes. This can cause delays if a task takes time (e.g., reading a file or making a network request).
+- **Synchronous functions** are executed one after another, 
+- blocking further execution until the current function completes. 
+- This can cause delays if a task takes time (e.g., reading a file or making a network request).
   
   **Example**:
   ```javascript
@@ -1997,7 +1996,9 @@ IIFEs are often used for **module patterns** or **self-contained logic** in Java
   console.log('End'); // This will print after 'Start' immediately
   ```
 
-- **Asynchronous functions**, on the other hand, allow other tasks to run while waiting for a result (like a network response or file read). They do not block the execution thread and are usually handled via callbacks, promises, or async/await.
+- **Asynchronous functions**, on the other hand, 
+- allow other tasks to run while waiting for a result (like a network response or file read). 
+- They do not block the execution thread and are usually handled via callbacks, promises, or async/await.
 
   **Example**:
   ```javascript
@@ -2015,10 +2016,10 @@ IIFEs are often used for **module patterns** or **self-contained logic** in Java
 
 #### **Microtask Queue**
 
-
- The **microtask queue** is a queue where JavaScript places promises and `async/await` operations. It is processed after the current execution context and before any rendering tasks or `setTimeout` calls.
-
-- Microtasks are given higher priority than tasks in the event loop, which ensures that promises are always resolved as soon as possible.
+- The **microtask queue** is a queue where JavaScript places promises and `async/await` operations. 
+- It is processed **after the current execution context and before any rendering tasks** or `setTimeout` calls.
+- Microtasks are given **higher priority than tasks in the event loop**, 
+- which ensures that promises are always resolved as soon as possible.
 
 **Example**:
 ```javascript
@@ -2040,67 +2041,94 @@ console.log('End');
 3. `setImmediate()` → check phase
 4. `setTimeout()` → timer phase
 
- These are methods in Node.js that deal with asynchronous scheduling but differ in when they are executed:
+ Here’s an **optimized, interview-friendly explanation** of Node.js asynchronous scheduling methods, clearly structured with key distinctions, use cases, and highlighted points:
 
-- **`setTimeout()`**: Executes the callback after a specified delay, typically used for scheduling a task in the event loop after a given period.
-  ```javascript
-  setTimeout(() => console.log('Timeout'), 0);
-  ```
+---
 
-- **`setImmediate()`**: 
+### **`setTimeout(callback, delay)`**
 
-setImmediate() schedules a callback to run after the current event loop phase completes, specifically during the "check" phase of the Node.js event loop.
+* ✅ **Used for**: Executing a function **after a delay** (in milliseconds).
+* 📍 **Runs in**: **Timers Phase** of the event loop.
+* 🧠 Even `setTimeout(..., 0)` doesn’t run immediately — it waits for the **timers phase** after the current operations complete.
 
-It’s commonly used to run code after I/O operations or to defer non-critical logic so that I/O and other high-priority tasks are not blocked.
+#### 💡 Example:
 
-Use setImmediate() when:
+```js
+setTimeout(() => console.log('⏳ setTimeout'), 0);
+```
 
-You want to run logic after I/O callbacks (e.g., after fs.readFile).
+---
 
-You want to avoid blocking I/O with heavy computation.
+### 2**`setImmediate(callback)`**
 
-You need to yield to the event loop to let other tasks proceed.
+* ✅ **Used for**: Running code **after the current event loop phase**, especially **after I/O events**.
+* 📍 **Runs in**: **Check Phase** of the event loop.
+* 📌 **Ideal for**: Deferring non-critical tasks, **post-I/O processing**, logging, or cleanup logic.
 
-  ```javascript
-  setImmediate(() => console.log('Immediate'));
+#### 💡 Example:
 
-  const fs = require('fs');
+```js
+setImmediate(() => console.log('🚀 setImmediate'));
 
+const fs = require('fs');
 fs.readFile('file.txt', () => {
   setImmediate(() => {
-    console.log('This runs after I/O events.');
+    console.log('📁 After I/O complete');
   });
 });
+```
 
+#### 🧠 Use When:
 
-  ```
+* You want to **run after I/O**
+* Avoid blocking other operations
+* Let the event loop **breathe**
 
-  setImmediate ensures your logic runs after I/O callbacks, so it's great for cleanup, logging, or deferred computations.
+---
 
-- **`process.nextTick()`**: process.nextTick() executes a callback immediately after the current operation completes, but before any I/O events, timers, or setImmediate() callbacks.
+###  **`process.nextTick(callback)`**
 
-It has the highest priority in the Node.js event loop and is ideal when you want to defer execution without waiting for the next tick — for example, to:
+* ✅ **Used for**: Executing code **immediately after the current operation**, **before any I/O or timer**.
+* 📍 **Runs in**: **Microtask queue**, **before** any event loop phases.
+* 📌 **Highest priority** — runs before timers, I/O, and even `setImmediate`.
 
-  - handle async errors safely,
+#### 💡 Example:
 
-  - allow the current stack to unwind,
+```js
+process.nextTick(() => console.log('⚡ process.nextTick'));
+```
 
-  - or schedule critical logic just after the current call completes.
+#### 📌 Use When:
 
-  ```javascript
-  process.nextTick(() => console.log('Next Tick'));
+* Deferring errors or logic **until after the current function call completes**
+* Safely throwing errors
+* Scheduling **critical microtasks**
 
-  function doSomething(callback) {
+```js
+function doSomething(callback) {
   if (!callback) {
     process.nextTick(() => {
-      throw new Error('Callback is required');
+      throw new Error('❌ Callback is required');
     });
   }
 }
+```
 
-  ```
 
-  Here, nextTick ensures that the error is thrown after the function exits, allowing the calling code to finish and catch it properly.
+
+| Method               | Runs In                | Priority        | Typical Use Case                      |
+| -------------------- | ---------------------- | --------------- | ------------------------------------- |
+| `process.nextTick()` | Before event loop tick | 🔺 Highest      | Defer errors, critical microtasks     |
+| `setTimeout()`       | Timers phase           | Medium          | Delayed execution                     |
+| `setImmediate()`     | Check phase            | Low (after I/O) | Post-I/O tasks, deferring heavy logic |
+
+- "Use `process.nextTick()` for critical microtasks, 
+- `setImmediate()` for post-I/O logic, 
+- `setTimeout()` for general-purpose delays. 
+- Understanding their execution order helps avoid callback starvation and ensures responsive async flow.
+
+---
+
 
 **Example Execution Order**:
 ```javascript
@@ -2113,17 +2141,13 @@ process.nextTick(() => console.log('Next Tick')); // First
 
 
 
----
-
-### **Objects & Classes Interview Answers**
-
----
-
 #### **Constructor Function**
 
 
  
-A **constructor function** in JavaScript is a special type of function that is used to create and initialize objects. When a function is called using the `new` keyword, it acts as a constructor. The constructor function allows you to define properties and methods for the newly created object.
+- A **constructor function** in JavaScript is a special type of **function that is used to create and initialize objects**. 
+- When a function is called using the `new` keyword, it acts as a constructor. 
+- The constructor function allows you to define properties and methods for the newly created object.
 
 **Example**:
 ```javascript
@@ -2144,12 +2168,12 @@ In this example, `Person` is a constructor function that initializes an object w
 #### **`new` Keyword**
 
 
- 
-The `new` keyword is used to create an instance of an object that is defined by a constructor function or a class. When used with a constructor function, it performs the following steps:
-Creates a new empty object.
-Sets the `this` value within the constructor to the new object.
-Sets up inheritance so that the new object has access to the constructor's prototype.
-Returns the newly created object.
+- The `new` keyword is used to create an instance of an object that is defined by a constructor function or a class. 
+- When used with a constructor function, it performs the following steps:
+- Creates a new empty object.
+- Sets the `this` value within the constructor to the new object.
+- Sets up inheritance so that the new object has access to the constructor's prototype.
+- Returns the newly created object.
 
 **Example**:
 ```javascript
@@ -2168,9 +2192,13 @@ console.log(myCar.make); // Outputs: Toyota
 
 
  
-- **Classical Inheritance** (found in languages like Java and C++) involves defining a class, and then objects are created based on that class, inheriting its properties and methods. JavaScript, however, does not have traditional class-based inheritance (until ES6 introduced classes).
+- **Classical Inheritance** 
+  - Defining a class, and then objects are created based on that class, inheriting its properties and methods. 
+  - JavaScript, however, does not have traditional class-based inheritance (until ES6 introduced classes).
   
-- **Prototypal Inheritance** in JavaScript allows objects to directly inherit from other objects. Every object has a `prototype` property, which can be used to inherit methods and properties from other objects.
+- **Prototypal Inheritance** 
+  - JavaScript allows objects to directly inherit from other objects. 
+  - Every object has a `prototype` property, which can be used to inherit methods and properties from other objects.
 
 **Example (Prototypal Inheritance)**:
 ```javascript
@@ -2190,9 +2218,9 @@ With **prototypal inheritance**, the `dog` object inherits methods from the `ani
 
 #### **Inheritance in ES2015 Classes**
 
-
- 
-In ES2015, JavaScript introduced the `class` syntax, which provides a clearer and more structured way to define inheritance. Classes use the `extends` keyword to inherit from another class, and the `super()` function is used to call the parent class's constructor.
+ - In ES2015, JavaScript introduced the `class` syntax, which provides a clearer and more structured way to define inheritance. 
+ - Classes use the `extends` keyword to inherit from another class, and 
+ - the `super()` function is used to call the parent class's constructor.
 
 **Example**:
 ```javascript
@@ -2228,8 +2256,8 @@ In this example, `Dog` inherits from `Animal` using `extends`, and the `super()`
 #### **Static Class Members**
 
 
- 
-Static members are properties and methods that belong to the class itself, rather than to instances of the class. These members are accessed using the class name, not through an instance.
+- Static members are properties and methods that belong to the class itself, rather than to instances of the class. 
+- These members are accessed using the class name, not through an instance.
 
 **Example**:
 ```javascript
@@ -2248,8 +2276,8 @@ Here, `greet()` is a static method of `MyClass`, and it is called directly on th
 
 #### **Extending Built-in Objects**
 
-
- Yes, you can extend built-in objects in JavaScript. This is done by adding custom properties or methods to the prototype of the built-in object, or by subclassing it (using `class` syntax in ES6).
+- We can extend built-in objects in JavaScript. 
+- This is done by adding custom properties or methods to the prototype of the built-in object, or by subclassing it (using `class` syntax in ES6).
 
 **Example (Extending Array)**:
 ```javascript
@@ -2270,11 +2298,11 @@ In this example, `CustomArray` extends the built-in `Array` class, adding a cust
 #### **Getters and Setters**
 
 
- 
-Getters and setters are special methods in JavaScript that allow you to access and update the properties of an object in a controlled way. They are used to define custom behavior when getting or setting a property.
+- Getters and setters are special methods in JavaScript that allow you to access and update the properties of an object in a controlled way. 
+- They are used to define custom behavior when getting or setting a property.
 
-- **Getter**: A method that gets the value of a property.
-- **Setter**: A method that sets the value of a property.
+  - **Getter**: A method that gets the value of a property.
+  - **Setter**: A method that sets the value of a property.
 
 **Example**:
 ```javascript
@@ -2335,19 +2363,14 @@ Here, the `name` property is accessed and updated through getter and setter meth
 ---
 
 
-
-
----
-
-### **Modules, Storage & Browser APIs Interview Answers**
-
 ---
 
 #### **script and async and defer**
 
 
 
-The `<script>` tag is used to include JavaScript files in an HTML document. By default, when a `<script>` is encountered, the HTML parsing is paused until the script is loaded and executed, which can lead to delays in rendering. The `async` and `defer` attributes help optimize script loading behavior.
+- The `<script>` tag is used to include JavaScript files in an HTML document. 
+- By default, when a `<script>` is encountered, the HTML parsing is paused until the script is loaded and executed, which can lead to delays in rendering. The `async` and `defer` attributes help optimize script loading behavior.
 
 - **`async`**: The script is fetched asynchronously (in parallel with the HTML parsing) and executed as soon as it is available, without waiting for the HTML parsing to finish. This can cause the script to execute before the HTML parsing is complete.
   
@@ -2375,7 +2398,10 @@ The `<script>` tag is used to include JavaScript files in an HTML document. By d
 
 These are all web storage mechanisms, but they have different lifespans and uses:
 
-- **Cookies**: Data stored in cookies is sent to the server with every HTTP request. Cookies have an expiration date and can be set with a specific domain, path, and security attributes. They are limited to 4KB of data.
+- **Cookies**
+  - Data stored in cookies is sent to the server with every HTTP request.
+  - Cookies have an expiration date and can be set with a specific domain, path, and security attributes. 
+  - They are limited to 4KB of data.
 
   **Use case**: Storing authentication tokens, tracking sessions.
 
@@ -2384,7 +2410,10 @@ These are all web storage mechanisms, but they have different lifespans and uses
   document.cookie = "username=John; expires=Fri, 31 Dec 2025 12:00:00 UTC; path=/";
   ```
 
-- **sessionStorage**: Data stored in `sessionStorage` is specific to a single browser session. The data is available as long as the browser is open, but it is cleared when the tab or window is closed.
+- **sessionStorage**
+  - Data stored in `sessionStorage` is specific to a single browser session.
+  - The data is available as long as the browser is open, 
+  - but it is cleared when the tab or window is closed.
 
   **Use case**: Storing temporary data that is only needed for the duration of a session (like a multi-step form).
 
@@ -2394,7 +2423,10 @@ These are all web storage mechanisms, but they have different lifespans and uses
   let user = sessionStorage.getItem("user");
   ```
 
-- **localStorage**: Data stored in `localStorage` persists even when the browser is closed and reopened. It is specific to the domain and accessible in future sessions until explicitly removed. It has a storage limit of about 5MB.
+- **localStorage**
+  - Data stored in `localStorage` persists even when the browser is closed and reopened. 
+  - It is specific to the domain and accessible in future sessions until explicitly removed. 
+  - It has a storage limit of about 5MB.
 
   **Use case**: Storing user preferences, app settings, or data that should persist across sessions.
 
@@ -2410,14 +2442,18 @@ These are all web storage mechanisms, but they have different lifespans and uses
 
 
 
-- **`window`**: The `window` object represents the global environment or the browser window itself. It provides methods for controlling the browser window (like `window.open()`, `window.alert()`) and properties like `window.innerWidth` (viewport width).
+- **`window`**
+  - The `window` object represents the global environment or the browser window itself. 
+  - It provides methods for controlling the browser window (like `window.open()`, `window.alert()`) and properties like `window.innerWidth` (viewport width).
   
   **Example**:
   ```javascript
   console.log(window.innerWidth);  // Prints the width of the window
   ```
 
-- **`document`**: The `document` object is a property of the `window` object and represents the DOM (Document Object Model) of the web page. It is used for interacting with the content of the web page (like selecting elements or modifying the DOM).
+- **`document`**
+  - The `document` object is a property of the `window` object and represents the DOM (Document Object Model) of the web page. 
+  - It is used for interacting with the content of the web page (like selecting elements or modifying the DOM).
 
   **Example**:
   ```javascript
@@ -2430,10 +2466,8 @@ These are all web storage mechanisms, but they have different lifespans and uses
 
 #### **WebSocket API**
 
-
-
-The **WebSocket API** provides a way to open a two-way interactive communication session between the user's browser and a server. This allows for real-time communication, such as chat applications or live updates, by maintaining a persistent connection.
-
+- The **WebSocket API** provides a way to open a **two-way interactive communication session between the user's browser and a server**. 
+- This allows for real-time communication, such as chat applications or live updates, by maintaining a persistent connection.
 - WebSockets are different from HTTP requests because once the connection is established, it remains open, and both the client and server can send messages anytime.
 
 **Example**:
@@ -2455,7 +2489,7 @@ socket.onmessage = function(event) {
 
 #### **Web Workers**
 
- - Web Workers allow you to run JavaScript code in the background, on a separate thread, without blocking the main execution thread. 
+ - Web Workers allow you to **run JavaScript code in the background, on a separate thread, without blocking the main execution thread**. 
  - This is especially useful for tasks that involve heavy computation or long-running processes, preventing the UI from freezing.
 
 **Example**:
@@ -2482,7 +2516,8 @@ worker.postMessage("Start working");
 
 
 
-The **`window.history` API** provides access to the browser's session history, allowing you to navigate between pages in the session history stack, modify the browser's URL, and even change the current state without causing a page reload.
+The **`window.history` API** provides access to the browser's session history, 
+- Allowing you to navigate between pages in the session history stack, modify the browser's URL, and even change the current state without causing a page reload.
 
 **Key Methods**:
 - `history.pushState()`: Adds a new entry to the browser history stack.
@@ -2498,14 +2533,7 @@ history.replaceState({ page: 2 }, "title 2", "?page=2");
 
 This can be useful in single-page applications (SPAs) for updating the URL without refreshing the page.
 
----
 
-
----
-
-### **DOM, Events & UI Interview Answers**
-
----
 
 #### **`innerHTML` vs `textContent`**
 
@@ -2555,7 +2583,8 @@ In JavaScript, you can manipulate the styles of an element by using the `style` 
 
 #### **Destructuring**
 
-**Destructuring** is a convenient way of extracting multiple properties from an object or elements from an array and assigning them to variables.
+- **Destructuring** is a convenient way of **extracting multiple properties from an object or elements from an array and assigning them to variables**.
+- Destructuring makes the code more concise and readable, especially when working with complex data structures.
 
 • [Object Destructuring with Defaults](#object-destructuring-with-defaults)  
 
@@ -2573,7 +2602,7 @@ In JavaScript, you can manipulate the styles of an element by using the `style` 
   console.log(a);  // 1
   ```
 
-Destructuring makes the code more concise and readable, especially when working with complex data structures.
+
 
 ---
 
@@ -2609,10 +2638,6 @@ The **spread** (`...`) and **rest** (`...`) operators have similar syntax but se
 ---
 
 
-
----
-
-### **Testing Interview Answers**
 
 ---
 
@@ -2754,9 +2779,10 @@ Mocks and stubs allow you to test the logic of your functions without invoking e
 
 ---
 
-#### **Test-Driven Development**
+#### **Test Driven Development**
 
-Test-Driven Development (TDD) is a software development methodology in which tests are written before the code itself. It follows the **Red-Green-Refactor** cycle:
+- Test-Driven Development (TDD) is a software development methodology in which tests are written before the code itself. 
+- It follows the **Red-Green-Refactor** cycle:
 
 **Red**: Write a failing test for the new functionality.
 **Green**: Write just enough code to pass the test.
@@ -2813,198 +2839,6 @@ Testing asynchronous code involves handling promises or callbacks and ensuring t
 
 Testing async code ensures that the asynchronous operations are correctly handled and that the results are as expected.
 
----
-
-
----
-
-### 🔒 **Security Interview Answers**
-
----
-
-#### **Cross-Site Scripting (XSS) and Prevention**
-
-
-
-Cross-Site Scripting (XSS) is a security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts can steal sensitive information, manipulate content, or hijack user sessions.
-
-**Prevention**:
-- **Sanitize Input**: Always sanitize user inputs to ensure no malicious scripts are injected. Use libraries like **DOMPurify** or **OWASP Java HTML Sanitizer**.
-  
-  **Example**:
-  ```javascript
-  const cleanInput = DOMPurify.sanitize(userInput);
-  ```
-  
-- **Use Content Security Policy (CSP)**: CSP restricts how resources (like scripts) are loaded by the browser.
-  
-  **Example**:
-  ```html
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
-  ```
-
-- **Escape Output**: Encode data before rendering it in HTML, JavaScript, or URL contexts.
-
-  **Example**:
-  ```javascript
-  const safeHTML = document.createElement('div');
-  safeHTML.textContent = userInput;  // This will prevent XSS by escaping the input
-  ```
-
-By sanitizing inputs and escaping outputs, you minimize the risk of XSS attacks.
-
----
-
-#### **Cross-Site Request Forgery (CSRF) and Mitigation Techniques**
-
-
-
-Cross-Site Request Forgery (CSRF) is an attack where a malicious actor tricks a user into making an unwanted request to a web application where they are authenticated.
-
-**Mitigation Techniques**:
-- **Use Anti-CSRF Tokens**: A unique token is included with every request to verify that the request is from the legitimate user.
-  
-  **Example**:
-  ```html
-  <input type="hidden" name="csrf_token" value="{{csrf_token}}">
-  ```
-
-- **SameSite Cookies**: Set the `SameSite` attribute for cookies to `Strict` or `Lax` to restrict cookie transmission in cross-origin requests.
-
-  **Example**:
-  ```javascript
-  document.cookie = "sessionid=xyz; SameSite=Strict";
-  ```
-
-- **Check Referer Header**: Verify the `Referer` header to ensure the request originates from your domain.
-
----
-
-#### **Preventing SQL Injection Vulnerabilities**
-
-
-
-SQL Injection is a technique where an attacker can manipulate SQL queries by injecting malicious SQL code into user inputs, potentially allowing them to access, modify, or delete data from the database.
-
-**Prevention**:
-- **Use Prepared Statements**: Avoid constructing SQL queries directly with user input. Prepared statements with parameterized queries ensure that user input is treated as data and not executable code.
-
-  **Example (using Node.js with SQL libraries)**:
-  ```javascript
-  const query = 'SELECT * FROM users WHERE email = ?';
-  db.query(query, [userEmail], (err, results) => { ... });
-  ```
-
-- **Use ORM Libraries**: Object-Relational Mapping (ORM) libraries like **Sequelize** (for Node.js) automatically sanitize user inputs.
-  
-- **Whitelist Input Validation**: Ensure that inputs match expected patterns (e.g., email format) to prevent malicious data.
-
----
-
-#### **Handling Sensitive Data**
-
-
-
-Handling sensitive data requires encryption, proper access control, and secure storage mechanisms to protect user information.
-
-**Best Practices**:
-- **Encrypt Sensitive Data**: Use algorithms like AES-256 for encrypting sensitive data at rest. Ensure the encryption keys are stored securely using hardware security modules (HSMs).
-
-  **Example** (AES encryption in Node.js):
-  ```javascript
-  const crypto = require('crypto');
-  const encryptedData = crypto.createCipher('aes-256-cbc', secretKey).update(data, 'utf8', 'hex');
-  ```
-
-- **Use HTTPS**: Always use **HTTPS** to encrypt data in transit and prevent man-in-the-middle attacks.
-
-- **Avoid Storing Plaintext Passwords**: Use strong hashing algorithms like **bcrypt** or **argon2** to store passwords securely.
-
-  **Example**:
-  ```javascript
-  const bcrypt = require('bcrypt');
-  const hash = bcrypt.hashSync(password, 10);
-  ```
-
-- **Limit Data Access**: Implement least privilege access and make sure only authorized personnel can access sensitive information.
-
----
-
-#### **Content Security Policy (CSP)**
-
-
-
-CSP is a security mechanism that helps prevent various types of attacks like XSS and data injection attacks by specifying which content sources are allowed to load on a webpage.
-
-**How it works**:
-- **Restrict Resource Loading**: You can control where scripts, images, stylesheets, and other resources are loaded from.
-  
-  **Example CSP Header**:
-  ```html
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://trusted.com;">
-  ```
-
-By using CSP, you prevent attackers from injecting malicious scripts or other resources into your web pages.
-
----
-
-#### **Common Security Headers and Their Purposes**
-
-
-
-Some common security headers are:
-
-- **Strict-Transport-Security (HSTS)**: Instructs browsers to only use HTTPS for communication, protecting against downgrade attacks.
-  ```http
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
-  ```
-
-- **Content-Security-Policy (CSP)**: Prevents XSS by controlling which resources can be loaded by the browser.
-  ```http
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted.com;
-  ```
-
-- **X-Content-Type-Options**: Prevents browsers from interpreting files as something other than their declared content type.
-  ```http
-  X-Content-Type-Options: nosniff
-  ```
-
-- **X-Frame-Options**: Prevents your site from being embedded in an iframe, protecting against clickjacking.
-  ```http
-  X-Frame-Options: DENY
-  ```
-
-- **X-XSS-Protection**: Enables or disables the browser’s built-in XSS filter.
-  ```http
-  X-XSS-Protection: 1; mode=block
-  ```
-
-These headers improve the security posture of a web application by enforcing proper security mechanisms.
-
----
-
-#### **Preventing Clickjacking Attacks**
-
-
-
-Clickjacking is a malicious technique where a user is tricked into clicking on a hidden button or link by rendering it behind an iframe.
-
-**Prevention**:
-- **X-Frame-Options Header**: Prevents the page from being embedded in an iframe.
-
-  ```http
-  X-Frame-Options: DENY
-  ```
-
-- **Content Security Policy (CSP)**: Restricts the embedding of content within frames.
-  
-  ```html
-  <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
-  ```
-
-These headers prevent attackers from tricking users into clicking on elements that they can't see.
-
----
 
 #### **Input Validation and Its Importance**
 

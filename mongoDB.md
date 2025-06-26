@@ -1146,7 +1146,87 @@ db.orders.aggregate([
 - **`$max`** – Returns the maximum value.
 - **`$push`** – Creates an array of values.
 
+## 📊 **MongoDB Aggregation Pipeline Stages (Core & Advanced)**
+
+| Stage                 | Purpose                                               |
+| --------------------- | ----------------------------------------------------- |
+| `$match`              | Filters documents (like `find()`)                     |
+| `$project`            | Includes/excludes fields, reshapes documents          |
+| `$unset`              | Removes specified fields                              |
+| `$group`              | Groups documents by a field and performs aggregations |
+| `$sort`               | Sorts documents by specified fields                   |
+| `$limit`              | Limits the number of output documents                 |
+| `$skip`               | Skips specified number of documents                   |
+| `$count`              | Returns a count of documents                          |
+| `$lookup`             | Joins with another collection                         |
+| `$unwind`             | Deconstructs arrays into multiple documents           |
+| `$facet`              | Run multiple pipelines in parallel (multi-view)       |
+| `$bucket`             | Group into custom ranges (like histogram bins)        |
+| `$bucketAuto`         | Automatically determine bucket ranges                 |
+| `$sortByCount`        | Groups and counts by field, sorted by count           |
+| `$merge`              | Writes aggregation output to a collection             |
+| `$out`                | Replaces a collection with aggregation result         |
+| `$replaceRoot`        | Promotes a nested field to the document root          |
+| `$replaceWith`        | Replaces the entire document                          |
+| `$set` / `$addFields` | Adds or modifies fields                               |
+| `$graphLookup`        | Performs recursive lookups (hierarchical data)        |
+| `$densify`            | Fills in missing data for time-series collections     |
+| `$fill`               | Replaces null/missing fields in time-series           |
+| `$unionWith`          | Merges results from another collection                |
+
 ---
+
+## 🧮 **Accumulator Operators (Used in `$group`, `$setWindowFields`)**
+
+| Operator                     | Purpose                                |
+| ---------------------------- | -------------------------------------- |
+| `$sum`                       | Sum of numeric values                  |
+| `$avg`                       | Average of numeric values              |
+| `$min` / `$max`              | Minimum / Maximum value                |
+| `$first` / `$last`           | First / Last value based on sort order |
+| `$push`                      | Appends values to an array             |
+| `$addToSet`                  | Appends unique values to an array      |
+| `$stdDevPop` / `$stdDevSamp` | Population/Sample standard deviation   |
+
+---
+
+## 🧠 **Expression Operators**
+
+| Type           | Operators                                                       |
+| -------------- | --------------------------------------------------------------- |
+| **Arithmetic** | `$add`, `$subtract`, `$multiply`, `$divide`, `$mod`             |
+| **String**     | `$concat`, `$substr`, `$toLower`, `$toUpper`, `$trim`, `$split` |
+| **Array**      | `$size`, `$filter`, `$map`, `$reduce`, `$slice`, `$arrayElemAt` |
+| **Date**       | `$dateToString`, `$year`, `$month`, `$dayOfWeek`, `$dateDiff`   |
+| **Boolean**    | `$and`, `$or`, `$not`, `$cond`, `$ifNull`, `$switch`            |
+| **Comparison** | `$eq`, `$ne`, `$gt`, `$lt`, `$gte`, `$lte`, `$cmp`              |
+| **Type Check** | `$type`, `$isArray`, `$convert`, `$toString`, `$toInt`, etc.    |
+
+---
+
+## ⏳ **Window Functions (MongoDB 5.0+)**
+
+| Operator                                 | Description                                |
+| ---------------------------------------- | ------------------------------------------ |
+| `$setWindowFields`                       | Defines partitions for windowed operations |
+| `$rank`, `$denseRank`, `$documentNumber` | Ranking functions                          |
+| `$sum`, `$avg`, `$min`, `$max`           | Used as sliding/window aggregates          |
+| `$shift`, `$derivative`, `$integral`     | Time-series and trend-based operations     |
+
+---
+
+## 🧩 **Other Utility Operators**
+
+| Operator      | Purpose                                            |
+| ------------- | -------------------------------------------------- |
+| `$literal`    | Inserts a static/literal value                     |
+| `$expr`       | Allows use of expressions in `find()` and `$match` |
+| `$function`   | Executes custom JavaScript functions in pipeline   |
+| `$regexMatch` | Applies regular expression inside expressions      |
+| `$meta`       | Accesses metadata (e.g., text search score)        |
+
+---
+
 
 
 ---

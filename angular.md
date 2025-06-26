@@ -2932,7 +2932,7 @@ ng build --aot
 
 ### Angular CLI
 
- - Angular CLI is a command-line interface tool that helps scaffold, build, test, and deploy Angular apps.
+ - Angular CLI is a command-line interface tool that helps generating the basic structure and boilerplate code, build, test, and deploy Angular apps.
    
 Examples:
  - ng new app-name

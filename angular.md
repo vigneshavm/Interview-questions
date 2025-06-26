@@ -1548,7 +1548,19 @@ In one project, we migrated from a monolithic structure to a modular Nx monorepo
 
 ## Handling Large Forms
 
-Use Reactive Forms with nested FormGroups. Load data asynchronously. Use dynamic components for sections. Apply validation conditionally and lazy load subcomponents when possible.
+- Use Reactive Forms with nested FormGroups.
+- Load data asynchronously.
+- Use dynamic components for sections.
+- Apply validation conditionally and lazy load subcomponents when possible.
+- "For handling large forms in Angular, I follow a structured and scalable approach using **Reactive Forms**, as they offer more flexibility and better control than template-driven forms.
+- I start by **modularizing the form** — breaking it into logical sections like personal info, address, and payment, and placing each in its own reusable **child component**. 
+- I pass down `FormGroup` instances using `@Input()` and `ControlContainer` to keep the parent form centralized and maintain a clean architecture.
+- For **dynamic fields** like skills or work experience, I use **FormArray**, which allows me to add or remove controls at runtime easily.
+- To avoid performance issues, I **debounce valueChanges** using RxJS operators like `debounceTime`, especially for fields like search or email validation. 
+- I also implement **async validators** for server-side checks like duplicate usernames.
+- When forms are really large, I optimize performance by **lazy loading** certain sections and use Angular CDK’s **virtual scrolling** for long dropdowns or lists.
+- I also ensure a good **user experience** by using Angular Material's `MatStepper` for multi-step navigation, auto-saving draft data in `localStorage`, and showing progress indicators or inline validation messages.
+- Overall, my goal is to keep the form **performant**, **maintainable**, and **user-friendly**, especially as it scales."
 
 
 ## CI/CD Practices

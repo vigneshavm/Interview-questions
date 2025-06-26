@@ -15,7 +15,8 @@
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
 | **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  • [Memory Leak](#Memory-Leak)
 
-
+• [Server Side Rendering](#Server-Side-Rendering)
+• [Set up Angular Universal](#Set-up-Angular-Universal)
 
 ## Component-Based Architecture
 
@@ -672,8 +673,9 @@ export class AppModule {}
 
 ## RxJS in Angular
 
-**RxJS (Reactive Extensions for JavaScript)** is a powerful library for reactive programming using observables, to make it easier to compose asynchronous or callback-based code. 
-In Angular, RxJS is fundamental to managing streams of data, particularly in forms, HTTP calls, component communication, and state management.
+- **RxJS (Reactive Extensions for JavaScript)** is a powerful library for reactive programming using observables, 
+- to make it easier to compose asynchronous or callback-based code. 
+- In Angular, RxJS is fundamental to managing streams of data, particularly in forms, HTTP calls, component communication, and state management.
 
 
 ### 🔹 Core Concepts of RxJS
@@ -724,7 +726,7 @@ Subjects are both observables and observers. Useful for multicasting data.
 Here’s a concise comparison of **Subject**, **BehaviorSubject**, **ReplaySubject**, and **AsyncSubject** — perfect for interviews:
 
 
-##  Subject Types Comparison in RxJS
+####  Subject Types Comparison in RxJS
 
 | Type                | Initial Value          | Emits to New Subscribers                                            | Stores Previous Values?             | Use Case Example                                            |
 | ------------------- | ---------------------- | ------------------------------------------------------------------- | ----------------------------------- | ----------------------------------------------------------- |
@@ -4349,67 +4351,106 @@ Rendering a large list (e.g., 10,000+ items) can cause:
 - Most Angular performance issues stem from **uncontrolled change detection**, **DOM bloat**, and **inefficient data binding**. 
 - Use **OnPush**, `trackBy`, **lazy loading**, and 
 - optimize **template logic** to avoid bottlenecks.
-
-
-
- **1. Unnecessary Change Detection Cycles**
-
-* Angular runs change detection on every async event.
-* Components without `ChangeDetectionStrategy.OnPush` get re-evaluated unnecessarily.
-
----
-
- **2. Inefficient Use of `*ngFor`**
-
-* Missing `trackBy` causes Angular to re-render entire lists even for minor changes.
+- **1. Unnecessary Change Detection Cycles** - * Angular runs change detection on every async event. Components without `ChangeDetectionStrategy.OnPush` get re-evaluated unnecessarily.
+- **2. Inefficient Use of `*ngFor`** - Missing `trackBy` causes Angular to re-render entire lists even for minor changes.
+- **3. Heavy Logic in Templates** -  Complex expressions or method calls in templates are re-evaluated on each CD cycle.
+-  **4. Memory Leaks** - Unsubscribed observables, unremoved event listeners, or timers hold memory and slow down the app.
+- **5. Too Many DOM Nodes** - Rendering large lists or deeply nested components without optimization leads to slow rendering.
+- **6. Overuse of Two-Way Binding (`[(ngModel)]`)** - Triggers frequent change detection and impacts form performance.
+- **7. Poor Lazy Loading Strategy** - Not lazy loading feature modules leads to large initial bundle size and slow boot time.
+- **8. Blocking Main Thread** -  Synchronous, CPU-heavy operations in components block rendering (e.g., JSON parsing, loops).
+- **9. Unoptimized Images and Assets** - * Large image files, uncompressed assets increase load time and memory usage.
+- **10. Excessive Use of `ngIf`/`ngSwitch` Without Proper Conditions** - * Constant DOM manipulation impacts runtime performance.
 
 ---
 
- **3. Heavy Logic in Templates**
 
-* Complex expressions or method calls in templates are re-evaluated on each CD cycle.
+## **Set up Angular Universal**
 
----
+- I combine Angular Universal, dynamic meta handling, TransferState, and pre-rendering to ensure fast, SEO-friendly, server-rendered pages in Angular.
 
- **4. Memory Leaks**
+- **1. Add Angular Universal:**
+  - I run `ng add @nguniversal/express-engine` to set up SSR using Express. It creates `server.ts` and `app.server.module.ts`, and configures the build targets.
+- **2. Configure Routing for SEO:**
+  - I ensure `RouterModule.forRoot` uses `{ initialNavigation: 'enabledBlocking' }` so the server waits for full route rendering before sending HTML.
+- **3. Set Meta Tags Dynamically:**
+  - I use Angular’s `Title` and `Meta` services in each route/component to set page-specific:
+    * `<title>`
+    * `<meta name="description">`
+  * Open Graph / Twitter tags (for social previews)
 
-* Unsubscribed observables, unremoved event listeners, or timers hold memory and slow down the app.
-
----
-
- **5. Too Many DOM Nodes**
-
-* Rendering large lists or deeply nested components without optimization leads to slow rendering.
-
----
-
- **6. Overuse of Two-Way Binding (`[(ngModel)]`)**
-
-* Triggers frequent change detection and impacts form performance.
-
----
-
- **7. Poor Lazy Loading Strategy**
-
-* Not lazy loading feature modules leads to large initial bundle size and slow boot time.
+- **4. Use TransferState:**
+  - To avoid duplicate API calls between server and client, I use `TransferState` to cache and transfer API data during SSR.
+- **5. Avoid Hash Routing:**
+  - I use default `PathLocationStrategy` to ensure clean URLs, which search engines can index properly.
+- **6. Serve or Deploy SSR Build:**
+  - I build with `npm run build:ssr` and serve via `npm run serve:ssr`. For production, I deploy on a Node-compatible platform (e.g., Firebase, Vercel, or AWS).
+- **7. Pre-render (Optional for Static Routes):**
+  - For static routes like blogs or landing pages, I also use `ng run project-name:prerender` to generate static HTML for better SEO and performance.
+- **8. SEO Best Practices:**
+  - I also configure `robots.txt`, generate a sitemap, and ensure canonical URLs to help search engine crawlers.
 
 ---
 
- **8. Blocking Main Thread**
 
-* Synchronous, CPU-heavy operations in components block rendering (e.g., JSON parsing, loops).
+
+## **Server Side Rendering**
+
+- Use `@nguniversal/express-engine` to scaffold SSR, build client/server bundles, serve via Express, and deploy on a Node environment for SEO and faster initial loads.
+
+**1. Add Angular Universal:**
+
+I run
+
+```bash
+ng add @nguniversal/express-engine
+```
+
+This sets up:
+
+* `server.ts` (Node/Express entry)
+* `app.server.module.ts`
+* Server and browser build targets
+
+
+
+**2. Build for SSR:**
+
+```bash
+npm run build:ssr
+```
+
+Generates:
+
+* `/dist/browser` → client bundle
+* `/dist/server` → server-side bundle
+
+
+
+**3. Serve SSR App:**
+
+```bash
+npm run serve:ssr
+```
+
+Uses **Express** to serve pre-rendered HTML from the server.
+
+
+
+**4. Route Setup:**
+
+- In `AppModule`, I enable server-side routing with:
+
+```ts
+RouterModule.forRoot(routes, {
+  initialNavigation: 'enabledBlocking'
+});
+```
+
+
+
+**5. Deploy to Node-Compatible Platform:**
+
+- I deploy the SSR server on platforms like Firebase Functions, Vercel, AWS, or any Node host.
 
 ---
-
- **9. Unoptimized Images and Assets**
-
-* Large image files, uncompressed assets increase load time and memory usage.
-
----
-
- **10. Excessive Use of `ngIf`/`ngSwitch` Without Proper Conditions**
-
-* Constant DOM manipulation impacts runtime performance.
-
----
-

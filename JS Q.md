@@ -1,8 +1,8 @@
 | **Category**                 | **Topics & Links**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **JavaScript Fundamentals**  | [let vs var vs const](#let-and-var-and-const) • [const with primitive and non primitive](#const-with-primitive-and-non-primitive) • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const) • [use strict Directive](#use-strict-directive) • [Data Types](#data-types) • [Symbol](#symbol) • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)                                                                                                                                                                                                                          |
-| **Operators**                | [== vs ===](#loose-equality-vs-strict-equality) • [++ / --](#post-increment-and-pre-increment) • [JS Object & Coercion (+ operator)](#js-object-coercion) • [Dynamic Keys](#dyanmic-keys) • [! and !!](#logical-not) • [Prototype Deletion](#prototype-deletion)       • [Shadowing](#shadowing)            • [Hoisting](#hoisting)                                                                                                                                                                                                                                                                                                                         |
-| **Arrays**                   | [Create Array](#create-array) • [JavaScript Array Methods](#javascript-array-methods) • [slice() and splice()](#slice-and-splice) • [Loop through Arrays](#loop-through-arrays) • [map(), filter(), reduce()](#map-filter-and-reduce) • [Shallow Copy and Deep Copy](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects)                                                                                                                                                                                                                                                     |
+| **Operators**                | [== vs ===](#loose-equality-vs-strict-equality) • [++ / --](#post-increment-and-pre-increment) • [JS Coercion (+ operator)](#js-object-coercion) • [Dynamic Keys](#dyanmic-keys) • [! and !!](#logical-not)      • [Shadowing](#shadowing)            • [Hoisting](#hoisting)                                                                                                                                                                                                                                                                                                                         |
+| **Arrays**                   |  • [Arrays](#Arrays) • [slice() and splice()](#slice-and-splice) • [map(), filter(), reduce()](#map-filter-and-reduce) • [Shallow and Deep Copy](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects)                                                                                                                                                                                                                                                     |
 | **Advanced JS Fundamentals** | [ES6 Features](#key-es6-features) • [Arrow Functions](#arrow-functions) • [Promises](#promises) • [Async Await](#async-await)  • [Optional Chaining (?.)](#optional-chaining-operator) • [Nullish Coalescing (??)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage) • [Iterator](#iterator) • [Generator function](#generator-function)                                                                                                                                |
 | **Scope & `this`**           | [Scope](#scope)  • [this Keyword Behavior](#this-keyword-behavior) • [new Keyword](#new-keyword) • [Memory Leaks](#common-causes-of-memory-leaks) • [Garbage Collection](#javascript-garbage-collection) • [Memoization Techniques](#memoization-techniques)                                                                                                                                                                                                                  |
 | **Events**                   | [Event Propagation](#event-propagation) • [Event Listeners](#event-listeners) • [preventDefault() vs stopPropagation()](#preventdefault-vs-stoppropagation) • [Capturing vs Bubbling vs Delegation](#event-capturing-vs-event-bubbling-vs-event-delegation)                                                                                                                                                                                                                                                                                                                                        |
@@ -20,17 +20,17 @@
 ## **let and var and const**
 
 
-
-
-In JavaScript, `var`, `let`, and `const` are used to declare variables, but they differ in **scope**, **hoisting**, and **mutability**.
+- `var`, `let`, and `const` are used to declare variables, 
+- but they differ in **scope**, **hoisting**, and **mutability**.
 
 ---
 
 ### 1. **`var`**:
 
 * Function-scoped.
-* Variables declared with `var` are hoisted to the top of their function, but initialized as `undefined`.
-* Re-declaration are Allowed within the same scope.
+- Hoisted to the top of their function
+* **Hoisted and Initialized as `undefined`**.
+* **Re-declaration are Allowed** within the same scope.
 * Considered outdated; avoid using in modern code.
 
 ```js
@@ -46,7 +46,8 @@ function example() {
 
 * Block-scoped (`{}`).
 * Hoisted but not initialized; accessing before declaration causes a ReferenceError (temporal dead zone).
-* Re-declaration are Not allowed in the same scope.
+* **Hoisted and not initialized accessing before declaration `ReferenceError`**.
+* **Re-declaration are Not allowed** in the same scope.
 * Preferred for variables that change value.
 
 ```js
@@ -61,9 +62,9 @@ function example() {
 ### 3. **`const`**:
 
 * Block-scoped.
-* Same as `let` — hoisted but in temporal dead zone.
-* Re-declaration areNot allowed.
-* Re-assignment are Not allowed. However, for objects/arrays, their contents **can** be modified.
+* Same as `let` — **hoisted but in temporal dead zone**.
+* **Re-declaration are Not allowed**.
+* **Re-assignment are Not allowed**. However, for objects/arrays, their contents **can** be modified.
 
 ```js
 const y = 20;
@@ -4077,6 +4078,7 @@ The `super()` function is used in a subclass to call methods on the parent class
 
 
 - [Prototype Chaining](#Prototype-Chaining)
+- [Prototype Deletion](#prototype-deletion)  
 
 - In JavaScript, every object has a **prototype** from which it can inherit properties and methods.
 - The **prototype** is itself an object that provides a blueprint for the object, and it is linked to the object via the internal property `[[Prototype]]`.
@@ -4848,7 +4850,15 @@ console.log(fruits);  // ['apple', 'banana', 'cherry', 'date']
 
 ---
 
-### **Loop through arrays** ### 
+### **Arrays** ### 
+
+
+• [Loop through Arrays](#loop-through-arrays) 
+• [Create Array](#create-array) 
+• [JavaScript Array Methods](#javascript-array-methods)
+
+
+### **Loop through Arrays** ### 
 
 
 | Loop Type     | Can Modify Original? | Returns New Array? | Break/Continue Allowed? | Simpler Syntax? | Async-Friendly? |

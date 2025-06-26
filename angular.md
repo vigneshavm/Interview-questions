@@ -2187,12 +2187,7 @@ export class ReversePipe implements PipeTransform {
 
 * It’s a **full-fledged framework**, meaning it provides **everything out of the box**:
 
-  * ✅ **Component-based architecture**
-  * ✅ **Routing**
-  * ✅ **Forms**
-  * ✅ **HTTP services**
-  * ✅ **Dependency Injection**
-  * ✅ **CLI for scaffolding and tooling**
+  * **Component-based architecture** ,   *  **Routing** ,  *  **Forms** ,  *  **HTTP services** ,  *  **Dependency Injection** ,  * **CLI for scaffolding and tooling**
 
 * I prefer Angular for **enterprise-grade applications** because:
 
@@ -2202,10 +2197,7 @@ export class ReversePipe implements PipeTransform {
 
 * Angular’s use of **TypeScript** brings:
 
-  * 🔐 **Type safety**
-  * 🧠 **Better IDE support and tooling**
-  * ✅ Fewer runtime errors
-  * 🤝 Easier collaboration across **large teams**
+  * **Type safety**,  *  **Better IDE support and tooling**,  *  Fewer runtime errors ,  *  Easier collaboration across **large teams**
 
 * Compared to libraries like **React**, Angular is **more opinionated**:
 
@@ -2214,9 +2206,7 @@ export class ReversePipe implements PipeTransform {
 
 * Angular also includes **built-in features** like:
 
-  * 🧾 **Form handling and validation**
-  * 💤 **Lazy loading**
-  * ♻️ **Dependency Injection**
+  *  **Form handling and validation**,  *  **Lazy loading**,  *  **Dependency Injection**
 
   ...which significantly **reduce reliance on third-party packages**.
 

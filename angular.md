@@ -17,6 +17,7 @@
 
 • [Server Side Rendering](#Server-Side-Rendering)
 • [Set up Angular Universal](#Set-up-Angular-Universal)
+• [RouterModule.forRoot()` and `RouterModule.forChild()](#RouterModule-forRoot-and-RouterModule-forChild)
 
 ## Component-Based Architecture
 
@@ -4488,3 +4489,43 @@ RouterModule.forRoot(routes, {
 - I deploy the SSR server on platforms like Firebase Functions, Vercel, AWS, or any Node host.
 
 ---
+
+
+
+### **`RouterModule forRoot and RouterModule forChild`**
+
+
+- Use `forRoot()` **once** in the root module to set up routing and services.
+- Use `forChild()` in **feature modules** to define their own internal routes — especially for **lazy loading** and **modular architecture**.
+
+| Feature                   | `forRoot()`                             | `forChild()`                                     |
+| ------------------------- | --------------------------------------- | ------------------------------------------------ |
+| **Purpose**               | Sets up **root-level routing**          | Sets up **feature module routing**               |
+| **Used In**               | `AppModule` (once only)                 | Any **feature/lazy-loaded** module               |
+| **Singleton Services**    | Registers **singleton** router services | Does **not** register router services            |
+| **Call Frequency**        | Called **once** in the entire app       | Can be called **multiple times**                 |
+| **Example Use Case**      | Bootstrapping the app's main routes     | Feature modules like `UserModule`, `AdminModule` |
+| **Supports Lazy Loading** | Yes                                     | Yes                                              |
+
+---
+
+**Code Examples:**
+
+**App Module (Root):**
+
+```ts
+RouterModule.forRoot([
+  { path: '', component: HomeComponent },
+  { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) }
+])
+```
+
+**Feature Module (ProductsModule):**
+
+```ts
+RouterModule.forChild([
+  { path: '', component: ProductListComponent },
+  { path: ':id', component: ProductDetailComponent }
+])
+```
+

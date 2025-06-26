@@ -12,9 +12,6 @@
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities**      | • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices)  
 | **Other**      | • [Optimized Production Bundle - LifeCycle](#lifecycle-from-source-code-to-optimized-production-bundle)  • [What Happens Under the Hood](#what-happens-under-the-hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
-
-
-|
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
 
 

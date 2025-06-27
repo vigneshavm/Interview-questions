@@ -2723,8 +2723,28 @@ forkJoin({
 
 ###  **Dependency Injection**
 
- -  DI is a design pattern where Angular provides services or objects that a component needs.
- -  We declare dependencies in the constructor, and Angular injects them at runtime.
+
+- **“Sure. Dependency Injection, or DI, is a core design pattern in Angular that allows us to inject dependencies like services, configuration objects, or other resources into classes—rather than creating them manually.**
+
+- **It promotes loose coupling and makes components and services more reusable, modular, and testable. Angular uses a built-in hierarchical injector system that handles the creation and injection of dependencies automatically.**
+
+- **For example, I typically define services with `@Injectable({ providedIn: 'root' })`, which makes them singletons available throughout the app. Then, I inject them into components or other services via the constructor. This way, I don’t worry about object creation or lifecycle management—Angular handles all of that.**
+
+- **One of the biggest advantages of Angular’s DI system is testability. I can easily mock or replace services in unit tests using the TestBed configuration.**
+
+- **I’ve also used advanced DI techniques like custom providers with `useFactory`, `useClass`, and `useValue`, especially when injecting different implementations based on environment, A/B testing, or feature toggles.**
+
+- **Overall, DI is fundamental to how I structure Angular apps—it helps enforce SOLID principles and supports scalable architecture.”**
+
+
+
+**“When injecting a service, I usually modify three files:**
+
+* **The service file** (e.g., `user.service.ts`), where I define business logic.
+* **The component file** (e.g., `user.component.ts`), where I inject and use the service in the constructor.
+* **And optionally, the module file** (e.g., `app.module.ts`)—but only if I'm not using `providedIn: 'root'`. In most cases, root-level DI is enough.”\*\*
+
+---
 
 
 

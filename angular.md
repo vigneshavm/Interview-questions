@@ -4616,11 +4616,21 @@ RouterModule.forChild([
 ###  **Error Handling**
 
 - "In Angular, I use a **layered approach** to error handling to ensure robustness and a smooth user experience.
-
+- "I follow a **multi-layered strategy** to handle errors in Angular
 - At the **component level**, I handle:
 
  * **Synchronous errors** using `try-catch`.
  * **Asynchronous errors** (e.g., HTTP calls) using **RxJS `catchError`**.
+
+- I also use **route-level error handling** in **resolvers and guards**, with `catchError` to manage failed API calls or access logic.
+
+- Additionally, I provide **real-time form validation feedback** using Angular's reactive form error states (like `.hasError('required')`).
+
+For centralized API error control, I implement an **`HttpInterceptor`**:
+
+ * To **handle global HTTP errors** (e.g., 401 Unauthorized, 500 Server Errors)
+ * To **redirect users**, **log out sessions**, or **show toast messages** uniformly.
+
 
 **Example:**
 
@@ -4646,24 +4656,6 @@ RouterModule.forChild([
  }
  ```
 
-- I also use **route-level error handling** in **resolvers and guards**, with `catchError` to manage failed API calls or access logic.
-
-- Additionally, I provide **real-time form validation feedback** using Angular's reactive form error states (like `.hasError('required')`).
-
-For centralized API error control, I implement an **`HttpInterceptor`**:
-
- * To **handle global HTTP errors** (e.g., 401 Unauthorized, 500 Server Errors)
- * To **redirect users**, **log out sessions**, or **show toast messages** uniformly.
-
-**Best Practices I follow:**
-
- * Handle errors **close to source** whenever possible.
- * Use **fallback values** for graceful degradation.
- * Send logs to services like **Sentry**, **LogRocket**, or a custom backend.
- * Avoid exposing **sensitive details** to users.
-
-
-- "I follow a **multi-layered strategy** to handle errors in Angular
 
 - 1. Component/Service Level (Reactive Error Handling)
 - * For HTTP requests via `HttpClient`, I use **RxJS `catchError`** to handle errors reactively.

@@ -15,6 +15,7 @@
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
 | **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
 | **Server Side**      | • [Server Side Rendering](#Server-Side-Rendering) • [Set up Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot()` and `RouterModule.forChild()](#RouterModule-forRoot-and-RouterModule-forChild)
+| • [Error Handling](#Error-Handling)
 
 ## Component-Based Architecture
 
@@ -4608,3 +4609,106 @@ RouterModule.forChild([
 - Angular’s build process is heavily optimized for performance out of the box, but as a senior developer, 
 - I go beyond defaults — using architectural patterns like lazy loading, bundle analysis, custom build configurations, and deployment-level strategies to deliver fast, scalable, and maintainable front-end systems.
 
+
+
+
+
+###  **Error Handling**
+
+- "In Angular, I use a **layered approach** to error handling to ensure robustness and a smooth user experience.
+
+- At the **component level**, I handle:
+
+ * **Synchronous errors** using `try-catch`.
+ * **Asynchronous errors** (e.g., HTTP calls) using **RxJS `catchError`**.
+
+**Example:**
+
+ ```ts
+ this.http.get('/api/data').pipe(
+   catchError(err => {
+     this.logger.logError(err);
+    return of([]); // fallback value
+   })
+).subscribe();
+```
+
+- For broader error capture, I implement a **Global Error Handler** by extending Angular’s `ErrorHandler`:
+
+**Example:**
+
+ ```ts
+ export class GlobalErrorHandler implements ErrorHandler {
+   handleError(error: any): void {
+     this.logger.logError(error);
+     alert('Something went wrong.');
+   }
+ }
+ ```
+
+- I also use **route-level error handling** in **resolvers and guards**, with `catchError` to manage failed API calls or access logic.
+
+- Additionally, I provide **real-time form validation feedback** using Angular's reactive form error states (like `.hasError('required')`).
+
+For centralized API error control, I implement an **`HttpInterceptor`**:
+
+ * To **handle global HTTP errors** (e.g., 401 Unauthorized, 500 Server Errors)
+ * To **redirect users**, **log out sessions**, or **show toast messages** uniformly.
+
+**Best Practices I follow:**
+
+ * Handle errors **close to source** whenever possible.
+ * Use **fallback values** for graceful degradation.
+ * Send logs to services like **Sentry**, **LogRocket**, or a custom backend.
+ * Avoid exposing **sensitive details** to users.
+
+
+- "I follow a **multi-layered strategy** to handle errors in Angular
+
+- 1. Component/Service Level (Reactive Error Handling)
+- * For HTTP requests via `HttpClient`, I use **RxJS `catchError`** to handle errors reactively.
+ ```ts
+ this.apiService.getUserDetails().pipe(
+   catchError(error => {
+     this.logger.logError(error); // Logging service
+     this.uiService.showToast('Unable to fetch user details.');
+     return of(null); // fallback response
+   })
+ ).subscribe();
+ ```
+
+- 2. Global Error Handling (`ErrorHandler`)
+
+- * I implement a custom global error handler using Angular’s `ErrorHandler` class to catch any **uncaught exceptions** — similar to a global `try-catch`.
+
+ ```ts
+ export class GlobalErrorHandler implements ErrorHandler {
+   handleError(error: any): void {
+     this.logger.logError(error);
+     // Optionally report to Sentry or custom monitoring tool
+     alert('Unexpected error occurred. Please try again.');
+   }
+ }
+ ```
+
+- 3. HTTP Interceptor (Centralized API Error Handling)
+
+ * I use an **HTTP interceptor** to intercept all API responses, handling 401s, 403s, and server errors (500s), and even retrying failed requests.
+
+ ```ts
+ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+   return next.handle(req).pipe(
+     catchError((error: HttpErrorResponse) => {
+       if (error.status === 401) {
+         this.authService.logout();
+      } else {
+         this.logger.logError(error);
+         this.uiService.showToast('Something went wrong.');
+       }
+       return throwError(() => error);
+     })
+   );
+ }
+ ```
+
+---

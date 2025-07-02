@@ -570,6 +570,7 @@ Promise.reject('Error').catch(console.error); // Error
 ## **Async Await**
 
 • [async/await vs Promises](#async-await-vs-promises)
+• [Common Pitfalls async await](#Common-Pitfalls-async-await)
 
 - `async/await` makes asynchronous code look more like synchronous code and makes it easier to read and debug.
 - **`async`** is a keyword used to define a function as asynchronous,
@@ -5600,6 +5601,89 @@ console.log(myCar.wheels);          // undefined (after prototype deletion earli
 
 ```
 
+
+
+
+### **Common Pitfalls async await**
+
+#### 1. **Forgetting to `await` an async function**
+
+```ts
+async function logData() {
+  const data = fetchData(); // returns Promise<string>, not the string!
+  console.log(data);        // [object Promise]
+}
+```
+
+> 🛑 **Mistake**: Using a promise directly instead of awaiting it
+> ✅ **Fix**: `const data = await fetchData();`
+
+---
+
+#### 2. **Using `await` outside of an async function**
+
+```ts
+const data = await fetchData(); // ❌ SyntaxError
+```
+
+> `await` can only be used inside an `async` function unless you're in an ES module or top-level-await environment.
+
+---
+
+#### 3. **Uncaught Errors in Async Functions**
+
+```ts
+async function getData() {
+  throw new Error("Something went wrong");
+}
+
+getData(); // ❌ Unhandled Promise rejection if not caught
+```
+
+> Always use `try...catch` or `.catch()` to handle errors:
+
+```ts
+try {
+  const result = await getData();
+} catch (err) {
+  console.error("Error occurred:", err);
+}
+```
+
+---
+
+#### 4. **Performance Pitfall: Sequential vs Parallel Awaits**
+
+```ts
+// ❌ Sequential (slow)
+const a = await fetchA();
+const b = await fetchB();
+
+// ✅ Parallel (faster)
+const [a, b] = await Promise.all([fetchA(), fetchB()]);
+```
+
+> Awaiting promises sequentially adds unnecessary delay if the operations are independent.
+
+---
+
+#### 5. **Async in Loops (Use `for...of` instead of `forEach`)**
+
+```ts
+items.forEach(async item => {
+  await process(item); // ❌ Not awaited properly
+});
+```
+
+> `forEach` does not wait for async callbacks. Use `for...of`:
+
+```ts
+for (const item of items) {
+  await process(item); // ✅ Awaited correctly
+}
+```
+
+---
 
 
 

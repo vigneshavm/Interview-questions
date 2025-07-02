@@ -696,7 +696,7 @@ type PersonKeys = keyof Person;
 
 ## **Generics**
 
--  Generics allow functions, classes, and interfaces to work with multiple types without losing type safety.
+-  Generics allow functions, classes, and interfaces to **work with multiple types without losing type safety**.
 -  They enable **code reuse** while maintaining **strong typing**, unlike `any`, which removes type checks.
 
 

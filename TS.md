@@ -250,8 +250,8 @@ function printLength(value: string | string[]) {
 
 ## **Interface vs. Type**
 
-- "`interface` and `type` are both used to define the structure of data in TypeScript."
-- Both can define object shapes.
+- "`interface` and `type` are both used to **define the structure of data** in TypeScript."
+- **Both can define object shapes**.
 -  **interface is extendable and used for OOP-style contracts**.
 - **type is more flexible** (e.g., unions, intersections) but cannot be reopened/extended like interfaces.
 - "Interfaces are mainly for describing object shapes and can be **extended** or **implemented** by classes."

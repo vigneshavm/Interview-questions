@@ -470,23 +470,22 @@ const studentScores: Scores = {
 
 ---
 
-## **Union and Intersection Types**
+# Union Types (`|`) vs Intersection Types (`&`) in TypeScript
 
-| **Feature**                      | **Union Types (`|`)**                                      | **Intersection Types (`&`)**                                 |
-|-----------------------------------|------------------------------------------------------------|--------------------------------------------------------------|
-| **Definition**                    | A type that allows a value to be one of several types.     | A type that combines multiple types into a single type that must satisfy all of them. |
-| **Operator**                      | `|` (pipe symbol)                                          | `&` (ampersand symbol)                                       |
-| **Type Combination**              | Represents a value that can be **one** of several types.   | Represents a value that must satisfy **all** the types in the intersection. |
-| **Example**                       | `type A = string | number;`                                | `type A = { name: string } & { age: number };`                |
-| **Resulting Type**                | The resulting type can be **either** type in the union.    | The resulting type must contain **all properties** from the intersected types. |
-| **Use Case**                      | Useful when a value can be **one of several types** (e.g., different input formats). | Useful when a value must **satisfy multiple types** (e.g., merging interfaces with different properties). |
-| **Compatibility with Types**      | A value can be **any one type** from the union.            | A value must conform to **all types** in the intersection. |
-| **Example with Primitives**       | `let value: string | number = "Hello"; value = 42;`         | N/A (more common with objects).                              |
-| **Example with Objects**          | `type Animal = { legs: number } | { wings: number };`      | `type Animal = { legs: number } & { wings: number };`        |
-| **Result for Objects**            | The value can be **either** object (not requiring common properties). | The value must have **all properties** from both objects. |
-| **Type Narrowing**                | Type narrowing can be done by checking the type (e.g., `typeof` or `instanceof`). | Type narrowing requires checking for common properties from all types involved. |
+| **Feature**                  | **Union Types (`|`)**                                                              | **Intersection Types (`&`)**                                                         |
+|-----------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| **Definition**               | Allows a value to be **one of several types**.                                     | Combines multiple types into a **single type that must satisfy all** of them.        |
+| **Operator**                 | `|` (pipe symbol)                                                                  | `&` (ampersand symbol)                                                               |
+| **Type Combination**         | Represents a value that can be **any one** of the listed types.                    | Represents a value that must conform to **all combined types**.                      |
+| **Example**                  | `type A = string \| number;`                                                       | `type A = { name: string } & { age: number };`                                       |
+| **Resulting Type**           | The value can be of **either** type (not necessarily both).                        | The value must include **all properties** from each intersected type.                |
+| **Use Case**                 | When a value can be **one of multiple types** (e.g., string or number).            | When you want to **merge multiple types** into one (e.g., combining object shapes).  |
+| **Compatibility with Types** | A value must be compatible with **at least one** of the types.                     | A value must satisfy **all type constraints simultaneously**.                        |
+| **Example with Primitives**  | `let value: string \| number = "Hi"; value = 42;`                                  | Not typically used with primitives.                                                  |
+| **Example with Objects**     | `type Animal = { legs: number } \| { wings: number };`                             | `type Animal = { legs: number } & { wings: number };`                                |
+| **Result for Objects**       | The object can have **either** `legs` or `wings` (not both).                      | The object must have **both** `legs` **and** `wings`.                                |
+| **Type Narrowing**           | Use `typeof`, `instanceof`, or property checks to narrow the type at runtime.      | Works when accessing **common properties** or using custom type guards.              |
 
----
 
  **Key Takeaways:**
 - **Union Types** (`|`): A value can be **one** of multiple types.

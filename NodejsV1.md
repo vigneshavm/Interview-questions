@@ -2113,20 +2113,95 @@ res.status(201).json({ message: 'User created' });
 ---
 
 ## **Error handling in REST APIs?**
-- Use a centralized error middleware
-- Send structured error responses
-```ts
-res.status(400).json({ error: 'Email is required' });
-```
 
-Custom Error Handler:
-```ts
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  res.status(500).json({ error: err.message });
+
+- In my REST APIs, I follow a **consistent and layered approach** to error handling to ensure the API is **robust, debuggable, and user-friendly**. 
+- I implement **centralized error handling**, **custom error classes**, and **standard error response formats**. Here's how I handle it:"
+- "**I structure my error handling to be centralized, clean, and predictable.**
+- This ensures that errors are properly logged, clients receive meaningful feedback, and the API remains stable and secure even when things go wrong."
+
+
+
+###  **1. Centralized Error Handling**
+
+* I create a **global error-handling middleware** (e.g., in Express) so that all errors are caught in one place.
+* This avoids repetitive error logic in each route.
+
+```js
+app.use((err, req, res, next) => {
+  res.status(err.statusCode || 500).json({
+    success: false,
+    message: err.message || 'Internal Server Error',
+    errorCode: err.errorCode || 'SERVER_ERROR',
+  });
 });
 ```
 
+
+###  **2. Custom Error Classes**
+
+* I define **custom error classes** for different types of errors (e.g., `ValidationError`, `AuthError`, `DatabaseError`).
+* This improves error context and reusability.
+
+```js
+class AppError extends Error {
+  constructor(message, statusCode, errorCode) {
+    super(message);
+    this.statusCode = statusCode;
+    this.errorCode = errorCode;
+  }
+}
+```
+
+👉 Example usage:
+
+```js
+throw new AppError('User not found', 404, 'USER_NOT_FOUND');
+```
+
+
+###  **3. Consistent Error Response Format**
+
+* I use a **uniform JSON structure** for all errors:
+
+```json
+{
+  "success": false,
+  "message": "Invalid credentials",
+  "errorCode": "AUTH_FAILED"
+}
+```
+
+> This helps frontend or mobile clients **handle errors predictably**.
+
+
+###  **4. Handling Async/Await Errors**
+
+* I wrap all `async` route handlers with a **generic wrapper** to catch unhandled promise rejections:
+
+```js
+const asyncHandler = fn => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next);
+```
+
+> This avoids using `try/catch` in every route.
+
+
+###  **5. Internal Logging (Without Exposing Stack Traces)**
+
+* I log all errors using tools like **Winston**, **Pino**, or **Sentry**.
+* In production, I **hide internal stack traces** from users for security.
+
+
+###  **6. Use Proper HTTP Status Codes**
+
+* I ensure the API uses **accurate and meaningful HTTP status codes**:
+
+  * `400` – Bad Request   * `401` – Unauthorized   * `403` – Forbidden  * `404` – Not Found  * `500` – Internal Server Error
+
 ---
+
+
 
 ## **Secure REST APIs**
 - Use HTTPS

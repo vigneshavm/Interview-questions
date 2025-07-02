@@ -2,7 +2,7 @@
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Core Concepts**                 | [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript) • [`any` vs `unknown` Types](#any-vs-unknown) • [Duck Typing](#duck-typing) • [Class](#class) • [JavaScript & TypeScript Performance Optimization Checklist](#javascript-typescript-performance-optimization-checklist)       |
 | **Types**                         | [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing) • [Type Decorators](#decorators) • [Conditional Types](#conditional-types) • [Template Literal Types](#template-literal-types) • [Generics Types](#generics) |
-| **OOP (Object-Oriented)**         | [Polymorphism](#polymorphism) • [Class](#class) • [Immutable Class](#immutable-class) • [Inheritance](#inheritance) • [Encapsulation](#encapsulation)                                                                                                                                                                   |
+| **OOP (Object-Oriented)**         | [Polymorphism](#polymorphism) • [Class](#class) • [Immutable Class](#immutable-class) • [Inheritance](#inheritance) • [TypeScript handle inheritance](#TypeScript-handle-inheritance) • [Encapsulation](#encapsulation)                                                                                                                                                                   |
 | **Types & Interfaces**            | [Interface vs Type](#interface-vs-type) • [Extending Types and Interfaces](#extending-types-and-interfaces) • [Mapped Types](#mapped-types) • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record) • [Union vs Intersection Types](#union-and-intersection-types)                            |
 | **Advanced Types**                | [`keyof` and `typeof` Operators](#keyof-vs-typeof) • [`readonly` vs `const`](#readonly-vs-const)                                                                                                                                                                                                                           |
 | **Generics**                      | [Generic Functions and Classes](#generics) • [Constraining Generics with `extends`](#constraining-generics-with-extends)                                                                                                                                                                                                   |
@@ -1962,5 +1962,118 @@ obj = null; // Now eligible for garbage collection
 
 
 
+
+##  **TypeScript handle inheritance**
+
+- "**TypeScript supports classical object-oriented inheritance using the `class` and `extends` keywords.** 
+- So overall, TypeScript supports inheritance **using `class`, `extends`, and `super`, just like traditional OOP**.
+- It allows a **class to inherit properties and methods from a parent class**, and provides access modifiers to control visibility and access. 
+- It also supports interfaces, abstract classes, and method overriding to make inheritance more flexible and type-safe."
+- It also gives fine-grained control over access with modifiers, and supports abstract classes and interfaces for flexible, scalable, and maintainable code structures."
+
+
+###  **1. Class Inheritance Using `extends`**
+
+- I can create a base class and extend it using the `extends` keyword. 
+- The child class can override or reuse parent methods.
+
+```ts
+class Animal {
+  constructor(public name: string) {}
+
+  speak(): string {
+    return `${this.name} makes a sound`;
+  }
+}
+
+class Dog extends Animal {
+  speak(): string {
+    return `${this.name} barks`;
+  }
+}
+```
+
+> "Here, the `Dog` class inherits from `Animal` and overrides the `speak()` method."
+
+---
+
+###  **2. Using `super` to Call Parent Constructor/Methods**
+
+- "Inside the child class, I use `super()` to call the parent constructor, and `super.methodName()` if I want to call a parent method."
+
+```ts
+class Cat extends Animal {
+  constructor(name: string) {
+    super(name); // calls Animal constructor
+  }
+}
+```
+
+---
+
+###  **3. Access Modifiers: `public`, `private`, `protected`**
+
+- "TypeScript allows me to control member access with modifiers:"
+
+* `public`: accessible everywhere (default)
+* `private`: accessible only within the class
+* `protected`: accessible within the class and subclasses
+
+```ts
+class Parent {
+  protected name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+class Child extends Parent {
+  greet() {
+    console.log(`Hello, ${this.name}`); // works because name is protected
+  }
+}
+```
+
+---
+
+###  **4. Abstract Classes**
+
+- "I use `abstract` classes when I want to define a base class with some shared logic and enforce certain methods to be implemented by subclasses."
+
+```ts
+abstract class Shape {
+  abstract area(): number;
+  describe() {
+    return 'This is a shape';
+  }
+}
+
+class Circle extends Shape {
+  constructor(private radius: number) {
+    super();
+  }
+
+  area(): number {
+    return Math.PI * this.radius ** 2;
+  }
+}
+```
+
+---
+
+###  **5. Interface Inheritance**
+
+- Apart from classes, TypeScript supports inheritance through interfaces as well. 
+- Interfaces can extend one or more interfaces and are useful for multiple-type inheritance.
+
+```ts
+interface Person {
+  name: string;
+}
+
+interface Employee extends Person {
+  employeeId: number;
+}
+```
 
 

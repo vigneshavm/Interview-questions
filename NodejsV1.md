@@ -16,6 +16,11 @@
 | **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production), [PM2](#pm2), [Load Balancing](#load-balancing), [Microservices Communication](#microservices-communication)      , [monolithic vs microservices](#monolithic-vs-microservices)                                                                                                                                                                                                   |
 | **Database Interaction**     | [SQL Connection](#sql-connection), [MongoDB Connection](#mongodb-connection), [DB Connections](#database-connections), [Transactions](#database-transactions), [Distributed Data Consistency](#data-consistency-across-distributed-services)                                                                                                                                                |
 
+- [Logging system](#Logging-system)
+- [Type safety across multiple services](#Type-safety-across-multiple-services)
+- [Handles large data sets](#Handles-large-data-sets)
+- [monolithic vs microservices](#monolithic-vs-microservices)
+
 ## **Create Node App using JS**
 
 - mkdir user-api && cd user-api

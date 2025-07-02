@@ -696,13 +696,10 @@ type PersonKeys = keyof Person;
 
 ## **Generics**
 
-* **Definition**:
-  Generics allow functions, classes, and interfaces to work with multiple types without losing type safety.
+-  Generics allow functions, classes, and interfaces to work with multiple types without losing type safety.
+-  They enable **code reuse** while maintaining **strong typing**, unlike `any`, which removes type checks.
 
-* **Purpose**:
-  They enable **code reuse** while maintaining **strong typing**, unlike `any`, which removes type checks.
 
-* **Basic Syntax Example**:
 
   ```ts
   function identity<T>(arg: T): T {
@@ -731,13 +728,7 @@ type PersonKeys = keyof Person;
 
 * **Benefits**:
 
-  * Reusability across types
-  * IDE autocompletion and intellisense
-  * Safer refactoring
-  * No need for manual type casting
-
----
-
+  * Reusability across types   * IDE autocompletion and intellisense   * Safer refactoring   * No need for manual type casting
 
 
 ###  **Use Case: Creating a Type-Safe Utility for Array Filtering**
@@ -760,36 +751,6 @@ function filterByKey<T, K extends keyof T>(
 }
 ```
 
-###  **Usage with Different Types**
-
-```ts
-interface User {
-  id: number;
-  role: string;
-}
-
-interface Product {
-  name: string;
-  isAvailable: boolean;
-}
-
-const users: User[] = [
-  { id: 1, role: 'admin' },
-  { id: 2, role: 'user' },
-];
-
-const products: Product[] = [
-  { name: 'Laptop', isAvailable: true },
-  { name: 'Phone', isAvailable: false },
-];
-
-// Reuse the same function
-const admins = filterByKey(users, 'role', 'admin');
-const availableProducts = filterByKey(products, 'isAvailable', true);
-```
-
----
-
 ### 🎯 **Why This Is Useful**
 
 * **Generic `<T>`** allows the function to work with any object type.
@@ -797,42 +758,54 @@ const availableProducts = filterByKey(products, 'isAvailable', true);
 * **`T[K]`** ensures the value matches the key's type.
 * You get **full type-safety** and **autocomplete** in your IDE.
 
----
 
+###  **Usage with Different Types**
+
+```ts
+interface User {   id: number;   role: string; }
+
+interface Product {   name: string;   isAvailable: boolean; }
+
+const users: User[] = [   { id: 1, role: 'admin' },   { id: 2, role: 'user' }, ];
+
+const products: Product[] = [   { name: 'Laptop', isAvailable: true },   { name: 'Phone', isAvailable: false }, ];
+
+// Reuse the same function
+const admins = filterByKey(users, 'role', 'admin');
+const availableProducts = filterByKey(products, 'isAvailable', true);
+```
 
 
 ## **Constraining Generics with `extends`**
 
----
 
 - In TypeScript, the `extends` keyword is used to **constrain a generic type** to ensure it satisfies a specific shape or base type.
   
 - This helps enforce **type safety** and provides **better IntelliSense/autocompletion**.
 
-- **Example (structural constraint)**:
   ```ts
-  function getLength<T extends { length: number }>(item: T): number {
-    return item.length;
-  }
+  **structural constraint**
+  function getLength<T extends { length: number }>(item: T): number {     return item.length;  }
   ```
   - Only accepts values with a `length` property (e.g., strings, arrays).
   - Passing a number would result in a compile-time error.
 
 - **Example (union type constraint)**:
   ```ts
+  **union type constraint**
   function doSomething<T extends "start" | "stop">(action: T) { ... }
   ```
   - Accepts only `"start"` or `"stop"` as valid values.
 
-- **Example (interface constraint)**:
   ```ts
+  **interface constraint**
   interface Person { name: string; age: number; }
   function greet<T extends Person>(person: T) { ... }
   ```
   - Ensures the argument matches or extends the `Person` structure.
 
-- **Example (key constraint with `keyof`)**:
   ```ts
+  **key constraint with `keyof`**
   function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
     return obj[key];
   }

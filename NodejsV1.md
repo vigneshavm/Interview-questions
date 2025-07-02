@@ -4847,7 +4847,7 @@ I simulate various request patterns:
 
 ---
 
-### 📄 **Sample k6 Script (test.js):**
+### **Sample k6 Script**
 
 ```js
 import http from 'k6/http';
@@ -4865,6 +4865,38 @@ export default function () {
     'response time < 500ms': (r) => r.timings.duration < 500,
   });
 }
+```
+### **Sample k6 Script (10k users)**
+```js
+import http from 'k6/http';
+import { check, sleep } from 'k6';
+
+export let options = {
+  stages: [
+    { duration: '2m', target: 1000 },   // ramp-up to 1k
+    { duration: '2m', target: 3000 },   // ramp-up to 3k
+    { duration: '2m', target: 6000 },   // ramp-up to 6k
+    { duration: '2m', target: 10000 },  // ramp-up to 10k
+    { duration: '5m', target: 10000 },  // hold at 10k
+    { duration: '2m', target: 0 },      // ramp-down
+  ],
+  thresholds: {
+    http_req_duration: ['p(95)<1000'], // 95% of requests should be < 1000ms
+    http_req_failed: ['rate<0.01'],    // < 1% error rate
+  },
+};
+
+export default function () {
+  const res = http.get('http://your-api-domain.com/api/health');
+
+  check(res, {
+    'status is 200': (r) => r.status === 200,
+    'duration < 1000ms': (r) => r.timings.duration < 1000,
+  });
+
+  sleep(1); // simulate think time
+}
+
 ```
 
 ---

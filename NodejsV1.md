@@ -7,7 +7,7 @@
 | **Middleware**               | [Middleware](#middleware), [CORS](#cors), [Insecure CORS](#insecure-cors-configuration), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate)                                                                                                                                              |
 | **Package JSON**             | [package.json](#packagejson), [package.json vs package-lock.json](#packagejson-vs-package-lockjson)                                                                                                                                                                                                                                                                                         |
 | **Caching & Memory**         | [Caching Strategies](#caching-strategies), [Redis (Caching)](#nodejs-with-redis-caching), [Memory Leak](#Memory-leak), [Garbage Collection](#garbage-collection)                                                                                                                                                                                                                            |
-| **REST API & Security**      | [REST API](#rest-api), [Pagination](#implement-pagination-in-a-rest-api), [Folder Structure](#clean-restful-folder-structure), [Secure Node.js](#secure-nodejs-app), [Securing Sensitive Data](#securing-sensitive-data), [Secure REST APIs](#secure-rest-apis)                                                                                                                                                                  |
+| **REST API & Security**      | [REST API](#rest-api), [Pagination](#implement-pagination-in-a-rest-api), [Folder Structure](#clean-restful-folder-structure), [Secure Node.js](#secure-nodejs-app), [Securing Sensitive Data](#securing-sensitive-data), [Secure REST APIs](#secure-rest-apis)       ,[REST API Performance Testing](#REST-API-Performance-Testing)                                                                                                                                                           |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization), [JWT](#implementing-jwt-authentication), [Single Sign On](#Single-Sign-On), [Session vs Token](#session-based-vs-token-based-authentication), [Protecting Routes](#protecting-sensitive-routes), [Refresh Tokens](#refresh-tokens), [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers), [RBAC](#role-based-access-control-rbac)        |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture), [Event Emitters](#event-emitters), [Process Object](#process-object), [WebSockets](#websockets-socketio-basics), [WebSockets Drawbacks](#drawbacks-of-WebSockets), [Socket.IO](#SocketIO)                                                                                                                                          |
 | **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications), [Logging Errors](#logging-errors), [Debugging](#debugging-nodejs-applications), [REST API Errors](#error-handling-in-rest-apis)                                                                                                                                                                                                   |
@@ -4776,5 +4776,149 @@ npm start
 - In one project, we handled a sudden 5x traffic spike by horizontally scaling the Node.js containers and leveraging Redis caching. The API maintained low response times even under load."
 
 ---
+
+
+
+
+
+
+## **REST API Performance Testing**
+
+- API performance testing in Node.js involves **simulating real-world traffic** to understand how well the API performs under load. 
+
+- So, performance testing helps validate how robust the API is under load, and provides critical insights before scaling the application.
+
+
+Here's how I approach it:
+
+
+###  1. Choose the Right Tool
+
+I use tools like:
+
+* **k6** (JavaScript-based, CLI) * **Artillery** (Node.js-based, easy for CI/CD) * **JMeter** (for enterprise scenarios) * **Postman Runner** (for quick baseline tests)
+
+
+###  2. Create Load Testing Scenarios
+
+For example, with **k6**, I create a script to simulate virtual users:
+
+- [response k6 performance test](#response-k6-performance-test)
+
+This tests the API with 100 concurrent users over 1 minute.
+
+
+###  3. Monitor Key Metrics
+
+During testing, I monitor:
+
+* **Response Time (p50/p95/p99)**
+* **Requests per Second (RPS)**
+* **Error Rate (4xx/5xx)**
+* **CPU/Memory usage** using `top`, `pm2`, or Node’s built-in process tools
+* **Event loop lag** using `clinic.js` or `node:perf_hooks`
+
+
+###  4. Analyze Results
+
+I look for:
+
+* Spikes in latency
+* Drop in throughput
+* Bottlenecks in the database or file system
+* Memory leaks or blocking code
+
+
+###  5. Real-World Simulation
+
+I simulate various request patterns:
+
+* GET, POST, PUT, DELETE
+* Authenticated vs unauthenticated access
+* Data-heavy requests
+* Rapid repeated access (e.g., brute force behavior)
+
+---
+
+
+
+
+## **Response k6 performance test**
+
+---
+
+### 📄 **Sample k6 Script (test.js):**
+
+```js
+import http from 'k6/http';
+import { check } from 'k6';
+
+export let options = {
+  vus: 50,
+  duration: '30s',
+};
+
+export default function () {
+  let res = http.get('http://localhost:3000/api/users');
+  check(res, {
+    'status is 200': (r) => r.status === 200,
+    'response time < 500ms': (r) => r.timings.duration < 500,
+  });
+}
+```
+
+---
+
+### 📊 **Sample Output After Running `k6 run test.js`:**
+
+```bash
+running (30.0s), 50/50 VUs, 15000 complete and 0 interrupted iterations
+default ✓ [======================================] 50 VUs  30s
+
+     ✓ status is 200
+     ✓ response time < 500ms
+
+     checks.........................: 100.00% ✓ 15000 ✗ 0    
+     data_received..................: 3.2 MB  106 kB/s
+     data_sent......................: 1.9 MB  64 kB/s
+     http_req_blocked...............: avg=1.22ms   min=0s      max=22.36ms  p(90)=2ms      p(95)=2.8ms  
+     http_req_connecting............: avg=0.32ms   min=0s      max=6.98ms   p(90)=0.6ms    p(95)=1.1ms  
+     http_req_duration..............: avg=183.7ms  min=110ms   max=420ms    p(90)=310ms    p(95)=370ms  
+     http_req_failed................: 0.00%   ✓ 0     ✗ 15000
+     http_req_receiving.............: avg=2.45ms   min=0.2ms   max=15.1ms   p(90)=4.3ms    p(95)=5.6ms  
+     http_req_sending...............: avg=0.21ms   min=0.1ms   max=1.1ms    p(90)=0.3ms    p(95)=0.4ms  
+     http_req_tls_handshaking.......: avg=0s       min=0s      max=0s       p(90)=0s       p(95)=0s     
+     http_req_waiting...............: avg=181ms    min=108ms   max=412ms    p(90)=307ms    p(95)=364ms  
+     http_reqs......................: 15000   500.23/s
+     iteration_duration.............: avg=1.02s    min=1s      max=1.1s     p(90)=1.05s    p(95)=1.07s  
+     iterations.....................: 15000   500.23/s
+     vus............................: 50      min=50  max=50
+     vus_max........................: 50      min=50  max=50
+```
+
+---
+
+### 🧠 **How to Read This:**
+
+| Metric                   | Meaning                                |
+| ------------------------ | -------------------------------------- |
+| `http_req_duration`      | Total time per request (avg = 183.7ms) |
+| `http_req_failed`        | 0% failed requests (✔️ good)           |
+| `http_reqs`              | 15,000 total requests in 30s (500 RPS) |
+| `p(95)`                  | 95% of requests were faster than 370ms |
+| `data_received` / `sent` | Useful for network load profiling      |
+| `iteration_duration`     | How long each virtual user loop took   |
+
+---
+
+### ✅ **Conclusion from This Test:**
+
+* API is handling **500 requests/sec**
+* 95% of requests are under **370ms**
+* **No errors** occurred
+* API is **performing well** under 50 concurrent users for 30 seconds
+
+---
+
 
 

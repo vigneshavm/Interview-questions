@@ -1284,6 +1284,8 @@ console.log(greet("Bob", 30));    // "Hello, Bob. You are 30 years old."
 - "They help us **add extra behavior** or **attach metadata** to these elements without changing their core logic."
 - "Decorators are especially common in frameworks like **Angular**, where they are used for things like **dependency injection**, routing, and more."
 - "They basically make our code **more organized and reusable** by separating extra behavior from the main logic."
+- Decorators in TypeScript enable clean separation of concerns, code reusability, and declarative programming.
+- In a Node.js context, they’re especially helpful for building scalable APIs - for things like validation, routing, access control, or logging — as seen in frameworks like NestJS.
 
 **Example**:  
 ```typescript
@@ -1321,7 +1323,111 @@ console.log(person.name); // Logs: Getting name: Bob
 ```
 Decorators help add reusable logic without modifying the core structure of the class or function.
 
+- Restrict a method (e.g., `deleteUser()`) so that **only users with certain roles** (e.g., `"admin"`) can access it.
+
+- We achieve this using:
+  1. A **custom method decorator**: `@Roles('admin')`
+  2. A **middleware/guard** that reads the decorator's metadata and blocks/permits access
+  3. An example route using the decorator
+
+
+**`@Roles()` Decorator Definition**
+
+```ts
+// roles.decorator.ts
+import 'reflect-metadata';
+
+export function Roles(...allowedRoles: string[]) {
+  return function (
+    target: Object,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    Reflect.defineMetadata('roles', allowedRoles, descriptor.value);
+  };
+}
+```
+
+**How it works:**
+
+* `Roles()` is a **decorator factory** — it returns a decorator function.
+* `allowedRoles` is a rest parameter, so you can pass one or more roles (e.g., `'admin'`, `'moderator'`).
+* `Reflect.defineMetadata()` is used to **attach metadata** to the method (`descriptor.value`) using the key `'roles'`.
+
+➡️ Result: You can later retrieve the allowed roles using `Reflect.getMetadata()`.
+
 ---
+
+**Step 2: Route Handler With Decorator**
+
+```ts
+class UserController {
+  @Roles('admin')
+  deleteUser(req, res) {
+    res.send('User deleted');
+  }
+}
+```
+
+**How it works**
+
+* `@Roles('admin')` adds metadata to `deleteUser` method.
+* Now, `deleteUser` is tagged with metadata like:
+  `roles: ['admin']`
+
+---
+
+**Step 3: Middleware / Guard to Enforce Roles**
+
+```ts
+function checkRoles(req, res, next) {
+  // Get the current route handler function
+  const routeHandler = req.route.stack.find(layer => layer.name === 'bound dispatch').handle;
+
+  // Read the metadata set by @Roles
+  const roles = Reflect.getMetadata('roles', routeHandler);
+
+  // Get user's role (assume it's attached to req.user)
+  const userRole = req.user?.role;
+
+  if (!roles || roles.includes(userRole)) {
+    return next(); // allowed
+  }
+
+  return res.status(403).json({ message: 'Forbidden' }); // not allowed
+}
+```
+
+**How it works**
+
+* It inspects the current route handler and uses `Reflect.getMetadata()` to **fetch the roles allowed**.
+* It compares them to the current `req.user.role` (assumed to be set via previous middleware).
+* If the role matches or if no role restriction is defined, it calls `next()` to continue.
+* Otherwise, it blocks with a `403 Forbidden`.
+
+---
+
+**Execution Flow Summary**
+
+1. You define `@Roles('admin')` on the controller method.
+2. This attaches metadata to the method.
+3. At runtime, the middleware reads the metadata and checks if the current user has permission.
+4. If yes → proceed. If no → block.
+
+---
+
+**Real-World Use**
+
+This pattern is exactly how frameworks like **NestJS** implement:
+
+* `@Roles()`
+* `@UseGuards()`
+* `@Controller()` / `@Get()` etc.
+
+It helps keep your code **modular**, **clean**, and **declarative**.
+
+---
+
 
 
 

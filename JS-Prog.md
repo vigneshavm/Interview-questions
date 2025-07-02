@@ -2548,6 +2548,18 @@ function checkInclusion(s1, s2) {
 
 ## **Binary Search**
 
+- Binary Search is an **find the position of a target element in a sorted array**.
+- It works by **repeatedly dividing the search interval in half and comparing the middle element with the target**.
+- The array must be sorted (ascending or descending).
+- Time complexity is O(log n), making it highly efficient for large datasets.
+
+**How It Works**
+- Find the middle element.
+- If it equals the target → return the index.
+- If the target is less → search in the left half.
+- If the target is more → search in the right half.
+- Repeat until the element is found or range is empty.
+
 sort the array:
 ```js
 let arr = [1, 6, 2, 9, 4, 5, 7, 3];

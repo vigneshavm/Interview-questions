@@ -3079,8 +3079,8 @@ Optimizing network requests is crucial to improve the loading speed and overall 
 
 #### **call and apply and bind Methods**
 
-`call`, `apply`, and `bind` are methods that allow you to control the `this` context within functions, 
-they all are used to invoke a function with a specific `this` value.
+- `call`, `apply`, and `bind` are methods that allow you to control the `this` context within functions, 
+- They all are used to invoke a function with a specific `this` value.
 
 - **`call()`**: Immediately invokes the function and allows you to pass arguments one by one.
     - **Syntax**: `func.call(thisContext, arg1, arg2, ...)`
@@ -3104,7 +3104,9 @@ they all are used to invoke a function with a specific `this` value.
       greet.apply(null, ['Alice', 30]); // Output: Alice is 30 years old.
       ```
 
-- **`bind()`**: Unlike `call` and `apply`, `bind()` does not invoke the function immediately. Instead, it returns a new function with a fixed `this` context and optional parameters.
+- **`bind()`**:
+  - Unlike `call` and `apply`, `bind()` does not invoke the function immediately.
+  - Instead, it returns a new function with a fixed `this` context and optional parameters.
     - **Syntax**: `const boundFunc = func.bind(thisContext, arg1, arg2, ...);`
     - **Example**:
       ```javascript

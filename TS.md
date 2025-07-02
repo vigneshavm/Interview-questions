@@ -702,27 +702,20 @@ type PersonKeys = keyof Person;
 
 
   ```ts
-  function identity<T>(arg: T): T {
-    return arg;
-  }
+  function identity<T>(arg: T): T {     return arg;   }
   ```
 
-  * `T` is a placeholder for any type.
-  * Calling `identity("Hello")` infers `T` as `string`.
+  * `T` is a placeholder for any type.   * Calling `identity("Hello")` infers `T` as `string`.
 
 
 * **Use in Interfaces & Classes**:
 
   ```ts
-  interface Box<T> {
-    value: T;
-  }
+  interface Box<T> {     value: T;   }
 
   class DataHolder<T> {
     constructor(private data: T) {}
-    get(): T {
-      return this.data;
-    }
+    get(): T {       return this.data;     }
   }
   ```
 
@@ -742,11 +735,7 @@ Instead of duplicating code for each type, you can use **generics** to keep it t
 ###  **Generic Filter Function Example**
 
 ```ts
-function filterByKey<T, K extends keyof T>(
-  items: T[],
-  key: K,
-  value: T[K]
-): T[] {
+function filterByKey<T, K extends keyof T>(   items: T[],   key: K,   value: T[K] ): T[] {
   return items.filter(item => item[key] === value);
 }
 ```

@@ -1306,11 +1306,12 @@ db.users.replaceOne({ _id: 1 }, { name: "Anu", age: 24 }) // full replace
 
 ## Clustering & Replication**:
    - [Clustering](#Clustering)
+   - [Replication](#Replication)
 
   - **Replica Set**: Maintains multiple copies of data for high availability.
   - **Sharding**: Distributes data across multiple nodes for scalability.
 
-### **Clustering**
+## **Clustering**
 
 - **Clustering in MongoDB refers to deploying MongoDB in a distributed architecture** to support scalability, high availability, and fault tolerance. 
 - MongoDB provides clustering primarily through two mechanisms: **Replica Sets** and **Sharded Clusters** — and both serve different purposes."
@@ -1362,6 +1363,34 @@ db.users.replaceOne({ _id: 1 }, { name: "Anu", age: 24 }) // full replace
 
 
 
+
+## **Replication**
+
+- "**Replication in MongoDB** is a mechanism that ensures **high availability and data redundancy** by maintaining multiple copies of the same data across different servers. 
+- It's implemented using a structure called a **Replica Set**."
+- I use replication in every production deployment. A 3-node replica set is the minimum I recommend for ensuring uptime, fault tolerance, and smooth rollouts or backups.
+- Replication lag can occur if Secondaries can't keep up. Also, if you read from secondaries, there's a risk of **eventual consistency** — meaning data might be slightly stale.
+
+**Replica Set**
+
+* **One Primary** node — handles all write operations
+* **One or more Secondary** nodes — replicate data from the Primary asynchronously
+* An **Arbiter** (optional) — helps in elections but doesn't hold data"
+
+- "In short, MongoDB’s replication through Replica Sets is critical for building resilient, fault-tolerant applications that require zero downtime and reliable data durability."
+
+
+### **Replication Process:**
+
+- "When a write occurs, it's first applied to the Primary. 
+- The Primary records the operation in its **oplog** (operations log), and Secondaries replicate these changes.
+- If the Primary fails, an **automatic election** promotes one of the Secondaries to Primary — ensuring zero downtime."
+
+---
+
+### **Key Benefits:**
+
+* High Availability (automatic failover) * Data Redundancy * Read Scalability (read from secondaries) * Disaster Recovery (replica backups)
 
 
 

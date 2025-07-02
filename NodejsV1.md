@@ -4789,6 +4789,18 @@ npm start
 - So, performance testing helps validate how robust the API is under load, and provides critical insights before scaling the application.
 
 
+- Performance testing tells me how well the system runs under expected conditions.
+- Scalability testing tells me how far I can push the system before it breaks — and how gracefully it scales."**
+
+"Let’s say I have an API that handles 2000 requests/sec.
+- In performance testing, I test if it maintains < 300ms latency under that fixed load.
+- In scalability testing, I increase load to 5000, 10,000, and 20,000 RPS — and monitor whether the app can scale horizontally (via containers or instances) without error spikes or latency degradation."
+- In scalability testing, I'm not just looking at how fast the API responds — I'm watching how the system holds up under pressure.
+- Latency, throughput, error rates, CPU/memory, and event loop health are the top indicators
+- I rely on to determine how well a REST API can scale horizontally or vertically."
+
+
+
 Here's how I approach it:
 
 

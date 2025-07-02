@@ -1555,7 +1555,11 @@ console.log(JSON.stringify(arr1) === JSON.stringify(arr2)); // true ✅
 
 ## Polymorphism 
 
-Requires behavior differences via method implementation
+
+- Polymorphism allows objects of different types to be treated as instances of the same base type.
+- In TypeScript, I achieve this through method overriding in subclasses or implementing interfaces.
+- Requires behavior differences via method implementation
+- Same method name, different behavior across subclasses — that’s polymorphism.
 
 ```javascript
 
@@ -1601,6 +1605,10 @@ printIntroduction(stu); // Hi, I'm Bob, studying Computer Science.
 
 ## Class
 
+- A class in TypeScript is a blueprint for creating objects with properties and methods. 
+- It supports constructors, access modifiers, inheritance, and static members.
+- TypeScript classes bring OOP structure to JavaScript, with strong type safety.
+
 ```javascript
 class Person {
   // Properties
@@ -1627,6 +1635,11 @@ person1.greet();  // Output: Hello, my name is Alice and I am 30 years old.
 
 ## Immutable Class
 
+- "Immutable classes are designed so that once an object is created, its state cannot be modified."
+- Use readonly for fields
+- Avoid setters or mutable methods
+- Prefer constructor initialization only
+
 ```javascript
 class Person {
   // All fields are readonly
@@ -1650,6 +1663,9 @@ class Person {
 
 
 ## Inheritance 
+
+- Inheritance allows one class to acquire properties and behaviors from another.
+- TypeScript uses extends and super to implement inheritance.
 
 ```javascript
 
@@ -1683,6 +1699,9 @@ myCar.showDetails();   // Output: Brand: Toyota, Model: Corolla
 
 ## Encapsulation
 
+ - [Encapsulation Detail](#Encapsulation-Detail)
+ - [Closure](#Closure)
+
 > **Encapsulation and closure are related concepts**, but they are **not the same**. They achieve **similar goals** (data hiding and access control), but they work **very differently**.
 
 ### 🔍 Key Differences
@@ -1694,9 +1713,6 @@ myCar.showDetails();   // Output: Brand: Toyota, Model: Corolla
 | Data Hidden By | Access modifiers (`private`) | Lexical scoping                   |
 | Common In      | TypeScript, Java, C#, etc.   | JavaScript, especially before ES6 |
 
----
-
-### ✅ Summary
 
 * **Encapsulation** is a formal OOP concept using `class` and access control.
 * **Closure** is a JavaScript mechanism that lets functions "remember" variables.
@@ -1704,11 +1720,13 @@ myCar.showDetails();   // Output: Brand: Toyota, Model: Corolla
 
 
 
-### 🔒 Encapsulation (OOP Concept)
+### Encapsulation Detail
 
 * Comes from **object-oriented programming (OOP)**
 * Achieved using **classes**, **access modifiers** (`private`, `public`, etc.)
 * Used to **protect object state** and expose only necessary methods
+- Encapsulation means hiding internal details of a class and exposing only necessary interfaces.
+- TypeScript supports this using access modifiers.
 
 **Example:**
 
@@ -1730,7 +1748,7 @@ class Counter {
 
 ---
 
-### 🔐 Closure (Functional Concept)
+### Closure
 
 * A **JavaScript concept**
 * A function "remembers" the variables in its **outer lexical scope**, even after the outer function has returned

@@ -1352,6 +1352,11 @@ app.use(cors({
 | Security                   | Always restrict origins in production |
 
 
+- **One common vulnerability I watch for is insecure CORS**,
+- especially APIs exposing sensitive data.
+- I've seen setups where **Access-Control-Allow-Origin: * is used even with credentials enabled — a serious mistake**.
+- I ensure we validate origins against a whitelist, never use wildcards in prod, and separate internal vs public APIs using different CORS policies.”
+
 
 
 

@@ -1741,74 +1741,47 @@ Define shared interfaces/types and use them consistently across all layers. Use 
 
 ##  **Middleware**
 
-- Functions that execute during the request-response cycle.
-- Middleware functions execute before route handlers. 
-- They can perform tasks like logging, authentication, and error handling.
-- Can modify request, response objects.
+- A function that **runs before the final route handler**.
+- Has access to the **req, res, and next()** objects.
+- Can **modify request/response, perform checks, or short-circuit the pipeline**.
+- Used **globally or at the route level**.
+- I use **route-level middleware to control specific endpoints**. 
+- For example, in an admin panel, I might **chain `authenticateJWT` and `checkAdminRole` on selected routes**. 
+- Auth Middleware on a Single Route ```js router.get('/profile', authenticateJWT, (req, res) => {})```
+- Chaining Multiple Middlewares ```js router.post('/create',  authenticateJWT,  checkAdmin,  validateRequest,  (req, res) => {  })```
+- Apply Middleware to All Routes in a Router - ```js userRouter.use(authenticateJWT)```;
 
-In Express, middleware functions are executed in sequence and have access to `req`, `res`, and `next()`. Middleware is used for tasks like:
+**Common Middleware Use Cases**
+- Logging (e.g., morgan, custom logger)
+- Authentication & Authorization
+- Request Body Parsing & Validation (express.json(), Joi, Zod)
+- CORS configuration
+- Rate Limiting & Throttling
+- Error Handling
 
-* Logging (`morgan`, custom logger)
-* Authentication and authorization
-* Body parsing and input validation
-* CORS and rate limiting
-* Error handling
-
-**Structure**:
-
-* `middlewares/logger.ts`
-* `middlewares/auth.ts`
-* `middlewares/errorHandler.ts`
-* `middlewares/validateRequest.ts`
-
-I apply global middlewares in `app.ts`, and route-specific ones at the router level. This keeps the pipeline clean and maintainable.
-
-
- Code Sample
 ```js
 const express = require('express');
 const app = express();
 
-// General middleware
-app.use((req, res, next) => {
-  console.log("Middleware running");
-  next();  // Pass control to the next middleware
-});
-
+// Global middleware
+app.use((req, res, next) => {   console.log("Middleware running");   next(); });
 // Logger middleware
-const logger = (req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next(); // Pass control to the next middleware
-};
+const logger = (req, res, next) => {   console.log(`${req.method} ${req.url}`);   next(); };
 
+const authJWT = (req, res, next) => {
+  try {
+    const payload = jwt.verify(token, JWT_SECRET);
+    (req as any).user = payload;
+    next();
+  } catch {
+    res.status(403).json({ error: 'Forbidden' });
+  }
+};
 app.use(logger);
-
-// Route
-app.get('/', (req, res) => {
-  res.send('Home');
-});
-
-// Start server with callback
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-
+app.get('/', (req, res) => res.send('Home'));
+app.get('/admin',authJWT, (req, res) => res.send('Home'));
+app.listen(3000, () => console.log('Server running'));
 ```
-
----
-
-**Middleware in Express**
-
-```ts
-import { Request, Response, NextFunction } from 'express';
-
-const logger = (req: Request, res: Response, next: NextFunction) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-};
-```
-
 
 
 **Middleware to Protect Routes**
@@ -1836,7 +1809,6 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
 };
 ```
 
----
 ---
 
 

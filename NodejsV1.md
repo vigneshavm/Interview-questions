@@ -1498,75 +1498,19 @@ res.cookie('accessToken', token, {
 ---
 
 ## **Performance Optimization**
-
-- Use **caching** (e.g., Redis).
-- Optimize **DB queries**.
-- Enable **load balancing** and **clustering**.
-- Use **Gzip compression**.
-- Implement **lazy loading** to optimize resource loading.
-* Avoid blocking operations; use **non-blocking async/await**.
-* Use **caching** (e.g., Redis) for frequent reads.
-* Use **connection pooling** for DBs (especially in PostgreSQL with `pg-pool`).
-* Apply **rate limiting** and **throttling** (e.g., `express-rate-limit`).
-* Reduce payload using **compression** (e.g., `compression` middleware).
-* Minimize DB round-trips via **batching or joins**.
-* Profile performance using **Node.js built-in profiler** or `clinic.js`.
-
-
-* **Use asynchronous APIs**:
-
-  * Prefer `fs.promises` and `async/await` to avoid blocking the event loop.
-  * Avoid sync methods like `fs.readFileSync`.
-
-* **Implement caching**:
-
-  * Use **Redis** for shared in-memory cache (e.g., frequently accessed DB queries or third-party API responses).
-  * Use **in-process memory cache** for lightweight lookups.
-
-* **Optimize database interactions**:
-
-  * Add proper **indexes** to speed up query performance.
-  * Use **connection pooling** to manage DB connections efficiently.
-  * Avoid over-fetching – use **field projection** and **pagination**.
-  * Tune ORM behavior to prevent N+1 queries.
-
-* **Efficient code practices**:
-
-  * Avoid long-running loops or heavy synchronous operations.
-  * Use **Node.js Streams** to process large files/data efficiently.
-  * Break down heavy computations using **setImmediate** or **worker threads**.
-
-* **Compression and frontend optimizations**:
-
-  * Enable **Gzip or Brotli compression** for API responses.
-  * Minify **JS/CSS** and optimize static asset delivery.
-
-* **Monitoring and profiling**:
-
-  * Use tools like **clinic.js**, `node --inspect`, or **Chrome DevTools** for local profiling.
-  * Monitor **event loop lag** using `event-loop-lag` to catch blocking issues.
-  * Track **CPU, memory, GC pauses**, and **slow queries** in production.
-
-* **Use observability tools**:
-
-  * Log structured data with **Winston** or **Pino**.
-  * Monitor performance using **Prometheus + Grafana**, **Datadog**, or **ELK stack**.
-  * Set alerts on latency, error rates, and memory usage.
-
-* **Lazy loading and code splitting**:
-
-  * Load only required modules at runtime (`await import()` for ESM).
-  * Helps reduce **startup time** and **memory consumption** in large apps or serverless functions.
-
-* **Real-world application**:
-
-  * Improved API performance by **reducing latency from 400ms to 150ms** using:
-
-    * Redis caching
-    * DB indexing
-    * Moving media processing to **background workers** (Bull + Redis)
-
----
+| **Category**                      | **Optimization Strategies**                                                                                                                                                             |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Asynchronous Operations**       | - Use `async/await`, `fs.promises`<br>- Avoid sync APIs like `fs.readFileSync`                                                                                                          |
+| **Caching**                       | - Use **Redis** for shared caching<br>- In-process memory cache for lightweight data                                                                                                    |
+| **Database Optimization**         | - Add **indexes**<br>- Use **connection pooling** (`pg-pool`)<br>- Use **pagination**, **projections**, and avoid over-fetching<br>- Minimize round-trips via **batching** or **joins** |
+| **Efficient Code Practices**      | - Avoid long/blocking loops<br>- Use **Streams** for large files<br>- Offload to **worker threads** or use `setImmediate`                                                               |
+| **Compression**                   | - Enable **Gzip/Brotli** with `compression` middleware<br>- Minify JS/CSS                                                                                                               |
+| **Load Balancing & Clustering**   | - Enable **load balancing** (e.g., NGINX, AWS ALB)<br>- Use Node.js **Cluster module** or **PM2**                                                                                       |
+| **Lazy Loading & Code Splitting** | - Use `await import()` for **lazy module loading**<br>- Helps reduce startup time and memory                                                                                            |
+| **Rate Limiting & Throttling**    | - Apply `express-rate-limit` or similar middleware                                                                                                                                      |
+| **Monitoring & Profiling**        | - Tools: **clinic.js**, `node --inspect`, Chrome DevTools<br>- Monitor **event loop lag**, memory, GC                                                                                   |
+| **Observability & Logging**       | - Use **Winston** / **Pino**<br>- Monitor via **Prometheus**, **Datadog**, **ELK stack**<br>- Set up **alerts** for latency/errors                                                      |
+| **Real-world Example**            | - Reduced latency from **400ms to 150ms** by:<br>→ Redis caching<br>→ DB indexing<br>→ Media processing with **Bull + Redis**                                                           |
 
 
 

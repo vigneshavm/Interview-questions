@@ -1,20 +1,11 @@
-[Versioning & Backward Compatibility](#versioning--backward-compatibility)  
-[Testing Strategy](#testing-strategy)  
-[Rate Limiting & Throttling](#rate-limiting--throttling)  
-[Configuration Management](#configuration-management)  
-[API Gateway](#api-gateway)  
-[Service Discovery](#service-discovery)  
-[Circuit Breaker](#circuit-breaker)  
-[SAGA Pattern](#saga-pattern)  
-[Observer Pattern](#observer-pattern)  
-[Shared Libraries & Code Reuse](#shared-libraries--code-reuse)  
-[Scalability & Handle Load](#scalability--handle-load)  
-[DevOps & Deployment](#devops--deployment)  
-[Error Handling & Fault Tolerance](#error-handling--fault-tolerance)  
-[Logs and Tracing](#logs-and-tracing)  
-[Authentication & Authorization](#authentication--authorization)  
-[Swagger](#Swagger)
-
+| **Category**                    | **Topics**                                                                                                                                                                                                                                         |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. API Design & Interface**   | - [Versioning & Backward Compatibility](#versioning--backward-compatibility) - [Swagger](#swagger) - [InterService Communication](#inter-service-communication) - [Manage multiple service endpoints](#manage-multiple-service-endpoints) |
+| **2. Reliability & Resilience** | - [Rate Limiting & Throttling](#rate-limiting--throttling) - [Circuit Breaker](#circuit-breaker) - [Error Handling & Fault Tolerance](#error-handling--fault-tolerance) - [Logs and Tracing](#logs-and-tracing)                           |
+| **3. Patterns & Orchestration** | - [SAGA Pattern](#saga-pattern) - [Observer Pattern](#observer-pattern) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway)                                                                                           |
+| **4. Code & Configuration**     | - [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management)                                                                                                                        |
+| **5. Scaling & Operations**     | - [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture)                                                                            |
+| **6. Quality & Security**       | - [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization)                                                                                                                                      |
 
 
 

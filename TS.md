@@ -1,7 +1,7 @@
 | **Category**                      | **Topics & Links**                                                                                                                                                                                                                                                                                                          |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Core Concepts**                 | [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript) • [`any` vs `unknown` Types](#any-vs-unknown) • [Duck Typing](#duck-typing) • [Class](#class) • [JavaScript & TypeScript Performance Optimization Checklist](#javascript-typescript-performance-optimization-checklist)       |
-| **Types**                         | [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing) • [Type Decorators](#decorators) • [Conditional Types](#conditional-types) • [Template Literal Types](#template-literal-types) • [Generics Types](#generics) |
+| **Types**                         | [Type Definition](#Type-Definition) • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing) • [Type Decorators](#decorators) • [Conditional Types](#conditional-types) • [Template Literal Types](#template-literal-types) • [Generics Types](#generics) |
 | **OOP (Object-Oriented)**         | [Polymorphism](#polymorphism) • [Class](#class) • [Immutable Class](#immutable-class) • [Inheritance](#inheritance) • [TypeScript handle inheritance](#TypeScript-handle-inheritance) • [Encapsulation](#encapsulation)                                                                                                                                                                   |
 | **Types & Interfaces**            | [Interface vs Type](#interface-vs-type) • [Extending Types and Interfaces](#extending-types-and-interfaces) • [Mapped Types](#mapped-types) • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record) • [Union vs Intersection Types](#union-and-intersection-types)                            |
 | **Advanced Types**                | [`keyof` and `typeof` Operators](#keyof-vs-typeof) • [`readonly` vs `const`](#readonly-vs-const)                                                                                                                                                                                                                           |
@@ -2200,3 +2200,35 @@ interface Employee extends Person {
 ```
 
 
+
+## Type Definition
+
+### ✅ TypeScript Type Definition
+
+```ts
+type User = {
+  fname: string;
+  lname: string;
+  age: number;
+};
+```
+
+---
+
+### ✅ Example Usage
+
+```ts
+const user1: User = {
+  fname: "John",
+  lname: "Doe",
+  age: 30
+};
+
+function printUser(user: User): void {
+  console.log(`${user.fname} ${user.lname}, Age: ${user.age}`);
+}
+
+printUser(user1);
+```
+
+---

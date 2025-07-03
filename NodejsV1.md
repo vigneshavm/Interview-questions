@@ -1752,12 +1752,8 @@ Define shared interfaces/types and use them consistently across all layers. Use 
 - Apply Middleware to All Routes in a Router - ```js userRouter.use(authenticateJWT)```;
 
 **Common Middleware Use Cases**
-- Logging (e.g., morgan, custom logger)
-- Authentication & Authorization
-- Request Body Parsing & Validation (express.json(), Joi, Zod)
-- CORS configuration
-- Rate Limiting & Throttling
-- Error Handling
+- Logging (e.g., morgan, custom logger) - Authentication & Authorization - Request Body Parsing & Validation (express.json(), Joi, Zod)
+- CORS configuration - Rate Limiting & Throttling - Error Handling
 
 ```js
 const express = require('express');

@@ -1,16 +1,11 @@
-- [CI/CD](#cicd)
-- [CI/CD Important](#cicd-important)
-- [Tools Used for CI/CD](#tools-used-for-cicd)
-- [Set Up a CI/CD Pipeline](#set-up-a-cicd-pipeline)
-- [Manage Environment Variables in CI/CD](#manage-environment-variables-in-cicd)
-- [Test Both Backend and Frontend in a Pipeline](#test-both-backend-and-frontend-in-a-pipeline)
-- [Rollback a Deployment](#rollback-a-deployment)
-- [Manage CI/CD for Microservices](#manage-cicd-for-microservices)
-- [Handle Frontend and Backend Version Mismatch](#handle-frontend-and-backend-version-mismatch)
-- [Zero-Downtime Deployment Strategy](#zero-downtime-deployment-strategy)
-- [Integrate Linting, Testing, and Code Quality in CI](#integrate-linting-testing-and-code-quality-in-ci)
-- [Notify Your Team About Build/Deploy Status](#notify-your-team-about-builddeploy-status)
-- [Bonus Questions](#bonus-questions)
+| **Category**                            | **Topics**                                                                                                                                                                                                                                  |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Fundamentals**                     | - [CI/CD](#cicd) - [CI/CD Important](#cicd-important) - [Tools Used for CI/CD](#tools-used-for-cicd)                                                                                                                                  |
+| **2. Pipeline Setup & Configuration**   | - [Set Up a CI/CD Pipeline](#set-up-a-cicd-pipeline) - [Manage Environment Variables in CI/CD](#manage-environment-variables-in-cicd) - [Test Both Backend and Frontend in a Pipeline](#test-both-backend-and-frontend-in-a-pipeline) |
+| **3. Advanced Deployment Practices**    | - [Zero-Downtime Deployment Strategy](#zero-downtime-deployment-strategy) - [Rollback a Deployment](#rollback-a-deployment) - [Handle Frontend and Backend Version Mismatch](#handle-frontend-and-backend-version-mismatch)           |
+| **4. Microservices & Team Integration** | - [Manage CI/CD for Microservices](#manage-cicd-for-microservices) - [Notify Your Team About Build/Deploy Status](#notify-your-team-about-builddeploy-status)                                                                            |
+| **5. Quality & Automation**             | - [Integrate Linting, Testing, and Code Quality in CI](#integrate-linting-testing-and-code-quality-in-ci)                                                                                                                                   |
+| **6. Extras**                           | - [Bonus Questions](#bonus-questions)                                                                                                                                                                                                       |
 
 
 ### CI/CD

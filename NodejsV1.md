@@ -99,23 +99,17 @@ tsconfig.json
 
 ## **Event Loop**
 
-The **event loop** is the mechanism that allows Node.js to perform **non-blocking I/O operations**—despite being **single-threaded**—by offloading operations to the system kernel or background threads when possible.
+ - The **event loop** is the mechanism helps to perform **non-blocking I/O operations** —despite being **single-threaded**
+ - by **offloading operations** (like timers, I/O, or events) and **processing their callbacks asynchronously**.
+* It **enables asynchronous operations like network requests, file I/O, or database queries to be performed without blocking the main thread**.
 
-
-### 1. What is the Event Loop?
-
-* The **event loop** is a fundamental part of Node.js that enables asynchronous operations like network requests, file I/O, or database queries to be performed without blocking the main thread.
 * Node.js achieves this through a combination of:
-
-  * **Event-driven architecture**
-  * **Callback functions**
-  * **The libuv library**, which manages the thread pool and event loop.
+  * **Event-driven architecture**   * **Callback functions**   * **The libuv library**, which manages the thread pool and event loop.
 * As a result, Node.js can efficiently handle **thousands of concurrent connections**.
 
 ---
 
 ### 2. Phases of the Event Loop
-
 Each tick of the event loop is divided into **phases**, which are executed in a specific order:
 
 | Phase                 | Description                                                                   |
@@ -143,7 +137,22 @@ Each tick of the event loop is divided into **phases**, which are executed in a 
    * If empty, it dequeues a callback from the appropriate phase and **pushes it to the call stack** for execution.
    * This cycle repeats continuously.
 
----
+
+  * **Node.js begins by executing top-level synchronous code** directly on the **call stack**.
+  * **Asynchronous operations** (e.g., file system access, DNS lookups, network calls, crypto) are **offloaded to the libuv thread pool**.
+  * Once these async operations are complete, their **callbacks are pushed into the appropriate queues**:
+   * **Timers Queue** (e.g., `setTimeout`, `setInterval`)
+   * **I/O Callbacks Queue**
+   * **Check Queue** (e.g., `setImmediate`)
+   * **Close Callbacks Queue**
+   * **Microtasks Queue** (e.g., `process.nextTick`, Promises)
+  * The **event loop continuously monitors** the system and checks:
+   * If the **call stack is empty**, it proceeds to the next phase of the loop.
+   * In each phase, it **dequeues the relevant callbacks** and **executes them by pushing them onto the call stack**.
+  * **Microtasks** are processed **between every phase**, and `process.nextTick()` is prioritized over Promises.
+  * This **cycle repeats continuously**, allowing Node.js to handle a large number of concurrent operations efficiently, without blocking.
+
+
 
 **Execution Priority**
 1.Current synchronous code runs (call stack).
@@ -190,35 +199,95 @@ Each tick of the event loop is divided into **phases**, which are executed in a 
 
 ---
 
-###  **Node.js Event Loop Example**
+
+### **Async Execution Order**
+
+| Function             | Phase             | Priority Order         | Use Case                              |
+| -------------------- | ----------------- | ---------------------- | ------------------------------------- |
+| `process.nextTick()` | Before event loop | 🔝 Highest (microtask) | Critical deferred logic, cleanup      |
+| `setImmediate()`     | Check phase       | After I/O              | Run after I/O, lowest-priority tasks  |
+| `setTimeout(fn, 0)`  | Timers phase      | After check phase      | General deferral, non-critical timing |
+
+
+```js
+setTimeout(() => console.log("Timeout"), 0);
+setImmediate(() => console.log("Immediate"));
+process.nextTick(() => console.log("NextTick"));
+console.log("Main");
+```
+**Output:**
+```
+Main          ----> sync
+NextTick      ----> runs before other microtasks
+Immediate     ----> check phase
+Timeout      ----> timer phase
+```
+
+
+
 
 ```js
 const fs = require('fs');
-
-console.log('Start');
-
-setTimeout(() => console.log('Timer 1'), 0);
-setImmediate(() => console.log('Immediate 1'));
-
-fs.readFile(__filename, () => {
-  console.log('File Read');
-});
-
-Promise.resolve().then(() => console.log('Promise resolved'));
-
-console.log('End');
+console.log('Start');                                                               //Sync code     
+setTimeout(() => console.log('setTimeout'), 0);                                     // Timers phase
+setImmediate(() => console.log('setImmediate'));                                    //Check phase
+fs.readFile(__filename, () => {   console.log('File Read'); });                     // Poll phase
+function add() {   return 5 * 2; }                                                  //Sync code     
+console.log('Add Result:', add());                                                  //Sync   code    
+process.nextTick(() => console.log('nextTick'));                                    // High priorty Microtask
+Promise.resolve((() => {   console.log("Promise inside ");   return "result";})())  //Synccode
+.then((res) => {  console.log("Promise Then got:", res);});                         //  Microtask
+console.log('End');                                                                 //Sync   code   
 ```
 
 #### 🧾 **Expected Output (Most likely)**
 
 ```
 Start
+Add Result: 10
+Promise inside 
 End
-Promise resolved
-Immediate 1
+nextTick
+Promise Then got: result
+setTimeout
+setImmediate
 File Read
-Timer 1
 ```
+
+
+```js
+console.log('Start'); // 1
+
+setTimeout(() => {
+  console.log('setTimeout 1'); // 6
+  process.nextTick(() => {console.log('nextTick inside setTimeout');});
+  Promise.resolve().then(() => { console.log('Promise in setTimeout');});
+}, 0);
+
+setImmediate(() => {  console.log('setImmediate'); });
+
+process.nextTick(() => {  console.log('nextTick 1'); });
+
+Promise.resolve((() => {   console.log("Promise resolve"); 
+  return "IIFE result";
+})()).then((res) => {  console.log("Promise Then got:", res); });
+
+console.log('End'); // 2
+```
+
+**Result**
+```
+Start
+Promise resolve
+End
+nextTick 1
+Promise Then got: IIFE result
+setTimeout 1
+nextTick inside setTimeout
+Promise in setTimeout
+setImmediate
+```
+
 
 #### 💡 **Explanation:**
 
@@ -277,61 +346,6 @@ Timer 1
 
 ---
 
-
-### **Async Execution Order**
-
-| Function             | Phase             | Priority Order         | Use Case                              |
-| -------------------- | ----------------- | ---------------------- | ------------------------------------- |
-| `process.nextTick()` | Before event loop | 🔝 Highest (microtask) | Critical deferred logic, cleanup      |
-| `setImmediate()`     | Check phase       | After I/O              | Run after I/O, lowest-priority tasks  |
-| `setTimeout(fn, 0)`  | Timers phase      | After check phase      | General deferral, non-critical timing |
-
-
-```js
-setTimeout(() => console.log("Timeout"), 0);
-setImmediate(() => console.log("Immediate"));
-process.nextTick(() => console.log("NextTick"));
-console.log("Main");
-```
-**Output:**
-```
-Main          ----> sync
-NextTick      ----> runs before other microtasks
-Immediate     ----> check phase
-Timeout      ----> timer phase
-```
-
-```js
-console.log('Start'); // 1
-setTimeout(() => {
-  console.log('setTimeout 1'); // 6
-  process.nextTick(() => {console.log('nextTick in setTimeout')}); // 7 
-  Promise.resolve().then(() => {
-    console.log('Promise inside setTimeout'); // 8
-  });
-}, 0);
-setImmediate(() => {  console.log('setImmediate'); }); // 9
-process.nextTick(() => {  console.log('nextTick 1'); }); // 4
-Promise.resolve(() => {
-  console.log("Working inside IIFE"); // 2 (sync)
-  return "result";
-}).then((res) => {
-  console.log("Then got:", res); // 5
-});
-console.log('End'); // 3
-```
-output:
-```js
-Start
-Working inside IIFE
-End
-nextTick 1
-Then got: result
-setTimeout 1
-nextTick inside setTimeout
-Promise inside setTimeout
-setImmediate
-```
 
 
 ### **SetImmediate vs processnextTick**:

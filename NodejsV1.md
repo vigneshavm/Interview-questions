@@ -121,7 +121,7 @@ Each tick of the event loop is divided into **phases**, which are executed in a 
 | **Check**             | Executes callbacks from `setImmediate()`                                      |
 | **Close Callbacks**   | Executes callbacks for closed resources (e.g., `socket.on('close')`)          |
 
-**Event Queue**
+**Event Queue** -The Event Queue (also known as the Callback Queue or Task Queue) 
 
 - The event queue is FIFO (First In, First Out).
 - It handles macrotasks like setTimeout, setInterval, DOM events.
@@ -130,22 +130,12 @@ Each tick of the event loop is divided into **phases**, which are executed in a 
 
 ### 3. How the Event Loop Works (Step-by-Step)
 
-   * Node.js begins by executing top-level code on the call stack.
-   * Time-consuming I/O operations (e.g., file system, DNS, crypto) are offloaded to the **libuv thread pool**.
-   * When async tasks complete, their **callbacks** are placed in the appropriate **queue** (e.g., timers queue, check queue, I/O queue).
-   * The event loop checks if the **call stack is empty**.
-   * If empty, it dequeues a callback from the appropriate phase and **pushes it to the call stack** for execution.
-   * This cycle repeats continuously.
-
-
+   
   * **Node.js begins by executing top-level synchronous code** directly on the **call stack**.
   * **Asynchronous operations** (e.g., file system access, DNS lookups, network calls, crypto) are **offloaded to the libuv thread pool**.
   * Once these async operations are complete, their **callbacks are pushed into the appropriate queues**:
-   * **Timers Queue** (e.g., `setTimeout`, `setInterval`)
-   * **I/O Callbacks Queue**
-   * **Check Queue** (e.g., `setImmediate`)
-   * **Close Callbacks Queue**
-   * **Microtasks Queue** (e.g., `process.nextTick`, Promises)
+   * **Timers Queue** (e.g., `setTimeout`, `setInterval`)    * **I/O Callbacks Queue**    * **Check Queue** (e.g., `setImmediate`)
+   * **Close Callbacks Queue**    * **Microtasks Queue** (e.g., `process.nextTick`, Promises)
   * The **event loop continuously monitors** the system and checks:
    * If the **call stack is empty**, it proceeds to the next phase of the loop.
    * In each phase, it **dequeues the relevant callbacks** and **executes them by pushing them onto the call stack**.

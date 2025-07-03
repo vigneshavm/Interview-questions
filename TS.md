@@ -2203,7 +2203,7 @@ interface Employee extends Person {
 
 ## Type Definition
 
-### ✅ TypeScript Type Definition
+**TypeScript Type Definition**
 
 ```ts
 type User = {
@@ -2215,7 +2215,7 @@ type User = {
 
 ---
 
-### ✅ Example Usage
+**Example Usage**
 
 ```ts
 const user1: User = {

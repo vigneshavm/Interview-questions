@@ -1498,20 +1498,17 @@ res.cookie('accessToken', token, {
 ---
 
 ## **Performance Optimization**
-| **Category**                      | **Optimization Strategies**                                                                                                                                                             |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Asynchronous Operations**       | - Use `async/await`, `fs.promises`<br>- Avoid sync APIs like `fs.readFileSync`                                                                                                          |
-| **Caching**                       | - Use **Redis** for shared caching<br>- In-process memory cache for lightweight data                                                                                                    |
-| **Database Optimization**         | - Add **indexes**<br>- Use **connection pooling** (`pg-pool`)<br>- Use **pagination**, **projections**, and avoid over-fetching<br>- Minimize round-trips via **batching** or **joins** |
-| **Efficient Code Practices**      | - Avoid long/blocking loops<br>- Use **Streams** for large files<br>- Offload to **worker threads** or use `setImmediate`                                                               |
-| **Compression**                   | - Enable **Gzip/Brotli** with `compression` middleware<br>- Minify JS/CSS                                                                                                               |
-| **Load Balancing & Clustering**   | - Enable **load balancing** (e.g., NGINX, AWS ALB)<br>- Use Node.js **Cluster module** or **PM2**                                                                                       |
-| **Lazy Loading & Code Splitting** | - Use `await import()` for **lazy module loading**<br>- Helps reduce startup time and memory                                                                                            |
-| **Rate Limiting & Throttling**    | - Apply `express-rate-limit` or similar middleware                                                                                                                                      |
-| **Monitoring & Profiling**        | - Tools: **clinic.js**, `node --inspect`, Chrome DevTools<br>- Monitor **event loop lag**, memory, GC                                                                                   |
-| **Observability & Logging**       | - Use **Winston** / **Pino**<br>- Monitor via **Prometheus**, **Datadog**, **ELK stack**<br>- Set up **alerts** for latency/errors                                                      |
-| **Real-world Example**            | - Reduced latency from **400ms to 150ms** by:<br>→ Redis caching<br>→ DB indexing<br>→ Media processing with **Bull + Redis**                                                           |
-
+| **Category**              | **Strategy**                                                               | **Category**               | **Strategy**                                                      |
+| ------------------------- | -------------------------------------------------------------------------- | -------------------------- | ----------------------------------------------------------------- |
+| **Async Operations**      | Use **`async/await`**, avoid blocking calls like **`fs.readFileSync`**     | **Caching**                | Use **Redis** or **in-memory cache** for frequent data            |
+| **Database Optimization** | Add **indexes**, use **pagination**, avoid over-fetching                   | **DB Connection Pooling**  | Use **`pg-pool`** or ORM pooling to reuse DB connections          |
+| **Code Efficiency**       | Use **Streams** for large files, avoid large **synchronous loops**         | **Background Jobs**        | Offload to **Bull**, **worker threads** for heavy operations      |
+| **Load Balancing**        | Use **clustering**, **PM2**, or **Node cluster module**                    | **Rate Limiting**          | Apply **`express-rate-limit`** to prevent abuse                   |
+| **Compression**           | Enable **Gzip/Brotli** using `compression` middleware                      | **Minification**           | **Minify JS/CSS** to reduce client-side load                      |
+| **Lazy Loading**          | Use **`await import()`** for conditional module loading                    | **Code Splitting**         | Load only needed parts/modules in large-scale apps                |
+| **Event Loop Monitoring** | Track loop lag with **`event-loop-lag`** or Node.js metrics                | **Profiling**              | Use **`clinic.js`**, **`node --inspect`**, or **Chrome DevTools** |
+| **Observability**         | Use **Winston/Pino** for structured logs                                   | **Monitoring Tools**       | Use **Prometheus**, **Datadog**, or **ELK stack**                 |
+| **Real-World Example**    | Reduced latency from **400ms → 150ms** via **Redis caching & DB indexing** | **Async Media Processing** | Offloaded to **Bull + Redis queues** for scalability              |
 
 
 

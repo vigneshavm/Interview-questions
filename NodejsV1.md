@@ -2401,35 +2401,86 @@ const asyncHandler = fn => (req, res, next) =>
 ---
 
 
-
 ## **Secure REST APIs**
 
+Security in REST APIs is multi-layered. I
+I follow **careful design, validated inputs, secure data handling, and runtime protection**
 
-* **Rate limiting**: Use `express-rate-limit` or reverse proxy like **NGINX** with rate limits
-* **Input validation**: Use libraries like `Joi`, `Zod`, or `express-validator` to validate and sanitize user inputs
-* **JWT**: Sign with secret or RSA key; verify on each request using middleware. Handle expiry, refresh tokens, and rotation securely.
-* **OAuth2**: Integrate using libraries like `passport`, `simple-oauth2` for third-party auth (Google, GitHub)
-* **Other practices**:
+* HTTPS & Secure Headers (`helmet`, `hpp`)
+* JWT with expiration & refresh
+* Role Based access control & proper authorization checks
+* Input validation (`Joi`, `Zod`, etc.)
+* Rate limiting + IP restrictions
+* CORS, CSP, and CSRF protection
+* Secrets managed in secure vaults
+* Continuous security scanning
+---
 
-  * HTTPS enforced
-  * CORS policies
-  * Helmet for setting secure HTTP headers
-  * Parameterized queries to avoid SQL Injection
-  * CSP and CSRF protection where needed
 
-Security is layered and must be validated via static analysis, runtime protection, and continuous testing.
+### **1. Transport Layer Security** - * **Always enforce HTTPS** to protect data in transit. 
+* Use **secure headers** with [`helmet`](https://www.npmjs.com/package/helmet).
 
-- Use HTTPS
-- Implement authentication (JWT, OAuth)
-- Add rate limiting
-- Sanitize inputs to prevent XSS/SQL injection
-- Use helmet and CORS
-* Use **JWT tokens or OAuth2** with token expiration and refresh logic.
-* Apply **rate limiting**, **IP whitelisting**, and **CORS control**.
-* Validate all input using libraries like `Joi`, `zod`, or `express-validator`.
-* Store secrets securely (e.g., **AWS Secrets Manager** or **Vault**).
-* Implement **RBAC** (Role-Based Access Control).
-* Enable **HTTPS** with secure headers (`helmet`, `hpp`).
+### **2. Authentication & Authorization**
+
+* Use **JWT** for stateless authentication.
+
+  * Sign with a secure **secret** or **RSA key**.
+  * Validate tokens via middleware.
+  * Implement **expiry, refresh tokens**, and **token rotation**.
+* For third-party login, use **OAuth2** (e.g., Google, GitHub).
+
+  * Libraries: `passport`, `simple-oauth2`
+* Implement **RBAC (Role-Based Access Control)** to control access to resources.
+
+---
+
+### **3. Input Validation & Sanitization**
+
+* Prevent **XSS, SQL Injection**, and data corruption.
+* Validate and sanitize all incoming data:
+
+  * Libraries: `Joi`, `Zod`, `express-validator`
+* Use **parameterized queries** with ORM or raw SQL to prevent injection attacks.
+
+---
+
+### **4. Rate Limiting & Throttling**
+
+* Protect APIs from abuse and DoS attacks:
+
+  * Use `express-rate-limit`
+  * Or configure **NGINX** / **API Gateway** for rate control
+* Implement **IP whitelisting** for sensitive endpoints.
+
+---
+
+### **5. CORS & Browser Security**
+
+* Configure **CORS policies** strictly using `cors` middleware.
+* Enforce **Content Security Policy (CSP)** headers.
+* Add **CSRF protection** where needed (e.g., cookies-based auth).
+
+---
+
+### **6. Secrets & Token Management**
+
+* Never hardcode secrets or API keys.
+* Store secrets securely using:
+
+  * **AWS Secrets Manager**
+  * **HashiCorp Vault**
+  * `.env` files + secure CI/CD vaulting (for local dev)
+
+---
+
+### **7. Continuous Security**
+
+* Conduct **static analysis (SAST)** and **runtime testing (DAST)**.
+* Monitor for vulnerabilities with tools like:
+
+  * `npm audit`, `snyk`, `OWASP ZAP`
+
+
 
 Example with JWT:
 ```ts

@@ -1,3 +1,18 @@
+## Scalable and highly available RESTful APIs
+
+* **Node.js with Express/Fastify** for RESTful API development
+* **Stateless architecture** for **horizontal scaling** behind **load balancers** (e.g., NGINX, AWS ALB)
+* **Cluster module or PM2** to leverage **multi-core CPUs**
+* **Redis caching** for frequently accessed data
+* **Queue systems** (e.g., **Bull + Redis**) for background processing
+* **Rate limiting** and **throttling** for abuse protection
+* **Docker + Kubernetes** (or **AWS ECS**) for containerized deployments
+* **Multi-AZ**, **health checks**, and **auto-scaling** for high availability
+* **Centralized logging** using **Winston**, integrated with **ELK stack** or **Datadog**
+* **Security:** Helmet, CORS, and **JWT/OAuth2-based auth**
+* **Swagger/OpenAPI** for API documentation
+* **Jest & Supertest** for unit and integration testing
+
 | **Category**                 | **Topics**                                                                                                                                                                                                                                                                                                                                                                                  |
 |-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature)                                                                                                                                                                                                                               |
@@ -13,13 +28,13 @@
 | **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications), [Logging Errors](#logging-errors), [Debugging](#debugging-nodejs-applications), [REST API Errors](#error-handling-in-rest-apis)                                                                                                                                                                                                   |
 | **Performance Optimization** | [Performance Optimization](#performance-optimization), [Improve Performance](#strategies-for-improving-performance-in-nodejs-applications), [Latency Profiling](#profiling-and-optimizing-latency), [Performance Pitfalls](#common-performance-pitfalls), [Handle CPU Tasks](#Handle-CPU-intensive-task)                                                                                    |
 | **Concurrency && Scaling**              | [Concurrent Requests](#Concurrent-CPU-intensive-requests), [100K Concurrent](#Handling-100000-concurrent-requests), [Handle Concurrency](#Handle-Concurrency) ,[High Traffic Scaling](#Scaling-High-Traffic)         ,    [Scalability Issues](#scalability-issues)                                                                                                                                                                                                                    |
-| **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production), [PM2](#pm2), [Load Balancing](#load-balancing), [Microservices Communication](#microservices-communication)      , [monolithic vs microservices](#monolithic-vs-microservices)                                                                                                                                                                                                   |
+| **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production), [PM2](#pm2), [Load Balancing](#load-balancing)                                                                                                                                                                                                  |
+| **Microservices**               | [Microservices Communication](#microservices-communication)      , [monolithic vs microservices](#monolithic-vs-microservices)                                                                                                                                                                                                   |
 | **Database Interaction**     | [SQL Connection](#sql-connection), [MongoDB Connection](#mongodb-connection), [DB Connections](#database-connections), [Transactions](#database-transactions), [Distributed Data Consistency](#data-consistency-across-distributed-services)                                                                                                                                                |
 
 - [Logging system](#Logging-system)
 - [Type safety across multiple services](#Type-safety-across-multiple-services)
 - [Handles large data sets](#Handles-large-data-sets)
-- [monolithic vs microservices](#monolithic-vs-microservices)
 
 ## **Create Node App using JS**
 
@@ -1385,11 +1400,9 @@ console.log(process.env.API_KEY);
 
 ##  **Node.js with Redis (Caching)**
 
- 
 
 - Redis is used for caching, session storage, pub/sub.
 - Reduces DB load by storing frequently accessed data.
-
 
 
 ```js
@@ -3825,7 +3838,6 @@ app.get('/user/profile', authenticateToken, (req, res) => {
 
  - In summary, a **Rate Limiter** is a defensive pattern that protects APIs and services from being overwhelmed by **controlling request frequency**, enhancing **reliability, scalability, and security** in distributed systems.
 
-### 🔍 Purpose:
 
 * Prevent overloading the system with too many requests.
 * Ensure **fair usage policies** (e.g., 100 requests per minute per user).

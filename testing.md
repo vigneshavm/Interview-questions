@@ -21,7 +21,7 @@
 **NodeJs** - [Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest)  -- [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai)
 
  
-**Security**  - [Security](#Security)  - [React Security](#React-Security) - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    - [Input Validation](#input-validation-and-its-importance) |
+**Security**  - [HttpOnly Cookies](#HttpOnly-Cookies)  [Security](#Security)  - [React Security](#React-Security) - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    - [Input Validation](#input-validation-and-its-importance) |
 
 
 **Performance Optimization**  - [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    - [Lazy Loading](#lazy-loading)    - [Caching](#leveraging-caching-strategies-for-performance-optimization)    - [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    - [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    - [Scalability](#Scalability)   -- [Troubleshoot and debug issue](#Troubleshoot-and-debug-issue)
@@ -5036,3 +5036,11 @@ npx webpack-bundle-analyzer dist/stats.json
 >  **Key Point:** Bundle size impacts **FCP (First Contentful Paint)** and **TTI (Time to Interactive)**.
 
 ---
+
+
+**HttpOnly Cookies**
+
+- An HttpOnly cookie is a cookie set by the server with the HttpOnly flag, meaning:
+- It cannot be accessed or modified by JavaScript (i.e., document.cookie won’t show it)
+- It is only sent in HTTP(S) requests (automatically by the browser)
+- It protects against XSS (Cross-Site Scripting) attacks

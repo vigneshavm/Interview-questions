@@ -852,39 +852,105 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 
 
 ## Error Handling in Components
-
-- Use **Error Boundaries** in class components to catch JavaScript errors in child components.
-- Error boundaries only work in class components, 
-- but you can wrap functional components in an error boundary HOC or use libraries like react-error-boundary.
-
-```jsx
-class ErrorBoundary extends React.Component {
-  componentDidCatch(error, info) {
-    console.log("Error:", error);
-  }
-  render() {
-    return this.props.children;
-  }
-}
-```
-
-- Functional components still require class-based boundaries or external libraries.
-```jsx
-import { ErrorBoundary } from 'react-error-boundary';
-function ErrorFallback({ error }: { error: Error }) {
-  return <div role="alert">Something went wrong: {error.message}</div>;
-}
-
-function App() {
-  return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <MyComponent />
-    </ErrorBoundary>
-  );
-}
-```
+Here's an optimized, **interview-style answer** for the question:
 
 ---
+
+### 🎯 **Interview Question: How do you handle errors in React applications?**
+
+- In React applications, especially large-scale ones, 
+- I follow a **multi-layered error handling approach** to ensure both a smooth user experience and effective debugging.”
+- I combine **Error Boundaries**, **try/catch for async**, and **global monitoring** 
+- To ensure React apps are **resilient, debuggable**, and provide a seamless experience even when something breaks.”
+
+
+#### 1. **Component-Level Error Boundaries**
+
+* I use **Error Boundaries** (class components) to catch **render-time errors** in their child component tree.
+* Example:
+
+  ```jsx
+  class ErrorBoundary extends React.Component {
+    state = { hasError: false };
+
+    static getDerivedStateFromError() {
+      return { hasError: true };
+    }
+
+    componentDidCatch(error, info) {
+      // Log error to service like Sentry
+    }
+
+    render() {
+      return this.state.hasError ? <FallbackUI /> : this.props.children;
+    }
+  }
+  ```
+* Wrap key areas like routes or feature modules:
+
+  ```jsx
+  <ErrorBoundary>
+    <Dashboard />
+  </ErrorBoundary>
+  ```
+
+---
+
+#### 2. **Global Error Monitoring**
+
+* Integrate tools like **Sentry**, **LogRocket**, or **Firebase Crashlytics** for production error reporting.
+* Automatically logs:
+
+  * Uncaught exceptions
+  * Stack traces
+  * User/environment info
+
+---
+
+#### 3. **Try/Catch in Async Code**
+
+* For **async/await operations**, I always wrap logic in `try/catch` blocks to gracefully handle API or runtime errors:
+
+  ```js
+  try {
+    const data = await fetchData();
+  } catch (error) {
+    setError(error.message);
+  }
+  ```
+
+---
+
+#### 4. **Graceful Degradation & Fallback UI**
+
+* I use conditionals to **show fallback components** (spinners, retry buttons, offline UI) when parts of the app fail.
+* Example:
+
+  ```jsx
+  {error ? <ErrorMessage /> : <MainContent />}
+  ```
+
+---
+
+#### 5. **Form & Validation Errors**
+
+* For forms, I handle field-level and submission errors using:
+
+  * Libraries like **Formik** or **React Hook Form**
+  * Schema validation tools like **Yup** or **Zod**
+
+---
+
+#### 6. **Network Error Handling**
+
+* Wrap all API calls with a utility that handles:
+
+  * Timeout fallback
+  * Retry logic
+  * Global toast notifications using **React Toastify**, **Snackbar**, or custom alerts
+
+---
+
 
 ## Performance Optimization
  - Managing performance in large React apps involves a combination 

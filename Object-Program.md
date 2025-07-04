@@ -12,7 +12,7 @@
 | 🔍 **Data Cleaning & Aggregation**                                    |  **Compare** | 🧪 **Advanced Transformations**                                                     |
 | --------------------------------------------------------------------- | - | ----------------------------------------------------------------------------------- |
 | [Extract Unique Values by Key](#extract-unique-values-by-key)         | [Compare JSON objects](#Compare-JSON-objects)  | [Transform Data Based on External Schema](#transform-data-based-on-external-schema) |
-| [Remove Duplicates by Value](#remove-duplicates-by-value)             |   | [Chainable Data Transform Utility](#chainable-data-transform-utility)               |
+| [Remove Duplicates by Value](#remove-duplicates-by-value)             | [Compare array](#Compare-array)  | [Chainable Data Transform Utility](#chainable-data-transform-utility)               |
 | [Group Products by Key then Count](#group-products-by-key-then-count) |   |                                                                                     |
 
 ---

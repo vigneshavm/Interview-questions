@@ -4266,12 +4266,12 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 
 - JavaScript uses **automatic garbage collection** to manage memory.
- The JavaScript engine tracks all objects created during runtime and frees up memory when objects are no longer in use.
+ The JavaScript engine tracks all objects **created during runtime and frees up memory when objects are no longer in use**.
 
   **Key concepts**:
   - **Mark-and-Sweep Algorithm**: This is the most common garbage collection strategy in JavaScript. It works in two main phases:
-    **Marking**: The garbage collector marks all objects that are reachable (i.e., objects that are referenced directly or indirectly by other objects).
-    **Sweeping**: It then removes objects that are not marked (i.e., those that are unreachable or no longer referenced).
+  - **Marking**: The garbage collector **marks all objects that are reachable** (i.e., objects that are referenced directly or indirectly by other objects).
+  - **Sweeping**: It then **removes objects that are not marked** (i.e., those that are unreachable or no longer referenced).
 
   - **Reachability**: An object is considered reachable if it is referenced by any part of the program, directly or indirectly. Objects that are no longer reachable are considered eligible for garbage collection.
 

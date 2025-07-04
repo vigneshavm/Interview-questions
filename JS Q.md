@@ -12,7 +12,7 @@
 | **Objects**        | • [Object.assign() vs Spread](#objectassign-vs-spread-operator) • [Object.create() & Prototype Chains](#object-create-and-prototype-chains) • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions) |
 | **Modules & DOM**   |  • [innerHTML vs textContent](#innerhtml-vs-textcontent) • [CSS Manipulation](#css-manipulation) • [JS Modules (import/export)](#javascript-modules-importexport) • [CommonJS vs ES Modules](#commonjs-vs-es-modules)                              |
 | **Browser APIs**             |  • [Cookies vs sessionStorage vs localStorage](#cookies-and-sessionstorage-and-localstorage) • [Window vs Document](#window-vs-document) • [window.history API](#using-window-history-api) • [Web Workers](#web-workers) • [WebSocket API](#websocket-api)                                                                                                                                                                                                                                                                                                                                           |
-| **Error Handling**           |  • [Custom Error](#custom-error) • [Unexpected Outputs](#understanding-unexpected-outputs) • [Web Communication Protocols](#web-communication-protocols)             • [Test Driven Development](#Test-Driven-Development)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Error Handling**           |  • [Custom Error](#custom-error)  • [Web Communication Protocols](#web-communication-protocols)             • [Test Driven Development](#Test-Driven-Development)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 
 
@@ -332,6 +332,16 @@ JSON.stringify(a) == JSON.stringify(b)  --> true  ie)Because JSON.stringify remo
 | `false === '0'`      | false  | Boolean vs string                       |
 | `0 === '0'`          | false  | Number vs string                        |
 | `NaN === NaN;`       | `false`| NaN is never equal to anything               |
+
+
+```javascript
+    console.log(null == undefined); // true
+    console.log(null === undefined); // false
+    console.log(NaN == NaN); // false
+    console.log(NaN === NaN); // false
+    console.log(isNaN(NaN)); // true
+    correct way to check is `isNaN()` function
+    ```
 
 **Abstract Equality (`==`) – Allows Type Coercion**
 
@@ -4321,47 +4331,6 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
  
 ---
 
-## **Understanding Unexpected Outputs**
-
-
-
-- JavaScript’s dynamic typing and implicit type coercion can lead to some surprising behavior. Here are a few examples of unexpected outputs:
-
-  - **Comparing `null` and `undefined`**:
-    ```javascript
-    console.log(null == undefined); // true
-    console.log(null === undefined); // false
-    ```
-
-    - `==` compares only values, so `null` and `undefined` are considered equal. However, `===` compares both value and type, so they are not strictly equal.
-
-  - **`NaN` Comparisons**:
-    ```javascript
-    console.log(NaN == NaN); // false
-    console.log(NaN === NaN); // false
-    console.log(isNaN(NaN)); // true
-    ```
-
-    - `NaN` is not equal to itself, which is an odd and unexpected behavior. The correct way to check if a value is `NaN` is using the `isNaN()` function.
-
-  - **Arithmetic with `+` and Non-Numbers**:
-    ```javascript
-    console.log([] + []); // ""
-    console.log([] + {}); // "[object Object]"
-    console.log({} + []); // 0 (unintended behavior due to syntax)
-    console.log("5" - 1); // 4 (string coerced to a number)
-    ```
-
-    - The `+` operator attempts to concatenate strings, but the result can be surprising when used with arrays or objects.
-    - The `-` operator coerces strings into numbers, which can lead to arithmetic even with strings that look like numbers.
-
-  **Key Takeaways**:
-  - Be aware of **JavaScript's type coercion** when comparing values or performing arithmetic.
-  - **Always use strict equality (`===`)** to avoid unexpected type coercion.
-  - Understand that **`NaN` is a special case** and is not equal to itself.
-  - Always test expressions carefully to avoid unexpected outputs, especially when using operators with complex data types.
-
----
 
 
 
@@ -5388,6 +5357,13 @@ console.log(a, "A5"); // 10 A5
 
 
 ### **JS Object Coercion**
+
+ ```javascript
+    console.log([] + []); // ""
+    console.log([] + {}); // "[object Object]"
+    console.log({} + []); // 0 (unintended behavior due to syntax)
+    console.log("5" - 1); // 4 (string coerced to a number)
+    ```
 
 
 | Expression           | Result               | Type   | Explanation                                     |

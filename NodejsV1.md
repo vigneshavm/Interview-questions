@@ -1523,18 +1523,97 @@ res.cookie('accessToken', token, {
 
 ## **Microservices Communication**
 
-- **Synchronous**: Use **HTTP REST** or **gRPC**.
-- **Asynchronous**: Use **message queues** (RabbitMQ, Kafka) for decoupling services.
+**Synchronous Communication (HTTP)**
 
-Example of an **event-driven** architecture:
-```js
-const emitter = new EventEmitter();
-emitter.emit('userCreated', { userId: 1, name: 'John' });
+* Services expose **REST APIs** using **Express** or **Fastify**.
+* Internal services interact via **HTTP clients** like `axios` or `node-fetch`.
+* For reliability:
+  * Implement **timeouts**, **retries**, and **circuit breakers** using libraries like `opossum`.
+* Best suited for real-time, request/response workflows (e.g., user login, fetching profile).
 
-emitter.on('userCreated', (data) => {
-  console.log('User created:', data);
-});
+**Asynchronous Communication (Messaging/Event-Driven)**
+* Use **message queues** or **event brokers** like:
+  * **RabbitMQ** (`amqplib`)   * **Kafka** (`kafkajs`)   * **Redis Pub/Sub** (`ioredis`)
+* Services **publish events** or **enqueue jobs**, and consumers process them independently.
+* Ideal for background processing like:
+  * Notifications   * Video rendering   * Order fulfillment
+
+**Monitoring, Logging & Tracing**
+* Use **correlation IDs** to trace requests across services.
+* Logging: **Winston**, **Pino**
+
+
+* `video-request-service`: Publishes a message when a user requests a video.
+* `media-processor-service`: Listens to the queue and processes the video request.
+
+
+**Folder Structure**
 ```
+video-request-service/── src/── publisher/── videoPublisher.ts
+media-processor-service── src/── consumer/── videoConsumer.ts
+```
+
+
+## ✅ Step 1: **video-request-service** – RabbitMQ Publisher
+
+```ts
+// video-request-service/src/publisher/videoPublisher.ts
+import amqplib from 'amqplib';
+const QUEUE_NAME = 'video_jobs';
+export async function publishVideoJob(data: { userId: string; videoUrl: string }) {
+  const connection = await amqplib.connect('amqp://localhost');
+  const channel = await connection.createChannel();
+  await channel.assertQueue(QUEUE_NAME, { durable: true });
+  const messageBuffer = Buffer.from(JSON.stringify(data));
+  channel.sendToQueue(QUEUE_NAME, messageBuffer, { persistent: true });
+  console.log('📤 Job sent to queue:', data);
+  setTimeout(() => {     connection.close();  }, 500);
+}
+```
+
+#### 🔸 Usage in controller
+
+```ts
+await publishVideoJob({ userId: '123', videoUrl: 'http://cdn.com/raw.mp4' });
+```
+
+---
+
+## 🛠️ Step 2: **media-processor-service** – RabbitMQ Consumer
+
+```ts
+// media-processor-service/src/consumer/videoConsumer.ts
+import amqplib from 'amqplib';
+const QUEUE_NAME = 'video_jobs';
+async function startConsumer() {
+  const connection = await amqplib.connect('amqp://localhost');
+  const channel = await connection.createChannel();
+  await channel.assertQueue(QUEUE_NAME, { durable: true });
+  console.log('🎧 Waiting for messages in queue:', QUEUE_NAME);
+  channel.consume(QUEUE_NAME, async (msg) => {
+    if (msg !== null) {
+      const content = JSON.parse(msg.content.toString());
+      console.log('📥 Received job:', content);
+      // Simulate video processing
+      await new Promise((res) => setTimeout(res, 3000));
+      console.log(`✅ Processed video for user ${content.userId}`);
+      channel.ack(msg); // acknowledge message
+    }
+  });
+}
+startConsumer().catch(console.error);
+```
+
+
+## 🧠 Key Notes
+
+| Component          | Tool          | Responsibility                          |
+| ------------------ | ------------- | --------------------------------------- |
+| Publisher          | `amqplib`     | Sends job messages to RabbitMQ          |
+| Consumer           | `amqplib`     | Listens and processes jobs              |
+| Broker             | RabbitMQ      | Queues and buffers messages             |
+| Message Durability | `persistent`  | Ensures messages survive broker restart |
+| Reliability        | `channel.ack` | Acknowledge messages after processing   |
 
 ---
 

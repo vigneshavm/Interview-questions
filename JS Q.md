@@ -3241,7 +3241,7 @@ Both **debounce** and **throttle** are techniques to control the frequency of fu
 #### **Currying in JavaScript**
 
 
-- **Currying** is a technique where a function that takes multiple arguments is transformed into a sequence of functions, each taking a single argument. 
+- **Currying** is a technique where a function that **takes multiple arguments is transformed into a sequence of functions**, each taking a single argument. 
 - It allows for partial function application, where you can fix some arguments ahead of time.
 
 - **Example**:

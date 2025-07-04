@@ -5038,7 +5038,7 @@ npx webpack-bundle-analyzer dist/stats.json
 ---
 
 
-**HttpOnly Cookies**
+## **HttpOnly Cookies**
 
 - An HttpOnly cookie is a cookie set by the server with the HttpOnly flag, meaning:
 - It cannot be accessed or modified by JavaScript (i.e., document.cookie won’t show it)

@@ -852,12 +852,6 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 
 
 ## Error Handling in Components
-Here's an optimized, **interview-style answer** for the question:
-
----
-
-### 🎯 **Interview Question: How do you handle errors in React applications?**
-
 - In React applications, especially large-scale ones, 
 - I follow a **multi-layered error handling approach** to ensure both a smooth user experience and effective debugging.”
 - I combine **Error Boundaries**, **try/catch for async**, and **global monitoring** 

@@ -1148,6 +1148,130 @@ console.log(deepEqual(objA, objB)); // true ✅
 
 
 
+## Compare Array
+```js
+[1, 2, 3, 4] == [1, 2, 3]; // ❌ false
+[1, 2, 3, 4] === [1, 2, 3, 4]; // ❌ false even though content is same
+- two arrays have identical content, they are still **different objects in memory — not equal by reference**.
+```
+
+- [compare order array](#compare-order-array)
+- [Compare unorder array](#compare-unorder-array)
+- [Compare Ordered Array of Objects](#compare-ordered-array-of-objects)
+- [Compare Unordered Array of Objects](#compare-unordered-array-of-objects)
+
+- ## Compare order array
+```js
+function compareOrderedArrays(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+}
+```
+
+## Compare unorder array
+```js
+function compareUnorderedArrays(arr1, arr2) {
+  // ✅ First, check if both arrays have the same length
+  if (arr1.length !== arr2.length) return false;
+
+  // 📦 Clone and sort both arrays to avoid mutating original inputs
+  const sorted1 = [...arr1].sort();
+  const sorted2 = [...arr2].sort();
+
+  // 🔁 Compare each element one by one
+  return sorted1.every((value, index) => value === sorted2[index]);
+}
+```
+
+## Compare order array of object
+```js
+function deepEqual(a, b) {
+  // ✅ Fast path: if both references are exactly equal (same value or object)
+  if (a === b) return true;
+
+  // ❌ If either is not an object or is null, they can't be equal (excluding typeof null === 'object' quirk)
+  if (typeof a !== "object" || a === null || typeof b !== "object" || b === null) {
+    return false;
+  }
+
+  // 📦 Handle arrays specifically
+  if (Array.isArray(a)) {
+    // ❌ If only one is an array or lengths mismatch, return false
+    if (!Array.isArray(b) || a.length !== b.length) return false;
+
+    // 🔁 Recursively compare each element in the array
+    for (let i = 0; i < a.length; i++) {
+      if (!deepEqual(a[i], b[i])) return false;
+    }
+
+    // ✅ All elements matched
+    return true;
+  }
+
+  // 🧾 Handle plain objects
+
+  // Get keys from both objects
+  const keysA = Object.keys(a);
+  const keysB = Object.keys(b);
+
+  // ❌ Different number of keys → objects not equal
+  if (keysA.length !== keysB.length) return false;
+
+  // 🔁 Check if each key and its value deeply matches
+  for (let key of keysA) {
+    // ❌ Key missing in other object OR values don't match
+    if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false;
+  }
+
+  // ✅ All keys and values matched
+  return true;
+}
+
+```
+
+## Compare unorder array of object
+```js
+function deepEqual(a, b) {
+  if (a === b) return true;
+
+  if (typeof a !== "object" || a === null || typeof b !== "object" || b === null) {
+    return false;
+  }
+
+  // Handle arrays
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) return false;
+
+    const used = new Array(b.length).fill(false);
+
+    return a.every(itemA => {
+      for (let i = 0; i < b.length; i++) {
+        if (!used[i] && deepEqual(itemA, b[i])) {
+          used[i] = true;
+          return true;
+        }
+      }
+      return false;
+    });
+  }
+
+  // If one is array and other is not
+  if (Array.isArray(a) !== Array.isArray(b)) return false;
+
+  // Handle objects
+  const keysA = Object.keys(a);
+  const keysB = Object.keys(b);
+
+  if (keysA.length !== keysB.length) return false;
+
+  return keysA.every(key => keysB.includes(key) && deepEqual(a[key], b[key]));
+}
+```
+
+
 
 
 

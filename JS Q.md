@@ -4358,8 +4358,8 @@ d → Dog.prototype → Animal.prototype → Object.prototype → null
 
 ### **Prototypal Inheritance**
 
-- **Definition**: Prototypal Inheritance is a JavaScript feature where objects inherit properties and methods from other objects via a prototype chain.
-- Every object in JavaScript has an internal link (`[[Prototype]]`), accessible using `__proto__`, which points to its prototype object.
+- **Definition**: Prototypal Inheritance is a JavaScript feature where **objects inherit properties and methods from other objects via a prototype chain**.
+- Every object in JavaScript has an **internal link (`[[Prototype]]`), accessible using `__proto__`**, which points to its prototype object.
 - When a property or method is not found on an object, JavaScript automatically looks **up the prototype chain** to find it.
 - It supports **behavior reuse**, reducing memory overhead by sharing methods through the prototype instead of copying them.
 - Can be implemented using:

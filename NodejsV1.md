@@ -865,30 +865,62 @@ console.log(`Platform: ${process.platform}`);
  - [Cluster Module](#cluster-module)
 
 
-* **Cluster Module**:
+- In Node.js, help overcome its single-threaded nature and handle **CPU-bound tasks**, **parallel execution**, and **scaling**
+- I use **Worker Threads** for **parallel computation**,**heavy JS computations** without blocking the main thread.
+- **Child Processes** for **external script execution** or heavy isolation, 
+- **Cluster** for **horizontally scaling servers** to handle more traffic across all CPU cores.”
 
-  * Creates multiple processes to handle requests across multiple CPU cores.
-  * Used for **load balancing** and **multi-core utilization**.
-  * Clustering spawns multiple Node.js processes to handle concurrent requests on multiple cores. 
-* **Child Process**:
+**Worker Threads**
 
-  * Executes external commands or scripts in separate processes.
-  * Used for running shell commands or interacting with other applications.
-* **Worker Threads**:
+* **Used For:** - Running **CPU-intensive tasks** (e.g., image processing, encryption) in parallel without blocking the main event loop.
+* Runs in the same process, but different threads (`worker_threads` module).
+* Shares memory via `SharedArrayBuffer` if needed.
+* Best for **offloading computation** while keeping I/O in the main thread.
+* **Example** Video rendering > * Complex mathematical calculations > * JSON parsing of huge files
 
-  * Runs JavaScript code in separate threads within the same process.
-  * Ideal for **CPU-intensive tasks** that need parallel execution without blocking the main event loop.
-  * Worker threads allow Node.js to perform CPU-intensive operations in parallel, as Node.js is single-threaded by default.
-  * Use them for heavy computations (e.g., image processing, large data parsing).
-  * Worker threads share memory and run inside a single process.
-
-
+```ts
+const { Worker } = require('worker_threads');
+```
 
 
-### 📝 **Summary:**
-- **Use Cluster**  --> **scaling Node.js servers** to use all CPU cores.
-- **Use Child Process** --> **running external programs** or isolating code.
-- **Use Worker Thread** --> **heavy JS computations** without blocking the main thread.
+**Child Processes**
+
+* **Used For:** Running **external scripts or system-level tasks** in **separate OS processes**.
+* Uses the `child_process` module (`spawn`, `fork`, `exec`).
+* Each process has its own memory and event loop.
+* Good for **task isolation**, **script execution**, or **language interoperability** (e.g., calling Python from Node).
+* **Example** > * Spawning a shell command > * Running a Python script from Node > * Heavy log processing in a forked process
+
+```ts
+const { fork } = require('child_process');
+```
+
+**3. Cluster Module**
+
+* ✅ **Used For:**  **Scaling** a Node.js app across **multiple CPU cores** by creating multiple instances of the same server.
+* Built-in load balancing using `cluster` module.
+* Each process gets its own Node.js instance, can handle requests in parallel.
+* Ideal for **horizontal scaling** of web servers.
+* **Example Use Case:** > * Scaling an HTTP server to utilize all CPU cores > * High concurrency REST API server
+
+```ts
+const cluster = require('cluster');
+```
+
+---
+
+## 📊 **Comparison Table**
+
+| Feature                 | Worker Threads             | Child Process               | Cluster Module                     |
+| ----------------------- | -------------------------- | --------------------------- | ---------------------------------- |
+| Execution Model         | Thread (same process)      | New process                 | Multiple server instances (forked) |
+| Communication           | MessageChannel, shared mem | IPC (message passing)       | IPC with master process            |
+| Use Case                | CPU-bound tasks            | Script execution, isolation | Scale HTTP servers                 |
+| Shared Memory           | Yes                        | No                          | No                                 |
+| Built-in Load Balancing | ❌                          | ❌                           | ✅                                  |
+
+
+
 
 
 | Feature / Aspect          | **Cluster Module**                          | **Child Process**                            | **Worker Thread**                          |

@@ -5044,3 +5044,36 @@ npx webpack-bundle-analyzer dist/stats.json
 - It cannot be accessed or modified by JavaScript (i.e., document.cookie won’t show it)
 - It is only sent in HTTP(S) requests (automatically by the browser)
 - It protects against XSS (Cross-Site Scripting) attacks
+
+
+```js
+Set Cookie from Auth Service (Node.js / Express)
+res.cookie('jwt', token, {
+  httpOnly: true,
+  secure: true,           // HTTPS required in production
+  sameSite: 'Lax',        // Or 'None' for cross-site (see below)
+  domain: '.yourdomain.com',  // 🔥 KEY: Share across services
+  maxAge: 60 * 60 * 1000  // 1 hour
+});
+🔒 domain: '.yourdomain.com' allows cookie to be used by auth.yourdomain.com, api.yourdomain.com, etc.
+```
+
+```js
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://your-frontend.yourdomain.com',  // frontend app
+  credentials: true                                 // allow cookies
+}));
+```
+
+```js
+Using fetch:
+fetch('https://api.yourdomain.com/user/profile', {
+  method: 'GET',
+  credentials: 'include' // ✅ sends cookies
+});
+Using axios:
+axios.get('https://api.yourdomain.com/user/profile', {
+  withCredentials: true
+});
+```

@@ -1,25 +1,21 @@
-• [Nested Property – Filter](#nested-property-filter)  • [Nested Property Update Without Mutation](#nested-property-update-without-mutation)
 
-• [Nested Object – Flatten](#nested-object-flatten)  • [Nested Property – Sort](#nested-property-sort)
+| 🧩 **Nested Data Utilities**                                                        | 🧾 **Object Utilities**                                           | 🧮 **Array/Object Conversion & Lookup**                                             |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [Nested Property – Filter](#nested-property-filter)                                 | [Key Renaming](#key-renaming)                                     | [Nested Array of Objects – Extract Fields](#nested-array-of-objects-extract-fields) |
+| [Nested Property Update Without Mutation](#nested-property-update-without-mutation) | [Grouping Key](#key-grouping)                                     | [Array of Objects into a Lookup Object](#array-of-objects-into-a-lookup-object)     |
+| [Nested Object – Flatten](#nested-object-flatten)                                   | [Custom `map()` for Objects](#custom-map-for-objects)             | [Merge Two Arrays by ID](#merge-two-arrays-by-id)                                   |
+| [Nested Property – Sort](#nested-property-sort)                                     | [Invert Key-Value Pairs](#invert-key-value-pairs)                 | [Convert Flat List to Tree Structure](#convert-flat-list-to-tree-structure)         |
+| [Nested – Find Deepest Key Path](#nested-find-deepest-key-path)                     | [Remove Keys Based on Condition](#remove-keys-based-on-condition) |                                                                                     |
+| [Nested Objects – Recursive Merge of Two](#nested-objects-recursive-merge-of-two)   | [Convert Object to Query String](#convert-object-to-query-string) |                                                                                     |
 
-• [Nested – Find Deepest Key Path](#nested-find-deepest-key-path)  • [Nested Objects – Recursive Merge of Two](#nested-objects-recursive-merge-of-two)
 
-• [Nested Array of Objects – Extract Fields](#nested-array-of-objects-extract-fields) 
+| 🔍 **Data Cleaning & Aggregation**                                    |   | 🧪 **Advanced Transformations**                                                     |
+| --------------------------------------------------------------------- | - | ----------------------------------------------------------------------------------- |
+| [Extract Unique Values by Key](#extract-unique-values-by-key)         |   | [Transform Data Based on External Schema](#transform-data-based-on-external-schema) |
+| [Remove Duplicates by Value](#remove-duplicates-by-value)             |   | [Chainable Data Transform Utility](#chainable-data-transform-utility)               |
+| [Group Products by Key then Count](#group-products-by-key-then-count) |   |                                                                                     |
 
-• [Array of Objects into a Lookup Object](#array-of-objects-into-a-lookup-object)
-
-• [Merge Two Arrays by ID](#merge-two-arrays-by-id) • [Remove Keys Based on Condition](#remove-keys-based-on-condition)
-
-• [Convert Object to Query String](#convert-object-to-query-string)  • [Convert Flat List to Tree Structure](#convert-flat-list-to-tree-structure)
-
-• [Extract Unique Values by Key](#extract-unique-values-by-key)  • [Remove Duplicates by Value](#remove-duplicates-by-value)
-
-• [Custom `map()` for Objects](#custom-map-for-objects)  • [Chainable Data Transform Utility](#chainable-data-transform-utility)
-
-• [Transform Data Based on External Schema](#transform-data-based-on-external-schema)  • [Invert Key-Value Pairs](#invert-key-value-pairs)
-
-• [Group Products by Key then Count](#group-products-by-key-then-count)  • [Grouping Key](#key-grouping)  • [Key Renaming](#key-renaming)  
-
+---
 
 
 

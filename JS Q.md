@@ -3136,10 +3136,10 @@ Optimizing network requests is crucial to improve the loading speed and overall 
 
 
 - **Pure Functions**:
-  - A pure function is a function that always produces the same output for the same input and has no side effects (does not modify any external state).
+  - A pure function is a function that always **produces the same output for same input and has no side effects** (does not modify any external state).
   - **Key Characteristics**:
     Given the same input, it will always return the same result.
-    It does not modify any variables or objects outside the function.
+    It does **not modify any variables or objects outside the function**.
   - **Example**:
     ```javascript
     function add(a, b) {

@@ -3254,41 +3254,25 @@ I default to `async/await`, and combine with `Promise.all` for parallelism. Call
 
 ### **Securing Sensitive Data**
 
-- **Use Environment Variables**  
-  Store secrets (e.g., DB passwords, API keys) in environment variables using `.env` files and `dotenv` package.
+- **Use Environment Variables**  -  Store secrets (e.g., DB passwords, API keys) in environment variables using `.env` files and `dotenv` package.
 
-- **Encryption at Rest and In Transit**  
-  - Use **HTTPS** with TLS for data in transit.  
-  - Use libraries like `crypto` or `bcrypt` for encrypting sensitive fields (e.g., passwords).
+- **Encryption at Rest and In Transit**  -  - Use **HTTPS** with TLS for data in transit.   and   - Use libraries like `crypto` or `bcrypt` for encrypting sensitive fields (e.g., passwords).
 
-- **Password Hashing**  
-  - Never store plain text passwords.  
-  - Use **bcrypt** or **argon2** for secure hashing with salting.
+- **Password Hashing**    - Never store plain text passwords.     - Use **bcrypt** or **argon2** for secure hashing with salting.
 
-- **Access Control and Least Privilege**  
-  - Only allow access to sensitive data for authenticated and authorized users.  
-  - Enforce **role-based access control (RBAC)**.
+- **Access Control and Least Privilege**    - Only allow access for authenticated and authorized users.    - Enforce **role-based access control (RBAC)**.
 
-- **Secure Storage for Tokens & Secrets**  
-  - Store JWTs securely (e.g., in HTTP-only cookies).  
-  - Use secret management tools (e.g., HashiCorp Vault, AWS Secrets Manager).
+- **Secure Storage for Tokens & Secrets**    - Store JWTs securely (e.g., in HTTP-only cookies).    - Use secret management tools (e.g., HashiCorp Vault, AWS Secrets Manager).
 
-- **Input Validation & Sanitization**  
-  - Prevent injection attacks by validating user inputs using `Joi`, `express-validator`, or similar libraries.
+- **Input Validation & Sanitization**    - Prevent injection attacks by validating user inputs using `Joi`, `express-validator`, or similar libraries.
 
-- **Avoid Logging Sensitive Info**  
-  - Mask or omit sensitive fields from logs (e.g., passwords, tokens, card details).
+- **Avoid Logging Sensitive Info**    - Mask or omit sensitive fields from logs (e.g., passwords, tokens, card details).
 
-- **Use Helmet.js**  
-  - Adds security headers (e.g., `X-Content-Type-Options`, `X-XSS-Protection`) to protect data integrity.
+- **Use Helmet.js**    - Adds security headers (e.g., `X-Content-Type-Options`, `X-XSS-Protection`) to protect data integrity.
 
-- **Database-Level Security**  
-  - Use parameterized queries or ORMs to prevent SQL Injection.  
-  - Encrypt sensitive columns in the database if required.
+- **Database-Level Security**    - Use parameterized queries or ORMs to prevent SQL Injection.    - Encrypt sensitive columns in the database if required.
 
-- **Regular Security Audits**  
-  - Run `npm audit` to check for vulnerable dependencies.  
-  - Keep dependencies updated.
+- **Regular Security Audits**    - Run `npm audit` to check for vulnerable dependencies.    - Keep dependencies updated.
 
 ---
 

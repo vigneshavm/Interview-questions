@@ -9,9 +9,9 @@
 | [Nested Objects – Recursive Merge of Two](#nested-objects-recursive-merge-of-two)   | [Convert Object to Query String](#convert-object-to-query-string) |                                                                                     |
 
 
-| 🔍 **Data Cleaning & Aggregation**                                    |   | 🧪 **Advanced Transformations**                                                     |
+| 🔍 **Data Cleaning & Aggregation**                                    |  **Compare** | 🧪 **Advanced Transformations**                                                     |
 | --------------------------------------------------------------------- | - | ----------------------------------------------------------------------------------- |
-| [Extract Unique Values by Key](#extract-unique-values-by-key)         |   | [Transform Data Based on External Schema](#transform-data-based-on-external-schema) |
+| [Extract Unique Values by Key](#extract-unique-values-by-key)         | [Compare JSON objects](#Compare-JSON-objects)  | [Transform Data Based on External Schema](#transform-data-based-on-external-schema) |
 | [Remove Duplicates by Value](#remove-duplicates-by-value)             |   | [Chainable Data Transform Utility](#chainable-data-transform-utility)               |
 | [Group Products by Key then Count](#group-products-by-key-then-count) |   |                                                                                     |
 
@@ -1108,6 +1108,42 @@ function generateSkillReport(employees) {
 console.log(generateSkillReport(employees));
 ```
 ---
+
+## Compare JSON objects
+
+```js
+const a = { name: "John", age: 30 };
+const b = { name: "John", age: 30 };
+const isEqual = JSON.stringify(a) === JSON.stringify(b);
+console.log(isEqual); // true 
+only if both object same order
+Property order matters ({a:1, b:2} ≠ {b:2, a:1}).
+Doesn't handle functions, undefined, Date, Set, or Map.
+```
+
+Deep comparsion
+```js
+function deepEqual(obj1, obj2) {
+  if (obj1 === obj2) return true;
+
+  if (
+    typeof obj1 !== "object" || obj1 === null ||
+    typeof obj2 !== "object" || obj2 === null
+  ) return false;
+
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+
+  if (keys1.length !== keys2.length) return false;
+
+  return keys1.every(key => deepEqual(obj1[key], obj2[key]));
+}
+
+const objA = { a: 1, b: { c: 2 } };
+const objB = { b: { c: 2 }, a: 1 };
+
+console.log(deepEqual(objA, objB)); // true ✅
+```
 
 
 

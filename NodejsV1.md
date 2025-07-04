@@ -1539,7 +1539,7 @@ res.cookie('accessToken', token, {
   * Notifications   * Video rendering   * Order fulfillment
 
 **Monitoring, Logging & Tracing**
-* Use **correlation IDs** to trace requests across services.
+* Use **correlation IDs** to trace requests across services. ```js  res.setHeader('X-Correlation-ID', correlationId);```
 * Logging: **Winston**, **Pino**
 
 

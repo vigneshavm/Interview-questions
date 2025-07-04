@@ -2360,7 +2360,7 @@ Here, the `name` property is accessed and updated through getter and setter meth
 
  These methods are used to control the mutability of objects in JavaScript.
 
-**`Object.freeze()`**: Makes an object immutable. You cannot add, remove, or modify any of its properties.
+**`Object.freeze()`**: Makes an **object immutable**. You **cannot add, remove, or modify** any of its properties.
    ```javascript
    const obj = { name: "Alice" };
    Object.freeze(obj);
@@ -2368,7 +2368,7 @@ Here, the `name` property is accessed and updated through getter and setter meth
    console.log(obj.name);  // Outputs: Alice
    ```
 
-**`Object.seal()`**: Prevents adding or removing properties, but existing properties can still be modified (unless they are marked as non-writable).
+**`Object.seal()`**: **Prevents adding or removing properties**, but **existing properties modified** (unless they are marked as non-writable).
    ```javascript
    const obj = { name: "Alice" };
    Object.seal(obj);
@@ -2377,7 +2377,7 @@ Here, the `name` property is accessed and updated through getter and setter meth
    console.log(obj.name);  // Outputs: Bob
    ```
 
-**`Object.preventExtensions()`**: Prevents new properties from being added to the object but allows existing properties to be modified or deleted.
+**`Object.preventExtensions()`**: **Prevents new properties added** to the object but allows **existing properties to be modified or deleted**.
    ```javascript
    const obj = { name: "Alice" };
    Object.preventExtensions(obj);

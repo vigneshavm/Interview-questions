@@ -2967,15 +2967,13 @@ Examples:
 
 ### Angular 19
  (November 2024):
- - Incremental Hydration: Improves performance by incrementally hydrating server-rendered content on the client. 
- - Route-level Render Mode: Offers more control over how routes are rendered, potentially improving performance. 
- - Standalone Components by Default: Simplifies project structure and reduces boilerplate code by making standalone components the default. 
- - Linked Signals: Provides a more efficient way to handle reactive data. 
- - Security Enhancements: Includes features like security with Google to improve application security. 
- - Resource and RxResource APIs: Provides new APIs for data fetching and manipulation. 
- - Modernizing Code with Language Service: Improves the language service and tooling for better code editing and development.
-
-
+ - **Incremental Hydration**: Improves performance by incrementally hydrating server-rendered content on the client. 
+ - **Route-level Render Mode**: Offers more control over how routes are rendered, potentially improving performance. 
+ - **Standalone Components by Default**: Simplifies project structure and reduces boilerplate code by making standalone components the default. 
+ - **Linked Signals**: Provides a more efficient way to handle reactive data. 
+ - **Security Enhancements**: Includes features like security with Google to improve application security. 
+ - **Resource and RxResource APIs**: Provides new APIs for data fetching and manipulation. 
+ - **Modernizing Code with Language Service**: Improves the language service and tooling for better code editing and development.
 - Angular 19 introduces several important features focused on **performance, reactivity, and developer experience**. 
 -  Angular 19 significantly modernizes the framework — with features like **incremental hydration**, **linked signals**, and **standalone by default**, 
 - it allows for better performance and cleaner architecture. 

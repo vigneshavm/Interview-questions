@@ -2975,6 +2975,106 @@ Examples:
  - Resource and RxResource APIs: Provides new APIs for data fetching and manipulation. 
  - Modernizing Code with Language Service: Improves the language service and tooling for better code editing and development.
 
+
+- Angular 19 introduces several important features focused on **performance, reactivity, and developer experience**. 
+-  Angular 19 significantly modernizes the framework — with features like **incremental hydration**, **linked signals**, and **standalone by default**, 
+- it allows for better performance and cleaner architecture. 
+- I’ve started adopting these features in both personal projects and evaluating them for production rollout.
+
+
+
+ **1. Incremental Hydration** (Dev Preview)
+
+This improves SSR performance by **hydrating parts of the page only when needed**, such as when a component scrolls into view or becomes visible.
+
+**Example:**
+On a blog page, instead of hydrating all article cards upfront, I can defer hydration using the `@defer` block:
+
+```html
+@defer (when visible)
+  <app-related-posts />
+@end
+```
+
+This reduces JS execution time and improves **Time to Interactive**.
+
+
+ **2. Route-Level Render Modes**
+
+Now I can define **how each route should render** — CSR, SSR, or SSG — at the routing level. This is powerful for hybrid apps.
+
+**Example:**
+
+```ts
+{
+  path: 'home',
+  component: HomeComponent,
+  renderMode: 'server'
+}
+```
+
+So I can make SEO-critical pages use SSR, and others stay client-rendered.
+
+
+ **3. Standalone Components by Default**
+
+Angular 19 makes **standalone components the default**, removing the need for NgModules and reducing boilerplate.
+
+**Example:**
+
+```ts
+@Component({
+  standalone: true,
+  selector: 'app-login',
+  imports: [FormsModule],
+  templateUrl: './login.component.html'
+})
+export class LoginComponent {}
+```
+
+This simplifies lazy loading, testing, and improves tree-shaking.
+
+
+ **4. Linked Signals**
+
+This is a more powerful form of Signals that **auto-sync with external sources** and manage cleanup.
+
+**Example:**
+
+```ts
+const userId = signal(route.paramMap().get('id'));
+const userDetails = linkedSignal(() => this.userService.getUser(userId()));
+```
+
+This reacts automatically to param changes and fetches new data without extra subscriptions.
+
+
+**5. `resource()` and `RxResource` APIs**
+
+These help handle **data fetching declaratively** — with built-in support for loading and error states.
+
+**Example:**
+
+```ts
+const user = resource(() => this.userService.getUser(id));
+```
+
+This gives me reactive `.data`, `.error`, and `.status`, simplifying UI binding and eliminating manual state management.
+
+
+ **6. View Transitions for Route Animations**
+
+Angular now supports smooth transitions between routes using the **View Transitions API**.
+
+**Example:**
+
+```ts
+provideRouter(routes, withViewTransitions())
+```
+
+This enables native-like navigation animations across route changes with minimal effort.
+
+---
 ---
    
 ## Step by Step Implementation with NgRx

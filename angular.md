@@ -214,9 +214,9 @@ src/
 
 
 * Introduced in **Angular 14** to simplify module management.
-- Standalone components are Angular’s move toward a simpler, **more modular architecture - removing  need for NgModules**, making development faster and apps more tree-shakable.”
+* **more modular architecture - removing  need for NgModules**, making development faster and apps more tree-shakable.”
 * Components declared with `standalone: true` **don’t require being declared inside an NgModule**.
-* They can directly import other standalone components, directives, and pipes.
+* They can **directly import other standalone components, directives, and pipes**.
 * **Reduces boilerplate:** No need for NgModules just to declare components.
 * Simplifies **small or isolated features** like modals, widgets, or utility components.
 * Encourages a more **functional and tree-shakable** app structure.

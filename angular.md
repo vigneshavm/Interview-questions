@@ -213,6 +213,17 @@ src/
 ## Standalone Components
 
 
+src/
+├── app/
+│   ├── app.component.ts        # Root component
+│   ├── app.routes.ts           # Central route config
+│   ├── login/
+│   │   └── login.component.ts  # Standalone login component
+│   └── dashboard/
+│       └── dashboard.component.ts
+├── main.ts                     # Bootstrapping with standalone
+
+
 * Introduced in **Angular 14** to simplify module management.
 * **more modular architecture - removing  need for NgModules**, making development faster and apps more tree-shakable.”
 * Components declared with `standalone: true` **don’t require being declared inside an NgModule**.

@@ -1168,24 +1168,25 @@ Avoid it if:
 
 ## Performance Optimization
 
-* “For performance, I always start with `OnPush`, lazy loading, and `trackBy`. Then focus on bundling, template hygiene, and memory cleanup.”
-* “I measure improvements using Chrome DevTools and Lighthouse, and keep bundles optimized via custom Webpack plugins when needed.”
+
+> ✅ *“For performance, I always start with* `OnPush`, *lazy loading, and* `trackBy`. *Then focus on bundling, template hygiene, and memory cleanup.”*
+> ✅ *“I measure improvements using Chrome DevTools and Lighthouse, and keep bundles optimized via custom Webpack plugins when needed.”*
 
 
-| Optimization Area                 | Key Practice / Technique                                                       | Real-Time Use Case                                  |
-| ------ | --------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------- |
-    | **Change Detection Strategy**     | Use `ChangeDetectionStrategy.OnPush` to skip unnecessary checks.               | Dashboards, high-frequency data updates             |
- | **Lazy Loading Modules**          | Load feature modules via route-based lazy loading.                             | Admin sections, rarely used reports                 |
-   | \**TrackBy in *ngFor**            | Use `trackBy` to prevent full DOM re-renders for lists.                        | Lists, tables, data grids                           |
-   | **Detach Change Detection**       | `changeDetectorRef.detach()` to pause updates; reattach when needed.           | Static help pages, frozen UI states                 |
-   | **Optimize Template Expressions** | Avoid function calls and logic inside HTML templates. Move logic to component. | All templates — improves parsing/render speed       |
-  | **Use Pure Pipes**                | Recalculate only on input change. Avoid impure pipes unless required.          | Currency/date formatting with dynamic data          |
-   | **Web Workers**                   | Move heavy computation off the main thread (e.g., image/data processing).      | Image compression, JSON parsing                     |
-   | **Bundle Optimization**           | Use `ng build --prod` with AOT, minification, tree-shaking.                    | Production deployment                               |
-   | **Preloading Strategy**           | Use `PreloadAllModules` for background module loading.                         | Post-login feature loading                          |
-    | **Virtual Scrolling**             | Use Angular CDK’s `cdk-virtual-scroll-viewport`.                               | Chat apps, large data tables                        |
- | **Debounce Expensive Calls**      | Use RxJS `debounceTime()` for input, scroll, and resize event throttling.      | Autocomplete, scroll-based data fetching            |
- | **Avoid Memory Leaks**            | Use `takeUntil`, `async` pipe, and cleanup in `ngOnDestroy`.                   | Components with subscriptions, intervals, listeners |
+| **Optimization Area**             | **Key Practice / Technique**                                                  | **Real-Time Use Case**                          |
+| --------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------- |
+| **Change Detection Strategy**     | Use `ChangeDetectionStrategy.OnPush` to skip unnecessary checks.              | Dashboards, high-frequency data updates         |
+| **Lazy Loading Modules**          | Load feature modules via route-based lazy loading.                            | Admin sections, rarely used reports             |
+| **TrackBy in \*ngFor**            | Use `trackBy` to prevent full DOM re-renders for lists.                       | Lists, tables, data grids                       |
+| **Detach Change Detection**       | Use `changeDetectorRef.detach()` to pause updates; reattach when needed.      | Static help pages, frozen UI states             |
+| **Optimize Template Expressions** | Avoid function calls and logic in templates. Move logic to component.         | All templates — improves parsing/render speed   |
+| **Use Pure Pipes**                | Only recalculates when input values change. Avoid impure pipes.               | Currency/date formatting with dynamic data      |
+| **Web Workers**                   | Offload CPU-heavy tasks (e.g., image processing, data crunching).             | Image compression, JSON parsing                 |
+| **Bundle Optimization**           | Use `ng build --prod` (AOT, tree-shaking, minification).                      | Production deployment                           |
+| **Preloading Strategy**           | Use `PreloadAllModules` to load non-critical modules in background.           | Post-login feature loading                      |
+| **Virtual Scrolling**             | Use Angular CDK's `cdk-virtual-scroll-viewport` to render visible items only. | Chat apps, long lists, infinite scrolls         |
+| **Debounce Expensive Calls**      | Use RxJS `debounceTime()` for throttling high-frequency events.               | Search boxes, scroll listeners                  |
+| **Avoid Memory Leaks**            | Use `takeUntil`, `async` pipe, and cleanup in `ngOnDestroy`.                  | Subscribed components, intervals, DOM listeners |
 
 ---
 

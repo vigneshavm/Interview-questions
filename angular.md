@@ -7,7 +7,7 @@
 | **Routing**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Authentication](#authentication) • [Secure Angular Routes](#Secure-Routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
-| **State Management**        | • [RxJS](#rxjs-in-angular) • [RxJS Operators](#common-rxjs-operators) • [RxJS Operators: switchMap...](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
+| **State Management**        | • [State management](#State-management) • [RxJS](#rxjs-in-angular) • [RxJS Operators](#common-rxjs-operators) • [RxJS Operators: switchMap...](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
 | **Performance**     | • [Performance Optimization](#performance-optimization)                • [performance optimization techniques](#performance-optimization-techniques)      • [Performance Bottlenecks](#Performance-Bottlenecks)   
 | **Optimization**     | • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
 | **Utilities**      | • [Directives](#directives) • [Pipes](#pipes) • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) • [NgZone](#NgZone) 
@@ -4797,3 +4797,11 @@ export class AnalyticsChartComponent {
 ```
 
 ---
+
+## **State management**
+
+* Use Signals for local/component state.
+* Use RxJS or NgRx for global or async state.
+* Organize state into facades, selectors, and reducers.
+* Avoid service overloading by creating domain-specific stores.
+

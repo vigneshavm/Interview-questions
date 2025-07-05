@@ -2643,17 +2643,50 @@ forkJoin({
 ###  **Dependency Injection**
 
 
-- **“Sure. Dependency Injection, or DI, is a core design pattern in Angular that allows us to inject dependencies like services, configuration objects, or other resources into classes—rather than creating them manually.**
+- **Dependency Injection (DI)** is a **core design pattern** in Angular that allows us to **inject dependencies**—like services, config objects, or tokens—**instead of creating them manually**.
+- Dependency Injection is **fundamental to Angular architecture**.
+- It supports **scalable, maintainable, and testable applications**. 
+- I leverage both **basic and advanced DI techniques** to manage dependencies efficiently and build flexible, clean Angular apps.
 
-- **It promotes loose coupling and makes components and services more reusable, modular, and testable. Angular uses a built-in hierarchical injector system that handles the creation and injection of dependencies automatically.**
+**Key Benefits:**
+*  **Loose coupling** — promotes modular, reusable code
+*  **Improved testability** — easy to mock or replace dependencies
+*  **Lifecycle management** — Angular handles creation and cleanup
+*  **Supports SOLID principles** — especially the Dependency Inversion Principle
 
-- **For example, I typically define services with `@Injectable({ providedIn: 'root' })`, which makes them singletons available throughout the app. Then, I inject them into components or other services via the constructor. This way, I don’t worry about object creation or lifecycle management—Angular handles all of that.**
 
-- **One of the biggest advantages of Angular’s DI system is testability. I can easily mock or replace services in unit tests using the TestBed configuration.**
+**How I Use It:**
 
-- **I’ve also used advanced DI techniques like custom providers with `useFactory`, `useClass`, and `useValue`, especially when injecting different implementations based on environment, A/B testing, or feature toggles.**
+* I declare services with:   ```ts   @Injectable({ providedIn: 'root' })   ```
+    This makes them **singletons** accessible app-wide via Angular’s **hierarchical injector**.
+* Then I inject them via the **constructor**:   ```ts   constructor(private userService: UserService) {}   ```
+* Angular automatically resolves and injects the dependency — no need for manual instantiation.
 
-- **Overall, DI is fundamental to how I structure Angular apps—it helps enforce SOLID principles and supports scalable architecture.”**
+**Advanced DI Techniques I've Used:**
+
+| Technique     | Use Case                                                        |
+| ------------- | --------------------------------------------------------------- |
+| `useClass`    | Inject different classes based on environment or conditions     |
+| `useValue`    | Inject constants/config values (e.g., API endpoints)            |
+| `useFactory`  | Inject values/services dynamically using logic                  |
+| `multi: true` | Inject multiple providers for extensibility (like interceptors) |
+
+**Example:**
+
+```ts {   provide: LoggerService,   useFactory: () => isProd ? new ProdLogger() : new DevLogger() } ```
+
+
+ **Testability with DI:**
+
+* In unit tests, I configure dependencies using `TestBed`:
+
+  ```ts 
+  TestBed.configureTestingModule({
+    providers: [{ provide: MyService, useClass: MockService }]
+  });
+  ```
+* This makes it easy to **mock real services**, isolate units, and verify behavior.
+
 
 
 

@@ -260,18 +260,31 @@ export class HelloComponent {}
 * Instead of `NgModule`, use `bootstrapApplication()` in `main.ts` to start the app.
 
 ```ts
-bootstrapApplication(HelloComponent);
-```
-
-```ts
+// main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
-import { AppComponent } from './app.component';
-import { routes } from './app.routes';
+import { routes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [provideRouter(routes)],
-}).catch(err => console.error(err));
+});
+
+```
+
+```ts
+// app.component.ts
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterModule],
+  template: `<router-outlet></router-outlet>`,
+})
+export class AppComponent {}
+
 ```
 
 **When to Use?**

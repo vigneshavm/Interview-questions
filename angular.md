@@ -212,7 +212,7 @@ src/
 
 ## Standalone Components
 
-
+```ts
 src/
 ├── app/
 │   ├── app.component.ts        # Root component
@@ -222,7 +222,7 @@ src/
 │   └── dashboard/
 │       └── dashboard.component.ts
 ├── main.ts                     # Bootstrapping with standalone
-
+```
 
 * Introduced in **Angular 14** to simplify module management.
 * **more modular architecture - removing  need for NgModules**, making development faster and apps more tree-shakable.”

@@ -1169,8 +1169,8 @@ Avoid it if:
 ## Performance Optimization
 
 
-> ✅ *“For performance, I always start with* `OnPush`, *lazy loading, and* `trackBy`. *Then focus on bundling, template hygiene, and memory cleanup.”*
-> ✅ *“I measure improvements using Chrome DevTools and Lighthouse, and keep bundles optimized via custom Webpack plugins when needed.”*
+- *“For performance, I always **start with* `OnPush`, *lazy loading, and* `trackBy`**. *Then **focus on bundling, template hygiene, and memory cleanup**.”*
+- *“I **measure improvements using Chrome DevTools and Lighthouse**, and keep bundles optimized via **custom Webpack plugins when needed**.”*
 
 
 | **Optimization Area**             | **Key Practice / Technique**                                                  | **Real-Time Use Case**                          |

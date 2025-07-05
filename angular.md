@@ -1,6 +1,6 @@
 | **Category**                        | **Topics**                                                                                                                                                                                                                                                    |
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Core Concepts**          | • [Angular](#angular)  • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Module](#module)  • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
+| **Core Concepts**          | • [Angular](#angular)  • [Angular CLI](#Angular-CLI) • [Angular 17](#Angular-17) • [Angular 19](#Angular-19) • [Module](#module)  • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
 | **Components**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
 | **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition](#Using-One-Component-Inside-Another ) • [One Component Inside Another](#Using-One-Component-Inside-Another ) • [Deferred Views](#Deferred-Views)|
 | **Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                 • [Lazy Loading](#lazy-loading)                • [Memory Leak](#Memory-Leak)                                                                       |
@@ -4846,4 +4846,140 @@ providers: [
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
 ]
 ```
+
+
+
+## Angular 17
+
+
+
+| Feature                 | Angular 17              |
+| ----------------------- | ----------------------- |
+| `@if`, `@for`, `@defer` | ✅ New control flow      |
+| Standalone components and Deferrable Views  | ✅ Default and stable    |
+| SSR + hydration         | ✅ Improved              |
+| Vite + esbuild          | ✅ Faster builds         |
+| Simplified routing      | ✅ Standalone compatible |
+| New CLI scaffolding     | ✅ Interactive           |
+
+
+### 1. 🧱 **New Built-in Control Flow Syntax (`@if`, `@for`, `@switch`)**
+
+Angular 17 introduces a **modern, syntax-friendly** way to write conditional and loop logic in templates, replacing `*ngIf` and `*ngFor`.
+
+#### ✅ Old Syntax:
+
+```html
+<div *ngIf="isLoggedIn">Welcome!</div>
+```
+
+#### ✅ New Syntax:
+
+```html
+@if (isLoggedIn) {
+  <div>Welcome!</div>
+}
+@else {
+  <div>Please log in</div>
+}
+```
+
+#### ✅ New `@for` loop:
+
+```html
+@for (let item of items; track item.id) {
+  <li>{{ item.name }}</li>
+}
+```
+
+> 🔥 Improves readability and type-safety, and brings Angular closer to modern frameworks like React and Svelte.
+
+---
+
+### 2. ⚡ **Deferrable Views (Lazy-loaded Template Blocks)**
+
+Angular 17 introduces **`@defer`** for **progressive loading of UI blocks**.
+
+```html
+@defer (when showChart) {
+  <app-chart></app-chart>
+} @placeholder {
+  Loading chart...
+}
+```
+
+✅ Benefits:
+
+* Reduces initial load time
+* Improves UX by showing loading UI
+* Native to Angular templates
+
+---
+
+### 3. 💡 **Improved SSR & Hydration (Angular Universal)**
+
+* Better **server-side rendering (SSR)** and **partial hydration** support
+* Automatic rehydration of components with minimal JavaScript
+* Faster TTI (Time to Interactive)
+
+> Angular Universal is now more production-ready than ever.
+
+---
+
+### 4. 🔥 **Standalone Components by Default**
+
+Angular 17 continues pushing toward **Standalone APIs**:
+
+* No need to declare components in NgModules
+* Cleaner architecture, better tree-shaking
+
+#### ✅ Example:
+
+```ts
+@Component({
+  standalone: true,
+  selector: 'app-hello',
+  templateUrl: './hello.component.html',
+})
+export class HelloComponent {}
+```
+
+---
+
+### 5. 🧠 **Improved Vite & esbuild Integration**
+
+* Angular 17 CLI uses **Vite** and **esbuild** under the hood (experimental in v16, stable in v17)
+* ✅ Up to 67% faster cold builds
+* ✅ Faster HMR (Hot Module Reloading)
+* ✅ Instant rebuilds in dev mode
+
+---
+
+### 6. 🧹 **Cleaner Boilerplate in Routing**
+
+Angular 17 simplifies route configuration for standalone components.
+
+```ts
+const routes: Routes = [
+  {
+    path: '',
+    loadComponent: () => import('./home.component').then(m => m.HomeComponent),
+  },
+];
+```
+
+No need for NgModule wrappers for routes anymore.
+
+---
+
+### 7. ✅ **Updated Angular CLI (ng new) with App Scaffolding Choices**
+
+When you run `ng new`, you get:
+
+* Option to use **Standalone components**
+* Optional **SSR** setup
+* Optional **ESLint** integration
+* Optional **Routing setup**
+
+---
 

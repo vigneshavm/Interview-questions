@@ -14,7 +14,7 @@
 | **Other**      | • [Angular Build Bundles & Optimization](#Angular-Build-Bundles)  • [Optimized Production Bundle - LifeCycle](#lifecycle-from-source-code-to-optimized-production-bundle)  • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
 | **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
-| **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [Set up Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot()` and `RouterModule.forChild()](#RouterModule-forRoot-and-RouterModule-forChild)  • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling)
+| **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [Set up Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot()` and `RouterModule.forChild()](#RouterModule-forRoot-and-RouterModule-forChild)  • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling) • [Interceptor](#Interceptor)
 
 
 
@@ -4804,4 +4804,42 @@ bootstrapApplication(AppComponent, {
 - This helps reduce time to interactive (TTI) by skipping DOM re-creation, preserving SSR-rendered markup.
 
 
+
+### **Interceptor**
+
+
+
+- In Angular, an **HTTP Interceptor** is a service that implements the `HttpInterceptor` interface and allows us to **intercept and modify all HTTP requests and responses globally**.
+- I typically use interceptors for **cross-cutting concerns** such as:
+
+* Attaching **authentication tokens (JWT)** * Handling **global error responses** * Logging
+* Injecting custom headers * Managing **loading indicators**
+
+---
+
+For example, in one of my recent projects, I created an `AuthInterceptor` to automatically attach the bearer token to every outgoing API request:
+
+```ts
+intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  const token = this.authService.getToken();
+  const cloned = req.clone({
+    setHeaders: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return next.handle(cloned);
+}
+```
+
+This ensures that all secure endpoints receive the correct token without modifying each service manually.
+
+
+**Registering the Interceptor**
+I register it as a multi-provider in app.module.ts (or providers.ts for standalone):
+
+```js
+providers: [
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+]
+```
 

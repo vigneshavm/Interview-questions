@@ -14,8 +14,9 @@
 | **Other**      | • [Angular Build Bundles & Optimization](#Angular-Build-Bundles)  • [Optimized Production Bundle - LifeCycle](#lifecycle-from-source-code-to-optimized-production-bundle)  • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
 | **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
-| **Server Side**      | • [Server Side Rendering](#Server-Side-Rendering) • [Set up Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot()` and `RouterModule.forChild()](#RouterModule-forRoot-and-RouterModule-forChild)
-| • [Error Handling](#Error-Handling)
+| **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [Set up Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot()` and `RouterModule.forChild()](#RouterModule-forRoot-and-RouterModule-forChild)  • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling)
+
+
 
 ## Component-Based Architecture
 
@@ -4723,4 +4724,51 @@ export class AnalyticsChartComponent {
 * Use RxJS or NgRx for global or async state.
 * Organize state into facades, selectors, and reducers.
 * Avoid service overloading by creating domain-specific stores.
+
+
+### Hydration and SSR
+
+* **SSR:** Server renders HTML; Angular bootstraps on top.
+* **Hydration:** Preserves DOM during client bootstrapping.
+* Angular 17 improves hydration speed and memory usage.
+
+ -[SSR](#SSR)
+ -[Hydration](#Hydration)
+
+
+ ### SSR
+- SSR (Server-Side Rendering) is the process of rendering Angular components on the server and sending fully rendered HTML to the browser. 
+- Angular uses Angular Universal to enable SSR.
+- he server runs Angular in Node.js using the ExpressEngine.
+- When a request hits /, it calls Angular to render the app as HTML.
+- That HTML is sent back to the client.
+- Angular then hydrates the page — reattaches JS to make it interactive.
+
+```js
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideServerRendering(),
+    provideHttpClient(),
+    provideRouter(routes)
+  ]
+});
+```
+
+| Topic            | Detail                                            |
+| ---------------- | ------------------------------------------------- |
+| **Tool**         | Angular Universal (`@nguniversal/express-engine`) |
+| **Use Case**     | SEO, fast initial load, low-end device support    |
+| **Setup**        | `ng add @nguniversal/express-engine`              |
+| **Build**        | `npm run build:ssr`                               |
+| **Serve**        | `npm run serve:ssr`                               |
+| **Angular v17+** | Built-in hydration support                        |
+
+
+
+ ### Hydration
+- Hydration refers to the process where Angular reuses the HTML generated during SSR (Server-Side Rendering) instead of re-rendering it from scratch on the client.
+- In Angular v17+, "full hydration" is enabled by default with Angular Universal and @angular/platform-browser.
+- This helps reduce time to interactive (TTI) by skipping DOM re-creation, preserving SSR-rendered markup.
+
+
 

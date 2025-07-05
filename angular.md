@@ -2,7 +2,7 @@
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Concepts**          | • [Angular](#angular)  • [Angular CLI](#Angular-CLI) • [Angular 19](#Angular-19) • [Module](#module)  • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
 | **Components**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
-| **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition](#Using-One-Component-Inside-Another ) • [One Component Inside Another](#Using-One-Component-Inside-Another ) |
+| **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition](#Using-One-Component-Inside-Another ) • [One Component Inside Another](#Using-One-Component-Inside-Another ) • [Deferred Views](#Deferred-Views)|
 | **Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                 • [Lazy Loading](#lazy-loading)                • [Memory Leak](#Memory-Leak)                                                                       |
 | **Routing**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Authentication](#authentication) • [Secure Angular Routes](#Secure-Routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Authentication Tokens](#store-authentication-tokens) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)                                                    |
@@ -4705,5 +4705,95 @@ For centralized API error control, I implement an **`HttpInterceptor`**:
    );
  }
  ```
+
+---
+
+
+### **Deferred Views**
+
+- Deferred Views in Angular 17 are a **powerful template feature that allows delayed rendering of components** or sections in the UI based on specific conditions (e.g., visibility, user interaction).
+- Primary Purpose:**To improve performance by lazy-rendering heavy** or non-critical parts of the UI — **reducing initial load time and improving TTI** (Time To Interactive).
+- Dashboards — Delay loading of analytics or charts until scrolled into view.
+- Widgets/Modals — Load content only when the modal is opened.
+- Tab Views — Load each tab content only when selected.
+- Offscreen Components — Avoid DOM creation/rendering for invisible elements.
+**Trigger**
+* When the element **scrolls into the viewport** (IntersectionObserver under the hood).
+* Angular **loads** the `analytics-chart` only at that point.
+
+
+### 🔹 Syntax
+
+```html
+@defer (when condition) {
+  <!-- Main block -->
+} @placeholder {
+  <!-- While loading -->
+} @loading {
+  <!-- Shown if deferred content is loading -->
+} @error {
+  <!-- If an error occurs -->
+} @complete {
+  <!-- Optional: shown after content is loaded -->
+}
+```
+
+
+ -On a dashboard, you have a heavy chart (`analytics-chart`) that should only load **when scrolled into view** (not immediately).
+
+```html
+<!-- dashboard.component.html -->
+
+<section class="dashboard">
+  <h2>Welcome, Admin</h2>
+
+  <!-- Lightweight UI parts -->
+  <user-summary></user-summary>
+  <recent-activity></recent-activity>
+
+  <!-- Heavy chart only loads when it enters viewport -->
+  @defer (when visible) {
+    <analytics-chart></analytics-chart>
+  } @placeholder {
+    <p>Preparing chart...</p>
+  } @loading {
+    <p>Loading analytics...</p>
+  } @error {
+    <p>Failed to load chart.</p>
+  } @complete {
+    <p>Chart fully loaded!</p>
+  }
+</section>
+```
+
+**Component: `analytics-chart.component.ts`**
+
+```ts
+@Component({
+  selector: 'analytics-chart',
+  standalone: true,
+  imports: [CommonModule, NgChartsModule],
+  template: `<canvas baseChart ...></canvas>`
+})
+export class AnalyticsChartComponent {
+  // fetch data, render chart
+}
+```
+
+
+**Bonus: Use with Tabs**
+
+```html
+<mat-tab-group>
+  <mat-tab label="Profile">
+    <profile-section></profile-section>
+  </mat-tab>
+  <mat-tab label="Insights">
+    @defer (when userClicksTab) {
+      <insights-section></insights-section>
+    }
+  </mat-tab>
+</mat-tab-group>
+```
 
 ---

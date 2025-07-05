@@ -271,6 +271,16 @@ bootstrapApplication(AppComponent, {
 });
 
 ```
+```js
+// app.routes.ts
+export const routes: Routes = [
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./login/login.component').then((m) => m.LoginComponent)
+  },
+];
+```
 
 ```ts
 // app.component.ts

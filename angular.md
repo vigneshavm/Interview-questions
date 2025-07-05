@@ -3640,6 +3640,11 @@ You enable or disable specific polyfills based on your browser support requireme
 
 ### **Environment-based builds?**
 
+* Define environments in `angular.json` and `src/environments`.
+* Replace files during build using `fileReplacements`.
+* Secure env secrets via CI/CD variables or external vaults.
+
+
 Angular uses environment files (`environment.ts`, `environment.prod.ts`) and `fileReplacements` in `angular.json`.
 >  **Key Point:** Great for managing different API URLs, logging levels, or feature flags per environment.
 

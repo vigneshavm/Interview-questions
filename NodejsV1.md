@@ -10,7 +10,7 @@
 | **Middleware**               | [Middleware](#middleware), [CORS](#cors), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate)                                                                                                                                              |
 | **Package JSON**             | [package.json](#packagejson), [package.json vs package-lock.json](#packagejson-vs-package-lockjson)     [Caching Strategies](#caching-strategies), [Redis (Caching)](#nodejs-with-redis-caching), [Memory Leak](#Memory-leak), [Garbage Collection](#garbage-collection)                                                                                                                                                                                                                            |
 | **REST API & Security**      | [REST API](#rest-api), [Pagination](#implement-pagination-in-a-rest-api), [Folder Structure](#clean-restful-folder-structure), [Secure Node.js](#secure-nodejs-app), [Securing Sensitive Data](#securing-sensitive-data), [Secure REST APIs](#secure-rest-apis)       ,[REST API Performance Testing](#REST-API-Performance-Testing) , [Scalable REST APIs](#Scalable-REST-APIs)                                                                                                                                                          |
-| **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization), [JWT](#implementing-jwt-authentication), [Single Sign On](#Single-Sign-On), [Session vs Token](#session-based-vs-token-based-authentication), [Protecting Routes](#protecting-sensitive-routes), [Refresh Tokens](#refresh-tokens), [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers), [RBAC](#role-based-access-control-rbac)        |
+| **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization), [JWT](#implementing-jwt-authentication),[OAuth ](#OAuth), [Single Sign On](#Single-Sign-On), [Session vs Token](#session-based-vs-token-based-authentication), [Protecting Routes](#protecting-sensitive-routes), [Refresh Tokens](#refresh-tokens), [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers), [RBAC](#role-based-access-control-rbac)        |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture), [Event Emitters](#event-emitters), [Process Object](#process-object), [WebSockets](#websockets-socketio-basics), [WebSockets Drawbacks](#drawbacks-of-WebSockets), [Socket.IO](#SocketIO)                                                                                                                                          |
 | **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications), [Logging Errors](#logging-errors), [Debugging](#debugging-nodejs-applications), [REST API Errors](#error-handling-in-rest-apis)                                                                                                                                                                                                   |
 | **Performance Optimization** | [Performance Optimization](#performance-optimization) - [Performance Pitfalls](#common-performance-pitfalls), [Handle CPU Tasks](#Handle-CPU-intensive-task)                                                                                    |
@@ -5596,3 +5596,94 @@ To handle large datasets efficiently:
 With TypeScript, I define interfaces for each layer to ensure contract adherence and type correctness across modules.
 
 
+
+
+
+## **OAuth**
+
+
+* **OAuth (Open Authorization)** is an **authorization protocol**, **not authentication**.
+* Enables **secure access to third-party resources** without exposing **user credentials**.
+* App acts **on behalf of the user**, using **tokens**, not passwords.
+
+**Real-World Use Cases**
+* ✅ **Google Login** for social authentication
+* ✅ **GitHub API access** (e.g., fetch repositories)
+* ✅ **Google Calendar integration** using scoped permissions
+
+
+* **OAuth** defines the **authorization flow** (how tokens are issued, validated, revoked).
+* **JWT** is just a **token format** — many OAuth providers issue tokens as JWTs.
+* OAuth enables apps to **act on behalf of users** **with their consent**.
+* User credentials are **never shared with your app**.
+* The app receives a **scoped access token** to perform **only allowed operations** (e.g., read email, not send).
+
+
+**OAuth Authorization Code Flow (Real-Time Use Case)**
+
+> “In a production app where I implemented Google Sign-In, here’s how it worked:”
+
+1. User clicks **Login with Google**
+2. App redirects to Google’s **authorization endpoint** with scopes like `email profile`
+3. User logs in and **consents**
+4. Google redirects back with a temporary **authorization code**
+5. Backend securely exchanges the code for an **access token**
+6. Token is then used to call Google APIs (e.g., `https://www.googleapis.com/oauth2/v2/userinfo`)
+
+> 🔒 *For native/mobile apps, I always use **PKCE** to prevent authorization code interception.*
+
+---
+
+## 🔑 **Key Concepts** *(in one line per concept)*
+
+| Term                     | Explanation                                               |
+| ------------------------ | --------------------------------------------------------- |
+| **Client**               | Your app (frontend/backend)                               |
+| **Resource Owner**       | The end user                                              |
+| **Authorization Server** | Issues access & refresh tokens (e.g., Google, GitHub)     |
+| **Access Token**         | Short-lived token used to access APIs                     |
+| **Refresh Token**        | Long-lived token to obtain new access tokens silently     |
+| **Scopes**               | Granular permissions (e.g., `email`, `calendar.readonly`) |
+| **Redirect URI**         | Secure endpoint for OAuth callbacks                       |
+| **State**                | Random value to prevent CSRF attacks                      |
+
+---
+
+## 🔐 **Security Best Practices**
+
+✅ Always use **HTTPS**
+✅ Store tokens in **HttpOnly cookies**, not `localStorage`
+✅ Validate **redirect URIs**
+✅ Use **state** to prevent CSRF
+✅ Apply **scopes** based on least privilege
+✅ Use **PKCE** for public/native clients
+
+---
+
+## 🌍 **OAuth Providers & Examples**
+
+| Provider | Auth Endpoint                                  | Scopes Examples                         |
+| -------- | ---------------------------------------------- | --------------------------------------- |
+| Google   | `https://accounts.google.com/o/oauth2/v2/auth` | `email`, `profile`, `calendar.readonly` |
+| GitHub   | `https://github.com/login/oauth/authorize`     | `user`, `repo`                          |
+| Facebook | `https://www.facebook.com/v10.0/dialog/oauth`  | `email`, `public_profile`               |
+
+---
+
+## 💻 **Code Snippet: Exchanging Code for Token (Node.js)**
+
+```js
+const axios = require('axios');
+
+async function getAccessToken(code) {
+  const { data } = await axios.post('https://oauth2.googleapis.com/token', {
+    code,
+    client_id: process.env.GOOGLE_CLIENT_ID,
+    client_secret: process.env.GOOGLE_SECRET,
+    redirect_uri: 'http://localhost:3000/oauth-callback',
+    grant_type: 'authorization_code'
+  });
+
+  return data.access_token;
+}
+```

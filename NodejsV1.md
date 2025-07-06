@@ -3414,7 +3414,7 @@ In large-scale Node.js apps, I follow a layered and structured error handling ap
 
 ## **[Implementing JWT Authentication](#Implementing-JWT-Authentication)**
 
-**"Sure. JWT stands for JSON Web Token — it's a compact, URL-safe token used for securely transmitting information between parties. I’ve used it extensively for authentication and authorization in stateless REST APIs."**
+"Sure. **JWT stands for JSON Web Token** — it's a compact, URL-safe token used for **securely transmitting information between parties**. I’ve used it **extensively for authentication and authorization in stateless REST APIs."**
 
 -  “So overall, JWT has been my go-to choice for securing REST APIs and user sessions — especially in modern SPA and microservice-based systems — due to its **stateless nature** and wide support across platforms.”
 

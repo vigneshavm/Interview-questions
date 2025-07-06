@@ -4611,28 +4611,50 @@ server.listen(3000, () => console.log('Server running on port 3000'));
 ---
 
 ## Single Sign On
+**"Yes, I’ve implemented Single Sign-On (SSO) in enterprise-grade applications where users needed seamless access across multiple platforms with a single authentication step."**
 
-- Single Sign On (SSO) allows users to authenticate once and gain access to multiple related systems without re-entering credentials. 
-- For example, using providers like Google Workspace, Azure AD, or Okta, a user logs in once and gets federated access across applications. 
-- I’ve implemented SSO using OAuth 2.0 and OpenID Connect flows — especially for enterprise dashboards where identity federation is critical.
+- “By **implementing SSO with Azure AD and OpenID Connect**, we delivered a secure, scalable, and **seamless login experience across our enterprise apps**, while aligning with organizational security standards and improving user productivity.”
 
-- **"Yes, I’ve implemented Single Sign-On (SSO) in enterprise-grade applications where users needed seamless access across multiple platforms with a single authentication step.**
 
-**Real-World Example 1: Internal Enterprise Dashboard with Azure AD (OAuth2 + OpenID Connect)**
+ **Real-World Use Case**:
 
-- In one of our projects, we had multiple internal apps — HR portal, timesheet, project tracker — and users wanted a **centralized login** using their corporate credentials.
+**Internal Enterprise Dashboard using Azure Active Directory**
 
-* We integrated **Azure Active Directory (Azure AD)** as the identity provider.
-* We used the **Authorization Code Flow with PKCE** via **OAuth2 + OpenID Connect**.
-* After authenticating through Microsoft, the user was redirected back to the app with an **ID token (for authentication)** and an **access token (for calling APIs)**.
-* The React frontend stored the token in an **HTTP-only cookie** and sent it with every API request.
-* Backend (Node.js/Express) verified the token signature using **Microsoft’s public keys**.
+We had **multiple internal applications** — HR portal, timesheet system, and project tracker — and the goal was to enable users to **log in once using corporate credentials** and access all systems **without repeated logins**.
 
-- This allowed our users to:
+---
 
-- * Log in once via Microsoft and get access to all internal tools.
-- * Avoid multiple logins or password fatigue.
-- * Ensure secure access based on **organizational group membership and roles** (e.g., `admin`, `manager`, etc.).
+ **SSO Integration Highlights:**
+
+| 🔧 Area                         | ✅ What Was Done                                                                  |
+| ------------------------------- | -------------------------------------------------------------------------------- |
+| **Identity Provider**           | Integrated **Azure Active Directory (Azure AD)**                                 |
+| **Protocols Used**              | Used **OAuth 2.0** + **OpenID Connect (OIDC)**                                   |
+| **Flow**                        | Implemented **Authorization Code Flow with PKCE**                                |
+| **Frontend (React)**            | Handled redirection, stored **ID/access tokens in HTTP-only cookies**            |
+| **Backend (Node.js / Express)** | Verified tokens using **Microsoft’s public keys (JWKS endpoint)**                |
+| **Authentication**              | Used **ID Token** for login, **Access Token** for secure API access              |
+| **Authorization**               | Applied **role-based access control (RBAC)** using claims (e.g., admin, manager) |
+| **Security Measures**           | Ensured **token expiration**, secure cookie flags, and **HTTPS enforcement**     |
+
+
+ **Benefits Achieved:**
+
+* 🧠 **Centralized login experience** using Microsoft credentials
+* 🔁 **True SSO experience** across all internal tools
+* 🔐 **Role-based access control** enforced via Azure AD groups
+* 🧼 **Reduced password fatigue** and IT support load
+* 🧩 Easy integration with existing **corporate security policies**
+
+**Key Technologies & Standards Used:**
+
+* **OAuth 2.0** – For delegated access
+* **OpenID Connect (OIDC)** – For authentication and ID tokens
+* **Azure AD** – Identity Provider (IdP)
+* **React** – Frontend handled redirect & silent token refresh
+* **Node.js (Express)** – Backend verified JWTs, issued sessions
+* **JWT** – Used for ID and Access tokens
+* **JWKS endpoint** – For public key verification
 
 ---
 

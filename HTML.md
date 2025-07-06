@@ -13,7 +13,7 @@
 * [CSS Padding Shorthand](#css-padding-shorthand)       - [CSS Positioning](#css-positioning)
 * [`em`, `rem`, `%`, and `px`](#em-rem--and-px)     - [CSS Specificity](#css-specificity)
 * [CSS Box Model](#css-box-model)
-
+* [Descendant](#Descendant)
 ## LESS & SASS 
 - [CSS Preprocessor](#css-preprocessor)  - [SASS vs LESS](#sass-vs-less)  - [Variables and Nesting](#variables-and-nesting)
 - [Mixins in SASS and LESS](#mixins-in-sass-and-less) - [@mixin vs @extend](#mixin-vs-extend) - [SASS Partials](#sass-partials) - [Loops and Functions](#loops-and-functions)
@@ -797,4 +797,64 @@ SCSS makes CSS:
 
 
 
+
+
+## **Descendant**
+
+>  **Descendant** = any element **nested inside another**, at **any depth**
+>  **All children are descendants**, but not all descendants are direct children
+>  Example:
+
+```html
+<div>
+  <section>
+    <p>Hello</p> <!-- Descendant of div -->
+  </section>
+</div>
+```
+**target descendants**
+
+-  Use **space selector**: `parent descendant`
+-  Example: `div p { color: blue; }` → targets all `<p>` inside `<div>`
+-  **Direct child** only? Use `>`: `div > p`
+
+**Child vs Descendant**
+
+| Term           | Meaning                  | Selector  |
+| -------------- | ------------------------ | --------- |
+| **Child**      | Directly inside a parent | `div > p` |
+| **Descendant** | Any nested level         | `div p`   |
+
+
+**Real-Time Use Case?**
+
+- **Navbar styling**
+
+```html
+<nav>
+  <ul>
+    <li><a href="#">Link</a></li>
+  </ul>
+</nav>
+```
+
+>  CSS: `nav a { color: white; }` → targets all `<a>` links inside `<nav>`
+
+
+**Access descendants**
+
+-  `querySelectorAll('div p')` → gets **all `<p>`** inside a `<div>`
+-  `.getElementsByTagName('p')` → gets descendant `<p>`s
+-  `element.firstElementChild`, `element.children`, or `.parentElement` for navigation
+
+
+| Feature        | Descendants                          |
+| -------------- | ------------------------------------ |
+| Depth          | Any nested level                     |
+| CSS Selector   | `parent descendant`                  |
+| JS Access      | `querySelectorAll`, DOM Tree         |
+| Real Use Cases | Navigation, form structures, layouts |
+| Contrast with  | Children (only 1 level deep)         |
+
+---
 

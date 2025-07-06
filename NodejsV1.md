@@ -1,4 +1,6 @@
 
+
+
 | **Category**                 | **Topics**                                                                                                                                                                                                                                                                                                                                                                                  |
 |-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature)                                                                                                                                                                                                                               |
@@ -1435,6 +1437,70 @@ app.get('/data', async (req, res) => {
   });
 });
 ```
+
+> * I use `SET` + `EX` for time-limited values (OTP, session tokens).
+> * `GET` retrieves the value; `TTL` helps me check when it expires.
+> * `HMSET` is perfect for structured data like user objects or app configs.
+> * `HGET` gets individual fields; `HGETALL` gives the full map.
+> * This combination is **fast**, **in-memory**, and ideal for **read-heavy apps**.
+
+**`SET`, `GET`, `EX`, and `TTL`**
+
+**Answer (interview-style):**
+
+> "I typically use `SET` and `GET` for simple key-value storage, especially for caching responses or managing short-lived values like  OTPs.
+
+For example, in a login system, after authenticating a user, I store a JWT token in Redis like this:
+
+```js
+await redis.set(`session:${userId}`, token, 'EX', 3600); // 1 hour expiry
+```
+
+> Later, when the user makes a request, I use:
+
+```js
+const token = await redis.get(`session:${userId}`);
+```
+
+> If I want to **check how long the session remains valid**, I use:
+
+```js
+const ttl = await redis.ttl(`session:${userId}`);
+```
+
+> This helps us **auto-expire inactive sessions** and also refresh them if the TTL is too low, improving both security and performance."
+
+
+**`HMSET`, `HGET`, and `HGETALL`**
+
+
+> "I use Redis hashes (`HMSET`, `HGET`, `HGETALL`) when I need to store and access structured data — like user profiles or config settings — under a single key with multiple fields.
+
+**Example:**
+When a user signs up, I store their profile details in Redis using `HMSET`:
+
+```js
+await redis.hmset(`user:${userId}`, {
+  name: 'Vignesh',
+  email: 'vignesh@example.com',
+  role: 'admin'
+});
+```
+
+> Later, to get the full object, I use:
+
+```js
+const profile = await redis.hgetall(`user:${userId}`);
+```
+
+> And if I need just a specific field, I use:
+
+```js
+const name = await redis.hget(`user:${userId}`, 'name');
+```
+
+> This structure allows me to **store multiple fields under a single key**, avoid multiple round-trips, and update just one field efficiently."
+
 
 ---
 

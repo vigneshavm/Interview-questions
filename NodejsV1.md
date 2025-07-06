@@ -1498,7 +1498,15 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 | **Authorization Header** | Simple, stateless, widely used in APIs | Exposed to JS (XSS risk) |
 | **HTTP-only Cookie** | More secure against XSS (not accessible via JS) | CSRF protection required |
 
----
+**Backend (Node.js/Express)**
+- Authenticates user
+- Sets JWT as an HttpOnly cookie
+
+**Frontend (React)**
+- Sends credentials: 'include' to receive and send cookie
+- Makes authenticated requests without accessing JWT directly
+- Clear Cookie ```res.clearCookie('token');``` during logout
+
 
 **Example: Set JWT in Cookie**
 ```ts

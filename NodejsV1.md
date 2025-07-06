@@ -3427,7 +3427,7 @@ In large-scale Node.js apps, I follow a layered and structured error handling ap
 > <header>.<payload>.<signature>
 > ```
 >
-> The header defines the algorithm (e.g., HS256 or RS256), the payload carries user claims like userId, role, and expiry (`exp`), and the signature is used to verify that the token hasn’t been tampered with."
+> The **header defines the algorithm (e.g., HS256 or RS256)**, the **payload carries user claims** like userId, role, and expiry (`exp`), and the **signature is used to verify that the token** hasn’t been tampered with."
 
 
 **Where I Used It (Real-World Example)**:

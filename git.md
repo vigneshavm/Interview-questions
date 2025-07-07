@@ -1,8 +1,4 @@
 
-## 🚀 Git Interview Cheatsheet
-
-### 🔗 Table of Contents
-
 | **Category**             | **Topics** |
 |--------------------------|------------|
 | **Basics**               | [Git Basics](#git-basics), [Git vs GitHub](#Git-vs-GitHub), [git fetch vs git pull](#git-fetch-vs-git-pull) |

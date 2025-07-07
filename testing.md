@@ -1428,27 +1428,54 @@ describe('getUserById', () => {
 
 ---
 
-### 🛠️ Example Scenario You Can Use:
-
+**Example Scenario You Can Use**
  - Once, a Node.js microservice was randomly hanging under load. I suspected a memory leak or unhandled promise.
-
  - I used `node --inspect` with Chrome DevTools to trace memory snapshots, and saw growing detached DOM objects. It turned out a file stream wasn’t being closed properly. I added a proper cleanup step, wrote unit tests around it, and added metrics to ensure it wouldn’t reoccur.
-
  - This kind of proactive root-cause analysis saves a lot of firefighting later.”
 
----
-
-###  Key Points to Emphasize
-
+**Key Points to Emphasize**
 * **Structured debugging**: isolate, reproduce, trace, resolve.
 * Use of **debugging tools**: `node --inspect`, Chrome DevTools, Visual Studio Code debugger.
 * **Proactive practices**: logging, monitoring, alerts, test coverage.
 * **Root-cause focus**: not just fixing symptoms, but preventing future issues.
 * Collaboration: knowing when to escalate or loop in backend/infrastructure teams if needed.
 
----
 
 
+- **"Sure. When it comes to troubleshooting and ensuring system reliability, I follow a very structured and hands-on approach. Let me break it down:"**
+
+- **"Overall, I don’t just fix bugs — I work to make systems observable, resilient, and capable of recovering without user impact. That’s my mindset when it comes to application reliability."**
+
+**Backend – Node.js Side**
+
+* *I use structured logging tools like Winston or Pino* — and always tag requests with correlation IDs so I can trace the full request-response lifecycle across services.
+
+* *For monitoring,* I’ve worked with Datadog, Elastic Stack, and PM2 to track memory usage, response times, and unhandled exceptions.
+
+* *When I need to debug more complex issues,* I go beyond console logs. I use `node --inspect`, Chrome DevTools for Node.js, or even memory profiling tools like clinic.js or 0x to spot memory leaks or event loop blocking.
+
+* *A quick example:* I once debugged a performance bottleneck by generating a flamegraph with `clinic flame`, and found a loop doing blocking I/O. Refactored that with async queuing and saw huge gains.
+
+**Frontend – React Side**
+
+* *On the frontend,* I integrate Sentry or LogRocket to capture real-time errors, track user sessions, and diagnose issues from the user’s perspective.
+
+* *I also monitor Web Vitals — like LCP, CLS, and FID —* to catch layout shifts or slow loads that impact user experience.
+
+* *I use Error Boundaries* and always wrap lazy-loaded components with fallback UIs to gracefully handle component crashes.
+
+* *In one project,* we had random crashes during client-side routing. I traced it to a race condition in a dynamic import. Refactored the async logic and wrapped it in an ErrorBoundary — and it never recurred.
+
+
+**My Debugging Workflow**
+* *First,* I always try to reproduce the issue — using logs, the exact user session, or test data.
+* *Then,* I dig into logs, use breakpoints, inspect call stacks — anything that helps isolate the root cause logically.
+* *I write regression tests immediately* — Jest for unit tests, Supertest for APIs, and Cypress for user flows.
+* *And I push everything through CI pipelines* that check for linting, test coverage, and performance audits via Lighthouse.
+
+**Post-Incident Practices**
+* *If the issue was critical,* I always conduct a post-incident review.
+* *For example,* a Redis TTL misconfiguration once led to a DB spike. We fixed the TTL, added circuit breakers, and ensured the system could gracefully fall back.
 
 
 

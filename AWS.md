@@ -2,58 +2,12 @@
 
 **Azure** - [Azure](#Azure)
 
----
-
-**AWS Lambda**
-
-* [AWS Lambda](#aws-lambda)   * [AWS Lambda Supported Languages](#aws-lambda-supported-languages)    * [Maximum Execution Time of an AWS Lambda Function](#maximum-execution-time-of-an-aws-lambda-function)
-* [Triggers That Can Invoke AWS Lambda](#triggers-that-can-invoke-aws-lambda) * [Typical Architecture of Using AWS Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)
-* [Passing Data to an AWS Lambda Function](#passing-data-to-an-aws-lambda-function) * [Handling Large File Uploads in AWS](#handling-large-file-uploads-in-aws)
-* [Cold Start](#cold-start) * [How Lambda Scales](#how-lambda-scales) * [Provisioned Concurrency](#provisioned-concurrency)
-* [Monitoring Lambda Functions](#monitoring-lambda-functions) * [Assigning Permissions to Lambda Functions](#assigning-permissions-to-lambda-functions)
-* [Securely Storing Secrets in Lambda](#securely-storing-secrets-in-lambda) * [Lambda Layers](#lambda-layers)
-* [Maximum Deployment Package Size](#maximum-deployment-package-size) * [Building a Serverless Video Upload and Processing System Using Lambda](#building-a-serverless-video-upload-and-processing-system-using-lambda)
-
-
----
-
-**AWS API Gateway**
-
-* [AWS API Gateway](#aws-api-gateway) * [Types of APIs in API Gateway](#types-of-apis-in-api-gateway) * [REST API vs HTTP API](#rest-api-vs-http-api)
-* [Integration Types Supported by API Gateway](#integration-types-supported-by-api-gateway) * [How API Gateway Integrates with AWS Lambda](#how-api-gateway-integrates-with-aws-lambda)
-* [Stages in API Gateway](#stages-in-api-gateway) * [Usage Plans in API Gateway](#usage-plans-in-api-gateway)
-* [Throttling in API Gateway](#throttling-in-api-gateway) * [Securing Your API in API Gateway](#securing-your-api-in-api-gateway)
-* [Lambda Authorizer](#lambda-authorizer) * [Can API Gateway Serve Static Content](#can-api-gateway-serve-static-content)
-* [Payload Limit for API Gateway](#payload-limit-for-api-gateway) * [Building a Secure Video Upload System](#building-a-secure-video-upload-system)
-* [Handling CORS in API Gateway](#handling-cors-in-api-gateway) * [How API Gateway Handles Caching](#how-api-gateway-handles-caching)
-
----
-
-
-**Amazon DynamoDB**
-
-
-- [Amazon DynamoDB](#amazon-dynamodb)  - [DynamoDB features](#dynamodb-features) - [DynamoDB ensure data durability and availability](#dynamodb-ensure-data-durability-and-availability)
-- [Perform a query in DynamoDB](#perform-a-query-in-dynamodb) - [Secure DynamoDB data](#secure-dynamodb-data)
-- [Best practice for designing DynamoDB tables](#best-practice-for-designing-dynamodb-tables) - [Difference between Query and Scan in DynamoDB](#difference-between-query-and-scan-in-dynamodb)
-- [Limits of DynamoDB](#limits-of-dynamodb) - [Handle transactions in DynamoDB](#handle-transactions-in-dynamodb) - [Read/write capacity modes in DynamoDB](#readwrite-capacity-modes-in-dynamodb)
-- [DynamoDB Streams](#dynamodb-streams) - [DynamoDB handle scaling](#dynamodb-handle-scaling)
-- [Global Secondary Index (GSI) and Local Secondary Index (LSI)](#global-secondary-index-gsi-and-local-secondary-index-lsi)
-- [Difference between a partition key and a sort key](#difference-between-a-partition-key-and-a-sort-key)
-- [Primary keys types](#primary-keys-types) - [Primary key in DynamoDB](#primary-key-in-dynamodb) - [MongoDB vs Amazon DynamoDB](#MongoDB-vs-Amazon-DynamoDB)
-
-**S3**
-- [S3 Bucket Policy](#s3-bucket-policy) - [Bucket Policy different from IAM Policy](#bucket-policy-different-from-iam-policy)
-- [Common actions controlled by S3 policies](#common-actions-controlled-by-s3-policies) - [Restrict access to an S3 bucket to a specific IP range](#restrict-access-to-an-s3-bucket-to-a-specific-ip-range)
-- [S3 bucket publicly accessible](#s3-bucket-publicly-accessible) - [Purpose of Block Public Access settings](#purpose-of-block-public-access-settings)
-- [S3 Access Control Lists (ACLs)](#s3-access-control-lists-acls) - [Bucket Policies vs ACLs](#bucket-policies-vs-acls)
-- [S3 Cross-Origin Resource Sharing (CORS)](#s3-cross-origin-resource-sharing-cors) - [Encrypt objects in S3](#encrypt-objects-in-s3)
-- [Pre-Signed URL in S3](#pre-signed-url-in-s3) - [S3 lifecycle policies work](#s3-lifecycle-policies-work)
-- [Common S3 storage classes](#common-s3-storage-classes) - [Secure S3 buckets](#secure-s3-buckets)
-- [S3 handle versioning](#s3-handle-versioning) - [Handle large file uploads in S3](#handle-large-file-uploads-in-s3)
-- [S3 Transfer Acceleration](#s3-transfer-acceleration) - [S3 event notifications work](#s3-event-notifications-work)
-- [Prevent unauthorized deletion of objects](#prevent-unauthorized-deletion-of-objects) - [Maximum size of an S3 object](#maximum-size-of-an-s3-object)
-
+| **Category**           | **Topics** |
+|------------------------|------------|
+| **AWS Lambda**         | [AWS Lambda](#aws-lambda), [Supported Languages](#aws-lambda-supported-languages), [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function), [Triggers](#triggers-that-can-invoke-aws-lambda), [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis), [Passing Data](#passing-data-to-an-aws-lambda-function), [Large File Uploads](#handling-large-file-uploads-in-aws), [Cold Start](#cold-start), [Scaling](#how-lambda-scales), [Provisioned Concurrency](#provisioned-concurrency), [Monitoring](#monitoring-lambda-functions), [Permissions](#assigning-permissions-to-lambda-functions), [Secrets](#securely-storing-secrets-in-lambda), [Lambda Layers](#lambda-layers), [Max Package Size](#maximum-deployment-package-size), [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) |
+| **AWS API Gateway**    | [API Gateway](#aws-api-gateway), [Types of APIs](#types-of-apis-in-api-gateway), [REST vs HTTP API](#rest-api-vs-http-api), [Integration Types](#integration-types-supported-by-api-gateway), [Lambda Integration](#how-api-gateway-integrates-with-aws-lambda), [Stages](#stages-in-api-gateway), [Usage Plans](#usage-plans-in-api-gateway), [Throttling](#throttling-in-api-gateway), [Security](#securing-your-api-in-api-gateway), [Lambda Authorizer](#lambda-authorizer), [Static Content](#can-api-gateway-serve-static-content), [Payload Limit](#payload-limit-for-api-gateway), [Secure Video Upload](#building-a-secure-video-upload-system), [CORS](#handling-cors-in-api-gateway), [Caching](#how-api-gateway-handles-caching) |
+| **Amazon DynamoDB**    | [DynamoDB Overview](#amazon-dynamodb), [Features](#dynamodb-features), [Durability & Availability](#dynamodb-ensure-data-durability-and-availability), [Query](#perform-a-query-in-dynamodb), [Security](#secure-dynamodb-data), [Table Design](#best-practice-for-designing-dynamodb-tables), [Query vs Scan](#difference-between-query-and-scan-in-dynamodb), [Limits](#limits-of-dynamodb), [Transactions](#handle-transactions-in-dynamodb), [Capacity Modes](#readwrite-capacity-modes-in-dynamodb), [Streams](#dynamodb-streams), [Scaling](#dynamodb-handle-scaling), [GSI vs LSI](#global-secondary-index-gsi-and-local-secondary-index-lsi), [Partition vs Sort Key](#difference-between-a-partition-key-and-a-sort-key), [Primary Key Types](#primary-keys-types), [Primary Key](#primary-key-in-dynamodb), [MongoDB vs DynamoDB](#MongoDB-vs-Amazon-DynamoDB) |
+| **Amazon S3**          | [Bucket Policy](#s3-bucket-policy), [IAM vs Bucket Policy](#bucket-policy-different-from-iam-policy), [Controlled Actions](#common-actions-controlled-by-s3-policies), [Restrict by IP](#restrict-access-to-an-s3-bucket-to-a-specific-ip-range), [Public Access](#s3-bucket-publicly-accessible), [Block Public Access](#purpose-of-block-public-access-settings), [ACLs](#s3-access-control-lists-acls), [ACLs vs Policies](#bucket-policies-vs-acls), [S3 CORS](#s3-cross-origin-resource-sharing-cors), [Encryption](#encrypt-objects-in-s3), [Pre-Signed URLs](#pre-signed-url-in-s3), [Lifecycle Policies](#s3-lifecycle-policies-work), [Storage Classes](#common-s3-storage-classes), [S3 Security](#secure-s3-buckets), [Versioning](#s3-handle-versioning), [Large Uploads](#handle-large-file-uploads-in-s3), [Transfer Acceleration](#s3-transfer-acceleration), [Event Notifications](#s3-event-notifications-work), [Prevent Deletion](#prevent-unauthorized-deletion-of-objects), [Max Object Size](#maximum-size-of-an-s3-object) |
 
 
 ###  AWS Lambda

@@ -1,4 +1,10 @@
 
+| **Category** | **Topics** |
+|-------------|------------|
+| **Build** | [`<script>`, async, defer](#script-and-async-and-defer) - [Tree Shaking](#tree-shaking-in-modern-bundlers) - [Compiler](#Compiler) - [Transpiling](#transpiling-javascript-code) - [Polyfills](#polyfills-and-backward-compatibility) - [Babel](#role-of-babel-in-modern-development) |
+| **Webpack** | [Customize Webpack](#customize-webpack) - [Webpack & Vite](#webpack-and-vite-bundling-process) - [Reduce large bundle size](#Reduce-large-bundle-size) - [Webpack](#Webpack) - [Reduce the Bundle Size](#reduce-the-bundle-size) - [Plugins](#Plugins) - [Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization) |
+
+
 **Build** - [`<script>`, async, defer](#script-and-async-and-defer)    - [Tree Shaking](#tree-shaking-in-modern-bundlers)    - [Compiler](#Compiler)  - [Transpiling](#transpiling-javascript-code)    - [Polyfills](#polyfills-and-backward-compatibility)    - [Babel](#role-of-babel-in-modern-development)    
 
 **Webpack** - • [Customize Webpack](#customize-webpack) - [Webpack & Vite](#webpack-and-vite-bundling-process)  - [Reduce large bundle size](#Reduce-large-bundle-size) • [Webpack](#Webpack) • [Reduce the Bundle Size](#reduce-the-bundle-size)    

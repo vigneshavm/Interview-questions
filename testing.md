@@ -12,35 +12,6 @@
 | **Performance Optimization**  | [Common Performance Bottlenecks](#common-performance-bottlenecks-in-javascript-applications) - [Lazy Loading](#lazy-loading) - [Caching Strategies](#leveraging-caching-strategies-for-performance-optimization) - [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance) - [Optimizing Network Requests](#optimizing-network-requests-for-better-performance) - [Scalability](#Scalability) - [Troubleshoot and Debug Issue](#Troubleshoot-and-debug-issue)
 
 
-
-**Build** - [`<script>`, async, defer](#script-and-async-and-defer)    - [Tree Shaking](#tree-shaking-in-modern-bundlers)    - [Compiler](#Compiler)  - [Transpiling](#transpiling-javascript-code)    - [Polyfills](#polyfills-and-backward-compatibility)    - [Babel](#role-of-babel-in-modern-development)    
-
-**Webpack** - • [Customize Webpack](#customize-webpack) - [Webpack & Vite](#webpack-and-vite-bundling-process)  - [Reduce large bundle size](#Reduce-large-bundle-size) • [Webpack](#Webpack) • [Reduce the Bundle Size](#reduce-the-bundle-size)    
-
-**Testing** - [Testing Types](#types-of-testing-in-software-development)    - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests)    - [Mocks and Stubs](#mocks-and-stubs-in-testing)    - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript)  -  [Testing Libraries (Jest, React Testing Library)](#Jest-and-React-Testing-Library)  - [Mock Testing](#mock-testing)  - [Mocking APIs Tests](#Mocking-APIs-Tests) - [Testing Hooks](#Testing-Hooks)
-
-
-**Automation** - [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality)  - [CI CD](#CI-CD)   -[Web Communication Protocols](#Web-Communication-Protocols)
-
-**MicroFrontend** - [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation)
-
-**Webpack** - [Plugins](#Plugins) -[Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization)
-
-
-**Design Pattern** - [Software Engineering Practices](#Software-Engineering-Practices) - [Circuit Breaker](#Circuit-Breaker) - [Design Patterns](#Design-Patterns)  - [KISS](#KISS)  - [DRY](#DRY)  - [SOLID](#SOLID) - [SOLID Principles](#solid-principles)    - [Dependency Injection](#dependency-injection)   - [Function Composition Patterns](#function-composition-patterns)  - [Microfrontend design pattern](#Microfrontend-design-pattern) 
-
-
-**Testing Angular**   - [Unit test external API call](#Unit-test-external-API-call)
-
-**NodeJs** - [Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest)  -- [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai)
-
- 
-**Security**  - [HttpOnly Cookies](#HttpOnly-Cookies)  [Security](#Security)  - [React Security](#React-Security) - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF) or (XSRF)](#cross-site-request-forgery-csrf) - [CSP](#content-security-policy-csp)  - [SQL Injection](#preventing-sql-injection-vulnerabilities) - [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration) - [Sensitive Data Handling](#handling-sensitive-data) - [Security Headers](#common-security-headers-and-their-purposes) - [Clickjacking](#preventing-clickjacking-attacks)    - [Input Validation](#input-validation-and-its-importance) |
-
-
-**Performance Optimization**  - [Bottlenecks](#common-performance-bottlenecks-in-javascript-applications)    - [Lazy Loading](#lazy-loading)    - [Caching](#leveraging-caching-strategies-for-performance-optimization)    - [Performance Tools](#tools-for-measuring-and-analyzing-javascript-performance)    - [Optimizing Network Requests](#optimizing-network-requests-for-better-performance)    - [Scalability](#Scalability)   -- [Troubleshoot and debug issue](#Troubleshoot-and-debug-issue)
-
-
   
 - [CSR vs SSR](#CSR-vs-SSR) - [Client-Side Rendering  vs Server-Side Rendering](#CSR-vs-SSR)
 

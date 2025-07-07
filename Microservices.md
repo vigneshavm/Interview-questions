@@ -1,13 +1,12 @@
-| **Category**                    | **Topics**                                                                                                                                                                                                                                         |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **API Design & Interface**   | - [Versioning & Backward Compatibility](#versioning--backward-compatibility) - [Swagger](#swagger) - [InterService Communication](#inter-service-communication) - [Manage multiple service endpoints](#manage-multiple-service-endpoints) |
-| **Reliability & Resilience** | - [Rate Limiting & Throttling](#rate-limiting--throttling) - [Circuit Breaker](#circuit-breaker) - [Error Handling & Fault Tolerance](#error-handling--fault-tolerance) - [Logs and Tracing](#logs-and-tracing)                           |
-| **Patterns & Orchestration** | - [SAGA Pattern](#saga-pattern) - [Observer Pattern](#observer-pattern) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway)                                                                                           |
-| **Code & Configuration**     | - [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management)                                                                                                                        |
-| **Scaling & Operations**     | - [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture)                                                                            |
-| **Quality & Security**       | - [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization)                                                                                                                                      |
-[Microservices Communication](#microservices-communication)      , [monolithic vs microservices](#monolithic-vs-microservices)           - [Logging system](#Logging-system) - [Type safety across multiple services](#Type-safety-across-multiple-services)
-, [Distributed Data Consistency](#data-consistency-across-distributed-services)               
+| **Category**               | **Topics** |
+|----------------------------|------------|
+| **API Design & Interface** | [Versioning & Backward Compatibility](#versioning--backward-compatibility) - [Swagger](#swagger) - [InterService Communication](#inter-service-communication) - [Manage multiple service endpoints](#manage-multiple-service-endpoints) |
+| **Reliability & Resilience** | [Rate Limiting & Throttling](#rate-limiting--throttling) - [Circuit Breaker](#circuit-breaker) - [Error Handling & Fault Tolerance](#error-handling--fault-tolerance) - [Logs and Tracing](#logs-and-tracing) |
+| **Patterns & Orchestration** | [SAGA Pattern](#saga-pattern) - [Observer Pattern](#observer-pattern) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway) |
+| **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) |
+| **Scaling & Operations** | [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture) |
+| **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
+| **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) |
 
 
 ## **Microservices Architecture**

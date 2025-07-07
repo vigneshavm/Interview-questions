@@ -1,3 +1,9 @@
+| **Category**           | **Topics** |
+|------------------------|------------|
+| **HTML Basics**        | [HTML5 vs HTML4](#html5-vs-html4) ,  [`<section>` vs `<div>`](#section-vs-div) , [`<div>` vs `<span>`](#div-vs-span) ,  [HTML5 Form Enhancements](#html5-form-enhancements) ,  [Semantic Tags in HTML5](#semantic-tags-in-html5) ,[Creating Custom Tags](#creating-custom-tags-in-html5) , [`alt` in `<img>`](#purpose-of-alt-in-img) , [`id` vs `class`](#id-vs-class) ,  [`async` vs `defer`](#async-vs-defer) ,
+| **CSS Basics**         | [CSS3 Features](#css3-features) ,  [CSS Padding Shorthand](#css-padding-shorthand) , [CSS Positioning](#css-positioning) ,  [`em`, `rem`, `%`, and `px`](#em-rem--and-px) ,  [CSS Specificity](#css-specificity) , [CSS Box Model](#css-box-model) , [Descendant](#descendant) ,
+| **LESS & SASS Intro**  | [CSS Preprocessor](#css-preprocessor) ,[SASS vs LESS](#sass-vs-less) ,[Variables and Nesting](#variables-and-nesting) ,[Mixins in SASS and LESS](#mixins-in-sass-and-less) ,[@mixin vs @extend](#mixin-vs-extend) ,[SASS Partials](#sass-partials) ,[Loops and Functions](#loops-and-functions) ,
+| **SCSS Advanced**      | [SCSS vs CSS](#scss-vs-css) ,[SCSS Variables](#scss-variables) ,[SCSS Nesting](#scss-nesting) ,[SCSS Mixins](#scss-mixins) ,[SCSS Functions](#scss-functions) ,[Mixins and Functions](#mixins-and-functions) ,[@extend](#extend) ,[SCSS Modularity](#scss-modularity) ,[Partials](#partials) ,[@use and @import](#use-and-import) ,[SCSS File Organization](#scss-file-organization) ,[SCSS Control Directives](#scss-control-directives) ,[SCSS Debug](#scss-debug) ,[SCSS Variables Sharing](#scss-variables-sharing) ,[SCSS Maintainability](#scss-maintainability) ,[SCSS Pitfalls](#scss-pitfalls) ,
 
 
 

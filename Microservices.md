@@ -6,7 +6,7 @@
 | **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) |
 | **Scaling & Operations** | [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture) |
 | **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
-| **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices Architecture](#Microservices-Architecture) - [Microservices overview](#Microservices-overview)
+| **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices Architecture](#Microservices-Architecture) - [Microservices overview](#Microservice-overview)
 
 ## **Microservices Architecture**
 

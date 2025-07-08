@@ -13,7 +13,7 @@
 | **Other**      | • [Build Bundles & Optimization](#Angular-Build-Bundles)   • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
 | **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
-| **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [Set up Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot()` and `RouterModule.forChild()](#RouterModule-forRoot-and-RouterModule-forChild)  • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling) 
+| **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [ Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot vs forChild](#RouterModule-forRoot-and-RouterModule-forChild)  • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling) 
 
 
 
@@ -4592,6 +4592,7 @@ RouterModule.forRoot(routes, {
 
 ### **`RouterModule forRoot and RouterModule forChild`**
 
+ - [Standalone components forRoot forChild](#Standalone-components-forRoot-forChild)
 
 - Use `forRoot()` **once** in the root module to set up routing and services.
 - Use `forChild()` in **feature modules** to define their own internal routes — especially for **lazy loading** and **modular architecture**.
@@ -5191,4 +5192,64 @@ bootstrapApplication(AppComponent, {
 * **Full routing features** like guards, resolvers, and parameters are still supported
 
 
+
+## Standalone components forRoot forChild
+
+-  **Neither `forRoot()` nor `forChild()` is used directly in standalone components.**
+- Instead, you use **`provideRouter()`** in `main.ts` for root routing.
+* Do Not Use `RouterModule.forChild()` inside standalone components.
+* Do Not Use `NgModule` when you're going full standalone.
+* **Standalone components do not use `forRoot()` or `forChild()`**.
+*  Instead, use **`provideRouter()`** in `main.ts` for root configuration.
+*  Export plain **`Routes[]` arrays** from features.
+*  Routing works with `loadChildren()` pointing to files exporting `Routes[]`.
+
+
+**In Standalone Applications:**
+
+**`main.ts`**
+
+```ts
+import { provideRouter } from '@angular/router';
+import { appRoutes } from './app.routes';
+
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(appRoutes)]
+});
+```
+
+**`app.routes.ts`**
+
+```ts
+import { Routes } from '@angular/router';
+
+export const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'admin', loadChildren: () => import('./admin/admin.routes').then(m => m.adminRoutes) }
+];
+```
+
+
+**For Feature Routes (Lazy-Loaded)**
+
+In your **standalone feature module**, you don’t use `RouterModule.forChild()` either.
+
+You simply **export a `Routes[]` array**, like this:
+
+```ts
+// admin.routes.ts
+import { Routes } from '@angular/router';
+import { AdminComponent } from './admin.component';
+
+export const adminRoutes: Routes = [
+  {
+    path: '',
+    component: AdminComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'users', component: UsersComponent }
+    ]
+  }
+];
+```
 

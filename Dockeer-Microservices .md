@@ -807,52 +807,6 @@ A lightweight, standalone, and executable software package that includes everyth
 
 ---
 
-### Dockerfile
-
-A text file containing **instructions to build a Docker image**.
-
-
-| Command   | Purpose                             |
-| --------- | ----------------------------------- |
-| `FROM`    | Base image                          |
-| `COPY`    | Copy files into image               |
-| `RUN`     | Execute commands in build process   |
-| `CMD`     | Default command when container runs |
-| `EXPOSE`  | Open a port                         |
-| `ENV`     | Set environment variables           |
-| `WORKDIR` | Set working directory               |
-
-
-```js
-# Stage 1: Build
-FROM node:18-alpine AS builder
-
-# Set working directory
-WORKDIR /app
-
-# Install dependencies
-COPY package*.json ./
-RUN npm ci --only=production
-
-# Copy source code
-COPY . .
-
-# Stage 2: Runtime
-FROM node:18-alpine
-
-# Create app directory
-WORKDIR /app
-
-# Copy only necessary files from builder
-COPY --from=builder /app /app
-
-# Expose the app port
-EXPOSE 3000
-
-# Run the app
-CMD ["node", "index.js"]
-```
-
 
 ### Docker Compose
 
@@ -1564,4 +1518,128 @@ FROM node:18-alpine
 > Remove temp files, package lists, or caches in the same `RUN` step to avoid creating a new layer with leftover data.
 
 ---
+
+
+
+### Dockerfile
+
+A text file containing **instructions to build a Docker image**.
+
+
+| Command   | Purpose                             |
+| --------- | ----------------------------------- |
+| `FROM`    | Base image                          |
+| `COPY`    | Copy files into image               |
+| `RUN`     | Execute commands in build process   |
+| `CMD`     | Default command when container runs |
+| `EXPOSE`  | Open a port                         |
+| `ENV`     | Set environment variables           |
+| `WORKDIR` | Set working directory               |
+
+`order-service` and `payment-service` — each with its **own Dockerfile** and optional `docker-compose.yml` to run them together in a microservices environment.
+
+```ts
+project-root/
+├── order-service/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── index.js
+├── payment-service/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── index.js
+└── docker-compose.yml
+```
+
+
+**`order-service/Dockerfile`**
+
+```Dockerfile
+# Use Node.js as the base image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy files
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# Expose port and start app
+EXPOSE 3001
+CMD ["node", "index.js"]
+```
+
+
+**`payment-service/Dockerfile`**
+
+```Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 3002
+CMD ["node", "index.js"]
+```
+
+
+**`docker-compose.yml` (at root level)**
+
+```yaml
+version: '3.8'
+
+services:
+  order-service:
+    build:
+      context: ./order-service
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+
+  payment-service:
+    build:
+      context: ./payment-service
+    ports:
+      - "3002:3002"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+```
+
+
+
+```bash
+docker-compose up --build
+```
+
+
+**Sample `index.js` for `order-service`**
+
+```js
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => res.send('Order Service Running'));
+app.listen(3001, () => console.log('Order Service on port 3001'));
+```
+
+**Sample `index.js` for `payment-service`**
+
+```js
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => res.send('Payment Service Running'));
+app.listen(3002, () => console.log('Payment Service on port 3002'));
+```
 

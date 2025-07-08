@@ -13,7 +13,7 @@
 | **Other**      | • [Build Bundles & Optimization](#Angular-Build-Bundles)   • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
 | **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
-| **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [Set up Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot()` and `RouterModule.forChild()](#RouterModule-forRoot-and-RouterModule-forChild)  • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling) • [Interceptor](#Interceptor)
+| **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [Set up Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot()` and `RouterModule.forChild()](#RouterModule-forRoot-and-RouterModule-forChild)  • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling) 
 
 
 
@@ -1630,36 +1630,6 @@ jobs:
 
 
 
-## HTTP Interceptors in Angular
-
--  An interceptor is a class that implements the `HttpInterceptor` interface. It intercepts all HTTP requests and responses.
-- "The HTTP interceptor is a powerful Angular feature that lets me **intercept and modify HTTP requests and responses**. I use it to:
-- 1. **Attach the JWT token** to every outgoing request via the `Authorization` header.
-- 2. **Handle errors globally**, such as redirecting to the login page on a 401 Unauthorized response.
-- It centralizes authentication logic and keeps the code DRY and maintainable."
-
-**Key Points to Mention:**
-
-* Token injection in headers
-* 401 error handling and redirection
-* Keeps services clean
-* Add authentication headers
-* Handle errors globally
-* Log HTTP activity
-
-
-
-Interceptors allow us to modify HTTP requests/responses globally. I use them to add auth tokens, log requests, and handle errors globally.
-
-```ts
-intercept(req: HttpRequest<any>, next: HttpHandler) {
-  const authReq = req.clone({ setHeaders: { Authorization: 'Bearer token' }});
-  return next.handle(authReq);
-}
-```
-
-
-
 
 ---
 
@@ -1927,6 +1897,8 @@ const routes: Routes = [
 
 ## Routing & Child Routes
 
+ -[Routing in Standalone Modules](#Routing-in-Standalone-Modules)
+
  -  Angular Routing enables navigation between views or components in a single-page application (SPA).
  -  It maps URL paths to components using the `RouterModule`.
  -  Angular uses the `RouterModule` to handle navigation.
@@ -1936,7 +1908,7 @@ const routes: Routes = [
 
 
 
-####  **Basic Routing Example:**
+**Basic Routing Example:**
 
 ```ts
 const routes: Routes = [
@@ -1954,14 +1926,13 @@ Add to `AppModule`:
 })
 ```
 
----
 
-###  **What are Child Routes?**
+**Child Routes**
 
 * Child Routes allow you to nest routes inside a parent route.
 * Useful for layouts where a part of the view (like sidebar/header) stays consistent.
 
-####  **Example:**
+**Example:**
 
 ```ts
 const routes: Routes = [
@@ -1978,18 +1949,15 @@ const routes: Routes = [
 
 * Navigating to `/admin/dashboard` shows `DashboardComponent` inside `AdminLayoutComponent`.
 
----
 
-### 🔍 **Use Cases for Child Routes**
+**Use Cases for Child Routes**
 
 * **Nested views/layouts** (e.g., admin panel).
 * **Tabs or multi-step forms**.
 * **Shared layout with router outlet for children**.
 * **Modular design** with feature modules.
 
----
-
-### 🧠 **Key Points to Mention**
+**Key Points to Mention**
 
 * Use `<router-outlet>` in both root and child components.
 * Child routes can also have their own guards.
@@ -2002,7 +1970,6 @@ const routes: Routes = [
 
 ##  **Directives**
 
-###  **What are Directives?**
 
 * Directives are **classes that add behavior** to elements in the DOM.
 * Angular provides **built-in directives**, and you can also create **custom directives**.
@@ -2610,6 +2577,27 @@ forkJoin({
  -  `@HostListener` listens to host element events like click, resize.
  -  `@HostBinding` binds a property or attribute to the host element of the directive/component.
 
+```js
+import { Directive, HostBinding, HostListener } from '@angular/core';
+
+@Directive({
+  selector: '[appHoverHighlight]'
+})
+export class HoverHighlightDirective {
+  @HostBinding('style.backgroundColor') background: string = 'transparent';
+
+  @HostListener('mouseenter') onEnter() {
+    this.background = 'lightblue';
+  }
+
+  @HostListener('mouseleave') onLeave() {
+    this.background = 'transparent';
+  }
+}
+
+<div appHoverHighlight>This div has yellow background and "active" class</div>
+
+```
 
 
 
@@ -4943,8 +4931,33 @@ bootstrapApplication(AppComponent, {
 
 
 
-### **Interceptor**
+## HTTP Interceptors in Angular
 
+-  An interceptor is a class that implements the `HttpInterceptor` interface. It intercepts all HTTP requests and responses.
+- "The HTTP interceptor is a powerful Angular feature that lets me **intercept and modify HTTP requests and responses**. I use it to:
+- 1. **Attach the JWT token** to every outgoing request via the `Authorization` header.
+- 2. **Handle errors globally**, such as redirecting to the login page on a 401 Unauthorized response.
+- It centralizes authentication logic and keeps the code DRY and maintainable."
+
+**Key Points to Mention:**
+
+* Token injection in headers
+* 401 error handling and redirection
+* Keeps services clean
+* Add authentication headers
+* Handle errors globally
+* Log HTTP activity
+
+
+
+Interceptors allow us to modify HTTP requests/responses globally. I use them to add auth tokens, log requests, and handle errors globally.
+
+```ts
+intercept(req: HttpRequest<any>, next: HttpHandler) {
+  const authReq = req.clone({ setHeaders: { Authorization: 'Bearer token' }});
+  return next.handle(authReq);
+}
+```
 
 
 - In Angular, an **HTTP Interceptor** is a service that implements the `HttpInterceptor` interface and allows us to **intercept and modify all HTTP requests and responses globally**.
@@ -5116,4 +5129,66 @@ When you run `ng new`, you get:
 * Optional **Routing setup**
 
 ---
+
+
+
+
+
+###  **Routing in Standalone Modules**
+
+* Angular **Standalone Components** (introduced in v14) can be used **without NgModules**.
+* Routing is configured using **`provideRouter()`** instead of `RouterModule.forRoot()`.
+* Routes are declared in a plain **`Routes[]` array** and passed directly to the bootstrap function.
+* Create a **central `app.routes.ts`** file to define root-level routes.
+* Use **`loadChildren()`** to **lazy-load a child routing file** (e.g., `admin.routes.ts`).
+* Each feature module exports a **`Routes` array** instead of an NgModule.
+* Inside the feature's `Routes[]`, define a route with:
+* The parent component **must have `<router-outlet>`** for rendering children.
+* All child components can also be **standalone**.
+* A **`component`** (usually a layout component like `AdminComponent`)
+* A **`children` array** that holds nested routes
+
+```ts
+export const adminRoutes: Routes = [
+  {
+    path: '',
+    component: AdminComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'users', component: UsersComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+    ]
+  }
+];
+```
+
+
+
+**Bootstrapping with Standalone Routing**
+
+* In `main.ts`, use:
+
+```ts
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(appRoutes)]
+});
+```
+
+* This replaces the need for an `AppModule`.
+
+
+**Key Benefits of Standalone Routing**
+
+*  `canActivate`, `canLoad`, `resolve`, `data`, etc. work the same way
+*  Lazy loading works via `loadChildren`
+*  You can still organize routes modularly per feature
+
+
+* **No NgModules** — reduces boilerplate
+* **Better tree-shaking & smaller bundles**
+* **Composability** — components declare their own dependencies
+* **Cleaner separation of features** with lazy-loaded routes
+* **Full routing features** like guards, resolvers, and parameters are still supported
+
+
 

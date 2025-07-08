@@ -3,7 +3,7 @@
 | **JavaScript Fundamentals**  |  • [let vs var vs const](#let-and-var-and-const) • [const with primitive and non primitive](#const-with-primitive-and-non-primitive) • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const) • [use strict Directive](#use-strict-directive) • [Data Types](#data-types) • [Symbol](#symbol) • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)                                                                                                                                                                                                                          |
 | **Operators**                |  • [== vs ===](#loose-equality-vs-strict-equality) • [++ / --](#post-increment-and-pre-increment) • [JS Coercion (+ operator)](#js-object-coercion) • [Dynamic Keys](#dyanmic-keys) • [! and !!](#logical-not)      • [Shadowing](#shadowing)            • [Hoisting](#hoisting)                                                                                                                                                                                                                                                                                                                         |
 | **Arrays**                   |  • [Arrays](#Arrays) • [slice() and splice()](#slice-and-splice) • [map(), filter(), reduce()](#map-filter-and-reduce) • [Shallow and Deep Copy](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects)                                                                                                                                                                                                                                                     |
-| **Advanced JS Fundamentals** |  • [ES6](#ES6) • [Arrow Functions](#arrow-functions) • [Promises](#promises) • [Async Await](#async-await)  • [Optional Chaining (?.)](#optional-chaining-operator) • [Nullish Coalescing (??)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage) • [Iterator](#iterator) • [Generator function](#generator-function)   • [Callback, Promise, Async/Await](#callback-vs-promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise](#promise), [Promise Type](#promise-type),                                                                                                                             |
+| **Advanced JS Fundamentals** |  • [ES6](#ES6) • [Arrow Functions](#arrow-functions) • [Promises](#promises) • [Promise Type](#promise-type) • [Async Await](#async-await)  • [Optional Chaining (?.)](#optional-chaining-operator) • [Nullish Coalescing (??)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage) • [Iterator](#iterator) • [Generator function](#generator-function)   • [Callback, Promise, Async/Await](#callback-vs-promise-vs-asyncawait), [Callback Hell](#callback-hell),                                                                                                                              |
 | **Scope & `this`**           |  • [Scope](#scope)  • [this Keyword Behavior](#this-keyword-behavior) • [new Keyword](#new-keyword) • [Memory Leaks](#common-causes-of-memory-leaks) • [Garbage Collection](#javascript-garbage-collection) • [Memoization Techniques](#memoization-techniques)                                                                                                                                                                                                                  |
 | **Events**                   |  • [Event Propagation](#event-propagation) • [Event Listeners](#event-listeners) • [preventDefault() vs stopPropagation()](#preventdefault-vs-stoppropagation) • [Capturing vs Bubbling vs Delegation](#event-capturing-vs-event-bubbling-vs-event-delegation)                                                                                                                                                                                                                                                                                                                                        |
 | **Functions**                |  • [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor) • [Functions](#functions) • [Closures](#closures) • [Currying](#currying-in-javascript)• [`Call(), Apply(), Bind()`](#call-and-apply-and-bind-methods) • [Debounce and Throttle](#debounce-and-throttle-functions) • [Default Parameters](#default-parameters) • [Constructor Function](#constructor-function)                                                                                                                                                          |
@@ -442,18 +442,23 @@ JSON.stringify(a) == JSON.stringify(b)  --> true  ie)Because JSON.stringify remo
 ## **Promises**
 
 
+A **Promise** is an object that represents the **eventual completion (or failure)** of an asynchronous operation and its resulting value.
+
  A **Promise** is an object that represents the eventual completion (or failure) of an asynchronous operation.
  Promises allow us to handle asynchronous operations in a more manageable way than using callbacks (callback hell).
 
-A promise has three states:
- - **Pending**: The promise is neither fulfilled nor rejected.
- - **Pending**: The initial state, where the Promise is waiting to be resolved or rejected.
 
- - **Fulfilled**: The operation was successful.
- - **Fulfilled**: The Promise has completed successfully and has returned a value.
+It has **3 states**:
 
- - **Rejected**: The operation failed.
- - **Rejected**: The Promise has failed and returned a reason (error).
+| State        | Description                            |
+|--------------|----------------------------------------|
+| `pending`    | Initial state, operation not complete  |
+| `fulfilled`  | Operation completed successfully        |
+| `rejected`   | Operation failed with an error          |
+
+
+
+
 
 **Example**:
 ```javascript
@@ -470,6 +475,59 @@ promise
   .then(result => console.log(result)) // "Operation successful"
   .catch(error => console.log(error)); // If rejected
 ```
+
+
+
+### Promise Basic Syntax
+
+```js
+const myPromise = new Promise((resolve, reject) => {
+  // Async task here (e.g., API call)
+  const success = true;
+
+  if (success) {
+    resolve("It worked!");
+  } else {
+    reject("It failed!");
+  }
+});
+```
+
+---
+
+### Consuming a Promise
+
+```js
+myPromise
+  .then(result => {
+    console.log(result); // Output: It worked!
+  })
+  .catch(error => {
+    console.error(error); // If rejected
+  })
+  .finally(() => {
+    console.log("Done"); // Runs always
+  });
+```
+
+---
+
+### Promise Real-world Example (Fake API)
+
+```js
+function getUserData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const success = true;
+      success ? resolve({ name: "Alice" }) : reject("Error!");
+    }, 1000);
+  });
+}
+
+getUserData()
+  .then(user => console.log(user.name))
+  .catch(err => console.log(err));
+```
 - **Pros**:
   - **Avoid Callback Hell**: Promises allow chaining with `.then()` and `.catch()`, which makes the code more readable than nested callbacks.
   - **Improved error handling**: With promises, errors can be caught at any point in the chain using `.catch()`.
@@ -479,6 +537,7 @@ promise
   - **Chaining can become complex**: Deep chaining can lead to code that's difficult to maintain.
   - **Not always intuitive**: Debugging and understanding promises can be tricky, especially when multiple promises are involved.
   - **Older browser support**: Older browsers may not support promises natively without polyfills.
+
 
 ---
 
@@ -5714,72 +5773,6 @@ const p = Promise.reject("Something went wrong"); p.catch(console.error);
 
 
 
-## Promise
-
-A **Promise** is an object that represents the **eventual completion (or failure)** of an asynchronous operation and its resulting value.
-
-It has **3 states**:
-
-| State        | Description                            |
-|--------------|----------------------------------------|
-| `pending`    | Initial state, operation not complete  |
-| `fulfilled`  | Operation completed successfully        |
-| `rejected`   | Operation failed with an error          |
-
----
-
-### Promise Basic Syntax
-
-```js
-const myPromise = new Promise((resolve, reject) => {
-  // Async task here (e.g., API call)
-  const success = true;
-
-  if (success) {
-    resolve("It worked!");
-  } else {
-    reject("It failed!");
-  }
-});
-```
-
----
-
-### Consuming a Promise
-
-```js
-myPromise
-  .then(result => {
-    console.log(result); // Output: It worked!
-  })
-  .catch(error => {
-    console.error(error); // If rejected
-  })
-  .finally(() => {
-    console.log("Done"); // Runs always
-  });
-```
-
----
-
-### Promise Real-world Example (Fake API)
-
-```js
-function getUserData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const success = true;
-      success ? resolve({ name: "Alice" }) : reject("Error!");
-    }, 1000);
-  });
-}
-
-getUserData()
-  .then(user => console.log(user.name))
-  .catch(err => console.log(err));
-```
-
----
 
 ### Promises vs Callbacks
 

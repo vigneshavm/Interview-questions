@@ -446,9 +446,14 @@ JSON.stringify(a) == JSON.stringify(b)  --> true  ie)Because JSON.stringify remo
  Promises allow us to handle asynchronous operations in a more manageable way than using callbacks (callback hell).
 
 A promise has three states:
-**Pending**: The promise is neither fulfilled nor rejected.
-**Fulfilled**: The operation was successful.
-**Rejected**: The operation failed.
+ - **Pending**: The promise is neither fulfilled nor rejected.
+ - **Pending**: The initial state, where the Promise is waiting to be resolved or rejected.
+
+ - **Fulfilled**: The operation was successful.
+ - **Fulfilled**: The Promise has completed successfully and has returned a value.
+
+ - **Rejected**: The operation failed.
+ - **Rejected**: The Promise has failed and returned a reason (error).
 
 **Example**:
 ```javascript
@@ -465,36 +470,6 @@ promise
   .then(result => console.log(result)) // "Operation successful"
   .catch(error => console.log(error)); // If rejected
 ```
-
----
-
-**Promise States**
-
-
- A Promise can exist in one of the following states:
-
-**Pending**: The initial state, where the Promise is waiting to be resolved or rejected.
-**Fulfilled**: The Promise has completed successfully and has returned a value.
-**Rejected**: The Promise has failed and returned a reason (error).
-
-**Example**:
-```javascript
-const myPromise = new Promise((resolve, reject) => {
-  let success = false;
-  if (success) {
-    resolve("Success");
-  } else {
-    reject("Failure");
-  }
-});
-
-myPromise
-  .then(result => console.log(result))   // Will not execute
-  .catch(error => console.log(error));   // Outputs: Failure
-```
-
----
-
 - **Pros**:
   - **Avoid Callback Hell**: Promises allow chaining with `.then()` and `.catch()`, which makes the code more readable than nested callbacks.
   - **Improved error handling**: With promises, errors can be caught at any point in the chain using `.catch()`.

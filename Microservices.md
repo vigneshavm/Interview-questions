@@ -693,7 +693,13 @@ In microservices or distributed architectures, **data consistency** is a key con
 
 ## Microservice overview
 
-> "I have **extensive experience designing, developing, and deploying microservices-based systems**, especially over the last 5–6 years as **enterprise systems shifted from monoliths to microservices."**
+> "I have **extensive experience designing, developing, and deploying microservices-based systems**,
+>  **enterprise systems shifted from monoliths to microservices."**
+> **Application is structured as a collection of loosely coupled, independently deployable services**.
+> Each service is aligned to a specific business domain and can be developed, deployed, and scaled independently.
+
+**Real Time Example**
+> “In one of my projects, we migrated a legacy monolith into 12 microservices, each handling a core function like billing, user management, notifications, etc. This improved release velocity, allowed independent team ownership, and significantly reduced production downtime.”
 
 * **Design & Decomposition**: Broke down large monolithic applications into modular, domain-driven microservices. Followed **Domain-Driven Design (DDD)** to define clear **bounded contexts**.
 

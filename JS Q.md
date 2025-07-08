@@ -1905,13 +1905,46 @@ fetchData('https://api.example.com', function(data) {
 ##### Example: Creating a Counter
 
 ```javascript
+
+//using arraw fn
+const createCounter = () => {
+  let count = 0;
+  return {
+    increment: () => ++count,
+    //count++ return 0,++count return 1
+    decrement: () => --count,
+    //count-- return 2,--count return 1
+    reset: () => { count = 0; }
+  };
+};
+
+//without arrow fn
 function createCounter() {
   let count = 0;
   return {
-    increment() { count++; console.log(count); },
-    decrement() { count--; console.log(count); },
+    increment: function () {
+      count++;
+      return count;
+    },
+    decrement: function () {
+      count--;
+      return count;
+    },
+    reset: function () {
+      count = 0;
+    }
   };
 }
+
+// ✅ Usage
+const counter = createCounter();
+
+console.log(counter.increment()); // 1
+console.log(counter.increment()); // 2
+console.log(counter.decrement()); // 1
+counter.reset();
+console.log(counter.increment()); // 1
+
 ```
 - `count` remains private and accessible only through `increment`/`decrement`.
 

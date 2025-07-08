@@ -5787,10 +5787,10 @@ const p = Promise.reject("Something went wrong"); p.catch(console.error);
 
 
 ## **Callback Hell** 
-      - refers to nested callbacks that make code unreadable and difficult to maintain.
-      - Use **Promises** to flatten the callback chain.
-      - Use **async/await** for better readability and linear flow.
-      -  Modularize code into smaller functions for better maintainability.
+- refers to nested callbacks that make code unreadable and difficult to maintain.
+- Use **Promises** to flatten the callback chain.
+- Use **async/await** for better readability and linear flow.
+-  Modularize code into smaller functions for better maintainability.
 
 - **Solutions**: 
   - **Promises**: Handles asynchronous behavior more cleanly with `.then()`, `.catch()`.

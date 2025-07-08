@@ -3,7 +3,10 @@
 | **JavaScript Fundamentals**  |  • [let vs var vs const](#let-and-var-and-const) • [const with primitive and non primitive](#const-with-primitive-and-non-primitive) • [Temporal Dead Zone](#temporal-dead-zone-in-let-and-const) • [use strict Directive](#use-strict-directive) • [Data Types](#data-types) • [Symbol](#symbol) • [null vs undefined vs undeclared](#null-and-undefined-and-undeclared)                                                                                                                                                                                                                          |
 | **Operators**                |  • [== vs ===](#loose-equality-vs-strict-equality) • [++ / --](#post-increment-and-pre-increment) • [JS Coercion (+ operator)](#js-object-coercion) • [Dynamic Keys](#dyanmic-keys) • [! and !!](#logical-not)      • [Shadowing](#shadowing)            • [Hoisting](#hoisting)                                                                                                                                                                                                                                                                                                                         |
 | **Arrays**                   |  • [Arrays](#Arrays) • [slice() and splice()](#slice-and-splice) • [map(), filter(), reduce()](#map-filter-and-reduce) • [Shallow and Deep Copy](#shallow-copy-and-deep-copy) • [Map](#map-key-references-with-objects)                                                                                                                                                                                                                                                     |
-| **Advanced JS Fundamentals** |  • [ES6](#ES6) • [Arrow Functions](#arrow-functions) • [Promises](#promises) • [Async Await](#async-await)  • [Optional Chaining (?.)](#optional-chaining-operator) • [Nullish Coalescing (??)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage) • [Iterator](#iterator) • [Generator function](#generator-function)                                                                                                                                |
+| **Advanced JS Fundamentals** |  • [ES6](#ES6) • [Arrow Functions](#arrow-functions) • [Promises](#promises) • [Async Await](#async-await)  • [Optional Chaining (?.)](#optional-chaining-operator) • [Nullish Coalescing (??)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage) • [Iterator](#iterator) • [Generator function](#generator-function)   
+
+
+• [Callback, Promise, Async/Await](#callback-vs-promise-vs-asyncawait), [Callback Hell](#callback-hell), [Promise](#promise), [Promise Type](#promise-type),                                                                                                                             |
 | **Scope & `this`**           |  • [Scope](#scope)  • [this Keyword Behavior](#this-keyword-behavior) • [new Keyword](#new-keyword) • [Memory Leaks](#common-causes-of-memory-leaks) • [Garbage Collection](#javascript-garbage-collection) • [Memoization Techniques](#memoization-techniques)                                                                                                                                                                                                                  |
 | **Events**                   |  • [Event Propagation](#event-propagation) • [Event Listeners](#event-listeners) • [preventDefault() vs stopPropagation()](#preventdefault-vs-stoppropagation) • [Capturing vs Bubbling vs Delegation](#event-capturing-vs-event-bubbling-vs-event-delegation)                                                                                                                                                                                                                                                                                                                                        |
 | **Functions**                |  • [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor) • [Functions](#functions) • [Closures](#closures) • [Currying](#currying-in-javascript)• [`Call(), Apply(), Bind()`](#call-and-apply-and-bind-methods) • [Debounce and Throttle](#debounce-and-throttle-functions) • [Default Parameters](#default-parameters) • [Constructor Function](#constructor-function)                                                                                                                                                          |
@@ -5706,6 +5709,217 @@ for (const item of items) {
 ```
 
 ---
+
+
+
+
+
+
+## **Promise Type**:
+
+| Function             | Description                                                                 | Use Case |
+|----------------------|-----------------------------------------------------------------------------|----------|
+| `Promise.resolve()`  | Creates a **fulfilled** promise with a value                                | Simulating success |
+| `Promise.reject()`   | Creates a **rejected** promise with a reason                                | Simulating error |
+| `Promise.all()`      | Waits for **all** promises to resolve (or one to reject)                    | Run multiple tasks together |
+| `Promise.allSettled()` | Waits for all promises to settle (fulfilled or rejected)                  | Get results of all, including errors |
+| `Promise.race()`     | Resolves/rejects as soon as **one** promise(resolves or rejects) settles    | Timeout or fastest response |
+| `Promise.any()`      | Resolves as soon as **any one succeeds** (ignores rejections)              | Get first successful result |
+
+
+
+
+**`Promise.resolve()`**
+
+```js
+const p = Promise.resolve("Hello"); p.then(console.log); // "Hello"
+```
+
+**`Promise.reject()`**
+
+```js
+const p = Promise.reject("Something went wrong"); p.catch(console.error);
+```
+
+
+**`Promise.all()`**
+
+```js
+const p1 = Promise.resolve(1); const p2 = Promise.resolve(2);
+Promise.all([p1, p2]).then(results => console.log(results)); // [1, 2]
+```
+
+**`Promise.allSettled()`**
+
+```js
+const p1 = Promise.resolve("Done"); const p2 = Promise.reject("Failed");
+Promise.allSettled([p1, p2]).then(results => console.log(results));
+```
+
+ Output:
+```js
+[  { status: 'fulfilled', value: 'Done' },  { status: 'rejected', reason: 'Failed' }]
+```
+
+
+**`Promise.race()`**
+
+```js
+const slow = new Promise(res => setTimeout(() => res("Slow"), 1000));
+const fast = new Promise(res => setTimeout(() => res("Fast"), 100));
+
+Promise.race([slow, fast]).then(console.log); // "Fast"
+```
+
+
+#### `Promise.any()`
+
+```js
+const p1 = Promise.reject("Fail 1");
+const p2 = Promise.resolve("Success!");
+
+Promise.any([p1, p2]).then(console.log); // "Success!"
+```
+
+---
+
+
+
+## Promise
+
+A **Promise** is an object that represents the **eventual completion (or failure)** of an asynchronous operation and its resulting value.
+
+It has **3 states**:
+
+| State        | Description                            |
+|--------------|----------------------------------------|
+| `pending`    | Initial state, operation not complete  |
+| `fulfilled`  | Operation completed successfully        |
+| `rejected`   | Operation failed with an error          |
+
+---
+
+### Promise Basic Syntax
+
+```js
+const myPromise = new Promise((resolve, reject) => {
+  // Async task here (e.g., API call)
+  const success = true;
+
+  if (success) {
+    resolve("It worked!");
+  } else {
+    reject("It failed!");
+  }
+});
+```
+
+---
+
+### Consuming a Promise
+
+```js
+myPromise
+  .then(result => {
+    console.log(result); // Output: It worked!
+  })
+  .catch(error => {
+    console.error(error); // If rejected
+  })
+  .finally(() => {
+    console.log("Done"); // Runs always
+  });
+```
+
+---
+
+### Promise Real-world Example (Fake API)
+
+```js
+function getUserData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const success = true;
+      success ? resolve({ name: "Alice" }) : reject("Error!");
+    }, 1000);
+  });
+}
+
+getUserData()
+  .then(user => console.log(user.name))
+  .catch(err => console.log(err));
+```
+
+---
+
+### Promises vs Callbacks
+
+| Callbacks                  | Promises                       |
+|----------------------------|--------------------------------|
+| Error-prone (callback hell) | Cleaner syntax                 |
+| Difficult to debug         | Better error handling          |
+| Nested structure           | Chainable (`.then`)            |
+
+---
+
+
+
+## **Callback Hell** 
+      - refers to nested callbacks that make code unreadable and difficult to maintain.
+      - Use **Promises** to flatten the callback chain.
+      - Use **async/await** for better readability and linear flow.
+      -  Modularize code into smaller functions for better maintainability.
+
+- **Solutions**: 
+  - **Promises**: Handles asynchronous behavior more cleanly with `.then()`, `.catch()`.
+  - **Async/Await**: Allows asynchronous code to be written in a synchronous style, improving readability.
+
+
+## Callback Vs Promise Vs AsyncAwait
+
+
+**Async/Await (Preferred):**
+
+* ✅ Cleaner syntax, easier error handling with try/catch
+* ✅ Readable, sequential flow
+* ❌ Slightly harder to parallelize unless using `Promise.all`
+
+**Promises:**
+
+* ✅ Great for chaining
+* ✅ Can run in parallel easily
+* ❌ Callback nesting if not managed properly
+
+**Callbacks:**
+
+* ✅ Useful in older APIs and streams
+* ❌ Prone to callback hell and error handling issues
+
+I default to `async/await`, and combine with `Promise.all` for parallelism. Callbacks are only used in low-level libraries or streams.
+
+
+- **Promises**: Use `.then()` and `.catch()` for chaining async calls.
+- **Async/Await**: More readable and concise for handling asynchronous operations.
+- Promises simplify callbacks but can still become complex.
+- **Async/await** allows writing asynchronous code like synchronous code, improving readability.
+- Async/await works on top of promises and eliminates `.then()` chains.
+
+
+| **Aspect**                     | **Callback**                                     | **Promise**                                          | **Async/Await**                                       |
+|---------------------------------|--------------------------------------------------|------------------------------------------------------|------------------------------------------------------|
+| **Definition**                  | A function passed as an argument to another function and executed once the task is completed. | An object representing the eventual completion (or failure) of an asynchronous operation. | A syntactic sugar over Promises, allowing asynchronous code to look synchronous. |
+| **Syntax**                      | `function example(callback) { callback(err, result); }` | `let promise = new Promise((resolve, reject) => {...});` | `async function example() { let result = await promise; }` |
+| **Control Flow**                | Hard to read and maintain with nested callbacks (callback hell). | Flat and more readable compared to callbacks.         | More readable and similar to synchronous code with `await`. |
+| **Error Handling**              | Errors are handled by checking the `err` parameter in the callback. | Errors are handled using `.catch()`.                  | Errors are handled with `try/catch` blocks.            |
+| **Handling Asynchronous Code**  | Each operation is executed after the previous one completes. | Handles asynchronous code by chaining `.then()` for success and `.catch()` for errors. | Allows asynchronous operations to be written like synchronous code using `await`. |
+| **Readability**                 | Hard to read, especially with deeply nested callbacks (callback hell). | Easier to read and maintain than callbacks, but still has chaining. | Clean, readable, and close to synchronous code structure. |
+| **Error Propagation**           | Requires manual error handling in every callback. | Uses `.catch()` to propagate errors through the chain. | Errors are propagated through `try/catch` blocks. |
+| **Nested Operations**           | Leads to callback hell with nested asynchronous operations. | Can chain multiple asynchronous operations using `.then()`. | Simplifies nested asynchronous calls using `await` in a sequential manner. |
+| **Chaining**                    | Not supported, but can be manually implemented. | Chaining is built-in with `.then()` and `.catch()`.   | Chaining can be done using `await` for cleaner code. |
+| **Best Use Case**               | Simple asynchronous tasks with a single callback. | Complex async operations that require chaining or error handling. | Cleaner async functions, especially with multiple asynchronous operations in a sequence. |
+| **Example**                     | ```fs.readFile('file.txt', (err, data) => { console.log(data); });``` | ```fetch(url).then(response => response.json()).then(data => console.log(data));``` | ```async function fetchData() { let data = await fetch(url); console.log(data); }``` |
+
+
 
 
 

@@ -699,9 +699,9 @@ In microservices or distributed architectures, **data consistency** is a key con
 
 * **Technology Stack**: Built microservices using **Node.js**, **Express**. Frontend with **React/Angular**, backend REST APIs, and GraphQL where appropriate.
 
-* **Service Communication**:   Used **REST**, **gRPC**, and **event-driven communication** via **Kafka** or **RabbitMQ** for async flows.
+* **Service Communication**:   Used **REST**, **gRPC**, and **event-driven communication** via **RabbitMQ** for async flows.
 
-* **API Gateway & Routing**:  Integrated with **API Gateway** (e.g., **Kong**, **AWS API Gateway**) for routing, throttling, and central auth handling.
+* **API Gateway & Routing**:  Integrated with **API Gateway** (e.g., **AWS API Gateway**) for routing, throttling, and central auth handling.
 
 * **Auth & Security**:  Implemented **JWT-based authentication**, **OAuth2**, **SSO**, and service-to-service auth with **mTLS** or API keys.
 
@@ -709,7 +709,7 @@ In microservices or distributed architectures, **data consistency** is a key con
 
 * **CI/CD & DevOps**:  Containerized services using **Docker**, deployed on **Kubernetes (K8s)** or **AWS ECS/EKS**. Automated deployments via **GitHub Actions**, **Jenkins**, or **GitLab CI/CD**.
 
-* **Observability & Monitoring**:  Integrated centralized **logging (ELK / Loki)**, **metrics (Prometheus, Grafana)**, and **tracing (Jaeger, Zipkin)** for monitoring and debugging.
+* **Observability & Monitoring**:  Integrated centralized **logging (Datalogs)**
 
 * **Resilience & Fault Tolerance**:  Used **circuit breakers (e.g., with Hystrix or custom middleware)**, **rate limiting**, **retry patterns**, and **bulkheads** to build robust systems.
 
@@ -720,5 +720,6 @@ In microservices or distributed architectures, **data consistency** is a key con
   * Standardizing APIs with **Swagger** documentation.
 
 ---
+
 
 

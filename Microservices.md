@@ -115,21 +115,15 @@ I enable automated deployments with **zero-downtime strategies** using container
 **CI/CD Pipelines**
 
 * Automate build, test, and deployment flows using:
-
-  * **GitHub Actions**
-  * **Jenkins**
-  * **GitLab CI/CD**
+  * **GitHub Actions**   * **Jenkins**
 * Integrate quality gates, smoke tests, and rollback mechanisms.
 
 
 **Blue-Green Deployment**
 
 * Maintain **two environments**:
-
-  * **Blue**: Currently live
-  * **Green**: Staging for new release
+  * **Blue**: Currently live ,   * **Green**: Staging for new release
 * **Steps**:
-
   * Deploy new version to Green.
   * Run automated & smoke tests.
   * Route traffic to Green after validation.
@@ -140,10 +134,7 @@ I enable automated deployments with **zero-downtime strategies** using container
 
 * Gradual rollout of new versions to a **small % of users**.
 * Monitor:
-
-  * **Error rates**
-  * **Latency**
-  * **CPU/memory usage**
+  * **Error rates** ,   * **Latency** ,  * **CPU/memory usage**
 * If stable → Increase rollout.
   If issues arise → Roll back safely.
 

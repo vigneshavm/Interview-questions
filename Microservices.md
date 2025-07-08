@@ -103,19 +103,50 @@
 ### **DevOps & Deployment**
 
 
-I enable automated deployments with zero downtime strategies.
-* Containerize with **Docker**, orchestrate with **Kubernetes**.
-* Use **CI/CD pipelines** (e.g., GitHub Actions, Jenkins).
-* Apply **canary releases** or **blue-green deployments**.
-* Blue-Green Deployment
- - Maintain two environments (Blue: live, Green: staging).
- - Deploy new version to Green → Run tests → Switch traffic to Green.
- - Rollback is instant by routing back to Blue.
+I enable automated deployments with **zero-downtime strategies** using containerization, CI/CD, and progressive delivery techniques.
 
-* Canary Releases
- - Gradually roll out the new version to a small % of users.
- - Monitor metrics like error rate, latency, and CPU.
- - If stable, increase rollout; else, roll back.
+
+**Containerization & Orchestration**
+
+* Containerize applications using **Docker**.
+* Orchestrate and manage deployments via **Kubernetes** (K8s).
+
+
+**CI/CD Pipelines**
+
+* Automate build, test, and deployment flows using:
+
+  * **GitHub Actions**
+  * **Jenkins**
+  * **GitLab CI/CD**
+* Integrate quality gates, smoke tests, and rollback mechanisms.
+
+
+**Blue-Green Deployment**
+
+* Maintain **two environments**:
+
+  * **Blue**: Currently live
+  * **Green**: Staging for new release
+* **Steps**:
+
+  * Deploy new version to Green.
+  * Run automated & smoke tests.
+  * Route traffic to Green after validation.
+  * Rollback instantly by switching back to Blue if needed.
+
+
+**Canary Releases**
+
+* Gradual rollout of new versions to a **small % of users**.
+* Monitor:
+
+  * **Error rates**
+  * **Latency**
+  * **CPU/memory usage**
+* If stable → Increase rollout.
+  If issues arise → Roll back safely.
+
 
 
 ---

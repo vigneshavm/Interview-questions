@@ -612,6 +612,39 @@ async function fetchData() {
 fetchData();
 ```
 
+```js
+async function fetchData() {
+  let response = fetch('https://api.example.com/data'); // ❌ Missing await
+  let data = response.json();                           // ❌ Will fail
+  console.log(data);
+}
+fetch(...) returns a Promise, but you're not awaiting it.
+
+So response.json() runs on a Promise object, not a real response — this will throw a TypeError at runtime.
+```
+
+```javascript
+async function foo() {   return await 10; }
+foo().then(console.log); // 10
+**Reason**
+async functions always return a promise.
+await 10 — since 10 is a non-Promise, it is automatically wrapped as Promise.resolve(10) and awaited.
+So foo() returns a Promise that resolves to 10.
+🧠 What happens:
+foo() → returns Promise { 10 }
+.then(console.log) → logs 10
+```
+
+```js
+async function example() {
+  return 42;
+}
+
+example().then(console.log); // Outputs: 42
+In this case, although there's no await, the function returns a Promise that resolves with 42.
+Yes, even if an async function doesn't use await, it still returns a Promise.
+Internally, JavaScript wraps the return value with Promise.resolve(...), so the function remains asynchronous in behavior.
+```
 
 ---
 

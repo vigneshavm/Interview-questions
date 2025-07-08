@@ -107,6 +107,15 @@ I enable automated deployments with zero downtime strategies.
 * Containerize with **Docker**, orchestrate with **Kubernetes**.
 * Use **CI/CD pipelines** (e.g., GitHub Actions, Jenkins).
 * Apply **canary releases** or **blue-green deployments**.
+* Blue-Green Deployment
+ - Maintain two environments (Blue: live, Green: staging).
+ - Deploy new version to Green → Run tests → Switch traffic to Green.
+ - Rollback is instant by routing back to Blue.
+
+* Canary Releases
+ - Gradually roll out the new version to a small % of users.
+ - Monitor metrics like error rate, latency, and CPU.
+ - If stable, increase rollout; else, roll back.
 
 
 ---

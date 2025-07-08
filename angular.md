@@ -1,7 +1,7 @@
 | **Category**                        | **Topics**                                                                                                                                                                                                                                                    |
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Core Concepts**          | • [Angular](#angular)  • [Angular CLI](#Angular-CLI) • [Angular 17](#Angular-17) • [Angular 19](#Angular-19) • [Module](#module)  • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
-| **Components**         | • [Component Communication Techniques](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
+| **Core Concepts**          | • [Angular](#angular)  • [Angular CLI](#Angular-CLI) • [Angular 17](#Angular-17) • [Angular 19](#Angular-19) • [module (NgModules) and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
+| **Components**         | • [Component Communication](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
 | **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition](#Using-One-Component-Inside-Another ) • [One Component Inside Another](#Using-One-Component-Inside-Another ) • [Deferred Views](#Deferred-Views)|
 | **Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                 • [Lazy Loading](#lazy-loading)                • [Memory Leak](#Memory-Leak)                                                                       |
 | **Routing**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Authentication](#authentication) • [Secure Angular Routes](#Secure-Routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Auth Tokens](#store-authentication-tokens) |
@@ -160,6 +160,24 @@ Use `ng.profiler.timeChangeDetection()` in the browser console (when Angular is 
 
 ## NgModules and App Structure
 
+
+- In Angular, a **module** is defined using the `@NgModule` decorator.
+- Acts as a **container** for a group of related components, directives, pipes, and services.
+- Modules improve **code structure**, enable **lazy loading**, and control **scope of services and components**.
+- The root module is usually `AppModule`, and we can also create feature modules to organize the code better.
+
+**Key Points:**
+* Every Angular app has a **root module** (`AppModule`), which bootstraps the application.
+* Modules help organize the app into **feature-based blocks**.
+* Angular supports:
+
+  * **Feature Modules** – for specific functionality (e.g., `UserModule`)
+  * **Shared Modules** – for reusable components/pipes
+  * **Core Module** – for singleton services
+  * **Lazy-Loaded Modules** – for on-demand loading via routes
+
+
+
 NgModules are containers for a cohesive block of code with related capabilities. 
 In large apps, we structure modules into CoreModule (singleton services), SharedModule (common components), FeatureModules (business-specific features), and AppModule (root).
 This enhances separation of concerns and improves lazy loading.
@@ -174,6 +192,17 @@ This enhances separation of concerns and improves lazy loading.
   * `exports`: declarations to be shared with other modules
   * `providers`: services available in the DI system
   * `bootstrap`: root component (used only in root module)
+
+### 🧵 Example:
+
+```ts
+@NgModule({
+  declarations: [UserComponent],
+  imports: [CommonModule],
+  exports: [UserComponent]
+})
+export class UserModule {}
+```
 
 
 ###  **App Structure Best Practices**
@@ -2185,33 +2214,6 @@ export class ReversePipe implements PipeTransform {
 
 
 
-###  **Module**
-
-- In Angular, a **module** is defined using the `@NgModule` decorator.
-- Acts as a **container** for a group of related components, directives, pipes, and services.
-- Modules improve **code structure**, enable **lazy loading**, and control **scope of services and components**.
-- The root module is usually `AppModule`, and we can also create feature modules to organize the code better.
-
-**Key Points:**
-* Every Angular app has a **root module** (`AppModule`), which bootstraps the application.
-* Modules help organize the app into **feature-based blocks**.
-* Angular supports:
-
-  * **Feature Modules** – for specific functionality (e.g., `UserModule`)
-  * **Shared Modules** – for reusable components/pipes
-  * **Core Module** – for singleton services
-  * **Lazy-Loaded Modules** – for on-demand loading via routes
-
-### 🧵 Example:
-
-```ts
-@NgModule({
-  declarations: [UserComponent],
-  imports: [CommonModule],
-  exports: [UserComponent]
-})
-export class UserModule {}
-```
 
 
 

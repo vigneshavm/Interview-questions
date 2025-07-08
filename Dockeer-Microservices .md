@@ -12,7 +12,7 @@
 **Microservice**
 | **Category**               | **Topics** |
 |----------------------------|------------|
-| **API Design & Interface** | [Versioning & Backward Compatibility](#versioning--backward-compatibility) - [Swagger](#swagger) - [InterService Communication](#inter-service-communication) - [Manage multiple service endpoints](#manage-multiple-service-endpoints) |
+| **API Design & Interface** | [Versioning & Backward Compatibility](#versioning--backward-compatibility) - [Swagger](#swagger)  - [Manage multiple service endpoints](#manage-multiple-service-endpoints) |
 | **Reliability & Resilience** | [Rate Limiting & Throttling](#rate-limiting--throttling) - [Circuit Breaker](#circuit-breaker) - [Error Handling & Fault Tolerance](#error-handling--fault-tolerance) - [Logs and Tracing](#logs-and-tracing) |
 | **Patterns & Orchestration** | [SAGA Pattern](#saga-pattern) - [Observer Pattern](#observer-pattern) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway) |
 | **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) |
@@ -38,16 +38,7 @@
 * Use [**Domain-Driven Design (DDD)**](#Domain-Driven-Design) for modeling.
 * Avoid shared databases — **each service owns its data**.
 
----
 
-###  **Inter-Service Communication**
-
-* I choose communication strategies based on performance and reliability needs.
-* Prefer **async messaging (RabbitMQ, Kafka)** for scalability.
-* Use **REST** or **gRPC** for synchronous needs.
-* **Retry logic**, **circuit breakers**, and **timeouts** are essential for resiliency.
-
----
 
 ### **Manage multiple service endpoints**
 
@@ -55,7 +46,6 @@
 * Use **API Gateway** (e.g., Kong, NGINX, Express Gateway).`
 * Handle **rate limiting, authentication, request routing** centrally.
 
----
 
 ### **Data Management and consistency**
 
@@ -460,6 +450,12 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 
 ## **Microservices Communication**
+
+* I choose communication strategies based on performance and reliability needs.
+* Prefer **async messaging (RabbitMQ, Kafka)** for scalability.
+* Use **REST** or **gRPC** for synchronous needs.
+* **Retry logic**, **circuit breakers**, and **timeouts** are essential for resiliency.
+
 
 - [Using Queue](#microservice-communication-using-queue)
 - [Using HTTP](#microservice-communication-using-http)

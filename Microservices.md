@@ -6,7 +6,7 @@
 | **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) |
 | **Scaling & Operations** | [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture) |
 | **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
-| **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) |
+| **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices Architecture](#Microservices-Architecture)
 
 
 ## **Microservices Architecture**
@@ -690,4 +690,36 @@ In microservices or distributed architectures, **data consistency** is a key con
 * This ensures that the whole process reaches a valid end state or rolls back safely.
 
 ---
+
+
+## Microservice overview
+
+> "I have **extensive experience designing, developing, and deploying microservices-based systems**, especially over the last 5–6 years as **enterprise systems shifted from monoliths to microservices."**
+
+* **Design & Decomposition**: Broke down large monolithic applications into modular, domain-driven microservices. Followed **Domain-Driven Design (DDD)** to define clear **bounded contexts**.
+
+* **Technology Stack**: Built microservices using **Node.js**, **Express**. Frontend with **React/Angular**, backend REST APIs, and GraphQL where appropriate.
+
+* **Service Communication**:   Used **REST**, **gRPC**, and **event-driven communication** via **Kafka** or **RabbitMQ** for async flows.
+
+* **API Gateway & Routing**:  Integrated with **API Gateway** (e.g., **Kong**, **AWS API Gateway**) for routing, throttling, and central auth handling.
+
+* **Auth & Security**:  Implemented **JWT-based authentication**, **OAuth2**, **SSO**, and service-to-service auth with **mTLS** or API keys.
+
+* **Database per Service**:  Followed the **Database per Service** principle using **PostgreSQL**, **MongoDB**, or **Redis** depending on the use case. Ensured **data consistency** using **sagas** and **eventual consistency** patterns.
+
+* **CI/CD & DevOps**:  Containerized services using **Docker**, deployed on **Kubernetes (K8s)** or **AWS ECS/EKS**. Automated deployments via **GitHub Actions**, **Jenkins**, or **GitLab CI/CD**.
+
+* **Observability & Monitoring**:  Integrated centralized **logging (ELK / Loki)**, **metrics (Prometheus, Grafana)**, and **tracing (Jaeger, Zipkin)** for monitoring and debugging.
+
+* **Resilience & Fault Tolerance**:  Used **circuit breakers (e.g., with Hystrix or custom middleware)**, **rate limiting**, **retry patterns**, and **bulkheads** to build robust systems.
+
+* **Challenges Handled**:
+
+  * Managing distributed transactions using **SAGA pattern**.
+  * Ensuring backward compatibility and **zero-downtime deployments**.
+  * Standardizing APIs with **Swagger** documentation.
+
+---
+
 

@@ -278,6 +278,19 @@ const user = {
 console.log(user.name);    // Alice
 console.log(user[id]);     // 12345
 console.log(user["userId"]); // undefined
+
+const sym = Symbol("secret");
+const obj = { [sym]: 42 };
+
+console.log(Object.keys(obj)); // []
+Object.keys(obj) only returns the enumerable string-keyed properties.
+
+Symbols are not string keys, so they are not included in Object.keys.
+
+Object.getOwnPropertySymbols(obj); // [ Symbol(secret) ]
+This returns an array of symbol properties defined on the object.
+
+
 ```
 
 ---

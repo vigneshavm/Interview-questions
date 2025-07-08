@@ -258,7 +258,7 @@ function findKthLargest(nums, k) {
 Input 	--> [1, 2, 3, 4, 1, 5, 5, 6]`)
 Output 	--> [2, 3, 4, 6]
 
-### 🔁 **1. Using `reduce()` with an object counter**
+#### 🔁 **1. Using `reduce()` with an object counter**
 
 ```js
 const input = [1, 2, 3, 4, 1, 5, 5, 6];
@@ -277,7 +277,7 @@ console.log(output); // [2, 3, 4, 6]
 
 ---
 
-### 🧮 **2. Using `Map` for better performance (especially with large arrays)**
+#### 🧮 **2. Using `Map` for better performance (especially with large arrays)**
 
 ```js
 const input = [1, 2, 3, 4, 1, 5, 5, 6];

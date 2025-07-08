@@ -2141,6 +2141,13 @@ Accept: application/vnd.company.v1+json
 | `PATCH` | Modify a few fields |
 | `DELETE` | Remove data |
 
+
+| Method    | Purpose                       | Response Body | Common Use Case                         |
+| --------- | ----------------------------- | ------------- | --------------------------------------- |
+| `HEAD`    | Headers only                  | ❌ No          | Metadata checks, health checks          |
+| `CONNECT` | Tunnel for SSL through proxy  | Depends       | HTTPS via HTTP proxy                    |
+| `OPTIONS` | Discover allowed HTTP methods | ❌ No          | CORS preflight, API capabilities check  |
+| `TRACE`   | Echo back the request         | ✅ Yes         | Debugging (often disabled for security) |
 ---
 
 ## **RESTful structure**

@@ -833,10 +833,42 @@ kid.greet(); // Hello, John
 ##  Event Loop & Call Stack
 
 #### 🔁 **Event Loop**
-- The event loop is what allows JavaScript — even though it's single-threaded — to perform asynchronous operations without blocking the main thread (handling timers, HTTP requests, or user interactions).
-- The **event loop** continuously checks the call stack and callback queue (or task/microtask queues).
- - The event loop constantly checking if the call stack is empty, and then pushing callbacks or microtasks into the stack to execute.
- - This allows JavaScript to stay non-blocking and reactive, even though it runs in a single thread.
+
+JavaScript uses a **single-threaded** concurrency model, relying on the **event loop** to handle both synchronous and asynchronous operations efficiently.
+
+
+* **Single-threaded but non-blocking** due to the event loop.
+* **Microtasks > Macrotasks** — Microtasks run **before** the next macrotask.
+* **After every macrotask**, event loop re-checks and processes **all microtasks**.
+* Event loop ensures **fair execution** and **non-blocking UI** by balancing stack, microtasks, and macrotasks.
+
+
+**Execution Flow**
+
+1. **Synchronous Code Execution** - All **synchronous operations** (like function calls, variable assignments) are **placed directly on the call stack** and executed immediately.
+
+2. **Handling Asynchronous Operations** - When JS encounters an **asynchronous task** (e.g., `setTimeout()`, HTTP requests, or Promises):
+* It is **offloaded to Web APIs** (in browsers) or **Node.js APIs**.
+* These run **in the background**, freeing the call stack.
+
+3. 📥 **Callback Queues**
+   Once the async task is complete, its **callback** is queued in one of the two:
+   * **Microtask Queue** (🔼 Higher priority)
+     * `Promise.then()`, `catch()`, `finally()` ,      * `queueMicrotask()` ,   * `MutationObserver`
+   * **Macrotask Queue (Task Queue)** (🔽 Lower priority)
+     * `setTimeout()`, `setInterval()`      * `setImmediate()` (Node.js) ,      * DOM Events (click, scroll)      * `MessageChannel`
+
+
+**Event Loop Behavior**
+* The **event loop** continuously checks:
+  1. **Is the call stack empty?**
+     * If **yes**, process the **microtask queue first**:
+       * Dequeue one microtask at a time → push to call stack → execute
+       * Repeat until **microtask queue is empty**
+  2. Then process **one macrotask**
+     * Push it to the call stack and execute
+     * **After** that macrotask, **check microtask queue again**
+     * This ensures **microtasks always run immediately after the current task**, giving them **higher priority**
 
 
 #### 🧠 **Call Stack**

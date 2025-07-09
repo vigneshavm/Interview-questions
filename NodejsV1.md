@@ -6,7 +6,7 @@
 | **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature) |
 | **Express.js Framework**     | [HTTP Module](#HTTP-Module), [Express.js](#expressjs), [Routing](#routing), [HTTP Methods](#http-methods--use-cases), [Query Params](#request-response-query-params), [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop), [Async I/O Handling](#asynchronous-io-handling), [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks), [Async Execution Order](#Async-Execution-Order), [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick), [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread), [libuv](#libuv), [spawn vs fork](#spawn-vs-fork) |
-| **Asynchronous and Middleware** |  [Streams](#Streams), [Buffer](#Buffer) - [Middleware](#middleware), [CORS](#cors), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate) |
+| **Asynchronous and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams), [Buffer](#Buffer) - [Middleware](#middleware), [CORS](#cors), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate) |
 | **Package JSON**             | [package.json](#packagejson), [package.json vs package-lock.json](#packagejson-vs-package-lockjson), [Caching Strategies](#caching-strategies), [Redis (Caching)](#nodejs-with-redis-caching), [Memory Leak](#Memory-leak), [Garbage Collection](#garbage-collection) |
 | **REST API & Security**      | [REST API](#rest-api), [Pagination](#implement-pagination-in-a-rest-api), [Folder Structure](#clean-restful-folder-structure), [Secure Node.js](#secure-nodejs-app), [Securing Sensitive Data](#securing-sensitive-data), [Secure REST APIs](#secure-rest-apis), [REST API Performance Testing](#REST-API-Performance-Testing), [Scalable REST APIs](#Scalable-REST-APIs) |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization), [JWT](#implementing-jwt-authentication), [OAuth](#OAuth), [Single Sign On](#Single-Sign-On), [Session vs Token](#session-based-vs-token-based-authentication), [Protecting Routes](#protecting-sensitive-routes), [Refresh Tokens](#refresh-tokens), [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers), [RBAC](#role-based-access-control-rbac) |
@@ -701,7 +701,67 @@ chat.sendMessage('Alice', 'Hello!');
 ---
 
 
----
+
+
+### BackPressure
+
+> **Backpressure** is a mechanism to prevent overwhelming a slower destination stream(`fs.createWriteStream`) when the source (like `fs.createReadStream`) is producing data too fast.
+
+
+**Where do you face it?**
+
+> Typically when reading a large file using `fs.createReadStream` and writing it to another file or destination using `fs.createWriteStream`. If the writable stream can't handle the incoming data fast enough, it causes **backpressure**.
+
+
+**How does Node.js handle it automatically?**
+
+> When we use `.pipe()` — like `readable.pipe(writable)` — Node.js automatically handles backpressure:
+
+* It pauses the readable stream if the writable buffer is full.
+* It resumes reading once the writable stream drains.
+
+
+**Can you handle backpressure manually?**
+
+> Yes. We can manually control the flow:
+
+```js
+const readable = fs.createReadStream('input.txt');
+const writable = fs.createWriteStream('output.txt');
+
+readable.on('data', (chunk) => {
+  const canWrite = writable.write(chunk);
+  if (!canWrite) {
+    readable.pause(); // Pause reading if write buffer is full
+  }
+});
+
+writable.on('drain', () => {
+  readable.resume(); // Resume once buffer is flushed
+});
+```
+
+> This gives you full control and is useful when doing complex operations between streams.
+
+
+**Why is it important?**
+
+> Without backpressure handling:
+
+* The process may consume too much memory.
+* It could crash the app or slow down the system.
+* Critical in real-time applications — like video streaming or file uploads.
+
+
+**When would you use manual handling over `pipe()`?**
+
+> When you:
+
+* Need to transform or filter data between reading and writing.
+* Want fine-grained control over how and when data is sent or processed.
+* Are implementing custom throttling or retry logic.
+
+
 
 ##  **Streams**
 

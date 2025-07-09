@@ -710,7 +710,26 @@ function debounce<T extends (...args: any[]) => void>(fn: T, delay: number): (..
 ---
 
 ### Throttle Function
+
+```js
+JS
+
+function throttle(fn, delay) {
+    let lastTime = 0;
+    return function (...args) {
+        let now = Date.now();
+        if (now - lastTime >= delay) {
+            fn.apply(this, args);
+            lastTime = now;
+        }
+    };
+}
+```
+
+
 ```ts
+
+TS
 function throttle<T extends (...args: any[]) => void>(fn: T, limit: number): (...args: Parameters<T>) => void {
   let lastRun = 0;
   return (...args: Parameters<T>) => {

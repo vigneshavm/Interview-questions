@@ -1,10 +1,9 @@
 | **Category**   | **Topics** |
 |----------------|------------|
 | **Node.js**    | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) , [Location based IP-based restrictions](#Location-based-IP-based-restrictions) , [Build simple API](#Build-simple-API) , [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) , [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) , [Rate Limiter Middleware](#Rate-Limiter-Middleware) , [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter) , [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort) , [Prevent multiple duplicates API calls](#Prevent-multiple-API-calls-Ignore-or-block-duplicates) |
-| **React**      | [Debounced Search Component](#debounced-search-component) , [Autocomplete Component](#autocomplete-component) , [Todo List](#todo-list) , [TodoList with Delete](#TodoList) , [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search) , [React Table with Sorting](#react-table-with-sorting) , [React Pagination](#React-pagination) , [Grid View](#Grid-View) , [Infinite Scroll](#infinite-scroll) , [Form with Validation](#form-with-validation) , [Highlight Text](#highlight-text) , [Counter](#Counter) , [React Form API Call](#React-Form-API-Call) , [Handling API Errors in React](#Handling-API-Errors-in-React) , [Custom Hook](#Custom-Hook) |
+| **React**      | [Debounced Search Component](#debounced-search-component) , [Autocomplete Component](#autocomplete-component) , [Todo List](#todo-list) , [TodoList with Delete](#TodoList) , [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search) , [React Table with Sorting](#react-table-with-sorting) , [React Pagination](#React-pagination) , [Grid View](#Grid-View) , [Infinite Scroll](#infinite-scroll) , [Form with Validation](#form-with-validation) , [Highlight Text](#highlight-text) , [Counter](#Counter) , [React Form API Call](#React-Form-API-Call) , [Handling API Errors in React](#Handling-API-Errors-in-React)  |
 | **Angular**    | [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search) , [Debounce Input Search](#Angular-Debounce-Input-Search) |
-| **JavaScript** | [polyfill programs](#polyfill-programs) |
-| **Polyfills**  | [Array.prototype.map](#arrayprototypemap) , [Array.prototype.filter](#arrayprototypefilter) , [Array.prototype.reduce](#arrayprototypereduce) , [Function.prototype.call](#functionprototypecall) , [Object.create](#objectcreate) , [Promise](#Promise) , [Debounce](#debounce-polyfill) , [Throttle](#throttle-polyfill) |
+| **Polyfills**  | [customBind](#customBind) , [Map](#arrayprototypemap) , [Filter](#arrayprototypefilter) , [Reduce](#arrayprototypereduce) , [Call](#functionprototypecall) , [Object.create](#objectcreate) , [Promise](#Promise) , [Debounce](#debounce-polyfill) , [Throttle](#throttle-polyfill) , [Memoize](#Memoize) |
 | **Custom Hooks**| [useToggle Hook](#custom-hook-usetoggle) , [useDebounce Hook](#Custom-useDebounce-hook) , [useToggle – Toggle a boolean](#usetoggle--toggle-a-boolean) , [usePrevious – Track previous value](#useprevious--track-previous-value) , [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic) , [useWindowWidth – Track window width](#usewindowwidth--track-window-width) |
 
 
@@ -1135,7 +1134,23 @@ export class UserListComponent implements OnInit {
 
 ---
 
+### customBind
 
+```js
+Function.prototype.customBind = function (context, ...args) {
+  const fn = this;
+  return function (...innerArgs) {
+    return fn.apply(context, [...args, ...innerArgs]);
+  };
+};
+
+function greet(greeting, name) {
+  console.log(`${greeting}, ${name} - from ${this.place}`);
+}
+
+const greetFromIndia = greet.customBind({ place: 'India' }, 'Hello');
+greetFromIndia('Vignesh'); // Hello, Vignesh - from India
+```
 
 
 
@@ -2118,3 +2133,32 @@ function Counter() {
 ```
 
 ---
+
+
+### Memoize
+
+
+```js
+function memoize(fn) {
+  const cache = new Map();
+  return function (...args) {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    const result = fn.apply(this, args);
+    cache.set(key, result);
+    return result;
+  };
+}
+
+const slowAdd = (a, b) => {
+  console.log('Computing...');
+  return a + b;
+};
+
+const memoizedAdd = memoize(slowAdd);
+
+console.log(memoizedAdd(1, 2)); // Computing... 3
+console.log(memoizedAdd(1, 2)); // From cache: 3
+```

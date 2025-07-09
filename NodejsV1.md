@@ -140,10 +140,10 @@ Each tick of the event loop is divided into **phases**, which are executed in a 
 
 
 **Execution Priority**
-1.Current synchronous code runs (call stack).
-2.All microtasks are processed (in order).
-3.Then one macrotask runs.
-4.Loop repeats.
+- 1.Current synchronous code runs (call stack).
+- 2.All microtasks are processed (in order).
+- 3.Then one macrotask runs.
+- 4.Loop repeats.
 
 ```
 ┌───────────────────────────────┐

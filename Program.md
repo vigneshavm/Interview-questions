@@ -4,7 +4,11 @@
 | **React**      | [Debounced Search Component](#debounced-search-component) , [Autocomplete Component](#autocomplete-component) , [Todo List](#todo-list) , [TodoList with Delete](#TodoList) , [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search) , [React Table with Sorting](#react-table-with-sorting) , [React Pagination](#React-pagination) , [Grid View](#Grid-View) , [Infinite Scroll](#infinite-scroll) , [Form with Validation](#form-with-validation) , [Highlight Text](#highlight-text) , [Counter](#Counter) , [React Form API Call](#React-Form-API-Call) , [Handling API Errors in React](#Handling-API-Errors-in-React)  |
 | **Angular**    | [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search) , [Debounce Input Search](#Angular-Debounce-Input-Search) |
 | **Polyfills**  | [customBind](#customBind) , [Map](#arrayprototypemap) , [Filter](#arrayprototypefilter) , [Reduce](#arrayprototypereduce) , [Call](#functionprototypecall) , [Object.create](#objectcreate) , [Promise](#Promise) , [Debounce](#debounce-polyfill) , [Throttle](#throttle-polyfill) , [Memoize](#Memoize) |
-| **Custom Hooks**| [useDebounce](#Custom-useDebounce-hook) , [useToggle](#usetoggle--toggle-a-boolean) , [usePrevious – Track previous value](#useprevious--track-previous-value) , [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic) , [useWindowWidth – Track window width](#usewindowwidth--track-window-width) |
+| **Custom Hooks**| [useDebounce](#Custom-useDebounce-hook) ,
+
+
+[Throttling](#Throttling)
+ [useToggle](#usetoggle--toggle-a-boolean) , [usePrevious – Track previous value](#useprevious--track-previous-value) , [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic) , [useWindowWidth – Track window width](#usewindowwidth--track-window-width) |
 
 
 
@@ -131,63 +135,116 @@ export default Grid;
 
 
 
+
+## Throttling
+
+Throttling ensures a function runs **at most once every X milliseconds**, no matter how often it's triggered.
+
+
+```tsx
+import React, { useState, useEffect, useRef } from 'react';
+
+// ✅ useThrottle Hook
+function useThrottle(value, delay = 500) {
+  const [throttledValue, setThrottledValue] = useState(value);
+  const lastExecuted = useRef(Date.now());
+
+  useEffect(() => {
+    const now = Date.now();
+    const timeSinceLastExec = now - lastExecuted.current;
+    const remainingTime = delay - timeSinceLastExec;
+
+    const handler = setTimeout(() => {
+      setThrottledValue(value);
+      lastExecuted.current = Date.now();
+    }, remainingTime > 0 ? remainingTime : 0);
+
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+
+  return throttledValue;
+}
+
+export default function ThrottleExample() {
+  const [text, setText] = useState('');
+  const throttledText = useThrottle(text, 1000);
+
+  useEffect(() => {
+    if (throttledText) {
+      console.log('🚀 API call with:', throttledText);
+    }
+  }, [throttledText]);
+
+  return (
+    <div style={{ padding: '2rem' }}>
+      <h2>🔁 Throttle Input</h2>
+      <input
+        type="text"
+        placeholder="Type fast..."
+        value={text}
+        onChange={e => setText(e.target.value)}
+        style={{ padding: '0.5rem', width: '300px', fontSize: '1rem' }}
+      />
+      <p>Throttled Value: <strong>{throttledText}</strong></p>
+    </div>
+  );
+}
+```
+
+
+
+
+
 ## **Custom useDebounce hook**.
 
 
 ```js
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export function useDebounce(value, delay) {
+// 🔁 useDebounce Hook (Inline)
+function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    // Cleanup the timeout if value changes
-    return () => {
-      clearTimeout(handler);
-    };
+    const handler = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(handler); // cleanup on value/delay change
   }, [value, delay]);
 
   return debouncedValue;
 }
-```
 
----
-
-### ✅ Step 2: Create the Search Component
-
-```js
-import React, { useState, useEffect } from "react";
-import { useDebounce } from "./useDebounce"; // adjust path as needed
-
-function SearchInput() {
+// 🔍 Search Component using useDebounce
+export default function DebouncedSearch() {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
-    if (debouncedSearchTerm) {
-      // Replace this with your actual API call
-      console.log("Calling API with:", debouncedSearchTerm);
-      // fetchData(debouncedSearchTerm)
+    if (debouncedSearchTerm.trim() !== "") {
+      console.log("🚀 API Call with:", debouncedSearchTerm);
+      // Example: fetchData(debouncedSearchTerm);
     }
   }, [debouncedSearchTerm]);
 
   return (
-    <div>
+    <div style={{ padding: "1rem" }}>
+      <h3>🔎 Debounced Search Input</h3>
       <input
         type="text"
-        placeholder="Search..."
-        onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Type to search..."
+        style={{
+          padding: "0.5rem",
+          width: "300px",
+          fontSize: "1rem",
+        }}
       />
+      <p style={{ marginTop: "0.5rem" }}>
+        🔁 Debounced Value: <strong>{debouncedSearchTerm}</strong>
+      </p>
     </div>
   );
 }
-
-export default SearchInput;
 ```
 
 ---

@@ -130,8 +130,7 @@ Each tick of the event loop is divided into **phases**, which are executed in a 
   * **Node.js begins by executing top-level synchronous code** directly on the **call stack**.
   * **Asynchronous operations** (e.g., file system access, DNS lookups, network calls, crypto) are **offloaded to the libuv thread pool**.
   * Once these async operations are complete, their **callbacks are pushed into the appropriate queues**:
-   * **Timers Queue** (e.g., `setTimeout`, `setInterval`)    * **I/O Callbacks Queue**    * **Check Queue** (e.g., `setImmediate`)
-   * **Close Callbacks Queue**    * **Microtasks Queue** (e.g., `process.nextTick`, Promises)
+     - **Timers Queue** (e.g., `setTimeout`, `setInterval`)    - **I/O Callbacks Queue**    - **Check Queue** (e.g., `setImmediate`)    - **Close Callbacks Queue**    - **Microtasks Queue** (e.g., `process.nextTick`, Promises)
   * The **event loop continuously monitors** the system and checks:
    * If the **call stack is empty**, it proceeds to the next phase of the loop.
    * In each phase, it **dequeues the relevant callbacks** and **executes them by pushing them onto the call stack**.
@@ -708,14 +707,14 @@ chat.sendMessage('Alice', 'Hello!');
 > **Backpressure** is a mechanism to prevent overwhelming a slower destination stream(`fs.createWriteStream`) when the source (like `fs.createReadStream`) is producing data too fast.
 
 
-**Where do you face it?**
+**Where do you face it?** - reading a large file and writing it to another file or destination
 
-> Typically when reading a large file using `fs.createReadStream` and writing it to another file or destination using `fs.createWriteStream`. If the writable stream can't handle the incoming data fast enough, it causes **backpressure**.
+> Typically when reading a large file using `fs.createReadStream` and writing it to another file or destination using `fs.createWriteStream`. If the **writable stream can't handle the incoming data fast enough, it causes backpressure**.
 
 
-**How does Node.js handle it automatically?**
+**Node.js automatically handles backpressure**
 
-> When we use `.pipe()` — like `readable.pipe(writable)` — Node.js automatically handles backpressure:
+> When we use `.pipe()` — like `readable.pipe(writable)` 
 
 * It pauses the readable stream if the writable buffer is full.
 * It resumes reading once the writable stream drains.

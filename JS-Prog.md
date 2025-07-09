@@ -697,6 +697,19 @@ console.log(groupByFirstLetter(["apple", "banana", "apricot", "blueberry", "cher
 
 
 ### Debounce Function
+```js
+function debounce(fn, delay) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);  // Cancel the previous timer
+        timeoutId = setTimeout(() => {
+            fn.apply(this, args);  // Call the function after delay
+        }, delay);
+    };
+}
+
+```
+
 ```ts
 function debounce<T extends (...args: any[]) => void>(fn: T, delay: number): (...args: Parameters<T>) => void {
   let timeoutId: ReturnType<typeof setTimeout>;

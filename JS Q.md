@@ -838,20 +838,16 @@ JavaScript uses a **single-threaded** concurrency model, relying on the **event 
 
 
 * **Single-threaded but non-blocking** due to the event loop.
-* **Microtasks > Macrotasks** — Microtasks run **before** the next macrotask.
-* **After every macrotask**, event loop re-checks and processes **all microtasks**.
-* Event loop ensures **fair execution** and **non-blocking UI** by balancing stack, microtasks, and macrotasks.
 
 
 **Execution Flow**
 
-1. **Synchronous Code Execution** - All **synchronous operations** (like function calls, variable assignments) are **placed directly on the call stack** and executed immediately.
-
-2. **Handling Asynchronous Operations** - When JS encounters an **asynchronous task** (e.g., `setTimeout()`, HTTP requests, or Promises):
+- All **synchronous operations** (like function calls, variable assignments) are **placed directly on the call stack** and executed immediately.
+- When JS encounters an **asynchronous task** (e.g., `setTimeout()`, HTTP requests, or Promises):
 * It is **offloaded to Web APIs** (in browsers) or **Node.js APIs**.
 * These run **in the background**, freeing the call stack.
 
-3. 📥 **Callback Queues**
+- **Callback Queues**
    Once the async task is complete, its **callback** is queued in one of the two:
    * **Microtask Queue** (🔼 Higher priority)
      * `Promise.then()`, `catch()`, `finally()` ,      * `queueMicrotask()` ,   * `MutationObserver`

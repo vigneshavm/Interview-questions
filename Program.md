@@ -1,10 +1,10 @@
 | **Category**   | **Topics** |
 |----------------|------------|
 | **Node.js**    | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) , [Location based IP-based restrictions](#Location-based-IP-based-restrictions) , [Build simple API](#Build-simple-API) , [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) , [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) , [Rate Limiter Middleware](#Rate-Limiter-Middleware) , [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter) , [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort) , [Prevent multiple duplicates API calls](#Prevent-multiple-API-calls-Ignore-or-block-duplicates) |
-| **React**      | [Debounced Search Component](#debounced-search-component) , [Autocomplete Component](#autocomplete-component) , [Todo List](#todo-list) , [TodoList with Delete](#TodoList) , [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search) , [React Table with Sorting](#react-table-with-sorting) , [React Pagination](#React-pagination) , [Grid View](#Grid-View) , [Infinite Scroll](#infinite-scroll) , [Form with Validation](#form-with-validation) , [Highlight Text](#highlight-text) , [Counter](#Counter) , [React Form API Call](#React-Form-API-Call) , [Handling API Errors in React](#Handling-API-Errors-in-React)  |
+| **React**      | [Autocomplete Component](#autocomplete-component) , [Todo List](#todo-list) , [TodoList with Delete](#TodoList) , [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search) , [React Table with Sorting](#react-table-with-sorting) , [React Pagination](#React-pagination) , [Grid View](#Grid-View) , [Infinite Scroll](#infinite-scroll) , [Form with Validation](#form-with-validation) , [Highlight Text](#highlight-text) , [Counter](#Counter) , [React Form API Call](#React-Form-API-Call) , [Handling API Errors in React](#Handling-API-Errors-in-React)  |
 | **Angular**    | [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search) , [Debounce Input Search](#Angular-Debounce-Input-Search) |
 | **Polyfills**  | [customBind](#customBind) , [Map](#arrayprototypemap) , [Filter](#arrayprototypefilter) , [Reduce](#arrayprototypereduce) , [Call](#functionprototypecall) , [Object.create](#objectcreate) , [Promise](#Promise) , [Debounce](#debounce-polyfill) , [Throttle](#throttle-polyfill) , [Memoize](#Memoize) |
-| **Custom Hooks**| [useDebounce](#Custom-useDebounce-hook) ,[Throttling](#Throttling) , [useToggle](#usetoggle--toggle-a-boolean) , [usePrevious – Track previous value](#useprevious--track-previous-value) , [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic) , [useWindowWidth – Track window width](#usewindowwidth--track-window-width) |
+| **Custom Hooks**| [useDebounce](#Custom-useDebounce-hook) , [Throttling](#Throttling) , [useToggle](#usetoggle--toggle-a-boolean) , [usePrevious – Track previous value](#useprevious--track-previous-value) , [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic) , [useWindowWidth – Track window width](#usewindowwidth--track-window-width) |
 
 
 
@@ -194,6 +194,7 @@ export default function ThrottleExample() {
 ## **Custom useDebounce hook**.
 
 
+
 ```js
 import React, { useState, useEffect } from "react";
 
@@ -215,29 +216,21 @@ export default function DebouncedSearch() {
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
-    if (debouncedSearchTerm.trim() !== "") {
-      console.log("🚀 API Call with:", debouncedSearchTerm);
-      // Example: fetchData(debouncedSearchTerm);
+    if (debouncedSearchTerm) {
+      // Simulate API call
+      console.log(debouncedSearchTerm, '🔁 Debounced after 300ms');
     }
   }, [debouncedSearchTerm]);
+
 
   return (
     <div style={{ padding: "1rem" }}>
       <h3>🔎 Debounced Search Input</h3>
-      <input
-        type="text"
-        value={searchTerm}
+      <input         type="text"         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Type to search..."
-        style={{
-          padding: "0.5rem",
-          width: "300px",
-          fontSize: "1rem",
-        }}
       />
-      <p style={{ marginTop: "0.5rem" }}>
-        🔁 Debounced Value: <strong>{debouncedSearchTerm}</strong>
-      </p>
+      <p style={{ marginTop: "0.5rem" }}>         🔁 Debounced Value: <strong>{debouncedSearchTerm}</strong>       </p>
     </div>
   );
 }
@@ -1588,33 +1581,6 @@ export class DebouncedSearchComponent implements OnInit, OnDestroy {
 
 
 
-## Debounced Search Component
-```ts
-import React, { useState, useEffect } from 'react';
-
-function useDebounce(value, delay) {
-  const [debounced, setDebounced] = useState(value);
-  useEffect(() => {
-    const handler = setTimeout(() => setDebounced(value), delay);
-    return () => clearTimeout(handler);
-  }, [value, delay]);
-  return debounced;
-}
-
-function DebouncedSearch() {
-  const [query, setQuery] = useState('');
-  const debouncedQuery = useDebounce(query, 300);
-
-  useEffect(() => {
-    if (debouncedQuery) {
-      // fetch API call
-      console.log(debouncedQuery,"Debounce after 300 mins")
-    }
-  }, [debouncedQuery]);
-
-  return <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search..." />;
-}
-```
 
 ## Autocomplete Component
 ```ts

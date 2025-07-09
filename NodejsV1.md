@@ -6,7 +6,7 @@
 | **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature) |
 | **Express.js Framework**     | [HTTP Module](#HTTP-Module), [Express.js](#expressjs), [Routing](#routing), [HTTP Methods](#http-methods--use-cases), [Query Params](#request-response-query-params), [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop), [Async I/O Handling](#asynchronous-io-handling), [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks), [Async Execution Order](#Async-Execution-Order), [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick), [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread), [libuv](#libuv), [spawn vs fork](#spawn-vs-fork) |
-| **Asynchronous and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams), [Buffer](#Buffer) - [Middleware](#middleware), [CORS](#cors), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate) |
+| **Asynchronous and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams), [Buffer](#Buffer) - [Middleware](#middleware), [CORS](#cors), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
 | **Package JSON**             | [package.json](#packagejson), [package.json vs package-lock.json](#packagejson-vs-package-lockjson), [Caching Strategies](#caching-strategies), [Redis (Caching)](#nodejs-with-redis-caching), [Memory Leak](#Memory-leak), [Garbage Collection](#garbage-collection) |
 | **REST API & Security**      | [REST API](#rest-api), [Pagination](#implement-pagination-in-a-rest-api), [Folder Structure](#clean-restful-folder-structure), [Secure Node.js](#secure-nodejs-app), [Securing Sensitive Data](#securing-sensitive-data), [Secure REST APIs](#secure-rest-apis), [REST API Performance Testing](#REST-API-Performance-Testing), [Scalable REST APIs](#Scalable-REST-APIs) |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization), [JWT](#implementing-jwt-authentication), [OAuth](#OAuth), [Single Sign On](#Single-Sign-On), [Session vs Token](#session-based-vs-token-based-authentication), [Protecting Routes](#protecting-sensitive-routes), [Refresh Tokens](#refresh-tokens), [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers), [RBAC](#role-based-access-control-rbac) |
@@ -5276,3 +5276,49 @@ async function getAccessToken(code) {
   return data.access_token;
 }
 ```
+
+
+
+
+### **Idempotency**
+
+> **"Idempotency in APIs ensures that making the same request multiple times results in the same outcome, without causing unintended side effects. It's especially important in scenarios where network failures, timeouts, or retries might cause a client to re-send a request."**
+
+
+> **Idempotency is a critical part of building fault-tolerant, user-safe APIs** — especially in financial, booking, or inventory systems — where retrying can cause severe duplication unless controlled
+
+> Stripe is a well-known example. Every POST request to create a charge can include an `Idempotency-Key`. If the same request is retried with the same key, the server ensures that the customer is not double-charged."*
+
+> *"For example, imagine a user submits a payment and the client doesn't receive the response due to a timeout. If the client retries the payment request, without idempotency, the user could be charged twice. Idempotency prevents this by ensuring the operation only happens once."*
+> *"We can use Redis or a relational DB to store idempotency records. I usually use a TTL to auto-expire keys, and hash the request body to detect changes for the same key."*
+
+**How to Implement It (POST requests)**
+
+> **"While HTTP GET, PUT, and DELETE are idempotent by nature, POST is not. To make POST idempotent — especially for operations like payments or orders — we typically use an `Idempotency-Key`. The client generates and sends this key with the request."**
+
+> **"On the backend, we store this key along with a hash of the request body and the response. If the same key comes in again, we check if the body is the same:**
+
+* If yes, return the cached response.
+* If no, return a `409 Conflict`."\*\*
+
+
+```js
+const idempotencyStore = new Map();
+
+app.post("/order", (req, res) => {
+  const key = req.headers["idempotency-key"];
+  const body = JSON.stringify(req.body);
+
+  if (!key) return res.status(400).send("Missing Idempotency-Key");
+
+  if (idempotencyStore.has(key)) {
+    return res.status(200).json(idempotencyStore.get(key));
+  }
+
+  // Process order
+  const response = { orderId: "xyz123", status: "created" };
+  idempotencyStore.set(key, response);
+  res.status(200).json(response);
+});
+```
+

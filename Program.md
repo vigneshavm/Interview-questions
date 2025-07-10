@@ -3,7 +3,7 @@
 | **Node.js**    | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) , [Location based IP-based restrictions](#Location-based-IP-based-restrictions) , [Build simple API](#Build-simple-API) , [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) , [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) , [Rate Limiter Middleware](#Rate-Limiter-Middleware) , [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter) , [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort) , [Prevent multiple duplicates API calls](#Prevent-multiple-API-calls-Ignore-or-block-duplicates) |
 | **React**      | [Autocomplete Component](#autocomplete-component) , [Todo List](#todo-list) , [TodoList with Delete](#TodoList) , [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search) , [React Table with Sorting](#react-table-with-sorting) , [React Pagination](#React-pagination) , [Grid View](#Grid-View) , [Infinite Scroll](#infinite-scroll) , [Form with Validation](#form-with-validation) , [Highlight Text](#highlight-text) , [Counter](#Counter) , [React Form API Call](#React-Form-API-Call) , [Handling API Errors in React](#Handling-API-Errors-in-React)  |
 | **Angular**    | [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search) , [Debounce Input Search](#Angular-Debounce-Input-Search) |
-| **Polyfills**  | [customBind](#customBind) , [Map](#arrayprototypemap) , [Filter](#arrayprototypefilter) , [Reduce](#arrayprototypereduce) , [Call](#functionprototypecall) , [Object.create](#objectcreate) , [Promise](#Promise) , [Debounce](#debounce-polyfill) , [Throttle](#throttle-polyfill) , [Memoize](#Memoize) |
+| **Polyfills**  | [ForEach](#ForEach) [Bind](#customBind) , [Map](#arrayprototypemap) , [Filter](#arrayprototypefilter) , [Reduce](#arrayprototypereduce) , [Call](#functionprototypecall) , [Object.create](#objectcreate) , [Promise](#Promise) , [Debounce](#debounce-polyfill) , [Throttle](#throttle-polyfill) , [Memoize](#Memoize) |
 | **Custom Hooks**| [useDebounce](#Custom-useDebounce-hook) , [Throttling](#Throttling) , [useToggle](#usetoggle--toggle-a-boolean) , [usePrevious – Track previous value](#useprevious--track-previous-value) , [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic) , [useWindowWidth – Track window width](#usewindowwidth--track-window-width) |
 
 
@@ -2174,4 +2174,34 @@ const memoizedAdd = memoize(slowAdd);
 
 console.log(memoizedAdd(1, 2)); // Computing... 3
 console.log(memoizedAdd(1, 2)); // From cache: 3
+```
+
+
+## ForEach
+```js
+Array.prototype.myForEach = function (callback, thisArg) {
+  if (this == null) throw new TypeError('Array is null or undefined');
+  if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function');
+
+  const arr = Object(this);         // In case it's not a real array
+  const len = arr.length >>> 0;     // Ensure length is a valid uint32
+
+  for (let i = 0; i < len; i++) {
+    if (i in arr) {
+      callback.call(thisArg, arr[i], i, arr);  // ✅ thisArg becomes 'this' inside callback
+    }
+  }
+};
+
+
+[1, 2, 3].myForEach(function (value, index, array) {
+  console.log('Value:', value, 'Index:', index, 'Array:', array);
+});
+
+
+const context = { prefix: 'Num' };
+[10, 20, 30].myForEach(function (val, idx) {
+  console.log(`${this.prefix} ${idx} = ${val}`);
+}, context);
+
 ```

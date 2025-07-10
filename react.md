@@ -695,27 +695,49 @@ useEffect(() => {
 
 ###  Example: All Together in Functional Component
 ```jsx
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-function ExampleComponent() {
+const MyComponent = () => {
   const [count, setCount] = useState(0);
+  const hasMounted = useRef(false);
 
-  // componentDidMount
+  // ✅ Mount & Unmount
   useEffect(() => {
-    console.log('Component mounted');
-
-    // componentWillUnmount
+    console.log('✅ Mounted');
     return () => {
-      console.log('Component will unmount');
+      console.log('❌ Unmounted');
     };
   }, []);
 
-  // componentDidUpdate
+  // 🔁 Update (excluding initial mount)
   useEffect(() => {
-    console.log('Count updated:', count);
+    if (hasMounted.current) {
+      console.log('🔁 Component updated - count:', count);
+    } else {
+      hasMounted.current = true;
+    }
   }, [count]);
 
-  return <button onClick={() => setCount(count + 1)}>Increment</button>;
+  return (
+    <div>
+      <p>I'm alive! Count: {count}</p>
+      <button onClick={() => setCount(prev => prev + 1)}>Increment</button>
+    </div>
+  );
+};
+
+export default function App() {
+  const [show, setShow] = useState(true);
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <button onClick={() => setShow(prev => !prev)}>
+        Toggle Component
+      </button>
+      <hr />
+      {show && <MyComponent />}
+    </div>
+  );
 }
 ```
 

@@ -3865,6 +3865,17 @@ React Fiber introduced a **work loop** with these features:
 
 ## **Redux vs Context API**
 
+**Use Context API when**
+  - You have a small to medium-sized app
+  - The state is global but not frequently updated (e.g., theme, locale, auth user)
+
+**Avoid Context API when**
+  - State updates are frequent or deeply nested
+  - You need middleware, async actions, or dev tools
+
+**Use Redux Toolkit when:**
+  - You need fine-grained control, modular slices, and performance optimization
+
 | Feature | **Redux** | **Context API** |
 |--------|-----------|----------------|
 |  **Purpose** | Global state management with predictable updates | Pass data through the component tree without prop drilling |

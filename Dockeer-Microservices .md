@@ -848,14 +848,92 @@ To persist data across container restarts and decouple data from image.
 
 ### Networking in Docker
 
-**Q7. Docker network types:**
 
-| Network Mode | Use Case                                  |
-| ------------ | ----------------------------------------- |
-| `bridge`     | Default for containers                    |
-| `host`       | Shares host network (no isolation)        |
-| `none`       | No network access                         |
-| `overlay`    | Multi-host Docker networking (Swarm mode) |
+
+
+> Docker provides multiple networking drivers to control how containers communicate with each other and the outside world.
+> I’ve worked with all four — `bridge`, `host`, `none`, and `overlay` — depending on the deployment scenario.
+
+
+| Mode      | Used For                                        | Scope          |
+| --------- | ----------------------------------------------- | -------------- |
+| `bridge`  | Local/internal microservices on one host        | Isolated, NAT  |
+| `host`    | Host-level access, monitoring, low-latency apps | Shared host    |
+| `none`    | Networkless secure workloads                    | Fully isolated |
+| `overlay` | Swarm/multi-host communication                  | Cross-host     |
+
+---
+
+> So in short, I choose the network mode based on the **isolation level**, **performance requirement**, and whether the app needs to **talk across hosts**.
+
+
+**Bridge Network**
+
+> **Definition**:
+> This is the **default network** used by Docker. It creates a private virtual network on the host, and containers can communicate via their container names.
+
+> **Real-world use**:
+> In local development, I ran a set of microservices like a **Node.js backend**, **MongoDB**, and **Redis**. I connected them using a custom bridge network to allow internal communication while keeping them isolated from the host.
+
+```bash
+docker network create my-bridge-net
+docker run --network my-bridge-net node-app
+docker run --network my-bridge-net mongo
+```
+
+✅ Ideal for **single-host apps** that need to talk internally.
+
+---
+
+### **Host Network**
+
+> **Definition**:
+> This mode **bypasses Docker’s virtual network** and lets the container share the **host’s network stack directly**.
+
+> **Real-world use**:
+> When I deployed **Prometheus Node Exporter**, I used the `host` network so it could expose system metrics on the host’s native interface without any NAT or port mapping.
+
+```bash
+docker run --network host prom/node-exporter
+```
+
+✅ I use it when I need **maximum performance or direct access to host ports**, such as monitoring agents or real-time event processors.
+
+---
+
+### **None Network**
+
+> **Definition**:
+> Completely disables networking for the container — no internet, no internal communication.
+
+> **Real-world use**:
+> I used this in a **secure batch processing container** where the requirement was full network isolation (e.g., in fintech environments), to prevent any accidental external calls.
+
+```bash
+docker run --network none my-secure-job
+```
+
+✅ Perfect for **air-gapped**, **zero-trust** jobs or unit tests that don’t need the network.
+
+---
+
+### **Overlay Network**
+
+> **Definition**:
+> This is used for **multi-host communication** across Docker Swarm nodes. It creates a distributed network spanning multiple machines.
+
+> **Real-world use**:
+> In a **Docker Swarm setup**, I deployed services like `auth-service` and `order-service` across multiple VMs. Overlay networking allowed them to securely talk to each other across the cluster.
+
+```bash
+docker network create --driver overlay app-network
+docker service create --network app-network auth-service
+```
+
+✅ Best for **production microservices**, where containers span across multiple nodes.
+
+---
+
 
 ---
 

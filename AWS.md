@@ -2,13 +2,11 @@
 
 **Azure** - [Azure](#Azure)
 
-- [Fan-out architecture using AWS SQS and SNS](#fan-out-architecture-using-aws-sqs-and-sns)
-- [Azure Service Bus handles dead-letter messages](#azure-service-bus-handles-dead-letter-messages)
-- [Difference between Kafka and SQS](#kafka-and-sqs)
-- [Using Pushpin to broadcast real-time messages](#pushpin-to-broadcast-real-time-messages)
-- [Handling message duplication or retries](#handling-message-duplication-or-retries)
-- [Scaling a queue-based system under high load](#scaling-a-queue-based-system-under-high-load)
-- [Trade-offs when choosing Kafka over SQS](#trade-offs-when-choosing-kafka-over-sqs)
+- [Fan-out architecture using AWS SQS and SNS](#fan-out-architecture-using-aws-sqs-and-sns) - [Azure Service Bus handles dead-letter messages](#azure-service-bus-handles-dead-letter-messages)
+- [Difference between Kafka and SQS](#kafka-and-sqs) - [Using Pushpin to broadcast real-time messages](#pushpin-to-broadcast-real-time-messages)
+- [Handling message duplication or retries](#handling-message-duplication-or-retries) - [Scaling a queue-based system under high load](#scaling-a-queue-based-system-under-high-load) - [Trade-offs when choosing Kafka over SQS](#trade-offs-when-choosing-kafka-over-sqs)
+
+
 
 
 | **Category**           | **Topics** |

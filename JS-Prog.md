@@ -2950,7 +2950,39 @@ console.log(sortByAgeManual(people));
 
 ###  **Merge Sort**  
 - Best for large datasets.  
-- Uses extra space but gives guaranteed `O(n log n)` performance.
+
+**Merge Sort** is a classic **divide-and-conquer** algorithm.
+It works by recursively breaking down the array into smaller subarrays, sorting them, and then **merging** them back together in a sorted order.
+
+**When Do You Use**
+
+> Merge Sort is ideal when:
+>
+> * You need guaranteed `O(n log n)` performance.
+> * You’re working with **linked lists** (efficient merging).
+> * You care about **stable sorting** (preserves original order of equal elements).
+> * You're dealing with **large datasets** stored on disk (external sorting).
+
+
+**How It Works:**
+
+1. **Divide** the array into halves recursively until each subarray has one element.
+2. **Conquer** by merging the sorted halves into one sorted array.
+3. Repeat until the entire array is sorted.
+
+---
+
+### 🧠 **Time Complexity:**
+
+| Case       | Complexity   |
+| ---------- | ------------ |
+| Best Case  | `O(n log n)` |
+| Average    | `O(n log n)` |
+| Worst Case | `O(n log n)` |
+
+✅ **Space Complexity**: `O(n)` — requires additional space for merging.
+
+
 
 ```js
 function mergeSort(arr) {

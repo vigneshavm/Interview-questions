@@ -3014,8 +3014,41 @@ console.log(removeDuplicatesAndSort(array)); // [1, 2, 3, 4, 5]
 ---
 
 ###  **Quick Sort**  
-- Choose a **random pivot** to reduce worst-case risk (`O(n²)` becomes rare).  
-- Tail recursion removed via slicing.
+
+> **Quick Sort** is a highly efficient, **divide-and-conquer** sorting algorithm.
+> It works by choosing a **pivot element**, partitioning the array so that elements **less than the pivot go to the left**, and elements **greater go to the right**, then recursively sorting those parts.
+> To avoid worst-case `O(n²)`, I use **random pivot selection** or **median-of-three** technique, especially for large or nearly sorted arrays.
+
+**How It Works:**
+
+1. Select a pivot (e.g., first, last, random, or median).
+2. Rearrange elements so everything smaller than the pivot comes before it, and larger after.
+3. Recursively apply Quick Sort to the left and right parts.
+4. Combine — no actual merging step like in Merge Sort.
+
+**Time & Space Complexity:**
+
+| Case       | Time                                                  |
+| ---------- | ----------------------------------------------------- |
+| Best Case  | `O(n log n)` (balanced partition)                     |
+| Average    | `O(n log n)`                                          |
+| Worst Case | `O(n²)` (unbalanced — e.g., sorted array + bad pivot) |
+
+✅ **Space Complexity**: `O(log n)` due to recursion stack (in-place sort).
+
+
+
+### 🧠 **Real-World Use Case:**
+> I use Quick Sort when:
+> * I want **in-place sorting** with good average performance.
+> * The data fits in memory.
+> * I don’t need stable sorting (Quick Sort is **not stable**).
+
+🧪 Example: Sorting a large array of numbers on a backend service in Node.js.
+
+---
+
+
 
 ```js
 function quickSort(arr) {

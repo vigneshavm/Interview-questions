@@ -4,7 +4,7 @@
 | **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) - [Render Props](Render-Props) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  |
-| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
+| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
 | **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query) •  [Redux-Saga](#Redux-Saga)   •  [Redux Virtualized](#react-virtualized)  - [Recursion](#Recursion) - [Reacts Concurrent Mode](#Reacts-Concurrent-Mode)
@@ -692,7 +692,7 @@ useEffect(() => {
 
 ---
 
-###  Example: All Together in Functional Component
+### Functional components lifecycle hook
 ```jsx
 import React, { useState, useEffect, useRef } from 'react';
 

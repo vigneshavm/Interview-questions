@@ -3,8 +3,9 @@
  | **Category**                 | **Topics**                                                                                                                                           |
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Basics & Core Concepts**  | [MongoDB vs Relational Databases](#mongodb-vs--relational-databases) - [MongoDB Document](#mongodb-document) - [Collection](#collection) - [Data Storage Format](#data-storage-format-in-mongodb) - [_id Field](#id-field) - [Supported Data Types](#supported-data-types) - [BSON vs JSON](#bson-vs-json) |
+| **Querying**                | [find() vs findOne()](#find-vs-findone) - [$in Vs $all](#difference-between-in-and-all-in-mongodb) - [Searching in MongoDB](#searching-in-mongodb)                              |
 | **Indexing**                | [Index](#creating-an-index-in-mongodb) - [Indexing strategies](#indexing-strategies) - [Indexing Drawbacks](#indexing-drawbacks) - [Multikey and Compound indexes](#Multikey-and-Compound-indexes) - [Compound Indexes](#Compound-Indexes) |
-| **CRUD Operations**         | [find() vs findOne()](#find-vs-findone) - [$in Vs $all](#difference-between-in-and-all-in-mongodb) - [Searching in MongoDB](#searching-in-mongodb)  - [upsert](#upsert) - [Update Multiple Documents](#update-multiple-documents-in-mongodb) - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)        - [MongoDB CRUD Operations](#MongoDB-CRUD-Operations) - [Query Operators](#Query-Operators) - [Aggregation Operations](#Aggregation-Operations)|
+| **CRUD Operations**         | [upsert](#upsert) - [Update Multiple Documents](#update-multiple-documents-in-mongodb) - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)        - [MongoDB CRUD Operations](#MongoDB-CRUD-Operations) - [Query Operators](#Query-Operators) - [Aggregation Operations](#Aggregation-Operations)|
 | **Relationships & Schema**  | [Modeling patterns](#Modeling-patterns) - [Model Relationships](#model-relationships) - [Embedded and Referenced Documents](#embedded-and-referenced-documents) - [Schema Enforcement](#mongodb-handle-schema-enforcement) |
 | **Advanced Features**       | [Aggregations](#aggregations-in-mongodb) - [Aggregate examples](#Aggregate-examples) - [Transactions](#handle-transactions-in-mongodb) - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) |
 | **Scaling & Performance**   | [Sharding](#Sharding) -[Shard Key](#Shard-Key) - [Scaling MongoDB](#scaling-mongodb) - [Performance Tuning](#performance-tuning-techniques-in-mongodb)                             |
@@ -17,7 +18,16 @@
 
 
 
----
+- [Schema Design](#Schema-Design) - [Working set](#Working-set)
+
+
+- [Impact of schema-less design on validation/consistency](#impact-of-schema-less-design-on-validationconsistency)
+- [Ensuring high availability and fault tolerance](#ensuring-high-availability-and-fault-tolerance)
+- [Optimizing multiple $lookup operations in aggregations](#optimizing-multiple-lookup-operations-in-aggregations)
+- [Migrating data between clusters or from SQL to MongoDB](#migrating-data-between-clusters-or-from-sql-to-mongodb)
+- [Monitoring and tuning MongoDB in production](#monitoring-and-tuning-mongodb-in-production)
+- [Design schema for audit logs/historical data](#design-schema-for-audit-logshistorical-data)
+
 
 
 
@@ -779,6 +789,19 @@ When designing compound indexes, choose the field order based on:
 
 ##  MongoDB vs  Relational Databases
 
+#### ✅ Use MongoDB when:
+
+* Schema evolves frequently (e.g., user profiles)
+* High write scalability is needed
+* Event logs, IoT, product catalogs
+
+#### ❌ Avoid MongoDB when:
+
+* Complex joins, ACID transactions across tables (e.g., banking core)
+* Strict schema enforcement (e.g., tax or billing)
+
+> ✅ Evaluate use case: **flexibility vs transactional integrity**
+
 MongoDB is a **NoSQL, document-oriented database**. It stores data in flexible, JSON-like documents instead of rows and columns.
 
 
@@ -1222,7 +1245,20 @@ db.orders.aggregate([
 ---
 
 ## Embedded and Referenced documents?
-**Answer:**
+
+* **Embed** when:
+
+  * Data is tightly coupled (e.g., user and addresses)
+  * Reads are more frequent than writes
+  * The document won't exceed 16MB
+* **Reference** when:
+
+  * There’s a 1\:N or N\:M relationship (e.g., user and orders)
+  * Data changes independently
+  * You want to avoid document bloat
+
+> ✅ **Rule of thumb**: Read-heavy → embed, write-heavy or large → reference
+
 
 | Feature       | Embedded                         | Referenced                        |
 |---------------|----------------------------------|-----------------------------------|
@@ -1619,7 +1655,15 @@ await User.updateOne(
 
 ##  **Indexing strategies**
 
----
+
+* Use **compound indexes** (`userId + status`)
+* Use **partial indexes** to index only active data
+* Use **TTL indexes** for expiring session tokens or temp logs
+* Use **text indexes** for search across `title`, `description`
+* Regularly run `explain()` to assess index use
+
+> ✅ Indexes improve reads but **slow down writes** — find balance
+
 
 In my experience working with **NoSQL (MongoDB)** and **SQL databases**, indexing has been a crucial tool to improve query performance—especially in high-traffic enterprise applications.
 
@@ -1745,11 +1789,17 @@ This improved performance from \~1.2s to <200ms.
 
 
 
+* **Shard the collection** using a well-chosen shard key (e.g., `region + timestamp`)
+* Use **bucketed time series collections** for log-type data
+* Implement **archival** to cold storage (e.g., move old data to S3)
+* Index only what you need — over-indexing = memory pressure
 
- - To handle large datasets efficiently in MongoDB, I focus on proper schema design to avoid unnecessary joins,
- -  I use compound indexes on frequently queried fields to minimize collection scans.
- -  I leverage the aggregation pipeline with early filtering and projections, and use range-based pagination for deep data traversal.
- -  For high-scale systems, I use sharding with a well-chosen shard key. Additionally, I monitor query performance using `explain()` and tools like MongoDB Atlas to continuously optimize queries and indexes."
+> ✅ Scale horizontally and avoid hotspots
+
+- To handle large datasets efficiently in MongoDB, I focus on proper schema design to avoid unnecessary joins,
+-  I use compound indexes on frequently queried fields to minimize collection scans.
+-  I leverage the aggregation pipeline with early filtering and projections, and use range-based pagination for deep data traversal.
+-  For high-scale systems, I use sharding with a well-chosen shard key. Additionally, I monitor query performance using `explain()` and tools like MongoDB Atlas to continuously optimize queries and indexes."
 
 
 ### ✅ **1. Schema Design Optimization**
@@ -2402,4 +2452,94 @@ COMMIT;
 | `$sort`    | Sort documents               | `{ $sort: { age: -1 } }`                                                                   |
 | `$limit`   | Limit number of results      | `{ $limit: 10 }`                                                                           |
 | `$lookup`  | Join with another collection | `{ $lookup: { from: "orders", localField: "userId", foreignField: "_id", as: "orders" } }` |
+
+
+
+
+### **Schema Design**
+
+* Use fields like `transactionId`, `userId`, `amount`, `currency`, `status`, `timestamp`
+* Add a **unique index on `transactionId`** for idempotency
+* **Compound indexes** on `userId + timestamp` for efficient querying
+* Store amounts in **minor units** (e.g., paise, cents) to avoid float precision issues
+
+> ✅ Ensures **accuracy**, **traceability**, and **fast user-centric queries**
+
+
+### **Working set**
+
+* The **working set** is the subset of data and indexes actively used
+* If it **fits in RAM**, MongoDB avoids disk I/O → **high performance**
+* Use `db.collection.stats()` and `db.serverStatus()` to monitor memory usage
+
+> ✅ **Optimize indexes** and **prune old data** to keep the working set small
+
+---
+
+
+
+
+
+
+###  **Impact of schema-less design on validation/consistency?**
+
+* MongoDB is schema-less by default, but:
+
+  * Use **JSON Schema validation** at the collection level (since v3.6)
+  * In Mongoose (Node.js), enforce strict schemas and data types
+* Helps catch malformed data **early in dev**
+
+> ✅ Schema validation is **critical in financial and enterprise systems**
+
+---
+
+###  **Ensuring high availability and fault tolerance?**
+
+* Use a **replica set**: 1 primary + 2+ secondaries
+* Set **write concern** (`w: majority`) and **read preference** (`nearest` or `secondaryPreferred`)
+* Automated failover ensures continuity
+* Backups via **oplog + snapshots** in MongoDB Atlas or custom tooling
+
+> ✅ **Replica sets** provide durability and high uptime
+
+---
+
+###  **Optimizing multiple `$lookup` operations in aggregations?**
+
+* Keep joined collections **small** (e.g., lookup from `currencies` or `countries`)
+* Move `$lookup` **later** in the pipeline to reduce processed docs
+* Add **indexes on foreign fields** (e.g., `localField` in `$lookup`)
+* Sometimes **denormalize** frequently joined data into source collection
+
+> ✅ `$lookup` can be expensive — keep pipeline stages efficient
+
+---
+
+###  **Migrating data between clusters or from SQL to MongoDB?**
+
+* Used **MongoDB Atlas Live Migration** and **`mongodump`/`mongorestore`**
+* Migrated schema using **ETL pipelines** (e.g., with Apache NiFi or custom scripts)
+* Ensured **data consistency** using checksums and staging phases
+* Cutover done during **low-traffic hours** with rollback plan
+
+> ✅ Minimized downtime and validated integrity post-migration
+
+
+### **Monitoring and tuning MongoDB in production?**
+
+* Use **MongoDB Atlas** for monitoring slow queries, disk I/O, CPU/memory
+* Enable **database profiler** and review slow ops
+* Regularly check `db.collection.stats()`, `db.currentOp()`
+* Use **connection pooling**, **capped collections**, and **cache sizing**
+
+> ✅ Proactive tuning avoids performance degradation under load
+
+
+### **Design schema for audit logs/historical data?**
+
+* Use **append-only** model with `eventId`, `timestamp`, `userId`, `action`, `payload`
+* Add a **TTL index** (if retention limited) or partition by date (e.g., `audit_2025_07`)
+* Store snapshots if the structure evolves (e.g., embed full object)
+
+> ✅ Audit logs should be **immutable**, **timestamped**, and **queryable**
 

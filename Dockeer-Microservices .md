@@ -962,6 +962,20 @@ docker run --restart always ...
 
 ### Common Docker Commands
 
+**Connect to - running Docker container**
+| Command                       | Purpose                           | Safe?               |
+| ----------------------------- | --------------------------------- | ------------------- |
+| `docker exec -it <name> bash` | Open shell in container           | ✅ Yes               |
+| `docker exec -it <name> sh`   | Shell access in Alpine containers | ✅ Yes               |
+| `docker attach <name>`        | Attach to main process            | ⚠️ Use with caution |
+| `docker ps`                   | List running containers           | ✅ Yes               |
+| `docker exec -it --user=node my-container bash`                   | non-root user containers           | ✅ Yes               |
+
+
+
+
+
+
 | Task                   | Command Example                            |
 | ---------------------- | ------------------------------------------ |
 | Build image            | `docker build -t myapp .`                  |

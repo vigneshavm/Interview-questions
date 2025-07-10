@@ -3193,6 +3193,41 @@ console.log(insertionSort([9, 5, 1, 4, 3])); // [1, 3, 4, 5, 9]
 ---
 
 ###  **Selection Sort**  
+
+
+> **Selection Sort** is a simple, comparison-based sorting algorithm.
+> It works by **repeatedly selecting the smallest (or largest) element** from the unsorted part and placing it at the beginning of the sorted part.
+
+> Although Selection Sort isn't efficient for large datasets, it's great for demonstrating sorting concepts, especially in **environments where swap cost is critical**.
+
+
+**How It Works:**
+
+1. Start from the first element.
+2. Find the **minimum element** in the rest of the array.
+3. Swap it with the current element.
+4. Repeat this for all positions in the array.
+
+
+**Time & Space Complexity:**
+
+| Case       | Time    |
+| ---------- | ------- |
+| Best Case  | `O(n²)` |
+| Average    | `O(n²)` |
+| Worst Case | `O(n²)` |
+
+✅ **Space Complexity**: `O(1)` — it's an **in-place** algorithm.
+❌ **Not stable** by default (because it swaps).
+
+**Real-World Use Case:**
+
+> I use Selection Sort in **constrained environments** where memory writes are expensive (e.g., flash memory), because it does at most **n swaps**.
+
+📍 Example:
+Used in embedded systems or teaching environments to illustrate sorting basics.
+
+
 - Always does `n-1` swaps at most.
 
 ```js

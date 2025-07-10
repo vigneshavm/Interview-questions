@@ -10,7 +10,8 @@
 | **Async JavaScript**         |  • [Sync vs Async](#synchronous-vs-asynchronous-functions) • [Async Errors](#handling-async-errors) • [`setTimeout and setImmediate and processnextTick and setInterval`](#settimeout-and-setimmediate-and-processnexttick-and-setInterval) • [Event Loop & Call Stack](#event-loop--call-stack) • [Extending Built-in Objects](#extending-built-in-objects)                                                                                                                                                                                                                                                                          |
 | **Classes**        |  • [Prototypes](#understanding-__proto__-and-prototypes) • [Mutable vs Immutable](#mutable-vs-immutable-objects)  • [Static Class Members](#static-class-members) • [Getters and Setters](#getters-and-setters) • [Inheritance](#inheritance) • [Usage of super()](#usage-of-super-in-classes) • [in vs hasOwnProperty()](#in-operator-vs-hasownproperty) |
 | **Objects**        | • [Object.assign() vs Spread](#objectassign-vs-spread-operator) • [Object.create() & Prototype Chains](#object-create-and-prototype-chains) • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions) |
-| **Modules & DOM**   |  • [innerHTML vs textContent](#innerhtml-vs-textcontent)  • [JS Modules (import/export)](#javascript-modules-importexport) • [CommonJS vs ES Modules(mjs)](#commonjs-vs-es-modules)                              |
+| **Modules & DOM**   |  • [innerHTML vs textContent](#innerhtml-vs-textcontent)  • [JS Modules (import/export)](#javascript-modules-importexport) • [CommonJS vs ES Modules(mjs)](#commonjs-vs-es-modules)      [`.mjs` and `.js`](#mjs-and-js)
+                        |
 | **Browser APIs**             |  • [Cookies vs sessionStorage vs localStorage](#cookies-and-sessionstorage-and-localstorage) • [Window vs Document](#window-vs-document) • [window.history API](#using-window-history-api) • [Web Workers](#web-workers) • [WebSocket API](#websocket-api)                                                                                                                                                                                                                                                                                                                                           |
 | **Error Handling**           |  • [Custom Error](#custom-error)  • [Web Communication Protocols](#web-communication-protocols)             • [Test Driven Development](#Test-Driven-Development)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
@@ -6016,6 +6017,54 @@ const obj = { a: 1, b: 2 };
 Object.entries(obj).forEach(([key, val]) => {
   console.log(key, val); // a 1, b 2
 });
+```
+
+
+
+### `.mjs` and `.js`
+
+| File Extension | Default Module Type | Use `import/export`?  | Requires `type: module`? |
+| -------------- | ------------------- | --------------------- | ------------------------ |
+| `.js`          | CommonJS            | ❌ (unless configured) | ✅ Yes, for ESM support   |
+| `.mjs`         | ES Module           | ✅ Yes                 | ❌ No, works by default   |
+
+> `.mjs` was introduced to help Node.js distinguish between CommonJS (`require`) and ES Modules (`import`) without ambiguity — especially when using both in the same project.
+> Use `.mjs` Personally If I want to use ES modules but don’t want to change `package.json`, or I'm mixing both CJS and ESM in a migration project, I go with `.mjs`.
+
+
+
+> In Node.js, `.mjs` and `.js` differ primarily in how they handle modules.
+
+`.mjs` files are treated as **ES Modules (ESM)** by default.
+
+* They use `import` and `export` syntax.
+* You don't need to modify `package.json` — Node recognizes it as an ES module just by the file extension.
+
+```js
+// utils.mjs
+export function greet(name) {
+  return `Hello, ${name}`;
+}
+```
+
+```js
+// index.mjs
+import { greet } from './utils.mjs';
+console.log(greet('Vignesh'));
+```
+
+
+`.js` files are treated as **CommonJS** by default.
+
+* You use `require()` and `module.exports`.
+* But if you set `"type": "module"` in `package.json`, then `.js` files can behave like ESM too.
+
+```js
+// Without "type": "module"
+const fs = require('fs'); // ✅ CommonJS
+
+// With "type": "module" in package.json
+import fs from 'fs';       // ✅ ESM
 ```
 
 

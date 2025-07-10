@@ -10,26 +10,11 @@
 | **Advanced Features**       | [Aggregations](#aggregations-in-mongodb) - [Aggregate examples](#Aggregate-examples) - [Transactions](#handle-transactions-in-mongodb) - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) |
 | **Scaling & Performance**   | [Sharding](#Sharding) -[Shard Key](#Shard-Key) - [Scaling MongoDB](#scaling-mongodb) - [Performance Tuning](#performance-tuning-techniques-in-mongodb)                             |
 | **Replication & Durability**| [Replica Set](#replica-set) - [Clustering & Replication](#clustering--replication) - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb) - [Durability & Consistency](#mongodb-ensure-durability-and-consistency) - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) |
-| **Special Collections**     | [Capped Collection in MongoDB](#capped-collection-in-mongodb)                                                                                         |
+| **Special Collections**     | [Capped Collection in MongoDB](#capped-collection-in-mongodb)      - [Schema Design](#Schema-Design) - [Working set](#Working-set) - [Impact of schema-less design on validation/consistency](#impact-of-schema-less-design-on-validationconsistency) - [Ensuring high availability and fault tolerance](#ensuring-high-availability-and-fault-tolerance) - [Optimizing multiple $lookup operations in aggregations](#optimizing-multiple-lookup-operations-in-aggregations) - [Migrating data between clusters or from SQL to MongoDB](#migrating-data-between-clusters-or-from-sql-to-mongodb) - [Monitoring and tuning MongoDB in production](#monitoring-and-tuning-mongodb-in-production) - [Design schema for audit logs/historical data](#design-schema-for-audit-logshistorical-data)                                                                                   |
 | **MongoDB with Node.js**    | [MongoDB with Node.js](#mongodb-with-nodejs) - [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose) - [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver) |
 | **Limitations & Considerations** | [Limitations](#limitations-of-mongodb-and-how-to-overcome-them) -[Key Limitations](#Key-Limitations)  - [Databases for a Social Media App](#databases-for-a-social-media-app)                                                                                 |
 | **Other Topics**            | [CAP Theorem](#CAP-Theorem) - [Time Series](#Time-Series) - [ACID properties](#ACID-properties) - [Two-Phase Commit](#Two-Phase-Commit) - [Handling large datasets](#Handling-large-datasets-efficiently-in-MongoDB) - [Scenario Based Questions](#Scenario-Based-Questions) - [SQL feature by feature](#feature-by-feature)
 |
-
-
-
-- [Schema Design](#Schema-Design) - [Working set](#Working-set)
-
-
-- [Impact of schema-less design on validation/consistency](#impact-of-schema-less-design-on-validationconsistency)
-- [Ensuring high availability and fault tolerance](#ensuring-high-availability-and-fault-tolerance)
-- [Optimizing multiple $lookup operations in aggregations](#optimizing-multiple-lookup-operations-in-aggregations)
-- [Migrating data between clusters or from SQL to MongoDB](#migrating-data-between-clusters-or-from-sql-to-mongodb)
-- [Monitoring and tuning MongoDB in production](#monitoring-and-tuning-mongodb-in-production)
-- [Design schema for audit logs/historical data](#design-schema-for-audit-logshistorical-data)
-
-
-
 
 
 

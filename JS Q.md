@@ -6,7 +6,7 @@
 | **Advanced JS Fundamentals** |  • [ES6](#ES6) • [Arrow Functions](#arrow-functions) • [Promises](#promises) • [Promise Type](#promise-type) • [Async Await](#async-await)  • [Optional Chaining (?.)](#optional-chaining-operator) • [Nullish Coalescing (??)](#nullish-coalescing-operator) • [Labeled Statements](#labeled-statements-usage) • [Iterator](#iterator) • [Generator function](#generator-function)   • [Callback, Promise, Async/Await](#callback-vs-promise-vs-asyncawait), [Callback Hell](#callback-hell),                                                                                                                              |
 | **Scope & `this`**           |  • [Scope](#scope)  • [this Keyword Behavior](#this-keyword-behavior) • [new Keyword](#new-keyword) • [Memory Leaks](#common-causes-of-memory-leaks) • [Garbage Collection](#javascript-garbage-collection) • [Memoization Techniques](#memoization-techniques)                                                                                                                                                                                                                  |
 | **Events**                   |  • [Event Propagation](#event-propagation) • [Event Listeners](#event-listeners) • [preventDefault() vs stopPropagation()](#preventdefault-vs-stoppropagation) • [Capturing vs Bubbling vs Delegation](#event-capturing-vs-event-bubbling-vs-event-delegation)                                                                                                                                                                                                                                                                                                                                        |
-| **Functions**                |  • [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor) • [Functions](#functions) • [Closures](#closures) • [Currying](#currying-in-javascript)• [`Call(), Apply(), Bind()`](#call-and-apply-and-bind-methods) • [Debounce and Throttle](#debounce-and-throttle-functions) • [Default Parameters](#default-parameters) • [Constructor Function](#constructor-function)                                                                                                                                                          |
+| **Functions**                |  • [Declaration vs Expression vs Constructor](#function-declaration-vs-expression-vs-constructor) • [Functions](#functions) • [Closures](#closures) • [Currying](#currying-in-javascript) • [`forEach`](#forEach) • [`Call(), Apply(), Bind()`](#call-and-apply-and-bind-methods) • [Debounce and Throttle](#debounce-and-throttle-functions) • [Default Parameters](#default-parameters) • [Constructor Function](#constructor-function)                                                                                                                                                          |
 | **Async JavaScript**         |  • [Sync vs Async](#synchronous-vs-asynchronous-functions) • [Async Errors](#handling-async-errors) • [`setTimeout and setImmediate and processnextTick and setInterval`](#settimeout-and-setimmediate-and-processnexttick-and-setInterval) • [Event Loop & Call Stack](#event-loop--call-stack) • [Extending Built-in Objects](#extending-built-in-objects)                                                                                                                                                                                                                                                                          |
 | **Classes**        |  • [Prototypes](#understanding-__proto__-and-prototypes) • [Mutable vs Immutable](#mutable-vs-immutable-objects)  • [Static Class Members](#static-class-members) • [Getters and Setters](#getters-and-setters) • [Inheritance](#inheritance) • [Usage of super()](#usage-of-super-in-classes) • [in vs hasOwnProperty()](#in-operator-vs-hasownproperty) |
 | **Objects**        | • [Object.assign() vs Spread](#objectassign-vs-spread-operator) • [Object.create() & Prototype Chains](#object-create-and-prototype-chains) • [Object.freeze / seal / preventExtensions](#objectfreeze-and-seal-and-preventextensions) |
@@ -5901,6 +5901,118 @@ I default to `async/await`, and combine with `Promise.all` for parallelism. Call
 | **Chaining**                    | Not supported, but can be manually implemented. | Chaining is built-in with `.then()` and `.catch()`.   | Chaining can be done using `await` for cleaner code. |
 | **Best Use Case**               | Simple asynchronous tasks with a single callback. | Complex async operations that require chaining or error handling. | Cleaner async functions, especially with multiple asynchronous operations in a sequence. |
 | **Example**                     | ```fs.readFile('file.txt', (err, data) => { console.log(data); });``` | ```fetch(url).then(response => response.json()).then(data => console.log(data));``` | ```async function fetchData() { let data = await fetch(url); console.log(data); }``` |
+
+
+
+###  `forEach`
+
+| Method     | Purpose                 | Returns      | Can Break? | Async Support        |
+| `forEach`  | Side effects only       | `undefined`  | ❌          | ❌ (no `await`)       |
+
+
+**Control Flow & Limitations**
+
+* `return` inside `forEach` only exits the current callback — **does not break the loop**.
+* `break`, `continue`, and `return` **do not work** with `forEach`.
+* Prefer `for`, `for...of`, or `Array.prototype.some` for early termination.
+
+```js
+[1, 2, 3].forEach(num => {
+  if (num === 2) return;       // skips callback, not loop
+  console.log(num);            // Output: 1, 3
+});
+```
+
+
+**Async Pitfall**
+
+* `forEach` executes **all async callbacks in parallel** — doesn't `await`.
+* Use `for...of` for sequential `await`-based iteration.
+
+```js
+// ❌ Doesn't work as expected
+[1, 2, 3].forEach(async (num) => {
+  await delay(num);
+  console.log(num); // Order not guaranteed
+});
+
+// ✅ Preferred
+for (const num of [1, 2, 3]) {
+  await delay(num);            // Executes sequentially
+  console.log(num);
+}
+```
+
+* Mutate the original array, but it’s risky. Adding/removing elements during iteration can **skip or duplicate** values.
+
+```js
+arr.forEach((val, index) => {   
+  if (index === 0) arr.push(4); // Added element is not visited 
+  //   console.log(val);             // Output: 1, 2, 3
+});
+```
+
+
+
+
+* `forEach` **skips empty slots** in sparse arrays.
+
+```js
+const arr = [1, , 3];
+arr.forEach((x, i) => console.log(i, x));
+// Output: 0 1, 2 3 (index 1 is skipped)
+```
+
+
+
+
+
+* Regular functions in `forEach` lose context (`this` is `undefined` or `window`).
+* Fix using:
+  * Arrow functions (lexical `this`)
+  * `thisArg` as second argument to `forEach`
+
+```js
+const obj = {
+  val: 100,
+  print() {
+    [1, 2, 3].forEach(function (n) {
+      console.log(this.val + n); // NaN or undefined + n
+    });
+  }
+};
+obj.print();
+
+// ✅ Fix with `thisArg`
+[1, 2, 3].forEach(function(n) {
+  console.log(this.val + n);
+}, { val: 10 }); // Output: 11, 12, 13
+```
+
+
+
+* `for` and `for...of` are **faster** in tight or performance-critical loops.
+* `forEach` has more **overhead** due to callback function invocation.
+* Async Processing Pattern Never use `forEach` with `await`. Use `for...of` or `reduce`.
+
+```js
+async function processSequentially(arr) {
+  for (const item of arr) {
+    await process(item); // Proper sequencing
+  }
+}
+```
+
+* `forEach` works only on **array-like** structures.
+* For objects, use `Object.keys`, `Object.values`, or `Object.entries`.
+
+```js
+const obj = { a: 1, b: 2 };
+Object.entries(obj).forEach(([key, val]) => {
+  console.log(key, val); // a 1, b 2
+});
+```
+
 
 
 

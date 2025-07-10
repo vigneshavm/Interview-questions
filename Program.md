@@ -1221,6 +1221,8 @@ Array.prototype.myMap = function (callback) {
 // ✅ Usage
 const nums = [1, 2, 3];
 const doubled = nums.myMap(x => x * 2);  // [2, 4, 6]
+
+console.log(doubled,"doubled")
 ```
 
 ---

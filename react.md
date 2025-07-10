@@ -15,9 +15,8 @@
 
 | •  [Pointer Events](#Pointer-Events) 
 
-
-
-
+ - [call child components function from a parent](#call-child-components-function-from-a-parent)
+ - [Call a parent component’s function from a child in React](#call-a-parent-components-function-from-a-child-in-react)
 
 
 ---
@@ -5331,6 +5330,221 @@ function App() {
 - For example, when typing in a search box that filters a large list, I use `startTransition()` to defer the list update. 
 - This keeps the input responsive while the list updates in the background. 
 - That’s a real-world use case where Concurrent Mode enhances UX significantly.”
+
+
+
+
+
+### call a child component’s function from a parent
+
+> In React, we generally follow a top-down data flow, so parents control children via props. But in certain cases — like imperative actions (focus, reset, scroll, show modal, etc.) — we might need the **parent to call a function defined inside the child**.
+>
+> To achieve this, we use:
+>
+> 1. **`useRef`** in the parent to get a reference.
+> 2. **`forwardRef`** in the child to receive the ref.
+> 3. **`useImperativeHandle`** in the child to expose specific methods.
+
+---
+
+**Code Example**
+
+**ChildComponent.js**
+
+```jsx
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
+
+const ChildComponent = forwardRef((props, ref) => {
+  const [message, setMessage] = useState('Initial Message');
+
+  // Expose functions to parent
+  useImperativeHandle(ref, () => ({
+    showAlert: () => {
+      alert('Alert from child!');
+    },
+    updateMessage: (newMsg) => {
+      setMessage(newMsg);
+    }
+  }));
+
+  return <div>{message}</div>;
+});
+
+export default ChildComponent;
+```
+
+#### 🔹 **ParentComponent.js**
+
+```jsx
+import React, { useRef } from 'react';
+import ChildComponent from './ChildComponent';
+
+const ParentComponent = () => {
+  const childRef = useRef();
+
+  const handleClick = () => {
+    childRef.current.showAlert(); // Calling child function
+    childRef.current.updateMessage('Updated from Parent!');
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>Call Child Methods</button>
+      <ChildComponent ref={childRef} />
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+---
+**When to Use This?**
+
+> This is useful when:
+>
+> * The child holds internal logic (like `focus`, `scroll`, `openModal`).
+> * You don’t want to lift state or refactor the child just to expose a tiny method.
+>
+> However, overusing this breaks React’s declarative pattern. So I use it **only when absolutely necessary** and keep the exposed methods minimal.
+
+---
+
+**Bonus Interview Tip**
+
+Can’t we use props for this?
+> Yes, but props are unidirectional and declarative. If a parent wants to **trigger an effect inside the child directly**, props don't suffice. That’s where `ref` + `imperativeHandle` come in — it's React's controlled escape hatch for such cases.
+
+
+
+
+
+
+### call child components function from a parent
+
+> In React, we generally follow a top-down data flow, so parents control children via props. But in certain cases — like imperative actions (focus, reset, scroll, show modal, etc.) — we might need the **parent to call a function defined inside the child**.
+>
+> To achieve this, we use:
+>
+> 1. **`useRef`** in the parent to get a reference.
+> 2. **`forwardRef`** in the child to receive the ref.
+> 3. **`useImperativeHandle`** in the child to expose specific methods.
+
+---
+
+**Code Example**
+
+**ChildComponent.js**
+
+```jsx
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
+
+const ChildComponent = forwardRef((props, ref) => {
+  const [message, setMessage] = useState('Initial Message');
+
+  // Expose functions to parent
+  useImperativeHandle(ref, () => ({
+    showAlert: () => {
+      alert('Alert from child!');
+    },
+    updateMessage: (newMsg) => {
+      setMessage(newMsg);
+    }
+  }));
+
+  return <div>{message}</div>;
+});
+
+export default ChildComponent;
+```
+
+#### 🔹 **ParentComponent.js**
+
+```jsx
+import React, { useRef } from 'react';
+import ChildComponent from './ChildComponent';
+
+const ParentComponent = () => {
+  const childRef = useRef();
+
+  const handleClick = () => {
+    childRef.current.showAlert(); // Calling child function
+    childRef.current.updateMessage('Updated from Parent!');
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>Call Child Methods</button>
+      <ChildComponent ref={childRef} />
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+---
+**When to Use This?**
+
+> This is useful when:
+>
+> * The child holds internal logic (like `focus`, `scroll`, `openModal`).
+> * You don’t want to lift state or refactor the child just to expose a tiny method.
+>
+> However, overusing this breaks React’s declarative pattern. So I use it **only when absolutely necessary** and keep the exposed methods minimal.
+
+---
+
+**Bonus Interview Tip**
+
+Can’t we use props for this?
+> Yes, but props are unidirectional and declarative. If a parent wants to **trigger an effect inside the child directly**, props don't suffice. That’s where `ref` + `imperativeHandle` come in — it's React's controlled escape hatch for such cases.
+
+
+
+
+### **Call a parent component’s function from a child in React?**
+
+> In React, the most common and recommended way to call a parent function from a child is by **passing the function as a prop**. This keeps the data flow unidirectional and allows the parent to control behavior while the child simply triggers it.
+
+---
+
+ **Example (Explain + Code)**
+
+> For example, suppose I have a function in the parent component called `handleChildAction`, and I want the child to call it when a button is clicked.
+
+**Parent Component:**
+
+```jsx
+function ParentComponent() {
+  const handleChildAction = () => {
+    console.log('🔔 Called from child');
+  };
+
+  return <ChildComponent onAction={handleChildAction} />;
+}
+```
+
+**Child Component:**
+
+```jsx
+function ChildComponent({ onAction }) {
+  return <button onClick={onAction}>Call Parent</button>;
+}
+```
+
+> Here, the parent passes its function as a prop (`onAction`), and the child invokes it inside an `onClick`. This is clean, decoupled, and idiomatic in React.
+
+
+**When the interviewer asks "Why this approach?"**
+
+> Because React promotes **top-down data flow**, this keeps the child reusable and unaware of parent logic. It's also predictable and easy to debug.
+
+
+**Optional Add-on**
+
+> If multiple children need to communicate up, or if the structure is deeply nested, I’d consider using **React Context** or a **global state manager like Redux** to avoid prop drilling. But for typical cases, props are the cleanest solution.
+
 
 
 

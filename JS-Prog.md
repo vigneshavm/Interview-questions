@@ -3132,6 +3132,41 @@ console.log(bubbleSort([5, 1, 4, 2, 8])); // [1, 2, 4, 5, 8]
 ---
 
 ###  **Insertion Sort**  
+> **Insertion Sort** is a simple sorting algorithm that builds the final sorted array **one element at a time**.
+> It works similarly to how we **sort playing cards** in our hands — pick one card at a time and insert it into its correct position relative to the already-sorted cards.
+
+**How It Works:**
+
+1. Start with the second element and compare it to the first.
+2. Shift elements of the sorted subarray that are greater than the current value.
+3. Insert the current element in the correct position.
+4. Repeat for all elements.
+
+**Time & Space Complexity:**
+
+| Case       | Time                      |
+| ---------- | ------------------------- |
+| Best Case  | `O(n)` *(already sorted)* |
+| Average    | `O(n²)`                   |
+| Worst Case | `O(n²)` *(reverse order)* |
+
+✅ **Space Complexity**: `O(1)` — it's an **in-place** sorting algorithm.
+✅ **Stable Sort** — does not change the relative order of equal elements.
+
+
+**Real-World Use Case**
+
+> I use Insertion Sort when:
+>
+> * The dataset is **small** (less than \~10-20 elements).
+> * The array is **almost sorted**.
+> * I need a **simple, fast, and stable** sorting method with minimal overhead.
+
+📍 Example: Sorting scores or timestamps in-place in a small batch during live data entry or as part of a hybrid sort algorithm like **TimSort** (used in Python/JavaScript engines).
+
+
+> While it's not efficient for large datasets, Insertion Sort helps build a foundation for understanding how sorting algorithms work and is often used as a base case in recursive sorts like **Merge Sort** or **Quick Sort**.
+
 - Great for small or nearly sorted arrays.  
 - Reduced assignments when shifting.
 

@@ -3008,7 +3008,37 @@ console.log(quickSort([9, 4, 6, 2, 8, 3])); // [2, 3, 4, 6, 8, 9]
 ---
 
 ### **Bubble Sort**  
-- Early exit if the array is already sorted.
+
+**Bubble Sort** is a simple comparison-based sorting algorithm.
+It works by **repeatedly swapping adjacent elements** if they are in the wrong order.
+The largest elements "bubble" to the end in each iteration.
+
+**When is Bubble Sort used?**
+It’s mainly used for **educational purposes** or when:
+* The input size is **very small**.
+* The data is **almost sorted**.
+* You want a simple-to-implement solution with **stable sorting**.
+
+
+**How It Works:**
+1. Compare two adjacent elements.
+2. Swap them if the left is greater than the right.
+3. Repeat the process for all pairs.
+4. With each pass, the largest unsorted element moves to the end.
+5. Continue until no more swaps are needed.
+
+
+**Time Complexity:**
+
+| Case       | Complexity                                      |
+| ---------- | ----------------------------------------------- |
+| Best Case  | `O(n)`     *(if optimized with no swaps check)* |
+| Average    | `O(n²)`                                         |
+| Worst Case | `O(n²)`                                         |
+
+**Space Complexity**: `O(1)` – It’s an **in-place** sorting algorithm.
+
+
 
 ```js
 function bubbleSort(arr) {

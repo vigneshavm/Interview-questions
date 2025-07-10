@@ -5,7 +5,7 @@
 | **Basics & Core Concepts**  | [MongoDB vs Relational Databases](#mongodb-vs--relational-databases) - [MongoDB Document](#mongodb-document) - [Collection](#collection) - [Data Storage Format](#data-storage-format-in-mongodb) - [_id Field](#id-field) - [Supported Data Types](#supported-data-types) - [BSON vs JSON](#bson-vs-json) |
 | **Querying**                | [find() vs findOne()](#find-vs-findone) - [$in Vs $all](#difference-between-in-and-all-in-mongodb) - [Searching in MongoDB](#searching-in-mongodb)                              |
 | **Indexing**                | [Index](#creating-an-index-in-mongodb) - [Indexing strategies](#indexing-strategies) - [Indexing Drawbacks](#indexing-drawbacks) - [Multikey and Compound indexes](#Multikey-and-Compound-indexes) - [Compound Indexes](#Compound-Indexes) |
-| **CRUD Operations**         | [upsert](#upsert) - [Update Multiple Documents](#update-multiple-documents-in-mongodb) - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)        |
+| **CRUD Operations**         | [upsert](#upsert) - [Update Multiple Documents](#update-multiple-documents-in-mongodb) - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)        - [MongoDB CRUD Operations](#MongoDB-CRUD-Operations) - [Query Operators](#Query-Operators) - [Aggregation Operations](#Aggregation-Operations)|
 | **Relationships & Schema**  | [Modeling patterns](#Modeling-patterns) - [Model Relationships](#model-relationships) - [Embedded and Referenced Documents](#embedded-and-referenced-documents) - [Schema Enforcement](#mongodb-handle-schema-enforcement) |
 | **Advanced Features**       | [Aggregations](#aggregations-in-mongodb) - [Aggregate examples](#Aggregate-examples) - [Transactions](#handle-transactions-in-mongodb) - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) |
 | **Scaling & Performance**   | [Sharding](#Sharding) -[Shard Key](#Shard-Key) - [Scaling MongoDB](#scaling-mongodb) - [Performance Tuning](#performance-tuning-techniques-in-mongodb)                             |
@@ -2359,4 +2359,48 @@ COMMIT;
 - Joins are expensive – $lookup should be used carefully on large datasets.
 - Write Amplification – With large documents, frequent updates can be inefficient.
 
+
+
+
+
+
+### **MongoDB CRUD Operations**
+
+| **Operation** | **Method**     | **Description**                    | **Example**                                                          |
+| ------------- | -------------- | ---------------------------------- | -------------------------------------------------------------------- |
+| **Create**    | `insertOne()`  | Insert a single document           | `db.users.insertOne({ name: "Alice" })`                              |
+|               | `insertMany()` | Insert multiple documents          | `db.users.insertMany([...])`                                         |
+| **Read**      | `find()`       | Find multiple documents            | `db.users.find({ age: { $gt: 25 } })`                                |
+|               | `findOne()`    | Find the first matching document   | `db.users.findOne({ name: "Alice" })`                                |
+| **Update**    | `updateOne()`  | Update first matching document     | `db.users.updateOne({ name: "Alice" }, { $set: { age: 30 } })`       |
+|               | `updateMany()` | Update all matching documents      | `db.users.updateMany({ active: false }, { $set: { active: true } })` |
+|               | `replaceOne()` | Replace a document completely      | `db.users.replaceOne({ _id: 1 }, { name: "Bob" })`                   |
+| **Delete**    | `deleteOne()`  | Delete the first matching document | `db.users.deleteOne({ name: "Alice" })`                              |
+|               | `deleteMany()` | Delete all matching documents      | `db.users.deleteMany({ active: false })`                             |
+
+---
+
+### **Query Operators**
+
+| **Operator**  | **Purpose**         | **Example**                                |
+| ------------- | ------------------- | ------------------------------------------ |
+| `$eq`         | Equal               | `{ age: { $eq: 30 } }`                     |
+| `$ne`         | Not equal           | `{ age: { $ne: 30 } }`                     |
+| `$gt`, `$lt`  | Greater / less than | `{ age: { $gt: 25 } }`                     |
+| `$in`         | Value in array      | `{ name: { $in: ["Alice", "Bob"] } }`      |
+| `$exists`     | Field exists or not | `{ email: { $exists: true } }`             |
+| `$and`, `$or` | Combine conditions  | `{ $or: [{ age: 25 }, { active: true }] }` |
+
+---
+
+### **Aggregation Operations**
+
+| **Stage**  | **Purpose**                  | **Example**                                                                                |
+| ---------- | ---------------------------- | ------------------------------------------------------------------------------------------ |
+| `$match`   | Filter documents             | `{ $match: { status: "A" } }`                                                              |
+| `$group`   | Group by field               | `{ $group: { _id: "$dept", total: { $sum: 1 } } }`                                         |
+| `$project` | Include/exclude fields       | `{ $project: { name: 1, age: 1 } }`                                                        |
+| `$sort`    | Sort documents               | `{ $sort: { age: -1 } }`                                                                   |
+| `$limit`   | Limit number of results      | `{ $limit: 10 }`                                                                           |
+| `$lookup`  | Join with another collection | `{ $lookup: { from: "orders", localField: "userId", foreignField: "_id", as: "orders" } }` |
 

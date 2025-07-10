@@ -965,9 +965,9 @@ docker run --restart always ...
 **Connect to - running Docker container**
 | Command                       | Purpose                           | Safe?               |
 | ----------------------------- | --------------------------------- | ------------------- |
-| `docker exec -it <name> bash` | Open shell in container           | ✅ Yes               |
-| `docker exec -it <name> sh`   | Shell access in Alpine containers | ✅ Yes               |
-| `docker attach <name>`        | Attach to main process            | ⚠️ Use with caution |
+| `docker exec -it <container_id_or_name> bash` | Open shell in container           | ✅ Yes               |
+| `docker exec -it <container_id_or_name> sh`   | Shell access in Alpine containers | ✅ Yes               |
+| `docker attach <container_id_or_name>`        | Attach to main process            | ⚠️ Use with caution |
 | `docker ps`                   | List running containers           | ✅ Yes               |
 | `docker exec -it --user=node my-container bash`                   | non-root user containers           | ✅ Yes               |
 

@@ -2,6 +2,15 @@
 
 **Azure** - [Azure](#Azure)
 
+- [Fan-out architecture using AWS SQS and SNS](#fan-out-architecture-using-aws-sqs-and-sns)
+- [Azure Service Bus handles dead-letter messages](#azure-service-bus-handles-dead-letter-messages)
+- [Difference between Kafka and SQS](#kafka-and-sqs)
+- [Using Pushpin to broadcast real-time messages](#pushpin-to-broadcast-real-time-messages)
+- [Handling message duplication or retries](#handling-message-duplication-or-retries)
+- [Scaling a queue-based system under high load](#scaling-a-queue-based-system-under-high-load)
+- [Trade-offs when choosing Kafka over SQS](#trade-offs-when-choosing-kafka-over-sqs)
+
+
 | **Category**           | **Topics** |
 |------------------------|------------|
 | **AWS Lambda**         | [AWS Lambda](#aws-lambda), [Supported Languages](#aws-lambda-supported-languages), [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function), [Triggers](#triggers-that-can-invoke-aws-lambda), [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis), [Passing Data](#passing-data-to-an-aws-lambda-function), [Large File Uploads](#handling-large-file-uploads-in-aws), [Cold Start](#cold-start), [Scaling](#how-lambda-scales), [Provisioned Concurrency](#provisioned-concurrency), [Monitoring](#monitoring-lambda-functions), [Permissions](#assigning-permissions-to-lambda-functions), [Secrets](#securely-storing-secrets-in-lambda), [Lambda Layers](#lambda-layers), [Max Package Size](#maximum-deployment-package-size), [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) |
@@ -1147,4 +1156,136 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 * Apply **RBAC, network restrictions**, and **auditing policies**.
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+### **Fan-out architecture using AWS SQS and SNS?**
+
+
+* Use **Amazon SNS** as the publisher (topic).
+* Create **multiple SQS queues** as subscribers.
+* Subscribe each queue to the SNS topic.
+* SNS sends a copy of the message to all queues simultaneously (**fan-out**).
+* Each consumer (e.g., Lambda or EC2) pulls messages from its respective queue independently.
+* Configure **DLQs** per SQS for failure handling and **visibility timeouts** to avoid duplicate processing.
+
+> ✅ This decouples producers from consumers and allows parallel, independent processing.
+
+
+### **Azure Service Bus handles dead-letter messages**
+
+
+* Azure Service Bus automatically moves messages to the **dead-letter queue (DLQ)** when:
+
+  * Max delivery attempts are exceeded.
+  * Message expiration occurs.
+  * The receiver explicitly dead-letters the message.
+* Each queue/topic has a subqueue named `$DeadLetterQueue`.
+* You process DLQ messages by reading from:
+
+  ```
+  <queue-name>/$DeadLetterQueue
+  ```
+* Best practices:
+
+  * Use DLQs to isolate and analyze failed messages.
+  * Set up a **reprocessing pipeline** or admin tool to fix and requeue messages.
+
+---
+
+### **Kafka and SQS?**
+
+
+| Feature           | Kafka                                   | SQS                                  |
+| ----------------- | --------------------------------------- | ------------------------------------ |
+| Model             | Distributed log                         | Message queue                        |
+| Message Retention | Time-based or size-based                | Until consumed or expired            |
+| Ordering          | Guaranteed per partition                | FIFO optional, otherwise best-effort |
+| Consumers         | Pull-based (consumer groups)            | Polling-based                        |
+| Replay            | ✅ Yes (via offset)                      | ❌ Not natively                       |
+| Use Case          | High-throughput streaming, ETL, logging | Simple queueing, background jobs     |
+
+> Kafka is ideal for event sourcing and stream processing.
+> SQS is better for decoupled, serverless workflows.
+
+---
+
+### **Pushpin to broadcast real-time messages?**
+
+
+* Pushpin acts as a **real-time reverse proxy** supporting WebSockets, HTTP streaming, and SSE.
+* Backend services publish messages to a pub/sub system (e.g., Redis, ZeroMQ).
+* Pushpin **listens to channels** (e.g., `channel:<user_id>`) and pushes messages to connected clients.
+* Use **GRIP (General Realtime Intermediary Protocol)** to manage subscriptions.
+* To scale:
+
+  * Deploy **multiple Pushpin nodes** behind a load balancer.
+  * Use a **shared pub/sub backend** (e.g., Redis or NATS) to distribute messages.
+
+> 🔄 Ideal for live dashboards, chat apps, multiplayer games, etc.
+
+---
+
+### **Handled message duplication or retries.**
+
+**Answer Example:**
+
+> In a microservices system, we used AWS SQS with Lambda. Due to network retries, some messages were delivered multiple times. To handle this, we:
+
+* Added **deduplication logic** using **idempotent keys** (message IDs stored in Redis).
+* Configured **FIFO queues** where ordering and deduplication are guaranteed.
+* Used **visibility timeouts** and **DLQs** for retry handling.
+
+> Result: No double-processing even under load, and failed messages were traceable.
+
+---
+
+### **Scale a queue-based system under high load?**
+
+
+
+> In a log processing system using Kafka, we faced spikes of 100K+ messages/sec.
+
+* We scaled by:
+
+  * Increasing Kafka **partitions** for parallelism.
+  * Using **consumer groups** to horizontally scale processing.
+  * Tuning **batch sizes** and **poll intervals**.
+  * Offloading heavy processing to **worker pools** behind the consumers.
+  * Enabling **backpressure** with circuit breakers to avoid crashes.
+
+> We maintained real-time throughput while keeping latency under control.
+
+---
+
+### **Trade-offs consider choosing Kafka over SQS?**
+
+
+
+* **Kafka** chosen when:
+
+  * Replay capability is critical.
+  * High-throughput ingestion (millions/day).
+  * Event-driven microservices need shared event logs.
+* **SQS** chosen when:
+
+  * Serverless, low-maintenance.
+  * Short-lived tasks with basic queueing.
+  * Simpler retry and DLQ mechanisms are sufficient.
+
+> ✅ Kafka offers flexibility and performance.
+> ✅ SQS is easier to manage for simpler workflows.
+
+---
+
+
+> “I don’t just consume queues — I design the entire **event-driven architecture**: decoupling services, handling failures gracefully, managing retries and deduplication, and tuning performance at scale.”
 

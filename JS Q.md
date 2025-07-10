@@ -5906,8 +5906,13 @@ I default to `async/await`, and combine with `Promise.all` for parallelism. Call
 
 ###  `forEach`
 
-| Method     | Purpose                 | Returns      | Can Break? | Async Support        |
-| `forEach`  | Side effects only       | `undefined`  | ❌          | ❌ (no `await`)       |
+| Method     | Purpose                 | Returns     | Can Break? | Async Support       |
+|------------|--------------------------|-------------|------------|----------------------|
+| `forEach`  | Side effects only         | `undefined` | ❌         | ❌ (no `await`)      |
+| `map`      | Transform elements        | New array   | ❌         | ❌                   |
+| `reduce`   | Accumulate to one value   | Accumulator | ❌         | ❌                   |
+| `for...of` | General iteration         | N/A         | ✅         | ✅ (supports `await`)|
+| `for`      | General-purpose loop      | N/A         | ✅         | ✅ (supports `await`)|
 
 
 **Control Flow & Limitations**

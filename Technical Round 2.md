@@ -7,7 +7,7 @@
 | **System Design Concepts**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices), -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
 | **Client-Facing Scenarios**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs), -  [Security issue](#security-issue-on-production), -  [Track project progress](#track-project-progress), -  [Estimate story points](#estimate-story-points), -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s)
 | **Upgrade Topics**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
-| **Additional Leadership Topics** | [Architectural decisions](#architectural-decisions), -  [Technical leadership](#technical-leadership), -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) |
+| **Additional Leadership Topics** | [Architectural decisions](#architectural-decisions), -  [Technical leadership](#technical-leadership), -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Agile Concepts](#Agile-Concepts) |
 
 
 ### **Troubleshooting Debugging and Upgrading existing software**
@@ -648,5 +648,29 @@ Here are some of the **critical architectural challenges** I’ve faced — and 
 | Observability                  | Production issues were hard to trace                     | Centralized logs (Winston + ELK), tracing (OpenTelemetry), metrics/alerts (Prometheus + Grafana)         |
 | Org vs Architecture Alignment  | Scaling teams didn't match code boundaries               | Restructured domains with bounded contexts, internal shared libs, team-specific services                 |
 
+
+
+
+### Agile Concepts
+
+| **Interview Question**                          | **Answer (Interview-Style)**                                                                                                                                                                        |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Estimate story points?**           | I use story points to estimate *relative effort*, not time. We follow the **Fibonacci sequence (1, 2, 3, 5, 8...)**. We conduct **planning poker** to align the team and surface hidden complexity. |
+| **Velocity in sprint planning?** | Velocity is the number of story points completed per sprint. I take a rolling average of the past 3–4 sprints and plan at 80–90% capacity to accommodate unplanned work.                            |
+| **Split large stories?**             | I apply **vertical slicing**: split stories by functionality that delivers value end-to-end. For example: “Create UI,” “Integrate API,” “Add filters.” Each story should be testable and demoable.  |
+| **Break down full-stack features?**  | I split into sub-tasks like: `React UI`, `Node.js API`, `MongoDB schema/logic`, `validation`, and `tests`. This helps parallelize development and track progress clearly.                           |
+| **Handle mid-sprint changes?**       | If minor, we absorb it. If major, I split it into a new story and plan it for the next sprint. This protects the current sprint’s goal and avoids team context-switching.                           |
+| **Definition of Done?**             | Code is complete, reviewed, unit/integration tested, and merged. If it’s for release, QA signoff is also included. “Done” means it’s ready for production or demo.                                  |
+| **Track progress in a sprint?**      | Through **daily standups**, **Jira status**, and **burndown charts**. If tasks are stuck too long or the chart flattens, I proactively identify blockers and resolve them.                          |
+| **Run sprint planning?**             | I review team capacity and velocity, then pull high-priority items. We estimate together, define acceptance criteria, and ensure stories are sized for 1–2 days of work max.                        |
+| **Run retrospectives?**              | I use the format: “What went well?”, “What didn’t?”, and “What can we improve?”. We keep it action-oriented and track changes in the next sprint.                                                   |
+
+---
+
+**Example: Task Splitting**
+
+| **Story**                          | **Sub-Tasks**                                                                                                                                       |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| “As a user, I can view my profile” | - Create React UI <br> - Build Node.js API `/api/profile` <br> - MongoDB schema/query <br> - Add validation <br> - Write tests (unit + integration) |
 
 

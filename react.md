@@ -2291,19 +2291,37 @@ Both **Formik** and **React Hook Form** are popular libraries for building and v
 ###  **React Hook Form Example:**
 
 ```jsx
-import { useForm } from 'react-hook-form';
+import React, { Component } from "react";
+import { useForm } from "react-hook-form";
 
-function MyForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+function App() {
+  const {     register,     handleSubmit,     formState: { errors }  } = useForm();
+  const onSubmit = (data) => {     console.log("Form Data:", data);     alert(`Submitted: ${JSON.stringify(data)}`);   };
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
-      <input {...register('email', { required: 'Email is required' })} />
-      {errors.email && <p>{errors.email.message}</p>}
-      <button type="submit">Submit</button>
-    </form>
+    <div style={{ margin: "50px" }}>
+      <h2>Simple React Hook Form</h2>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            id="email"
+            type="email"
+            {...register("email", { required: "Email is required" })}
+            style={{ padding: "8px", marginTop: "4px", width: "250px" }}
+          />
+          {errors.email && (            <span style={{ color: "red" }}>{errors.email.message}</span>          )}
+        </div>
+        <button type="submit" style={{ padding: "10px 20px" }}>
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
+
+export default App;
+
 ```
 
 ---

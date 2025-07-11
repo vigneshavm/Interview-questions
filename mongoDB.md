@@ -8,7 +8,7 @@
 | **CRUD Operations**         | [upsert](#upsert) - [Update Multiple Documents](#update-multiple-documents-in-mongodb) - [updateOne(), updateMany(), replaceOne()](#updateone-updatemany-and-replaceone)        - [MongoDB CRUD Operations](#MongoDB-CRUD-Operations) - [Query Operators](#Query-Operators) - [Aggregation Operations](#Aggregation-Operations)|
 | **Relationships & Schema**  | [Modeling patterns](#Modeling-patterns) - [Model Relationships](#model-relationships) - [Embedded and Referenced Documents](#embedded-and-referenced-documents) - [Schema Enforcement](#mongodb-handle-schema-enforcement) |
 | **Advanced Features**       | [Aggregations](#aggregations-in-mongodb) - [Aggregate examples](#Aggregate-examples) - [Transactions](#handle-transactions-in-mongodb) - [Large File Storage (GridFS)](#handle-large-file-storage-in-mongodb-gridfs) |
-| **Scaling & Performance**   | [Sharding](#Sharding) -[Shard Key](#Shard-Key) - [Scaling MongoDB](#scaling-mongodb) - [Performance Tuning](#performance-tuning-techniques-in-mongodb)                             |
+| **Scaling & Performance**   | [Sharding](#Sharding) -[Shard Key](#Shard-Key) - [Scaling MongoDB](#scaling-mongodb) - [Performance Tuning](#performance-tuning-techniques-in-mongodb)        - [Which Shard Need To Use](#Which-Shard-Need-To-Use)                    |
 | **Replication & Durability**| [Replica Set](#replica-set) - [Clustering & Replication](#clustering--replication) - [Replication and How Failover Works in MongoDB](#replication-and-how-failover-works-in-mongodb) - [Durability & Consistency](#mongodb-ensure-durability-and-consistency) - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) |
 | **Special Collections**     | [Capped Collection in MongoDB](#capped-collection-in-mongodb)      - [Schema Design](#Schema-Design) - [Working set](#Working-set) - [Impact of schema-less design on validation/consistency](#impact-of-schema-less-design-on-validationconsistency) - [Ensuring high availability and fault tolerance](#ensuring-high-availability-and-fault-tolerance) - [Optimizing multiple $lookup operations in aggregations](#optimizing-multiple-lookup-operations-in-aggregations) - [Migrating data between clusters or from SQL to MongoDB](#migrating-data-between-clusters-or-from-sql-to-mongodb) - [Monitoring and tuning MongoDB in production](#monitoring-and-tuning-mongodb-in-production) - [Design schema for audit logs/historical data](#design-schema-for-audit-logshistorical-data)                                                                                   |
 | **MongoDB with Node.js**    | [MongoDB with Node.js](#mongodb-with-nodejs) - [useNewUrlParser & useUnifiedTopology in Mongoose](#usenewurlparser-and-useunifiedtopology-in-mongoose) - [Mongoose vs MongoDB Native Driver](#mongoose-vs--mongodb-native-driver) |
@@ -2527,4 +2527,25 @@ COMMIT;
 * Store snapshots if the structure evolves (e.g., embed full object)
 
 > ✅ Audit logs should be **immutable**, **timestamped**, and **queryable**
+
+
+
+
+
+## Which Shard Need To Use
+
+> In a sharded MongoDB cluster, all **client queries go through a `mongos` router**. `mongos` is responsible for routing the **query to the appropriate shard(s) based on the shard key**.**
+>
+> When a **query has full shard key, `mongos` uses the cluster metadata** — specifically the **`config.chunks` and `config.shards` collections** — to find out exactly which chunk the data falls into, and which shard holds that chunk.**
+>
+> This allows **MongoDB to perform a *targeted query*, hitting just one shard**. That makes it much faster and more efficient than broadcasting to all shards.
+>
+> On the other hand, if the **query doesn’t have shard key or includes only part of a compound shard key**, MongoDB has no way to know where the data is, so **`mongos` has to perform a *scatter-gather query* across all shards** and then merge the results. That’s **slower and should be avoided** in performance-critical paths.**
+>
+> In my past projects, I always designed shard keys based on our most common query patterns to ensure they were used in the majority of our `find` or aggregation operations — which kept queries targeted and performance consistent as we scaled.**"
+
+
+> “For example, in one of our applications, we sharded the `videos` collection by `uploadedAt`, and we made sure every user-facing query always included that field. We also monitored with `.explain()` to ensure only one shard was used — especially during peak traffic hours.”
+
+
 

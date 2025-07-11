@@ -2373,6 +2373,12 @@ src/
 │   └── user.model.ts
 ```
 
+- MVC Structure: controllers/, services/, routes/, middlewares/.
+- Separation of concerns: Business logic inside services, routes stay thin.
+- Error handling: Central error handler middleware, using asyncHandler for routes.
+- Logging: Used winston or pino for structured logging.
+- Validation: Used Joi or express-validator for input validation.
+
 ---
 
 

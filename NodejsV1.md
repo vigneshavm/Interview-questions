@@ -1608,7 +1608,11 @@ fs.readFile("file.txt", "utf8", (err, data) => {
 | **Authentication** | Verifying **who** the user is        | Login with username/password    |
 | **Authorization**  | Verifying **what** a user can access | Only admin can access dashboard |
 
-
+- JWT: Issued access and refresh tokens; refresh stored in HttpOnly cookies.
+- Password Hashing: Used bcrypt with proper salt rounds.
+- RBAC: Implemented role-based access control using middleware.
+- Rate Limiting: Used express-rate-limit to prevent brute force.
+- Helmet & CORS: Added HTTP headers and domain-level CORS rules.
 
 
 

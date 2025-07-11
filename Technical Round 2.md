@@ -1,3 +1,8 @@
+
+| **Description / Anchor**                                                                                  |
+| --------------------------------------------------------------------------------------------------------- |
+| [Project handling](#project-handled-both-backend-and-frontend)                   ,| [Manage full-stack](#manage-full-stack-development-in-sprints)                    ,| [Help junior developers](#help-junior-developers-get-up-to-speed)                  ,| [Onboard new developer](#onboard-new-developer)                                     ,| [Handle poor code](#handle-poor-code-or-performance-from-a-team-member) ,| [Miss deadlines](#teammate-consistently-miss-deadlines)                  ,[Waiting for help](#teammate-is-blocked-and-waiting-for-help)                     |
+
 ## **Project & Team Leadership**
 
 - [Full-Stack Project Ownership](#project-handled-both-backend-and-frontend)

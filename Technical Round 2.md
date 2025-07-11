@@ -1,14 +1,9 @@
-Here is the cleaned and corrected version of your Markdown section, formatted consistently with inline anchors **in one table row per section** — both sections now follow the same compact, readable inline format.
-
----
-
 ### 📁 **Project & Team Leadership**
 
 | **Description / Anchor**                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Project handling](#project-handled-both-backend-and-frontend), [Manage full-stack](#manage-full-stack-development-in-sprints), [Help junior developers](#help-junior-developers-get-up-to-speed), [Onboard new developer](#onboard-new-developer), [Handle poor code](#handle-poor-code-or-performance-from-a-team-member), [Miss deadlines](#teammate-consistently-miss-deadlines), [Waiting for help](#teammate-is-blocked-and-waiting-for-help) |
 
----
 
 ### 🏗️ **Architecture & System Design**
 

@@ -1,12 +1,9 @@
 
 
 
-- [TTFB](#TTFB)
-- [SSR vs CSR vs ISR](SSR-vs-CSR-vs-ISR)
-- [SSR - Server Side Rendering](#SSR)
-- [CSR - Client Side Rendering](#CSR)
-- [ISR - Incremental Static Regeneration](#ISR)
-- [SSG - Static Site Generation](#SSG)
+| **Topic**                       | **Anchor Link**                     |
+|--------------------------------|-------------------------------------|
+| NEXTJS | [TTFB](#ttfb)     ,                   - [SSR vs CSR vs ISR](#ssr-vs-csr-vs-isr) , - [SSR](#ssr)                          , [CSR](#csr)                          [ISR](#isr)                   , [SSG](#ssg)                          |
 
 
 ## SSR vs CSR vs ISR

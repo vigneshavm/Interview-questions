@@ -236,6 +236,46 @@ I profile services early and scale horizontally to meet demand.
 * **Tools:** Kafka (for choreography), Node.js orchestrator, AWS Step Functions.
 * **Highlight:** Promotes eventual consistency in microservices.
 
+
+**"Absolutely. In a recent shoutout video platform I built, users could request personalized videos from celebrities. The process involved multiple services: Request Service, Payment Service, Notification Service, and Video Delivery. Since these services operated independently and needed consistency across a distributed system, we implemented the SAGA pattern using orchestration.**
+
+Here's the flow:
+- 1. The user submits a shoutout request.
+- 2. The system reserves the request in the Request Service.
+- 3. The Payment Service processes the payment and holds the amount in escrow.
+- 4. Once payment is confirmed, the Notification Service informs the celebrity.
+- 5. If the celebrity accepts and uploads the video within the SLA, it’s delivered and the payout is released.
+
+But — let’s say payment fails or the celebrity declines or misses the SLA — then we need to roll back previous steps. That’s where **compensating transactions** come in:
+
+- * If **payment fails**, we cancel the request reservation.
+- * If the **celebrity declines**, we refund the user and mark the request as canceled.
+- * If the **video isn’t uploaded in time**, we expire the request, refund the user, and notify both parties.
+
+We wrote a centralized `SagaOrchestrator` in Node.js to manage these steps and trigger the next step only after the previous one succeeded. Each service exposed an API for both **action and compensation**.\*\*
+
+We persisted the saga state in MongoDB, used RabbitMQ to notify steps asynchronously, and implemented retries with backoff logic in case of transient failures.
+
+This setup helped us maintain eventual consistency, avoid distributed locking, and offer a smooth user experience even in failure scenarios."
+
+
+**Visual Saga Flow for Shoutout Project**
+
+```text
+[User Request]
+    ↓
+[Reserve Request]  → (Compensate: Cancel reservation)
+    ↓
+[Charge Payment]   → (Compensate: Refund)
+    ↓
+[Notify Celebrity] → (Compensate: Cancel + Refund)
+    ↓
+[Upload Video]     → (Compensate: Refund after SLA expiry)
+    ↓
+[Mark as Delivered + Release Payout]
+```
+
+
 ---
 
 

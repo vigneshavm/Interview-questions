@@ -968,9 +968,11 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 
 
 ## Performance Optimization
- - Managing performance in large React apps involves a combination 
- - **code-splitting, memoization, virtualization, and best practices** that minimize unnecessary renders and resource usage.
-
+- Memoization: Used **React.memo, useMemo, and useCallback** to prevent unnecessary re-renders.
+- Code Splitting: Implemented dynamic imports (React.lazy, Suspense).Reduce the initial bundle size and improves load times
+- Virtualization: Used libraries like **react-window** for long lists.
+- Throttling/Debouncing: Optimized input-heavy components using Lodash debounce.
+- SSR/CSR: For SEO-critical apps, enabled SSR using Next.js.
 
 ###  **Managing Performance in Large React Applications**
 
@@ -980,9 +982,37 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 * Helps reduce the initial bundle size and improves load times.
 * Example:
 
-  ```tsx
-  const HeavyComponent = React.lazy(() => import('./HeavyComponent'));
-  ```
+  
+#### 📄 `Hello.js`
+
+```jsx
+import React from 'react';
+export default function Hello() {   return <h2>Hello from Lazy Loaded Component!</h2>; }
+```
+
+
+#### 📄 `App.js`
+
+```jsx
+import React, { Suspense, useState } from 'react';
+// Lazy load the Hello component
+const Hello = React.lazy(() => import('./Hello'));
+function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <div>
+      <h1>React Code Splitting</h1>
+      <button onClick={() => setShow(true)}>Show Hello Component</button>
+      {show && (         <Suspense fallback={<div>Loading...</div>}>           <Hello />         </Suspense>      )}
+    </div>
+  );
+}
+export default App;
+```
+
+
+- When you click the button, the `Hello` component will be **dynamically loaded** (code-splitting in action).
+
 
 ####  2. **Memoization**
 

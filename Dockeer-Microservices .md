@@ -276,6 +276,142 @@ This setup helped us maintain eventual consistency, avoid distributed locking, a
 ```
 
 
+
+1. `RequestService` — Reserves the video request
+2. `PaymentService` — Charges the user (escrow)
+3. `NotificationService` — Notifies the celebrity
+4. If any step fails → run **compensation**
+
+
+File: `shoutoutSaga.js`
+
+```js
+// Services with action & compensation functions
+
+const RequestService = {
+  async reserve(data) {
+    console.log("✅ Request reserved:", data.requestId);
+    return { requestId: data.requestId };
+  },
+  async cancel(requestId) {
+    console.log("❌ Reservation cancelled:", requestId);
+  }
+};
+
+const PaymentService = {
+  async charge(userId, amount) {
+    console.log("✅ Payment charged:", amount);
+    return { paymentId: "PAY123" };
+  },
+  async refund(paymentId) {
+    console.log("💸 Payment refunded:", paymentId);
+  }
+};
+
+const NotificationService = {
+  async notify(celebrityId, requestId) {
+    console.log("📣 Celebrity notified:", celebrityId);
+    return { notificationId: "NOTIF123" };
+  },
+  async undo(notificationId) {
+    console.log("🔕 Undo celebrity notification:", notificationId);
+  }
+};
+```
+
+---
+
+Saga Orchestrator
+
+```js
+async function shoutoutSaga(data) {
+  let request, payment, notification;
+
+  try {
+    // Step 1: Reserve request
+    request = await RequestService.reserve({ requestId: data.requestId });
+
+    // Step 2: Charge payment
+    payment = await PaymentService.charge(data.userId, data.amount);
+
+    // Step 3: Notify celebrity
+    notification = await NotificationService.notify(data.celebrityId, data.requestId);
+
+    console.log("✅ Saga completed successfully");
+    return { status: "success" };
+
+  } catch (error) {
+    console.log("❌ Saga failed, compensating...");
+
+    // Compensation steps (in reverse)
+    if (notification?.notificationId) {
+      await NotificationService.undo(notification.notificationId);
+    }
+
+    if (payment?.paymentId) {
+      await PaymentService.refund(payment.paymentId);
+    }
+
+    if (request?.requestId) {
+      await RequestService.cancel(request.requestId);
+    }
+
+    return { status: "failed", reason: error.message };
+  }
+}
+```
+
+---
+
+Run the Saga
+
+```js
+(async () => {
+  const result = await shoutoutSaga({
+    requestId: "REQ001",
+    userId: "USER001",
+    celebrityId: "CELEB001",
+    amount: 999
+  });
+
+  console.log("Saga result:", result);
+})();
+```
+
+---
+
+Output (Success)
+
+```
+✅ Request reserved: REQ001
+✅ Payment charged: 999
+📣 Celebrity notified: CELEB001
+✅ Saga completed successfully
+Saga result: { status: 'success' }
+```
+
+---
+
+To Simulate Failure
+
+In `NotificationService.notify`, throw an error:
+
+```js
+throw new Error("Celebrity not available");
+```
+
+Now you'll see:
+
+```
+✅ Request reserved: REQ001
+✅ Payment charged: 999
+❌ Saga failed, compensating...
+💸 Payment refunded: PAY123
+❌ Reservation cancelled: REQ001
+Saga result: { status: 'failed', reason: 'Celebrity not available' }
+```
+
+
 ---
 
 

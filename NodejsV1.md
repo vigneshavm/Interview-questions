@@ -4,7 +4,7 @@
 | **Category**                 | **Topics** |
 |-----------------------------|------------|
 | **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature) |
-| **Express.js Framework**     | [HTTP Module](#HTTP-Module), [Express.js](#expressjs), [Routing](#routing), [HTTP Methods](#http-methods--use-cases), [Query Params](#request-response-query-params), [HTTP Status Codes](#status-codes) |
+| **Express.js Framework**     | -[core modules](#core-modules) - [HTTP Module](#HTTP-Module), [Express.js](#expressjs), [Routing](#routing), [HTTP Methods](#http-methods--use-cases), [Query Params](#request-response-query-params), [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop), [Async I/O Handling](#asynchronous-io-handling), [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks), [Async Execution Order](#Async-Execution-Order), [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick), [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread), [libuv](#libuv), [spawn vs fork](#spawn-vs-fork) |
 | **Asynchronous and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams), [Buffer](#Buffer) - [Middleware](#middleware), [CORS](#cors), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
 | **Package JSON**             | [package.json](#packagejson), [package.json vs package-lock.json](#packagejson-vs-package-lockjson), [Caching Strategies](#caching-strategies), [Redis (Caching)](#nodejs-with-redis-caching), [Memory Leak](#Memory-leak), [Garbage Collection](#garbage-collection) |
@@ -5331,4 +5331,28 @@ app.post("/order", (req, res) => {
   res.status(200).json(response);
 });
 ```
+
+
+
+## **core modules**
+
+- Yes, in Node.js, **core modules** are the **built-in modules** that come bundled with the Node.js runtime environment. 
+
+- These modules provide essential functionalities like working with the file system, creating HTTP servers, handling streams, working with buffers, and more — without needing to install anything separately using npm.
+
+- For example, modules like `fs` for file system operations, `http` for building web servers, and `path` for handling file paths are all core modules.
+
+- They’re highly optimized, written in C++ under the hood, and are loaded using the `require()` function. Since they are native to Node.js, they help developers build efficient and scalable applications without relying on external dependencies.
+
+ ```js
+ const fs = require('fs');
+ fs.readFile('example.txt', 'utf8', (err, data) => {
+   if (err) throw err;
+   console.log(data);
+ });
+ ```
+
+- In this case, `fs` is a core module used to read a file asynchronously.
+-  Overall, core modules form the **foundation of most Node.js applications**, especially in back-end development.
+
 

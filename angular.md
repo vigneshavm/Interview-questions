@@ -1702,7 +1702,7 @@ jobs:
 
 
 
-## ViewChild & ViewChildren
+## ViewChild and ViewChildren
 
 
  -  `@ViewChild` gets a reference to a single DOM element or component.

@@ -1949,7 +1949,7 @@ Output: [1, 2, 3, 4, 5]
 ---
 
 
-### Using `.flat(Infinity)`
+**Using `.flat(Infinity)`**
 ```js
 function flattenUsingFlat(arr) {
   return arr.flat(Infinity);
@@ -1958,9 +1958,30 @@ function flattenUsingFlat(arr) {
 console.log(flattenUsingFlat([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
 ```
 
----
+**using loop**
+```js
+function flattenArray(arr) {
+  const result = [];
 
-### Using `.reduce()` and `.concat()`
+  for (const item of arr) {
+    if (Array.isArray(item)) {
+      result.push(...flattenArray(item)); // recurse
+    } else {
+      result.push(item);
+    }
+  }
+
+  return result;
+}
+
+// Example
+const nested = [1, [2, [3, [4, 5]], 6], 7];
+const flattened = flattenArray(nested);
+console.log(flattened); // [1, 2, 3, 4, 5, 6, 7]
+
+```
+
+**Using `.reduce()` and `.concat()`**
 ```js
 function flattenUsingReduce(arr) {
   return arr.reduce((acc, val) => {

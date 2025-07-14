@@ -337,14 +337,14 @@ JSON.stringify(a) == JSON.stringify(b)  --> true  ie)Because JSON.stringify remo
 
 **Strict Equality (`===`) – No Type Coercion**
 
-| Expression           | Result | Explanation                             |
-| -------------------- | ------ | --------------------------------------- |
-| `[1] === true`       | false  | Array is object type, `true` is boolean |
-| `[] === false`       | false  | `[]` is object, `false` is boolean      |
-| `null === undefined` | false  | Different types (`null` ≠ `undefined`)  |
-| `false === '0'`      | false  | Boolean vs string                       |
-| `0 === '0'`          | false  | Number vs string                        |
-| `NaN === NaN;`       | `false`| NaN is never equal to anything               |
+| **Expression**       | **Result** | **Explanation**                                            | **Expression**      | **Result** | **Explanation**                                |
+| -------------------- | ---------- | ---------------------------------------------------------- | ------------------- | ---------- | ---------------------------------------------- |
+| `[1] === true`       | `false`    | `[1]` is an object, `true` is a boolean — different types  | `[1] == true`       | `true`     | `[1]` → `'1'` → `1`, `true` → `1`, so `1 == 1` |
+| `[] === false`       | `false`    | `[]` is an object, `false` is a boolean — different types  | `[] == false`       | `true`     | `[]` → `''` → `0`, `false` → `0`, so `0 == 0`  |
+| `null === undefined` | `false`    | Strict comparison — different types (`null` ≠ `undefined`) | `null == undefined` | `true`     | Special case — loosely equal in JavaScript     |
+| `false === '0'`      | `false`    | Boolean vs string — different types                        | `false == '0'`      | `true`     | `false` → `0`, `'0'` → `0`, so `0 == 0`        |
+| `0 === '0'`          | `false`    | Number vs string — strict type mismatch                    | `0 == '0'`          | `true`     | `'0'` coerces to number → `0 == 0`             |
+| `NaN === NaN`        | `false`    | `NaN` is never equal to anything, even itself              | `NaN == NaN`        | `false`    | Same reason — `NaN` is not equal to `NaN`      |
 
 
 ```javascript
@@ -356,16 +356,10 @@ JSON.stringify(a) == JSON.stringify(b)  --> true  ie)Because JSON.stringify remo
     correct way to check is `isNaN()` function
 ```
 
-**Abstract Equality (`==`) – Allows Type Coercion**
 
-| Expression          | Result | Explanation                                  |
-| ------------------- | ------ | -------------------------------------------- |
-| `0 == '0'`          | true   | `'0'` coerces to number → `0 == 0`           |
-| `false == '0'`      | true   | `false` → `0`, `'0'` → `0` → `0 == 0`        |
-| `null == undefined` | true   | Exception case — loosely equal               |
-| `[] == false`       | true   | `[]` → `''` → `0`, `false` → `0` → `0 == 0`  |
-| `[1] == true`       | true   | `[1]` → `'1'` → `1`, `true` → `1` → `1 == 1` |
-| `NaN == NaN;`       | `false`| NaN is never equal to anything               |
+
+
+
 
 **Reference Equality – Arrays & Objects**
 

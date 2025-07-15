@@ -3,7 +3,7 @@
 
 | **Category**                 | **Topics** |
 |-----------------------------|------------|
-| **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature) |
+| **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature), - [node js 22 features](#node-js-22-features) |
 | **Express.js Framework**     | -[core modules](#core-modules) - [HTTP Module](#HTTP-Module), [Express.js](#expressjs), [Routing](#routing), [HTTP Methods](#http-methods--use-cases), [Query Params](#request-response-query-params), [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop), [Async I/O Handling](#asynchronous-io-handling), [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks), [Async Execution Order](#Async-Execution-Order), [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick), [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread), [libuv](#libuv), [spawn vs fork](#spawn-vs-fork) |
 | **Asynchronous and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams), [Buffer](#Buffer) - [Middleware](#middleware), [CORS](#cors), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
@@ -5354,5 +5354,53 @@ app.post("/order", (req, res) => {
 
 - In this case, `fs` is a core module used to read a file asynchronously.
 -  Overall, core modules form the **foundation of most Node.js applications**, especially in back-end development.
+
+---
+
+
+
+## **node js 22 features**
+
+Absolutely! Node.js 22 introduces several significant features and enhancements focused on performance, developer experience, and improved module handling. Here are the key highlights:
+
+1. **V8 Engine Upgrade (v12.4):**
+   Node.js 22 comes with an upgraded V8 engine which adds support for:
+
+   * `Array.fromAsync()`
+   * New Set methods like `union()`, `intersection()`, and `difference()`
+   * Iterator helpers
+   * WebAssembly Garbage Collection
+     These improve both language capabilities and performance.
+
+2. **Maglev JIT Compiler (Enabled by Default):**
+   A major performance boost comes from Maglev, V8’s new mid-tier JIT compiler. It’s optimized for short-lived processes, like CLI tools, offering faster startup and execution.
+
+3. **Stable Watch Mode (`node --watch`):**
+   Previously experimental, the Watch Mode is now stable. It automatically restarts the process when files change—huge for improving development efficiency and workflows.
+
+4. **Built-in WebSocket Client:**
+   Node.js 22 now includes a browser-compatible WebSocket client by default, removing the need for third-party packages for basic WebSocket functionality.
+
+5. **Support for `require()`ing ESM Graphs (Experimental):**
+   This allows limited, synchronous `require()` usage of ESM modules—under specific conditions—helping bridge compatibility between CommonJS and ESM.
+
+6. **`node --run` Flag (Experimental):**
+   This feature enables running `package.json` scripts directly, like `node --run start`, offering a faster alternative to `npm run`.
+
+7. **Stream High Water Mark Increase:**
+   The default high water mark has been increased from **16KiB to 64KiB**, improving stream throughput performance, albeit with a small memory trade-off.
+
+8. **Glob Pattern Matching in `fs` Module:**
+   New built-in `glob()` and `globSync()` functions provide native file path pattern matching without relying on external libraries like `glob`.
+
+9. **Faster `AbortSignal` Creation:**
+   Internal optimizations make the creation of `AbortSignal` more efficient, benefiting high-level APIs like `fetch()` and the built-in test runner.
+
+---
+
+**Interviewer Follow-up:** *Which of these do you find most impactful?*
+**You:** Personally, I find the **Maglev compiler** and **stable Watch Mode** the most impactful. Maglev brings noticeable performance improvements in CLI tools, and Watch Mode really boosts development speed, especially in rapid iteration environments.
+
+---
 
 

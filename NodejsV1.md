@@ -3,7 +3,7 @@
 
 | **Category**                 | **Topics** |
 |-----------------------------|------------|
-| **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature), - [node js 22 features](#node-js-22-features) |
+| **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), [Handle Multiple Requests](#nodejs-handle-multiple-requests), [Single-Threaded Nature](#single-threaded-nature), - [node js 22 features](#node-js-22-features) - [Node js 20 features](#Node-js-20-features) |
 | **Express.js Framework**     | -[core modules](#core-modules) - [HTTP Module](#HTTP-Module), [Express.js](#expressjs), [Routing](#routing), [HTTP Methods](#http-methods--use-cases), [Query Params](#request-response-query-params), [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop), [Async I/O Handling](#asynchronous-io-handling), [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks), [Async Execution Order](#Async-Execution-Order), [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick), [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread), [libuv](#libuv), [spawn vs fork](#spawn-vs-fork) |
 | **Asynchronous and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams), [Buffer](#Buffer) - [Middleware](#middleware), [CORS](#cors), [Helmet](#helmet), [Rate Limiter](#Rate-Limiter), [DDoS Attack](#DDoS-attack), [Data Validation](#data-validation), [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
@@ -5402,5 +5402,95 @@ Absolutely! Node.js 22 introduces several significant features and enhancements 
 **You:** Personally, I find the **Maglev compiler** and **stable Watch Mode** the most impactful. Maglev brings noticeable performance improvements in CLI tools, and Watch Mode really boosts development speed, especially in rapid iteration environments.
 
 ---
+
+
+
+## Node js 20 features
+
+
+Certainly! Node.js 20 introduced several important improvements in security, performance, and developer convenience. Here are the key highlights:
+
+**1. Permission Model (Experimental)**
+
+* One of the most notable features.
+* Allows developers to **restrict access** to file system, environment variables, and child processes.
+* You can now run Node with flags like:
+
+  ```bash
+  node --experimental-permission --allow-fs-read=./data
+  ```
+* Helps in **sandboxing** and securing Node applications during development or in production.
+
+
+
+**2. V8 JavaScript Engine Upgrade (v11.3)**
+
+* Node.js 20 ships with V8 11.3, bringing in:
+
+  * `Array.prototype.toSorted()`
+  * `Array.prototype.toSpliced()`
+  * `Array.prototype.with()`
+  * Performance improvements and better language features
+
+
+
+**3. Stable Test Runner**
+
+* The built-in `node:test` module, introduced in v18, became **stable** in Node.js 20.
+* Provides a native way to write unit tests without external libraries like Mocha or Jest.
+
+
+
+**4. Web Crypto API Fully Stable**
+
+* The `crypto` module's Web Crypto API implementation is now **fully stable**.
+* Closer alignment with browser-based Web Crypto, useful for cross-platform cryptography.
+
+
+
+**5. Synchronous import.meta.resolve (Stable)**
+
+* Previously experimental, now stable.
+* Allows modules to resolve paths synchronously using:
+
+  ```js
+  import.meta.resolve('./path')
+  ```
+
+
+
+**6. Custom ESM Loaders Move to Stable**
+
+* ESM (ECMAScript Modules) loaders, which allow you to customize module loading behavior (e.g., for transpiling), are now stable.
+* Useful in tools and frameworks like Next.js or TypeScript compilers.
+
+
+
+**7. Improved HTTP(S) Keep-Alive Performance**
+
+* Major enhancements in HTTP and HTTPS **keep-alive** behavior.
+* Reduces latency for consecutive HTTP requests and improves throughput for APIs.
+
+
+
+**8. TimeZone Support with ICU**
+
+* Node.js 20 includes **ICU 72**, enabling updated time zone data and formatting.
+* Helps with consistent internationalization and time zone conversions.
+
+
+
+**9. Experimental Features**
+* **Single Executable Apps (Experimental):**
+
+  * Bundle your Node.js app into a single `.exe` or binary—makes deployment easier.
+* **Web Streams API Improvements:** Better compatibility and performance with streaming APIs.
+
+
+
+**Interviewer Follow-up:** *Which feature do you find most valuable?*
+
+**You:**
+The **Permission Model** stands out because it brings a more secure runtime to Node.js—something that was traditionally harder to enforce. For enterprise-grade apps or serverless environments, it's a game-changer.
 
 

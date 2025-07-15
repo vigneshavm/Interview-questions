@@ -5524,15 +5524,9 @@ The **Permission Model** stands out because it brings a more secure runtime to N
  2. **Enable & Review Logs**
 
 * I enable detailed logs using:
-
-  * `console.log()` or `console.time() / timeEnd()`
-  * `debug`, `winston`, or `pino` for structured logs
+  * `console.log()` or `console.time() / timeEnd()` , `debug`, `winston`, or `pino` for structured logs
 * Check logs for:
-
-  * Timestamp of request
-  * Duration before failure
-  * Error code: `ETIMEDOUT`, `ECONNABORTED`, etc.
-
+  * Timestamp of request ,  Duration before failure ,  Error code: `ETIMEDOUT`, `ECONNABORTED`, etc.
 
  3. **Add Timers Around Key Sections**
 
@@ -5547,7 +5541,7 @@ console.timeEnd('API-call');
 
  4. **Check Timeout Settings**
 
-* Axios/fetch: `timeout: 5000`
+* Axios/fetch: `timeout: 5000` 
 * Express: `connect-timeout` or custom timeouts
 * DB: `connectTimeout`, `queryTimeout`
 * Nginx: `proxy_read_timeout`, `proxy_connect_timeout`
@@ -5557,9 +5551,7 @@ console.timeEnd('API-call');
 
 * Use built-in Node.js profiler: `node --inspect` or `--trace-events`
 * Use tools like:
-
-  * `clinic.js`
-  * APM tools: New Relic, Datadog, Elastic APM
+  * `clinic.js` , APM tools: New Relic, Datadog, Elastic APM
 
 
  6. **Check External Services**
@@ -5575,6 +5567,7 @@ console.timeEnd('API-call');
  7. **Handle and Retry on Timeout**
 
 * Wrap async ops in timeout + retry logic:
+* For retries:  Use exponential backoff (`axios-retry`, custom logic)
 
 ```js
 Promise.race([
@@ -5583,22 +5576,17 @@ Promise.race([
 ]);
 ```
 
-* For retries:
-
-  * Use exponential backoff (`axios-retry`, custom logic)
 
 
  8. **Simulate and Load Test**
 
 * Simulate slowness with:
+* Load test with tools like:  `k6`, `Artillery`, or `Apache Benchmark`
 
 ```js
 setTimeout(() => res.send("delayed"), 6000);
 ```
 
-* Load test with tools like:
-
-  * `k6`, `Artillery`, or `Apache Benchmark`
 
 
 -------------

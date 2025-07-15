@@ -708,6 +708,15 @@ function debounce(fn, delay) {
     };
 }
 
+function clickHandler() {
+    console.log("Button clicked!", new Date().toLocaleTimeString());
+}
+
+const debouncedClick = debounce(clickHandler, 1000);
+
+document.getElementById('myBtn').addEventListener('click', debouncedClick);
+
+
 ```
 
 ```ts

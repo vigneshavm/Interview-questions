@@ -634,19 +634,18 @@ These types of questions test your **end-to-end architecture thinking**.
 Here are some of the **critical architectural challenges** I’ve faced — and how I approached them:
 
 
-| **Challenge**                  | **Details**                                              | **Solution / Approach**                                                                                  |
-| ----: | ------------------------------ | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Monolith vs Microservices      | Tight coupling, long deployments, hard to scale          | Started with modular monolith → Gradually split into microservices using Node.js, REST/Kafka, Docker/K8s |
-| State Management (Frontend)    | Deeply nested states in React/Angular                    | Used Redux/NgRx, modular slices, SSR with Next.js                                                        |
-| MongoDB Query Performance      | Slow queries, large documents, aggregation latency       | Normalized data selectively, added indexes, cached with Redis, offloaded analytics to ElasticSearch      |
-| Async Processing & Reliability | UI blocked by heavy tasks (uploads, payments, emails)    | Used BullMQ/RabbitMQ, background Node workers, idempotent handlers, retry with backoff                   |
-| Authentication & Authorization | Complex roles (admin/user/mod), token handling           | JWT + refresh tokens, RBAC, CSRF/XSS protection, secure headers                                          |
-| Global Scalability             | High latency for international users                     | CDN (CloudFront), Geo-sharding in Mongo, load balancing with Nginx/API Gateway                           |
-| Codebase Maintainability       | Large codebase → merge conflicts, inconsistent practices | Monorepo with Nx/Turborepo, TypeScript across stack, ESLint/Prettier, OpenAPI contracts                  |
-| CI/CD & Deployment             | Manual deployments caused errors                         | GitHub Actions, Dockerized services, blue-green/canary deploys in Kubernetes                             |
-| Observability                  | Production issues were hard to trace                     | Centralized logs (Winston + ELK), tracing (OpenTelemetry), metrics/alerts (Prometheus + Grafana)         |
-| Org vs Architecture Alignment  | Scaling teams didn't match code boundaries               | Restructured domains with bounded contexts, internal shared libs, team-specific services                 |
-
+| **Challenge**                  | **Details**                                              | **Solution / Approach**                                                                                   |
+|-------------------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| Monolith vs Microservices      | Tight coupling, long deployments, hard to scale           | Started with modular monolith → Gradually split into microservices using Node.js, REST/Kafka, Docker/K8s  |
+| State Management (Frontend)    | Deeply nested states in React/Angular                     | Used Redux/NgRx, modular slices, SSR with Next.js                                                         |
+| MongoDB Query Performance      | Slow queries, large documents, aggregation latency        | Normalized data selectively, added indexes, cached with Redis, offloaded analytics to ElasticSearch       |
+| Async Processing & Reliability | UI blocked by heavy tasks (uploads, payments, emails)     | Used BullMQ/RabbitMQ, background Node workers, idempotent handlers, retry with backoff                    |
+| Authentication & Authorization | Complex roles (admin/user/mod), token handling            | JWT + refresh tokens, RBAC, CSRF/XSS protection, secure headers                                           |
+| Global Scalability             | High latency for international users                      | CDN (CloudFront), Geo-sharding in MongoDB, load balancing with Nginx/API Gateway                          |
+| Codebase Maintainability       | Large codebase → merge conflicts, inconsistent practices  | Monorepo with Nx/Turborepo, TypeScript across stack, ESLint/Prettier, OpenAPI contracts                   |
+| CI/CD & Deployment             | Manual deployments caused errors                          | GitHub Actions, Dockerized services, blue-green/canary deploys in Kubernetes                              |
+| Observability                  | Production issues were hard to trace                      | Centralized logs (Winston + ELK), tracing (OpenTelemetry), metrics/alerts (Prometheus + Grafana)          |
+| Org vs Architecture Alignment  | Scaling teams didn't match code boundaries                | Restructured domains with bounded contexts, internal shared libs, team-specific services                  |
 
 
 

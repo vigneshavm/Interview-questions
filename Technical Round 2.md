@@ -7,7 +7,7 @@
 | **System Design Concepts**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices), -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
 | **Client-Facing Scenarios**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs), -  [Security issue](#security-issue-on-production), -  [Track project progress](#track-project-progress), -  [Estimate story points](#estimate-story-points), -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s)
 | **Upgrade Topics**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
-| **Additional Leadership Topics** | -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Agile Concepts](#Agile-Concepts) , - [Roles and Responsibilities](#Roles-and-Responsibilities)
+| **Additional Leadership Topics** | -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Agile Concepts](#Agile-Concepts) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
 
 ### **Troubleshooting Debugging and Upgrading existing software**
 
@@ -720,5 +720,19 @@ Here are some of the **critical architectural challenges** I’ve faced — and 
 
 * Write **unit, integration, and API tests** using tools like Jest, Mocha, or Postman.
 * Participate in UAT, debug production issues, and ensure **zero-defect delivery**.
+
+
+
+### **Self Introduction**
+
+- Hi, my name is **Vignesh Athimoolam**, and I’m a Full Stack Developer with over **10 years of experience**, specializing in the **MEAN and MERN stack**. I have strong expertise in **JavaScript, TypeScript, Node.js, React.js, and Angular**, and have worked extensively on building scalable web applications and microservices-based architectures.
+
+- Throughout my career, I’ve contributed to projects in diverse domains such as **Device Management, Healthcare, Education, and Hotel Management**. I’m comfortable working on both frontend and backend, and I’ve handled everything from UI development to API design and database integration.
+
+- In my current role at **Preludesys**, I work as a **Technical Specialist**, where I lead development efforts, work closely with cross-functional teams, and ensure smooth delivery using **CI/CD pipelines, Docker, and Azure**. I’m also a certified **Microsoft Azure Developer and Data Engineer**, which has helped me design and deploy cloud-native solutions effectively.
+
+- I’m passionate about writing clean, maintainable code and continuously learning new technologies. I also take pride in mentoring junior developers and contributing to team success—something I was recognized for with the **Best Team Player Award** recently.
+
+- I’m now looking forward to exploring new challenges where I can leverage my full-stack expertise and cloud skills to deliver impactful solutions.
 
 

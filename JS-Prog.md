@@ -4232,6 +4232,16 @@ function intersection(nums1, nums2) {
 
 
 ### **Isomorphic Strings**
+
+- Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+- Each character must map to one other character only (one-to-one mapping), and no two characters may map to the same character, but a character may map to itself.
+
+```js
+s = "egg", t = "add"   → true  (e → a, g → d)
+s = "foo", t = "bar"   → false (o can't map to two different letters)
+s = "paper", t = "title" → true (p→t, a→i, e→l, r→e)
+```
+
 ```javascript
 function isIsomorphic(s, t) {
     const mapST = new Map();

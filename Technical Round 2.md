@@ -7,8 +7,7 @@
 | **System Design Concepts**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices), -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
 | **Client-Facing Scenarios**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs), -  [Security issue](#security-issue-on-production), -  [Track project progress](#track-project-progress), -  [Estimate story points](#estimate-story-points), -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s)
 | **Upgrade Topics**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
-| **Additional Leadership Topics** | -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Agile Concepts](#Agile-Concepts) |
-
+| **Additional Leadership Topics** | -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Agile Concepts](#Agile-Concepts) , - [Roles and Responsibilities](#Roles-and-Responsibilities)
 
 ### **Troubleshooting Debugging and Upgrading existing software**
 
@@ -672,5 +671,54 @@ Here are some of the **critical architectural challenges** I’ve faced — and 
 | **Story**                          | **Sub-Tasks**                                                                                                                                       |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | “As a user, I can view my profile” | - Create React UI <br> - Build Node.js API `/api/profile` <br> - MongoDB schema/query <br> - Add validation <br> - Write tests (unit + integration) |
+
+
+
+### **Roles and Responsibilities**
+
+**Requirement Analysis**
+
+* Interact with stakeholders and product owners to gather and understand **business and technical requirements**.
+* Translate high-level requirements into **technical specifications**, user stories, and actionable tasks.
+* Conduct feasibility analysis and provide **accurate estimations** for development timelines and resources.
+
+**Architecture & System Design**
+
+* Design **scalable and modular architectures** using MEAN/MERN stack for web and microservices-based applications.
+* Define data models, service layers, component structure, and **API contracts** to ensure maintainability and performance.
+* Select suitable cloud, database, and caching strategies based on the solution’s functional and non-functional needs.
+
+**Application Design & Development**
+
+* Develop responsive, intuitive, and accessible user interfaces using **React.js** or **Angular**.
+* Implement robust backend services using **Node.js**, **Express.js**, and **REST APIs**.
+* Follow **SOLID principles**, design patterns, and best practices to ensure high-quality code.
+
+**Cloud & DevOps**
+
+* Deploy and manage applications in **Azure** or **AWS**, ensuring scalability, availability, and cost-efficiency.
+* Build **CI/CD pipelines** using **Git, Jenkins, and Docker** for automated testing and deployment.
+* Configure monitoring and alerting tools to ensure application uptime and proactive issue resolution.
+
+**Security & Performance**
+
+* Ensure application security with **JWT/OAuth2**, input sanitization, and role-based access control.
+* Optimize backend and database performance using **Redis**, query tuning, and lazy loading strategies.
+
+**API & System Integration**
+
+* Design and integrate third-party services and internal microservices using **REST**, **Webhooks**, and **message queues (RabbitMQ)**.
+* Implement robust error handling, retries, and logging for reliable inter-service communication.
+
+**Team Collaboration & Leadership**
+
+* Collaborate with cross-functional teams including UI/UX, QA, DevOps, and Product Managers.
+* Lead sprint planning, code reviews, and knowledge-sharing sessions.
+* Mentor junior developers and help enforce coding standards and architectural guidelines.
+
+**Testing & Quality Assurance**
+
+* Write **unit, integration, and API tests** using tools like Jest, Mocha, or Postman.
+* Participate in UAT, debug production issues, and ensure **zero-defect delivery**.
 
 

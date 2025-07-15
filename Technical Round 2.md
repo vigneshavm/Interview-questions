@@ -595,13 +595,12 @@ These types of questions test your **end-to-end architecture thinking**.
 
 ##  **Tradeoffs between monolith and microservices**
 
-> | Monolith | Microservices |
-> | -------- | ------------- |
->
-> * Easier to develop/test initially | + Better scalability & isolation
->
-> - Harder to scale | - Needs DevOps maturity
-> - Tight coupling | - Requires service discovery, monitoring, distributed tracing
+| **Monolith**                               | **Microservices**                                                     |
+|--------------------------------------------|------------------------------------------------------------------------|
+| ✅ Easier to develop and test initially     | ✅ Better scalability and service isolation                            |
+| ❌ Harder to scale                          | ❌ Requires strong DevOps and CI/CD maturity                          |
+| ❌ Tight coupling between modules           | ❌ Needs service discovery, monitoring, and distributed tracing        |
+
 
 > I usually start with a **modular monolith** and migrate to microservices when the team and product maturity allow it.
 

@@ -72,11 +72,60 @@
 
 ### **Authentication & Authorization**
 
-* I apply centralized authentication and decentralized authorization.
-* Implement **JWT tokens** or **OAuth 2.0**.
-* Use **shared identity provider** (like Auth0, Keycloak).
-* Validate tokens in API gateway or service layer.
 
+
+> In a microservices architecture, I typically handle **authentication** and **authorization** using a **centralized authentication service** combined with **decentralized authorization** at the service level.
+
+
+> I follow the principle of centralized authentication and **decentralized, stateless authorization** using tokens like JWT ensuring that each microservice is secure, scalable, and independently deployable.
+
+
+**1. Authentication – Centralized Token-Based Auth**
+
+* I implement authentication through a **dedicated Auth Service**.
+* When a user logs in, the service validates credentials and issues a **JWT** (JSON Web Token).
+* This token is then sent with every API request via the `Authorization` header.
+
+> This decouples identity management from individual services and allows **Single Sign-On (SSO)** and easy user tracking.
+
+
+**2. Authorization – Enforced in Each Microservice**
+
+* Once the token is issued, **each microservice is responsible for validating and authorizing** the request.
+
+**Two strategies I typically use:**
+
+* **RBAC (Role-Based Access Control):**
+  Token contains user roles (e.g., admin, editor). Each service checks permissions against allowed roles.
+
+* **ABAC (Attribute-Based Access Control):**
+  Services validate based on attributes like department, region, or resource ownership.
+
+> This ensures **fine-grained access control** without central bottlenecks.
+
+
+**3. Token Propagation in Internal Service Calls**
+
+* For inter-service communication, I **pass the user’s token** along the chain to maintain identity.
+* Alternatively, I use **service-level tokens** with **client credentials flow** for secure backend communication.
+
+
+**4. Security Best Practices**
+
+* I validate JWT signatures using public/private key pairs (RS256).
+* Keep access tokens **short-lived** (e.g., 15 minutes) and use **refresh tokens** securely on the client.
+* Use **API gateways** or **service mesh** (like Istio) for enforcing authentication, rate-limiting, and mTLS.
+
+
+**5. Technology Stack I Commonly Use:**
+
+* **Node.js + Passport.js** for JWT validation
+* **Keycloak / Auth0** for identity provider
+* **Kong / NGINX / AWS API Gateway** for token validation at the edge
+* **Istio** for secure inter-service communication
+* **Redis** for token blacklisting or revocation patterns
+
+---
 
 
 

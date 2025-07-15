@@ -924,9 +924,9 @@ console.log(`Platform: ${process.platform}`);
 
 
 - In Node.js, help overcome its single-threaded nature and handle **CPU-bound tasks**, **parallel execution**, and **scaling**
-- I use **Worker Threads** for **parallel computation**,**heavy JS computations** without blocking the main thread.
-- **Child Processes** for **external script execution** or heavy isolation, 
-- **Cluster** for **horizontally scaling servers** to handle more traffic across all CPU cores.”
+- **Worker Threads** --> **parallel computation**,**heavy JS computations** without blocking the main thread.
+- **Child Processes** --> **external script execution** or heavy isolation, 
+- **Cluster** -->  **horizontally scaling servers** to handle more traffic across all CPU cores.”
 
 **Worker Threads**
 

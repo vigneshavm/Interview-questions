@@ -727,8 +727,6 @@ function debounce<T extends (...args: any[]) => void>(fn: T, delay: number): (..
 ```js
 JS
 
-
-
 function throttle(fn, delay) {
     let lastTime = 0;
     return function (...args) {
@@ -739,14 +737,14 @@ function throttle(fn, delay) {
         }
     };
 }
-function sayHello(name) {
-    console.log(`Hello, ${name}! at ${new Date().toLocaleTimeString()}`);
+function sayHello() {
+    console.log(`Hello at ${new Date().toLocaleTimeString()}`);
 }
 
 const throttledSayHello = throttle(sayHello, 2000);  // 2-second throttle
 
 setInterval(() => {
-    throttledSayHello("Vignesh");
+    throttledSayHello();
 }, 500); // tries to call every 0.5 seconds, but only runs every 2 seconds
 
 

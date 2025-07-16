@@ -7,7 +7,7 @@
 | **Express.js Framework**     | -[Core modules](#core-modules) - [HTTP Module](#HTTP-Module),  - [Express.js](#expressjs),  - [Routing](#routing),  - [HTTP Methods](#http-methods--use-cases),  - [Query Params](#request-response-query-params),  - [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop),  - [Async I/O Handling](#asynchronous-io-handling),  - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks),  - [Async Execution Order](#Async-Execution-Order),  - [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick),   |
 | **Processes**                | - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
-| **Asyns and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
+| **Asynchronous and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
 | **Package JSON**             | [package.json](#packagejson),  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
 | **REST API & Security**      | [REST API](#rest-api),  - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [Secure Node.js](#secure-nodejs-app),  - [Securing Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
@@ -4293,7 +4293,7 @@ parentPort.postMessage(result);
 
 
 
-## ⚠️ Problem with Creating a Worker per Request
+**Problem with Creating a Worker per Request**
 
 * **Each worker thread consumes memory and CPU**.
 * Spawning too many workers can:
@@ -4302,19 +4302,17 @@ parentPort.postMessage(result);
   * Exhaust system resources (memory, CPU cores).
   * Lead to thread contention and degraded performance.
 
----
 
-## ✅ Recommended Approach: Use a **Worker Pool**
+**Recommended Approach: `Worker Pool`**
 
 Instead of creating a new worker thread for each request, **reuse a fixed number of workers** via a **pooling mechanism**.
 
-### 🔁 How It Works:
+**How It Works**
 
 * Maintain a pool of `N` worker threads (usually = number of CPU cores).
 * Queue incoming tasks and assign them to available workers.
 * If all workers are busy, wait until one is free.
 
----
 
 ### 🚀 Example: Using `poolifier` (Efficient Worker Pool Library)
 

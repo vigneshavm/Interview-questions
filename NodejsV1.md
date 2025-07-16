@@ -4432,35 +4432,30 @@ We had **multiple internal applications** — HR portal, timesheet system, and p
 
 **1. I/O-bound tasks — Use *asynchronous non-blocking code***   --> **Keywords:** `async/await`, Promises, non-blocking I/O, event loop, concurrency
 
-> "For tasks like **DB queries**, **file reads**, or **external API calls**, I use **`async/await`** or **Promises**. This keeps the **event loop unblocked** and ensures that Node can handle **thousands of concurrent requests** efficiently."
+- "For tasks like **DB queries**, **file reads**, or **external API calls**, I use **`async/await`** or **Promises**. This keeps the **event loop unblocked** and ensures that Node can handle **thousands of concurrent requests** efficiently."
 
 
 **2. CPU-bound tasks — Offload using *`worker_threads`*** --> **Keywords:** CPU-intensive, blocking, worker\_threads, parallelism, offloading
 
-> "Since **CPU-heavy operations** block the event loop, I offload them to **worker threads** using the **`worker_threads` module**, allowing the **main thread** to remain responsive."
+- "Since **CPU-heavy operations** block the event loop, I offload them to **worker threads** using the **`worker_threads` module**, allowing the **main thread** to remain responsive."
 
 
  **3. High concurrency — Scale using *`cluster`***  -->  **Keywords:** cluster, PM2, multi-core, horizontal scaling, process forking
 
-> "To handle **high traffic**, I scale the application across **multiple CPU cores** using the **`cluster` module** or **process managers like PM2**. This enables **horizontal scaling** by spawning **child processes**."
+- "To handle **high traffic**, I scale the application across **multiple CPU cores** using the **`cluster` module** or **process managers like PM2**. This enables **horizontal scaling** by spawning **child processes**."
 
 **4. Background jobs — Use *queues (RabbmitMq)*** --> **Keywords:** Bull, Redis, background jobs, rate limiting, retry mechanism, queue
 
-
-> "For **rate-limited tasks** like **email sending** or **video processing**, I use **job queues** like **Bull** backed by **Redis**. This allows **controlled concurrency**, **delayed jobs**, and **retry logic**."
-
-
+- "For **rate-limited tasks** like **email sending** or **video processing**, I use **job queues** like **Bull** backed by **Redis**. This allows **controlled concurrency**, **delayed jobs**, and **retry logic**."
 
  **5. Data integrity — Use *locks and transactions***  --> **Keywords:** mutex, locking, race condition, transaction, atomic operations, consistency
 
-
-> "To avoid **race conditions** in critical sections like **wallet updates** or **stock management**, I use **mutex locks** (`async-mutex`) and **database transactions** to ensure **atomicity and consistency**."
+"To avoid **race conditions** in critical sections like **wallet updates** or **stock management**, I use **mutex locks** (`async-mutex`) and **database transactions** to ensure **atomicity and consistency**."
 
 
  **6. Monitoring — *Debug concurrency issues*** --> **Keywords:** clinic.js, event loop delay, node --inspect, performance monitoring, debugging
 
-
-> "For **monitoring event loop delays**, memory usage, and concurrency bottlenecks, I use tools like **`clinic.js`**, **`node --inspect`**, and **PM2 dashboards**."
+ - "For **monitoring event loop delays**, memory usage, and concurrency bottlenecks, I use tools like **`clinic.js`**, **`node --inspect`**, and **PM2 dashboards**."
 
 
 

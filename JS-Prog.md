@@ -1,9 +1,10 @@
 | Category                          | Topics                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Array 1 | • [Array Difference](#Array-Difference)
 | Array 1 | • [Find Largest value](#Find-Largest-value)  • [Remove Duplicates element](#Remove-Duplicates-element) • [Group Array of Objects](#Group-Array-of-Objects) • [Unique Elements](#Unique-Elements-in-an-Array)  • [Find Peak Element](#find-peak-element)
 | Array 2 |  • [Recursive Sum of Array](#recursive-sum-of-array)  • [Chunk Array](#chunk-an-array) • [Array Contains Duplicate Value](#Array-Contains-Duplicate-Value) • [Missing Number](#missing-number) • [First and Last Position - Element](#first-and-last-position-of-element-in-Sorted-Array) • [Flatten Nested Arrays](#Flatten-Nested-Arrays)
-| Sort |   • [Sort an array of objects](#Sort-an-array-of-objects) • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort) • [Topological Sort](#topological-sort)
 | Arrays | • [Two Sum](#two-sum)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)  • [Rotate Array](#rotate-array)      • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) 
+| Sort |   • [Sort an array of objects](#Sort-an-array-of-objects) • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort) • [Topological Sort](#topological-sort)
 | Advance | • [Memoize](#Memoize) • [Type Coercion](#Type-Coercion) • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
 | Hash & Sets |• [Intersection of Two Arrays](#intersection-of-two-arrays)  • [Deep Clone an Object](#deep-clone-an-object) • [Custom `map()` Method](#custom-map-method) • [`var` vs `let` in Loops](#understanding-var-vs-let-in-loops-and-closures)  • [Retry Promise N Times](#retry-promise-n-times) 
 | String  | • [string compression(aaabbcaa into a3b2c1a2)](#string-compression) • [Interleave characters 123 abc -> 1a2b3c](#Interleave-the-characters-from-both-strings) 
@@ -4911,4 +4912,63 @@ function compressString(s) {
 
     return result;
 }
+```
+
+
+
+----
+### Array Difference
+
+ - [Elements exist first array but not second array](#Not-Exist-second-array)
+ - [Elements unique , intersection,Symmetric difference ](#Intersection-Symmetric-Difference )
+
+#### Not Exist second array
+
+```js
+Approach - 1
+function arrayDifference(arr1, arr2) {
+  return arr1.filter(item => !arr2.includes(item));
+}
+
+Approch - 2
+function difference(arr1, arr2) {
+ const set2 = new Set(arr2);
+ return [...new Set(arr1)].filter(item => !set2.has(item));
+}
+
+const result = arrayDifference([1, 2, 3, 4, 5], [2, 4]);
+console.log(result);  // Output: [1, 3, 5]
+```
+
+### Intersection Symmetric Difference 
+
+
+```js
+function analyzeArrays(arr1, arr2) {
+  const set1 = new Set(arr1);
+  const set2 = new Set(arr2);
+
+  const uniqueToArr1 = arr1.filter(item => !set2.has(item));
+  const uniqueToArr2 = arr2.filter(item => !set1.has(item));
+  const commonElements = arr1.filter(item => set2.has(item));
+
+  const symmetricDifference = [...uniqueToArr1, ...uniqueToArr2];
+
+  return {
+    uniqueToArr1,
+    uniqueToArr2,
+    commonElements,
+    symmetricDifference
+  };
+}
+
+// ✅ Example
+const arr1 = [1, 2, 3, 4];
+const arr2 = [3, 4, 5, 6];
+
+const result = analyzeArrays(arr1, arr2);
+console.log('Unique to arr1:', result.uniqueToArr1);           // [1, 2]
+console.log('Unique to arr2:', result.uniqueToArr2);           // [5, 6]
+console.log('Common Elements:', result.commonElements);        // [3, 4]
+console.log('Symmetric Difference:', result.symmetricDifference); // [1, 2, 5, 6]
 ```

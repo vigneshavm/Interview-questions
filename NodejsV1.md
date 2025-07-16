@@ -4202,7 +4202,7 @@ Use tools like `clinic.js`, `0x`, or built-in `--trace-events` to inspect your a
 
 **4. Background jobs — Use *job queues* (e.g., Bull, RabbitMQ)** --> **Keywords:** Bull, RabbitMQ, Redis, background jobs, retry, queue
 
-- "For **rate-limited or time-consuming tasks** like **email sending** or **video processing**, I use background queues like **Bull** or **RabbitMQ**, with Redis as a backend. This helps manage **concurrency**, **retry logic**, and **delayed execution**."
+- "For **time-consuming tasks** like **email sending** or **video processing**, I use background queues like **RabbitMQ**, with Redis as a backend. This helps manage **concurrency**, **retry logic**, and **delayed execution**."
 
 
 **5. Data integrity — Use *locks and database transactions*** --> **Keywords:** mutex, transaction, atomicity, consistency, race condition

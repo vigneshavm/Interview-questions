@@ -4170,7 +4170,32 @@ Use tools like `clinic.js`, `0x`, or built-in `--trace-events` to inspect your a
 ## Handling 100000 concurrent requests
 
 
-To handle 100,000 concurrent requests efficiently in Node.js, I would focus on the following key strategies:
+- **"Node.js handles concurrency using its** ***single-threaded event loop architecture***, **which is optimized for** ***asynchronous I/O operations***. **However, when dealing with multiple simultaneous requests, I use several strategies depending on the use case."**
+
+
+**1. I/O-bound tasks — Use *asynchronous non-blocking code***   --> **Keywords:** `async/await`, Promises, non-blocking I/O, event loop unblocked, thousands of concurrent requests efficiently
+
+- "For tasks like **DB queries**, **file reads**, or **external API calls**
+
+**2. CPU-bound tasks — Offload using *`worker_threads`*** --> **Keywords:** CPU-heavy operations, blocking, offload them to **worker threads**, parallelism, offloading, allowing the **main thread** to remain responsive
+
+
+ **3. High concurrency — Scale using *`cluster`***  -->  **Keywords:** scale application across multiple CPU cores cluster or PM2, multi-core, enables horizontal scaling, process forking and by spawning **child processes**."
+
+**4. Background jobs — Use *queues (RabbmitMq)*** --> **Keywords:** Bull, Redis, background jobs, rate limiting, retry mechanism, queue
+
+- "For **rate-limited tasks** like **email sending** or **video processing**, I use **job queues** like **Bull** backed by **Redis**. This allows **controlled concurrency**, **delayed jobs**, and **retry logic**."
+
+ **5. Data integrity — Use *locks and transactions***  --> **Keywords:** mutex, locking, race condition, transaction, atomic operations, consistency
+
+"To avoid **race conditions** in critical sections like **wallet updates** or **stock management**, I use **mutex locks** (`async-mutex`) and **database transactions** to ensure **atomicity and consistency**."
+
+
+ **6. Monitoring — *Debug concurrency issues*** --> **Keywords:** clinic.js, event loop delay, node --inspect, performance monitoring, debugging
+
+ - "For **monitoring event loop delays**, memory usage, and concurrency bottlenecks, I use tools like **`clinic.js`**, **`node --inspect`**, and **PM2 dashboards**."
+
+
 
 1. **Write Non-Blocking Code:**
    Ensure all I/O operations (file, DB, network) use asynchronous, non-blocking APIs to keep the event loop free.
@@ -4421,50 +4446,17 @@ We had **multiple internal applications** — HR portal, timesheet system, and p
 
 
 
-
-
-
-
 ## **Handle Concurrency**
 
-- **"Node.js handles concurrency using its** ***single-threaded event loop architecture***, **which is optimized for** ***asynchronous I/O operations***. **However, when dealing with multiple simultaneous requests, I use several strategies depending on the use case."**
+**"So, while Node.js is single-threaded, I handle concurrency effectively using:**
 
-
-**1. I/O-bound tasks — Use *asynchronous non-blocking code***   --> **Keywords:** `async/await`, Promises, non-blocking I/O, event loop unblocked, thousands of concurrent requests efficiently
-
-- "For tasks like **DB queries**, **file reads**, or **external API calls**
-
-**2. CPU-bound tasks — Offload using *`worker_threads`*** --> **Keywords:** CPU-heavy operations, blocking, offload them to **worker threads**, parallelism, offloading, allowing the **main thread** to remain responsive
-
-
- **3. High concurrency — Scale using *`cluster`***  -->  **Keywords:** scale application across multiple CPU cores cluster or PM2, multi-core, enables horizontal scaling, process forking and by spawning **child processes**."
-
-**4. Background jobs — Use *queues (RabbmitMq)*** --> **Keywords:** Bull, Redis, background jobs, rate limiting, retry mechanism, queue
-
-- "For **rate-limited tasks** like **email sending** or **video processing**, I use **job queues** like **Bull** backed by **Redis**. This allows **controlled concurrency**, **delayed jobs**, and **retry logic**."
-
- **5. Data integrity — Use *locks and transactions***  --> **Keywords:** mutex, locking, race condition, transaction, atomic operations, consistency
-
-"To avoid **race conditions** in critical sections like **wallet updates** or **stock management**, I use **mutex locks** (`async-mutex`) and **database transactions** to ensure **atomicity and consistency**."
-
-
- **6. Monitoring — *Debug concurrency issues*** --> **Keywords:** clinic.js, event loop delay, node --inspect, performance monitoring, debugging
-
- - "For **monitoring event loop delays**, memory usage, and concurrency bottlenecks, I use tools like **`clinic.js`**, **`node --inspect`**, and **PM2 dashboards**."
-
-
-
-**Conclusion:**
-
-> **"So, while Node.js is single-threaded, I handle concurrency effectively using:**
->
-> * **`async/await`** for I/O
-> * **`worker_threads`** for CPU work
-> * **`cluster`** and **PM2** for scaling
-> * **Job queues** for background tasks
-> * **Locks and transactions** for safe data handling
-> * **Monitoring tools** for identifying bottlenecks
->   — all based on the **nature of the workload**."\*\*
+ * **`async/await`** for I/O
+ * **`worker_threads`** for CPU work
+ * **`cluster`** and **PM2** for scaling
+ * **Job queues** for background tasks
+ * **Locks and transactions** for safe data handling
+ * **Monitoring tools** for identifying bottlenecks
+   — all based on the **nature of the workload**."\*\*
 
 
 

@@ -1,8 +1,8 @@
 | Category                          | Topics                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Array 1 | • [Array Difference](#Array-Difference)
+| Array 1 | • [Array Difference](#Array-Difference) • [Array Contains Duplicate Value](#Array-Contains-Duplicate-Value)
 | Array 1 | • [Find Largest value](#Find-Largest-value)  • [Remove Duplicates element](#Remove-Duplicates-element) • [Group Array of Objects](#Group-Array-of-Objects) • [Unique Elements](#Unique-Elements-in-an-Array)  • [Find Peak Element](#find-peak-element)
-| Array 2 |  • [Recursive Sum of Array](#recursive-sum-of-array)  • [Chunk Array](#chunk-an-array) • [Array Contains Duplicate Value](#Array-Contains-Duplicate-Value) • [Missing Number](#missing-number) • [First and Last Position - Element](#first-and-last-position-of-element-in-Sorted-Array) • [Flatten Nested Arrays](#Flatten-Nested-Arrays)
+| Array 2 |  • [Recursive Sum of Array](#recursive-sum-of-array)  • [Chunk Array](#chunk-an-array)  • [Missing Number](#missing-number) • [First and Last Position - Element](#first-and-last-position-of-element-in-Sorted-Array) • [Flatten Nested Arrays](#Flatten-Nested-Arrays)
 | Arrays | • [Two Sum](#two-sum)  • [Move Zeros](#move-zeros)     • [Maximum Subarray](#maximum-subarray)            • [Merge Sorted Arrays](#merge-sorted-arrays)  • [Rotate Array](#rotate-array)      • [Maximum Sum Subarray of Size K](#Maximum-Sum-Subarray-of-Size-K) 
 | Sort |   • [Sort an array of objects](#Sort-an-array-of-objects) • [Merge Sort](#Merge-Sort) • [Quick Sort](#Quick-Sort) • [Bubble Sort](#Bubble-Sort) • [Insertion Sort](#Insertion-Sort) • [Selection Sort](#Selection-Sort) • [Topological Sort](#topological-sort)
 | Advance | • [Memoize](#Memoize) • [Type Coercion](#Type-Coercion) • [Trapping Rain Water](#trapping-rain-water)  • [Maximum Product Subarray](#maximum-product-subarray)  • [Longest Consecutive Sequence](#longest-consecutive-sequence)  • [Set Matrix Zeroes](#set-matrix-zeroes)  • [Spiral Matrix](#spiral-matrix)  • [Subarray Sum Equals K](#subarray-sum-equals-k)
@@ -3953,6 +3953,7 @@ function rotate(nums, k) {
 
 ### **Array Contains Duplicate Value**
 **Approach**: Use a Set to track visited elements.
+ **Example**: `containsDuplicate([1,2,3,1])` → `true`
 
 ```javascript
 function containsDuplicate(nums) {
@@ -3970,11 +3971,8 @@ function containsDuplicate(nums) {
     const map = {}; // empty object to track occurrences
 
     for (let i = 0; i < nums.length; i++) {
-        if (map[nums[i]]) {
-            return true; // duplicate found
-        } else {
-            map[nums[i]] = true; // mark the number as seen
-        }
+        if (map[nums[i]]) {   return true;} // duplicate found 
+        else {    map[nums[i]] = true;         } // mark the number as seen
     }
 
     return false; // no duplicates
@@ -3982,7 +3980,6 @@ function containsDuplicate(nums) {
 
 ```
 
- **Example**: `containsDuplicate([1,2,3,1])` → `true`
 
 ---
 

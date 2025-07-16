@@ -4309,22 +4309,18 @@ parentPort.postMessage(result);
 
 - **"Node.js is single-threaded by design, which makes it ideal for I/O-bound tasks. But for CPU-bound tasks — like image processing, encryption, or complex calculations — I avoid blocking the event loop by using worker threads or worker pools."**
 
-
 **Problem with Creating a Worker per Request**
 
-- **"While `worker_threads` allow offloading CPU work to background threads, spawning a new worker for every request is inefficient. Each thread consumes memory and CPU, and creating too many threads can:**
-
-* Increase **startup overhead**
-* Cause **resource exhaustion**
-* Lead to **context switching**, degrading performance."
-
+- While `worker_threads` allow offloading CPU work to background threads, spawning a new worker for every request is inefficient. Each thread consumes memory and CPU, and creating too many threads can:
+  - * Increase **startup overhead**, Cause **resource exhaustion** , Lead to **context switching**, degrading performance."
 
 **Recommended Strategy: Use a Worker Pool**
 
-- **"To avoid these issues, I use a** ***worker pool*** **— a fixed number of reusable threads — especially under medium to high concurrency workloads."**
+- To avoid these issues, I use a** ***worker pool*** **— a fixed number of reusable threads — especially under medium to high concurrency workloads
 
+- For CPU-heavy tasks in Node.js, I avoid blocking the event loop by using worker threads. Instead of spawning one per request — which is resource-intensive — I use a** ***worker pool*** to manage concurrency efficiently. 
 
-- **"For CPU-heavy tasks in Node.js, I avoid blocking the event loop by using worker threads. Instead of spawning one per request — which is resource-intensive — I use a** ***worker pool*** **to manage concurrency efficiently. In production, I prefer libraries like `Piscina` or `poolifier`, and I tune the pool size based on the number of CPU cores. For extremely heavy workloads, I may delegate processing to microservices or job queues for better scalability."**
+- In production, I prefer libraries like `Piscina` or `poolifier`, and I tune the pool size based on the number of CPU cores. For extremely heavy workloads, I may delegate processing to microservices or job queues for better scalability.
 
 
 How it works:
@@ -4339,7 +4335,6 @@ How it works:
 | Library                    | Purpose                                                               |
 | -------------------------- | --------------------------------------------------------------------- |
 | `node-worker-threads-pool` | Lightweight, simple to integrate for basic concurrency                |
-| `Piscina`                  | Production-grade pool used by frameworks like **Fastify**             |
 | `poolifier`                | High-performance worker pool library with easy setup and good metrics |
 
 

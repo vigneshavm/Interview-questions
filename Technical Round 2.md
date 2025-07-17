@@ -535,9 +535,9 @@ I proposed a **microservices-based architecture** with:
 
 ##  **Design a system that is scalable and highly available**
 
-> * **Scalability**: I use stateless services with horizontal scaling (e.g., auto-scaling groups in AWS), database sharding, and distributed caches like Redis or Memcached.
-> * **High Availability**: I ensure redundancy at every layer: multiple instances, active-passive DB replicas, and use of load balancers with health checks.
-> * **Resilience**: Use patterns like circuit breakers (e.g., Hystrix), retries with exponential backoff, and message queues for decoupling services.
+ - **Scalability**: I use stateless services with horizontal scaling (e.g., auto-scaling groups in AWS), database sharding, and distributed caches like Redis or Memcached.
+ - **High Availability**: I ensure redundancy at every layer: multiple instances, active-passive DB replicas, and use of load balancers with health checks.
+ - **Resilience**: Use patterns like circuit breakers (e.g., Hystrix), retries with exponential backoff, and message queues for decoupling services.
 
 ---
 
@@ -572,41 +572,41 @@ These types of questions test your **end-to-end architecture thinking**.
 
 **Answer (high level):**
 
-> * **Frontend**: Web and mobile clients with responsive design.
-> * **Backend Services**: Microservices architecture using REST/gRPC. Services include user management, video management, chat, notifications, analytics.
-> * **Storage**: Media stored in object storage (like AWS S3), metadata in PostgreSQL, real-time data in Redis.
-> * **Streaming**: Use a CDN and video transcoding services like Mux or FFmpeg pipeline.
-> * **Real-time**: Use WebSockets or MQTT for instant notifications/chat.
-> * **Scalability**: Auto-scaling Kubernetes clusters, load balancing via Nginx/Envoy.
-> * **Security**: OAuth2 for auth, HTTPS everywhere, audit logs.
+ - **Frontend**: Web and mobile clients with responsive design.
+ - **Backend Services**: Microservices architecture using REST/gRPC. Services include user management, video management, chat, notifications, analytics.
+ - **Storage**: Media stored in object storage (like AWS S3), metadata in PostgreSQL, real-time data in Redis.
+ - **Streaming**: Use a CDN and video transcoding services like Mux or FFmpeg pipeline.
+ - **Real-time**: Use WebSockets or MQTT for instant notifications/chat.
+ - **Scalability**: Auto-scaling Kubernetes clusters, load balancing via Nginx/Envoy.
+ - **Security**: OAuth2 for auth, HTTPS everywhere, audit logs.
 
 ---
 
 ##  **Handle consistency in distributed systems**
 
 
-> * I evaluate the **CAP theorem** trade-offs first.
-> * For critical systems, I prefer **strong consistency** (e.g., Paxos/Raft, leader-follower models).
-> * For user-facing systems like feeds, I use **eventual consistency** with background sync.
-> * I use **idempotent operations**, **retries**, and **conflict resolution** to ensure consistency across services.
+ - I evaluate the **CAP theorem** trade-offs first.
+ - For critical systems, I prefer **strong consistency** (e.g., Paxos/Raft, leader-follower models).
+ - For user-facing systems like feeds, I use **eventual consistency** with background sync.
+ - I use **idempotent operations**, **retries**, and **conflict resolution** to ensure consistency across services.
 
 ---
 
 ##  **Implement rate limiting**
 
-> * Use a **Token Bucket or Leaky Bucket** algorithm.
-> * Store usage counters in a fast in-memory store like Redis.
-> * Apply at different levels: IP-level, user-level, API key-level.
-> * Integrate with NGINX or API Gateway tools like Kong, AWS API Gateway, or Envoy.
+ - Use a **Token Bucket or Leaky Bucket** algorithm.
+ - Store usage counters in a fast in-memory store like Redis.
+ - Apply at different levels: IP-level, user-level, API key-level.
+ - Integrate with NGINX or API Gateway tools like Kong, AWS API Gateway, or Envoy.
 
 ---
 
 ##  **Ensure observability**
 
-> * **Logging**: Structured logs with correlation IDs using ELK or EFK stack.
-> * **Monitoring**: Prometheus + Grafana for metrics.
-> * **Tracing**: Distributed tracing with Jaeger or OpenTelemetry.
-> * **Alerting**: Use thresholds and anomaly detection with PagerDuty or Opsgenie.
+ - **Logging**: Structured logs with correlation IDs using ELK or EFK stack.
+ - **Monitoring**: Prometheus + Grafana for metrics.
+ - **Tracing**: Distributed tracing with Jaeger or OpenTelemetry.
+ - **Alerting**: Use thresholds and anomaly detection with PagerDuty or Opsgenie.
 
 ---
 
@@ -625,20 +625,20 @@ These types of questions test your **end-to-end architecture thinking**.
 
 ##  **Ensure data integrity across microservices?**
 
-> * Use **sagas** or **eventual consistency patterns**.
-> * Implement **outbox pattern** to store events with DB transaction and publish asynchronously.
-> * Use **correlation IDs** for debugging and tracing.
-> * Validate inputs via shared schemas (e.g., Protobuf, JSON Schema).
+ - Use **sagas** or **eventual consistency patterns**.
+ - Implement **outbox pattern** to store events with DB transaction and publish asynchronously.
+ - Use **correlation IDs** for debugging and tracing.
+ - Validate inputs via shared schemas (e.g., Protobuf, JSON Schema).
 
 ---
 
 ##  **Prevent single points of failure in a system design**
 
-> * Ensure **redundancy** at every layer (multi-AZ, replicas).
-> * Use **load balancers** to distribute traffic.
-> * Rely on **managed services** (like RDS Multi-AZ).
-> * Design for **failover and health checks** (e.g., Kubernetes probes).
-> * Have **circuit breakers and retry logic** in place.
+ - Ensure **redundancy** at every layer (multi-AZ, replicas).
+ - Use **load balancers** to distribute traffic.
+ - Rely on **managed services** (like RDS Multi-AZ).
+ - Design for **failover and health checks** (e.g., Kubernetes probes).
+ - Have **circuit breakers and retry logic** in place.
 
 ---
 

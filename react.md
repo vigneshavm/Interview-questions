@@ -4135,21 +4135,18 @@ Think of React like a **waterfall**:
 - **Effects**: Instructions to the middleware on what to do (e.g., `call`, `put`, `takeEvery`).
 - **Side Effects**: Operations like data fetching, delay, caching, etc.
 
----
 
-## Common Redux-Saga Effects
+**Common Redux-Saga Effects**
 
-### `takeEvery`
+**takeEvery**
 - Listens for a specific action type and runs the worker saga for every dispatched action.
 - Suitable when you want to perform actions for each event.
 
 ```javascript
 yield takeEvery('FETCH_REQUEST', fetchData);
-````
+```
 
----
-
-### `takeLatest`
+**takeLatest**
 
 * Runs only the **latest** worker saga and cancels any previous unfinished instances.
 * Useful for search, auto-save, or type-ahead use cases.
@@ -4158,9 +4155,8 @@ yield takeEvery('FETCH_REQUEST', fetchData);
 yield takeLatest('FETCH_USER_REQUEST', fetchUserData);
 ```
 
----
 
-### `call`
+**call**
 
 * Calls an asynchronous function (e.g., API request).
 * Blocks saga until the promise resolves.
@@ -4169,9 +4165,7 @@ yield takeLatest('FETCH_USER_REQUEST', fetchUserData);
 const data = yield call(api.getUser, action.payload);
 ```
 
----
-
-### `put`
+**put**
 
 * Dispatches an action to the Redux store.
 
@@ -4179,9 +4173,7 @@ const data = yield call(api.getUser, action.payload);
 yield put({ type: 'FETCH_SUCCESS', payload: data });
 ```
 
----
-
-### `select`
+**select**
 
 * Accesses the current state from the Redux store.
 
@@ -4189,9 +4181,8 @@ yield put({ type: 'FETCH_SUCCESS', payload: data });
 const userId = yield select(state => state.user.id);
 ```
 
----
 
-## Error Handling
+**Error Handling**
 
 * Use `try...catch` blocks around sagas to handle failures gracefully.
 

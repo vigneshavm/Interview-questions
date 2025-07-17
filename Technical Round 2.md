@@ -5,7 +5,7 @@
 | **Project & Team Leadership** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints), -  [Help junior developers](#help-junior-developers-get-up-to-speed), -  [Onboard developer](#onboard-new-developer), -  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member), -  [Miss deadlines](#teammate-consistently-miss-deadlines), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help) |
 | **Architecture & System Design** | [Application architecture challenges](#application-architecture-challenges), -  [Approach system design](#approach-system-design-for-a-new-product), -  [Design scalable and highly system](#design-a-system-that-is-scalable-and-highly-available), -  [Design a system](#design-a-system-like-youtube--uber--whatsapp), -  [Recent architectural decision](#recent-architectural-decision), -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service) , - [Architectural decisions](#architectural-decisions), -  [Technical leadership](#technical-leadership), |
 | **System Design Concepts**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices), -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
-| **Client-Facing Scenarios**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs), -  [Security issue](#security-issue-on-production), -  [Track project progress](#track-project-progress), -  [Estimate story points](#estimate-story-points), -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s)
+| **Client-Facing Scenarios**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs), -  [Security issue](#security-issue-on-production), -  [Track project progress](#track-project-progress), , -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s)
 | **Upgrade Topics**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
 | **Additional Leadership Topics** | -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Agile Concepts](#Agile-Concepts) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
 
@@ -387,11 +387,7 @@ I immediately took the following steps:
 
 ---
 
-## **Estimate story points**
 
- - "I base estimates on prior complexity and edge case handling. In **Shoutout**, a payment module involving Razorpay integration was assigned 8 points due to external dependencies and testing. We balanced velocity over time and maintained historical velocity tracking. This allowed realistic sprint planning and prevented burnout."*
-
----
 
 ## **Conflict with colleague or manager**
 
@@ -666,6 +662,16 @@ Here are some of the **critical architectural challenges** I’ve faced — and 
 
 
 ### Agile Concepts
+
+
+
+
+- "I base estimates on prior complexity and edge case handling.
+-  In **Shoutout**, a payment module involving Razorpay integration was assigned 8 points due to external dependencies and testing. 
+- We balanced velocity over time and maintained historical velocity tracking. 
+- This allowed realistic sprint planning and prevented burnout."*
+
+---
 
 | **Interview Question**                          | **Answer (Interview-Style)**                                                                                                                                                                        |
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

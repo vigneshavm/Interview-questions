@@ -4555,7 +4555,7 @@ This means Section A and B can load independently, improving perceived performan
 
 
 
-### ✅ 1. **Trigger**
+**Trigger**
 
 A re-render is triggered by:
 
@@ -4564,9 +4564,8 @@ A re-render is triggered by:
 * A change in **context** (`useContext`)
 * A **force update** (`forceUpdate` or equivalent)
 
----
 
-### ✅ 2. **Component Re-evaluation**
+**Component Re-evaluation**
 
 React **re-invokes the component function**:
 
@@ -4574,35 +4573,30 @@ React **re-invokes the component function**:
 * All hooks (`useState`, `useEffect`, etc.) are re-evaluated in order.
 * New **Virtual DOM** is generated from the return value (JSX).
 
----
 
-### ✅ 3. **Virtual DOM Diffing**
+**Virtual DOM Diffing**
 
 React compares:
 
 * The **new Virtual DOM** vs. the **previous Virtual DOM**.
 * It uses a **diffing algorithm** (called *reconciliation*) to find differences.
 
----
 
-### ✅ 4. **Efficient DOM Updates**
+**Efficient DOM Updates**
 
 * React computes a **minimal set of real DOM changes**.
 * Only the **changed nodes** are updated in the browser DOM.
 * This is why React is fast — it avoids full re-renders of the actual DOM.
 
----
 
-### ✅ 5. **Effects Handling**
+**Effects Handling**
 
 * **`useEffect`** and **`useLayoutEffect`** are triggered *after* the paint phase.
 
   * React checks if their dependencies (`[deps]`) have changed.
   * Clean-up functions from the previous effect run first (if needed).
 
----
-
-## 🎯 Optimization Notes
+**Optimization Notes**
 
 * **Re-renders are local**: A child doesn't re-render unless its props or state change.
 * Use `React.memo` to avoid unnecessary re-renders for pure functional components.
@@ -4611,27 +4605,25 @@ React compares:
 ---
 
 
-### react virtualized
+### React virtualized
 
 `react-virtualized` is a powerful React library for **windowing large lists, tables, and grids** to improve performance by rendering only visible items. It was the **de facto standard** before `react-window` and is still used in complex UIs with advanced layout needs.
 
-#### ✅ When to Use `react-virtualized`
+**When to Use `react-virtualized`**
 
 * You need **feature-rich virtualization** (especially for tables/grids).
 * You need **dynamic row heights or sticky headers**.
 * You’re maintaining a **legacy project** already using it.
 * You want a **battle-tested** solution for enterprise-scale apps.
 
----
 
-#### 🚫 When *Not* to Use It
+**When *Not* to Use It**
 
 * For simple lists or if **bundle size** is a concern.
 * If you're building a modern app and want the **simplest setup** → prefer [`react-window`](https://github.com/bvaughn/react-window) or [`@tanstack/react-virtual`](https://tanstack.com/virtual).
 
----
 
-#### 🧪 Alternatives
+**Alternatives**
 
 | Alternative               | Best For                                 |
 | ------------------------- | ---------------------------------------- |
@@ -4639,10 +4631,9 @@ React compares:
 | `@tanstack/react-virtual` | Framework-agnostic, powerful, modern API |
 | `Virtuoso`                | Dynamic item sizes and smooth scrolling  |
 
----
 
 
-#### 📦 Key Features
+**Key Features**
 
 * **`List`** – virtualized vertical lists
 * **`Table`** – feature-rich, performant tables
@@ -4652,7 +4643,6 @@ React compares:
 * **`WindowScroller`** – synchronizes with window scroll
 * **`ScrollSync`** – synchronizes multiple scrollable areas
 
----
 
 #### ⚙️ Basic Usage Example
 

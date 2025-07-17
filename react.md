@@ -4244,9 +4244,8 @@ export function* watchFetchUserData() {
  - Memory leaks in React apps can quietly degrade performance over time, especially in large, long-running applications. 
  - They often happen when **resources are retained after a component is unmounted** or when **event listeners, timers, or subscriptions aren’t cleaned up** properly.
 
----
 
-## ✅ Best Practices to Prevent Memory Leaks
+**Best Practices to Prevent Memory Leaks**
 
 | Problem                          | Solution                                      |
 | -------------------------------- | --------------------------------------------- |
@@ -4259,9 +4258,9 @@ export function* watchFetchUserData() {
 
 ---
 
-###  Common Causes of Memory Leaks in React
+**Common Causes of Memory Leaks in React**
 
-#### 1. **Uncleared `setTimeout` / `setInterval`**
+**Uncleared `setTimeout` / `setInterval`**
 
 Timers continue to run even after the component is unmounted.
 
@@ -4275,9 +4274,8 @@ useEffect(() => {
 }, []);
 ```
 
----
 
-#### 2. **Unsubscribed External Listeners (WebSocket, EventEmitter, etc.)**
+**Unsubscribed External Listeners (WebSocket, EventEmitter, etc.)**
 
 Failing to unsubscribe from listeners keeps references alive.
 
@@ -4289,9 +4287,8 @@ useEffect(() => {
 }, []);
 ```
 
----
 
-#### 3. **Unremoved DOM Event Listeners**
+**Unremoved DOM Event Listeners**
 
 Directly added DOM listeners must be removed manually.
 
@@ -4303,9 +4300,7 @@ useEffect(() => {
 }, []);
 ```
 
----
-
-#### 4. **Stale Closures / Async Calls after Unmount**
+**Stale Closures / Async Calls after Unmount**
 
 An async call updating state after a component is gone can cause warnings or leaks.
 
@@ -4340,9 +4335,7 @@ useEffect(() => {
 }, []);
 ```
 
----
-
-#### 5. **Global Variables / Caches**
+**Global Variables / Caches**
 
 Storing references to components or DOM nodes globally can prevent GC (garbage collection).
 
@@ -4351,9 +4344,8 @@ Storing references to components or DOM nodes globally can prevent GC (garbage c
 window.myCache = someComponentInstance;
 ```
 
----
 
-#### 6. **Improper use of Refs**
+**Improper use of Refs**
 
 Refs persist across renders. Holding large objects (e.g. DOM elements, event targets) unnecessarily can cause leaks.
 
@@ -4361,11 +4353,8 @@ Refs persist across renders. Holding large objects (e.g. DOM elements, event tar
 const largeDataRef = useRef(heavyData); // ⚠️ can leak if not used carefully
 ```
 
----
+**How to Detect Memory Leaks**
 
-
-
-### 🧠 How to Detect Memory Leaks
 
 * **Browser DevTools → Performance → Record memory usage**
 * Use the **"Memory" tab** to track detached DOM nodes or retained JS objects

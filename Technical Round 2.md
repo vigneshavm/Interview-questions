@@ -546,6 +546,26 @@ I proposed a **microservices-based architecture** with:
 > * I choose **SQL** when I need ACID compliance, complex joins, and transactional integrity (e.g., payment systems).
 > * I choose **NoSQL** (MongoDB, DynamoDB) for high write throughput, flexible schema, and horizontal scalability (e.g., logging, real-time analytics).
 > * Sometimes, I use both in the same system—polyglot persistence—depending on the use case.
+- Choosing between **SQL (Relational DB)** and **NoSQL (Non-relational DB)** depends on the **data structure**, **scalability needs**, and **consistency vs flexibility** requirements.
+- I choose **SQL** when I need **data integrity and complex relationships**.
+- I choose **NoSQL** when I need **flexibility, speed at scale**, or I’m building **document-heavy APIs** (e.g., with MongoDB + Node.js).
+
+
+**Use SQL (e.g., PostgreSQL, MySQL) when:**
+
+1. **Structured Data with Relationships** - Data has a well-defined schema with relationships (foreign keys, joins).Example: E-commerce app — Users, Orders, Products.
+2. **ACID Transactions are Critical** - Need **atomicity**, **consistency**, **isolation**, and **durability**. Example: Banking, finance, or any system requiring strong consistency.
+3. **Complex Queries & Reporting** - Rely on **JOINs, aggregations, window functions**, etc. Example: Analytics dashboards, admin panels.
+4. **Data Integrity is a Priority** - Enforce constraints like `NOT NULL`, `UNIQUE`, and `FOREIGN KEY`.
+
+**Use NoSQL (e.g., MongoDB, DynamoDB, Cassandra) when:**
+
+1. **Schema is Flexible or Evolving** - Ideal for unstructured/semi-structured data (JSON-like). Example: User profiles, logs, CMS content.
+2. **Horizontal Scalability is Required** -     Built for scale-out with **sharding**, ideal for large-scale systems.
+3. **High Write/Read Throughput Needed** -  Example: Real-time apps, IoT, chat apps, leaderboards.
+4. **Denormalized Data is Acceptable** -   Store nested data in a single document to reduce joins. Example: Blog post with embedded comments.
+
+
 
 ---
 

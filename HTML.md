@@ -13,8 +13,8 @@
 
 
                    |
-| Specificity       | Inline > ID > Class > Element                           |
-| CSS Features      | Media queries, Flexbox/Grid, transitions, variables     |
+
+
 | Custom Tags       | Use `-`, `customElements.define`, optional Shadow DOM   |
 
 
@@ -23,11 +23,11 @@
 | Question                                     | Answer                                                                                                        | Topic             | Key Concepts                                            |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------- |
 | **What is HTML?**                            | HTML (HyperText Markup Language) structures web content using elements like headings, paragraphs, links, etc. | HTML5             | Semantic tags, audio/video, form APIs, `localStorage`   |
-| **What are semantic HTML elements?**         | Elements that convey meaning: `<header>`, `<footer>`, `<article>`, `<nav>`, etc.                              | Semantic Tags     | `<header>`, `<section>`, `<article>`, `<aside>`, etc.   |
+| **What are semantic HTML elements?**         | Elements that convey meaning: `<header>`, `<footer>`, `<article>`, `<nav>`, etc.                              |  Specificity       | Inline > ID > Class > Element                           |
 | **Difference between `<div>` and `<span>`?** | `<div>` is block-level, `<span>` is inline.                                                                   | Form Enhancements | New input types, `required`, `pattern`, `autofocus`     |
 | **Difference between `id` and `class`?**     | `id` is unique; `class` can be reused.                                                                        | Position          | `relative`, `absolute`, `fixed`, `sticky`               |
 | **Purpose of `alt` attribute?**              | Describes the image (accessibility, SEO). Shown when image fails.                                             | Box Model         | Margin > Border > Padding > Content  
-| **Block vs Inline elements?**                | Block: full width (`<div>`, `<p>`); Inline: content width (`<span>`, `<a>`).                                  |
+| **Block vs Inline elements?**                | Block: full width (`<div>`, `<p>`); Inline: content width (`<span>`, `<a>`).                                  | CSS Features      | Media queries, Flexbox/Grid, transitions, variables     |
 | **Embed webpage in another?**                | Use `<iframe>`.                                                                                               | Units             | `px` (fixed), `%` (parent), `em` (parent), `rem` (root) |
 
 

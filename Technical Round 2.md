@@ -367,11 +367,13 @@ To handle this smoothly, I followed these steps:
 
 I immediately took the following steps:
 
-**1. Triage and Hotfix:**
+- **1. Triage and Hotfix:**
 - I replicated the issue using production data and found that a recent update had caused form state mismatches — conditional subsections weren’t being saved correctly due to missing null-checks in the Node.js backend. I patched the issue by introducing stricter validation, and we deployed a **hotfix within 3 hours** using our CI/CD pipeline.
-**2. Transparent Communication:**
+
+- **2. Transparent Communication:**
 - I informed the client with a quick status update and ETA. I also reassured them that no data was lost and all pending form states were queued safely in the backend. This calmed the situation and helped restore confidence.
-**3. RCA and Preventive Measures:**
+
+- **3. RCA and Preventive Measures:**
 - I led a **Root Cause Analysis** session and discovered that the issue slipped through due to lack of test coverage on conditional form logic. To prevent this in future:
  * We added **unit and integration tests** for every dynamic section
  * Introduced a **regression checklist** for multi-step forms

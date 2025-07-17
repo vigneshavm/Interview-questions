@@ -363,24 +363,39 @@ To handle this smoothly, I followed these steps:
 
 ## **Handle production issues when a client is upset**
 
-- *"In the **TANFApp** project at IAppsys, we had a situation where a **multi-section TANF eligibility form** started throwing errors in production — specifically when users tried to submit a subsection with conditional fields. This affected live data collection for applicants, and the client was understandably upset, as it blocked critical workflows.*
 
-I immediately took the following steps:
+- In the **TANFApp project at IAppsys**, a **multi-section eligibility form** began throwing errors **in production**, particularly when users submitted **subsections with conditional fields**. This **blocked critical workflows** and triggered immediate client concern.
 
-- **1. Triage and Hotfix:**
-- I replicated the issue using production data and found that a recent update had caused form state mismatches — conditional subsections weren’t being saved correctly due to missing null-checks in the Node.js backend. I patched the issue by introducing stricter validation, and we deployed a **hotfix within 3 hours** using our CI/CD pipeline.
+**1. Triage and Hotfix**
 
-- **2. Transparent Communication:**
-- I informed the client with a quick status update and ETA. I also reassured them that no data was lost and all pending form states were queued safely in the backend. This calmed the situation and helped restore confidence.
+* **Replicated the issue** using real production data.
+* Identified that **conditional subsections weren’t saved** due to **missing null-checks** in the **Node.js backend**.
+* Applied a **hotfix** by adding **stricter validation** logic.
+* **Deployed fix within 3 hours** via **CI/CD pipeline**.
 
-- **3. RCA and Preventive Measures:**
-- I led a **Root Cause Analysis** session and discovered that the issue slipped through due to lack of test coverage on conditional form logic. To prevent this in future:
- * We added **unit and integration tests** for every dynamic section
- * Introduced a **regression checklist** for multi-step forms
- * Enhanced QA coverage for all possible form configurations
+**2. Transparent Client Communication**
 
-- As a result, similar issues never occurred again. The client appreciated our responsiveness, and our team gained credibility for being proactive under pressure."\*
-- 
+* Sent a **quick status update** and provided an **ETA**.
+* Reassured the client:
+
+  > **No data loss**
+  > **All pending form states were safely queued**
+* Result: Helped **de-escalate the situation** and **restore client confidence**.
+
+**3. Root Cause Analysis (RCA) & Prevention**
+
+* **Led RCA session** and found **missing test coverage** on **conditional form logic**.
+* Implemented long-term solutions:
+
+  *  Added **unit & integration tests** for **dynamic sections**.
+  *  Created a **regression checklist** for **multi-step forms**.
+  * **Enhanced QA coverage** for all **form configurations**.
+
+**Outcome**
+
+* **No recurrence** of similar issues.
+* Client **appreciated the fast response** and **proactive approach**.
+* Boosted **team credibility** and **trust** from the client.
 
 
 ## **Track project progress**

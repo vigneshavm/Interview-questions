@@ -5589,13 +5589,13 @@ function ChildComponent({ onAction }) {
 
 ## React Window
 
--`react-window` is a **lightweight React library** created by **Brian Vaughn** from the **React core team**.
+-`react-window` is a **lightweight React library** from the **React core team**.
 
 - It’s mainly used for **virtualizing long lists or grids** — meaning it **renders only the visible items in the DOM**, and **skips off-screen elements**.
 
 - This helps **dramatically improve performance** when working with **very large datasets**, such as **thousands of rows** in a table or log viewer.
 
-- For example, in one project, I had a **dashboard showing 10,000+ transactions**. Rendering everything at once caused **DOM lag and memory issues**.
+- For example, in one project, I had a **dashboard showing 1000+ transactions**. Rendering everything at once caused **DOM lag and memory issues**.
 
 - Using `react-window`, only **30–40 visible items** are rendered at a time, ensuring **smooth scrolling and better performance**.
 

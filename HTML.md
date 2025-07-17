@@ -6,6 +6,46 @@
 | **SCSS Advanced**      | [SCSS vs CSS](#scss-vs-css) ,[SCSS Variables](#scss-variables) ,[SCSS Nesting](#scss-nesting) ,[SCSS Mixins](#scss-mixins) ,[SCSS Functions](#scss-functions) ,[Mixins and Functions](#mixins-and-functions) ,[@extend](#extend) ,[SCSS Modularity](#scss-modularity) ,[Partials](#partials) ,[@use and @import](#use-and-import) ,[SCSS File Organization](#scss-file-organization) ,[SCSS Control Directives](#scss-control-directives) ,[SCSS Debug](#scss-debug) ,[SCSS Variables Sharing](#scss-variables-sharing) ,[SCSS Maintainability](#scss-maintainability) ,[SCSS Pitfalls](#scss-pitfalls) ,
 
 
+### 📘 **HTML Basics**
+
+| Question                                     | Answer                                                                                                        |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **What is HTML?**                            | HTML (HyperText Markup Language) structures web content using elements like headings, paragraphs, links, etc. |
+| **What are semantic HTML elements?**         | Elements that convey meaning: `<header>`, `<footer>`, `<article>`, `<nav>`, etc.                              |
+| **Difference between `<div>` and `<span>`?** | `<div>` is block-level, `<span>` is inline.                                                                   |
+| **Difference between `id` and `class`?**     | `id` is unique; `class` can be reused.                                                                        |
+| **Purpose of `alt` attribute?**              | Describes the image (accessibility, SEO). Shown when image fails.                                             |
+| **Block vs Inline elements?**                | Block: full width (`<div>`, `<p>`); Inline: content width (`<span>`, `<a>`).                                  |
+| **Embed webpage in another?**                | Use `<iframe>`.                                                                                               |
+
+---
+
+### 🎨 **CSS Units & Basics**
+
+| Question                                       | Answer                                                                       | Question                                             | Answer                                                         |
+| ---------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------- |
+| **Difference between `em`, `rem`, `px`, `%`?** | `px`: fixed; `em`: relative to parent; `rem`: root; `%`: relative to parent. | **How to make a responsive layout?**                 | Use media queries, `flexbox`, `grid`, `%`, `vw/vh`.            |
+| **Pseudo-classes vs Pseudo-elements?**         | `:hover`, `:focus` = pseudo-class; `::before`, `::after` = pseudo-element.   | **CSS Grid vs Flexbox?**                             | Grid: 2D (rows & columns); Flexbox: 1D (row or column).        |
+| **`visibility: hidden` vs `display: none`?**   | `hidden`: takes up space; `none`: removed from layout.                       | **Center a `div` both vertically and horizontally?** | `display: flex; justify-content: center; align-items: center;` |
+| **CSS Box Model?**                             | Content → Padding → Border → Margin                                          | **Make an image responsive?**                        | `img { max-width: 100%; height: auto; }`                       |
+| **Specificity in CSS?**                        | Inline > ID > Class > Element > \*                                           |
+| **CSS `position` types?** | `relative`: offset from normal; `absolute`: positioned ancestor; `fixed`: viewport; `sticky`: toggles between relative/fixed. |
+| **What is `z-index`?**    | Controls stack order; works only on positioned elements.                                                                      |
+
+---
+
+### ⚙️ **CSS Techniques & Optimization**
+
+| Question                      | Answer                                                                      |
+| ----------------------------- | --------------------------------------------------------------------------- |
+| **CSS Variables?**            | Declare: `--main-color`; Use: `var(--main-color)`                           |
+| **Critical Rendering Path?**  | CSS blocks rendering. Optimize critical CSS for faster load.                |
+| **BEM Convention?**           | `Block__Element--Modifier` (e.g., `btn__icon--small`)                       |
+| **Optimize CSS Performance?** | Minify, use shorthand, reduce specificity, remove unused styles, lazy-load. |
+| **Reflow vs Repaint?** | Reflow: layout recalculation; Repaint: visual update only (like color change). |
+
+
+
 
 
 

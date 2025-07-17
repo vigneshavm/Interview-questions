@@ -7,7 +7,7 @@
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) |
-| **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query) •  [Redux-Saga](#Redux-Saga)   •  [Redux Virtualized](#react-virtualized)  - [Recursion](#Recursion) - [Reacts Concurrent Mode](#Reacts-Concurrent-Mode)
+| **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query) •  [Redux-Saga](#Redux-Saga)   •  [React Window](#React-Window) •  [Redux Virtualized](#react-virtualized)  - [Recursion](#Recursion) - [Reacts Concurrent Mode](#Reacts-Concurrent-Mode)
 | **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
@@ -5587,4 +5587,24 @@ function ChildComponent({ onAction }) {
 
 
 
+## React Window
+
+-`react-window` is a **lightweight React library** created by **Brian Vaughn** from the **React core team**.
+
+- It’s mainly used for **virtualizing long lists or grids** — meaning it **renders only the visible items in the DOM**, and **skips off-screen elements**.
+
+- This helps **dramatically improve performance** when working with **very large datasets**, such as **thousands of rows** in a table or log viewer.
+
+- For example, in one project, I had a **dashboard showing 10,000+ transactions**. Rendering everything at once caused **DOM lag and memory issues**.
+
+- Using `react-window`, only **30–40 visible items** are rendered at a time, ensuring **smooth scrolling and better performance**.
+
+- I used the **`FixedSizeList`** component, where I passed in props like:
+ * `height` ,  * `itemCount` , * `itemSize`  * and a custom `Row` renderer
+
+- It also supports **infinite scroll and lazy loading**, and works well with **Redux or paginated APIs**.
+ - I prefer `react-window` over `react-virtualized` because it’s **simpler, lighter**, and good for **most list/grid UIs**.
+ - If I need **advanced features** like **masonry layout** or **dynamic row heights**, I consider `react-virtualized`.
+
+- Overall, `react-window` is my go-to tool for building **fast, responsive UIs** involving **large or dynamic lists**.
 

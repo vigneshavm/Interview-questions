@@ -543,12 +543,9 @@ I proposed a **microservices-based architecture** with:
 
 ##  **Decide between SQL and NoSQL**
 
-> * I choose **SQL** when I need ACID compliance, complex joins, and transactional integrity (e.g., payment systems).
-> * I choose **NoSQL** (MongoDB, DynamoDB) for high write throughput, flexible schema, and horizontal scalability (e.g., logging, real-time analytics).
-> * Sometimes, I use both in the same system—polyglot persistence—depending on the use case.
 - Choosing between **SQL (Relational DB)** and **NoSQL (Non-relational DB)** depends on the **data structure**, **scalability needs**, and **consistency vs flexibility** requirements.
-- I choose **SQL** when I need **data integrity and complex relationships**.
-- I choose **NoSQL** when I need **flexibility, speed at scale**, or I’m building **document-heavy APIs** (e.g., with MongoDB + Node.js).
+- I choose **SQL** when I need **data integrity and complex relationships** when I need ACID compliance, complex joins, and transactional integrity (e.g., payment systems).
+- I choose **NoSQL** when I need **flexibility, speed at scale**, or I’m building **document-heavy APIs** (e.g., with MongoDB + Node.js) .for high write throughput, flexible schema, and horizontal scalability (e.g., logging, real-time analytics).
 
 
 **Use SQL (e.g., PostgreSQL, MySQL) when:**

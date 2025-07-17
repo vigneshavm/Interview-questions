@@ -284,15 +284,15 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 - *In the **TANFApp migration project** at IAppsys, we were tasked with modernizing a legacy **MS Access-based application** into a **React + Node.js full-stack web application**. I was responsible for leading and coordinating full-stack development during 2-week sprints.*
 
-**Sprint Planning:** - *We started each sprint by analyzing legacy MS Access forms, VBA logic, and database structure. I then worked with the BA and stakeholders to convert those into **modular user stories** for both frontend and backend teams. For example, one epic like 'Eligibility Determination' was split into UI form design, business rules API, and backend DB mapping logic.*
+**Sprint Planning:** - We started each sprint by analyzing legacy MS Access forms, VBA logic, and database structure. I then worked with the BA and stakeholders to convert those into **modular user stories** for both frontend and backend teams. For example, one epic like 'Eligibility Determination' was split into UI form design, business rules API, and backend DB mapping logic.*
 
-**Backend Tasks:** - *Using **Node.js + Express**, I created REST APIs that abstracted business rules previously embedded in MS Access queries and VBA. We used **Sequelize ORM** with a new **PostgreSQL schema**, handling validations, lookup table mappings, and user sessions securely with JWT.*
+**Backend Tasks:** - Using **Node.js + Express**, I created REST APIs that abstracted business rules previously embedded in MS Access queries and VBA. We used **Sequelize ORM** with a new **PostgreSQL schema**, handling validations, lookup table mappings, and user sessions securely with JWT.*
 
-**Frontend Tasks:** - *On the frontend, I used **React with Redux** for state management and built dynamic forms with reusable components. I ensured accessibility (A11Y compliance), form validation using Yup, and controlled form flow matching legacy business logic.*
+**Frontend Tasks:** - On the frontend, I used **React with Redux** for state management and built dynamic forms with reusable components. I ensured accessibility (A11Y compliance), form validation using Yup, and controlled form flow matching legacy business logic.*
 
-**Coordination & Integration:** - *I ensured frontend and backend teams were aligned via shared **OpenAPI (Swagger) docs**, created mock APIs for parallel development, and used Postman collections for QA. We maintained our sprint board in **JIRA**, held daily stand-ups, and had weekly reviews with product stakeholders.*
+**Coordination & Integration:** - I ensured frontend and backend teams were aligned via shared **OpenAPI (Swagger) docs**, created mock APIs for parallel development, and used Postman collections for QA. We maintained our sprint board in **JIRA**, held daily stand-ups, and had weekly reviews with product stakeholders.*
 
-**Outcome:** - *This sprint-driven, structured approach helped us replace 100+ legacy MS Access screens in phased sprints and improved the user onboarding experience. We also reduced page load time by over 60% compared to the old system."*
+**Outcome:** - This sprint-driven, structured approach helped us replace 100+ legacy MS Access screens in phased sprints and improved the user onboarding experience. We also reduced page load time by over 60% compared to the old system."*
 
 ---
 
@@ -383,49 +383,49 @@ I immediately took the following steps:
 
 ## **Track project progress**
 
-> *"Across all projects, I use **JIRA** for sprint planning, **Slack** for internal comms, and **Confluence** for documentation. In **IAppsys**, we used GitHub Projects and tracked unit test coverage via Jest. Stand-ups and burndown charts helped us stay on track — we consistently delivered 85–90% of committed sprint items."*
+ - "Across all projects, I use **JIRA** for sprint planning, **Slack** for internal comms, and **Confluence** for documentation. In **IAppsys**, we used GitHub Projects and tracked unit test coverage via Jest. Stand-ups and burndown charts helped us stay on track — we consistently delivered 85–90% of committed sprint items."*
 
 ---
 
 ## **Estimate story points**
 
-> *"I base estimates on prior complexity and edge case handling. In **Shoutout**, a payment module involving Razorpay integration was assigned 8 points due to external dependencies and testing. We balanced velocity over time and maintained historical velocity tracking. This allowed realistic sprint planning and prevented burnout."*
+ - "I base estimates on prior complexity and edge case handling. In **Shoutout**, a payment module involving Razorpay integration was assigned 8 points due to external dependencies and testing. We balanced velocity over time and maintained historical velocity tracking. This allowed realistic sprint planning and prevented burnout."*
 
 ---
 
 ## **Conflict with colleague or manager**
 
-> *"During **BITS PSMS**, a teammate insisted on procedural-style coding in Angular services. I preferred DI and RxJS pipelines. I proposed we spike both versions and test with live data. The reactive version proved more scalable. By letting facts guide decisions, we avoided conflict and improved maintainability."*
+ - "During **BITS PSMS**, a teammate insisted on procedural-style coding in Angular services. I preferred DI and RxJS pipelines. I proposed we spike both versions and test with live data. The reactive version proved more scalable. By letting facts guide decisions, we avoided conflict and improved maintainability."*
 
 ---
 
 ## **Handle negative feedback**
 
-> *"In **LAppsys**, a product owner questioned the value of server-side validation. I explained our decision using security standards and showed logs of previous validation bypass attempts. I also demoed user-facing validation messages. This changed their mind, and we made input handling a reusable module."*
+ - "In **LAppsys**, a product owner questioned the value of server-side validation. I explained our decision using security standards and showed logs of previous validation bypass attempts. I also demoed user-facing validation messages. This changed their mind, and we made input handling a reusable module."*
 
 ---
 
 ## **Performant and Secure Backend APIs**
 
-> *"In **Shoutout**, I optimized Node.js APIs with pagination, indexing, and Redis caching for high-read endpoints like celebrity listings. Security was handled with JWT, IP throttling, and validation via `express-validator`. For video uploads, we used signed URLs with Azure Blob Storage, ensuring time-bound access. We also followed PCI-DSS guidelines for payment flow."*
+ - "In **Shoutout**, I optimized Node.js APIs with pagination, indexing, and Redis caching for high-read endpoints like celebrity listings. Security was handled with JWT, IP throttling, and validation via `express-validator`. For video uploads, we used signed URLs with Azure Blob Storage, ensuring time-bound access. We also followed PCI-DSS guidelines for payment flow."*
 
 ---
 
 ## **Release gets delayed due to unexpected bugs**
 
-> *"In **LAppsys**, a TANF form validation logic crashed for edge cases during UAT. I immediately organized a triage meeting, isolated the logic, wrote test cases to replicate it, and patched the bug. I documented the change, and we pushed a hotfix within 12 hours, avoiding any downstream processing delays."*
+ - "In **LAppsys**, a TANF form validation logic crashed for edge cases during UAT. I immediately organized a triage meeting, isolated the logic, wrote test cases to replicate it, and patched the bug. I documented the change, and we pushed a hotfix within 12 hours, avoiding any downstream processing delays."*
 
 ---
 
 ## **Leading a team and 2 devs are stuck on different issues**
 
-> *"This happened in **Shoutout** — one dev struggled with JWT auth expiry issues, another with payment webhook inconsistencies. I stepped in on the JWT issue directly due to its urgency and paired the webhook task with another mid-level dev. Both issues were resolved in the same day due to delegation and priority handling."*
+ - "This happened in **Shoutout** — one dev struggled with JWT auth expiry issues, another with payment webhook inconsistencies. I stepped in on the JWT issue directly due to its urgency and paired the webhook task with another mid-level dev. Both issues were resolved in the same day due to delegation and priority handling."*
 
 ---
 
 ## **security issue on production**
 
-> *"In **Shoutout**, a user discovered they could access other video links using guessable URLs. We hotfixed it by generating UUID-based URLs and restricting access with signed tokens. I added a server-side access check based on user-booking ID, wrote a test case, and enabled Sentry to track any further access attempts."*
+ - "In **Shoutout**, a user discovered they could access other video links using guessable URLs. We hotfixed it by generating UUID-based URLs and restricting access with signed tokens. I added a server-side access check based on user-booking ID, wrote a test case, and enabled Sentry to track any further access attempts."*
 
 ---
 
@@ -520,24 +520,24 @@ I proposed a **microservices-based architecture** with:
 
 ##  **Approach system design for a new product**
 
-> I follow a structured approach:
+ - I follow a structured approach:
 >
-> 1. **Understand the Requirements** – Both functional and non-functional (scalability, latency, consistency).
-> 2. **Identify Key Components** – Divide the system into services, APIs, databases, and interfaces.
-> 3. **Define Data Flow & Communication** – Synchronous vs. asynchronous, REST/gRPC/message queues.
-> 4. **Plan for Scalability** – Horizontal scaling, caching, load balancing.
-> 5. **Ensure Fault Tolerance** – Retry logic, circuit breakers, redundancy.
-> 6. **Address Data Storage** – SQL vs NoSQL, indexing, sharding.
-> 7. **Security & Compliance** – Authentication (OAuth2/JWT), rate limiting, encryption.
-> 8. **Monitoring & Observability** – Logs, metrics, alerts.
+ - 1. **Understand the Requirements** – Both functional and non-functional (scalability, latency, consistency).
+ - 2. **Identify Key Components** – Divide the system into services, APIs, databases, and interfaces.
+ - 3. **Define Data Flow & Communication** – Synchronous vs. asynchronous, REST/gRPC/message queues.
+ - 4. **Plan for Scalability** – Horizontal scaling, caching, load balancing.
+ - 5. **Ensure Fault Tolerance** – Retry logic, circuit breakers, redundancy.
+ - 6. **Address Data Storage** – SQL vs NoSQL, indexing, sharding.
+ - 7. **Security & Compliance** – Authentication (OAuth2/JWT), rate limiting, encryption.
+ - 8. **Monitoring & Observability** – Logs, metrics, alerts.
 
 ---
 
 ##  **Design a system that is scalable and highly available**
 
- - **Scalability**: I use stateless services with horizontal scaling (e.g., auto-scaling groups in AWS), database sharding, and distributed caches like Redis or Memcached.
- - **High Availability**: I ensure redundancy at every layer: multiple instances, active-passive DB replicas, and use of load balancers with health checks.
- - **Resilience**: Use patterns like circuit breakers (e.g., Hystrix), retries with exponential backoff, and message queues for decoupling services.
+ - *Scalability**: I use stateless services with horizontal scaling (e.g., auto-scaling groups in AWS), database sharding, and distributed caches like Redis or Memcached.
+ - *High Availability**: I ensure redundancy at every layer: multiple instances, active-passive DB replicas, and use of load balancers with health checks.
+ - *Resilience**: Use patterns like circuit breakers (e.g., Hystrix), retries with exponential backoff, and message queues for decoupling services.
 
 ---
 
@@ -572,13 +572,13 @@ These types of questions test your **end-to-end architecture thinking**.
 
 **Answer (high level):**
 
- - **Frontend**: Web and mobile clients with responsive design.
- - **Backend Services**: Microservices architecture using REST/gRPC. Services include user management, video management, chat, notifications, analytics.
- - **Storage**: Media stored in object storage (like AWS S3), metadata in PostgreSQL, real-time data in Redis.
- - **Streaming**: Use a CDN and video transcoding services like Mux or FFmpeg pipeline.
- - **Real-time**: Use WebSockets or MQTT for instant notifications/chat.
- - **Scalability**: Auto-scaling Kubernetes clusters, load balancing via Nginx/Envoy.
- - **Security**: OAuth2 for auth, HTTPS everywhere, audit logs.
+ - *Frontend**: Web and mobile clients with responsive design.
+ - *Backend Services**: Microservices architecture using REST/gRPC. Services include user management, video management, chat, notifications, analytics.
+ - *Storage**: Media stored in object storage (like AWS S3), metadata in PostgreSQL, real-time data in Redis.
+ - *Streaming**: Use a CDN and video transcoding services like Mux or FFmpeg pipeline.
+ - *Real-time**: Use WebSockets or MQTT for instant notifications/chat.
+ - *Scalability**: Auto-scaling Kubernetes clusters, load balancing via Nginx/Envoy.
+ - *Security**: OAuth2 for auth, HTTPS everywhere, audit logs.
 
 ---
 
@@ -603,10 +603,10 @@ These types of questions test your **end-to-end architecture thinking**.
 
 ##  **Ensure observability**
 
- - **Logging**: Structured logs with correlation IDs using ELK or EFK stack.
- - **Monitoring**: Prometheus + Grafana for metrics.
- - **Tracing**: Distributed tracing with Jaeger or OpenTelemetry.
- - **Alerting**: Use thresholds and anomaly detection with PagerDuty or Opsgenie.
+ - *Logging**: Structured logs with correlation IDs using ELK or EFK stack.
+ - *Monitoring**: Prometheus + Grafana for metrics.
+ - *Tracing**: Distributed tracing with Jaeger or OpenTelemetry.
+ - *Alerting**: Use thresholds and anomaly detection with PagerDuty or Opsgenie.
 
 ---
 
@@ -619,7 +619,7 @@ These types of questions test your **end-to-end architecture thinking**.
 | ❌ Tight coupling between modules           | ❌ Needs service discovery, monitoring, and distributed tracing        |
 
 
-> I usually start with a **modular monolith** and migrate to microservices when the team and product maturity allow it.
+ - I usually start with a **modular monolith** and migrate to microservices when the team and product maturity allow it.
 
 ---
 
@@ -685,7 +685,7 @@ Here are some of the **critical architectural challenges** I’ve faced — and 
 
 | **Story**                          | **Sub-Tasks**                                                                                                                                       |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| “As a user, I can view my profile” | - Create React UI <br> - Build Node.js API `/api/profile` <br> - MongoDB schema/query <br> - Add validation <br> - Write tests (unit + integration) |
+| “As a user, I can view my profile” | - Create React UI <br - - Build Node.js API `/api/profile` <br - - MongoDB schema/query <br - - Add validation <br - - Write tests (unit + integration) |
 
 
 

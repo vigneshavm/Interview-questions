@@ -4406,9 +4406,6 @@ useEffect(() => {
 
 ## **large scale application**:
 
----
-
-### ✅ **Answer (Bullet Points):**
 
 * **Modular Architecture (Feature-Based or Domain-Driven):**
   I organize the codebase by **features or domains**, not by type (e.g., not all components in one folder).

@@ -12,11 +12,7 @@
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
 | **Performance Optimization**          | •  [Performance Optimization](#performance-optimization) •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [Memory leaks](#Memory-leaks) •  [Structure Large Scale Application](#large-scale-application) •  [During-a-React-Re-render](#What-Happens-During-a-React-Re-render)
-
-| •  [Pointer Events](#Pointer-Events) 
-
- - [call child components function from a parent](#call-child-components-function-from-a-parent)
- - [Call a parent component’s function from a child in React](#call-a-parent-components-function-from-a-child-in-react)
+| **Call components**          | •  [call child components function from a parent](#call-child-components-function-from-a-parent) •  [Call a parent component’s function from a child in React](#call-a-parent-components-function-from-a-child-in-react)
 
 
 ---

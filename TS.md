@@ -721,9 +721,7 @@ type PersonKeys = keyof Person;
 
 ## **Generics**
 
----
 
-## ✅ What Are Generics?
 
 Generics let you write code that works with **any data type**, while still maintaining **type safety**.
 

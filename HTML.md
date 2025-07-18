@@ -1,40 +1,13 @@
 | **Category**           | **Topics** |
 |------------------------|------------|
-| **HTML Basics**        | [HTML5 vs HTML4](#html5-vs-html4) ,  [`<section>` vs `<div>`](#section-vs-div) , [`<div>` vs `<span>`](#div-vs-span) ,  [HTML5 Form Enhancements](#html5-form-enhancements) ,  [Semantic Tags in HTML5](#semantic-tags-in-html5) ,[Creating Custom Tags](#creating-custom-tags-in-html5) , [`alt` in `<img>`](#purpose-of-alt-in-img) , [`id` vs `class`](#id-vs-class) ,  [`async` vs `defer`](#async-vs-defer) ,
-| **CSS Basics**         | [CSS3 Features](#css3-features) ,  [CSS Padding Shorthand](#css-padding-shorthand) , [CSS Positioning](#css-positioning) ,  [`em`, `rem`, `%`, and `px`](#em-rem--and-px) ,  [CSS Specificity](#css-specificity) , [CSS Box Model](#css-box-model) , [Descendant](#descendant) ,
+| **HTML Basics**        | [HTML5 vs HTML4](#html5-vs-html4) ,  [`<section>` vs `<div>`](#section-vs-div) , [`<div>` vs `<span>`](#div-vs-span) ,  [HTML5 Form Enhancements](#html5-form-enhancements) ,  [Semantic Tags in HTML5](#semantic-tags-in-html5) ,[Creating Custom Tags](#creating-custom-tags-in-html5) , [`alt` in `<img>`](#purpose-of-alt-in-img) , [`id` vs `class`](#id-vs-class) ,  [`async` vs `defer`](#async-vs-defer) , [Block vs Inline elements](#Block-vs-Inline-elements)
+| **CSS Basics**         | [CSS3 Features](#css3-features) ,  [CSS Padding Shorthand](#css-padding-shorthand) , [CSS Positioning](#css-positioning) ,  [`em`, `rem`, `%`, and `px`](#em-rem--and-px) ,  [CSS Specificity](#css-specificity) , [CSS Box Model](#css-box-model) , [Descendant](#descendant) , - [Pseudo classes vs Pseudo elements](#Pseudo-classes-vs-Pseudo-elements) - [CSS Grid vs Flexbox](#CSS-Grid-vs-Flexbox) - [Responsive layout](#responsive-layout) - [visibility: hidden vs display: none](#visibility-hidden-vs-display-none) - [Center a div both vertically and horizontally](#center-a-div-both-vertically-and-horizontally) 
+- [z-index](#z-index)
 | **LESS & SASS Intro**  | [CSS Preprocessor](#css-preprocessor) ,[SASS vs LESS](#sass-vs-less) ,[Variables and Nesting](#variables-and-nesting) ,[Mixins in SASS and LESS](#mixins-in-sass-and-less) ,[@mixin vs @extend](#mixin-vs-extend) ,[SASS Partials](#sass-partials) ,[Loops and Functions](#loops-and-functions) ,
 | **SCSS Advanced**      | [SCSS vs CSS](#scss-vs-css) ,[SCSS Variables](#scss-variables) ,[SCSS Nesting](#scss-nesting) ,[SCSS Mixins](#scss-mixins) ,[SCSS Functions](#scss-functions) ,[Mixins and Functions](#mixins-and-functions) ,[@extend](#extend) ,[SCSS Modularity](#scss-modularity) ,[Partials](#partials) ,[@use and @import](#use-and-import) ,[SCSS File Organization](#scss-file-organization) ,[SCSS Control Directives](#scss-control-directives) ,[SCSS Debug](#scss-debug) ,[SCSS Variables Sharing](#scss-variables-sharing) ,[SCSS Maintainability](#scss-maintainability) ,[SCSS Pitfalls](#scss-pitfalls) ,
 
 
 
-### **HTML Basics**
-
-| Question                                     | Answer                                                                                                        | Topic             | Key Concepts                                            |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------- |
-| **What is HTML?**                            | HTML (HyperText Markup Language) structures web content using elements like headings, paragraphs, links, etc. | HTML5             | Semantic tags, audio/video, form APIs, `localStorage`   |
-| **What are semantic HTML elements?**         | Elements that convey meaning: `<header>`, `<footer>`, `<article>`, `<nav>`, etc.                              |  Specificity       | Inline > ID > Class > Element                           |
-| **Difference between `<div>` and `<span>`?** | `<div>` is block-level, `<span>` is inline.                                                                   | Form Enhancements | New input types, `required`, `pattern`, `autofocus`     |
-| **Difference between `id` and `class`?**     | `id` is unique; `class` can be reused.                                                                        | Position          | `relative`, `absolute`, `fixed`, `sticky`               |
-| **Purpose of `alt` attribute?**              | Describes the image (accessibility, SEO). Shown when image fails.                                             | Box Model         | Margin > Border > Padding > Content  
-| **Block vs Inline elements?**                | Block: full width (`<div>`, `<p>`); Inline: content width (`<span>`, `<a>`).                                  | CSS Features      | Media queries, Flexbox/Grid, transitions, variables     |
-| **Embed webpage in another?**                | Use `<iframe>`.                                                                                               | Units             | `px` (fixed), `%` (parent), `em` (parent), `rem` (root) |
-
-
----
-
-###  **CSS Units & Basics**
-
-| Question                                       | Answer                                                                       | Question                                             | Answer                                                         |
-| ---------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------- |
-| **Difference between `em`, `rem`, `px`, `%`?** | `px`: fixed; `em`: relative to parent; `rem`: root; `%`: relative to parent. | **How to make a responsive layout?**                 | Use media queries, `flexbox`, `grid`, `%`, `vw/vh`.            |
-| **Pseudo-classes vs Pseudo-elements?**         | `:hover`, `:focus` = pseudo-class; `::before`, `::after` = pseudo-element.   | **CSS Grid vs Flexbox?**                             | Grid: 2D (rows & columns); Flexbox: 1D (row or column).        |
-| **`visibility: hidden` vs `display: none`?**   | `hidden`: takes up space; `none`: removed from layout.                       | **Center a `div` both vertically and horizontally?** | `display: flex; justify-content: center; align-items: center;` |
-| **CSS Box Model?**                             | Content → Padding → Border → Margin                                          | **Make an image responsive?**                        | `img { max-width: 100%; height: auto; }`                       |
-| **Specificity in CSS?**                        | Inline > ID > Class > Element > \*                                           |
-| **CSS `position` types?** | `relative`: offset from normal; `absolute`: positioned ancestor; `fixed`: viewport; `sticky`: toggles between relative/fixed. |
-| **What is `z-index`?**    | Controls stack order; works only on positioned elements.                                                                      |
-
----
 
 ###  **CSS Techniques & Optimization**
 
@@ -59,6 +32,9 @@
 
 HTML5 introduced:
 
+- HTML (HyperText Markup Language) structures web content using elements like headings, paragraphs, links, etc. 
+
+* Semantic tags, audio/video, form APIs, `localStorage`
 * Semantic tags: `<header>`, `<footer>`, `<article>`, `<section>`, etc.
 * Multimedia elements: `<audio>`, `<video>`
 * New input types: `email`, `date`, `range`, etc.
@@ -68,6 +44,7 @@ HTML5 introduced:
 ---
 
 ### `<section>` vs `<div>`
+                                                       
 
 | Element     | Semantic | Use Case                             |
 | ----------- | -------- | ------------------------------------ |
@@ -87,6 +64,8 @@ HTML5 introduced:
 
 ###  `<div>` vs `<span>`
 
+- `<div>` is block-level, `<span>` is inline.        
+
 | Feature        | `<div>`                   | `<span>`               |
 | -------------- | ------------------------- | ---------------------- |
 | Type           | Block-level               | Inline                 |
@@ -105,8 +84,15 @@ HTML5 introduced:
 
 ---
 
+
+### Block vs Inline elements
+
+- Block: full width (`<div>`, `<p>`); Inline: content width (`<span>`, `<a>`).                   
+
+
 ###  HTML5 Form Enhancements
 
+- Form Enhancements | New input types, `required`, `pattern`, `autofocus`  
 * **New input types**: `email`, `url`, `tel`, `color`, `date`
 * **Attributes**: `required`, `placeholder`, `autofocus`, `pattern`
 
@@ -115,6 +101,8 @@ These improve validation and UX without JavaScript.
 ---
 
 ###  Semantic Tags in HTML5
+
+- Elements that convey meaning: `<header>`, `<footer>`, `<article>`, `<nav>`, etc.                        
 
 | Tag         | Purpose                      | Example Use                |
 | ----------- | ---------------------------- | -------------------------- |
@@ -190,6 +178,8 @@ my-card {
 
 ###  `id` vs `class`
 
+- `id` is unique; `class` can be reused.                                                                  
+
 | Attribute | Unique? | Reusable? | Use Case                              |
 | --------- | ------- | --------- | ------------------------------------- |
 | `id`      |  Yes   | ❌ No      | Specific element styling or JS access |
@@ -209,6 +199,9 @@ my-card {
 ## 🟦 CSS3 Interview Questions
 
 ###  CSS3 Features
+
+
+ - Media queries, Flexbox/Grid, transitions, variables 
 
 * Media queries
 * Flexbox & CSS Grid
@@ -242,6 +235,13 @@ padding: 10px 20px;
 
 ###  CSS Positioning
 
+- Position          | `relative`, `absolute`, `fixed`, `sticky`    
+
+`relative`: offset from normal;
+ `absolute`: positioned ancestor; 
+ `fixed`: viewport; 
+ `sticky`: toggles between relative/fixed.
+
 | Value      | Behavior                                                            |
 | ---------- | ------------------------------------------------------------------- |
 | `static`   | Default, follows normal flow                                        |
@@ -266,6 +266,9 @@ padding: 10px 20px;
 ---
 
 ###  `em`, `rem`, `%`, and `px`
+
+
+-  `px` (fixed), `%` (parent), `em` (parent), `rem` (root) 
 
 
 * Use **`%`** when sizing relative to containers.
@@ -366,6 +369,8 @@ html {
 
 ###  CSS Specificity
 
+- Specificity       | Inline > ID > Class > Element       
+
 | Selector Type      | Specificity Score |
 | ------------------ | ----------------- |
 | Inline style       | 1000              |
@@ -378,6 +383,8 @@ html {
 ---
 
 ###  CSS Box Model
+
+Margin > Border > Padding > Content  
 
 ```
 +-------------------------------+
@@ -871,3 +878,40 @@ SCSS makes CSS:
 
 ---
 
+
+
+
+## `alt` attribute
+
+ - Describes the image (accessibility, SEO). Shown when image fails.                                          
+
+
+
+
+## **Pseudo classes vs Pseudo elements?** 
+
+- `:hover`, `:focus` = pseudo-class; `::before`, `::after` = pseudo-element. 
+
+
+
+
+## **CSS Grid vs Flexbox?**          
+
+- Grid: 2D (rows & columns); Flexbox: 1D (row or column).   
+
+
+
+## **Responsive layout?**  
+- Use media queries, `flexbox`, `grid`, `%`, `vw/vh`.   
+  - `img { max-width: 100%; height: auto; }`   
+
+
+## **`visibility: hidden` vs `display: none`?**  
+-`hidden`: takes up space; `none`: removed from layout.                  
+ 
+# **Center a `div` both vertically and horizontally?** 
+- `display: flex; justify-content: center; align-items: center;` 
+
+
+# **`z index`?**    
+- Controls stack order; works only on positioned elements.      

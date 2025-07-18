@@ -720,7 +720,6 @@ type PersonKeys = keyof Person;
 
 
 ## **Generics**
- Here’s a **clear, interview-ready breakdown and example** for understanding **Generics in TypeScript** — structured for learning, reuse, and practical implementation:
 
 ---
 
@@ -731,7 +730,7 @@ Generics let you write code that works with **any data type**, while still maint
 Think of them as **type variables**:
 They work like function parameters, but for types.
 
----
+
 
 
 * [Basic Example](#Basic-Example)
@@ -757,7 +756,7 @@ const num = identity(123);                // T = number (inferred)
 * `T` is a **placeholder** for a type.
 * TypeScript **infers** the type from the argument unless explicitly set.
 
----
+
 
 ## Generics in Interfaces and Classes
 
@@ -780,7 +779,7 @@ const numHolder = new DataHolder<number>(42);
 
 > ✅ Use case: store or operate on different data types without rewriting logic.
 
----
+
 
 ## Real-World Use Case: Filter Utility
 
@@ -830,7 +829,7 @@ const admins = filterByKey(users, 'role', 'admin');
 const availableProducts = filterByKey(products, 'isAvailable', true);
 ```
 
----
+
 
 ## Constraining Generics with `extends`
 
@@ -846,7 +845,7 @@ getLength([1, 2, 3]);   // ✅ array has length
 // getLength(10);      // ❌ Error: number has no length
 ```
 
----
+
 
 
 
@@ -861,7 +860,7 @@ doSomething("start"); // ✅
 doSomething("stop");  // ✅
 ```
 
----
+
 
 
 
@@ -881,7 +880,7 @@ function greet<T extends Person>(person: T) {
 greet({ name: "John", age: 30 }); // ✅
 ```
 
----
+
 
 
 ### **Key Constraint with `keyof`**
@@ -896,7 +895,7 @@ const id = getProperty(user, "id");     // ✅ id is number
 const name = getProperty(user, "name"); // ✅ name is string
 ```
 
----
+
 
 ## Summary of Generics Use
 

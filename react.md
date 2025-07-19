@@ -4,7 +4,7 @@
 | **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) - [Render Props](Render-Props) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) •  [Reacts Concurrent Mode](#Reacts-Concurrent-Mode) |
-| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
+| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules) •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) •  [Handle Large Forms](#Handle-Large-Forms)|
 | **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query)   •  [React Window](#React-Window) •  [Redux Virtualized](#react-virtualized)  - [Recursion](#Recursion) 
@@ -5658,4 +5658,75 @@ function ChildComponent({ onAction }) {
 9. **Mindset:** -    * "Treat large forms like small apps — well-structured, tested, and optimized."
 
 
+
+
+###  **Hooks Rules?**
+
+- The **Rules of Hooks** are strict guidelines that ensure React's hook system works predictably. There are **two main rules**:
+- Follow the **two rules strictly** to ensure React can maintain the correct **internal hook state** and avoid rendering bugs.
+      - **Only call Hooks at the top level**
+      - **Only call Hooks from React functions**
+
+**Only call Hooks at the top level**
+
+* **Do not call hooks inside loops, conditions, or nested functions**
+* Hooks must be called in the **same order** every render
+* Ensures React can **track hook state correctly**
+
+**✅ Example (Correct):**
+
+```js
+function MyComponent() {   const [count, setCount] = useState(0); } // Top-level hook call 
+```
+
+**❌ Example (Incorrect):**
+
+```js
+if (condition) {   useState(0); } // Hook inside condition = ❌ 
+```
+
+
+**Only call Hooks from React functions**
+
+* Hooks must be called from:
+
+  * **Function components**
+  * **Custom hooks**
+* Do **not** call hooks from:
+
+  * Regular JS functions
+  * Class components
+
+**✅ Example:**
+
+```js
+function useCustomHook() {
+  const value = useState(0); // Valid inside custom hook
+}
+```
+
+**❌ Example:**
+
+```js
+function someUtilityFunction() {
+  useEffect(() => {}); // ❌ Invalid outside React component or hook
+}
+```
+
+
+**Why these rules matter**
+
+* React tracks hook state by **position** (not name)
+* Breaking the rules can cause:
+  * *"Rendered fewer hooks than expected"* errors
+  * **Incorrect or broken state behavior**
+
+
+**Best Practice**
+
+* Use **`eslint-plugin-react-hooks`** to automatically detect violations
+
+  ```bash
+  npm install eslint-plugin-react-hooks --save-dev
+  ```
 

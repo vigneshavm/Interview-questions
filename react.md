@@ -964,11 +964,20 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 
 
 ## Performance Optimization
-- Memoization: Used **React.memo, useMemo, and useCallback** to prevent unnecessary re-renders.
+- Memoization:
+ - I use `React.memo` for pure components to prevent re-renders when props don’t change.
+ - I use `useMemo` for expensive calculations 
+ - `useCallback` to memoize event handlers to avoid recreating functions on every render.
 - Code Splitting: Implemented dynamic imports (React.lazy, Suspense).Reduce the initial bundle size and improves load times
+  - I implement lazy loading and code-splitting for components using `React.lazy` and `Suspense` .
 - Virtualization: Used libraries like **react-window** for long lists.
 - Throttling/Debouncing: Optimized input-heavy components using Lodash debounce.
+   - - I `debounce inputs` and `throttle events` like scroll.
 - SSR/CSR: For SEO-critical apps, enabled SSR using Next.js.
+- I use `React DevTools Profiler` to identifying unnecessary re-renders
+- I `reduce prop drilling` using Context or Redex.
+
+
 
 ###  **Managing Performance in Large React Applications**
 

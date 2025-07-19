@@ -5664,8 +5664,8 @@ function ChildComponent({ onAction }) {
 
 - The **Rules of Hooks** are strict guidelines that ensure React's hook system works predictably. There are **two main rules**:
 - Follow the **two rules strictly** to ensure React can maintain the correct **internal hook state** and avoid rendering bugs.
-      - **Only call Hooks at the top level**
-      - **Only call Hooks from React functions**
+   -  **Only call Hooks at the top level**
+   - **Only call Hooks from React functions**
 
 **Only call Hooks at the top level**
 

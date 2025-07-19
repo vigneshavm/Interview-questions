@@ -4,7 +4,7 @@
 | **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) - [Render Props](Render-Props) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) •  [Reacts Concurrent Mode](#Reacts-Concurrent-Mode) |
-| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules) •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
+| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules)  •  [`useRef` vs `useState`](#useRef-vs-useState)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) •  [Handle Large Forms](#Handle-Large-Forms)|
 | **React Others**          | •    [Refs ](#refs-in-react) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query)   •  [React Window](#React-Window) •  [Redux Virtualized](#react-virtualized)  - [Recursion](#Recursion) 
@@ -5729,4 +5729,59 @@ function someUtilityFunction() {
   ```bash
   npm install eslint-plugin-react-hooks --save-dev
   ```
+
+
+
+
+
+### **`useRef` vs `useState`**
+
+- "`useRef` and `useState` are both hooks in React used to store values between renders, but they serve different purposes and behave differently in how they trigger re-renders."
+
+
+* **`useState`** = *reactive*, causes re-renders, used for **UI state**.
+      -  I use `useState` when I need the UI to reflect changes,
+* **`useRef`** = *non-reactive*, no re-renders, used for **DOM refs**, **mutable values**, or **side-effects**.
+      -  `useRef` when I want to persist a value without triggering re-renders — like storing previous values, debounced inputs, or DOM references."
+
+
+**`useState`**
+
+* **Triggers a re-render** when the state value changes.
+* Used to **store and update UI data** (e.g., form input, component state).
+* Best when the value **affects rendering** or needs to be **reactive**.
+* React keeps track of state changes and schedules updates accordingly.
+
+```tsx
+const [count, setCount] = useState(0);
+
+// Updating this causes the component to re-render
+setCount(count + 1);
+```
+
+
+**`useRef`**
+
+* **Does NOT trigger a re-render** when the `.current` value is updated.
+* Holds a **mutable reference** that persists across renders.
+* Often used to **access DOM nodes** or store **imperative values** (like timers, previous props, flags).
+* Useful when you want to **store something without causing a UI update**.
+
+```tsx
+const inputRef = useRef<HTMLInputElement>(null);
+
+useEffect(() => {
+  inputRef.current?.focus(); // Focuses the input without re-rendering
+}, []);
+```
+
+
+**Real-world Use Case Comparison**:
+
+| Purpose                                           | useState              | useRef             |
+| ------------------------------------------------- | --------------------- | ------------------ |
+| Track user input and show it on screen            | ✅ Yes                 | ❌ Not suitable     |
+| Keep track of how many times a component rendered | ❌ Triggers re-renders | ✅ Perfect use case |
+| Store a timer ID for `clearTimeout`               | ❌ Overhead            | ✅ Ideal            |
+| Refer to a DOM element like `<input>`             | ❌ Not for DOM refs    | ✅ Yes              |
 

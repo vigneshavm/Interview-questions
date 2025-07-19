@@ -4,7 +4,7 @@
 | **React**      | [Autocomplete Component](#autocomplete-component) , [Todo List](#todo-list) , [TodoList with Delete](#TodoList) , [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search) , [React Table with Sorting](#react-table-with-sorting) , [React Pagination](#React-pagination) , [Grid View](#Grid-View) , [Infinite Scroll](#infinite-scroll) , [Form with Validation](#form-with-validation) , [Highlight Text](#highlight-text) , [Counter](#Counter) , [React Form API Call](#React-Form-API-Call) , [Handling API Errors in React](#Handling-API-Errors-in-React)  |
 | **Angular**    | [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search) , [Debounce Input Search](#Angular-Debounce-Input-Search) |
 | **Polyfills**  | [ForEach](#ForEach) [Bind](#customBind) , [Map](#arrayprototypemap) , [Filter](#arrayprototypefilter) , [Reduce](#arrayprototypereduce) , [Call](#functionprototypecall) , [Object.create](#objectcreate) , [Promise](#Promise) , [Debounce](#debounce-polyfill) , [Throttle](#throttle-polyfill) , [Memoize](#Memoize) |
-| **Custom Hooks**| [useDebounce](#Custom-useDebounce-hook) , [Throttling](#Throttling) , [useToggle](#usetoggle--toggle-a-boolean) , [usePrevious – Track previous value](#useprevious--track-previous-value) , [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic) , [useWindowWidth – Track window width](#usewindowwidth--track-window-width) |
+| **Custom Hooks**| [useDebounce](#Custom-useDebounce-hook) , [Throttling](#Throttling) , [useToggle](#usetoggle--toggle-a-boolean) , [usePrevious – Track previous value](#useprevious--track-previous-value) , [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic) , [useWindowWidth – Track window width](#usewindowwidth--track-window-width) - [syncs state to localStorage useLocalStorage](#useLocalStorage)|
 
 
 
@@ -187,7 +187,61 @@ export default function ThrottleExample() {
 }
 ```
 
+## **useLocalStorage**.
 
+
+```tsx
+import { useState, useEffect } from "react";
+
+function useLocalStorage<T>(key: string, initialValue: T) {
+  // Read value from localStorage (or use initialValue)
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    try {
+      const item = localStorage.getItem(key);
+      return item ? (JSON.parse(item) as T) : initialValue;
+    } catch (error) {
+      console.warn("Error reading localStorage key:", key, error);
+      return initialValue;
+    }
+  });
+
+  // Update localStorage whenever value changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(key, JSON.stringify(storedValue));
+    } catch (error) {
+      console.warn("Error writing to localStorage key:", key, error);
+    }
+  }, [key, storedValue]);
+
+  return [storedValue, setStoredValue] as const;
+}
+```
+
+
+**Usage Example**
+
+```tsx
+function ThemeToggler() {
+  const [theme, setTheme] = useLocalStorage("theme", "light");
+
+  return (
+    <div>
+      <p>Current theme: {theme}</p>
+      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+        Toggle Theme
+      </button>
+    </div>
+  );
+}
+```
+ **Key Highlights (for Interview)**
+
+* ✅ Works like `useState` but **persists across reloads**
+* ✅ Uses `JSON.parse` and `JSON.stringify` to support complex types (e.g., arrays, objects)
+* ✅ Implements **lazy initialization** with `useState(() => {...})`
+* ✅ Automatically updates localStorage via `useEffect`
+* ✅ Handles **parsing/writing errors gracefully**
 
 
 

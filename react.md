@@ -831,10 +831,9 @@ const withLoading = (WrappedComponent) => {
 
 ## Reconciliation Process 
 
-Reconciliation is the process of comparing the new virtual DOM with the previous one and updating the real DOM with the minimal number of changes.
-
-**Reconciliation** is the algorithm React uses to determine how the UI should change when state or props change. It’s at the heart of React’s performance.
-
+- Reconciliation is the process of comparing the new virtual DOM with the previous one and updating the real DOM with the minimal number of changes.
+- React tries to re-use elements with the same `key`, and efficiently updates only the parts of the actual DOM that changed.
+- React uses to determine how the UI should change when state or props change
   - A component's state or props change, triggering a re-render.
   - React calls the component function to produce a **new virtual DOM tree**.
   - React compares the **previous virtual DOM** with the **new virtual DOM** using a process called **diffing**.

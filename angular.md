@@ -9,7 +9,7 @@
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
 | **State Management**        | • [State management](#State-management) • [RxJS](#rxjs-in-angular) • [RxJS Operators](#common-rxjs-operators) • [RxJS Operators: switchMap...](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
 | **Performance & Optimization**     | • [Performance Optimization](#performance-optimization) • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
-| **Utilities**      |  • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) • [NgZone](#NgZone) 
+| **Utilities**      |  • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) • [NgZone](#NgZone) • [Zonejs](#Zonejs) 
 | **Other**      | • [Build Bundles & Optimization](#Angular-Build-Bundles)   • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
 | **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection and Zone.js](#change-detection-and-zonejs) • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
@@ -107,7 +107,7 @@ increment() {
 
 ---
 
-###  What is Zone.js?
+###  Zonejs?
 
 **Zone.js** is a library that patches async operations like:
 

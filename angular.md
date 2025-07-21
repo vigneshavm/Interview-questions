@@ -9,10 +9,10 @@
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
 | **State Management**        | • [State management](#State-management) • [RxJS](#rxjs-in-angular) • [RxJS Operators](#common-rxjs-operators) • [RxJS Operators: switchMap...](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
 | **Performance & Optimization**     | • [Performance Optimization](#performance-optimization) • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
-| **Utilities**      |  • [providedIn](#providedIn) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [CI/CD Practices](#cicd-practices) 
+| **Utilities**      |  • [providedIn](#providedIn) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [CI/CD Practices](#cicd-practices)  • [Structure large application](#Structure-a-large-Angular-application)
 | **Other**      | • [Build Bundles & Optimization](#Angular-Build-Bundles)   • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
-| **Change Detection**      | • [NgZone](#NgZone) • [Zonejs](#Zonejs)  • [Disabling Zonejs](#Disabling-Zonejs) • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection](#change-detection-and-zonejs) • [OnPush Change Detection](#onpush-change-detection-strategy)  • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
+| **Change Detection**      | • [NgZone](#NgZone) • [Zonejs](#Zonejs)  • [Disabling Zonejs](#Disabling-Zonejs) • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection](#change-detection-and-zonejs) • [OnPush Change Detection](#onpush-change-detection-strategy)   • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
 | **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [ Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot vs forChild](#RouterModule-forRoot-and-RouterModule-forChild)  • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling) 
 
 
@@ -4414,7 +4414,6 @@ Rendering a large list (e.g., 10,000+ items) can cause:
 * **High memory usage**
 * **Laggy scrolling and poor UX**
 
----
 
 **Optimization Strategies:**
 
@@ -4431,7 +4430,6 @@ Rendering a large list (e.g., 10,000+ items) can cause:
 
    * 🔥 Most efficient and recommended approach.
 
----
 
 2.  **Use `trackBy` with `*ngFor`**
 
@@ -4447,34 +4445,30 @@ Rendering a large list (e.g., 10,000+ items) can cause:
    }
    ```
 
----
 
 3.  **Pagination / Infinite Scroll**
 
    * Load only a **subset of data** initially (e.g., 50 items), then fetch more on scroll.
    * Reduces **initial DOM size** and **memory footprint**.
 
----
 
 4.  **Lazy Loading Data (Backend Pagination)**
 
    * Fetch data in **chunks from the server**, based on page or scroll position.
 
----
 
 5.  **Optimize DOM and Templates**
 
    * Avoid **deep component trees** per row.
    * Avoid **heavy computations** or `pipes` inside templates.
 
----
 
 6.  **Avoid Change Detection Overhead**
 
    * Use `ChangeDetectionStrategy.OnPush` on list items.
    * Consider **`NgZone.runOutsideAngular()`** if needed to handle scroll events or polling.
 
----
+--------
 
 ## **Memory Leak**
 

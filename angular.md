@@ -4120,31 +4120,58 @@ this.ngZone.runOutsideAngular(() => {
 
 ### **Change Detection and Optimization**
 
-
-- Angular’s change detection is powerful but can become expensive. 
-- Using `OnPush`, `NgZone`, `ChangeDetectorRef`, and clean component design makes it scalable for **large enterprise applications**.
-
-* Angular uses a **unidirectional data flow** and a **change detection tree**.
-* On any async event (like `click`, `setTimeout`, `XHR`), Angular triggers **change detection** starting from the root component down.
-* It checks **component templates** against their current data model and updates the DOM if differences are found.
-* Angular relies on **Zone.js** to patch async operations and hook into them.
-
 **By Default:**
 
 * Angular runs **change detection** on **every async event**.
 * It checks **every component** in the tree, even if nothing changed → **performance bottleneck** in large apps.
 
 
+| Technique                 | Benefit                       |
+| ------------------------- | ----------------------------- |
+| `OnPush` strategy         | Skips unnecessary checks  - **@Input() changes**    |
+| `trackBy` in `*ngFor`     | Avoids full DOM redraws       |
+| `runOutsideAngular()`     | Prevents unnecessary CD       |
+| `ChangeDetectorRef` usage | Manual control over CD        |
+| Avoid logic in templates  | Reduces computation per cycle |
+| Lazy loading              | Reduces CD tree size          |
+| `async` pipe              | Efficient observable handling |
+
+
 **Optimization Techniques:**
 
 1.  **`ChangeDetectionStrategy.OnPush`**
 
-   * Only checks a component when:
+   ```js
+   In child file
+   @Component({
+  selector: 'app-onpush-cd',
+  template: `<p>{{ user.name }}</p>`,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class OnPushCdComponent {
+  @Input() user: { name: string };
+}
 
-     * **@Input() changes**
-     * **Events inside component**
-   * Skips unnecessary checks for unchanged components.
-   * Use with **immutable data** and `Observable` streams.
+
+In parent file
+
+@Component({
+  selector: 'app-parent',
+  template: `
+    <app-onpush-cd [user]="user"></app-onpush-cd>
+    <button (click)="updateName()">Change Name</button>
+  `
+})
+export class ParentComponent {
+  user = { name: 'Alice' };
+
+  updateName() {
+    // ⚠ This will NOT trigger OnPush component update
+    this.user.name = 'Bob';
+  }
+}
+
+```
 
 2.  **`NgZone.runOutsideAngular()`**
 

@@ -638,27 +638,21 @@ SELECT * FROM cte;
 
 ## Window Functions
 
-- A **window function** performs a calculation across a **set of rows related to the current row**, 
-- without collapsing rows like `GROUP BY` does.
+- A **window function** performs a calculation across a **set of rows related to the current row**, without collapsing rows like `GROUP BY` does.
 
----
 
-### 🔍 Key Features:
+**Key Features:**
 - Retains **individual rows**.
 - Works over a **"window" of rows** defined by `OVER()` clause.
 - Useful for **rankings**, **running totals**, **moving averages**, etc.
 
----
-
-### 🗂️ Common Window Functions:
+**Common Window Functions:**
 - `ROW_NUMBER()`
 - `RANK()`, `DENSE_RANK()`
 - `SUM()`, `AVG()` over a partition
 - `LEAD()`, `LAG()` for previous/next row access
 
----
-
-### 🧱 Sample Table: `sales`
+**Sample Table: `sales`**
 
 | id | salesperson | region | amount |
 |----|-------------|--------|--------|
@@ -668,9 +662,9 @@ SELECT * FROM cte;
 | 4  | Carol       | West   | 300    |
 | 5  | Bob         | East   | 400    |
 
----
 
-### ✅ Example 1: Running Total Using `SUM() OVER()`
+
+**Example 1: Running Total Using `SUM() OVER()`**
 
 ```sql
 SELECT
@@ -685,9 +679,8 @@ FROM sales;
 * `PARTITION BY salesperson`: Window restarts per salesperson
 * `ORDER BY id`: Running total in row order
 
----
 
-### ✅ Example 2: Row Number
+**Example 2: Row Number**
 
 ```sql
 SELECT

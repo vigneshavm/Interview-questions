@@ -565,23 +565,23 @@ registerUser('test@example.com');
 ##  **Event Emitters**
 
 
+- In Node.js, `EventEmitter` is a core class provided by the built-in `events` module. It enables an **event-driven architecture**, allowing objects to **emit named events** and other parts of the code to **listen and respond** to those events asynchronously.
 
-### ✅ Final Summary (for interview wrap-up)
+- It’s heavily used internally by Node.js — for example, in **streams**, **HTTP servers**, and **file system operations**. You can also use it in your custom modules to **decouple logic** and manage asynchronous workflows cleanly.
 
- - `EventEmitter` provides a simple and powerful way to build event-driven, asynchronous systems in Node.js.
- - It's especially useful in real-time applications where decoupling logic improves scalability and maintainability.
- -  Its use is foundational across Node's core — like in Streams, HTTP servers, and custom modules.
- -   In Node.js, `EventEmitter` is a core module provided by the `events` module that enables an event-driven architecture.
- -  It allows objects to emit named events and respond to them using listeners.
- - This pattern is widely used in Node.js to handle asynchronous operations cleanly, especially for I/O, stream handling, and custom event-based logic.
+- A common pattern is to register listeners using `.on()` or `.once()` for one-time events. It’s especially useful in **real-time applications** where scalability and maintainability are key.
 
+- I typically use `.once()` for **initialization events**,
+- I **always handle the `'error'` event** to prevent the app from crashing,
+- And I make sure to **remove listeners** when they're no longer needed to avoid **memory leaks**.
 
-* ✅ Use `.once()` for initialization/setup events
-* ✅ Always handle the `'error'` event to avoid crashing
-* ✅ Remove listeners to prevent memory leaks
-* ⚠️ Avoid using EventEmitter for simple one-off callbacks; it's meant for **broadcast**-like async patterns
+- One thing to note: I avoid using `EventEmitter` for simple callbacks.
+- It's better suited for **broadcast-like, asynchronous patterns** rather than direct function invocation.
 
----
+- I’m using multiple on('notify') listeners because I want different parts of my system to independently handle the same event — like email, WebSocket, and logging.
+- This gives me loose coupling: none of the listeners depend on each other. I can remove, add, or update them without breaking the rest of the flow.
+- It also improves code modularity — each listener focuses on a single task.
+- They are executed in the order they were registered.
 
 ### ✅ 2. **Real-Time Use Case Example**
 

@@ -37,35 +37,29 @@
 **So, where does MongoDB fit in?**
 
 -  **By default, MongoDB is a CP system** – it prioritizes **Consistency** and **Partition Tolerance**.
-
 -  That means if there's a **network partition**, MongoDB will **sacrifice Availability** to maintain data integrity.
-
 
 **Real-world Example:**
 
 -  Imagine you're building an **e-commerce app** using MongoDB Replica Set for high availability.
-
 -  Now, say the **primary node goes down** due to a network partition.
-
--  * MongoDB will **not allow writes** until a **new primary is elected**.
--  * During this time, users may experience **errors** or **temporary write failures**.
--  * But MongoDB ensures **no inconsistent or stale writes** happen.
+  * MongoDB will **not allow writes** until a **new primary is elected**.
+  * During this time, users may experience **errors** or **temporary write failures**.
+  * But MongoDB ensures **no inconsistent or stale writes** happen.
 
 -  So here, MongoDB favors **Consistency** over **Availability**.
 
 **Tunable Consistency Options:**
 
 -  MongoDB also provides ways to **tune consistency vs availability** using:
-
-- * **Read Preference** (`primary`, `primaryPreferred`, `secondary`)
-- * **Write Concern** (`majority`, `w:1`, etc.)
-
+ * **Read Preference** (`primary`, `primaryPreferred`, `secondary`)
+ * **Write Concern** (`majority`, `w:1`, etc.)
 -  For example, if you set `readPreference: secondary`, you might allow faster reads (favoring **availability**) even if they’re slightly stale.
 
 
 
 
-
+-----------
 
 
 ## Time Series

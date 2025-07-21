@@ -10,7 +10,7 @@
 | **Async and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
 | **Package JSON**             | [package.json](#packagejson),  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
 | **REST API & Security**      | [REST API](#rest-api),  - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) |
-| **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) |
+| **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
 | **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) , - [Debugging Steps I Follow For Timeout](#Debugging-Steps-I-Follow-For-Timeout) |
@@ -5651,6 +5651,33 @@ function retryAsync(fn, retries = 3, delay = 1000) {
 
   * Retry failed messages up to `n` times.
   * Move to DLQ after retries for manual investigation or alerting.
+
+
+
+
+
+### **Hash vs Encrypt**
+
+* Hashing is ideal for verifying data integrity (e.g., verifying passwords), while encryption is used when data needs to be retrieved later (e.g., encrypting messages or files).
+
+* Encryption is reversible with a key; hashing is designed to be irreversible.
+
+* For passwords, hashing with salt is a best practice. For secure communication, encryption (like AES or RSA) is used.
+
+| Aspect            | **Hashing**                                                    | **Encryption**                                                      |
+| ----------------- | -------------------------------------------------------------- | ------------------------------------------------------------------- |
+| **Purpose**       | Data integrity & verification                                  | Data confidentiality & protection                                   |
+| **Process**       | One-way transformation                                         | Two-way transformation (encrypt & decrypt)                          |
+| **Reversible?**   | ❌ Irreversible                                                 | ✅ Reversible (with key)                                             |
+| **Use Cases**     | - Password storage<br>- Digital signatures<br>- File integrity | - Secure communication<br>- File & database encryption<br>- SSL/TLS |
+| **Output Length** | Fixed length (e.g., 256 bits for SHA-256)                      | Variable length (depends on algorithm & data)                       |
+| **Key Used?**     | No key used                                                    | Uses a key (symmetric or asymmetric)                                |
+| **Examples**      | SHA-256, MD5, bcrypt                                           | AES, RSA, DES, Blowfish                                             |
+| **Security Risk** | Susceptible to collision or brute force if weak algorithm      | Risk if key is leaked or poorly managed                             |
+| **Idempotency**   | Same input always gives same output                            | Same input with same key gives same output (unless IV used)         |
+| **Salt/IV?**      | Salt used to prevent rainbow attacks                           | IV used in some modes to ensure unique ciphertexts                  |
+
+
 
 
 

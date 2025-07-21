@@ -5658,10 +5658,8 @@ function retryAsync(fn, retries = 3, delay = 1000) {
 
 ### **Hash vs Encrypt**
 
-* Hashing is ideal for verifying data integrity (e.g., verifying passwords), while encryption is used when data needs to be retrieved later (e.g., encrypting messages or files).
-
-* Encryption is reversible with a key; hashing is designed to be irreversible.
-
+* Hashing is ideal for verifying data integrity (e.g., verifying passwords), hashing is designed to be irreversible.
+* while encryption is used when data needs to be retrieved later (e.g., encrypting messages or files). Encryption is reversible with a key;
 * For passwords, hashing with salt is a best practice. For secure communication, encryption (like AES or RSA) is used.
 
 | Aspect            | **Hashing**                                                    | **Encryption**                                                      |

@@ -1,5 +1,5 @@
-| **Category**              | **Topics** |
-|---------------------------|------------|
+| **Category**                       | **Topics** |
+|------------------------------------|------------|
 | **Keys & Operators**      | [WHERE Vs HAVING Vs GROUP BY](#WHERE-Vs-HAVING-Vs-GROUP-BY) , [`INNER JOIN` vs `LEFT JOIN` vs `RIGHT JOIN`](#INNER-JOIN-vs-LEFT-JOIN-vs-RIGHT-JOIN) , [Primary Key vs Foreign Key vs Composite Key](#Primary-Key-vs-Foreign-Key-vs-Composite-Key) ,  , ,  , [Subquery vs Correlated Subquery](#Subquery-vs-Correlated-Subquery) , , [Common Table Expression (CTE)](#CTE) , [Detect and Avoid SQL Injection](#Detect-and-avoid-SQL-injection) , [Window Functions](#Window-Functions) , [View](#View), [Triggers](#Triggers) , [Stored Procedure](#Stored-Procedure) , [Insert Unique IDs Without Auto-Increment](#Approaches-to-Insert-Unique-IDs-Without-Auto-Increment-or-Primary-Key) , [Triggers vs Stored Procedures](#Triggers-vs-Stored-Procedures) , [Delete and Rollback](#Delete-and-Rollback) , [Constraints](#Constraints) |
 | **Operator & Index**             | [`IN` Operator](#in-operator)  , [`TRUNCATE` vs `DELETE` vs `DROP`](#TRUNCATE-vs-DELETE-vs-DROP), [`UNION` and `UNION ALL`](#UNION-and-UNION-ALL), [Indexes](#Indexes), [Index Drawbacks](#Index-Drawbacks)  |
 | **DB Design**             | [Designing a Database](#Designing-a-database) , [Normalization](#Normalization), [Normal Form](#Normal-Form) , [Denormalization](#denormalization) , [One to One, One to Many, Many to Many](#one-to-one-one-to-many-many-to-many-relationships) |

@@ -9,10 +9,10 @@
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
 | **State Management**        | • [State management](#State-management) • [RxJS](#rxjs-in-angular) • [RxJS Operators](#common-rxjs-operators) • [RxJS Operators: switchMap...](#rxjs-mapping-operators-switchmap-mergemap-concatmap-exhaustmap)  • [NgRx for State Management](#NgRx-for-State-Management) • [Implementation with NgRx](#Step-by-Step-Implementation-with-NgRx)                                                       |
 | **Performance & Optimization**     | • [Performance Optimization](#performance-optimization) • [AOT](#AOT)   • [AOT vs JIT](#AOT-vs-JIT)  • [Tree Shaking](#Tree-Shaking) • [Source Maps](#source-maps) • [Build Optimizer](#build-optimizer) • [Assets Optimizes](#how-angular-optimizes-assets)
-| **Utilities**      |  • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) 
+| **Utilities**      |  • [providedIn](#providedIn) • [CI/CD Practices](#cicd-practices) • [NgZone](#NgZone) • [Zonejs](#Zonejs)  • [Disabling Zonejs](#Disabling-Zonejs) 
 | **Other**      | • [Build Bundles & Optimization](#Angular-Build-Bundles)   • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
-| **Change Detection**      | • [Change Detection](#change-detection-and-zonejs) • [Optimization Change Detection](#Change-Detection-and-Optimization)  • [NgZone](#NgZone) • [Zonejs](#Zonejs)  • [Disabling Zonejs](#Disabling-Zonejs)  • [OnPush Change Detection Strategy](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
+| **Change Detection**      | • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection](#change-detection-and-zonejs) • [OnPush Change Detection](#onpush-change-detection-strategy) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [Structure large application](#Structure-a-large-Angular-application) • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
 | **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [ Angular Universal](#Set-up-Angular-Universal) • [RouterModule.forRoot vs forChild](#RouterModule-forRoot-and-RouterModule-forChild)  • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling) 
 
 
@@ -450,49 +450,59 @@ export class AppComponent {}
 
 ## OnPush Change Detection Strategy
 
-### 🎙️ Sample Interview Closing Statement
+- `OnPush` is a **change detection strategy in Angular** that significantly improves performance by **limiting when a component’s view is checked for updates**.
 
-- OnPush lets Angular skip checking the component unless input references change or events occur, which drastically improves performance, but it requires immutable data or manual triggers to keep the view updated.”
+- "In performance-critical areas, I combine `OnPush` with `trackBy` in `*ngFor`, lazy loading, and `runOutsideAngular()` for async operations to reduce change detection overhead even further."
 
+- Instead of running change detection on every app-wide change, Angular **skips the component** unless **specific triggers** occur — making it especially powerful in **large-scale or data-heavy applications**.
 
-###  **What is OnPush?**
+**How OnPush Works**
 
-* An Angular **Change Detection strategy** that optimizes performance by limiting when the component’s view is checked for updates.
-* Set using `changeDetection: ChangeDetectionStrategy.OnPush` in the component decorator.
+Angular runs change detection for `OnPush` components only when:
 
+1. **An `@Input()` property changes by reference** (not just a nested value).
+2. **An event occurs inside the component** (like a button click).
+3. **An Observable bound using the `async` pipe emits** a new value.
+4. **You manually trigger it** using `ChangeDetectorRef.markForCheck()` or `detectChanges()`.
 
-###  **How It Works**
+```ts
+@Component({
+  selector: 'app-optimized',
+  template: `{{ data.value }}`,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class OptimizedComponent {
+  @Input() data: { value: string };
+}
+```
 
-* Angular runs change detection **only when:**
-
-  * The component’s **@Input()** properties change by reference.
-  * An **event originated from the component or its children** (e.g., user input).
-  * An **Observable bound via the async pipe emits a new value**.
-  * You manually trigger detection (`markForCheck()` or `detectChanges()`).
-
-
-### 🚀 **Benefits**
-
-* **Improves performance** by reducing unnecessary checks.
-* Ideal for **immutable data patterns**.
-* Especially useful in large or complex component trees.
-
-
-### ⚠️ **Things to Watch Out For**
-
-* Changes to object properties **won’t trigger CD** unless the object reference changes.
-* Requires discipline: always use **immutable data** or trigger change detection manually.
-* Not suitable if the component depends on mutable objects without emitting new references.
+- In this case, `data.value = 'new'` won't update the view unless `data` itself is reassigned (`data = { value: 'new' }`).
 
 
-### 🎯 **Typical Use Cases**
+**Benefits of OnPush**
 
-* Components with **inputs from immutable data sources**.
-* Components relying on **Observables** with the async pipe.
-* Performance-critical parts of an app with many bindings.
+* **Improves rendering performance** by skipping unnecessary DOM updates.
+* Ideal for **immutable state management** (e.g., with NgRx or RxJS).
+* **Scales better** in apps with deep or wide component trees.
+* Reduces CPU usage and increases responsiveness.
 
 
+**Things to Watch Out For**
 
+* Updating a property of an object **without changing its reference** won’t trigger change detection.
+  * You must use **immutable updates** (`data = { ...data, value: 'new' }`)
+* If working with mutable data or third-party libraries that mutate objects, you may need to **manually call** `markForCheck()`.
+
+
+**Typical Use Cases**
+
+* Components that receive data from **immutable state containers** (like NgRx).
+* Views driven by **Observables + async pipe**.
+* **High-performance UIs** (dashboards, infinite scrolling, charts).
+* Static or low-interaction components in large lists.
+
+
+--------
 
 
 

@@ -588,9 +588,8 @@ registerUser('test@example.com');
 * You decouple the core logic (`placeOrder`) from side effects (e.g., notifications).
 * You can plug/unplug listeners at runtime — great for scalable systems.
 
----
 
-### 🔄 3. **Commonly Used Methods**
+ **Commonly Used Methods**
 
 | Method                             | Description                        |
 | ---------------------------------- | ---------------------------------- |
@@ -601,10 +600,10 @@ registerUser('test@example.com');
 | `.removeAllListeners(event)`       | Removes all listeners for an event |
 | `.listenerCount(event)`            | Returns count of listeners         |
 
----
 
+ - [Event Emitter Interview Qns](#Event-Emitter-Interview-Qns)
+ - [Event Emitter Example](#Event-Emitter-Example)
 
-### ✅ 2. **Real-Time Use Case Example**
 
 ```js
 const EventEmitter = require('events');
@@ -646,8 +645,7 @@ function triggerNotification(user, message) {
 triggerNotification('vignesh@example.com', 'You have a new message!');
 ```
 
-
-### 🔥 4. **Interview Q\&A Examples**
+### **Event Emitter Interview Qns**
 
 #### Q1: *What is the difference between `.on()` and `.once()`?*
 

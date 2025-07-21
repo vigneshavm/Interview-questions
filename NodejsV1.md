@@ -583,28 +583,6 @@ registerUser('test@example.com');
 - It also improves code modularity — each listener focuses on a single task.
 - They are executed in the order they were registered.
 
-### ✅ 2. **Real-Time Use Case Example**
-
-```js
-const EventEmitter = require('events');
-
-class OrderService extends EventEmitter {
-  placeOrder(order) {
-    console.log('Order placed:', order);
-    this.emit('orderPlaced', order);
-  }
-}
-
-const service = new OrderService();
-
-service.on('orderPlaced', (order) => {
-  console.log('Sending confirmation for', order.id);
-  // send email, log to DB, etc.
-});
-
-service.placeOrder({ id: 101, item: 'Phone' });
-```
-
 🔎 **Why EventEmitter?**
 
 * You decouple the core logic (`placeOrder`) from side effects (e.g., notifications).
@@ -624,6 +602,50 @@ service.placeOrder({ id: 101, item: 'Phone' });
 | `.listenerCount(event)`            | Returns count of listeners         |
 
 ---
+
+
+### ✅ 2. **Real-Time Use Case Example**
+
+```js
+const EventEmitter = require('events');
+
+// Notification emitter
+class NotificationCenter extends EventEmitter {}
+const notificationCenter = new NotificationCenter();
+
+// Email notification listener
+notificationCenter.on('notify', (data) => {
+  console.log(`📧 Email sent to ${data.user}: ${data.message}`);
+});
+
+// WebSocket notification listener
+notificationCenter.on('notify', (data) => {
+  console.log(`💬 WebSocket push to ${data.user}: ${data.message}`);
+});
+
+// Logging notification
+notificationCenter.on('notify', (data) => {
+  console.log(`📝 Logged notification for ${data.user}: ${data.message}`);
+});
+
+// Error handling (always handle 'error')
+notificationCenter.on('error', (err) => {
+  console.error('❌ Notification error:', err.message);
+});
+
+// Simulate triggering a notification
+function triggerNotification(user, message) {
+  try {
+    notificationCenter.emit('notify', { user, message });
+  } catch (err) {
+    notificationCenter.emit('error', err);
+  }
+}
+
+// Example usage
+triggerNotification('vignesh@example.com', 'You have a new message!');
+```
+
 
 ### 🔥 4. **Interview Q\&A Examples**
 

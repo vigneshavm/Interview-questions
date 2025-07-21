@@ -52,15 +52,58 @@ export class UserCardComponent {
 
 
 
-###  What is Change Detection?
 
-Change detection in Angular is the process by which Angular determines whether the **model (component state)** has changed and updates the **view (DOM)** accordingly.
+- **Change Detection** in Angular is the process that keeps the **component's model (state)** and the **view (DOM)** in sync.
+- Whenever an event occurs, Angular runs change detection to see **if any data-bound values have changed**, and if so, **updates the DOM**.
 
-When change detection runs:
+**How It Works:**
 
-1. Angular walks through the component tree.
-2. It compares the current values of bound properties (e.g., in templates) with the previous ones.
-3. If a change is detected, it updates the DOM.
+* Angular **traverses the component tree** from top to bottom.
+* It **checks all template-bound expressions**.
+* Compares **current values vs previous values**.
+* **If changes are detected**, the **DOM is updated**.
+
+**Triggers for Change Detection:**
+
+* **User input** events (click, keypress, etc.)
+* **Async operations** (`setTimeout`, `Promise`, `Observable`)
+* **HTTP responses**
+* **Manual triggers** (`ApplicationRef.tick()`, `NgZone.run()`)
+
+**Change Detection Strategies:**
+
+* `Default`: Checks **every component** on each cycle.
+* `OnPush`: Checks component **only if**:
+
+  * **@Input() reference changes**
+  * **Event occurs within the component**
+
+**Example:**
+
+```html
+<p>{{ counter }}</p>
+<button (click)="increment()">Increment</button>
+```
+
+```ts
+increment() {
+  this.counter++; // Angular runs change detection
+}
+```
+
+* When `increment()` is called, Angular detects `counter` has changed → **updates the DOM**.
+
+**Pro Tips (Performance Optimization):**
+
+* Use `ChangeDetectionStrategy.OnPush` for **better performance**
+* Detach zone using `NgZone.runOutsideAngular()` to **skip unnecessary checks**
+* Use `ChangeDetectorRef.detectChanges()` for **manual control**
+* Triggered automatically by Angular or manually using:
+    * ChangeDetectorRef.detectChanges()
+    * ApplicationRef.tick()
+* Controlled using ChangeDetectionStrategy (Default or OnPush)
+* Powered by Zone.js (which patches async APIs to trigger CD)
+
 
 ---
 

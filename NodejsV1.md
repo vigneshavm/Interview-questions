@@ -7,7 +7,7 @@
 | **Express.js Framework**     | -[Core modules](#core-modules) - [HTTP Module](#HTTP-Module),  - [Express.js](#expressjs),  - [Routing](#routing),  - [HTTP Methods](#http-methods--use-cases),  - [Query Params](#request-response-query-params),  - [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop),  - [Async I/O Handling](#asynchronous-io-handling),  - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks),  - [Async Execution Order](#Async-Execution-Order),  - [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick),   |
 | **Processes**                | - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
-| **Async and Middleware** |  [BackPressure](#BackPressure) - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
+| **Async and Middleware** |  [BackPressure](#BackPressure)  - [FS(File System](#FS), - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
 | **Package JSON**             | [package.json](#packagejson),  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
 | **REST API & Security**      | [REST API](#rest-api),  - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) |
 | **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) |
@@ -5697,5 +5697,93 @@ function retryAsync(fn, retries = 3, delay = 1000) {
 
 
 
+## FS
 
 
+
+- [Check if File Exists](#check-if-file-exists)
+- [Copy File](#copy-file)
+- [Read Directory Contents](#read-directory-contents)
+- [Create Directory](#create-directory)
+- [Delete a File](#delete-a-file)
+- [Append to File](#append-to-file)
+- [Write to File](#write-to-file)
+- [Read File](#read-file)
+
+
+
+#### **Read File**
+
+```js
+fs.readFile('example.txt', 'utf8', (err, data) => {
+  if (err) return console.error('Error reading file:', err);
+  console.log('File content:', data);
+});
+```
+
+#### **Write to File**
+
+```js
+fs.writeFile('example.txt', 'Hello, Node.js!', 'utf8', (err) => {
+  if (err) return console.error('Error writing file:', err);
+  console.log('File written successfully');
+});
+```
+
+#### **Append to File**
+
+```js
+fs.appendFile('example.txt', '\nMore content...', 'utf8', (err) => {
+  if (err) return console.error('Error appending:', err);
+  console.log('Content appended');
+});
+```
+
+#### **Delete a File**
+
+```js
+fs.unlink('example.txt', (err) => {
+  if (err) return console.error('Error deleting:', err);
+  console.log('File deleted');
+});
+```
+
+#### **Create Directory**
+
+```js
+fs.mkdir('myFolder', { recursive: true }, (err) => {
+  if (err) return console.error('Error creating directory:', err);
+  console.log('Directory created');
+});
+```
+
+#### **Read Directory Contents**
+
+```js
+fs.readdir('myFolder', (err, files) => {
+  if (err) return console.error('Error reading directory:', err);
+  console.log('Files:', files);
+});
+```
+
+#### **Check if File Exists**
+
+```js
+fs.access('example.txt', fs.constants.F_OK, (err) => {
+  console.log(err ? 'File does not exist' : 'File exists');
+});
+```
+
+---
+
+#### **Copy File**
+
+```js
+const source = 'example.txt';
+const destination = 'copy.txt';
+
+fs.copyFile(source, destination, (err) => {
+  if (err) return console.error('Error copying file:', err);
+  console.log('File copied successfully');
+});
+```

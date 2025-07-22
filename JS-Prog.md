@@ -2240,34 +2240,6 @@ console.log(getMaxOccurringChar("xyz"));           // x (all are 1, returns firs
 
 
 ##  **Maximum Sum Subarray of Size K** 
----
-
-###  Pseudocode:
-
-```
-Function MaxSumSubarray(arr, k):
-    Initialize windowSum to 0
-    Initialize maxSum to 0
-
-    // Step 1: Calculate the sum of the first 'k' elements
-    For i from 0 to k - 1:
-        windowSum = windowSum + arr[i]
-    
-    Set maxSum = windowSum
-
-    // Step 2: Slide the window through the rest of the array
-    For i from k to length of arr - 1:
-        // Add the new element and remove the old one
-        windowSum = windowSum + arr[i] - arr[i - k]
-
-        // Update maxSum if needed
-        If windowSum > maxSum:
-            maxSum = windowSum
-
-    Return maxSum
-```
-
----
 
 ###  Example (Dry Run):
 For `arr = [2, 1, 5, 1, 3, 2]` and `k = 3`:
@@ -2282,25 +2254,41 @@ For `arr = [2, 1, 5, 1, 3, 2]` and `k = 3`:
 ###  Program:
   ```javascript
 function maxSumSubarray(arr, k) {
+  // Step 1: Initialize two variables.
+  // maxSum will store the maximum sum found so far.
+  // windowSum is used to store the sum of the current window of size k.
   let maxSum = 0;
   let windowSum = 0;
 
-  // First window sum
+  // Step 2: Calculate the sum of the first 'k' elements.
+  // This forms the first window.
   for (let i = 0; i < k; i++) {
-    windowSum += arr[i];
+    windowSum += arr[i];  // Accumulate the first k elements
   }
 
+  // Step 3: Initialize maxSum with the sum of the first window
   maxSum = windowSum;
 
-  // Slide the window
+  // Step 4: Slide the window through the array.
+  // For each step, add the next element to the window and remove the first element of the previous window.
   for (let i = k; i < arr.length; i++) {
+    // Slide the window forward by 1 element:
+    // - Add arr[i] (new incoming element)
+    // - Subtract arr[i - k] (element going out of the window)
     windowSum += arr[i] - arr[i - k];
+
+    // Update maxSum if the new windowSum is larger
     maxSum = Math.max(maxSum, windowSum);
   }
 
+  // Step 5: Return the maximum sum found for any window of size k
   return maxSum;
 }
-  ```
+
+maxSumSubarray([2, 1, 5, 1, 3, 2], 3)
+// Output: 9  →  subarray [5, 1, 3]
+
+```
 ---
 
 

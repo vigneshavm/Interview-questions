@@ -4097,18 +4097,40 @@ function trap(height) {
 
 ```javascript
 function maxProduct(nums) {
-    let maxProd = nums[0], minProd = nums[0], result = nums[0];
+    // Initialize max product, min product, and result with the first element
+    let maxProd = nums[0];  // Tracks max product ending at current index
+    let minProd = nums[0];  // Tracks min product (important because a negative * negative = positive)
+    let result = nums[0];   // Final result
 
+    // Loop through the array starting from index 1
     for (let i = 1; i < nums.length; i++) {
         const curr = nums[i];
-        const tempMax = Math.max(curr, maxProd * curr, minProd * curr);
-        minProd = Math.min(curr, maxProd * curr, minProd * curr);
+
+        // We calculate tempMax first because maxProd will be updated before we use it for minProd
+        const tempMax = Math.max(
+            curr,               // current number itself
+            maxProd * curr,     // product with previous max
+            minProd * curr      // product with previous min (in case current is negative)
+        );
+
+        // Update minProd using the same logic to track the lowest (possibly most negative) product
+        minProd = Math.min(
+            curr,
+            maxProd * curr,
+            minProd * curr
+        );
+
+        // Now assign tempMax to maxProd (we had to use the old value before updating)
         maxProd = tempMax;
+
+        // Update result with the max of itself and maxProd so far
         result = Math.max(result, maxProd);
     }
 
+    // Return the maximum product found
     return result;
 }
+
 ```
 
  **Example**: `maxProduct([2,3,-2,4])` → `6`

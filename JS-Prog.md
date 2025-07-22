@@ -5112,5 +5112,140 @@ Withdrawal Queue: [0, 1, 2, 3, 4, 0, 3, 4, 0, 3, 4, 0, 3, 4, 3]
 Exit Order: [1, 2, 0, 4, 3]
 ```
 
+## parking spot
 
+```js
+// Enum-like object for vehicle types
+const VehicleType = {
+  BIKE: 'BIKE',
+  CAR: 'CAR',
+  TRUCK: 'TRUCK',
+};
+
+// Vehicle class
+class Vehicle {
+  constructor(licensePlate, type) {
+    this.licensePlate = licensePlate;
+    this.type = type;
+  }
+}
+
+// ParkingSpot class represents a single parking spot
+class ParkingSpot {
+  constructor(id, type) {
+    this.id = id;                     // Unique spot ID
+    this.type = type;                 // Type of spot (bike, car, truck)
+    this.isOccupied = false;          // Whether the spot is occupied
+    this.vehicle = null;              // Which vehicle is parked
+  }
+
+  // Park a vehicle if the type matches and spot is free
+  park(vehicle) {
+    if (this.isOccupied || this.type !== vehicle.type) {
+      return false;
+    }
+    this.vehicle = vehicle;
+    this.isOccupied = true;
+    return true;
+  }
+
+  // Vacate the parking spot
+  leave() {
+    this.vehicle = null;
+    this.isOccupied = false;
+  }
+}
+
+// Main ParkingLot class
+class ParkingLot {
+  constructor(capacityPerType) {
+    this.spots = []; // List of all parking spots
+    this.capacityPerType = capacityPerType;
+
+    this.initializeSpots();
+  }
+
+  // Initialize parking spots for each vehicle type
+  initializeSpots() {
+    let id = 1;
+    for (let i = 0; i < this.capacityPerType; i++) {
+      this.spots.push(new ParkingSpot(id++, VehicleType.BIKE));
+      this.spots.push(new ParkingSpot(id++, VehicleType.CAR));
+      this.spots.push(new ParkingSpot(id++, VehicleType.TRUCK));
+    }
+  }
+
+  // Find and park a vehicle in the nearest available spot
+  parkVehicle(vehicle) {
+    for (let spot of this.spots) {
+      if (!spot.isOccupied && spot.type === vehicle.type) {
+        const parked = spot.park(vehicle);
+        if (parked) {
+          console.log(`🚗 Vehicle parked at spot #${spot.id} + #${vehicle.type} `);
+          return spot;
+        }
+      }
+    }
+    console.log(`❌ No available spot for ${vehicle.type}`);
+    return null;
+  }
+
+  // Unpark a vehicle using its license plate
+  unparkVehicle(licensePlate) {
+    for (let spot of this.spots) {
+      if (spot.isOccupied && spot.vehicle.licensePlate === licensePlate) {
+        spot.leave();
+        console.log(`✅ Vehicle ${licensePlate} removed from spot #${spot.id}`);
+        return true;
+      }
+    }
+    console.log(`⚠️ Vehicle with plate ${licensePlate} not found`);
+    return false;
+  }
+
+  // Get available spot count for a type
+  getAvailableSpots(type) {
+    return this.spots.filter(s => !s.isOccupied && s.type === type).length;
+  }
+
+  // Print current lot status
+  printStatus() {
+    console.log("\n📊 Parking Lot Status:");
+    for (let spot of this.spots) {
+      console.log(`Spot #${spot.id} [${spot.type}]: ${spot.isOccupied ? 'Occupied' : 'Free'}`);
+    }
+  }
+}
+
+// ==============================
+// 🧪 Sample Usage
+// ==============================
+
+const lot = new ParkingLot(2); // 2 spots per type → total 6 spots
+
+const bike = new Vehicle("TN01-BK-9999", VehicleType.BIKE);
+const car = new Vehicle("TN02-CAR-1234", VehicleType.CAR);
+const truck = new Vehicle("TN03-TRK-8888", VehicleType.TRUCK);
+
+// Park vehicles
+lot.parkVehicle(bike);
+lot.parkVehicle(car);
+lot.parkVehicle(truck);
+
+// Attempt to park another car
+const car2 = new Vehicle("TN04-CAR-5678", VehicleType.CAR);
+lot.parkVehicle(car2);
+
+// Print lot status
+lot.printStatus();
+
+// Unpark a car
+lot.unparkVehicle("TN02-CAR-1234");
+
+// Try again
+lot.parkVehicle(car2);
+
+// Check available car spots
+console.log("🚙 Available CAR spots:", lot.getAvailableSpots(VehicleType.CAR));
+```
 

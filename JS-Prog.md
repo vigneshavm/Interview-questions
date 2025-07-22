@@ -17,6 +17,7 @@
 | Binary Tree | • [Inorder / Preorder / Postorder Traversal](#inorder-preorder-postorder-traversal) • [Level Order Traversal](#level-order-traversal) • [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree) • [Symmetric Tree](#symmetric-tree) • [Diameter of Binary Tree](#diameter-of-binary-tree) • [Lowest Common Ancestor (BST & Binary Tree)](#lowest-common-ancestor) • [Serialize and Deserialize Binary Tree](#serialize-and-deserialize-binary-tree) • [Path Sum](#path-sum) • [Convert Sorted Array to BST](#convert-sorted-array-to-bst) • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)   • [Trapping Rain Water](#trapping-rain-water)
 
 - [filename and pattern match](#filename-and-pattern-match)
+- [Amount Withdraw Queue](#Amount-Withdraw-Queue)
 ---
 
 | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       |
@@ -5040,3 +5041,76 @@ function matchPattern(filename, pattern) {
 - 'b' !== 'c' → backtrack using *
 - Expand * to include 'b', check again
 - 'c' === 'c' → done ✅
+
+
+
+----------
+
+## Amount Withdraw Queue
+
+* Each person (indexed `0` to `4`) has an initial amount in `amounts`.
+* They can withdraw up to `maxWithdrawLimit` (400) in a turn.
+* People are in a queue and take turns.
+* If after a withdrawal, their balance is `<= 0`, they exit the queue.
+* You must simulate the withdrawal process and generate:
+
+  1. **`exitOrder`** → the order people leave the queue.
+  2. **`withdrawalQueue`** → the index of the person on each withdrawal turn.
+
+
+
+**Code to simulate**
+
+```javascript
+let amounts = [1200, 400, 300, 2000, 1500];
+let maxWithdrawLimit = 400;
+
+let queue = [0, 1, 2, 3, 4];
+let withdrawalQueue = [];
+let exitOrder = [];
+
+while (queue.length > 0) {
+    let person = queue.shift(); // person at the front
+    withdrawalQueue.push(person);
+
+    // Deduct withdrawal amount
+    amounts[person] -= maxWithdrawLimit;
+
+    if (amounts[person] <= 0) {
+        exitOrder.push(person);
+    } else {
+        queue.push(person); // person goes to back of the queue
+    }
+}
+
+console.log("Withdrawal Queue:", withdrawalQueue);
+console.log("Exit Order:", exitOrder);
+```
+
+
+**Output Explanation**
+
+Let’s walk through the simulation step by step:
+
+Initial:
+`amounts = [1200, 400, 300, 2000, 1500]`
+`queue = [0, 1, 2, 3, 4]`
+
+Withdrawals:
+
+* `0`: 1200 → 800 → 400 → 0 (exits after 3 turns)
+* `1`: 400 → 0 (exits)
+* `2`: 300 → -100 (exits)
+* `3`: 2000 → 1600 → 1200 → 800 → 400 → 0 (exits after 5 turns)
+* `4`: 1500 → 1100 → 700 → 300 → -100 (exits after 4 turns)
+
+
+**Final Output**
+
+```javascript
+Withdrawal Queue: [0, 1, 2, 3, 4, 0, 3, 4, 0, 3, 4, 0, 3, 4, 3]
+Exit Order: [1, 2, 0, 4, 3]
+```
+
+
+

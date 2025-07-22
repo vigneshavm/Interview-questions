@@ -2105,19 +2105,33 @@ function matchPattern(filename, pattern) {
 
 ## **Stock Span Problem**
 ```js
+// StockSpanner class to calculate the "stock span" for each new price
 class StockSpanner {
   constructor() {
+    // Stack will store tuples [price, span]
+    // Each element represents the price of a day and its calculated span
     this.stack = [];
   }
+
   next(price) {
+    // Start with span = 1 (at least today counts)
     let span = 1;
+
+    // While stack is not empty and the top price on the stack is less than or equal to current price
     while (this.stack.length && this.stack[this.stack.length - 1][0] <= price) {
+      // Pop the top element and add its span to the current span
+      // This means the price has been greater than or equal for that many days before
       span += this.stack.pop()[1];
     }
+
+    // Push the current price and its span into the stack
     this.stack.push([price, span]);
+
+    // Return the span for this price
     return span;
   }
 }
+
 - **Time Complexity**: **O(n) amortized**
 - **Space Complexity**: **O(n)**
 

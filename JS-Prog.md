@@ -18,6 +18,7 @@
 
 - [filename and pattern match](#filename-and-pattern-match)
 - [Amount Withdraw Queue](#Amount-Withdraw-Queue)
+- [Parking spot](#parking-spot)
 ---
 
 | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       |
@@ -5112,7 +5113,7 @@ Withdrawal Queue: [0, 1, 2, 3, 4, 0, 3, 4, 0, 3, 4, 0, 3, 4, 3]
 Exit Order: [1, 2, 0, 4, 3]
 ```
 
-## parking spot
+## Parking spot
 
 ```js
 // Enum-like object for vehicle types

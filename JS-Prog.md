@@ -3943,13 +3943,23 @@ function moveZeroes(nums) {
 
 ```javascript
 function maxSubArray(nums) {
-    let curr = nums[0], max = nums[0];
+    // Initialize current sum and max sum with the first element
+    let curr = nums[0];  // Current subarray sum
+    let max = nums[0];   // Maximum subarray sum found so far
+
+    // Start iterating from the second element
     for (let i = 1; i < nums.length; i++) {
+        // Either start a new subarray at nums[i] or extend the previous subarray
         curr = Math.max(nums[i], curr + nums[i]);
+
+        // Update max if current sum is greater
         max = Math.max(max, curr);
     }
+
+    // Return the maximum subarray sum found
     return max;
 }
+
 ```
 
  **Example**: `maxSubArray([-2,1,-3,4,-1,2,1,-5,4])` → `6`

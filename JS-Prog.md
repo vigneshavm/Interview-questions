@@ -11,13 +11,13 @@
 | String  | • [Palindrome](#palindrome) • [Reverse](#reverse-a-string) • [Anagrams](#anagram)  • [Vowels](#vowels)   • [First Non-Repeating Character](#first-non-repeating-character) • [Permutation `"ba"` is a permutation of `"ab"`](#Permutation-in-String) • [Isomorphic Strings](#isomorphic-strings)  • [Longest Substring](#Longest-Substring) 
 | Frequent |  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Character Frequency Count](#character-frequency-count) • [Most Frequent Character](#Most-Frequent-Character-in-a-String) • [Count Frequency - Array](#Count-Frequency-of-Array-Element) • [Minimum Window Substring](#Minimum-Window-Substring) 
 | Functions |   • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Binary Search](#Binary-Search) 
-| Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) • [Simulating Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
+| Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Boolean Function to Match Filename Pattern Without Regex](#Boolean-Function-to-Match-Filename-Pattern-Without-Regex) 
 | Searching |  • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)    • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
 | Graph Problems | • [BFS Traversal](#bfs) • [DFS Traversal](#dfs) • [Number of Islands (Matrix BFS/DFS)](#number-of-islands) • [Detect Cycle in Graph](#detect-cycle-in-graph)  • [Clone Graph](#clone-graph) • [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix) • [Word Ladder](#word-ladder) • [Dijkstra’s Algorithm](#dijkstras-algorithm) • [LRU](#LRU)
 | Binary Tree | • [Inorder / Preorder / Postorder Traversal](#inorder-preorder-postorder-traversal) • [Level Order Traversal](#level-order-traversal) • [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree) • [Symmetric Tree](#symmetric-tree) • [Diameter of Binary Tree](#diameter-of-binary-tree) • [Lowest Common Ancestor (BST & Binary Tree)](#lowest-common-ancestor) • [Serialize and Deserialize Binary Tree](#serialize-and-deserialize-binary-tree) • [Path Sum](#path-sum) • [Convert Sorted Array to BST](#convert-sorted-array-to-bst) • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)   • [Trapping Rain Water](#trapping-rain-water)
 
 - [filename and pattern match](#filename-and-pattern-match)
-- [Amount Withdraw Queue](#Amount-Withdraw-Queue)
+  • [Amount Withdraw Queue](#Amount-Withdraw-Queue) - • [Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
 - [Parking spot](#parking-spot)
 ---
 

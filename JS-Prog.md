@@ -3938,7 +3938,7 @@ function moveZeroes(nums) {
 
 ---
 
-### **Maximum Subarray (Kadane’s Algorithm)**
+### **Maximum Subarray**
 **Approach**: Dynamic programming to track current and max sum.
 
 ```javascript

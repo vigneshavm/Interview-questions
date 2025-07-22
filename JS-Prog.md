@@ -16,6 +16,7 @@
 | Graph Problems | • [BFS Traversal](#bfs) • [DFS Traversal](#dfs) • [Number of Islands (Matrix BFS/DFS)](#number-of-islands) • [Detect Cycle in Graph](#detect-cycle-in-graph)  • [Clone Graph](#clone-graph) • [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix) • [Word Ladder](#word-ladder) • [Dijkstra’s Algorithm](#dijkstras-algorithm) • [LRU](#LRU)
 | Binary Tree | • [Inorder / Preorder / Postorder Traversal](#inorder-preorder-postorder-traversal) • [Level Order Traversal](#level-order-traversal) • [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree) • [Symmetric Tree](#symmetric-tree) • [Diameter of Binary Tree](#diameter-of-binary-tree) • [Lowest Common Ancestor (BST & Binary Tree)](#lowest-common-ancestor) • [Serialize and Deserialize Binary Tree](#serialize-and-deserialize-binary-tree) • [Path Sum](#path-sum) • [Convert Sorted Array to BST](#convert-sorted-array-to-bst) • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)   • [Trapping Rain Water](#trapping-rain-water)
 
+- [filename and pattern match](#filename-and-pattern-match)
 ---
 
 | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       |
@@ -4969,3 +4970,73 @@ console.log('Unique to arr2:', result.uniqueToArr2);           // [5, 6]
 console.log('Common Elements:', result.commonElements);        // [3, 4]
 console.log('Symmetric Difference:', result.symmetricDifference); // [1, 2, 5, 6]
 ```
+
+
+
+
+
+
+
+## filename and pattern match
+
+
+```js
+function matchPattern(filename, pattern) {
+    let fi = 0; // pointer for filename
+    let pi = 0; // pointer for pattern
+    let starIdx = -1; // stores the last index of '*' in pattern
+    let match = 0; // position in filename when '*' was encountered
+
+    // Loop through filename
+    while (fi < filename.length) {
+        // Case 1: characters match → move both pointers
+        if (pi < pattern.length && (pattern[pi] === filename[fi])) {
+            fi++; // move to next char in filename
+            pi++; // move to next char in pattern
+        }
+        // Case 2: pattern has '*'
+        else if (pi < pattern.length && pattern[pi] === '*') {
+            starIdx = pi;  // store position of '*'
+            match = fi;    // store where '*' is trying to match
+            pi++;          // move pattern pointer after '*'
+        }
+        // Case 3: no match, but previous '*' exists → backtrack
+        else if (starIdx !== -1) {
+            pi = starIdx + 1; // reset pattern pointer to after '*'
+            match++;          // expand '*' to include one more char
+            fi = match;       // retry matching filename from new position
+        }
+        // Case 4: no match and no previous '*' → fail
+        else {
+            return false;
+        }
+    }
+
+    // Handle any remaining '*' at end of pattern
+    while (pi < pattern.length && pattern[pi] === '*') {
+        pi++; // skip trailing '*'
+    }
+
+    // If pattern is fully matched, return true
+    return pi === pattern.length;
+}
+```
+
+
+**Summary of Logic**
+
+| Case         | Condition                      | Action                              |
+| ------------ | ------------------------------ | ----------------------------------- |
+| ✅ Match      | `pattern[pi] === filename[fi]` | Move both `fi++`, `pi++`            |
+| ⭐ Star       | `pattern[pi] === '*'`          | Save star position, move `pi++`     |
+| 🔁 Backtrack | No match, but `*` seen before  | Retry by moving `fi` and rechecking |
+| ❌ No match   | No `*`, no match               | Return false                        |
+| 🎯 End check | Remaining pattern is only `*`  | Skip it and succeed                 |
+
+**Explanation**
+
+- 'a' === 'a' → move both
+- '*' → store star position, move pattern
+- 'b' !== 'c' → backtrack using *
+- Expand * to include 'b', check again
+- 'c' === 'c' → done ✅

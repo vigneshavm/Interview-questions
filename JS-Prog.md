@@ -3978,12 +3978,21 @@ function merge(nums1, m, nums2, n) {
 
 ```javascript
 function rotate(nums, k) {
+    // Step 1: Normalize k if it's larger than array length
     k %= nums.length;
+
+    // Step 2: Reverse the entire array
     nums.reverse();
+
+    // Step 3: Reverse the first k elements
     reverse(nums, 0, k - 1);
+
+    // Step 4: Reverse the remaining n-k elements
     reverse(nums, k, nums.length - 1);
 
+    // Helper function to reverse a portion of the array
     function reverse(arr, left, right) {
+        // Swap elements from both ends moving toward the center
         while (left < right) {
             [arr[left], arr[right]] = [arr[right], arr[left]];
             left++;
@@ -3991,6 +4000,7 @@ function rotate(nums, k) {
         }
     }
 }
+
 ```
 
  **Example**: `rotate([1,2,3,4,5,6,7], 3)` → `[5,6,7,1,2,3,4]`

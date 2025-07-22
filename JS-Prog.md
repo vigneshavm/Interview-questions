@@ -2140,18 +2140,49 @@ class StockSpanner {
 ## **Simulating Wallet Withdrawal Queue**
 ```js
 function withdrawQueue(amounts, maxLimit) {
-  let exitOrder = [], queue = [], i = 0;
+  // Initialize an array to store the order in which people complete withdrawals
+  let exitOrder = [];
+
+  // Store the sequence of each turn people take for withdrawing
+  let queue = [];
+
+  // Initialize index to point to the first person
+  let i = 0;
+
+  // Continue looping until all people have withdrawn their full amounts
   while (amounts.some(a => a > 0)) {
+    // If the current person still has money left to withdraw
     if (amounts[i] > 0) {
-      queue.push(i + 1);
+      // Record that this person is taking a turn
+      queue.push(i + 1); // +1 to convert 0-based index to person number
+
+      // Withdraw the lesser of what's left or the maxLimit
       amounts[i] -= Math.min(amounts[i], maxLimit);
-      if (amounts[i] <= 0) exitOrder.push(i + 1);
+
+      // If after withdrawal, amount becomes zero or less, person is done
+      if (amounts[i] <= 0) exitOrder.push(i + 1); // Record their completion
     }
+
+    // Move to next person in round-robin fashion
     i = (i + 1) % amounts.length;
   }
+
+  // Return both the complete withdrawal sequence and turn queue
   return { exitOrder, queue };
 }
+
+// Example:
 console.log(withdrawQueue([1200, 400, 300, 2000, 1500], 400));
+
+/*
+Output:
+{
+  exitOrder: [2, 3, 1, 5, 4],  // Who completed in what order
+  queue:    [1, 2, 3, 4, 5, 1, 4, 5, 1, 4, 5, 4] // Turn-wise access order
+}
+
+*/
+
 ```
 
 

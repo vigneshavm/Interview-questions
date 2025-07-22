@@ -4740,17 +4740,14 @@ console.log(add(2, 3)); // Cached
 
 **LRU** stands for **Least Recently Used** — it's a **caching algorithm** used to manage memory efficiently by discarding the **least recently used items** when the cache reaches its capacity.
 
-
 • [LRU TTL](#LRU-TTL)
----
 
-### ✅ Use Case
+**Use Case**
 
 In high-performance systems (like API servers, browsers, or databases), we can't store everything in memory. So, when memory is full, **LRU removes the "least recently accessed" item** to make space for a new one.
 
----
 
-### 📦 How It Works
+**How It Works**
 
 * You store items in a **cache** (usually a Map or LinkedHashMap).
 * When you **access** or **add** an item:
@@ -4758,20 +4755,18 @@ In high-performance systems (like API servers, browsers, or databases), we can't
   * That item becomes the **most recently used**.
 * When the cache exceeds its **maximum size**, it evicts the **least recently used** item.
 
----
 
-### 🧑‍💻 Example in JavaScript (Simple LRU Cache):
 
 ```ts
 class LRUCache<K, V> {
-  private cache = new Map<K, V>();
+  private cache = new Map<K, V>(); // Maintains insertion order
 
-  constructor(private capacity: number = 5) {}
+  constructor(private capacity: number = 5) {} // Default capacity is 5
 
   get(key: K): V | undefined {
     if (!this.cache.has(key)) return undefined;
 
-    // Move the key to the end (most recently used)
+    // ✅ Mark as recently used: delete and re-insert
     const value = this.cache.get(key)!;
     this.cache.delete(key);
     this.cache.set(key, value);
@@ -4780,13 +4775,15 @@ class LRUCache<K, V> {
 
   put(key: K, value: V): void {
     if (this.cache.has(key)) {
-      this.cache.delete(key); // remove old entry
+      // ✅ Update existing key: remove first to refresh position
+      this.cache.delete(key);
     } else if (this.cache.size >= this.capacity) {
-      // Remove the least recently used (first item)
+      // ✅ Remove least recently used: first inserted item
       const oldestKey = this.cache.keys().next().value;
       this.cache.delete(oldestKey);
     }
-    // Insert as most recently used
+
+    // ✅ Insert as most recently used (end of Map)
     this.cache.set(key, value);
   }
 
@@ -4797,9 +4794,8 @@ class LRUCache<K, V> {
 
 ```
 
----
 
-### 🧪 Usage:
+**Usage**
 
 ```ts
 const cache = new LRUCache<string, number>(5);
@@ -4831,9 +4827,8 @@ This hybrid cache is useful when:
 * You want to **limit memory** usage (via LRU).
 * You want to **ensure freshness** of data (via TTL).
 
----
 
-### ✅ Implementation Strategy (High-Level)
+**Implementation Strategy (High-Level)**
 
 You can implement this in most languages using:
 
@@ -4841,9 +4836,7 @@ You can implement this in most languages using:
 2. **Hash Map** – for O(1) access by key.
 3. **Timestamps** – to track TTL expiry.
 
----
 
-### ✅ TypeScript / JavaScript Example
 
 ```ts
 class LRUCacheWithTTL<K, V> {
@@ -4892,9 +4885,8 @@ class LRUCacheWithTTL<K, V> {
 }
 ```
 
----
 
-### 🧪 Usage
+**Usage**
 
 ```ts
 const cache = new LRUCacheWithTTL<string, string>(3, 5000); // max 3 items, 5 sec TTL

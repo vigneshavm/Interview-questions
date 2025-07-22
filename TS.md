@@ -258,6 +258,8 @@ function printLength(value: string | string[]) {
 
 - [interface](#interface)
 - [type](#type)
+- [Extending Interfaces](#Extending-Interfaces)
+- [Extending Types](#Extending-Types)
 
 **When to Use What?**
 | Use Case                         | Prefer `interface` | Prefer `type` |
@@ -311,37 +313,7 @@ type Response = User | Admin; // Union
 ```
 
 
-
-
-
-**Example**:  
-```typescript
-interface Animal {
-  name: string;
-}
-
-interface Dog extends Animal {
-  breed: string;
-}
-
-const dog: Dog = { name: "Max", breed: "Golden Retriever" };
-```
-Alternatively, with `type`:
-```typescript
-type Animal = { name: string };
-type Dog = Animal & { breed: string };
-
-const dog: Dog = { name: "Max", breed: "Golden Retriever" };
-```
-
----
-## **Extending Types and Interfaces**
-
-TypeScript allows both **`interface`** and **`type`** aliases to be extended or combined, but with some key differences and use cases.
-
----
-
-** 🔹 **Extending Interfaces**
+## **Extending Interfaces**
 - Use the `extends` keyword.
 - Interfaces can be extended multiple times.
 - Useful for creating object shapes and enabling structural subtyping.
@@ -363,7 +335,8 @@ const emp: Employee = {
 
 ---
 
-** 🔸 **Extending Types**
+## **Extending Types**
+
 - You can extend a `type` using **intersection types (`&`)**.
 - Suitable for combining multiple types or primitives.
 

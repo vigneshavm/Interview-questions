@@ -17,8 +17,7 @@
 | Binary Tree | • [Inorder / Preorder / Postorder Traversal](#inorder-preorder-postorder-traversal) • [Level Order Traversal](#level-order-traversal) • [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree) • [Symmetric Tree](#symmetric-tree) • [Diameter of Binary Tree](#diameter-of-binary-tree) • [Lowest Common Ancestor (BST & Binary Tree)](#lowest-common-ancestor) • [Serialize and Deserialize Binary Tree](#serialize-and-deserialize-binary-tree) • [Path Sum](#path-sum) • [Convert Sorted Array to BST](#convert-sorted-array-to-bst) • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)   • [Trapping Rain Water](#trapping-rain-water)
 
 
-  • [Amount Withdraw Queue](#Amount-Withdraw-Queue) - • [Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) 
-  • [Parking spot](#parking-spot)
+- [Amount Withdraw Queue](#Amount-Withdraw-Queue) - [Wallet Withdrawal Queue](#Simulating-Wallet-Withdrawal-Queue) - [Parking spot](#parking-spot)
 ---
 
 | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       | **Function**            | **Description**                             | **Example Usage**                                     | **Returns**       |

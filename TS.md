@@ -250,15 +250,68 @@ function printLength(value: string | string[]) {
 
 ## **Interface vs. Type**
 
-- "`interface` and `type` are both used to **define the structure of data** in TypeScript."
-- **Both can define object shapes**.
--  **interface is extendable and used for OOP-style contracts**.
-- **type is more flexible** (e.g., unions, intersections) but cannot be reopened/extended like interfaces.
-- "Interfaces are mainly for describing object shapes and can be **extended** or **implemented** by classes."
-- "Types are more flexible — they can describe **objects, primitives, unions, intersections**, and more."
-- "One major difference is: **interfaces can be merged**, but **types cannot** be merged once created."
-- "In practice,  I prefer using an `interface` --> if I'm only defining an object structure,."
-- I prefer using an `type` --> If I need to create something complex, like combining multiple types or handling different kinds of data
+
+* Both `interface` and `type` are used to define the **shape of data** (especially for objects).
+* Both can be used for **type-checking** and IntelliSense in editors.
+* In practice, I prefer using `interface` when I'm modeling plain object structures, especially when working with class-based OOP code.
+* But I go with `type` when I need more **type-level logic**, such as **unions**, **intersections**, or combining **different kinds of data**.
+
+- [interface](#interface)
+- [type](#type)
+
+**When to Use What?**
+| Use Case                         | Prefer `interface` | Prefer `type` |
+| -------------------------------- | ------------------ | ------------- |
+| Defining object/class shape      | ✅                  | ✅             |
+| Extending via `extends`          | ✅                  | ✅ (with `&`)  |
+| Class implementation             | ✅                  | 🚫            |
+| Declaration merging              | ✅                  | 🚫            |
+| Union or intersection types      | 🚫                 | ✅             |
+| Primitive, tuple, or complex mix | 🚫                 | ✅             |
+
+###  `interface`
+
+* Primarily used to **define object shapes**.
+* Can be **extended** using `extends`.
+* Can be **implemented** by classes (`implements` keyword).
+* **Supports declaration merging** (interfaces with the same name are automatically merged).
+* Preferred for **OOP-style contracts**.
+
+```ts
+interface Person {
+  name: string;
+  age: number;
+}
+
+interface Person {
+  gender: string; // Merges with the previous
+}
+```
+
+---
+
+### `type`
+
+* More **flexible and powerful** than interfaces.
+* Can describe:
+
+  * **Primitives**: `type ID = string | number`
+  * **Unions and Intersections**
+  * **Tuples**, functions, etc.
+* **Cannot be reopened or merged** like interfaces.
+
+```ts
+type User = {
+  name: string;
+  age: number;
+};
+
+type Admin = User & { role: string }; // Intersection
+type Response = User | Admin; // Union
+```
+
+
+
 
 
 **Example**:  

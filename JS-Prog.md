@@ -4943,19 +4943,22 @@ console.log(compressString("aaabbc"));    // "a3b2c1"
 console.log(compressString("aabccccaaa")); // "a2b1c4a3"
 
 function compressString(s) {
-    let result = '';
-    let count = 1;
+    let result = '';   // Initialize an empty string to store the compressed result
+    let count = 1;     // Count occurrences of the current character
 
+    // Start from the second character (index 1) and go up to one past the end of string
     for (let i = 1; i <= s.length; i++) {
+        // If current char is same as previous, increment the count
         if (s[i] === s[i - 1]) {
             count++;
         } else {
+            // If different, append previous char and its count to result
             result += s[i - 1] + count;
-            count = 1;
+            count = 1; // Reset count for new character
         }
     }
 
-    return result;
+    return result; // Return the final compressed string
 }
 ```
 

@@ -3,8 +3,7 @@
 | **Topic**                           | **Anchor Links / Subtopics**                                                                                                                                              |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **OOP Principles**                  | - [SOLID Principles](#solid-principles)  -  Inheritance vs Composition  -  Abstraction vs Encapsulation  -  Polymorphism (Compile-time vs Runtime)  -  Interface vs Abstract Class |
-| **Design Patterns**                 | - Singleton, Factory, Builder  -  Strategy, Observer, Decorator  -  Adapter vs Facade  -  Command, Mediator, Proxy  -  When to use each pattern               |
-| **Software Architecture**           | - Monolith vs Microservices  -  Layered Architecture  -  Hexagonal/Clean Architecture  -  Dependency Injection  -  MVC / MVVM                                 |
+| **Software Architecture**           |  -  Layered Architecture  -  Hexagonal/Clean Architecture  -  Dependency Injection  -  MVC / MVVM                                 |
 | **Testing Principles**              | - Unit Testing, Integration Testing  -  Test-Driven Development (TDD)  -  Mocking & Stubbing  -  Code Coverage vs Code Quality                                   |
 | **Concurrency & Multithreading**    | - Race Condition, Deadlock, Starvation  -  Mutex vs Semaphore  -  Thread-safe Data Structures  -  Producer-Consumer  -  Async vs Parallelism                  |
 | **Memory Management**               | - Stack vs Heap  -  Garbage Collection (GC)  -  Memory Leaks  -  Smart Pointers (C++)  -  Object Lifecycle                                                    |
@@ -23,7 +22,7 @@
 | **Dependency Management**         | - Inversion of Control (IoC)  -  Dependency Injection (DI)  -  Service Locator vs DI                                                                                   |
 | **SOLID Principles**              | - Single Responsibility Principle (SRP)  -  Open/Closed Principle  -  Liskov Substitution Principle  -  Interface Segregation  -  Dependency Inversion Principle |
 | **Modularization**                | - High Cohesion & Low Coupling  -  Feature Modules  -  Plugin Architecture  -  Separation of Concerns                                                               |
-| **Architecture Styles**           | - Monolithic Architecture  -  Microservices  -  Event-Driven Architecture  -  Serverless Architecture  -  Layered Architecture                                   |
+| **Architecture Styles**           | - Monolithic Architecture  -  Microservices  - Monolith vs Microservices  -  Event-Driven Architecture  -  Serverless Architecture  -  Layered Architecture                                   |
 | **Clean Architecture**            | - Onion Architecture  -  Ports and Adapters (Hexagonal)  -  Entities, Use Cases, Interfaces  -  Boundary/Controller/Gateway Layers                                  |
 | **Design Heuristics**             | - Composition over Inheritance  -  Principle of Least Knowledge (Law of Demeter)  -  Favor Immutability  -  Avoid Premature Optimization                            |
 | **Scalability & Maintainability** | - Horizontal vs Vertical Scaling  -  Caching Strategies  -  API Gateway Patterns  -  Circuit Breaker / Retry Patterns                                               |

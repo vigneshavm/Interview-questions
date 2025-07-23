@@ -5481,7 +5481,7 @@ console.log(a, "A5"); // 10 A5
 | `console.log([] && {});`            | `{}`                       | Both truthy, returns second operand                |
 
 
-
+```
 
 
 ## **Dyanmic Keys**

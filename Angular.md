@@ -12,7 +12,7 @@
 | **Utilities**      |  • [providedIn](#providedIn) • [`Renderer2` `ElementRef` and `ViewChild`](#Renderer2-ElementRef-and-ViewChild) • [RouterModule.forRoot vs forChild](#RouterModule-forRoot-and-RouterModule-forChild) • [CI/CD Practices](#cicd-practices)  • [Structure large application](#Structure-a-large-Angular-application)
 | **Other**      | • [Build Bundles & Optimization](#Angular-Build-Bundles)   • [-prod hood](#hood) • [Automation Tools](#automation-tools) • [Differential Loading and Polyfills](#differential-loading-and-polyfills)  • [Linting and Testing Tools](#linting-and-testing-tools)  
 | **Across Enviroment**      | • [Consistent Builds Across Environments](#consistent-builds-across-environments) • [Environment-based Builds](#environment-based-builds)
-| **Change Detection**      | • [NgZone](#NgZone) • [Zonejs](#Zonejs)  • [Disabling Zonejs](#Disabling-Zonejs) • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection](#change-detection-and-zonejs) • [OnPush Change Detection](#onpush-change-detection-strategy)   • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
+| **Change Detection**      | • [NgZone](#NgZone) • [Zonejs](#Zonejs)  • [Disabling Zonejs](#Disabling-Zonejs) • [Change Detection and Optimization](#Change-Detection-and-Optimization) • [Change Detection](#change-detection-and-zonejs) • [Change Detection Flow](#Change-Detection-Flow) • [OnPush Change Detection](#onpush-change-detection-strategy)   • [Rendering Items List Efficiently](#Rendering-Items-List-Efficiently)  
 | **Server Side**       | • [Server Side Rendering](#Server-Side-Rendering) • [ Angular Universal](#Set-up-Angular-Universal)   • [Hydration and SSR](#Hydration-and-SSR)  • [Error Handling](#Error-Handling) 
 
 
@@ -127,7 +127,7 @@ setTimeout(() => {
 
 ---
 
-###  How Change Detection Works with Zone.js
+**How Change Detection Works with Zone.js**
 
 1. Zone.js wraps all async operations in a “zone.”
 2. When an async task completes (like an HTTP call or timer), Zone.js tells Angular to run change detection.

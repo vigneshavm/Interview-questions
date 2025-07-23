@@ -5,3 +5,941 @@
 | Custom Implementations     | [Custom Pipe](#custom-pipe), [Custom Guard](#custom-guard), [Custom Interceptor](#custom-interceptor), [Custom Decorator](#custom-decorator), [Custom Pipe/Guard/Interceptor?](#custom-pipeguardinterceptor)                                                                                 |
 | Advanced Features          | [Dynamic modules](#dynamic-modules), [Reusable module](#reusable-module), [Large scale applications?](#large-scale-applications), [Microservices architecture](#microservices-architecture), [Metadata and reflection](#metadata-and-reflection)                                             |
 | Utilities & Best Practices | [Middleware](#middleware), [Pipes](#pipes), [Guard](#guard), [Interceptor](#interceptor), [Handle validation](#handle-validation), [Handle exception filtering](#handle-exception-filtering), [Implement logging](#implement-logging), [Implement authentication](#implement-authentication) |
+
+
+
+
+
+### **NestJS?**
+
+- NestJS is a progressive Node.js framework built with TypeScript and heavily inspired by Angular.
+- It's used to build efficient, scalable, and maintainable server-side applications. 
+- It leverages strong architectural patterns like modules, controllers, and services, and supports both RESTful and microservice architectures.
+
+
+### **core principles?**
+
+- NestJS is built on three core principles: **Modularity**, **Dependency Injection**, and **Separation of Concerns**.
+- It organizes code into modules, injects dependencies cleanly, and encourages a layered architecture to make the application scalable and testable.
+
+
+### **NestJS different from Express.js?**
+
+
+NestJS uses Express under the hood by default, but it adds a structured, opinionated architecture similar to Angular. While Express gives you freedom, NestJS offers decorators, DI, and modules out of the box. It also supports swapping Express with Fastify for better performance.
+
+---
+
+### **Module**
+
+
+A module in NestJS is a class annotated with the `@Module()` decorator. It groups related components like controllers and providers into a cohesive block. Every NestJS app has at least one module—`AppModule`—which acts as the root module.
+
+---
+
+### **Controllers?**
+
+Controllers handle incoming HTTP requests and return responses to the client. In NestJS, they're classes decorated with `@Controller()`. Each method inside the controller maps to a specific route and HTTP method.
+
+
+### **Service?**
+
+
+A service is a class marked with `@Injectable()` that contains business logic. Services are used by controllers to delegate tasks like data processing or database operations, keeping controllers thin.
+
+
+### **Inject dependencies?**
+
+
+Dependencies are injected through the constructor of a class using NestJS’s built-in Dependency Injection system. The `@Injectable()` decorator makes a class available for injection.
+
+
+###  **`@Injectable()`?**
+
+
+The `@Injectable()` decorator marks a class as a provider that can be managed by Nest's IoC container. It allows the class to be injected into other components like controllers or services.
+
+---
+
+### **lifecycle**
+
+
+The request flows through Middleware → Guards → Interceptors → Pipes → Controller → Service. After the response is ready, it passes through Interceptors again before being sent back to the client.
+
+---
+
+### **Route?**
+
+
+You create a route by defining a controller and using route decorators like `@Get()`, `@Post()`, etc. Example:
+
+```ts
+@Controller('users')
+export class UserController {
+  @Get()
+  findAll() {
+    return 'List of users';
+  }
+}
+```
+
+---
+
+
+### **`AppModule`?**
+
+
+`AppModule` is the root module of a NestJS application. It's the entry point for the module tree and registers all other modules, controllers, and providers needed to bootstrap the application.
+
+---
+
+### **`@Module()`**
+
+
+`@Module()` defines a module’s metadata. It takes an object with keys like `imports`, `controllers`, `providers`, and `exports`. It helps organize code into reusable and encapsulated blocks.
+
+---
+
+
+
+
+### **Dependency Injection?**
+
+
+DI is a design pattern where a class receives its dependencies from the outside rather than creating them internally. NestJS uses TypeScript’s metadata reflection and its IoC container to inject dependencies automatically.
+
+---
+
+
+
+### **Provider**
+
+
+A provider is any class that can be injected as a dependency. It can be a service, repository, or factory, and it must be listed in the `providers` array of a module.
+
+---
+
+
+
+
+
+
+
+### **Handle validation?**
+
+
+Validation is done using the `class-validator` and `class-transformer` packages along with NestJS's `ValidationPipe`. DTOs are defined with decorators like `@IsString()`, and `ValidationPipe` validates incoming requests automatically.
+
+---
+
+
+
+### **Guard**
+
+
+A guard determines whether a request should be handled based on logic like authentication or roles. It implements the `CanActivate` interface and is applied using the `@UseGuards()` decorator.
+
+---
+
+
+
+
+
+###  **Interceptor**
+
+
+An interceptor can modify or extend the request/response. It’s used for logging, transforming data, caching, etc. It implements the `NestInterceptor` interface and uses `@UseInterceptors()`.
+
+---
+
+
+
+
+### **Middleware**
+
+
+Middleware runs **before** route handlers and is similar to Express middleware. Interceptors work **around** the method execution, before and after the controller method is called. Middleware is lower-level and doesn’t have access to DI by default.
+
+---
+
+
+
+
+### **Implement logging?**
+
+
+NestJS provides a built-in `Logger` class. You can use it in services or create a custom logging service. For advanced use, you can implement a global interceptor to log all requests/responses.
+
+---
+
+
+
+### **Pipes**
+
+
+Pipes are used for input validation and data transformation. You can apply them globally or at method/parameter level using `@UsePipes()` or directly in parameter decorators.
+
+---
+
+
+
+###  **Handle exception filtering?**
+
+
+- In **NestJS**, exception handling is centralized using the **Exception Filters** mechanism. Nest provides a **built-in global exception handler**, but we can create **custom filters** to catch specific exceptions and return structured responses.
+
+- Exception filters in NestJS help maintain **clean separation of concerns**, especially in large-scale apps where structured error responses and **observability** are crucial.
+
+* `@Catch()` → Marks a class as an **exception filter**.
+* `ArgumentsHost` → Gives access to request/response objects.
+* Use `useGlobalFilters()` to apply filters globally.
+* Good for **logging**, **custom error formatting**, and **business-specific exception flows**.
+
+**When and Why I Use Custom Filters:**
+
+*  To handle **domain-specific errors** (e.g., `BusinessRuleViolationException`)
+*  To provide **custom responses** for clients (especially for APIs)
+*  For **centralized error logging** (e.g., with Winston, Datadog)
+*  To separate error handling from business logic
+
+
+
+**Example: Custom Exception Filter**
+
+```ts
+// http-exception.filter.ts
+import {
+  ExceptionFilter,
+  Catch,
+  ArgumentsHost,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
+
+@Catch()
+export class AllExceptionsFilter implements ExceptionFilter {
+  catch(exception: unknown, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse();
+    const request = ctx.getRequest();
+
+    const status =
+      exception instanceof HttpException
+        ? exception.getStatus()
+        : HttpStatus.INTERNAL_SERVER_ERROR;
+
+    const message =
+      exception instanceof HttpException
+        ? exception.getResponse()
+        : 'Internal server error';
+
+    response.status(status).json({
+      timestamp: new Date().toISOString(),
+      path: request.url,
+      error: message,
+    });
+  }
+}
+```
+
+
+**Apply Filter Globally:**
+
+```ts
+// main.ts
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './http-exception.filter';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalFilters(new AllExceptionsFilter());
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+
+
+
+
+### **Custom Decorator**
+
+
+A custom decorator is a function that can add metadata or modify behavior. You might create one to extract user info from requests (like `@CurrentUser()`) using `createParamDecorator()`.
+
+- “In **NestJS**, a **custom decorator** is a reusable function that adds logic or metadata to your code in a clean, expressive way.
+
+* `@User()` – extract logged-in user
+* `@Roles('admin')` – secure routes via guard
+* `@Public()` – skip auth guards
+* `@CurrentOrg()` – get tenant info in multi-tenant apps
+
+- “I use custom decorators heavily in projects where **modularity and team collaboration** matter. They help keep controllers **clean, readable, and testable**, while abstracting repeated logic elegantly.”
+
+You typically use them to:
+
+*  **Extract request data** (like user, headers, params)
+*  **Attach metadata** (used by guards/interceptors)
+*  Improve **readability** and follow **DRY principles**
+
+**Why and When I Use Custom Decorators**
+
+*  To **clean up controller methods**
+*  To **extract request-level data** concisely
+*  To **mark routes with metadata** (e.g., `@Roles('admin')`)
+*  To **improve modularity** and **code reusability**
+
+
+
+**`@User()` Decorator**
+
+```ts
+// user.decorator.ts
+export const User = createParamDecorator(
+  (data: keyof any, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest();
+    return data ? request.user?.[data] : request.user;
+  },
+);
+```
+
+**Usage:**
+
+```ts
+@Get('profile')
+@UseGuards(AuthGuard('jwt'))
+getProfile(@User('email') email: string) {
+  return { email };
+}
+```
+
+
+
+
+
+### **Implement authentication?**
+
+NestJS integrates well with `@nestjs/passport`. You define a `JwtStrategy`, set up the AuthModule, and use Guards like `JwtAuthGuard` to protect routes. Passport handles strategy-based auth.
+
+- JWT-based authentication in NestJS is implemented using `Passport.js`, which integrates cleanly with Nest’s modular architecture. 
+- The typical flow includes creating an `AuthModule`, implementing a `JwtStrategy`, and securing routes with the built-in `AuthGuard`. This provides stateless, scalable authentication.”
+
+- JWT auth in NestJS uses `Passport` and a `JwtStrategy` to validate tokens on each request. It’s modular, supports guards and decorators for clean access control, and is stateless — making it ideal for REST APIs or microservices.
+
+
+| Step | Description                                                         |
+| ---- | ------------------------------------------------------------------- |
+| 1️⃣  | Install packages: `@nestjs/passport`, `passport-jwt`, `@nestjs/jwt` |
+| 2️⃣  | Create `AuthService` for login and token generation                 |
+| 3️⃣  | Implement `JwtStrategy` to validate incoming JWTs                   |
+| 4️⃣  | Protect routes with `@UseGuards(AuthGuard('jwt'))`                  |
+| 5️⃣  | Optionally store user info in request via custom decorator          |
+
+
+**Install required packages**
+
+```bash
+npm install @nestjs/jwt @nestjs/passport passport passport-jwt
+```
+
+
+**auth.service.ts**
+
+```ts
+@Injectable()
+export class AuthService {
+  constructor(private jwtService: JwtService, private usersService: UsersService) {}
+
+  async validateUser(username: string, pass: string): Promise<any> {
+    const user = await this.usersService.findByUsername(username);
+    if (user && user.password === pass) {
+      const { password, ...result } = user;
+      return result;
+    }
+    return null;
+  }
+
+  async login(user: any) {
+    const payload = { username: user.username, sub: user.userId };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
+}
+```
+
+**jwt.strategy.ts**
+
+```ts
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor() {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: 'secretKey',
+    });
+  }
+
+  async validate(payload: any) {
+    return { userId: payload.sub, username: payload.username };
+  }
+}
+```
+
+**auth.module.ts**
+
+```ts
+@Module({
+  imports: [
+    JwtModule.register({
+      secret: 'secretKey', // should be in `.env`
+      signOptions: { expiresIn: '1h' },
+    }),
+    PassportModule,
+    UsersModule,
+  ],
+  providers: [AuthService, JwtStrategy],
+  controllers: [AuthController],
+})
+export class AuthModule {}
+```
+
+**auth.controller.ts**
+
+```ts
+@Controller('auth')
+export class AuthController {
+  constructor(private authService: AuthService) {}
+
+  @Post('login')
+  async login(@Body() loginDto: { username: string; password: string }) {
+    const user = await this.authService.validateUser(loginDto.username, loginDto.password);
+    if (!user) throw new UnauthorizedException();
+    return this.authService.login(user);
+  }
+}
+```
+
+**Secure Any Route**
+
+```ts
+@Controller('profile')
+export class ProfileController {
+  @UseGuards(AuthGuard('jwt'))
+  @Get()
+  getProfile(@Request() req) {
+    return req.user;
+  }
+}
+```
+
+**Optional: Custom `@User()` Decorator**
+
+```ts
+export const User = createParamDecorator((data, ctx) => {
+  const request = ctx.switchToHttp().getRequest();
+  return request.user;
+});
+```
+
+Use it like:
+
+```ts
+@Get()
+getProfile(@User() user) {
+  return user;
+}
+```
+
+
+
+
+### **Microservices architecture**
+
+
+- NestJS supports microservices natively using a **flexible transport layer** and built-in **message-based communication**. 
+- It allows each service to be **standalone**, yet communicate over various protocols like **TCP**, **Redis**, **NATS**, **MQTT**, **Kafka**, or even **gRPC**.
+- It abstracts the communication behind a **`ClientProxy`** and **message patterns**, making it easy to send and receive messages across distributed services.
+- NestJS makes building microservices easy through its **native support** for transport layers, **message patterns**, and **ClientProxy** abstraction. It encourages decoupled services that are scalable, fault-tolerant, and easy to test or deploy independently.
+
+* **Message-based architecture** (instead of HTTP)
+* **Transport layer abstraction**: TCP, Redis, Kafka, RabbitMQ, gRPC, etc.
+* **Scalability and decoupling**
+* **Pattern-based message handling**
+* **Built-in support for fault-tolerance and retries**
+
+| Feature             | Description                                           |
+| ------------------- | ----------------------------------------------------- |
+| `ClientsModule`     | Register remote service proxies                       |
+| `@MessagePattern()` | Handle incoming messages                              |
+| `Transport enums`   | Select protocol (e.g., `TCP`, `REDIS`, `KAFKA`, etc.) |
+| **Scalability**     | Easily split into multiple instances                  |
+| **Built-in Retry**  | Supports retry strategies and timeouts                |
+| **Hybrid app**      | Support both HTTP & microservice APIs in one app      |
+
+
+
+**Code Example: Simple Microservice Using TCP Transport**
+
+**Microservice (Service A) - Listener**
+
+```ts
+// main.ts
+import { NestFactory } from '@nestjs/core';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+    transport: Transport.TCP,
+    options: {
+      host: '127.0.0.1',
+      port: 8877,
+    },
+  });
+
+  await app.listen();
+}
+bootstrap();
+```
+
+```ts
+// app.service.ts
+import { Controller } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
+
+@Controller()
+export class AppService {
+  @MessagePattern({ cmd: 'sum' })
+  accumulate(data: number[]): number {
+    return (data || []).reduce((a, b) => a + b, 0);
+  }
+}
+```
+
+---
+
+**Client (Service B) - Sender**
+
+```ts
+// app.module.ts
+@Module({
+  imports: [
+    ClientsModule.register([
+      {
+        name: 'MATH_SERVICE',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 8877,
+        },
+      },
+    ]),
+  ],
+  controllers: [AppController],
+})
+export class AppModule {}
+```
+
+```ts
+// app.controller.ts
+import { Controller, Get } from '@nestjs/common';
+import { ClientProxy, Client } from '@nestjs/microservices';
+
+@Controller()
+export class AppController {
+  @Client({ transport: Transport.TCP, options: { host: '127.0.0.1', port: 8877 } })
+  private client: ClientProxy;
+
+  @Get('sum')
+  async getSum() {
+    return this.client.send({ cmd: 'sum' }, [2, 3, 5]); // returns 10
+  }
+}
+```
+
+
+
+
+### **Use of `@Inject()`**
+
+- `@Inject()` is used when you want to inject a dependency using a custom token. 
+- For custom providers, you define a token and a `useClass`, `useValue`, or `useFactory` strategy in the module’s provider array.
+- In NestJS, the `@Inject()` decorator is used to manually inject a **custom token** or a specific **provider instance** into a class. This is especially useful when:
+
+* The token is **not a class** (e.g., a string or symbol).
+* You are working with **custom providers** (e.g., factories, values).
+* You need to inject **multiple implementations** of an interface.
+
+- NestJS typically uses **constructor-based dependency injection**, and you don’t often need `@Inject()` unless you're injecting something **non-standard**.
+
+
+- `@Inject()` is used when you inject something that isn’t a class—like a value, token, or a factory-based provider. 
+- Custom providers help in abstracting implementations, injecting values dynamically, or supporting multiple strategies. It’s powerful for building decoupled, configurable systems.
+
+
+- [`@Inject()`](#inject)
+- [Custom Factory](#custom-factory)
+- [Custom Provider Types](#Custom-Provider-Types)
+
+**Custom Provider Types**
+
+1. **useClass** – Replace an interface or token with a concrete class.
+2. **useValue** – Provide a constant value (e.g., config object).
+3. **useFactory** – Use a factory function for advanced setup.
+4. **useExisting** – Alias one provider to another.
+
+
+**Example: Using `@Inject()` with `useValue` Provider**
+
+```ts
+// constants.ts
+export const CONFIG = 'CONFIG';
+```
+
+```ts
+// config.provider.ts
+export const ConfigProvider = {
+  provide: CONFIG,
+  useValue: {
+    apiKey: 'XYZ-123',
+    timeout: 3000,
+  },
+};
+```
+
+```ts
+// app.module.ts
+@Module({
+  providers: [ConfigProvider],
+  exports: [ConfigProvider],
+})
+export class AppModule {}
+```
+
+```ts
+// example.service.ts
+import { Inject, Injectable } from '@nestjs/common';
+import { CONFIG } from './constants';
+
+@Injectable()
+export class ExampleService {
+  constructor(@Inject(CONFIG) private config: { apiKey: string; timeout: number }) {}
+
+  showConfig() {
+    console.log(this.config.apiKey); // XYZ-123
+  }
+}
+```
+
+
+
+
+### **Custom Factory**
+
+```ts
+export const LoggerProvider = {
+  provide: 'CUSTOM_LOGGER',
+  useFactory: () => {
+    return new CustomLogger('AppLogger');
+  },
+};
+```
+
+```ts
+@Injectable()
+export class MyService {
+  constructor(@Inject('CUSTOM_LOGGER') private logger: CustomLogger) {}
+}
+```
+
+
+
+
+### **Dynamic modules**
+
+
+
+- In NestJS, a **dynamic module** is a module that can be **configured at runtime**. This is useful when a module needs to accept options or dependencies that vary between environments or use cases—such as setting up email credentials, database configs, or caching strategies.
+
+- Dynamic modules are created by exposing a static `forRoot()` or `forRootAsync()` method on the module class, which returns a special object that defines how the module should be configured.
+
+- Dynamic modules in NestJS allow flexible and reusable configuration by using the `forRoot()` or `forRootAsync()` pattern. They're especially helpful when you want to inject runtime configuration into a module—like credentials or feature toggles—without hardcoding it. I use them for things like custom loggers, global config modules, or third-party integrations.
+
+
+* A dynamic module is created using a static method like `forRoot()` or `forRootAsync()`.
+* It returns a `DynamicModule` object which can include:
+
+  * `module` → The current module
+  * `providers` → Any providers configured with runtime values
+  * `exports` → Exposed services
+  * `imports` → Any dependencies needed
+
+* Configurable modules (e.g., Email, Logging, Payment Gateways)
+* Libraries or packages reused in different apps
+* Modules needing environment-specific or user-specific configs
+
+
+**Example: Custom LoggerModule**
+
+```ts
+// logger.module.ts
+import { Module, DynamicModule, Global } from '@nestjs/common';
+
+export interface LoggerOptions {
+  level: 'debug' | 'info' | 'warn' | 'error';
+}
+
+@Global()
+@Module({})
+export class LoggerModule {
+  static forRoot(options: LoggerOptions): DynamicModule {
+    return {
+      module: LoggerModule,
+      providers: [
+        {
+          provide: 'LOGGER_OPTIONS',
+          useValue: options,
+        },
+        LoggerService,
+      ],
+      exports: [LoggerService],
+    };
+  }
+}
+```
+
+
+**LoggerService Example:**
+
+```ts
+import { Inject, Injectable } from '@nestjs/common';
+
+@Injectable()
+export class LoggerService {
+  constructor(@Inject('LOGGER_OPTIONS') private options) {}
+
+  log(message: string) {
+    if (this.options.level !== 'debug') return;
+    console.log(`[${this.options.level}] ${message}`);
+  }
+}
+```
+
+**How to Use in AppModule:**
+
+```ts
+import { LoggerModule } from './logger/logger.module';
+
+@Module({
+  imports: [
+    LoggerModule.forRoot({ level: 'debug' })
+  ],
+})
+export class AppModule {}
+```
+
+
+
+
+### **Large scale applications?**
+
+- I use a modular monolith or microservices architecture. 
+- Features are grouped into feature modules with clear separation of concerns. I also split logic across services, repositories, and controllers.
+- In large-scale NestJS applications, modular architecture is key. I typically follow a feature-based structure, where each business domain (like Users, Auth, Products, Payments) is encapsulated in its own module with clear separation of concerns.
+- This helps with scalability, maintainability, and testability.
+
+---
+
+### **custom pipe/guard/interceptor?**
+
+You implement the respective interface (`PipeTransform`, `CanActivate`, `NestInterceptor`) and register the class using `@Injectable()`. You apply them via decorators like `@UseGuards()` or `@UsePipes()`.
+
+
+Yes, in NestJS, custom pipes, guards, and interceptors are used to **extend the framework's behavior** at different stages of the request lifecycle:
+
+| Component       | Purpose                                    | Runs At                            |
+| --------------- | ------------------------------------------ | ---------------------------------- |
+| **Pipe**        | Transforms or validates input              | Before controller method is called |
+| **Guard**       | Controls access to routes (e.g. auth)      | Before route is handled            |
+| **Interceptor** | Manipulates request/response or adds logic | Before & after route method        |
+
+
+* **Pipes** are ideal for **input transformation and validation**.
+* **Guards** are used to **protect routes** based on logic like roles or authentication.
+* **Interceptors** are powerful for **logging, caching, or modifying** requests/responses.
+
+Each of these implements a specific interface (`PipeTransform`, `CanActivate`, or `NestInterceptor`) and is decorated with `@Injectable()`.
+
+- [Custom Interceptor](#custom-interceptor)
+- [Custom Guard](#custom-guard)
+- [Custom Pipe](#custom-pipe) 
+
+### **Custom Pipe** 
+– e.g., Validate or Transform Input
+
+```ts
+import { PipeTransform, Injectable, BadRequestException } from '@nestjs/common';
+
+@Injectable()
+export class ParseIntPipe implements PipeTransform {
+  transform(value: any) {
+    const val = parseInt(value, 10);
+    if (isNaN(val)) {
+      throw new BadRequestException('Validation failed: Not a number');
+    }
+    return val;
+  }
+}
+```
+
+**Usage:**
+
+```ts
+@Get(':id')
+getById(@Param('id', ParseIntPipe) id: number) {
+  return `User ID is ${id}`;
+}
+```
+
+
+### **Custom Guard**
+
+– e.g., Role-Based Access Control
+
+```ts
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+
+@Injectable()
+export class RolesGuard implements CanActivate {
+  canActivate(context: ExecutionContext): boolean {
+    const request = context.switchToHttp().getRequest();
+    const user = request.user;
+    return user?.roles?.includes('admin'); // Allow only admin
+  }
+}
+```
+
+**Usage with Decorator:**
+
+```ts
+@UseGuards(RolesGuard)
+@Get('admin')
+getAdminData() {
+  return 'Only admins can access this.';
+}
+```
+
+
+### **Custom Interceptor** 
+– e.g., Logging or Response Transformation
+
+```ts
+import {
+  Injectable,
+  NestInterceptor,
+  ExecutionContext,
+  CallHandler,
+} from '@nestjs/common';
+import { Observable, tap } from 'rxjs';
+
+@Injectable()
+export class LoggingInterceptor implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    console.log('Before handler...');
+
+    const now = Date.now();
+    return next.handle().pipe(
+      tap(() => console.log(`After handler... ${Date.now() - now}ms`)),
+    );
+  }
+}
+```
+
+**Usage:**
+
+```ts
+@UseInterceptors(LoggingInterceptor)
+@Get('data')
+getData() {
+  return { message: 'Hello!' };
+}
+```
+
+
+---
+
+### **Metadata and reflection**
+
+- NestJS uses TypeScript’s design-time metadata along with `reflect-metadata` to inspect types and manage dependency injection, validation, and custom decorators.
+- NestJS heavily relies on metadata and reflection to enable features like dependency injection, routing, validation, and custom decorators. It uses the reflect-metadata package under the hood, along with TypeScript's experimental metadata APIs (like design:type, design:paramtypes).
+- This allows NestJS to introspect classes, methods, and parameters at runtime, enabling powerful features like automatic DI and validation.
+
+
+### **Reusable module**
+
+- Yes, in NestJS, a reusable module is a self-contained unit that encapsulates a specific functionality—like sending emails or logging—that can be imported and reused across multiple modules in the application.
+
+- It typically contains:
+    - Providers like services or strategies
+    - Optional controllers
+    - An exports array to expose only what needs to be shared
+
+**Use**
+- Promotes DRY principles (Don’t Repeat Yourself)
+- Encourages clean, modular architecture
+- Makes your codebase more maintainable and testable
+- Essential for large-scale applications
+
+
+
+**Create the service**
+
+```ts
+@Injectable()
+export class MailService {
+  sendEmail(to: string, subject: string, content: string): string {
+    // Imagine this sends a real email
+    return `Sent to ${to} - Subject: ${subject}`;
+  }
+}
+```
+
+**Define the reusable module**
+
+```ts
+@Module({
+  providers: [MailService],
+  exports: [MailService], // Important: expose it for reuse
+})
+export class MailModule {}
+```
+
+**Import and use in another module**
+
+For example, in the `UserModule`:
+
+```ts
+@Module({
+  imports: [MailModule], // bring in the reusable module
+  providers: [UserService],
+})
+export class UserModule {}
+```
+
+**Inject MailService where needed**
+
+```ts
+@Injectable()
+export class UserService {
+  constructor(private mailService: MailService) {}
+
+  registerUser(email: string) {
+    return this.mailService.sendEmail(email, 'Welcome!', 'Thanks for joining us!');
+  }
+}
+```
+
+

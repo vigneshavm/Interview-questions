@@ -8,7 +8,7 @@
 | **Testing Principles**              | - Unit Testing, Integration Testing  -  Test-Driven Development (TDD)  -  Mocking & Stubbing  -  Code Coverage vs Code Quality                                   |
 | **Concurrency & Multithreading**    | - Race Condition, Deadlock, Starvation  -  Mutex vs Semaphore  -  Thread-safe Data Structures  -  Producer-Consumer  -  Async vs Parallelism                  |
 | **Memory Management**               | - Stack vs Heap  -  Garbage Collection (GC)  -  Memory Leaks  -  Smart Pointers (C++)  -  Object Lifecycle                                                    |
-| **Code Quality & Maintainability**  | - DRY, KISS, YAGNI principles  -  Code Smells  -  Refactoring Techniques  -  Cyclomatic Complexity  -  Clean Code Practices                                   |
+| **Code Quality & Maintainability**  | - [DRY](#DRY) , - [KISS](#KISS) , YAGNI principles  -  Code Smells  -  Refactoring Techniques  -  Cyclomatic Complexity  -  Clean Code Practices                                   |
 | **Error Handling & Debugging**      | - Exception Handling vs Error Codes  -  Try-Catch Best Practices  -  Debugging Tools & Logs  -  Fail-fast vs Fail-safe                                           |
 | **Version Control & Collaboration** | - Git Basics (commit, push, pull, merge)  -  Rebase vs Merge  -  GitFlow Workflow  -  Resolving Conflicts  -  Code Reviews (PR Best Practices)                |
 | **API Design Principles**           | - RESTful APIs vs GraphQL  -  Idempotency, Rate Limiting  -  OpenAPI / Swagger  -  Pagination, Filtering  -  HTTP Status Codes, Headers                       |
@@ -17,6 +17,88 @@
 | **Logging & Monitoring**            | - Structured Logging  -  Log Levels (INFO, WARN, ERROR)  -  Metrics & Health Checks  -  Tracing & Correlation IDs  -  Tools: ELK, Prometheus, Grafana         |
 | **Agile & SDLC Methodologies**      | - Scrum, Kanban  -  Sprint Planning, Retrospectives  -  User Stories, Acceptance Criteria  -  Estimation Techniques  -  Continuous Feedback Loops             |
 | **Front End**      | - [Microfrontend design pattern](#Microfrontend-design-pattern)             |
+
+
+## **DRY**
+
+- (Don't Repeat Yourself)
+- **Real-time Benefit**: If business logic changes to 15%, you only update **one place**, not many.
+
+---
+
+### ❌ Bad (duplicate discount logic in backend):
+
+```js
+// controller.js
+function applyDiscount(price) {
+  return price - (price * 0.1);
+}
+
+// somewhere else
+function calculateLoyaltyDiscount(price) {
+  return price - (price * 0.1); // repeated logic
+}
+```
+
+###  Good:
+
+```js
+// utils/discount.js
+export function applyDiscount(price, rate = 0.1) {
+  return price - (price * rate);
+}
+
+// Usage
+applyDiscount(100); // apply 10% discount everywhere consistently
+```
+
+
+## **KISS**
+
+-  (Keep It Simple, Stupid)
+-  **Real-time Benefit**  - Cleaner, readable code. and Easy to unit test `getFinalPrice`.
+
+---
+
+### ❌ Bad React Example: Over-engineered product card
+
+```jsx
+function ProductCard({ product }) {
+  const [discountedPrice, setDiscountedPrice] = useState(null);
+
+  useEffect(() => {
+    if (product && product.price > 0) {
+      let price = product.price;
+      if (product.category === 'Electronics' && product.discount) {
+        price -= price * 0.1;
+      } else if (product.category === 'Clothing') {
+        price -= price * 0.2;
+      }
+      setDiscountedPrice(price);
+    }
+  }, [product]);
+  // ...complex UI
+}
+```
+
+###  Good (KISS):
+
+```jsx
+function getFinalPrice(product) {
+  const discountRate = product.discount || 0;
+  return product.price - product.price * discountRate;
+}
+
+function ProductCard({ product }) {
+  return (
+    <div>
+      <h3>{product.name}</h3>
+      <p>₹{getFinalPrice(product)}</p>
+    </div>
+  );
+}
+```
+
 
 
 

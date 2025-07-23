@@ -2732,7 +2732,7 @@ TestBed.configureTestingModule({
 
 - 🔧 **Example:**
 
-- ```ts
+```ts
 - @Component({
 -   standalone: true,
 -   selector: 'app-profile',
@@ -2742,7 +2742,7 @@ TestBed.configureTestingModule({
 - export class ProfileComponent {
 -   constructor(private profileService: ProfileService) {}
 - }
-- ```
+```
 
 - 📌 This setup is ideal when I want to:
 

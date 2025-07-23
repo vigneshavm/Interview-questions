@@ -557,60 +557,36 @@ finally {
  - **ACID** stands for **Atomicity, Consistency, Isolation, and Durability**. 
  - These are the four key properties that guarantee reliable processing of database transactions.
 
----
 
-### 🔹 1. Atomicity
+| **Property**    | **Definition**                                                                                                                              | **Real-Time Example**                                                                                                           |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Atomicity**   | A transaction is **all-or-nothing**: either every operation within the transaction completes successfully, or none of them do.              | **Money Transfer**: If ₹1000 is deducted from Account A, it must be added to Account B. If B fails, A’s ₹1000 must be restored. |
+| **Consistency** | The database must **move from one valid state to another** while maintaining all defined rules (constraints, triggers, foreign keys, etc.). | **Bank Rule**: Account balance must never go below ₹0. If a transfer violates that, the transaction is rejected.                |
+| **Isolation**   | **Concurrent transactions** are isolated from each other. Intermediate states are not visible to others.                                    | **Ticket Booking**: Two users trying to book the **last ticket**. Only one should succeed; the other gets a failure or retry.   |
+| **Durability**  | Once a transaction is **committed**, it remains so — even if there’s a power failure, crash, or system shutdown.                            | **Order Confirmation**: Once your online payment is completed and you get a success message, your order will **not be lost**.   |
 
-* **Relational Databases (RDBMS)**:
 
-  * Transactions are **fully atomic**: all operations within a transaction either succeed or fail together.
-  * Example: In PostgreSQL or MySQL, `BEGIN`, `COMMIT`, and `ROLLBACK` control atomic execution.
+**Scenario**: User transfers ₹10,000 from Account A to Account B
 
-* **MongoDB**:
-
-  * Originally, MongoDB guaranteed atomicity **only at the document level** (a single document update is atomic).
-  * Since **MongoDB 4.0+**, **multi-document ACID transactions** are supported for **replica sets** and **sharded clusters** (since v4.2).
-
----
-
-### 🔹 2. Consistency
-
-* **RDBMS**:
-
-  * Strong schema enforcement ensures consistency (e.g., foreign keys, constraints).
-  * Violations of constraints prevent transaction commits.
-
-* **MongoDB**:
-
-  * Uses **application-level schema enforcement** (via schema validation or tools like Mongoose).
-  * Multi-document transactions maintain consistency, but it’s **developer’s responsibility** to ensure logical consistency.
+| **Step**                    | **ACID Application**                                                |
+| --------------------------- | ------------------------------------------------------------------- |
+| Start transaction           | DB prepares to execute in an **atomic** block                       |
+| Deduct ₹10,000 from A       | If success, continue; else rollback                                 |
+| Add ₹10,000 to B            | If success, continue; else rollback entire transaction              |
+| Validate business rules     | Must maintain balance ≥ ₹0 (ensures **consistency**)                |
+| Commit transaction          | Changes are **durable** — even after crash, updated balances remain |
+| During concurrent transfers | DB ensures **isolation** — other reads won’t see partial results    |
 
 ---
 
-### 🔹 3. Isolation
 
-* **RDBMS**:
+| **Database**   | **ACID Support**                              |
+| -------------- | --------------------------------------------- |
+| PostgreSQL     | Fully ACID-compliant                          |
+| MySQL (InnoDB) | ACID-compliant with InnoDB engine             |
+| MongoDB        | ACID-compliant (since v4.0 for multi-doc txn) |
+| SQLite         | ACID-compliant (single-process use)           |
 
-  * Supports multiple **isolation levels** (Read Uncommitted, Read Committed, Repeatable Read, Serializable).
-  * Prevents race conditions, dirty reads, non-repeatable reads.
-
-* **MongoDB**:
-
-  * Multi-document transactions provide **snapshot isolation** using an **"all or nothing" commit** model.
-  * Internally uses **write-ahead logs and oplog** to maintain isolation.
-
----
-
-### 🔹 4. Durability
-
-* **RDBMS**:
-
-  * Once a transaction is committed, data is persisted, even in the event of power failure (via WAL or redo logs).
-
-* **MongoDB**:
-
-  * Ensures durability via **journaling**.
-  * `writeConcern` settings allow configuring durability (e.g., `majority`, `w:1`, `w:0`).
 
 ---
 
@@ -629,7 +605,60 @@ finally {
 
 > So while **RDBMS have long supported full ACID compliance**, MongoDB has **evolved** to support **multi-document ACID transactions** while still maintaining the flexibility of its document model — making it suitable for applications that require both high performance and transactional guarantees.
 
+
+### Atomicity
+
+* **Relational Databases (RDBMS)**:
+
+  * Transactions are **fully atomic**: all operations within a transaction either succeed or fail together.
+  * Example: In PostgreSQL or MySQL, `BEGIN`, `COMMIT`, and `ROLLBACK` control atomic execution.
+
+* **MongoDB**:
+
+  * Originally, MongoDB guaranteed atomicity **only at the document level** (a single document update is atomic).
+  * Since **MongoDB 4.0+**, **multi-document ACID transactions** are supported for **replica sets** and **sharded clusters** (since v4.2).
+
 ---
+
+### Consistency
+
+* **RDBMS**:
+
+  * Strong schema enforcement ensures consistency (e.g., foreign keys, constraints).
+  * Violations of constraints prevent transaction commits.
+
+* **MongoDB**:
+
+  * Uses **application-level schema enforcement** (via schema validation or tools like Mongoose).
+  * Multi-document transactions maintain consistency, but it’s **developer’s responsibility** to ensure logical consistency.
+
+---
+
+### Isolation
+
+* **RDBMS**:
+
+  * Supports multiple **isolation levels** (Read Uncommitted, Read Committed, Repeatable Read, Serializable).
+  * Prevents race conditions, dirty reads, non-repeatable reads.
+
+* **MongoDB**:
+
+  * Multi-document transactions provide **snapshot isolation** using an **"all or nothing" commit** model.
+  * Internally uses **write-ahead logs and oplog** to maintain isolation.
+
+---
+
+### Durability
+
+* **RDBMS**:
+
+  * Once a transaction is committed, data is persisted, even in the event of power failure (via WAL or redo logs).
+
+* **MongoDB**:
+
+  * Ensures durability via **journaling**.
+  * `writeConcern` settings allow configuring durability (e.g., `majority`, `w:1`, `w:0`).
+
 
 
 

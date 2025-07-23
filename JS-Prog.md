@@ -1961,16 +1961,18 @@ console.log(charFrequencyManual("Hello"));
 
 
 ## Flatten Nested Arrays  
-Given a nested array, return a new array with all values flattened (one level or deeply).
 
-📌 Example:
 ```js
 Input: [1, [2, [3, [4]], 5]]
 Output: [1, 2, 3, 4, 5]
 ```
 
----
+- [Flatten Nested Arrays using flat](#flatten-nested-arrays-using-flat)
+- [Flatten Nested Arrays usingout inbuild  function](#flatten-nested-arrays-usingout-inbuild--function)
+- [Flatten Nested Arrays using inbuild function](#flatten-nested-arrays-using-inbuild-function)
 
+
+### Flatten Nested Arrays using flat
 
 **Using `.flat(Infinity)`**
 ```js
@@ -1981,28 +1983,7 @@ function flattenUsingFlat(arr) {
 console.log(flattenUsingFlat([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
 ```
 
-**using loop**
-```js
-function flattenArray(arr) {
-  const result = [];
-
-  for (const item of arr) {
-    if (Array.isArray(item)) {
-      result.push(...flattenArray(item)); // recurse
-    } else {
-      result.push(item);
-    }
-  }
-
-  return result;
-}
-
-// Example
-const nested = [1, [2, [3, [4, 5]], 6], 7];
-const flattened = flattenArray(nested);
-console.log(flattened); // [1, 2, 3, 4, 5, 6, 7]
-
-```
+### Flatten Nested Arrays using inbuild function
 
 **Using `.reduce()` and `.concat()`**
 ```js
@@ -2015,42 +1996,49 @@ function flattenUsingReduce(arr) {
 console.log(flattenUsingReduce([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
 ```
 
----
 
+### Flatten Nested Arrays usingout inbuild  function
 
-### Without Using Any Predefined Functions (No `.flat()`, `.reduce()`, `.concat()`)
+**using loop**
 ```js
-function manualFlatten(arr) {
-  let result = [];
-
-  for (let i = 0; i < arr.length; i++) {
-    if (typeof arr[i] === "object" && arr[i] instanceof Array) {
-      const flatInner = manualFlatten(arr[i]); // recursively flatten
-      for (let j = 0; j < flatInner.length; j++) {
-        result[result.length] = flatInner[j]; // push manually
-      }
+//Input   --> [1, [2, [3, [4, 5]], 6], 7]
+//Output  --> [1, 2, 3, 4, 5, 6, 7]
+function flattenArray(arr) {
+  const result = [];
+  for (const item of arr) {
+    if (Array.isArray(item)) {
+      result.push(...flattenArray(item)); // recurse
     } else {
-      result[result.length] = arr[i];
+      result.push(item);
     }
   }
-
   return result;
 }
+const nested = [1, [2, [3, [4, 5]], 6], 7];
+console.log(flattenArray(nested)); // [1, 2, 3, 4, 5, 6, 7]
 
-console.log(manualFlatten([1, [2, [3, [4]], 5]])); // Output: [1, 2, 3, 4, 5]
+
+
+//Input   --> [1, 2, [[3, { 'a': 4 }]], 5, 6, [7, { 'b': 8 }], [0], 1]
+//Output  --> [1, 2, 3, 4, 5,6, 7, 8, 0, 1]
+function excat(input) {
+    const result = [];
+    const rec = (item) => {
+        if (Number.isInteger(item)) {
+            result.push(item);
+        } else if (Array.isArray(item)) {
+            item.forEach(rec);
+        } else if (typeof item === 'object' && item !== null) {
+            Object.values(item).forEach(rec);
+        }
+    };
+    input.forEach(rec);
+    return result;
+}
+
+console.log(excat([1, 2, [[3, { 'a': 4 }]], 5, 6, [7, { 'b': 8 }], [0], 1]));  
 ```
 
----
-
-**Sample Inputs and Outputs:
-
-| Input                      | Output              |
-|---------------------------|---------------------|
-| `[1, 2, [3]]`              | `[1, 2, 3]`         |
-| `[1, [2, [3, 4]], 5]`      | `[1, 2, 3, 4, 5]`   |
-| `[[[1]], 2, [[3, 4]], 5]`  | `[1, 2, 3, 4, 5]`   |
-
----
 
 
 ## **Understanding var vs let in Loops and Closures**

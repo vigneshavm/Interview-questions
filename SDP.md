@@ -2,7 +2,7 @@
 
 | **Topic**                           | **Anchor Links / Subtopics**                                                                                                                                              |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **OOP Principles**                  | - SOLID Principles  -  Inheritance vs Composition  -  Abstraction vs Encapsulation  -  Polymorphism (Compile-time vs Runtime)  -  Interface vs Abstract Class |
+| **OOP Principles**                  | - [SOLID Principles](#solid-principles)  -  Inheritance vs Composition  -  Abstraction vs Encapsulation  -  Polymorphism (Compile-time vs Runtime)  -  Interface vs Abstract Class |
 | **Design Patterns**                 | - Singleton, Factory, Builder  -  Strategy, Observer, Decorator  -  Adapter vs Facade  -  Command, Mediator, Proxy  -  When to use each pattern               |
 | **Software Architecture**           | - Monolith vs Microservices  -  Layered Architecture  -  Hexagonal/Clean Architecture  -  Dependency Injection  -  MVC / MVVM                                 |
 | **Testing Principles**              | - Unit Testing, Integration Testing  -  Test-Driven Development (TDD)  -  Mocking & Stubbing  -  Code Coverage vs Code Quality                                   |
@@ -17,6 +17,249 @@
 | **Logging & Monitoring**            | - Structured Logging  -  Log Levels (INFO, WARN, ERROR)  -  Metrics & Health Checks  -  Tracing & Correlation IDs  -  Tools: ELK, Prometheus, Grafana         |
 | **Agile & SDLC Methodologies**      | - Scrum, Kanban  -  Sprint Planning, Retrospectives  -  User Stories, Acceptance Criteria  -  Estimation Techniques  -  Continuous Feedback Loops             |
 | **Front End**      | - [Microfrontend design pattern](#Microfrontend-design-pattern)             |
+
+
+
+## Circuit Breaker
+
+- The **Circuit Breaker** is a **resilience pattern** used in distributed systems to **prevent cascading failures** and allow systems to recover gracefully when a downstream service is failing or unresponsive.
+
+- The **Circuit Breaker pattern** is a crucial component in **fault-tolerant microservices**, helping isolate failures and allowing systems to degrade gracefully instead of collapsing entirely.
+
+
+### 🧠 Why It's Important:
+
+* Prevents **system overload** from repeated failed calls.
+* Enables **fast failure**, improving user experience.
+* Allows **recovery** without restarting the entire service.
+
+---
+
+### 📦 Example (Microservices):
+
+Service A calls Service B. If B is down:
+
+* With Circuit Breaker:
+
+  * A stops calling B after repeated failures.
+  * It retries after a delay instead of hammering B continuously.
+
+---
+
+### 🔌 Real-World Analogy:
+
+Think of it like an electrical circuit breaker — it “trips” to **prevent overload or damage** when something goes wrong.
+
+---
+
+### 🔁 How It Works:
+
+The circuit breaker can be in one of **three states**:
+
+1. **Closed**:
+
+   * All requests pass through.
+   * If failures exceed a threshold, it **trips** (moves to Open).
+
+2. **Open**:
+
+   * Requests are **immediately rejected** (fail fast).
+   * A timeout begins (cool-down period).
+
+3. **Half-Open**:
+
+   * A limited number of requests are allowed to check if the service has recovered.
+   * If successful, the circuit **closes**; otherwise, it goes back to **Open**.
+
+---
+
+
+### 🛠️ Tools/Libraries:
+
+* **Node.js**: `opossum`
+
+
+
+
+
+
+
+
+---
+
+
+
+## SOLID principles
+ - The **SOLID principles** are **five design principles** that help you write **better, cleaner, more maintainable** code 
+ - not only in JavaScript but in any object-oriented or structured programming language.  
+---
+
+| Principle | Key Idea                                   |
+|:---------- |:------------------------------------------ |
+| SRP        | One responsibility per function/class     |
+| OCP        | Open to extend, closed to modify           |
+| LSP        | Subtypes can substitute base types         |
+| ISP        | Prefer many small interfaces               |
+| DIP        | Depend on abstractions, not concretions    |
+
+
+### S — Single Responsibility Principle (SRP)
+
+- **Definition**: A class/module/function should **have only one reason to change** — meaning it should **do only one thing**.
+- **In JS**: Keep functions small and focused.
+
+```javascript
+// Bad: function doing too many things
+function manageUser(user) {
+  saveToDatabase(user);
+  sendWelcomeEmail(user.email);
+}
+
+// Good: each function has one responsibility
+function saveUser(user) {
+  // Save user to database
+}
+
+function sendWelcomeEmail(email) {
+  // Send email
+}
+```
+
+---
+
+### O — Open/Closed Principle (OCP)
+
+- **Definition**: Software entities (classes, modules, functions) should be **open for extension but closed for modification**.
+- **In JS**: You should be able to **add new behavior without modifying existing code**.
+
+```javascript
+// Bad
+function getArea(shape) {
+  if (shape.type === 'circle') {
+    return Math.PI * shape.radius ** 2;
+  } else if (shape.type === 'square') {
+    return shape.length * shape.length;
+  }
+}
+
+// Good: Use polymorphism
+class Circle {
+  constructor(radius) {
+    this.radius = radius;
+  }
+  area() {
+    return Math.PI * this.radius ** 2;
+  }
+}
+
+class Square {
+  constructor(length) {
+    this.length = length;
+  }
+  area() {
+    return this.length * this.length;
+  }
+}
+
+function getArea(shape) {
+  return shape.area();
+}
+```
+
+---
+
+### L — Liskov Substitution Principle (LSP)
+
+- **Definition**: Subtypes must be **substitutable for their base types** without breaking the program.
+- **In JS**: Derived classes should fully behave like their base class.
+
+```javascript
+class Bird {
+  fly() {
+    console.log('Flying');
+  }
+}
+
+class Duck extends Bird {
+  quack() {
+    console.log('Quack!');
+  }
+}
+
+function makeBirdFly(bird) {
+  bird.fly();
+}
+
+const duck = new Duck();
+makeBirdFly(duck);  // Works correctly 
+```
+
+---
+
+### I — Interface Segregation Principle (ISP)
+
+- **Definition**: Clients should **not be forced to depend on interfaces they do not use**.
+- **In JS**: Break large interfaces into smaller, specific ones.
+
+```javascript
+// Bad: too much responsibility
+class BadPrinter {
+  print() {}
+  scan() {}
+  fax() {}
+}
+
+// Good: split interfaces
+class Printer {
+  print() {}
+}
+
+class Scanner {
+  scan() {}
+}
+```
+> So if a class only needs "print", it doesn't have to implement "fax" or "scan".
+
+---
+
+### D — Dependency Inversion Principle (DIP)
+
+- **Definition**: High-level modules should not depend on low-level modules. Both should depend on abstractions.
+- **In JS**: Depend on **interfaces or abstractions**, not concrete implementations.
+
+```javascript
+// Bad
+class MySQLDatabase {
+  save(data) {
+    console.log('Saving to MySQL', data);
+  }
+}
+
+class UserService {
+  constructor() {
+    this.database = new MySQLDatabase();
+  }
+  saveUser(user) {
+    this.database.save(user);
+  }
+}
+
+// Good
+class UserService {
+  constructor(database) {
+    this.database = database;
+  }
+  saveUser(user) {
+    this.database.save(user);
+  }
+}
+
+const mysqlDB = new MySQLDatabase();
+const userService = new UserService(mysqlDB);
+```
+> Now you can easily switch from `MySQLDatabase` to `MongoDatabase` without changing `UserService`.
+
+---
 
 
 

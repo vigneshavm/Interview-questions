@@ -20,7 +20,6 @@
 | **Structural Patterns**           | - Adapter  -  Facade  -  Composite  -  Proxy  -  Decorator  -  Bridge                                                                                         |
 | **Behavioral Patterns**           | - Strategy  -  Observer  -  Command  -  State  -  Template Method  -  Mediator                                                                                |
 | **Dependency Management**         | - Inversion of Control (IoC)  -  Dependency Injection (DI)  -  Service Locator vs DI                                                                                   |
-| **SOLID Principles**              | - Single Responsibility Principle (SRP)  -  Open/Closed Principle  -  Liskov Substitution Principle  -  Interface Segregation  -  Dependency Inversion Principle |
 | **Modularization**                | - High Cohesion & Low Coupling  -  Feature Modules  -  Plugin Architecture  -  Separation of Concerns                                                               |
 | **Architecture Styles**           | - Monolithic Architecture  -  Microservices  - Monolith vs Microservices  -  Event-Driven Architecture  -  Serverless Architecture  -  Layered Architecture                                   |
 | **Clean Architecture**            | - Onion Architecture  -  Ports and Adapters (Hexagonal)  -  Entities, Use Cases, Interfaces  -  Boundary/Controller/Gateway Layers                                  |
@@ -187,7 +186,9 @@ The circuit breaker can be in one of **three states**:
 ## SOLID principles
  - The **SOLID principles** are **five design principles** that help you write **better, cleaner, more maintainable** code 
  - not only in JavaScript but in any object-oriented or structured programming language.  
----
+
+| **SOLID Principles**              | - Single Responsibility Principle (SRP)  -  Open/Closed Principle  -  Liskov Substitution Principle  -  Interface Segregation  -  Dependency Inversion Principle |
+
 
 | Principle | Key Idea                                   |
 |:---------- |:------------------------------------------ |

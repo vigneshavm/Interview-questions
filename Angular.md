@@ -3,7 +3,7 @@
 | **Core Concepts**          | • [Angular](#angular)  • [Angular CLI](#Angular-CLI) • [Angular 17](#Angular-17) • [Angular 19](#Angular-19) • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
 | **Components**         | • [Component Communication](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
 | **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition(Component Inside Another)](#Using-One-Component-Inside-Another ) • [Deferred Views](#Deferred-Views)|
-| **Injection and HTTP**| • [Dependency Injection](#dependency-injection) • [Services and Injectors](#services-and-injectors)      • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                 • [Lazy Loading](#lazy-loading)                • [Memory Leak](#Memory-Leak)                                                                       |
+| **Injection and HTTP**| • [Dependency Injection](#dependency-injection)    • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                 • [Lazy Loading](#lazy-loading)                • [Memory Leak](#Memory-Leak)                                                                       |
 | **Routing**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Authentication](#authentication) • [Secure Angular Routes](#Secure-Routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Auth Tokens](#store-authentication-tokens) |
 | **Forms & Validation**             | • [Reactive vs Template-Driven Forms](#reactive-vs-template-driven-forms) • [Custom Validators](#custom-validators) • [Handling Large Forms](#handling-large-forms)    • [Directives](#directives) • [Pipes](#pipes)                                                |
 | **Data**        | • [Data Binding](#data-binding) • [Interpolation Vs Two-Way Binding](#Difference-Between-Interpolation-and-Two-Way-Binding)  • [Promise and Observable](#promise-and-observable) • [Signal](#Signals) • [Signal and Observable](#Signals-vs-Observables)
@@ -1523,87 +1523,6 @@ it('should emit event on click', () => {
 
 
 
-## Dependency Injection in Angular
-
-Angular's DI system provides services or objects where needed. We declare providers at module/component level. Tree-shakable providers via `providedIn: 'root'` ensure services are included only when used.
-
-
-Here’s a concise, interview-ready bullet-point overview of **Dependency Injection (DI) in Angular**:
-
-
-##  Dependency Injection in Angular
-
-
-### 🔎 What is Dependency Injection?
-
-* DI is a design pattern to **inject dependencies** (services, objects) rather than creating them manually.
-* Promotes **loose coupling** and easier testing.
-
-
-###  How DI Works in Angular
-
-* Angular has a built-in **injector** that **provides instances** of services to components or other services.
-* Dependencies are declared in **constructor parameters**.
-
-```ts
-constructor(private myService: MyService) {}
-```
-
-
-###  Providers and Injector Hierarchy
-
-* Providers tell Angular **how to create** a dependency.
-* Can be registered at different levels:
-
-  * **Root injector** (application-wide, singleton)
-  * **Module injector**
-  * **Component injector** (creates new instance per component)
-* Use `providedIn` in service decorators to define scope:
-
-```ts
-@Injectable({ providedIn: 'root' }) // singleton app-wide
-export class MyService {}
-```
-
-
-### 🔄 Hierarchical Injectors
-
-* Angular creates a **hierarchy of injectors** mirroring component tree.
-* Child components can get a **different instance** if a provider is configured at component level.
-* Useful for **scoped services** or overriding dependencies.
-
-
-### 🛠️ Providers Syntax
-
-* **Class provider:** `{ provide: MyService, useClass: MyServiceImpl }`
-* **Value provider:** `{ provide: SOME_TOKEN, useValue: someValue }`
-* **Factory provider:** `{ provide: MyService, useFactory: () => new MyService() }`
-* **Existing provider:** `{ provide: MyService, useExisting: OtherService }`
-
-
-### 🔐 Singleton Services
-
-* Services provided in **root** are **singletons** by default.
-* Ensures shared state across the app.
-
-
-### 🧪 Testing with DI
-
-* Inject mock services during tests by providing a mock class or object in the `TestBed` providers.
-
-```ts
-providers: [{ provide: MyService, useClass: MockMyService }]
-```
-
-
-### 💡 Best Practices
-
-* Prefer **constructor injection** for dependencies.
-* Use `providedIn: 'root'` for most services.
-* Scope services at component level only when necessary (e.g., isolated state).
-* Avoid manual instantiation (e.g., `new Service()`) inside Angular components/services.
-
----
 
 
 
@@ -2670,13 +2589,6 @@ export class HoverHighlightDirective {
 
 
 
-###  **Services and Injectors**
-
- -  Services contain shared logic and are injected using Angular's **dependency injection** system.
- -  Injectors create and manage service instances, maintaining a hierarchy for scoped services.
-
-
-
 
 ###  **EventEmitter**
 
@@ -2717,60 +2629,148 @@ export class HoverHighlightDirective {
 
 
 ###  **Dependency Injection**
+- [Angular Dependency Injection](#angular-dependency-injection)
+- [Dependency Injection Standalone Components](#dependency-injection-standalone-components)
 
 
-- **Dependency Injection (DI)** is a **core design pattern** in Angular that allows us to **inject dependencies**—like services, config objects, or tokens—**instead of creating them manually**.
-- Dependency Injection is **fundamental to Angular architecture**.
-- It supports **scalable, maintainable, and testable applications**. 
-- I leverage both **basic and advanced DI techniques** to manage dependencies efficiently and build flexible, clean Angular apps.
-
-**Key Benefits:**
-*  **Loose coupling** — promotes modular, reusable code
-*  **Improved testability** — easy to mock or replace dependencies
-*  **Lifecycle management** — Angular handles creation and cleanup
-*  **Supports SOLID principles** — especially the Dependency Inversion Principle
+#### Angular Dependency Injection
 
 
-**How I Use It:**
 
-* I declare services with:   ```ts   @Injectable({ providedIn: 'root' })   ```
-    This makes them **singletons** accessible app-wide via Angular’s **hierarchical injector**.
-* Then I inject them via the **constructor**:   ```ts   constructor(private userService: UserService) {}   ```
-* Angular automatically resolves and injects the dependency — no need for manual instantiation.
-
-**Advanced DI Techniques I've Used:**
-
-| Technique     | Use Case                                                        |
-| ------------- | --------------------------------------------------------------- |
-| `useClass`    | Inject different classes based on environment or conditions     |
-| `useValue`    | Inject constants/config values (e.g., API endpoints)            |
-| `useFactory`  | Inject values/services dynamically using logic                  |
-| `multi: true` | Inject multiple providers for extensibility (like interceptors) |
-
-**Example:**
-
-```ts {   provide: LoggerService,   useFactory: () => isProd ? new ProdLogger() : new DevLogger() } ```
+- **"Dependency Injection (DI) is one of the core architectural patterns in Angular. It allows Angular to create and inject services automatically, promoting loose coupling, testability, and maintainability."**
 
 
- **Testability with DI:**
 
-* In unit tests, I configure dependencies using `TestBed`:
+ 🔧 **How DI Works in Angular**
 
-  ```ts 
-  TestBed.configureTestingModule({
-    providers: [{ provide: MyService, useClass: MockService }]
-  });
+* Angular uses a **hierarchical injector system**.
+* Dependencies are injected via the **constructor**:
+
+  ```ts
+  constructor(private userService: UserService) {}
   ```
-* This makes it easy to **mock real services**, isolate units, and verify behavior.
+* Services are marked with:
+
+  ```ts
+  @Injectable({ providedIn: 'root' }) // Singleton at root level
+  ```
+
+
+
+ 💼 **How I Use DI in Real Projects**
+
+- “In real-world Angular apps, I apply DI in three main places:
+
+- 1. **Service** – Handles business logic (e.g., `UserService`)
+- 2. **Component** – Injects and uses services (`UserComponent`)
+- 3. **Module (optional)** – For feature-level or lazy-loaded providers
+
+- Typically, I use `providedIn: 'root'` for global services and component-level providers for isolated logic or state management.”
+
+
+ 🔍 **Why DI Is Powerful**
+
+* ✅ **Loose Coupling** – Components rely on abstractions, not concrete implementations.
+* ✅ **Testability** – Easily replace services with mocks.
+* ✅ **Centralized Lifecycle Management** – Angular handles service creation/destruction.
+* ✅ **Follows SOLID principles**, especially **Dependency Inversion**.
+
+
+
+ 🏗️ **Provider Scopes & Hierarchy**
+
+| Level           | Scope / Use Case                                       |
+|  |  |
+| `root`          | App-wide singleton                                     |
+| Module-level    | Feature-specific isolation (e.g., lazy-loaded modules) |
+| Component-level | New instance per component (e.g., form state)          |
+
+
+
+ 🛠️ **Provider Techniques I've Used**
+
+| Technique     | Use Case Example                                 |
+| - |  |
+| `useClass`    | Switch between real/mock implementations         |
+| `useValue`    | Inject configs like API URLs                     |
+| `useFactory`  | Create service conditionally (e.g., env check)   |
+| `multi: true` | Register multiple providers (e.g., interceptors) |
+
+```ts
+{ provide: LoggerService, useFactory: () =- isProd ? new ProdLogger() : new DevLogger() }
+```
+
+
+
+ 🧪 **Testing with DI – Real Example**
+
+```ts
+TestBed.configureTestingModule({
+  providers: [
+    { provide: AuthService, useClass: MockAuthService }
+  ]
+});
+```
+
+* Makes testing **isolated, mockable, and predictable**.
 
 
 
 
-**“When injecting a service, I usually modify three files:**
+---
 
-* **The service file** (e.g., `user.service.ts`), where I define business logic.
-* **The component file** (e.g., `user.component.ts`), where I inject and use the service in the constructor.
-* **And optionally, the module file** (e.g., `app.module.ts`)—but only if I'm not using `providedIn: 'root'`. In most cases, root-level DI is enough.”\*\*
+
+
+#### Dependency Injection Standalone Components
+
+- “With the introduction of **Standalone Components** in Angular 14+, Angular allows us to build apps **without NgModules**, making the structure more modular and lightweight.
+
+- **Dependency Injection (DI)** in standalone components works similarly to the traditional approach but is now more flexible:
+
+- * ✅ **Global services** are still provided using `providedIn: 'root'` inside the service.
+- * ✅ **Component-scoped services** are provided directly via the `providers` array in the `@Component` decorator.
+
+- 🔧 **Example:**
+
+- ```ts
+- @Component({
+-   standalone: true,
+-   selector: 'app-profile',
+-   templateUrl: './profile.component.html',
+-   providers: [ProfileService] // Scoped to this component
+- })
+- export class ProfileComponent {
+-   constructor(private profileService: ProfileService) {}
+- }
+- ```
+
+- 📌 This setup is ideal when I want to:
+
+- * **Isolate state** for feature modules.
+- * **Improve testability** by scoping services locally.
+- * Support **microfrontend-style** architectures.
+
+- 🔄 With Angular 15+, I can also inject services using **route-level providers**, enabling:
+
+```js
+export const routes: Routes = [
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    providers: [DashboardService], // Only available in this route
+  }
+];
+
+```
+
+- * **Lazy-loaded DI**
+- * **Better performance**
+
+- 💡 Overall, standalone components:
+
+- * **Simplify app structure**
+- * **Encourage better modularity**
+- * **Enhance tree-shaking** and build optimization
 
 ---
 

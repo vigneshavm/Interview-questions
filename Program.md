@@ -1,6 +1,9 @@
 | **Category**   | **Topics** |
 |----------------|------------|
-| **Node.js**    | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) , [Location based IP-based restrictions](#Location-based-IP-based-restrictions) , [Build simple API](#Build-simple-API) , [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) , [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) , [Rate Limiter Middleware](#Rate-Limiter-Middleware) , [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter) , [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort) , [Prevent multiple duplicates API calls](#Prevent-multiple-API-calls-Ignore-or-block-duplicates) |
+| **Node.js**    | [Middleware for Only Sensitive Routes](#Middleware-for-Only-Sensitive-Routes) , [Location based IP-based restrictions](#Location-based-IP-based-restrictions) , [Build simple API](#Build-simple-API) , [Nodejs API using TypeScript for CRUD operations](#Nodejs-API-using-TypeScript-for-CRUD-operations) , [JWT Auth Flow Overview](#JWT-Auth-Flow-Overview) , [Rate Limiter Middleware](#Rate-Limiter-Middleware) , [Whitelist IPs in Rate Limiter](#Whitelist-IPs-in-Rate-Limiter) , [Node Pagination Search Filter and Sort](#Node-Pagination-Search-Filter-and-Sort) , [Prevent multiple duplicates API calls](#Prevent-multiple-API-calls-Ignore-or-block-duplicates)  - [Simple HTTP Server](#simple-http-server) - [File Read](#file-read) - [Promise](#promise)
+- [EventEmitter](#eventemitter) - [Custom Middleware](#custom-middleware) - [Async/Await with API Call](#asyncawait-with-api-call)
+- [REST API Route](#rest-api-route) - [REST API Query parameters](#rest-api-query-parameters)
+|
 | **React**      | [Autocomplete Component](#autocomplete-component) , [Todo List](#todo-list) , [TodoList with Delete](#TodoList) , [Fetch-and-display-list](#React-Fetch-and-display-list-users-with-user-search) , [React Table with Sorting](#react-table-with-sorting) , [React Pagination](#React-pagination) , [Grid View](#Grid-View) , [Infinite Scroll](#infinite-scroll) , [Form with Validation](#form-with-validation) , [Highlight Text](#highlight-text) , [Counter](#Counter) , [React Form API Call](#React-Form-API-Call) , [Handling API Errors in React](#Handling-API-Errors-in-React)  |
 | **Angular**    | [Fetch-and-display-list](#Angular-Fetch-and-display-list-users-with-user-search) , [Debounce Input Search](#Angular-Debounce-Input-Search) |
 | **Polyfills**  | [ForEach](#ForEach) [Bind](#customBind) , [Map](#arrayprototypemap) , [Filter](#arrayprototypefilter) , [Reduce](#arrayprototypereduce) , [Call](#functionprototypecall) , [Object.create](#objectcreate) , [Promise](#Promise) , [Debounce](#debounce-polyfill) , [Throttle](#throttle-polyfill) , [Memoize](#Memoize) |
@@ -2260,4 +2263,153 @@ const context = { prefix: 'Num' };
   console.log(`${this.prefix} ${idx} = ${val}`);
 }, context);
 
+```
+
+
+
+
+### **Simple HTTP Server**
+
+```js
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello from Node.js server!\n');
+});
+
+server.listen(3000, () => {
+  console.log('Server running at http://localhost:3000/');
+});
+```
+
+---
+
+### **File Read**
+
+```js
+const fs = require('fs');
+
+fs.readFile('sample.txt', 'utf8', (err, data) => {
+  if (err) {
+    console.error('Error reading file', err);
+    return;
+  }
+  console.log('File content:', data);
+});
+```
+
+---
+
+### **Promise**
+
+```js
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+delay(1000).then(() => {
+  console.log('Executed after 1 second');
+});
+```
+
+---
+
+### **EventEmitter**
+
+```js
+const EventEmitter = require('events');
+
+const emitter = new EventEmitter();
+
+emitter.on('greet', (name) => {
+  console.log(`Hello, ${name}!`);
+});
+
+emitter.emit('greet', 'Vignesh');
+```
+
+---
+
+### **Custom Middleware**
+
+```js
+const express = require('express');
+const app = express();
+
+const loggerMiddleware = (req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+};
+
+app.use(loggerMiddleware);
+
+app.get('/', (req, res) => {
+  res.send('Middleware Example');
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+```
+
+---
+
+### **Async/Await with API Call**
+
+```js
+const axios = require('axios');
+
+async function fetchData() {
+  try {
+    const response = await axios.get('https://api.github.com');
+    console.log(response.data);
+  } catch (error) {
+    console.error('API error:', error);
+  }
+}
+
+fetchData();
+```
+
+---
+
+### **REST API Route**
+
+```js
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.post('/user', (req, res) => {
+  const { name, age } = req.body;
+  res.status(201).send(`User ${name} created, age: ${age}`);
+});
+
+app.listen(4000, () => console.log('Server on 4000'));
+```
+
+### **REST API Query parameters**
+
+```js
+const express = require('express');
+const app = express();
+
+app.get('/add', (req, res) => {
+  const { a, b } = req.query;
+
+  // Check if both a and b are provided
+  if (a === undefined || b === undefined) {
+    return res.status(400).json({ error: 'Missing required query parameters: a and b' });
+  }
+
+  // Validate if both are numbers
+  if (isNaN(a) || isNaN(b)) {
+    return res.status(400).json({ error: 'Query parameters must be valid numbers' });
+  }
+
+  const sum = Number(a) + Number(b);
+  res.json({ result: sum });
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
 ```

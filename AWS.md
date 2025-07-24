@@ -11,10 +11,27 @@
 
 | **Category**           | **Topics** |
 |------------------------|------------|
-| **AWS Lambda**         | [AWS Lambda](#aws-lambda), [Supported Languages](#aws-lambda-supported-languages), [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function), [Triggers](#triggers-that-can-invoke-aws-lambda), [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis), [Passing Data](#passing-data-to-an-aws-lambda-function), [Large File Uploads](#handling-large-file-uploads-in-aws), [Cold Start](#cold-start), [Scaling](#how-lambda-scales), [Provisioned Concurrency](#provisioned-concurrency), [Monitoring](#monitoring-lambda-functions), [Permissions](#assigning-permissions-to-lambda-functions), [Secrets](#securely-storing-secrets-in-lambda), [Lambda Layers](#lambda-layers), [Max Package Size](#maximum-deployment-package-size), [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) |
 | **AWS API Gateway**    | [API Gateway](#aws-api-gateway), [Types of APIs](#types-of-apis-in-api-gateway), [REST vs HTTP API](#rest-api-vs-http-api), [Integration Types](#integration-types-supported-by-api-gateway), [Lambda Integration](#how-api-gateway-integrates-with-aws-lambda), [Stages](#stages-in-api-gateway), [Usage Plans](#usage-plans-in-api-gateway), [Throttling](#throttling-in-api-gateway), [Security](#securing-your-api-in-api-gateway), [Lambda Authorizer](#lambda-authorizer), [Static Content](#can-api-gateway-serve-static-content), [Payload Limit](#payload-limit-for-api-gateway), [Secure Video Upload](#building-a-secure-video-upload-system), [CORS](#handling-cors-in-api-gateway), [Caching](#how-api-gateway-handles-caching) |
 | **Amazon DynamoDB**    | [DynamoDB Overview](#amazon-dynamodb), [Features](#dynamodb-features), [Durability & Availability](#dynamodb-ensure-data-durability-and-availability), [Query](#perform-a-query-in-dynamodb), [Security](#secure-dynamodb-data), [Table Design](#best-practice-for-designing-dynamodb-tables), [Query vs Scan](#difference-between-query-and-scan-in-dynamodb), [Limits](#limits-of-dynamodb), [Transactions](#handle-transactions-in-dynamodb), [Capacity Modes](#readwrite-capacity-modes-in-dynamodb), [Streams](#dynamodb-streams), [Scaling](#dynamodb-handle-scaling), [GSI vs LSI](#global-secondary-index-gsi-and-local-secondary-index-lsi), [Partition vs Sort Key](#difference-between-a-partition-key-and-a-sort-key), [Primary Key Types](#primary-keys-types), [Primary Key](#primary-key-in-dynamodb), [MongoDB vs DynamoDB](#MongoDB-vs-Amazon-DynamoDB) |
 | **Amazon S3**          | [Bucket Policy](#s3-bucket-policy), [IAM vs Bucket Policy](#bucket-policy-different-from-iam-policy), [Controlled Actions](#common-actions-controlled-by-s3-policies), [Restrict by IP](#restrict-access-to-an-s3-bucket-to-a-specific-ip-range), [Public Access](#s3-bucket-publicly-accessible), [Block Public Access](#purpose-of-block-public-access-settings), [ACLs](#s3-access-control-lists-acls), [ACLs vs Policies](#bucket-policies-vs-acls), [S3 CORS](#s3-cross-origin-resource-sharing-cors), [Encryption](#encrypt-objects-in-s3), [Pre-Signed URLs](#pre-signed-url-in-s3), [Lifecycle Policies](#s3-lifecycle-policies-work), [Storage Classes](#common-s3-storage-classes), [S3 Security](#secure-s3-buckets), [Versioning](#s3-handle-versioning), [Large Uploads](#handle-large-file-uploads-in-s3), [Transfer Acceleration](#s3-transfer-acceleration), [Event Notifications](#s3-event-notifications-work), [Prevent Deletion](#prevent-unauthorized-deletion-of-objects), [Max Object Size](#maximum-size-of-an-s3-object) |
+
+
+
+| **Category**                      | **Topics**                                                                                                                                                                                                                                                                  |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🧩 **Core Lambda Concepts**       | - [AWS Lambda](#aws-lambda) <br> - [Supported Languages](#aws-lambda-supported-languages) <br> - [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function) <br> - [Max Package Size](#maximum-deployment-package-size) <br> - [Lambda Layers](#lambda-layers) |
+| 🚀 **Use Cases & Architectures**  | - [Use Cases](#use-cases) <br> - [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis) <br> - [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda)                                                             |
+| ⚙️ **Triggers & Data Handling**   | - [Triggers](#triggers-that-can-invoke-aws-lambda) <br> - [Passing Data](#passing-data-to-an-aws-lambda-function) <br> - [Large File Uploads](#handling-large-file-uploads-in-aws)                                                                                          |
+| 💰 **Pricing**                    | - [Lambda Priced](#lambda-priced)                                                                                                                                                                                                                                           |
+| 📦 **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda) <br> - [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                                                          |
+| 🔐 **Security**                   | - [Secure a Lambda Function](#secure-a-lambda-function) <br> - [Permissions](#assigning-permissions-to-lambda-functions) <br> - [Secrets](#securely-storing-secrets-in-lambda)                                                                                              |
+| 📊 **Monitoring & Debugging**     | - [Monitor and Debug Lambda Functions](#monitor-and-debug-lambda-functions) <br> - [Monitoring](#monitoring-lambda-functions)                                                                                                                                               |
+| 🧊 **Cold Start & Optimization**  | - [Cold Start Issue](#cold-start-issue) <br> - [Cold Start](#cold-start) <br> - [Provisioned Concurrency](#provisioned-concurrency) <br> - [Optimize Performance](#optimize-performance)                                                                                    |
+| 📈 **Scaling**                    | - [Lambda Scale](#lambda-scale) <br> - [Scaling](#how-lambda-scales)                                                                                                                                                                                                        |
+| ✉️ **Messaging Patterns**         | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                                                        |
+| 🛡️ **Security & Resilience**     | - [Security & Resilience – Essentials](#security--resilience--essentials)                                                                                                                                                                                                   |
+
+
 
 
 ###  AWS Lambda
@@ -1286,4 +1303,212 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 
 
 > “I don’t just consume queues — I design the entire **event-driven architecture**: decoupling services, handling failures gracefully, managing retries and deduplication, and tuning performance at scale.”
+
+
+
+
+
+###  **AWS Lambda?**
+
+
+AWS Lambda is a **serverless compute service** that lets you run code without provisioning or managing servers. You simply upload your code, and Lambda automatically scales it in response to events — such as HTTP requests, S3 uploads, or DynamoDB changes.
+
+🔑 **Key Points:**
+
+* Event-driven
+* Auto-scalable
+* Pay-per-use (based on invocations and execution time)
+* No server management
+
+---
+
+###  **Use cases**
+
+
+I've used Lambda for:
+
+* REST APIs (with API Gateway)
+* Data processing (triggered by S3 or Kinesis)
+* Scheduled jobs (via EventBridge cron rules)
+* Notifications and alerts (via SNS and SES)
+* Backend glue logic in microservices
+
+🔑 **Key Points:**
+
+* Used with API Gateway, S3, DynamoDB
+* Works well for real-time and async workloads
+
+---
+
+###  **Lambda priced?**
+
+
+Lambda is priced based on:
+
+* **Number of invocations**
+* **Duration of execution** (rounded to the nearest ms)
+* **Memory allocated** (128 MB to 10 GB)
+
+The first **1 million requests per month are free**, making it very cost-effective for low-volume workloads.
+
+🔑 **Key Points:**
+
+* No charge when idle
+* Granular pricing model
+* Optimizing memory = cost & performance balance
+
+---
+
+###  **Deploy code to Lambda?**
+
+
+Multiple ways:
+
+* **Manual**: Upload ZIP or use the AWS Console
+* **CLI/CDK/SAM**: For infrastructure-as-code
+* **CI/CD pipelines**: Using CodePipeline or GitHub Actions
+* **Container images**: Using ECR for large or complex runtimes
+
+🔑 **Key Points:**
+
+* Prefer automated deployments via CI/CD
+* Use CDK/SAM for repeatable and version-controlled deployments
+
+---
+
+###  **Monitor and debug Lambda functions?**
+
+
+I use:
+
+* **CloudWatch Logs**: For console.log and errors
+* **X-Ray**: For tracing and debugging performance bottlenecks
+* **CloudWatch Metrics & Alarms**: For monitoring error rates, throttles, and duration
+
+I also implement structured logging (e.g., JSON logs) to make log parsing easier.
+
+🔑 **Key Points:**
+
+* Logs auto-integrated with CloudWatch
+* Use X-Ray for tracing distributed calls
+
+---
+
+###  **Cold start issue?**
+
+
+A **cold start** happens when a Lambda function is invoked after being idle, and AWS needs to provision a new execution environment. This adds latency (usually a few hundred ms for Node.js/Python, more for Java).
+
+To reduce cold starts:
+
+* Use **provisioned concurrency** for latency-sensitive functions
+* Optimize package size and initialization logic
+
+🔑 **Key Points:**
+
+* Happens with idle or scaled-up functions
+* Fix with provisioned concurrency or lighter packages
+
+---
+
+###  **Environment-specific configuration?**
+
+
+I use **environment variables** for configuration and secrets, and inject values via:
+
+* Lambda console/CLI
+* Parameter Store or Secrets Manager for sensitive data
+
+For secure config:
+
+* Encrypt secrets using **KMS**
+* Access config via IAM-secured API calls
+
+🔑 **Key Points:**
+
+* Use env vars for config
+* Use Secrets Manager for sensitive data
+
+---
+
+###  **secure a Lambda function?**
+
+
+Security for Lambda includes:
+
+* **IAM roles and policies**: Least-privilege access to AWS services
+* **VPC integration**: To access RDS or internal systems
+* **Function permissions**: Who can invoke it (e.g., API Gateway, EventBridge)
+* **Code signing**: To ensure code integrity
+* **Environment variable encryption**: Using KMS
+
+🔑 **Key Points:**
+
+* IAM and VPC configuration
+* Control invoke access tightly
+* Use layers carefully (don’t introduce vulnerabilities)
+
+---
+
+###  **optimize performance**
+
+
+
+* **Tune memory and timeout** settings for faster execution
+* **Minimize dependencies** and package size
+* Use **Node.js async handlers** efficiently
+* Cache data using **/tmp** storage or external cache (e.g., Redis)
+* For repeated calls, use **provisioned concurrency**
+
+🔑 **Key Points:**
+
+* Balance memory vs cost
+* Reduce cold start impact
+* Avoid over-fetching data or doing heavy computation inline
+
+---
+
+###  **Lambda scale?**
+
+ - Lambda scales **automatically** based on incoming request volume. Each request gets its own container (up to account-level concurrency limits). No manual intervention is needed.
+- I’ve also used **reserved and provisioned concurrency** when I needed more control.
+
+**Key Points:**
+
+* Truly serverless scalability
+* Use reserved concurrency to throttle, provisioned to pre-warm
+
+
+
+
+### Messaging Patterns – Key Points
+
+| #  | **Pattern**                 | **Key Points**                                                                                |
+| -- | --------------------------- | --------------------------------------------------------------------------------------------- |
+| 1  | **Point-to-Point**          | ✔ One-to-one messaging<br>✔ Producer → SQS → Consumer<br>✔ Decouples components               |
+| 2  | **Pub/Sub (Fan-out)**       | ✔ One-to-many messaging<br>✔ SNS → SQS/Lambda<br>✔ Parallel processing, scalability           |
+| 3  | **Message Filtering**       | ✔ SNS + filter policies<br>✔ Attribute-based delivery<br>✔ Reduces noise per subscriber       |
+| 4  | **Queue Chaining**          | ✔ Break down workflows into steps<br>✔ Sequential processing using multiple queues            |
+| 5  | **Priority Queues**         | ✔ Separate SQS queues by priority (High/Med/Low)<br>✔ Process high first                      |
+| 6  | **Dead Letter Queue (DLQ)** | ✔ Capture failed messages<br>✔ Prevent blocking main queue<br>✔ Useful for debugging          |
+| 7  | **Event Sourcing**          | ✔ Track all state changes as events<br>✔ Use SNS + Lambda + DynamoDB Streams                  |
+| 8  | **Request-Reply**           | ✔ Async reply pattern using response queue<br>✔ Correlation ID for matching                   |
+| 9  | **Event Replay**            | ✔ Persist events in S3<br>✔ Reprocess anytime<br>✔ Enables recovery or analysis               |
+| 10 | **Serverless Pipeline**     | ✔ SNS → Lambda → SQS → Lambda<br>✔ Reliable + scalable event flow<br>✔ Full serverless design |
+
+---
+
+### **Security & Resilience – Essentials**
+
+* 🔑 **Use IAM roles** for least-privilege access
+* 🔒 **Encrypt messages** using KMS
+* 🧼 **Use DLQs** for retries and failure isolation
+* 🔁 **Enable long polling** to reduce cost
+* 🧠 **Idempotent consumers** = safe reprocessing
+* 📈 **Monitor queues** with CloudWatch metrics
+* Mention **decoupling**, **scalability**, and **fault tolerance**.
+* Know **SNS → multiple SQS** = **fan-out pattern**.
+* FIFO queues = **exactly-once + order**, but **limited throughput**.
+* Use **DLQ + CloudWatch alarms** for robust production setup.
+* For **high throughput + multi-subscriber**, go:  👉 SNS → SQS → Lambda
 

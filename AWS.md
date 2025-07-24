@@ -6,7 +6,8 @@
 - [Difference between Kafka and SQS](#kafka-and-sqs) - [Using Pushpin to broadcast real-time messages](#pushpin-to-broadcast-real-time-messages)
 - [Handling message duplication or retries](#handling-message-duplication-or-retries) - [Scaling a queue-based system under high load](#scaling-a-queue-based-system-under-high-load) - [Trade-offs when choosing Kafka over SQS](#trade-offs-when-choosing-kafka-over-sqs)
 
-- [SQS](#SQS)
+- [SQS](#SQS) - [SQS Best Practice](#SQS-Best-Practice)
+- [SNS](#SNS) - [SNS Best Practice](#SNS-Best-Practice)
 
 
 | **Category**           | **Topics** |
@@ -49,7 +50,7 @@
 |  **SQS ensure durability**?                   | Messages are stored **across multiple Availability Zones (AZs)** for **high durability and availability**.                                                  |
 |  **message ordering preserved in FIFO queues**? | Using **MessageGroupId**, which guarantees **strict message order within the same group**.                                                                  |
 
-
+## SQS Best Practice
 
 | **Best Practice**                   | **Why it Matters**                                                                            |
 | ----------------------------------- | --------------------------------------------------------------------------------------------- |
@@ -59,6 +60,42 @@
 | Use **message attributes**          | Pass **lightweight metadata** (e.g., type, ID) **without bloating message body**.             |
 | Ensure **idempotency in consumers** | Prevents **side effects from duplicate messages**.                                            |
 | Monitor with **CloudWatch metrics** | Track **queue depth**, **message age**, and **failed messages** for **alerting and scaling**. |
+
+
+## SNS
+
+
+| **Question**                                   | **Answer**                                                                                                                                                                                    |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| What is Amazon SNS?                            | Amazon **Simple Notification Service (SNS)** is a **fully managed**, **pub/sub messaging** service for **decoupling microservices**, **distributing messages**, and **triggering workflows**. |
+| What are the main components of SNS?           | 1. **Topic** – a communication channel.<br>2. **Publisher** – sends messages to the topic.<br>3. **Subscriber** – receives messages (e.g., email, SMS, Lambda, SQS).                          |
+| What types of protocols does SNS support?      | **HTTP/HTTPS**, **Email/Email-JSON**, **SMS**, **Lambda**, **SQS**, **Platform Applications** (mobile push).                                                                                  |
+| Difference between SNS and SQS?                | **SNS is push-based**, ideal for **broadcasting**.<br>**SQS is pull-based**, ideal for **decoupling and queuing**.                                                                            |
+| Can SNS send messages to multiple subscribers? | Yes, SNS supports **fan-out** – one message to **multiple endpoints** (e.g., SQS + Lambda + Email).                                                                                           |
+| What is a topic in SNS?               | A **topic is a logical access point** for **grouping multiple subscribers**. Messages published to a topic are **delivered to all subscribers**.                         |
+| How does SNS ensure message delivery? | SNS **tries multiple retries**, with **exponential backoff** for failed HTTP/S subscribers. For Lambda and SQS, **messages are delivered reliably**.                     |
+| Can you filter messages in SNS?       | Yes, using **Message Attributes + Subscription Filter Policies**, subscribers receive only **relevant messages**.                                                        |
+| How can SNS trigger Lambda?           | By **subscribing a Lambda function** to an SNS topic. When a message is published, **Lambda is invoked** automatically.                                                  |
+| How to secure SNS?                    | - Use **access policies** (resource-based IAM).<br>- Enable **encryption (KMS)**.<br>- Use **VPC endpoints** for private access.<br>- Use **HTTPS** for secure delivery. |
+| How does SNS handle message retries?                   | For HTTP/S endpoints, SNS uses **retries with exponential backoff**. After failure, messages are sent to a **Dead Letter Queue (DLQ)** if configured. |
+| What is message filtering in SNS?                      | **Subscribers can filter messages** using **filter policies** based on **message attributes**, reducing unnecessary traffic.                          |
+| How does SNS integrate with mobile push notifications? | SNS supports **Platform Applications** (e.g., APNS, FCM). You register **device tokens**, and SNS sends push notifications.                           |
+| Can SNS be used across AWS accounts?                   | Yes, using **cross-account access policies**, SNS topics can be shared across accounts.                                                               |
+| What is the delivery guarantee in SNS?                 | - **Best-effort** for HTTP/HTTPS and Email.<br>- **At-least-once** delivery for SQS and Lambda subscribers.                                           |
+
+## SNS Best Practice
+
+| **Best Practice**                          | **Why it Matters**                                            |
+| ------------------------------------------ | ------------------------------------------------------------- |
+| Use **filter policies**                    | Reduce **unnecessary processing** for subscribers.            |
+| Use **Dead Letter Queues** with Lambda/SQS | Helps **capture failed deliveries** for **troubleshooting**.  |
+| Enable **encryption**                      | Use **KMS encryption** to secure messages at rest.            |
+| Prefer **fan-out** architecture            | **Decouples services** and improves **scalability**.          |
+| Use **CloudWatch metrics**                 | Monitor **delivery success/failure**, **message throughput**. |
+| Set **message attributes wisely**          | Adds **contextual metadata** for **targeted filtering**.      |
+
+
+
 
 
 

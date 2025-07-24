@@ -21,7 +21,7 @@
 |------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Lambda Concepts**     | - [AWS Lambda](#aws-lambda)<br>- [Supported Languages](#aws-lambda-supported-languages)<br>- [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>- [Lambda Layers](#lambda-layers) | **Use Cases & Architectures** | - [Use Cases](#use-cases)<br>- [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)<br>- [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) | **Triggers & Data Handling**  | - [Triggers](#triggers-that-can-invoke-aws-lambda)<br>- [Passing Data](#passing-data-to-an-aws-lambda-function)<br>- [Large File Uploads](#handling-large-file-uploads-in-aws) |
 | **Pricing**                  | - [Lambda Priced](#lambda-priced)                                                                                                                                                                                                        | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br>- [Secrets](#securely-storing-secrets-in-lambda) |
-| **Monitoring & Debugging**   | - [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br>- [Scaling](#how-lambda-scales) |
+| **Monitoring & Debugging**   | - [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br> |
 | **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     | **Security & Resilience**     | - [Security & Resilience – Essentials](#security--resilience--essentials)                                                                                                                        |                              |                                                                                                                                                                                                                                           |
                                                                              |
 ## SQS
@@ -403,63 +403,6 @@ const url = s3.getSignedUrl('putObject', params);
 
 
 
-###  How Lambda Scales
-
-
-Lambda scales **automatically and horizontally** by running multiple instances in parallel. By default:
-
-
-AWS Lambda automatically and **horizontally scales** your application **by running more instances of your function in parallel** to handle incoming requests.
-
-
-* Up to 1,000 concurrent executions per region (can be increased via request)
-
-
-
----
-
-#### ⚙️ **How Lambda Scaling Works**
-
-1. **Each request is handled by a separate instance** of your function.
-2. AWS **automatically creates new instances** as needed, based on request volume.
-3. **No manual intervention** is required—scaling is automatic and fully managed.
-
----
-
-#### 📈 **Scaling Behavior**
-
-| Event Type                           | Scaling Behavior                                                                    |
-| ------------------------------------ | ----------------------------------------------------------------------------------- |
-| **Synchronous** (API Gateway, ALB)   | Scales instantly per request — one request = one instance (max concurrency applies) |
-| **Asynchronous** (S3, SNS)           | Queues events and processes them using **Lambda’s internal retry logic**            |
-| **Stream-based** (DynamoDB, Kinesis) | Scales with number of shards and batch size — more predictable and controlled       |
-
----
-
-#### 🔢 **Concurrency Limits**
-
-* **Default concurrent executions per region**: 1,000 (can be increased via AWS Support).
-* **Reserved concurrency**: You can reserve a portion of that limit for specific functions.
-* **Provisioned concurrency**: Keeps a specified number of Lambda instances warm, reducing cold starts.
-
----
-
-#### 🧠 **Key Points**
-
-* **Stateless design** is essential. Lambda doesn't retain state between executions.
-* **Execution duration and memory** also affect scaling speed and cost.
-* If all concurrent executions are in use, additional requests are throttled (HTTP 429).
-
----
-
-#### 📊 **Example**
-
-If your API receives 5000 requests per second:
-
-* Lambda will spin up to 5000 parallel executions (if within your account's concurrency limit).
-* You don’t need to manage or provision any servers manually.
-
----
 
 
 ###  Provisioned concurrency
@@ -1489,13 +1432,35 @@ Security for Lambda includes:
 
 ###  **Lambda scale?**
 
- - Lambda scales **automatically** based on incoming request volume. Each request gets its own container (up to account-level concurrency limits). No manual intervention is needed.
-- I’ve also used **reserved and provisioned concurrency** when I needed more control.
+* **Lambda scales automatically and horizontally**
+* **No server management or provisioning required**
+* Use **Reserved Concurrency** to throttle or protect functions
+* Use **Provisioned Concurrency** to avoid **cold starts**
+* **Stateless design** is a must—no persistence between invocations
+* **Monitor usage via CloudWatch metrics** and set alerts
+* Exceeding limits leads to **throttling (HTTP 429)**
 
-**Key Points:**
+| **Aspect**                 | **Details**                                                                                      |
+| -------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Scaling Type**           | Lambda scales **automatically and horizontally** by creating **parallel instances** per request. |
+| **Default Concurrency**    | **1,000 concurrent executions per region** *(can be increased via AWS Support)*                  |
+| **Manual Intervention**    | **Not required** – scaling is **fully managed by AWS**                                           |
+| **Instance Handling**      | **Each request gets its own container** (function instance)                                      |
+| **Cold Start Handling**    | Use **Provisioned Concurrency** to **pre-warm instances**                                        |
+| **Reserved Concurrency**   | Used to **allocate concurrency to specific functions** or **throttle** others                    |
+| **Concurrency Throttling** | If concurrency limit is hit, **extra requests are throttled** (HTTP 429 error)                   |
 
-* Truly serverless scalability
-* Use reserved concurrency to throttle, provisioned to pre-warm
+**Scaling Behavior by Event Type**
+
+| **Event Type**                          | **Scaling Behavior**                                                |
+| --------------------------------------- | ------------------------------------------------------------------- |
+| **Synchronous**<br>(API Gateway, ALB)   | **Scales instantly** – one request = one instance                   |
+| **Asynchronous**<br>(S3, SNS)           | Events are **queued and retried** automatically                     |
+| **Stream-based**<br>(Kinesis, DynamoDB) | Scales with **number of shards**, controlled and predictable growth |
+
+---
+
+
 
 
 

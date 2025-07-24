@@ -8,7 +8,6 @@
 
 - [SQS](#SQS) - [SQS Best Practice](#SQS-Best-Practice)
 - [SNS](#SNS) - [SNS Best Practice](#SNS-Best-Practice)
-- [Lambda](#Lambda)
 
 
 | **Category**           | **Topics** |
@@ -17,14 +16,13 @@
 | **Amazon DynamoDB**    | [DynamoDB Overview](#amazon-dynamodb), [Features](#dynamodb-features), [Durability & Availability](#dynamodb-ensure-data-durability-and-availability), [Query](#perform-a-query-in-dynamodb), [Security](#secure-dynamodb-data), [Table Design](#best-practice-for-designing-dynamodb-tables), [Query vs Scan](#difference-between-query-and-scan-in-dynamodb), [Limits](#limits-of-dynamodb), [Transactions](#handle-transactions-in-dynamodb), [Capacity Modes](#readwrite-capacity-modes-in-dynamodb), [Streams](#dynamodb-streams), [Scaling](#dynamodb-handle-scaling), [GSI vs LSI](#global-secondary-index-gsi-and-local-secondary-index-lsi), [Partition vs Sort Key](#difference-between-a-partition-key-and-a-sort-key), [Primary Key Types](#primary-keys-types), [Primary Key](#primary-key-in-dynamodb), [MongoDB vs DynamoDB](#MongoDB-vs-Amazon-DynamoDB) |
 | **Amazon S3**          | [Bucket Policy](#s3-bucket-policy), [IAM vs Bucket Policy](#bucket-policy-different-from-iam-policy), [Controlled Actions](#common-actions-controlled-by-s3-policies), [Restrict by IP](#restrict-access-to-an-s3-bucket-to-a-specific-ip-range), [Public Access](#s3-bucket-publicly-accessible), [Block Public Access](#purpose-of-block-public-access-settings), [ACLs](#s3-access-control-lists-acls), [ACLs vs Policies](#bucket-policies-vs-acls), [S3 CORS](#s3-cross-origin-resource-sharing-cors), [Encryption](#encrypt-objects-in-s3), [Pre-Signed URLs](#pre-signed-url-in-s3), [Lifecycle Policies](#s3-lifecycle-policies-work), [Storage Classes](#common-s3-storage-classes), [S3 Security](#secure-s3-buckets), [Versioning](#s3-handle-versioning), [Large Uploads](#handle-large-file-uploads-in-s3), [Transfer Acceleration](#s3-transfer-acceleration), [Event Notifications](#s3-event-notifications-work), [Prevent Deletion](#prevent-unauthorized-deletion-of-objects), [Max Object Size](#maximum-size-of-an-s3-object) |
 
-## Lambda
 
 | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              |
 |------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Lambda Concepts**     | - [AWS Lambda](#aws-lambda)<br>- [Supported Languages](#aws-lambda-supported-languages)<br>- [Lambda Layers](#lambda-layers) | **Use Cases & Architectures** | - [Use Cases](#use-cases)<br>- [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)<br>- [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) | **Triggers & Data Handling**  | - [Triggers](#triggers-that-can-invoke-aws-lambda)<br>- [Passing Data](#passing-data-to-an-aws-lambda-function)<br>- [Large File Uploads](#handling-large-file-uploads-in-aws) |
 | **Pricing**                  | - [Lambda Priced](#lambda-priced)                                                                                                                                                                                                        | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br> |
 | **Monitoring & Debugging**   | - [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br> |
-| **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     | **Security & Resilience**     | - [Security & Resilience – Essentials](#security--resilience--essentials)                                                                                                                        |            **Max**                  |     - [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>                                                                                                                                                                                                                                      |
+| **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     |      |                                                                                                                    |            **Max**                  |     - [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>                                                                                                                                                                                                                                      |
 ## SQS
 
 
@@ -1480,6 +1478,15 @@ For secure config:
 * Be careful with **third-party layers** – they can introduce **security risks**
 
 
+* **Decoupling** improves fault isolation and horizontal scalability
+* **DLQs** help isolate poisoned messages without losing the queue
+* **KMS** secures your messages at rest
+* **Idempotent consumers** prevent duplicate processing issues
+* **SNS + SQS** enables **fan-out**, highly scalable and durable
+* **FIFO** ensures strict **ordering and exactly-once**, ideal for financial/critical workflows
+* Use **CloudWatch** for real-time visibility and automated alerting
+
+
 | **Security Aspect**       | **Explanation**                                                                 |
 | ------------------------- | ------------------------------------------------------------------------------- |
 | **IAM Roles & Policies**  | Attach **least-privilege IAM roles** to limit access to only needed services    |
@@ -1492,3 +1499,17 @@ For secure config:
 | **IAM Access Control**          | Use **tight IAM permissions** to allow Lambda access only to needed secrets  |
 | **Avoid Hardcoding**            | **Never hardcode secrets** in source code or plain env variables             |
 
+
+| **Topic**                             | **Best Practices / Concepts**                                                     |
+| ------------------------------------- | --------------------------------------------------------------------------------- |
+| **IAM Roles**                         | Use **least-privilege IAM roles** for producers and consumers                     |
+| **Encryption (at-rest & in-transit)** | Use **AWS KMS** to **encrypt messages** in SQS/SNS                                |
+| **Dead Letter Queues (DLQs)**         | Configure **DLQs** for **error isolation and retry analysis**                     |
+| **Long Polling**                      | Enable **long polling** to **reduce empty receives and lower cost**               |
+| **Idempotency**                       | Design **idempotent consumers** to safely handle **reprocessing**                 |
+| **CloudWatch Metrics & Alarms**       | Monitor queue depth, age of oldest message, and error count with **CloudWatch**   |
+| **Decoupling**                        | Use SQS/SNS to **decouple services**, improving **resilience and scalability**    |
+| **Scalability / Fan-out**             | Use **SNS → multiple SQS** for **fan-out to many consumers**                      |
+| **FIFO Queues**                       | Guarantee **exactly-once delivery and message order** (but with lower throughput) |
+| **Production Hardening**              | Combine **DLQ + CloudWatch Alarms** to create a **robust, alert-driven setup**    |
+| **High Throughput Architecture**      | For **high concurrency & multi-targets**: use 👉 **SNS → SQS → Lambda**           |

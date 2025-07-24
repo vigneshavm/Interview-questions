@@ -2680,21 +2680,21 @@ export class HoverHighlightDirective {
  🏗️ **Provider Scopes & Hierarchy**
 
 | Level           | Scope / Use Case                                       |
-|  |  |
+|------------------|---------------------------------------------------------|
 | `root`          | App-wide singleton                                     |
-| Module-level    | Feature-specific isolation (e.g., lazy-loaded modules) |
-| Component-level | New instance per component (e.g., form state)          |
+| `module`        | Feature-specific isolation (e.g., lazy-loaded modules) |
+| `component`     | New instance per component (e.g., form state)          |
 
 
 
  🛠️ **Provider Techniques I've Used**
 
-| Technique     | Use Case Example                                 |
-| - |  |
-| `useClass`    | Switch between real/mock implementations         |
-| `useValue`    | Inject configs like API URLs                     |
-| `useFactory`  | Create service conditionally (e.g., env check)   |
-| `multi: true` | Register multiple providers (e.g., interceptors) |
+| Technique      | Use Case Example                                         |
+|----------------|----------------------------------------------------------|
+| `useClass`     | Switch between real/mock implementations                |
+| `useValue`     | Inject configs like API URLs                            |
+| `useFactory`   | Create service conditionally (e.g., env check)          |
+| `multi: true`  | Register multiple providers (e.g., HTTP interceptors)   |
 
 ```ts
 { provide: LoggerService, useFactory: () =- isProd ? new ProdLogger() : new DevLogger() }

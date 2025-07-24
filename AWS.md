@@ -21,7 +21,7 @@
 |------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Lambda Concepts**     | - [AWS Lambda](#aws-lambda)<br>- [Supported Languages](#aws-lambda-supported-languages)<br>- [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>- [Lambda Layers](#lambda-layers) | **Use Cases & Architectures** | - [Use Cases](#use-cases)<br>- [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)<br>- [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) | **Triggers & Data Handling**  | - [Triggers](#triggers-that-can-invoke-aws-lambda)<br>- [Passing Data](#passing-data-to-an-aws-lambda-function)<br>- [Large File Uploads](#handling-large-file-uploads-in-aws) |
 | **Pricing**                  | - [Lambda Priced](#lambda-priced)                                                                                                                                                                                                        | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br>- [Secrets](#securely-storing-secrets-in-lambda) |
-| **Monitoring & Debugging**   | - [Monitor and Debug Lambda Functions](#monitor-and-debug-lambda-functions)<br>- [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br>- [Scaling](#how-lambda-scales) |
+| **Monitoring & Debugging**   | - [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br>- [Scaling](#how-lambda-scales) |
 | **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     | **Security & Resilience**     | - [Security & Resilience – Essentials](#security--resilience--essentials)                                                                                                                        |                              |                                                                                                                                                                                                                                           |
                                                                              |
 ## SQS
@@ -519,12 +519,29 @@ aws lambda put-provisioned-concurrency-config \
 
 ###  Monitoring Lambda Functions
 
+- “For observability and debugging in my AWS Lambda functions, I use a combination of tools provided by AWS:
 
-Use:
+* 🔍 **CloudWatch Logs**:
+  I use `console.log` or equivalent logging methods, which automatically stream logs to **CloudWatch Logs**. This helps me **trace execution flow**, **inspect variables**, and **capture runtime errors**.
 
-* **CloudWatch Logs**: View logs using `console.log` or equivalents
-* **CloudWatch Metrics**: Invocations, errors, duration, throttles
-* **AWS X-Ray**: Distributed tracing
+* 📊 **CloudWatch Metrics & Alarms**:
+  I monitor key metrics like **invocation count**, **error rates**, **duration**, and **throttle count**. I also configure **CloudWatch Alarms** to get alerted when **thresholds are breached**—for example, **high error rate** or **slow response time**.
+
+* 🧩 **AWS X-Ray**:
+  For deeper observability, especially in distributed systems, I enable **X-Ray tracing**. This helps me **visualize request flow**, **identify performance bottlenecks**, and understand **latency in the application stack**.
+
+* 🗂️ **Structured Logging**:
+  I prefer using **JSON-based structured logs**. This makes it easier to **parse logs**, **filter specific fields**, and **integrate with external log analysis tools**.
+
+
+**🔑 Key Benefits:**
+
+* ✅ **Cloud-native, fully managed observability**
+* ✅ **Logs and metrics auto-integrated** without extra agents
+* ✅ **X-Ray provides end-to-end traceability**
+* ✅ **Quick diagnosis** of errors and performance issues
+
+- In short, these tools help me **proactively monitor**, **troubleshoot**, and **improve reliability and performance** of serverless applications.”
 
 ---
 
@@ -1360,23 +1377,6 @@ Multiple ways:
 
 ---
 
-###  **Monitor and debug Lambda functions?**
-
-
-I use:
-
-* **CloudWatch Logs**: For console.log and errors
-* **X-Ray**: For tracing and debugging performance bottlenecks
-* **CloudWatch Metrics & Alarms**: For monitoring error rates, throttles, and duration
-
-I also implement structured logging (e.g., JSON logs) to make log parsing easier.
-
-🔑 **Key Points:**
-
-* Logs auto-integrated with CloudWatch
-* Use X-Ray for tracing distributed calls
-
----
 
 ###  **Cold start issue?**
 

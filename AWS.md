@@ -1502,18 +1502,13 @@ Security for Lambda includes:
 
 ### Messaging Patterns – Key Points
 
-| #  | **Pattern**                 | **Key Points**                                                                                |
-| -- | --------------------------- | --------------------------------------------------------------------------------------------- |
-| 1  | **Point-to-Point**          | ✔ One-to-one messaging<br>✔ Producer → SQS → Consumer<br>✔ Decouples components               |
-| 2  | **Pub/Sub (Fan-out)**       | ✔ One-to-many messaging<br>✔ SNS → SQS/Lambda<br>✔ Parallel processing, scalability           |
-| 3  | **Message Filtering**       | ✔ SNS + filter policies<br>✔ Attribute-based delivery<br>✔ Reduces noise per subscriber       |
-| 4  | **Queue Chaining**          | ✔ Break down workflows into steps<br>✔ Sequential processing using multiple queues            |
-| 5  | **Priority Queues**         | ✔ Separate SQS queues by priority (High/Med/Low)<br>✔ Process high first                      |
-| 6  | **Dead Letter Queue (DLQ)** | ✔ Capture failed messages<br>✔ Prevent blocking main queue<br>✔ Useful for debugging          |
-| 7  | **Event Sourcing**          | ✔ Track all state changes as events<br>✔ Use SNS + Lambda + DynamoDB Streams                  |
-| 8  | **Request-Reply**           | ✔ Async reply pattern using response queue<br>✔ Correlation ID for matching                   |
-| 9  | **Event Replay**            | ✔ Persist events in S3<br>✔ Reprocess anytime<br>✔ Enables recovery or analysis               |
-| 10 | **Serverless Pipeline**     | ✔ SNS → Lambda → SQS → Lambda<br>✔ Reliable + scalable event flow<br>✔ Full serverless design |
+| **Pattern**               | **Key Points**                                                                                   | **Pattern**               | **Key Points**                                                                                   |
+|---------------------------|--------------------------------------------------------------------------------------------------|---------------------------|--------------------------------------------------------------------------------------------------|
+| **Point-to-Point**        | ✅ **One-to-one messaging**<br>✅ **Producer → SQS → Consumer**<br>✅ **Decouples components**       | **Pub/Sub (Fan-out)**     | ✅ **One-to-many messaging**<br>✅ **SNS → SQS/Lambda**<br>✅ **Parallel processing, scalability** |
+| **Message Filtering**     | ✅ **SNS + filter policies**<br>✅ **Attribute-based delivery**<br>✅ **Reduces noise per subscriber** | **Queue Chaining**        | ✅ **Break down workflows into steps**<br>✅ **Sequential processing using multiple queues**      |
+| **Priority Queues**       | ✅ **Separate SQS queues by priority (High/Med/Low)**<br>✅ **Process high priority first**         | **Dead Letter Queue (DLQ)** | ✅ **Capture failed messages**<br>✅ **Prevent blocking main queue**<br>✅ **Useful for debugging** |
+| **Event Sourcing**        | ✅ **Track all state changes as events**<br>✅ **Use SNS + Lambda + DynamoDB Streams**              | **Request-Reply**         | ✅ **Async reply pattern using response queue**<br>✅ **Use Correlation ID for matching**         |
+| **Event Replay**          | ✅ **Persist events in S3**<br>✅ **Reprocess anytime**<br>✅ **Enables recovery or analysis**        | **Serverless Pipeline**   | ✅ **SNS → Lambda → SQS → Lambda**<br>✅ **Reliable & scalable flow**<br>✅ **Fully serverless**     |
 
 ---
 

@@ -462,52 +462,41 @@ If your API receives 5000 requests per second:
 ---
 
 
-###  provisioned concurrency
+###  Provisioned concurrency
+
+| **Aspect**       | **Details**                                                   |
+| ---------------- | ------------------------------------------------------------- |
+| **Purpose**      | Avoid cold starts for latency-sensitive workloads             |
+| **How it works** | Pre-warms Lambda instances with runtime + init code           |
+| **Setup**        | Console, CLI, or IaC (e.g., CDK, CloudFormation)              |
+| **Billing**      | Charged per second for warm time **+** execution              |
+| **When to use**  | Predictable traffic, APIs, gaming, ML inference, etc.         |
+| **Limitation**   | **More expensive**, not ideal for bursty or irregular traffic |
 
 
-It ensures a **pre-warmed number of Lambda instances**, eliminating cold starts. It’s suitable for latency-sensitive workloads (e.g., APIs, gaming, ML inference).
+- Provisioned Concurrency is a feature in AWS Lambda that helps **eliminate cold starts** by **pre-warming a set number of Lambda instances**. 
+- This is especially useful for **latency-sensitive applications** like APIs or real-time systems.
+- When we enable Provisioned Concurrency, AWS **initializes the runtime and dependencies ahead of time**, so the function is **ready to respond instantly** when triggered. 
+- This gives **near-zero startup latency**, unlike the usual cold start that happens when the Lambda hasn't been invoked for a while or during scale-out.
+- We configure Provisioned Concurrency by specifying the **number of concurrent executions** we want to keep warm. AWS **prepares those instances** in advance, including **runtime boot-up and code initialization**.
+
+- I'd use it when:
+  * The application needs **consistent low latency**
+  * Traffic is **predictable**, like during business hours
+  * The Lambda is triggered by **API Gateway, ALB, or Step Functions**
+
+- For example, in a real-time bidding platform or ML inference service, even **100ms of cold start** can degrade UX, so **Provisioned Concurrency helps maintain SLA**.
+
+
+**Trade-offs**
+
+- The main trade-off is **cost**. 
+- With Provisioned Concurrency, you pay for the **provisioned "warm time"** in addition to the **execution time**. 
+- So, it's best suited for **predictable workloads** where the performance gains justify the extra cost.
 
 
 
-**Provisioned Concurrency** is an AWS Lambda feature that **pre-warms** a specified number of Lambda instances so they are **ready to respond immediately**—eliminating cold starts.
-
----
-
-#### 🚀 **Why Use Provisioned Concurrency?**
-
-Cold starts can cause latency in:
-
-* User-facing APIs (e.g., mobile or web)
-* Real-time processing apps
-* Low-latency or predictable workloads
-
-Provisioned concurrency **ensures consistent performance** for such use cases.
-
----
-
-#### ⚙️ **How It Works**
-
-* You specify the **number of warm Lambda instances** to keep ready.
-* AWS **initializes those instances ahead of time** (including runtime, init code).
-* When requests come in, they're routed to these **already-initialized** instances.
-
-> ✅ Great for predictable traffic
-> ❌ More expensive than regular Lambda (you pay for the "warm" time)
-
----
-
-#### 📌 **Key Properties**
-
-| Property              | Value                                                                       |
-| --------------------- | --------------------------------------------------------------------------- |
-| Startup latency       | Near zero (no cold start)                                                   |
-| Use case              | Predictable traffic, real-time apps                                         |
-| Billing               | You pay **per second** for provisioned time + invocations                   |
-| Configuration options | Set via Console, CLI, or Infrastructure as Code (e.g., CloudFormation, CDK) |
-
----
-
-#### 🧪 **Example – Enabling via AWS CLI**
+**Example – Enabling via AWS CLI**
 
 ```bash
 aws lambda put-provisioned-concurrency-config \
@@ -516,26 +505,6 @@ aws lambda put-provisioned-concurrency-config \
   --provisioned-concurrent-executions 10
 ```
 
-> This reserves **10 warm instances** on the `production` version of your function.
-
----
-
-#### 📊 **Billing Comparison**
-
-| Type                    | Billed For                           |
-| ----------------------- | ------------------------------------ |
-| On-demand Lambda        | Execution time only                  |
-| Provisioned Concurrency | Pre-warmed time **+** execution time |
-
----
-
-#### **When to Use It**
-
-* Cold start latency is not acceptable
-* You have **predictable traffic patterns**
-* You're calling Lambda from **API Gateway, ALB, Step Functions**, etc.
-
----
 
 
 
@@ -1500,7 +1469,7 @@ Security for Lambda includes:
 
 ---
 
-###  **optimize performance**
+###  **Optimize performance**
 
 
 

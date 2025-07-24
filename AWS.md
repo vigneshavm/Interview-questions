@@ -8,6 +8,7 @@
 
 - [SQS](#SQS) - [SQS Best Practice](#SQS-Best-Practice)
 - [SNS](#SNS) - [SNS Best Practice](#SNS-Best-Practice)
+- [Amazon Kinesis Data Streams](#amazon-kinesis-data-streams) -[Lambda](#Lambda)
 
 
 | **Category**           | **Topics** |
@@ -16,6 +17,8 @@
 | **Amazon DynamoDB**    | [DynamoDB Overview](#amazon-dynamodb), [Features](#dynamodb-features), [Durability & Availability](#dynamodb-ensure-data-durability-and-availability), [Query](#perform-a-query-in-dynamodb), [Security](#secure-dynamodb-data), [Table Design](#best-practice-for-designing-dynamodb-tables), [Query vs Scan](#difference-between-query-and-scan-in-dynamodb), [Limits](#limits-of-dynamodb), [Transactions](#handle-transactions-in-dynamodb), [Capacity Modes](#readwrite-capacity-modes-in-dynamodb), [Streams](#dynamodb-streams), [Scaling](#dynamodb-handle-scaling), [GSI vs LSI](#global-secondary-index-gsi-and-local-secondary-index-lsi), [Partition vs Sort Key](#difference-between-a-partition-key-and-a-sort-key), [Primary Key Types](#primary-keys-types), [Primary Key](#primary-key-in-dynamodb), [MongoDB vs DynamoDB](#MongoDB-vs-Amazon-DynamoDB) |
 | **Amazon S3**          | [Bucket Policy](#s3-bucket-policy), [IAM vs Bucket Policy](#bucket-policy-different-from-iam-policy), [Controlled Actions](#common-actions-controlled-by-s3-policies), [Restrict by IP](#restrict-access-to-an-s3-bucket-to-a-specific-ip-range), [Public Access](#s3-bucket-publicly-accessible), [Block Public Access](#purpose-of-block-public-access-settings), [ACLs](#s3-access-control-lists-acls), [ACLs vs Policies](#bucket-policies-vs-acls), [S3 CORS](#s3-cross-origin-resource-sharing-cors), [Encryption](#encrypt-objects-in-s3), [Pre-Signed URLs](#pre-signed-url-in-s3), [Lifecycle Policies](#s3-lifecycle-policies-work), [Storage Classes](#common-s3-storage-classes), [S3 Security](#secure-s3-buckets), [Versioning](#s3-handle-versioning), [Large Uploads](#handle-large-file-uploads-in-s3), [Transfer Acceleration](#s3-transfer-acceleration), [Event Notifications](#s3-event-notifications-work), [Prevent Deletion](#prevent-unauthorized-deletion-of-objects), [Max Object Size](#maximum-size-of-an-s3-object) |
 
+
+## Lambda
 
 | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              |
 |------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1513,3 +1516,43 @@ For secure config:
 | **FIFO Queues**                       | Guarantee **exactly-once delivery and message order** (but with lower throughput) |
 | **Production Hardening**              | Combine **DLQ + CloudWatch Alarms** to create a **robust, alert-driven setup**    |
 | **High Throughput Architecture**      | For **high concurrency & multi-targets**: use 👉 **SNS → SQS → Lambda**           |
+
+
+
+
+
+
+### **Amazon Kinesis Data Streams**
+
+
+**Key Points for Interview**
+
+* **Real-time streaming** solution for ingesting high-throughput data
+* **Scales via shards** (horizontal scaling model)
+* **Ordering and durability** built-in
+* Integrates with **Lambda, Firehose, S3, Redshift, Elasticsearch, etc.**
+* Supports **fan-out to multiple consumers** (shared or enhanced)
+* Use **KCL** for checkpointing and fault-tolerant consumer apps
+* **Managed Kafka alternative**, but lacks self-hosted customizability
+* Use **Firehose** if you want auto-delivery to S3/Redshift without building consumers
+
+
+| **Topic**                 | **Details**                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------ |
+| **What is Kinesis?**      | A **real-time streaming service** to collect, process, and analyze data at scale     |
+| **Core Component**        | **Kinesis Data Streams** – for ingesting and storing streaming data                  |
+| **Use Cases**             | Real-time analytics, log/event processing, clickstream analysis, IoT, ML pipelines   |
+| **Data Unit**             | **Records** (each with partition key, sequence number, and data blob)                |
+| **Shard**                 | Unit of scaling: **1 shard = 1 MB/sec in, 2 MB/sec out**                             |
+| **Retention**             | Default: **24 hours**, extendable up to **365 days**                                 |
+| **Consumers**             | - **Shared fan-out** (5 transactions/sec/consumer)                                   |
+|                           | - **Enhanced fan-out** (dedicated throughput per consumer)                           |
+| **Checkpointing**         | Track processed records using **Kinesis Client Library (KCL)** with **DynamoDB**     |
+| **Ordering Guarantee**    | **Ordering is preserved within each shard**                                          |
+| **Durability**            | Data replicated across **3 AZs** for fault tolerance                                 |
+| **Latency**               | Low latency (\~**200 ms** from ingest to read)                                       |
+| **Pricing**               | Based on **shard hours + PUT payload units + enhanced fan-out (if used)**            |
+| **Comparison with Kafka** | Fully managed alternative to Kafka; **no cluster management**, but **less flexible** |
+
+---
+

@@ -1287,19 +1287,22 @@ I've used Lambda for:
 ###  **Lambda priced?**
 
 
-Lambda is priced based on:
+**Key Points to Say in Interview**
 
-* **Number of invocations**
-* **Duration of execution** (rounded to the nearest ms)
-* **Memory allocated** (128 MB to 10 GB)
+* **Lambda is pay-as-you-go** – you're billed for usage, not idle time.
+* **No cost when functions are idle** — great for spiky or low-traffic workloads.
+* **Granular billing** (per ms) lets you tightly control execution costs.
+* **Memory tuning** can reduce both **latency and cost** — balance is key.
 
-The first **1 million requests per month are free**, making it very cost-effective for low-volume workloads.
-
-🔑 **Key Points:**
-
-* No charge when idle
-* Granular pricing model
-* Optimizing memory = cost & performance balance
+| **Aspect**             | **Explanation**                                                            |
+| ---------------------- | -------------------------------------------------------------------------- |
+| **Pricing Metrics**    | Based on **number of invocations**, **duration**, and **memory allocated** |
+| **Memory Range**       | **128 MB to 10 GB**, billed in 1 ms increments                             |
+| **Free Tier**          | **1 million invocations & 400,000 GB-seconds/month** included              |
+| **Idle Charges**       | **No charge when idle** – you only pay for actual compute usage            |
+| **Duration Billing**   | **Billed per millisecond**, after a 1ms minimum (rounded to nearest ms)    |
+| **Cost Optimization**  | **Optimizing memory = better cost/performance balance**                    |
+| **Concurrency Impact** | More concurrent executions = more cost (watch quotas and optimize logic)   |
 
 ---
 

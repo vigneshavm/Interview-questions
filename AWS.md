@@ -6,7 +6,7 @@
 - [Difference between Kafka and SQS](#kafka-and-sqs) - [Using Pushpin to broadcast real-time messages](#pushpin-to-broadcast-real-time-messages)
 - [Handling message duplication or retries](#handling-message-duplication-or-retries) - [Scaling a queue-based system under high load](#scaling-a-queue-based-system-under-high-load) - [Trade-offs when choosing Kafka over SQS](#trade-offs-when-choosing-kafka-over-sqs)
 
-
+- [SQS](#SQS)
 
 
 | **Category**           | **Topics** |
@@ -23,6 +23,41 @@
 | **Monitoring & Debugging**   | - [Monitor and Debug Lambda Functions](#monitor-and-debug-lambda-functions)<br>- [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br>- [Cold Start](#cold-start)<br>- [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br>- [Scaling](#how-lambda-scales) |
 | **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     | **Security & Resilience**     | - [Security & Resilience – Essentials](#security--resilience--essentials)                                                                                                                        |                              |                                                                                                                                                                                                                                           |
                                                                              |
+## SQS
+
+
+| **Question**                               | **Answer**                                                                                                                                                                                         |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| What is AWS SQS?                           | Amazon **Simple Queue Service (SQS)** is a **fully managed**, **highly available**, **decoupled messaging service** used to build scalable and resilient systems.                                  |
+| What are the types of SQS queues?          | 1. **Standard Queue** – **High throughput**, **at-least-once delivery**, **best-effort ordering**.<br>2. **FIFO Queue** – **Guaranteed order**, **exactly-once delivery**, **limited throughput**. |
+| What is message retention in SQS?          | Messages are retained for up to **14 days**. The **default retention** is **4 days**.                                                                                                              |
+| What is the max message size in SQS?       | The maximum message size is **256 KB**.                                                                                                                                                            |
+| What is the default visibility timeout?    | Default is **30 seconds**, and can be set from **0 to 12 hours**.                                                                                                                                  |
+| What is the purpose of visibility timeout? | It ensures that **once a message is read**, it is **hidden from other consumers** for a period to **avoid duplicate processing**.                                                                  |
+| How does SQS ensure message delivery? | SQS uses **at-least-once delivery**. **Duplicates can occur**, so **consumers must be idempotent**. **FIFO queues** support **exactly-once delivery**. |
+| What is long polling in SQS?          | **Long polling waits (up to 20 sec)** for messages, reducing **empty responses** and **API costs**.                                                    |
+| What is short polling?                | **Short polling returns immediately**, may return **no messages**, and is **less efficient** than long polling.                                        |
+| What is a Dead Letter Queue (DLQ)?    | A **DLQ captures failed messages** that exceed the **MaxReceiveCount** for **troubleshooting** and **failure isolation**.                              |
+| Can SQS trigger Lambda?               | Yes, SQS can **directly trigger AWS Lambda**, useful in **serverless architectures**.                                                                  |
+| Difference between SNS and SQS?       | **SNS = push-based, pub/sub model**.<br>**SQS = pull-based, queue model**. SNS **broadcasts**, SQS **stores until consumed**.                          |
+| How to implement deduplication in FIFO queues?    | Use **MessageDeduplicationId** (custom or content-based). SQS uses it to **detect and prevent duplicates** within a **5-minute window**.                    |
+| What is batching in SQS?                          | You can **send or receive up to 10 messages** in a **single API call** using **SendMessageBatch** or **ReceiveMessage** for **efficiency and cost saving**. |
+| What are the throughput limits for FIFO queues?   | FIFO supports **300 messages/sec** by default. Can scale to **3,000/sec with batching** and **MessageGroupId** usage.                                       |
+| How do you handle message duplication?            | By building **idempotent consumers**, using **unique IDs**, or **deduplication logic**.                                                                     |
+| How does SQS ensure durability?                   | Messages are stored **across multiple Availability Zones (AZs)** for **high durability and availability**.                                                  |
+| How is message ordering preserved in FIFO queues? | Using **MessageGroupId**, which guarantees **strict message order within the same group**.                                                                  |
+
+
+
+| **Best Practice**                   | **Why it Matters**                                                                            |
+| ----------------------------------- | --------------------------------------------------------------------------------------------- |
+| Use **Dead Letter Queues (DLQ)**    | Helps in **debugging failed message processing** and **isolating issues**.                    |
+| Set **visibility timeout wisely**   | Prevents **duplicate processing** while allowing **retry after timeout**.                     |
+| Enable **long polling**             | **Reduces cost**, **improves efficiency** by reducing empty receives.                         |
+| Use **message attributes**          | Pass **lightweight metadata** (e.g., type, ID) **without bloating message body**.             |
+| Ensure **idempotency in consumers** | Prevents **side effects from duplicate messages**.                                            |
+| Monitor with **CloudWatch metrics** | Track **queue depth**, **message age**, and **failed messages** for **alerting and scaling**. |
+
 
 
 

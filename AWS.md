@@ -20,7 +20,7 @@
 | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              |
 |------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Lambda Concepts**     | - [AWS Lambda](#aws-lambda)<br>- [Supported Languages](#aws-lambda-supported-languages)<br>- [Lambda Layers](#lambda-layers) | **Use Cases & Architectures** | - [Use Cases](#use-cases)<br>- [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)<br>- [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) | **Triggers & Data Handling**  | - [Triggers](#triggers-that-can-invoke-aws-lambda)<br>- [Passing Data](#passing-data-to-an-aws-lambda-function)<br>- [Large File Uploads](#handling-large-file-uploads-in-aws) |
-| **Pricing**                  | - [Lambda Priced](#lambda-priced)                                                                                                                                                                                                        | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br>- [Secrets](#securely-storing-secrets-in-lambda) |
+| **Pricing**                  | - [Lambda Priced](#lambda-priced)                                                                                                                                                                                                        | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br> |
 | **Monitoring & Debugging**   | - [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br> |
 | **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     | **Security & Resilience**     | - [Security & Resilience – Essentials](#security--resilience--essentials)                                                                                                                        |            **Max**                  |     - [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>                                                                                                                                                                                                                                      |
                                                                              |
@@ -496,15 +496,7 @@ You assign an **IAM execution role** to the Lambda function. This role defines w
 
 ---
 
-###  Securely Storing Secrets in Lambda
 
-
-
-* Use **AWS Secrets Manager** or **SSM Parameter Store**
-* Use **IAM policies** to restrict access to secrets
-* Never hard-code secrets in the code or environment variables
-
----
 
 
 ###  Lambda Layers
@@ -1396,25 +1388,6 @@ For secure config:
 
 ---
 
-###  **secure a Lambda function?**
-
-
-Security for Lambda includes:
-
-* **IAM roles and policies**: Least-privilege access to AWS services
-* **VPC integration**: To access RDS or internal systems
-* **Function permissions**: Who can invoke it (e.g., API Gateway, EventBridge)
-* **Code signing**: To ensure code integrity
-* **Environment variable encryption**: Using KMS
-
-🔑 **Key Points:**
-
-* IAM and VPC configuration
-* Control invoke access tightly
-* Use layers carefully (don’t introduce vulnerabilities)
-
----
-
 ###  **Optimize performance**
 
 
@@ -1493,4 +1466,28 @@ Security for Lambda includes:
 * FIFO queues = **exactly-once + order**, but **limited throughput**.
 * Use **DLQ + CloudWatch alarms** for robust production setup.
 * For **high throughput + multi-subscriber**, go:  👉 SNS → SQS → Lambda
+
+
+## Secure a Lambda Function
+
+**Key Points for Interview**
+
+* **Use IAM roles with least privilege** – don’t over-assign permissions
+* **Encrypt environment variables** with **KMS**
+* **Store secrets in Secrets Manager**, not in your code
+* **Restrict who can invoke** your Lambda (API Gateway, EventBridge, etc.)
+* Be careful with **third-party layers** – they can introduce **security risks**
+
+
+| **Security Aspect**       | **Explanation**                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------- |
+| **IAM Roles & Policies**  | Attach **least-privilege IAM roles** to limit access to only needed services    |
+| **VPC Integration**       | Run Lambda inside a **VPC** to securely access **RDS**, **ElastiCache**, etc.   |
+| **Function Invocation**   | Use **resource policies** to **control who can invoke** (e.g., API Gateway, S3) |
+| **Code Signing**          | Enable **code signing** to **verify code integrity** before deployment          |
+| **Environment Variables** | Use **KMS encryption** for sensitive config and secrets                         |
+| **Layers & Dependencies** | Only use **trusted layers**, avoid unnecessary third-party packages             |
+| **Secrets Manager / SSM Store** | Store secrets securely in **AWS Secrets Manager** or **SSM Parameter Store** |
+| **IAM Access Control**          | Use **tight IAM permissions** to allow Lambda access only to needed secrets  |
+| **Avoid Hardcoding**            | **Never hardcode secrets** in source code or plain env variables             |
 

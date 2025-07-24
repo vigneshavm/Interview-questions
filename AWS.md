@@ -27,6 +27,7 @@
 
 
 
+
 | **Question**                               | **Answer**                                                                                                                                                                                         |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AWS SQS?                           | Amazon **Simple Queue Service (SQS)** is a **fully managed**, **highly available**, **decoupled messaging service** used to build scalable and resilient systems.                                  |
@@ -35,18 +36,18 @@
 | the **max message size** in SQS?       | The maximum message size is **256 KB**.                                                                                                                                                            |
 | the **default visibility timeout**?    | Default is **30 seconds**, and can be set from **0 to 12 hours**.                                                                                                                                  |
 | the **purpose of visibility timeout**? | It ensures that **once a message is read**, it is **hidden from other consumers** for a period to **avoid duplicate processing**.                                                                  |
-| How does **SQS ensure message delivery**? | SQS uses **at-least-once delivery**. **Duplicates can occur**, so **consumers must be idempotent**. **FIFO queues** support **exactly-once delivery**. |
+|  **SQS ensure message delivery**? | SQS uses **at-least-once delivery**. **Duplicates can occur**, so **consumers must be idempotent**. **FIFO queues** support **exactly-once delivery**. |
 | **long polling** in SQS?          | **Long polling waits (up to 20 sec)** for messages, reducing **empty responses** and **API costs**.                                                    |
 | **short polling**?                | **Short polling returns immediately**, may return **no messages**, and is **less efficient** than long polling.                                        |
 | a **Dead Letter Queue (DLQ)**?    | A **DLQ captures failed messages** that exceed the **MaxReceiveCount** for **troubleshooting** and **failure isolation**.                              |
 | Can **SQS trigger Lambda**?               | Yes, SQS can **directly trigger AWS Lambda**, useful in **serverless architectures**.                                                                  |
 | Difference **between SNS and SQS**?       | **SNS = push-based, pub/sub model**.<br>**SQS = pull-based, queue model**. SNS **broadcasts**, SQS **stores until consumed**.                          |
-| How to **implement deduplication in FIFO queues**?    | Use **MessageDeduplicationId** (custom or content-based). SQS uses it to **detect and prevent duplicates** within a **5-minute window**.                    |
+|  **implement deduplication in FIFO queues**?    | Use **MessageDeduplicationId** (custom or content-based). SQS uses it to **detect and prevent duplicates** within a **5-minute window**.                    |
 | **batching** in SQS?                          | You can **send or receive up to 10 messages** in a **single API call** using **SendMessageBatch** or **ReceiveMessage** for **efficiency and cost saving**. |
 | What are the **throughput limits for FIFO queues**?   | FIFO supports **300 messages/sec** by default. Can scale to **3,000/sec with batching** and **MessageGroupId** usage.                                       |
-| How do you **handle message duplication**?            | By building **idempotent consumers**, using **unique IDs**, or **deduplication logic**.                                                                     |
-| How does **SQS ensure durability**?                   | Messages are stored **across multiple Availability Zones (AZs)** for **high durability and availability**.                                                  |
-| How is **message ordering preserved in FIFO queues**? | Using **MessageGroupId**, which guarantees **strict message order within the same group**.                                                                  |
+|  you **handle message duplication**?            | By building **idempotent consumers**, using **unique IDs**, or **deduplication logic**.                                                                     |
+|  **SQS ensure durability**?                   | Messages are stored **across multiple Availability Zones (AZs)** for **high durability and availability**.                                                  |
+|  **message ordering preserved in FIFO queues**? | Using **MessageGroupId**, which guarantees **strict message order within the same group**.                                                                  |
 
 
 
@@ -58,7 +59,6 @@
 | Use **message attributes**          | Pass **lightweight metadata** (e.g., type, ID) **without bloating message body**.             |
 | Ensure **idempotency in consumers** | Prevents **side effects from duplicate messages**.                                            |
 | Monitor with **CloudWatch metrics** | Track **queue depth**, **message age**, and **failed messages** for **alerting and scaling**. |
-
 
 
 

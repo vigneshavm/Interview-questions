@@ -13,10 +13,11 @@
 | **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
-| **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) , - [Handle Timeout Issue](#Debugging-Steps-I-Follow-For-Timeout) |
+| **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) |
 | **Performance Optimization** | [Performance Optimization](#performance-optimization),  - [Performance Pitfalls](#common-performance-pitfalls),  - [Handle CPU Tasks](#Handle-CPU-intensive-task) |
 | **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets) , [Concurrent Requests](#Concurrent-CPU-intensive-requests),  - [100K Concurrent](#Handling-100000-concurrent-requests),  - [Handle Concurrency](#Handle-Concurrency),  - [High Traffic Scaling](#Scaling-High-Traffic),  - [Scalability Issues](#scalability-issues) |
-| **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production),  - [PM2](#pm2),  - [Load Balancing](#load-balancing) , - [Common Cases Timeout Errors](#Common-Cases-Timeout-Errors) |
+| **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production),  - [PM2](#pm2),  - [Load Balancing](#load-balancing) |
+| **Timeout**     | [Common Cases Timeout Errors](#Common-Cases-Timeout-Errors) , - [Handle Timeout Issue](#Debugging-Steps-I-Follow-For-Timeout)  |
 | **Database Interaction**     | [SQL Connection](#sql-connection),  - [MongoDB Connection](#mongodb-connection),  - [DB Connections](#database-connections),  - [Transactions](#database-transactions) |
 
 

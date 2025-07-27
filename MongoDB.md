@@ -948,6 +948,18 @@ MongoDB supports many BSON types:
 db.users.createIndex({ email: 1 })  // Ascending index on email
 ```
 
+- In MongoDB, an index is a special data structure — typically a B-tree — that allows for efficient data retrieval. 
+- Instead of scanning every document in a collection, the index lets MongoDB quickly locate data using the indexed fields.
+- Internally, indexes are maintained as a sorted B-tree structure. 
+- Each node in this tree stores the indexed field's value along with a pointer to the corresponding document in the collection. 
+- So when a query is made on an indexed field, MongoDB traverses this B-tree to quickly find matches, avoiding full collection scans.
+
+- Index = B-tree data structure for fast lookups.
+- Stores field value + pointer to actual document.
+- Sorted B-tree traversal used during queries.
+- Avoids full collection scans, improves performance.
+
+
 ---
 
 ### Types of Indexes in MongoDB

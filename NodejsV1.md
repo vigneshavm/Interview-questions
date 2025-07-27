@@ -3,7 +3,7 @@
 
 | **Category**                 | **Topics** |
 |-----------------------------|------------|
-| **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture),  - [Handle Multiple Requests](#nodejs-handle-multiple-requests),  - [Single-Threaded Nature](#single-threaded-nature), - [node js 22 features](#node-js-22-features) - [Node js 20 features](#Node-js-20-features) |
+| **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), - [Why V8 Engine](#Why-V8-Engine) - [Handle Multiple Requests](#nodejs-handle-multiple-requests),  - [Single-Threaded Nature](#single-threaded-nature), - [node js 22 features](#node-js-22-features) - [Node js 20 features](#Node-js-20-features) |
 | **Express.js Framework**     | -[Core modules](#core-modules) - [HTTP Module](#HTTP-Module),  - [Express.js](#expressjs),  - [Routing](#routing),  - [HTTP Methods](#http-methods--use-cases),  - [Query Params](#request-response-query-params),  - [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop),  - [Async I/O Handling](#asynchronous-io-handling),  - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks),  - [Async Execution Order](#Async-Execution-Order),  - [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick),   |
 | **Processes**                | - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
@@ -5702,3 +5702,13 @@ Or via headers (less common):
 GET /users
 Accept: application/vnd.company.v1+json
 ```
+
+## Why V8 Engine
+- High Performance: V8 compiles JavaScript to native machine code using Just-In-Time (JIT) compilation, making execution extremely fast.
+- Built by Google: V8 powers Google Chrome, ensuring continuous optimization, stability, and performance.
+- Memory Efficiency: V8 has an efficient garbage collector, which helps Node.js manage memory in long-running server apps.
+- Cross-Platform: Written in C++, V8 is portable and works well across different OS platforms.
+- Embeddability: V8 is a standalone engine, making it easy for Node.js to embed and extend it with custom APIs (e.g., file system, network).
+- Active Development: Backed by Google and open source contributors, it receives regular updates and performance improvements.
+
+

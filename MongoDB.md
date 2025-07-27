@@ -942,22 +942,29 @@ MongoDB supports many BSON types:
 
 
 ## Creating an Index in MongoDB
-**Answer:** Use the `createIndex()` method to improve query performance.
+
+- “Indexes in MongoDB are based on a **B-tree structure** and are used to **improve query performance** by avoiding full collection scans.
+
+When we create an index using:
 
 ```js
-db.users.createIndex({ email: 1 })  // Ascending index on email
+db.users.createIndex({ email: 1 });
 ```
 
-- In MongoDB, an index is a special data structure — typically a B-tree — that allows for efficient data retrieval. 
-- Instead of scanning every document in a collection, the index lets MongoDB quickly locate data using the indexed fields.
-- Internally, indexes are maintained as a sorted B-tree structure. 
-- Each node in this tree stores the indexed field's value along with a pointer to the corresponding document in the collection. 
-- So when a query is made on an indexed field, MongoDB traverses this B-tree to quickly find matches, avoiding full collection scans.
+MongoDB builds a **sorted B-tree** where each node stores:
 
-- Index = B-tree data structure for fast lookups.
-- Stores field value + pointer to actual document.
-- Sorted B-tree traversal used during queries.
-- Avoids full collection scans, improves performance.
+* The **indexed field value**
+* A **pointer to the actual document**
+
+During queries, MongoDB **traverses this B-tree** to locate data efficiently, instead of scanning all documents.”
+
+
+- **Key Highlights**
+
+* **B-tree structure** for fast lookups
+* **Stores field + document pointer**
+* **Sorted traversal**, enables efficient search
+* **Avoids full scans**, boosts read performance
 
 
 ---

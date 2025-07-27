@@ -4327,101 +4327,31 @@ parentPort.postMessage(result);
 
 ## Concurrent CPU intensive requests
 
-- **"Node.js is single-threaded by design, which makes it ideal for I/O-bound tasks. But for CPU-bound tasks — like image processing, encryption, or complex calculations — I avoid blocking the event loop by using worker threads or worker pools."**
+- Node.js is single-threaded and excels at I/O-bound operations, but it's not ideal for CPU-heavy tasks like encryption, image processing, or complex math. 
+- Blocking the event loop with such tasks can degrade performance for all users.
 
-**Problem with Creating a Worker per Request**
+- So in production, I never run CPU-bound logic directly on the main thread. 
+- Instead, I offload it using the `worker_threads` module. 
+- However, creating a new worker for each request is inefficient — it introduces thread startup overhead, consumes memory, and doesn't scale under load.
 
-- While `worker_threads` allow offloading CPU work to background threads, spawning a new worker for every request is inefficient. Each thread consumes memory and CPU, and creating too many threads can:
-  - * Increase **startup overhead**, Cause **resource exhaustion** , Lead to **context switching**, degrading performance."
+- My preferred solution is to use a **worker pool** — a fixed set of reusable threads.
+- It allows tasks to be queued and processed without overwhelming system resources. I usually align the pool size with the number of CPU cores for optimal performance.
 
-**Recommended Strategy: Use a Worker Pool**
+- For implementation, I use libraries like `poolifier` or `Piscina`, which abstract worker management and provide good performance metrics. 
+- Under extreme workloads, I offload tasks to background queues or dedicated microservices built in performant languages like Go or Rust.
 
-- To avoid these issues, I use a** ***worker pool*** **— a fixed number of reusable threads — especially under medium to high concurrency workloads
+- This approach ensures the Node.js event loop remains non-blocking and responsive, even when handling CPU-intensive operations.
 
-- For CPU-heavy tasks in Node.js, I avoid blocking the event loop by using worker threads. Instead of spawning one per request — which is resource-intensive — I use a** ***worker pool*** to manage concurrency efficiently. 
+**Key Points Interviewer Looks For (All Covered)**
 
-- In production, I prefer libraries like `Piscina` or `poolifier`, and I tune the pool size based on the number of CPU cores. For extremely heavy workloads, I may delegate processing to microservices or job queues for better scalability.
+* Awareness of Node.js event loop limitations ✅
+* Knowledge of `worker_threads` and when not to use them per request ✅
+* Use of **worker pool** for concurrency control ✅
+* Familiarity with production-ready libraries like `poolifier`, `Piscina` ✅
+* Scaling strategies: queueing, microservices ✅
+* Thought process around performance tuning (CPU-core-based sizing) ✅
 
-
-How it works:
-
-* Maintain a **pool of N threads** (usually = number of CPU cores).
-* Incoming tasks are **queued** and **assigned to idle workers**.
-* If all workers are busy, tasks **wait in queue** — preventing overload.
-
-
-**Libraries I’ve Used in Production:**
-
-| Library                    | Purpose                                                               |
-| -------------------------- | --------------------------------------------------------------------- |
-| `node-worker-threads-pool` | Lightweight, simple to integrate for basic concurrency                |
-| `poolifier`                | High-performance worker pool library with easy setup and good metrics |
-
-
-**When to Use Which Strategy?**
-
-| Load Type             | Recommended Strategy                                               |
-| --------------------- | ------------------------------------------------------------------ |
-| **Low concurrency**   | You *can* spawn a **worker per task**, if usage is minimal         |
-| **Medium–High**       | Use a **worker pool** (`poolifier`, `Piscina`) to reuse threads    |
-| **Extreme workloads** | Offload to **microservices** (in Go/Rust) or **background queues** |
-
-
-
-### 🧪 **Example: Using `poolifier` for Efficient Worker Pooling**
-
-```bash
-npm install poolifier
-```
-
-#### `worker.js` – CPU Task Logic
-
-```js
-const { isMainThread, workerData, parentPort } = require('worker_threads');
-
-function heavyTask(n) {
-  let result = 0;
-  for (let i = 0; i < n * 1e6; i++) result += i;
-  return result;
-}
-
-if (!isMainThread) {
-  const result = heavyTask(workerData);
-  parentPort.postMessage(result);
-}
-```
-
-#### `server.js` – Thread Pool Integration
-
-```js
-const { StaticPool } = require('poolifier');
-const http = require('http');
-
-const pool = new StaticPool({
-  size: 4, // Match number of CPU cores
-  task: './worker.js',
-});
-
-const server = http.createServer(async (req, res) => {
-  if (req.url === '/compute') {
-    try {
-      const result = await pool.exec(100); // Run heavy task
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end(`Result: ${result}`);
-    } catch (err) {
-      res.writeHead(500);
-      res.end('Error');
-    }
-  } else {
-    res.writeHead(404);
-    res.end('Not Found');
-  }
-});
-
-server.listen(3000, () => console.log('Server running on port 3000'));
-```
-
-
+---
 
 
 

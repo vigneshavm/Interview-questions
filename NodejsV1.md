@@ -5704,11 +5704,10 @@ Accept: application/vnd.company.v1+json
 ```
 
 ## Why V8 Engine
-- High Performance: V8 compiles JavaScript to native machine code using Just-In-Time (JIT) compilation, making execution extremely fast.
-- Built by Google: V8 powers Google Chrome, ensuring continuous optimization, stability, and performance.
-- Memory Efficiency: V8 has an efficient garbage collector, which helps Node.js manage memory in long-running server apps.
-- Cross-Platform: Written in C++, V8 is portable and works well across different OS platforms.
-- Embeddability: V8 is a standalone engine, making it easy for Node.js to embed and extend it with custom APIs (e.g., file system, network).
-- Active Development: Backed by Google and open source contributors, it receives regular updates and performance improvements.
 
-
+* **High Performance**: V8 compiles JavaScript to **native machine code** using **Just-In-Time (JIT) compilation**, making execution extremely fast.
+* **Built by Google**: V8 powers **Google Chrome**, ensuring **continuous optimization**, **stability**, and **performance**.
+* **Memory Efficiency**: V8 has an efficient **garbage collector**, which helps Node.js manage memory in **long-running server apps**.
+* **Cross-Platform**: Written in **C++**, V8 is **portable** and works well across different **OS platforms**.
+* **Embeddability**: V8 is a **standalone engine**, making it easy for Node.js to **embed and extend** it with custom APIs (e.g., file system, network).
+* **Active Development**: Backed by **Google** and **open source contributors**, it receives **regular updates** and **performance improvements**.

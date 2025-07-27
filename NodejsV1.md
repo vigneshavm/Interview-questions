@@ -9,7 +9,7 @@
 | **Processes**                | - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
 | **Async and Middleware** |  [BackPressure](#BackPressure)  - [FS(File System)](#FS), - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
 | **Package JSON**             | [package.json](#packagejson),  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
-| **REST API & Security**      | [REST API](#rest-api),  - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) |
+| **REST API & Security**      | [REST API](#rest-api),  - [RESTAPI version](#restapi-version) - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) |
 | **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
@@ -2034,17 +2034,7 @@ For example, when designing APIs in Node.js using Express, I follow these REST p
 
 ---
 
-## **Versioning in REST APIs?**
 
-Via URL versioning:
-```ts
-GET /api/v1/users
-```
-Or via headers (less common):
-```http
-GET /users
-Accept: application/vnd.company.v1+json
-```
 
 ## request response query params
 
@@ -5716,4 +5706,32 @@ fs.copyFile(source, destination, (err) => {
   if (err) return console.error('Error copying file:', err);
   console.log('File copied successfully');
 });
+```
+
+
+
+
+## RESTAPI version 
+
+- For REST API versioning, I typically use **URI versioning** like `/api/v1/` — it's clean, cache-friendly, and easy to manage in Express or any routing layer.*
+
+- I follow these principles:*
+
+* ***Non-breaking changes** stay in the same version.*
+* ***Breaking changes** trigger a new version.*
+* *Old versions are **deprecated gradually** with proper communication and monitoring.*
+
+- If needed, I also support **header-based versioning** for advanced clients — using headers like `Accept: application/vnd.myapp.v1+json`.*
+
+- Finally, I document each version using **Swagger/OpenAPI** and ensure test coverage across all active versions through CI/CD. This ensures **backward compatibility**, smooth client migration, and long-term API stability."*
+
+
+Via URL versioning:
+```ts
+GET /api/v1/users
+```
+Or via headers (less common):
+```http
+GET /users
+Accept: application/vnd.company.v1+json
 ```

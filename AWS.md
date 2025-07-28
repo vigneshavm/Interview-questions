@@ -35,11 +35,15 @@
 ###  AWS Lambda
 
 
+
+
 * AWS Lambda is a **serverless compute service**.
 * Runs code in response to **events** (e.g., HTTP requests, file uploads).
 * **No server management** required — fully managed by AWS.
 * **Auto-scales** and you only pay for the **actual execution time** (per millisecond).
-
+* AWS Lambda function names are **unique within a region and account, not globally across AWS**.
+   - You can have my-function in Account A and also my-function in Account B.
+   - Even in the same account, you can have the **same function name in different regions**.
 
 
 | **Topic**                     | **Optimized Answer**                                                                                                                                                                           |

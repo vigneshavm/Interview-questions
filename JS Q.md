@@ -5727,20 +5727,11 @@ for (const item of items) {
 |----------------------|-----------------------------------------------------------------------------|----------|
 | `Promise.resolve()`  | Creates a **fulfilled** promise with a value                                | Simulating success |
 | `Promise.reject()`   | Creates a **rejected** promise with a reason                                | Simulating error |
-| `Promise.all()`      | Waits for **all** promises to resolve (or one to reject)                    | Run multiple tasks together |
-| `Promise.allSettled()` | Waits for all promises to settle (fulfilled or rejected)                  | Get results of all, including errors |
-| `Promise.race()`     | Resolves/rejects as soon as **one** promise(resolves or rejects) settles    | Timeout or fastest response |
-| `Promise.any()`      | Resolves as soon as **any one succeeds** (ignores rejections)              | Get first successful result |
+| `Promise.all()`      | Waits for **all** promises to resolve (or one to reject)  - **all to resolve**, or **rejects fast**                  | Run multiple tasks together |
+| `Promise.allSettled()` | Waits for all promises to settle (fulfilled or rejected)   - **all to settle**                | Get results of all, including errors |
+| `Promise.race()`     | Resolves/rejects as soon as **one** promise(resolves or rejects) settles  - **first settled**   | Timeout or fastest response |
+| `Promise.any()`      | Resolves as soon as **any one succeeds** (ignores rejections)   - **first fulfilled**           | Get first successful result |
 
-
-| Method               | Behavior |
-|----------------------|----------|
-| `Promise.all`         | Wait for **all to resolve**, or **rejects fast** |
-| `Promise.allSettled`  | Wait for **all to settle** |
-| `Promise.race`        | Resolve/reject with **first settled** |
-| `Promise.any`         | Resolve with **first fulfilled**, or `AggregateError` |
-| `Promise.resolve`     | Wrap any value into a **fulfilled** promise |
-| `Promise.reject`      | Create a **rejected** promise immediately |
 
 
 
@@ -5749,12 +5740,13 @@ for (const item of items) {
 - Rejects immediately if **any** promise rejects.
 
 ```js
-Promise.all([p1, p2, p3])
+
+const p1 = Promise.resolve(1); const p2 = Promise.resolve(2);
+
+Promise.all([p1, p2])
   .then(results => console.log(results))  // [val1, val2, val3]
   .catch(err => console.error(err));      // If any reject, catches first
 
-const p1 = Promise.resolve(1); const p2 = Promise.resolve(2);
-Promise.all([p1, p2]).then(results => console.log(results)); // [1, 2]
 ```
 
 
@@ -5763,13 +5755,15 @@ Promise.all([p1, p2]).then(results => console.log(results)); // [1, 2]
 - Never rejects.
 
 ```js
+
+const p1 = Promise.resolve("Done"); const p2 = Promise.reject("Failed");
+Promise.allSettled([p1, p2]).then(results => console.log(results));
+
 Promise.allSettled([p1, p2])
   .then(results => {
-    results.forEach(r => console.log(r.status)); // 'fulfilled' or 'rejected'
+    results.forEach(r => console.log(r));
   });
 
-  const p1 = Promise.resolve("Done"); const p2 = Promise.reject("Failed");
-Promise.allSettled([p1, p2]).then(results => console.log(results));
 Output:
 [  { status: 'fulfilled', value: 'Done' },  { status: 'rejected', reason: 'Failed' }]
 ```
@@ -5780,14 +5774,14 @@ Output:
 - Useful for timeouts or competitive async tasks.
 
 ```js
-Promise.race([slowPromise, fastPromise])
-  .then(result => console.log(result))
-  .catch(err => console.error(err));
 
   const slow = new Promise(res => setTimeout(() => res("Slow"), 1000));
 const fast = new Promise(res => setTimeout(() => res("Fast"), 100));
 
-Promise.race([slow, fast]).then(console.log); // "Fast"
+Promise.race([slow, fast])
+  .then(result => console.log(result))
+  .catch(err => console.error(err));
+
 ```
 
 
@@ -5796,14 +5790,13 @@ Promise.race([slow, fast]).then(console.log); // "Fast"
 - If **all reject**, it rejects with `AggregateError`.
 
 ```js
-Promise.any([p1, p2, p3])
-  .then(value => console.log(value))
-  .catch(error => console.error(error)); // AggregateError if all reject
 
-  const p1 = Promise.reject("Fail 1");
+const p1 = Promise.reject("Fail 1");
 const p2 = Promise.resolve("Success!");
 
-Promise.any([p1, p2]).then(console.log); // "Success!"
+Promise.any([p1, p2])
+  .then(value => console.log(value))
+  .catch(error => console.error(error)); // AggregateError if all reject
 ```
 
 

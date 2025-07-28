@@ -8,7 +8,8 @@
 
 - [SQS](#SQS) - [SQS Best Practice](#SQS-Best-Practice)
 - [SNS](#SNS) - [SNS Best Practice](#SNS-Best-Practice)
-- [Amazon Kinesis Data Streams](#amazon-kinesis-data-streams) -[Lambda](#Lambda)
+- [Amazon Kinesis Data Streams](#amazon-kinesis-data-streams)
+- [Lambda](#Lambda)
 
 
 | **Category**           | **Topics** |

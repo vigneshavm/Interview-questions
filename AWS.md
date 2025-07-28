@@ -974,8 +974,8 @@ You use the **Query** API to retrieve items based on the partition key and optio
 ## Amazon S3 Policies & Interview Questions
 
 ### S3 Bucket Policy
-
-
+- S3 buckets should be unique even in different AWS accounts or different regions.
+- You cannot create two S3 buckets with the same name, even in different AWS accounts or different regions.
 A bucket policy is a JSON-based access policy attached to an S3 bucket that defines permissions for principals (users, accounts, or services) to perform actions on that bucket and its objects.
 
 ---

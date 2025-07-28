@@ -25,49 +25,104 @@
 | **Core Lambda Concepts**     | - [AWS Lambda](#aws-lambda)<br>- [Supported Languages](#aws-lambda-supported-languages)<br>- [Lambda Layers](#lambda-layers)  - [Calling AWS Lambda](#Calling-AWS-Lambda)| **Use Cases & Architectures** | - [Use Cases](#use-cases)<br>- [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)<br>- [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) | **Triggers & Data Handling**  | - [Triggers](#triggers-that-can-invoke-aws-lambda)<br>- [Passing Data](#passing-data-to-an-aws-lambda-function)<br>- [Large File Uploads](#handling-large-file-uploads-in-aws) |
 | **Pricing**                  | - [Lambda Priced](#lambda-priced)<br>-[Step Functions](#Step-Functions)<br>-[Asynchronous Lambda Invocation](#Asynchronous-Lambda-Invocation)                                                                                                                                                                                                 | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br> |
 | **Monitoring & Debugging**   | - [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br> |
-| **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     |      |                                                                                                                    |            **Max**                  |     - [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>                                                                                                                     
-
-
-
-| **Interview Question**                                          | **Optimized Answer**                                                                                                                                                                                                      |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **AWS Lambda?**                                         | **AWS Lambda** is a **serverless compute service** that runs code in response to events without managing servers. It supports **auto-scaling**, is **event-driven**, and you **pay only for compute time used**.          |
-| **Invoke a Lambda function?**                        | Lambda can be invoked **synchronously** (e.g., via **API Gateway**, SDK), **asynchronously** (`InvocationType: "Event"`), or through **event sources** like **S3**, **SNS**, **DynamoDB Streams**, or **Step Functions**. |
-| **Use asynchronous invocation?**                 | I use it for **fire-and-forget tasks**, **background jobs**, or to **decouple services**. AWS automatically **queues and retries** if the function fails.                                                                 |
-| **Call Lambda from a Node.js app?**                  | Using the **AWS SDK** (`@aws-sdk/client-lambda`), I create a **LambdaClient**, prepare an **InvokeCommand**, and send the request with a JSON **payload**.                                                                |
-| **Handle retries and failures in async invocation?** | AWS Lambda **automatically retries** async invocations **twice**. I use a **Dead Letter Queue (DLQ)** like **SQS** or **SNS** to capture persistent failures and monitor via **CloudWatch**.                              |
-| **Cold start in Lambda?**                               | A **cold start** happens when Lambda **spins up a new container**, adding **initial latency**. It usually affects functions not recently invoked or attached to a **VPC**.                                                |
-| **Reduce cold starts?**                              | Use **provisioned concurrency**, avoid large dependencies, keep **package size small**, and minimize **blocking code** inside the handler.                                                                                |
-| **Structure large applications in Lambda?**          | I split logic into **multiple Lambda functions**, use **microservices architecture**, orchestrate via **Step Functions**, and reuse code through **Lambda Layers**.                                                       |
-| **Step Functions work with Lambda?**                     | **Step Functions** allow me to orchestrate multiple Lambdas into a **visual, state-driven workflow**, with **retries**, **branching**, **parallelism**, and **auditability**.                                             |
-| **Secure Lambda functions?**                         | I apply **least-privilege IAM roles**, use **KMS-encrypted environment variables**, restrict triggers, and integrate **API Gateway with authorizers** (e.g., JWT).                                                        |
-| **Use of Lambda Layers?**                            | **Lambda Layers** help **share common dependencies** (like libraries or config) across functions, enabling **code reuse** and easier **maintenance**.                                                                     |
-| **Monitor Lambda performance?**                      | I use **Amazon CloudWatch** for **logs and metrics** (duration, errors, throttles), and **AWS X-Ray** for **tracing** and **performance diagnostics**.                                                                    |
-| **Can a Lambda function call another Lambda?**                  | Yes, using the **AWS SDK**, **Step Functions**, or **EventBridge**. It's common for **microservice-style architectures** or **fan-out patterns**.                                                                         |
-| **How do you handle long-running processes?**                   | I split them into **smaller steps**, use **Step Functions** for orchestration, or queue tasks using **SQS** to avoid timeout limits.                                                                                      |
-| **Lambda concurrency limits?**                         | AWS provides **1,000 concurrent executions per region** by default. I can set **reserved concurrency per function** to control usage and avoid throttling.                                                                |
-| **Managing Shared Dependencies**            | I use **Lambda Layers** to package shared libraries, configs, or binaries. This avoids code duplication and simplifies deployments. Layers are versioned and reused across multiple functions.                     |
-| **Implementing Idempotency in Lambda**      | I use a **unique request ID** (e.g., order ID or booking ID) and store processing state in **DynamoDB or Redis**. Before executing, the Lambda checks if the request has already been processed.                   |
-| **Debugging Lambda Failures in Production** | I use **structured logging** with **correlation IDs**, **CloudWatch Logs Insights** for filtering, and **AWS X-Ray** for tracing. I also configure **DLQs** for async failures and correlate errors to requests.   |
-| **Handling Long-Running Processes**         | I break processes into **smaller, time-bound steps** using **Step Functions** or queue them with **SQS**. I persist intermediate state and ensure each Lambda respects the 15-minute execution limit.              |
-| **Implementing Fan-out Architecture**       | I use **SNS** or **EventBridge** to fan out a message to multiple Lambdas. Each Lambda handles a separate task like notification, logging, or processing. This ensures decoupling and scalability.                 |
-| **Securing Environment Variables**          | I encrypt environment variables with **KMS**, follow **least-privilege IAM**, and prefer **Secrets Manager** for dynamic credentials. Runtime decryption is done using SDK calls or built-in support.              |
-| **Reducing Latency in User-Facing Lambdas** | I use **provisioned concurrency** to reduce cold starts, keep dependencies small, preload modules outside the handler, and use **CloudFront or Lambda\@Edge** for global delivery.                                 |
-| **Understanding Lambda vs Lambda\@Edge**    | **Lambda\@Edge** runs closer to the user (at CloudFront edge locations), enabling low-latency request/response manipulation. I use it for header rewrites, redirects, or A/B testing at the edge.                  |
-| **CI/CD and Deployment Strategies**         | I use **Serverless Framework**, **AWS SAM**, or **Terraform** to manage deployments. For versioning, I use **aliases** and implement **blue-green or canary deployments** using **CodeDeploy**.                    |
-| **Controlling Concurrency and Throttling**  | I use **reserved concurrency** to limit invocation rates, add **SQS buffering**, and apply **API Gateway throttling** or **WAF rules** to prevent overwhelming Lambda or downstream systems.                       |
-| **Synchronous vs Asynchronous Invocation**  | **Sync** is used for request/response use cases (e.g., API Gateway), while **async** is ideal for background jobs or decoupled flows. Async includes **retries** and optional **DLQ support**.                     |
-| **Canary & Blue-Green Deployment Strategy** | I attach **aliases to versions** and use **weighted traffic shifting** (e.g., 10% traffic to new version, then shift gradually). I configure rollback conditions in **CodeDeploy**.                                |
-| **Cost Optimization Techniques**            | I tune **memory settings**, monitor **invocation time**, reduce **payload sizes**, and choose **event-driven patterns**. Async or batched processing also helps reduce cost per transaction.                       |
-| **Decoupling Services Using Events**        | I decouple functions using **SNS**, **SQS**, or **EventBridge**. This allows teams to deploy and scale independently. For complex workflows, I use **Step Functions** for orchestration.                           |
-| **Logging & Observability Best Practices**  | I implement **structured logging** with correlation IDs, enable **X-Ray tracing**, use **CloudWatch dashboards**, and send logs to **OpenSearch or third-party observability platforms** (like Datadog or Lumigo). |
+| **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     |      |                                                                                                                    |            **Max**                  |     - [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>                                                                                                                     - [AWS Lambda Basics](#aws-lambda-basics)
+- [Lambda Invocation & Event Handling](#2-lambda-invocation--event-handling)
+- [Architecture & Workflow Design](#3-architecture--workflow-design)
+- [Security & Configuration](#-4-security--configuration)
+- [CI/CD & Deployment](#-5-cicd--deployment)
+- [Monitoring, Observability & Cost](#-6-monitoring-observability--cost)
+- [Node.js-Specific Lambda Optimizations](#-7-nodejs-specific-lambda-optimizations)
 
 
 
 
 
+### **AWS Lambda Basics**
 
+| **Topic**                     | **Optimized Answer**                                                                                                                                                                           |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **AWS Lambda**                | A **serverless compute service** that runs code in response to events without managing servers. It supports **auto-scaling**, is **event-driven**, and you **pay only for compute time used**. |
+| **Cold start in Lambda**      | A **cold start** happens when Lambda **spins up a new container**, adding **initial latency**. It usually affects functions not recently invoked or attached to a **VPC**.                     |
+| **Reduce cold starts**        | Use **provisioned concurrency**, avoid large dependencies, keep **package size small**, and minimize **blocking code** inside the handler.                                                     |
+| **Lambda concurrency limits** | AWS provides **1,000 concurrent executions per region** by default. I can set **reserved concurrency per function** to control usage and avoid throttling.                                     |
 
+---
+
+###  **2. Lambda Invocation & Event Handling**
+
+| **Topic**                                           | **Optimized Answer**                                                                                                                                                                                                      |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Invoke a Lambda function**                        | Lambda can be invoked **synchronously** (e.g., via **API Gateway**, SDK), **asynchronously** (`InvocationType: "Event"`), or through **event sources** like **S3**, **SNS**, **DynamoDB Streams**, or **Step Functions**. |
+| **Use asynchronous invocation**                     | I use it for **fire-and-forget tasks**, **background jobs**, or to **decouple services**. AWS automatically **queues and retries** if the function fails.                                                                 |
+| **Handle retries and failures in async invocation** | AWS **retries asynchronous invocations twice**. I use a **DLQ** like **SQS/SNS** for persistent failures and monitor via **CloudWatch**.                                                                                  |
+| **Synchronous vs Asynchronous Invocation**          | **Sync** is used for request/response (e.g., API Gateway), while **async** is for **background jobs**. Async includes **retries** and **DLQ support**.                                                                    |
+| **Can a Lambda function call another Lambda?**      | Yes, using the **AWS SDK**, **Step Functions**, or **EventBridge** — useful for **microservice-style** or **fan-out patterns**.                                                                                           |
+| **Call Lambda from a Node.js app**                  | Use the **AWS SDK** (`@aws-sdk/client-lambda`) to create a **LambdaClient**, prepare an **InvokeCommand**, and send a **JSON payload**.                                                                                   |
+
+---
+
+### **3. Architecture & Workflow Design**
+
+| **Topic**                                  | **Optimized Answer**                                                                                                                                            |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Structure large applications in Lambda** | I split logic into **multiple Lambda functions**, use **microservices architecture**, orchestrate via **Step Functions**, and reuse code via **Lambda Layers**. |
+| **Step Functions work with Lambda**        | **Step Functions** orchestrate multiple Lambdas into **visual workflows** with **retries**, **branching**, **parallelism**, and **auditing**.                   |
+| **Handling Long-Running Processes**        | I break them into **smaller steps**, use **Step Functions** or **SQS**, and persist state to avoid the 15-min timeout.                                          |
+| **Implementing Fan-out Architecture**      | Use **SNS** or **EventBridge** to fan out to multiple Lambdas for **parallel processing**, notifications, etc.                                                  |
+| **Decoupling Services Using Events**       | I use **SNS**, **SQS**, or **EventBridge** to **decouple teams and services**. Step Functions help with complex orchestration.                                  |
+
+---
+
+### 🟧 **4. Security & Configuration**
+
+| **Topic**                          | **Optimized Answer**                                                                                                        |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Secure Lambda functions**        | Use **least-privilege IAM**, encrypt env vars with **KMS**, restrict triggers, and use **authorizers** for API Gateway.     |
+| **Securing Environment Variables** | Encrypt using **KMS**, prefer **Secrets Manager** for dynamic credentials, and **decrypt at runtime** securely.             |
+| **Use of Lambda Layers**           | Layers allow **sharing common libraries/configs** across Lambdas, improving **code reuse** and **maintenance**.             |
+| **Managing Shared Dependencies**   | I use **Lambda Layers** to bundle shared libraries/configs, version them, and reuse across functions to reduce duplication. |
+
+---
+
+### 🟫 **5. CI/CD & Deployment**
+
+| **Topic**                                   | **Optimized Answer**                                                                                                                                       |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **CI/CD and Deployment Strategies**         | Use **Serverless Framework**, **SAM**, or **Terraform**. For safe rollouts, use **aliases**, **blue-green** or **canary deployments** with **CodeDeploy**. |
+| **Canary & Blue-Green Deployment Strategy** | Attach **aliases** to versions and use **weighted traffic shifting** (e.g., 10%, 50%, 100%). Rollback automatically on failure with **CodeDeploy**.        |
+
+---
+
+### 🟪 **6. Monitoring, Observability & Cost**
+
+| **Topic**                                   | **Optimized Answer**                                                                                                                    |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Monitor Lambda performance**              | Use **CloudWatch Logs/Metrics**, **X-Ray** for tracing, and alarms on **duration, errors, throttles**.                                  |
+| **Debugging Lambda Failures in Production** | Use **structured logging**, **correlation IDs**, **Logs Insights**, and **DLQs**. Trace with **AWS X-Ray**.                             |
+| **Logging & Observability Best Practices**  | Use **structured logs**, **X-Ray**, **CloudWatch dashboards**, and ship to **OpenSearch or third-party tools** (e.g., Lumigo, Datadog). |
+| **Cost Optimization Techniques**            | Tune **memory vs. execution time**, reduce payload size, and use **event-driven async flows** or **batching**.                          |
+
+---
+
+### 🟦 **7. Node.js-Specific Lambda Optimizations**
+
+| **Topic**                                     | **Optimized Answer**                                                                                    |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Avoid Re-declaring Variables in Handler**   | Declare vars **outside the handler** to benefit from container reuse during warm starts.                |
+| **Bundle and Tree-Shake Your Code**           | Use **esbuild/webpack** to **minify** and **tree-shake** your code for faster cold starts.              |
+| **Use AWS SDK v3**                            | Prefer `@aws-sdk/*` v3 for **modular imports**, smaller bundles, and improved performance.              |
+| **Enable `NODE_ENV=production`**              | Disables **debugging features** and **logging overhead** in many libraries.                             |
+| **Avoid Top-Level `await`**                   | In Node.js 18+, top-level `await` increases cold start. Wrap it in functions and call from the handler. |
+| **Use Native JavaScript Features**            | Replace heavy libraries (e.g., Lodash) with **ES6+ or Intl** features to reduce size.                   |
+| **Prefer Async/Await Over Promises**          | Cleaner syntax and better error traces than `.then()` chaining.                                         |
+| **Leverage Connection Reuse (e.g., for RDS)** | Reuse connections **outside the handler**, and enable **keepAlive** for HTTP clients.                   |
+| **Compress Responses When Needed**            | Use `zlib` to Gzip/Brotli large payloads. Helpful for **API Gateway** or direct HTTP Lambda responses.  |
+| **Avoid Logging Verbosely in Production**     | Use **leveled, structured logging** and avoid excessive logs to reduce **CloudWatch cost**.             |
+| **Cold Start Warm-up**                        | Schedule **CloudWatch cron jobs** or use **warm-up plugins** to ping idle Lambdas.                      |
+| **Use ES Modules (if supported)**             | Supported in Node.js 18+. Better **bundling and tree-shaking** than CommonJS.                           |
+| **Optimize Memory Allocation**                | More memory = more CPU. Tune for **cost vs speed tradeoff**.                                            |
+| **Reduce Startup Latency**                    | Avoid importing heavy libs like `aws-sdk` (already included) or large ORMs.                             |
+| **Cache Secrets/Config Between Invocations**  | Fetch once **outside the handler** and reuse during warm starts to reduce latency and avoid throttling. |
 
 
 

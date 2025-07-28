@@ -23,7 +23,7 @@
 | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              |
 |------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Lambda Concepts**     | - [AWS Lambda](#aws-lambda)<br>- [Supported Languages](#aws-lambda-supported-languages)<br>- [Lambda Layers](#lambda-layers)  - [Calling AWS Lambda](#Calling-AWS-Lambda)| **Use Cases & Architectures** | - [Use Cases](#use-cases)<br>- [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)<br>- [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) | **Triggers & Data Handling**  | - [Triggers](#triggers-that-can-invoke-aws-lambda)<br>- [Passing Data](#passing-data-to-an-aws-lambda-function)<br>- [Large File Uploads](#handling-large-file-uploads-in-aws) |
-| **Pricing**                  | - [Lambda Priced](#lambda-priced)<br>-[Step Functions](#Step-Functions)                                                                                                                                                                                                     | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br> |
+| **Pricing**                  | - [Lambda Priced](#lambda-priced)<br>-[Step Functions](#Step-Functions)<br>-[Asynchronous Lambda Invocation](#Asynchronous-Lambda-Invocation)                                                                                                                                                                                                 | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br> |
 | **Monitoring & Debugging**   | - [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br> |
 | **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     |      |                                                                                                                    |            **Max**                  |     - [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>                                                                                                                                                                                                                                      |
 ## SQS
@@ -1609,4 +1609,62 @@ const result = JSON.parse(Buffer.from(response.Payload).toString());
 
 
 - “Using **Step Functions** allowed us to build a **modular, fault-tolerant, and traceable shoutout flow** without wiring complex state logic in code. It also helped us meet our SLA targets by monitoring pending and failed states in near real-time.”
+
+
+
+
+### **Asynchronous Lambda Invocation**
+
+- **"Asynchronous invocation in AWS Lambda** is a pattern I use when I don’t need an immediate response from the function — typically for **decoupling**, **background processing**, and **event-driven workflows**. AWS automatically queues the event and retries on failure without blocking the caller."\*\*
+
+
+- “Async invocation in Lambda gives me **fire-and-forget execution** with **built-in retry logic**, perfect for **loosely coupled workflows**. It plays a key role in making our shoutout app **responsive and resilient**, especially for tasks that don’t need to block the user experience.”
+
+**When I Use Async Invocation**
+
+* **Fire-and-forget** tasks (e.g., sending notifications)
+* **Workflow triggers** (e.g., processing shoutout requests after payment)
+* **Fan-out** patterns (e.g., calling multiple Lambdas per celebrity)
+* Offloading **non-critical, long-running logic** from the main user request
+
+**Best Practices I Follow:**
+
+* **Idempotency**: Since Lambda may retry, I make sure the handler is idempotent (e.g., deduplicating by `bookingId`)
+* **DLQ (Dead Letter Queue)**: I attach an SQS or SNS DLQ for capturing failed invocations
+* **Monitoring**: I use **CloudWatch Alarms** on invocation errors and throttle limits
+
+
+**App Example:**
+
+> *When a user submits a request and completes payment, I invoke a Lambda function **asynchronously** to handle downstream tasks like:*
+>
+> * Notifying the celebrity
+> * Recording the request in audit logs
+> * Scheduling a 48-hour response window
+> * Sending follow-up reminders
+
+All of this happens without slowing down the user-facing API.
+
+
+**How I Invoke Asynchronously (Node.js SDK v3)**
+
+```js
+import { LambdaClient, InvokeCommand } from "@aws-sdk/client-lambda";
+
+const client = new LambdaClient({ region: "us-east-1" });
+
+const command = new InvokeCommand({
+  FunctionName: "handleShoutoutRequest",
+  InvocationType: "Event", // <-- this makes it async
+  Payload: Buffer.from(JSON.stringify({ bookingId: "1234" })),
+});
+
+await client.send(command); // Returns immediately
+```
+
+* `InvocationType: "Event"` triggers **async mode**
+* AWS queues the request and **automatically retries** if the function fails
+* No result is returned — just a 202 Accepted response
+
+---
 

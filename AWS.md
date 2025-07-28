@@ -22,7 +22,7 @@
 
 | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              |
 |------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Core Lambda Concepts**     | - [AWS Lambda](#aws-lambda)<br>- [Supported Languages](#aws-lambda-supported-languages)<br>- [Lambda Layers](#lambda-layers) | **Use Cases & Architectures** | - [Use Cases](#use-cases)<br>- [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)<br>- [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) | **Triggers & Data Handling**  | - [Triggers](#triggers-that-can-invoke-aws-lambda)<br>- [Passing Data](#passing-data-to-an-aws-lambda-function)<br>- [Large File Uploads](#handling-large-file-uploads-in-aws) |
+| **Core Lambda Concepts**     | - [AWS Lambda](#aws-lambda)<br>- [Supported Languages](#aws-lambda-supported-languages)<br>- [Lambda Layers](#lambda-layers)  - [Calling AWS Lambda](#Calling-AWS-Lambda)| **Use Cases & Architectures** | - [Use Cases](#use-cases)<br>- [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)<br>- [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) | **Triggers & Data Handling**  | - [Triggers](#triggers-that-can-invoke-aws-lambda)<br>- [Passing Data](#passing-data-to-an-aws-lambda-function)<br>- [Large File Uploads](#handling-large-file-uploads-in-aws) |
 | **Pricing**                  | - [Lambda Priced](#lambda-priced)                                                                                                                                                                                                        | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br> |
 | **Monitoring & Debugging**   | - [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br> |
 | **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     |      |                                                                                                                    |            **Max**                  |     - [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>                                                                                                                                                                                                                                      |
@@ -1555,4 +1555,44 @@ For secure config:
 | **Comparison with Kafka** | Fully managed alternative to Kafka; **no cluster management**, but **less flexible** |
 
 ---
+
+
+
+### **Calling AWS Lambda**
+
+* To call an **AWS Lambda function from a Node.js application**, I use the **AWS SDK — preferably v3** (`@aws-sdk/client-lambda`) for its **modular structure** and **better tree-shaking**.
+* It allows **direct invocation** without exposing an **HTTP endpoint**.
+* I typically use direct invocation for **internal service-to-service communication** or **background processing**, where **latency is critical** and exposing an HTTP endpoint is unnecessary.
+
+---
+
+
+**My Approach:**
+1. **Initialize the Lambda client** with region and credentials (usually from environment variables, IAM roles, or shared config).
+2. **Construct the payload** and use `InvokeCommand` to call the function.
+3. **Parse the response** and handle edge cases like timeouts, throttling, or malformed responses.
+
+**Code Example (SDK v3):**
+
+```js
+import { LambdaClient, InvokeCommand } from "@aws-sdk/client-lambda";
+
+const client = new LambdaClient({ region: "us-east-1" });
+
+const command = new InvokeCommand({
+  FunctionName: "myLambdaFunction",
+  Payload: Buffer.from(JSON.stringify({ userId: 123 })),
+});
+
+const response = await client.send(command);
+const result = JSON.parse(Buffer.from(response.Payload).toString());
+```
+
+**Security & Best Practices:**
+
+* I ensure **least-privilege IAM permissions** (`lambda:InvokeFunction`).
+* For **cross-account calls**, I configure **resource-based policies** on the target Lambda.
+* In production, I wrap calls in **retry logic**, integrate with **CloudWatch**, and ensure **timeouts** are configured properly.
+
+
 

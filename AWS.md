@@ -47,6 +47,23 @@
 | **How do you handle long-running processes?**                   | I split them into **smaller steps**, use **Step Functions** for orchestration, or queue tasks using **SQS** to avoid timeout limits.                                                                                      |
 | **Lambda concurrency limits?**                         | AWS provides **1,000 concurrent executions per region** by default. I can set **reserved concurrency per function** to control usage and avoid throttling.                                                                |
 
+| **Managing Shared Dependencies**            | I use **Lambda Layers** to package shared libraries, configs, or binaries. This avoids code duplication and simplifies deployments. Layers are versioned and reused across multiple functions.                     |
+| **Implementing Idempotency in Lambda**      | I use a **unique request ID** (e.g., order ID or booking ID) and store processing state in **DynamoDB or Redis**. Before executing, the Lambda checks if the request has already been processed.                   |
+| **Debugging Lambda Failures in Production** | I use **structured logging** with **correlation IDs**, **CloudWatch Logs Insights** for filtering, and **AWS X-Ray** for tracing. I also configure **DLQs** for async failures and correlate errors to requests.   |
+| **Handling Long-Running Processes**         | I break processes into **smaller, time-bound steps** using **Step Functions** or queue them with **SQS**. I persist intermediate state and ensure each Lambda respects the 15-minute execution limit.              |
+| **Implementing Fan-out Architecture**       | I use **SNS** or **EventBridge** to fan out a message to multiple Lambdas. Each Lambda handles a separate task like notification, logging, or processing. This ensures decoupling and scalability.                 |
+| **Securing Environment Variables**          | I encrypt environment variables with **KMS**, follow **least-privilege IAM**, and prefer **Secrets Manager** for dynamic credentials. Runtime decryption is done using SDK calls or built-in support.              |
+| **Reducing Latency in User-Facing Lambdas** | I use **provisioned concurrency** to reduce cold starts, keep dependencies small, preload modules outside the handler, and use **CloudFront or Lambda\@Edge** for global delivery.                                 |
+| **Understanding Lambda vs Lambda\@Edge**    | **Lambda\@Edge** runs closer to the user (at CloudFront edge locations), enabling low-latency request/response manipulation. I use it for header rewrites, redirects, or A/B testing at the edge.                  |
+| **CI/CD and Deployment Strategies**         | I use **Serverless Framework**, **AWS SAM**, or **Terraform** to manage deployments. For versioning, I use **aliases** and implement **blue-green or canary deployments** using **CodeDeploy**.                    |
+| **Controlling Concurrency and Throttling**  | I use **reserved concurrency** to limit invocation rates, add **SQS buffering**, and apply **API Gateway throttling** or **WAF rules** to prevent overwhelming Lambda or downstream systems.                       |
+| **Synchronous vs Asynchronous Invocation**  | **Sync** is used for request/response use cases (e.g., API Gateway), while **async** is ideal for background jobs or decoupled flows. Async includes **retries** and optional **DLQ support**.                     |
+| **Canary & Blue-Green Deployment Strategy** | I attach **aliases to versions** and use **weighted traffic shifting** (e.g., 10% traffic to new version, then shift gradually). I configure rollback conditions in **CodeDeploy**.                                |
+| **Cost Optimization Techniques**            | I tune **memory settings**, monitor **invocation time**, reduce **payload sizes**, and choose **event-driven patterns**. Async or batched processing also helps reduce cost per transaction.                       |
+| **Decoupling Services Using Events**        | I decouple functions using **SNS**, **SQS**, or **EventBridge**. This allows teams to deploy and scale independently. For complex workflows, I use **Step Functions** for orchestration.                           |
+| **Logging & Observability Best Practices**  | I implement **structured logging** with correlation IDs, enable **X-Ray tracing**, use **CloudWatch dashboards**, and send logs to **OpenSearch or third-party observability platforms** (like Datadog or Lumigo). |
+
+
 
 
 

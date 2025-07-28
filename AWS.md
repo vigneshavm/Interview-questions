@@ -76,7 +76,7 @@
 
 ---
 
-### 🟧 **4. Security & Configuration**
+### **4. Security & Configuration**
 
 | **Topic**                          | **Optimized Answer**                                                                                                        |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
@@ -556,6 +556,8 @@ aws lambda put-provisioned-concurrency-config \
 ---
 
 ###  Monitoring Lambda Functions
+
+ -[Observability](#-6-monitoring-observability--cost)
 
 - “For observability and debugging in my AWS Lambda functions, I use a combination of tools provided by AWS:
 
@@ -1141,6 +1143,8 @@ Enable **MFA Delete** (for versioned buckets) and use IAM/bucket policies to res
 ---
 
 #### **CI/CD and DevOps (Azure DevOps + Node.js)**
+
+ - [CI/CD](#-5-cicd--deployment)
 
 * Set up **YAML-based pipelines** in Azure DevOps.
 * Automate build, test, and deploy stages.

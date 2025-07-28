@@ -21,16 +21,26 @@
 ## Lambda
 
 
-## Lambda
+| **Category**               | **Topics**                                                                                                                                                                                  | **Category**                   | **Topics**                                                                                                                                                                                                                                                               | **Category**                 | **Topics**                                                                                                                                                                                 |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Core Lambda Concepts**   | - **[AWS Lambda](#aws-lambda)**<br>- **[Supported Languages](#aws-lambda-supported-languages)**<br>- **[Lambda Layers](#lambda-layers)**<br>- **[Calling AWS Lambda](#calling-aws-lambda)** | **Use Cases & Architectures**  | - **[Use Cases](#use-cases)**<br>- **[Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)**<br>- **[Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda)**                                                  | **Triggers & Data Handling** | - **[Triggers](#triggers-that-can-invoke-aws-lambda)**<br>- **[Passing Data](#passing-data-to-an-aws-lambda-function)**<br>- **[Large File Uploads](#handling-large-file-uploads-in-aws)** |
+| **Pricing**                | - **[Lambda Pricing](#lambda-priced)**<br>- **[Step Functions](#step-functions)**<br>- **[Asynchronous Invocation](#asynchronous-lambda-invocation)**                                       | **Deployment & Configuration** | - **[Deploy Code to Lambda](#deploy-code-to-lambda)**<br>- **[Environment-Specific Config](#environment-specific-configuration)**                                                                                                                                        | **Security**                 | - **[Secure Lambda](#secure-a-lambda-function)**<br>- **[Permissions](#assigning-permissions-to-lambda-functions)**<br>- **[Security & Config](#4-security--configuration)**               |
+| **Monitoring & Debugging** | - **[Monitoring Lambda Functions](#monitoring-lambda-functions)**                                                                                                                           | **Cold Start & Optimization**  | - **[Cold Start Issue](#cold-start-issue)**<br>- **[Provisioned Concurrency](#provisioned-concurrency)**<br>- **[Performance Optimization](#optimize-performance)**                                                                                                      | **Scaling**                  | - **[Lambda Scaling](#lambda-scale)**                                                                                                                                                      |
+| **Messaging Patterns**     | - **[Messaging Patterns – Key Points](#messaging-patterns--key-points)**                                                                                                                    | **Advanced Topics**            | - **[Invocation & Event Handling](#2-lambda-invocation--event-handling)**<br>- **[Architecture & Workflow Design](#3-architecture--workflow-design)**<br>- **[CI/CD & Deployment](#5-cicd--deployment)**<br>- **[Monitoring & Cost](#6-monitoring-observability--cost)** | **Limits**                   | - **[Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)**<br>- **[Max Package Size](#maximum-deployment-package-size)**                                                |
+                                                                                                    
 
-| **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              | **Category**                  | **Topics**                                                                                                                                                                                                                              |
-|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Core Lambda Concepts**     | - [AWS Lambda](#aws-lambda)<br>- [Supported Languages](#aws-lambda-supported-languages)<br>- [Lambda Layers](#lambda-layers)  - [Calling AWS Lambda](#Calling-AWS-Lambda)| **Use Cases & Architectures** | - [Use Cases](#use-cases)<br>- [Lambda for APIs](#typical-architecture-of-using-aws-lambda-for-apis)<br>- [Serverless Video System](#building-a-serverless-video-upload-and-processing-system-using-lambda) | **Triggers & Data Handling**  | - [Triggers](#triggers-that-can-invoke-aws-lambda)<br>- [Passing Data](#passing-data-to-an-aws-lambda-function)<br>- [Large File Uploads](#handling-large-file-uploads-in-aws) |
-| **Pricing**                  | - [Lambda Priced](#lambda-priced)<br>-[Step Functions](#Step-Functions)<br>-[Asynchronous Lambda Invocation](#Asynchronous-Lambda-Invocation)                                                                                                                                                                                                 | **Deployment & Configuration** | - [Deploy Code to Lambda](#deploy-code-to-lambda)<br>- [Environment-Specific Configuration](#environment-specific-configuration)                                                                                                        | **Security**                 | - [Secure a Lambda Function](#secure-a-lambda-function)<br>- [Permissions](#assigning-permissions-to-lambda-functions)<br> |
-| **Monitoring & Debugging**   | - [Monitoring](#monitoring-lambda-functions)                                                                                                              | **Cold Start & Optimization** | - [Cold Start Issue](#cold-start-issue)<br> - [Provisioned Concurrency](#provisioned-concurrency)<br>- [Optimize Performance](#optimize-performance)                                                      | **Scaling**                  | - [Lambda Scale](#lambda-scale)<br> |
-| **Messaging Patterns**       | - [Messaging Patterns – Key Points](#messaging-patterns--key-points)                                                                                                                                                                     |      |     - [AWS Lambda Basics](#aws-lambda-basics)<br>- [Lambda Invocation & Event Handling](#2-lambda-invocation--event-handling)<br>- [Architecture & Workflow Design](#3-architecture--workflow-design)<br>- [Security & Configuration](#-4-security--configuration)<br>- [CI/CD & Deployment](#-5-cicd--deployment)<br>- [Monitoring, Observability & Cost](#-6-monitoring-observability--cost)<br>- [Node.js-Specific Lambda Optimizations](#-7-nodejs-specific-lambda-optimizations)        |            **Max**                  |     - [Max Execution Time](#maximum-execution-time-of-an-aws-lambda-function)<br>- [Max Package Size](#maximum-deployment-package-size)<br>                                                                                                                                                                                                                                                                                                    
 
-### **AWS Lambda Basics**
+
+
+###  AWS Lambda
+
+
+* AWS Lambda is a **serverless compute service**.
+* Runs code in response to **events** (e.g., HTTP requests, file uploads).
+* **No server management** required — fully managed by AWS.
+* **Auto-scales** and you only pay for the **actual execution time** (per millisecond).
+
+
 
 | **Topic**                     | **Optimized Answer**                                                                                                                                                                           |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -191,17 +201,6 @@
 | Set **message attributes wisely**          | Adds **contextual metadata** for **targeted filtering**.      |
 
 
-
-
-
-
-###  AWS Lambda
-
-
-* AWS Lambda is a **serverless compute service**.
-* Runs code in response to **events** (e.g., HTTP requests, file uploads).
-* **No server management** required — fully managed by AWS.
-* **Auto-scales** and you only pay for the **actual execution time** (per millisecond).
 
 
 
@@ -1486,7 +1485,7 @@ For secure config:
 
 ###  **Optimize performance**
 
-
+- [Node.js-Specific Lambda Optimizations](#-7-nodejs-specific-lambda-optimizations)   
 
 * **Tune memory and timeout** settings for faster execution
 * **Minimize dependencies** and package size

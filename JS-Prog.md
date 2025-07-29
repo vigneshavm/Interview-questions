@@ -4312,14 +4312,14 @@ function isIsomorphic(s, t) {
 
 ### **Unique Elements in an Array**
 
-- [Find Unique Elements in an Array](#find-unique-elements-in-an-array)
-- [Find Unique Elements Count in an Array](#find-unique-elements-Count-in-an-array)
-- [Find the First Non-Repeating Character in a String](#find-the-first-non-repeating-character-in-a-string)
+- [Unique Elements](#find-unique-elements-in-an-array)
+- [Unique Elements **Count**](#find-unique-elements-Count-in-an-array)
+- [First Non-Repeating Character in a String](#find-the-first-non-repeating-character-in-a-string)
 - [Remove Duplicates from an Array](#remove-duplicates-from-an-array)
-- [Check if All Characters in a String are Unique](#check-if-all-characters-in-a-string-are-unique)
-- [Return Only Unique Characters From a String](#return-only-unique-characters-from-a-string)
+- [String are Unique](#check-if-all-characters-in-a-string-are-unique)
+- [Unique Characters From a String](#return-only-unique-characters-from-a-string)
 - [Intersection of Two Arrays with Unique Result](#intersection-of-two-arrays-with-unique-result)
-- [Find Single Number (Every other element appears twice)](#find-single-number-every-other-element-appears-twice)
+- [**First** Unique Elements](#find-single-number-every-other-element-appears-twice)
 
 
 ##  **Find Unique Elements in an Array**

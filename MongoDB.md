@@ -641,6 +641,43 @@ finally {
   * Supports multiple **isolation levels** (Read Uncommitted, Read Committed, Repeatable Read, Serializable).
   * Prevents race conditions, dirty reads, non-repeatable reads.
 
+"Yes, isolation levels control how transactions interact in a multi-user environment. 
+
+* I use **Read Committed** for general reads.
+* For **booking/payment**, I use **Serializable** or **Repeatable Read** to ensure data consistency and avoid race conditions.
+
+
+ 🔓 **1. Read Uncommitted**
+
+* **Dirty reads are allowed** — one transaction can see uncommitted changes from another.
+* Example: A user’s booking is in progress, but another user sees it as 'Paid' before the transaction commits.
+  ➡️ **Risk:** Inaccurate status, duplicate shoutouts.
+
+
+ 📖 **2. Read Committed**
+
+* Only committed data is read.
+* Example: While a payment is being processed, another read will **not see the partial state**.
+  ➡️ **Prevents dirty reads**, but **allows non-repeatable reads**.
+
+
+ 🔁 **3. Repeatable Read**
+
+* Ensures that if you read a row twice in a transaction, it **doesn't change** mid-way.
+* Example: Booking status stays 'Pending' even if another transaction commits a change.
+  ➡️ **Prevents dirty and non-repeatable reads**, but **phantom rows** (like new conflicting bookings) may occur.
+
+
+ 🔐 **4. Serializable**
+
+* **Strictest level** — transactions behave as if run one after another.
+* Example: Two users trying to book the same celebrity slot are **queued**, ensuring no double booking.
+  ➡️ Prevents all anomalies, but may **impact performance** due to locking or retries.
+
+
+
+
+
 * **MongoDB**:
 
   * Multi-document transactions provide **snapshot isolation** using an **"all or nothing" commit** model.

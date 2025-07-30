@@ -12,7 +12,7 @@
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
 | **Performance Optimization**          | •  [Performance Optimization](#performance-optimization) •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [Memory leaks](#Memory-leaks) •  [Structure Large Scale Application](#large-scale-application) •  [During-a-React-Re-render](#What-Happens-During-a-React-Re-render)
-| **Call components**          | •  [call child components function from a parent](#call-child-components-function-from-a-parent) •  [Call a parent component’s function from a child in React](#call-a-parent-components-function-from-a-child-in-react)
+| **Call components**          | [Passing data child to parent](#Passing-data-child-to-parent) •  [function call child -> parent](#call-child-components-function-from-a-parent) •  [function call parent->child](#call-a-parent-components-function-from-a-child-in-react)
 
 
 ---
@@ -5784,4 +5784,78 @@ useEffect(() => {
 | Keep track of how many times a component rendered | ❌ Triggers re-renders | ✅ Perfect use case |
 | Store a timer ID for `clearTimeout`               | ❌ Overhead            | ✅ Ideal            |
 | Refer to a DOM element like `<input>`             | ❌ Not for DOM refs    | ✅ Yes              |
+
+
+
+
+
+
+##  Passing data child to parent
+
+
+> In React, data typically flows from parent to child using props. However, if we want to pass data from a **child to a parent**, we use a **callback function**.
+>
+> The idea is:
+>
+> 1. The **parent component defines a function** that handles the data.
+> 2. This function is **passed to the child** as a prop.
+> 3. Inside the **child component**, we invoke this function, optionally passing data as an argument.
+>
+> This allows the child to "communicate" with the parent without breaking the unidirectional data flow that React enforces.
+
+> For example, the parent might have a function called `handleChildData`, which updates the state. We pass this function as a prop to the child. The child then calls this function when, say, a button is clicked or an input changes — sending the data up to the parent.
+
+
+To **pass a value from a child to a parent** in React, you need to follow this pattern:
+
+1. **Define a callback function in the parent**.
+2. **Pass that function to the child via props**.
+3. **Call the function from the child**, passing the data you want to send.
+
+**1. Parent Component**
+
+```jsx
+import React, { useState } from 'react';
+import Child from './Child';
+
+function Parent() {
+  const [childData, setChildData] = useState('');
+
+  const handleDataFromChild = (data) => {
+    setChildData(data);
+  };
+
+  return (
+    <div>
+      <h2>Parent Component</h2>
+      <p>Data from child: {childData}</p>
+      <Child sendDataToParent={handleDataFromChild} />
+    </div>
+  );
+}
+
+export default Parent;
+```
+
+
+**2. Child Component**
+
+```jsx
+import React from 'react';
+
+function Child({ sendDataToParent }) {
+  const handleClick = () => {
+    sendDataToParent("Hello from Child!");
+  };
+
+  return (
+    <div>
+      <h3>Child Component</h3>
+      <button onClick={handleClick}>Send Data to Parent</button>
+    </div>
+  );
+}
+
+export default Child;
+```
 

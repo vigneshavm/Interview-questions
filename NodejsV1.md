@@ -18,7 +18,7 @@
 | **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets) , [Concurrent Requests](#Concurrent-CPU-intensive-requests),  - [100K Concurrent](#Handling-100000-concurrent-requests),  - [Handle Concurrency](#Handle-Concurrency),  - [High Traffic Scaling](#Scaling-High-Traffic),  - [Scalability Issues](#scalability-issues) |
 | **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production),  - [PM2](#pm2),  - [Load Balancing](#load-balancing) |
 | **Timeout**     | [Common Cases Timeout Errors](#Common-Cases-Timeout-Errors) , - [Handle Timeout Issue](#Debugging-Steps-I-Follow-For-Timeout)  |
-| **Database Interaction**     | [SQL Connection](#sql-connection),  - [MongoDB Connection](#mongodb-connection),  - [DB Connections](#database-connections),  - [Transactions](#database-transactions) |
+| **Database Interaction**     | [JOINs in Sequelize](#JOINs-in-Sequelize) [SQL Connection](#sql-connection),  - [MongoDB Connection](#mongodb-connection),  - [DB Connections](#database-connections),  - [Transactions](#database-transactions) |
 
 
 
@@ -5711,3 +5711,56 @@ Accept: application/vnd.company.v1+json
 * **Cross-Platform**: Written in **C++**, V8 is **portable** and works well across different **OS platforms**.
 * **Embeddability**: V8 is a **standalone engine**, making it easy for Node.js to **embed and extend** it with custom APIs (e.g., file system, network).
 * **Active Development**: Backed by **Google** and **open source contributors**, it receives **regular updates** and **performance improvements**.
+
+
+
+
+
+
+
+
+### **JOINs in Sequelize**
+
+"In **Sequelize**, JOINs are performed through **model associations** such as `hasOne`, `hasMany`, `belongsTo`, and `belongsToMany`.
+
+Once the **relationships** are defined, we use the **`include` option** in queries to perform JOINs.
+
+For example, if we have two models — **`User` and `Post`**, where a **User has many Posts**, the association looks like this:
+
+```js
+User.hasMany(Post);
+Post.belongsTo(User);
+```
+
+To **fetch posts along with their user details**, we write:
+
+```js
+const posts = await Post.findAll({
+  include: {
+    model: User,
+    attributes: ['id', 'name']
+  }
+});
+```
+
+This performs a **SQL JOIN** between `posts` and `users` using the foreign key.
+
+**Key points:**
+
+* `include` enables **automatic JOINs** based on defined associations
+* Use `attributes` to **limit selected columns**
+* Add `required: true` in `include` for an **INNER JOIN**
+* Default JOIN is **LEFT OUTER JOIN**
+* For **aliases**, use `as` in both association and query:
+
+```js
+User.hasMany(Post, { as: 'Articles' });
+
+User.findAll({
+  include: {
+    model: Post,
+    as: 'Articles'
+  }
+});
+```
+

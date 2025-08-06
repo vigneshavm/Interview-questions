@@ -4405,20 +4405,15 @@ useEffect(() => {
 ## **large scale application**:
 
 
-| **Category**                   | **Description**                                                                                                                                                         |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Modular Architecture**       | Feature- or domain-based folder structure. <br>Example: <br>`/features/auth/components/`, `/features/auth/hooks/`, etc.                                                 |
-| **Component Hierarchy**        | - **Presentational Components**: Pure, reusable UI components with minimal logic. <br>- **Container Components**: Handle state, data fetching, and logic.               |
-| **Hooks Folder**               | Common logic is abstracted into custom hooks (`useAuth`, `usePagination`) inside a shared or feature-level `hooks/` directory.                                          |
-| **Services Layer**             | API calls, SDKs, and business logic placed in `services/`, separated from UI logic.                                                                                     |
-| **State Management**           | - **Simple apps**: `useState`, `useReducer`, Context API. <br>- **Complex apps**: Redux Toolkit (RTK) or Zustand. <br>State colocated inside each feature folder.       |
-| **Routing Strategy**           | Uses **React Router v6+**. <br>Route definitions in `routes.tsx` and organized per feature.                                                                             |
-| **Types & Interfaces**         | Define shared types in `types.ts` or `interfaces.ts` per feature for maintainability and reuse.                                                                         |
-| **Reusable Shared Components** | Common UI elements (e.g., buttons, modals) live under `shared/components/`.                                                                                             |
-| **Styling**                    | Prefers **Tailwind CSS** or **CSS-in-JS** (e.g., Styled Components). <br>Scoped styles with BEM or utility-first approach.                                              |
-| **Testing Structure**          | Tests are colocated next to components (e.g., `Component.test.tsx`). <br>Uses **Jest + React Testing Library**.                                                         |
-| **Environment & Configs**      | - `.env` for environment variables. <br>- Centralized `config.ts` for app settings like URLs, tokens, flags, etc.                                                       |
-| **CI/CD & Linting**            | - **Prettier + ESLint** for formatting and linting. <br>- **Husky Git Hooks** for pre-commit checks. <br>- CI (e.g., GitHub Actions) for automated testing/deployments. |
+| **Category**              | **Details**                                                                        | **Category**            | **Details**                                               |
+| ------------------------- | ---------------------------------------------------------------------------------- | ----------------------- | --------------------------------------------------------- |
+| **Modular Architecture**  | Feature/domain-based folders like `features/auth/`                                 | **Component Hierarchy** | UI (presentational) vs. container (smart) components      |
+| **Hooks Folder**          | Reusable logic via custom hooks like `useAuth`, `usePagination`                    | **Services Layer**      | API and business logic in `services/` folders             |
+| **State Management**      | `useState`, Context API for simple; RTK/Zustand for complex, colocated per feature | **Routing Strategy**    | React Router v6+ with `routes.tsx` structured per feature |
+| **Types & Interfaces**    | Defined in `types.ts` or `interfaces.ts` per feature                               | **Shared Components**   | Reusable UI like buttons, modals in `shared/components/`  |
+| **Styling**               | Tailwind CSS or CSS-in-JS (e.g., Styled Components), scoped using utility/BEM      | **Testing Structure**   | Jest + RTL, colocated tests like `Component.test.tsx`     |
+| **Environment & Configs** | `.env` for environment vars, `config.ts` for URLs, tokens, flags                   | **CI/CD & Linting**     | ESLint, Prettier, Husky for hooks, GitHub Actions for CI  |
+
 
 
 ---

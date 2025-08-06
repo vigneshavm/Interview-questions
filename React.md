@@ -2046,6 +2046,7 @@ function Card({ title, children }) {
 - [Uncontrolled Components](#uncontrolled-components)
 - [Pure Components](#Pure-components)
 - [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components)  
+•  [Higher-Order Components](#higher-order-components-hocs)
 
 
 ###  Controlled Components

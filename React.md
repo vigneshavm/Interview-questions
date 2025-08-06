@@ -5774,6 +5774,14 @@ To **pass a value from a child to a parent** in React, you need to follow this p
 2. **Pass that function to the child via props**.
 3. **Call the function from the child**, passing the data you want to send.
 
+
+| **Use Case**          | **How it Works**                            | **Example**                             | **Notes**                        |
+| --------------------- | ------------------------------------------- | --------------------------------------- | -------------------------------- |
+| Child triggers event  | Parent passes callback as prop              | `onClick={() => setCount(count + 1)}`   | Common in forms, buttons, inputs |
+| Controlled components | Child inputs are controlled by parent state | `<input value={name} onChange={...} />` | Useful in form management        |
+| `useContext` usage    | For global/shared state access              | `const theme = useContext(ThemeCtx)`    | Avoids deep prop drilling        |
+
+
 **1. Parent Component**
 
 ```jsx

@@ -12,7 +12,7 @@
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
 | **Performance Optimization**          | •  [Performance Optimization](#performance-optimization) •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [Memory leaks](#Memory-leaks) •  [Structure Large Scale Application](#large-scale-application) •  [During-a-React-Re-render](#What-Happens-During-a-React-Re-render)
-| **Call components**          | [Passing data child to parent](#Passing-data-child-to-parent) •  [function call child -> parent](#call-child-components-function-from-a-parent) •  [function call parent->child](#call-a-parent-components-function-from-a-child-in-react) •  [Parent → Child Rendering in React](#parent-child-rendering-in-react)
+| **Call components**          | [Passing data child to parent](#Passing-data-child-to-parent) •  [function call child -> parent](#call-child-components-function-from-a-parent) •  [function call parent->child](#call-a-parent-components-function-from-a-child-in-react) •  [Parent → Child Rendering in React](#parent-child-rendering-in-react) •  [Rerender parent component to child component](#rerender-parent-component-to-child-component)
 
 
 ---
@@ -5840,3 +5840,35 @@ export default Child;
 | **Props Passing**       | Data passed from parent to child as props                    | `<Child user={user} />`           | Parent → Child            |
 | **Callback Functions**  | Parent passes handler to child so child can trigger logic    | `<Child onClick={handleClick} />` | Child → Parent (via prop) |
 | **Rendering Flow**      | Parent renders first, then children are rendered recursively | React's virtual DOM tree          | Top → Down                |
+
+
+
+Sure! Here's how you can confidently and concisely answer this question in an **interview setting**:
+
+---
+
+### **Rerender parent component to child component**
+
+**"If a parent component’s state changes but no props are passed to the child, will the child component still re-render?"**
+
+
+- Yes, by default, **a child component will re-render when the parent re-renders**, even if the child receives **no props**.
+
+- This happens because React’s rendering model re-renders all components in the tree when a parent component’s state or props change — **unless optimizations like `React.memo()` are used**.
+
+- So if the parent’s state updates, the parent re-renders, and that triggers all of its children to re-render as well, regardless of whether props are passed or changed.
+
+- However, to **optimize performance**, we can wrap the child component with `React.memo()` so that it **only re-renders when its props actually change**.
+
+ ```tsx
+ const Child = React.memo(() => {
+   console.log("Child rendered");
+   return <div>I am a child</div>;
+ });
+ ```
+
+- This memoization is especially useful in large trees or performance-critical components.
+
+
+
+- If the child component is expensive to render and doesn’t depend on the parent’s state or props, wrapping it with `React.memo()` (or using `useMemo` for values) helps avoid **unnecessary renders**, improving performance.

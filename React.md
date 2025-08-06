@@ -840,6 +840,14 @@ const withLoading = (WrappedComponent) => {
   - React batches updates together to minimize DOM manipulations.
   - React calculates the **minimum set of changes** needed and applies them using efficient DOM operations.
 
+**Reconciliation Process Internally**
+
+- React builds Fiber trees (virtual DOM) for both old and new renders.
+- It walks both trees together, comparing nodes by type and key.
+- If the node type is the same → props are updated.
+- If different → old node is deleted, new is mounted.
+- It tracks all changes in an effect list, then commits them to the real DOM.
+
 ---
 
 ## React Portals 

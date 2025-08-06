@@ -1419,19 +1419,32 @@ function Parent() {
 ****  
 Error boundaries catch JavaScript errors in child components and display a fallback UI instead of crashing the whole app.
 
-```jsx
-class ErrorBoundary extends React.Component {
-  state = { hasError: false };
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
+> In React, Error Boundaries are special class components that catch JavaScript errors in their child component tree. React provides two key methods for implementing them:
+>
+> 1. **`getDerivedStateFromError(error)`** – This is a **static lifecycle method**. It’s used to update the component’s state so we can display a fallback UI when an error occurs during rendering. Since it's static, we don’t have access to `this`.
+>
+>    ```tsx
+>    static getDerivedStateFromError(error: Error) {
+>      return { hasError: true };
+>    }
+>    ```
+>
+> 2. **`componentDidCatch(error, errorInfo)`** – This method is used for **side effects** like logging the error to an external monitoring service (e.g., Sentry). It gives access to both the error and additional info like which component stack it came from.
+>
+>    ```tsx
+>    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+>      logErrorToService(error, errorInfo);
+>    }
+>    ```
+>
+> These two methods together allow us to show a graceful fallback UI and handle errors in production effectively.
+>
+> It's also important to note that Error Boundaries:
+>
+> * Only catch errors during **rendering**, **lifecycle methods**, and **constructors** of child components.
+> * Do **not** catch errors inside **event handlers**, **async code**, or **server-side rendering**.
 
-  render() {
-    return this.state.hasError ? <h1>Something went wrong.</h1> : this.props.children;
-  }
-}
-```
 
 ---
 

@@ -4405,67 +4405,21 @@ useEffect(() => {
 ## **large scale application**:
 
 
-* **Modular Architecture (Feature-Based or Domain-Driven):**
-  I organize the codebase by **features or domains**, not by type (e.g., not all components in one folder).
-  For example:
+| **Category**                   | **Description**                                                                                                                                                         |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Modular Architecture**       | Feature- or domain-based folder structure. <br>Example: <br>`/features/auth/components/`, `/features/auth/hooks/`, etc.                                                 |
+| **Component Hierarchy**        | - **Presentational Components**: Pure, reusable UI components with minimal logic. <br>- **Container Components**: Handle state, data fetching, and logic.               |
+| **Hooks Folder**               | Common logic is abstracted into custom hooks (`useAuth`, `usePagination`) inside a shared or feature-level `hooks/` directory.                                          |
+| **Services Layer**             | API calls, SDKs, and business logic placed in `services/`, separated from UI logic.                                                                                     |
+| **State Management**           | - **Simple apps**: `useState`, `useReducer`, Context API. <br>- **Complex apps**: Redux Toolkit (RTK) or Zustand. <br>State colocated inside each feature folder.       |
+| **Routing Strategy**           | Uses **React Router v6+**. <br>Route definitions in `routes.tsx` and organized per feature.                                                                             |
+| **Types & Interfaces**         | Define shared types in `types.ts` or `interfaces.ts` per feature for maintainability and reuse.                                                                         |
+| **Reusable Shared Components** | Common UI elements (e.g., buttons, modals) live under `shared/components/`.                                                                                             |
+| **Styling**                    | Prefers **Tailwind CSS** or **CSS-in-JS** (e.g., Styled Components). <br>Scoped styles with BEM or utility-first approach.                                              |
+| **Testing Structure**          | Tests are colocated next to components (e.g., `Component.test.tsx`). <br>Uses **Jest + React Testing Library**.                                                         |
+| **Environment & Configs**      | - `.env` for environment variables. <br>- Centralized `config.ts` for app settings like URLs, tokens, flags, etc.                                                       |
+| **CI/CD & Linting**            | - **Prettier + ESLint** for formatting and linting. <br>- **Husky Git Hooks** for pre-commit checks. <br>- CI (e.g., GitHub Actions) for automated testing/deployments. |
 
-  ```
-  /features
-    /auth
-      components/
-      hooks/
-      services/
-      types.ts
-      index.ts
-    /dashboard
-      ...
-  ```
-
-* **Component Hierarchy:**
-
-  * **Presentational (UI) Components:** Pure, reusable components with minimal logic.
-  * **Container (Smart) Components:** Handle state, data fetching, and logic; use hooks and services.
-
-* **Hooks Folder:**
-  Common or shared logic is abstracted into **custom React hooks** inside a `hooks/` directory (e.g., `useAuth`, `usePagination`).
-
-* **Services Layer:**
-  API calls, external SDKs, and business logic live in `services/` — clean separation of concerns.
-
-* **State Management:**
-
-  * For simple apps: `useState`, `useReducer`, and Context API.
-  * For complex apps: Redux Toolkit (RTK) or Zustand, colocated per feature.
-  * All states are co-located within their respective feature folder.
-
-* **Routing Strategy:**
-
-  * React Router (v6+) for client-side routing.
-  * Routes are defined in a `routes.tsx` and integrated per feature.
-
-* **Types & Interfaces:**
-  Use `types.ts` or `interfaces.ts` files per feature for defining shared types, improving consistency and reusability.
-
-* **Reusable Shared Components:**
-  Components like buttons, modals, form controls go under `shared/components/`.
-
-* **Styling:**
-  I prefer **Tailwind CSS** or **CSS-in-JS** (e.g., Styled Components) for maintainability and modularity.
-  CSS is scoped and follows BEM or utility-first practices.
-
-* **Testing Structure:**
-  Unit tests and integration tests are colocated with the component (e.g., `Component.test.tsx`) using **Jest + React Testing Library**.
-
-* **Environment & Configs:**
-
-  * `.env` for environment variables.
-  * Centralized `config.ts` for URLs, tokens, flags, etc.
-
-* **CI/CD & Linting:**
-
-  * Prettier + ESLint for formatting and code quality.
-  * Git hooks (Husky) to enforce linting and tests pre-commit.
-  * CI pipeline (e.g., GitHub Actions) for testing and deployments.
 
 ---
 

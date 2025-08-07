@@ -2,7 +2,7 @@
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Fundamentals**                     | - [CI/CD](#cicd) - [CI/CD Important](#cicd-important) - [Tools Used for CI/CD](#tools-used-for-cicd)                                                                                                                                  |
 | **Pipeline Setup & Configuration**   | - [Set Up a CI/CD Pipeline](#set-up-a-cicd-pipeline) - [Manage Environment Variables in CI/CD](#manage-environment-variables-in-cicd) - [Test Both Backend and Frontend in a Pipeline](#test-both-backend-and-frontend-in-a-pipeline) |
-| **Advanced Deployment Practices**    | - [Zero-Downtime Deployment Strategy](#zero-downtime-deployment-strategy) - [Rollback a Deployment](#rollback-a-deployment) - [Handle Frontend and Backend Version Mismatch](#handle-frontend-and-backend-version-mismatch)           |
+| **Advanced Deployment Practices**    | -[Rollback Strategies](#Rollback-Strategies)        |
 | **Microservices & Team Integration** | - [Manage CI/CD for Microservices](#manage-cicd-for-microservices) - [Notify Your Team About Build/Deploy Status](#notify-your-team-about-builddeploy-status)                                                                            |
 | **Quality & Automation**             | - [Integrate Linting, Testing, and Code Quality in CI](#integrate-linting-testing-and-code-quality-in-ci)                                                                                                                                   |
 | **Extras**                           | - [Bonus Questions](#bonus-questions)                                                                                                                                                                                                       |
@@ -237,4 +237,25 @@ pipeline {
 ```
 
 ---
+
+
+
+
+
+### **Rollback Strategies**
+
+- [Zero-Downtime Deployment Strategy](#zero-downtime-deployment-strategy) 
+- [Rollback a Deployment](#rollback-a-deployment)
+- [Handle Frontend and Backend Version Mismatch](#handle-frontend-and-backend-version-mismatch)    
+
+| **#** | **Strategy**                 | **Description**                                                            | **Tools Used**               | **Rollback Steps**                                                              |
+| ----- | ---------------------------- | -------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------- |
+| 1️⃣   | **Manual Backup Rollback**   | Backup current build before deploying new one (timestamped folders)        | Shell scripts, PM2, Nginx    | Switch to backup folder → Restart PM2 → Reload Nginx                            |
+| 2️⃣   | **PM2 Process Rollback**     | Run new version in parallel (different PM2 process) and switch on success  | PM2, Nginx                   | Stop faulty process → Restart previous stable PM2 process                       |
+| 3️⃣   | **Blue-Green Deployment**    | Maintain two versions (`blue` and `green`); switch traffic post-validation | Nginx, PM2, Folder structure | Update Nginx config to point to previous color → Reload Nginx → PM2 restart     |
+| 4️⃣   | **Git-Based Rollback**       | Tag stable releases; revert to older version via `git checkout`            | Git, PM2, Nginx              | Checkout tag → Rebuild → Restart with PM2 → Reload Nginx                        |
+| 5️⃣   | **Frontend Cache Rollback**  | Ensure browser doesn't serve old/corrupted files after rollback            | Nginx, Build script          | Switch Nginx root → Clear browser cache or use versioned build folders          |
+| 6️⃣   | **Automated CI/CD Rollback** | Some CI/CD tools allow automated rollback on test or health check failure  | GitHub Actions (optional)    | Use pre-configured rollback step in pipeline (requires scripting/health checks) |
+
+
 

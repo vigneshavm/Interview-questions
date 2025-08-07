@@ -1,7 +1,7 @@
 
 | **Category**             | **Topics** |
 |--------------------------|------------|
-| **Basics**               | [Git Basics](#git-basics), [Git vs GitHub](#Git-vs-GitHub), [git fetch vs git pull](#git-fetch-vs-git-pull) [Git Commands](#Git-Commands) |
+| **Basics**               | [Git Basics](#git-basics), [Git vs GitHub](#Git-vs-GitHub), [git fetch vs git pull](#git-fetch-vs-git-pull) - [Git Commands](#Git-Commands) |
 | **Undoing Commits**      | [Undoing Commits](#undoing-commits), [Revert a Commit](#revert-a-commit), [Revert the Last 10 Commits](#revert-the-last-10-commits), [View Last 10 Commits](#view-last-10-commits) |
 | **Branching & Merging**  | [.gitignore](#gitignore), [Git Branches](#git-branches), [Merge vs Rebase](#merge-vs-rebase), [Pull Requests](#pull-requests), [git stash](#git-stash) |
 | **Strategies**           | [GitFlow vs GitHub Flow](#gitflow-vs-github-flow), [Branching Strategies](#branching-strategies), [Release Branch Strategy](#release-branch-strategy) |

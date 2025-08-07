@@ -1,7 +1,7 @@
 
 | **Category**             | **Topics** |
 |--------------------------|------------|
-| **Basics**               | [Git Basics](#git-basics), [Git vs GitHub](#Git-vs-GitHub), [git fetch vs git pull](#git-fetch-vs-git-pull) |
+| **Basics**               | [Git Basics](#git-basics), [Git vs GitHub](#Git-vs-GitHub), [git fetch vs git pull](#git-fetch-vs-git-pull) [Git Commands](#Git-Commands) |
 | **Undoing Commits**      | [Undoing Commits](#undoing-commits), [Revert a Commit](#revert-a-commit), [Revert the Last 10 Commits](#revert-the-last-10-commits), [View Last 10 Commits](#view-last-10-commits) |
 | **Branching & Merging**  | [.gitignore](#gitignore), [Git Branches](#git-branches), [Merge vs Rebase](#merge-vs-rebase), [Pull Requests](#pull-requests), [git stash](#git-stash) |
 | **Strategies**           | [GitFlow vs GitHub Flow](#gitflow-vs-github-flow), [Branching Strategies](#branching-strategies), [Release Branch Strategy](#release-branch-strategy) |
@@ -316,4 +316,40 @@ git push origin v1.0.0
 | git reflog             | Shows recent updates to HEAD (recover lost commits)          |
 
 ---
+
+
+
+
+
+
+### **Git Commands**
+
+| **Command**                   | **When to Use It (Example Scenario)**                                                                |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `git init`                    | Starting a **new project locally** that you want to version control.                                 |
+| `git clone <url>`             | Getting the **codebase from a remote repo** (e.g., GitHub/Azure DevOps) for the first time.          |
+| `git status`                  | To check which files have been modified, staged, or untracked before committing.                     |
+| `git add <file>`              | After editing a file (e.g., `index.js`), stage it for a commit.                                      |
+| `git commit -m "msg"`         | After staging changes, commit them with a meaningful message like "Fix login API bug".               |
+| `git commit --amend`          | Forgot to add something to the last commit? Use this to update the previous commit.                  |
+| `git branch <new-branch>`     | Creating a new feature branch like `feature/user-auth` from main.                                    |
+| `git switch -c <branch>`      | Create and switch to a new branch in one step (replaces older `checkout -b`).                        |
+| `git switch <branch>`         | Switching from `feature/cart-ui` back to `main` after finishing work.                                |
+| `git merge <branch>`          | Merging `feature/login` into `main` once the feature is complete and tested.                         |
+| `git rebase <branch>`         | You want to **replay your changes** on top of the latest `main` branch to keep history clean.        |
+| `git pull`                    | You’re about to start work — fetch and merge the latest changes from origin.                         |
+| `git fetch`                   | Get the latest remote changes **without** modifying your current branch (safe before rebasing).      |
+| `git push`                    | You’ve committed your changes and now want to **push them to GitHub or remote repo**.                |
+| `git push -u origin <branch>` | You created a new branch locally and want to **push and set upstream tracking**.                     |
+| `git stash`                   | You’re in the middle of work but need to switch branches — stash your uncommitted changes.           |
+| `git stash pop`               | After switching back, reapply your stashed changes.                                                  |
+| `git clean -fd`               | Remove untracked files (e.g., compiled files or logs) from your working directory.                   |
+| `git tag v1.0.0`              | Mark a **production-ready release** or deployment point.                                             |
+| `git revert <commit>`         | You pushed a bad commit — use this to undo it **without rewriting history** (safe for shared repos). |
+| `git reset --soft HEAD~1`     | You want to **undo the last commit but keep your changes** to edit or re-commit.                     |
+| `git reset --hard HEAD~1`     | You want to completely **discard** the last commit and changes (be careful!).                        |
+| `git reflog`                  | You accidentally deleted a branch or did a reset — use this to **recover lost commits**.             |
+
+
+
 

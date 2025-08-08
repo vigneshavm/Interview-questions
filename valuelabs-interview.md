@@ -48,18 +48,8 @@ mkdir vaisala-app && cd vaisala-app
 npm create vite@latest client -- --template react-ts
 cd client
 npm install
-```
-
-### 2.2 Install ESLint, Prettier, and Testing Tools
-
-```bash
-npm install -D eslint prettier jest @types/jest ts-jest @testing-library/react @testing-library/jest-dom
-```
-
-### 2.3 Setup ESLint and Prettier
-
-```bash
-npx eslint --init
+npm install -D eslint prettier jest @types/jest ts-jest @testing-library/react @testing-library/jest-dom    // Install ESLint, Prettier, and Testing Tools
+npx eslint --init   // Setup ESLint and Prettier
 ```
 
 Choose:

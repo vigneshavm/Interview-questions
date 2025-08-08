@@ -19,16 +19,12 @@
 | [11. Consumer Groups](#11-consumer-groups)                                             | [22. Kafka Admin CLI](#22-kafka-admin-cli)                       |                                                                    |
 
 
+| **Column 1**                                                                                                           | **Column 2**                                                                                                  | **Column 3**                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [Handle Ordering and Duplicates](#do-you-handle-ordering-and-duplicates)                                               | [Kafka Transactions](#do-you-use-kafka-transactions)                                                          | [Notifications Handled Using Kafka](#how-are-notifications-handled-using-kafka)            |
+| [Kafka in Your Current Project](#how-are-you-using-kafka-in-your-current-shoutout-project)                             | [Ensure a Request Isn’t Processed More Than Once](#how-do-you-ensure-a-request-isnt-processed-more-than-once) | [Kafka Help Manage Concurrency](#how-does-kafka-help-manage-concurrency-in-fund-transfers) |
+| [Kafka Used in the Video Upload and Delivery Lifecycle](#how-is-kafka-used-in-the-video-upload-and-delivery-lifecycle) | [Tools You Are Using to Monitor Kafka](#what-tools-are-you-using-to-monitor-kafka)                            | [Retry Strategy if a Consumer Fails](#whats-your-retry-strategy-if-a-consumer-fails)       |
 
-* [handle-ordering-and-duplicates](#do-you-handle-ordering-and-duplicates)
-* [kafka-transactions](#do-you-use-kafka-transactions)
-* [notifications-handled-using-kafka](#how-are-notifications-handled-using-kafka)
-* [kafka-in-your-current-project](#how-are-you-using-kafka-in-your-current-shoutout-project)
-* [ensure-a-request-isnt-processed-more-than-once](#how-do-you-ensure-a-request-isnt-processed-more-than-once)
-* [kafka-help-manage-concurrency](#how-does-kafka-help-manage-concurrency-in-fund-transfers)
-* [kafka-used-in-the-video-upload-and-delivery-lifecycle](#how-is-kafka-used-in-the-video-upload-and-delivery-lifecycle)
-* [tools-are-you-using-to-monitor-kafka](#what-tools-are-you-using-to-monitor-kafka)
-* [retry-strategy-if-a-consumer-fails](#whats-your-retry-strategy-if-a-consumer-fails)
 
 
 

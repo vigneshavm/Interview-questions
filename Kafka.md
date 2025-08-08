@@ -1,22 +1,15 @@
-### Apache Kafka Interview Questions and Answers
 
----
 
-### Index
-
-| **Column 1**                                                                           | **Column 2**                                                     | **Column 3**                                                       |
-| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [1. What is Kafka?](#1-what-is-kafka)                                                  | [12. Offset Management](#12-offset-management)                   | [23. Handling Large Messages](#23-handling-large-messages)         |
-| [2. Kafka vs Traditional Messaging Systems](#2-kafka-vs-traditional-messaging-systems) | [13. Consumer Rebalancing](#13-consumer-rebalancing)             | [24. Log Compaction vs Retention](#24-log-compaction-vs-retention) |
-| [3. Kafka Architecture](#3-kafka-architecture)                                         | [14. Polling and Processing](#14-polling-and-processing)         | [25. Kafka in Microservices](#25-kafka-in-microservices)           |
-| [4. Message Format and Serialization](#4-message-format-and-serialization)             | [15. Consumer Lag](#15-consumer-lag)                             | [26. Schema Registry](#26-schema-registry)                         |
-| [5. Retention Policy](#5-retention-policy)                                             | [16. Zookeeper vs KRaft Mode](#16-zookeeper-vs-kraft-mode)       | [27. Multi-Datacenter Kafka](#27-multi-datacenter-kafka)           |
-| [6. Topic Creation and Configuration](#6-topic-creation-and-configuration)             | [17. Delivery Semantics](#17-delivery-semantics)                 | [28. Transactional API](#28-transactional-api)                     |
-| [7. Partitioning Strategy and Keys](#7-partitioning-strategy-and-keys)                 | [18. Kafka Streams vs Consumers](#18-kafka-streams-vs-consumers) | [29. Backpressure Handling](#29-backpressure-handling)             |
-| [8. Replication Factor and Leader Election](#8-replication-factor-and-leader-election) | [19. Kafka Connect](#19-kafka-connect)                           | [30. Common Scenarios](#30-common-scenarios)                       |
-| [9. Producer Configuration](#9-producer-configuration)                                 | [20. Security Features](#20-security-features)                   |                                                                    |
-| [10. Idempotent Producer](#10-idempotent-producer)                                     | [21. Monitoring Kafka](#21-monitoring-kafka)                     |                                                                    |
-| [11. Consumer Groups](#11-consumer-groups)                                             | [22. Kafka Admin CLI](#22-kafka-admin-cli)                       |                                                                    |
+| **Column 1**                                             | **Column 2**                                                                           | **Column 3**                                                           | **Column 4**                                                                           |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [1. What is Kafka?](#1-what-is-kafka)                    | [2. Kafka vs Traditional Messaging Systems](#2-kafka-vs-traditional-messaging-systems) | [3. Kafka Architecture](#3-kafka-architecture)                         | [4. Message Format and Serialization](#4-message-format-and-serialization)             |
+| [5. Retention Policy](#5-retention-policy)               | [6. Topic Creation and Configuration](#6-topic-creation-and-configuration)             | [7. Partitioning Strategy and Keys](#7-partitioning-strategy-and-keys) | [8. Replication Factor and Leader Election](#8-replication-factor-and-leader-election) |
+| [9. Producer Configuration](#9-producer-configuration)   | [10. Idempotent Producer](#10-idempotent-producer)                                     | [11. Consumer Groups](#11-consumer-groups)                             | [12. Offset Management](#12-offset-management)                                         |
+| [13. Consumer Rebalancing](#13-consumer-rebalancing)     | [14. Polling and Processing](#14-polling-and-processing)                               | [15. Consumer Lag](#15-consumer-lag)                                   | [16. Zookeeper vs KRaft Mode](#16-zookeeper-vs-kraft-mode)                             |
+| [17. Delivery Semantics](#17-delivery-semantics)         | [18. Kafka Streams vs Consumers](#18-kafka-streams-vs-consumers)                       | [19. Kafka Connect](#19-kafka-connect)                                 | [20. Security Features](#20-security-features)                                         |
+| [21. Monitoring Kafka](#21-monitoring-kafka)             | [22. Kafka Admin CLI](#22-kafka-admin-cli)                                             | [23. Handling Large Messages](#23-handling-large-messages)             | [24. Log Compaction vs Retention](#24-log-compaction-vs-retention)                     |
+| [25. Kafka in Microservices](#25-kafka-in-microservices) | [26. Schema Registry](#26-schema-registry)                                             | [27. Multi-Datacenter Kafka](#27-multi-datacenter-kafka)               | [28. Transactional API](#28-transactional-api)                                         |
+| [29. Backpressure Handling](#29-backpressure-handling)   | [30. Common Scenarios](#30-common-scenarios)                                           |                                                                        |                                                                                        |
 
 
 | **Column 1**                                                                                                           | **Column 2**                                                                                                  | **Column 3**                                                                               |

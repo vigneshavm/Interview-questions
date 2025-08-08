@@ -359,10 +359,56 @@ Kafka is a distributed event streaming platform used for high-performance data p
 
 #### 29. **Backpressure Handling**
 
-* Use consumer pause/resume APIs.
-* Tune producer rate or buffer size.
 
----
+
+To handle backpressure effectively, I combine:
+
+* **Consumer pause/resume**,
+* **Producer tuning**,
+* **Bounded queues**,
+* **Real-time monitoring**,
+* And **Kafka Streams’ native support**.
+
+
+1. **Pause and Resume the Consumer**
+   We used Kafka’s native **`pause()` and `resume()` APIs**.
+   When our **processing buffer was full**, we would **pause consumption** from specific partitions to avoid overloading the downstream system. Once processing caught up, we **resumed** the consumer.
+
+> 🔹 **Key Benefit:** Prevents memory overflow and allows controlled processing.
+
+
+2. **Tune the Kafka Producer**
+   We optimized producer settings to **avoid overwhelming brokers or consumers**:
+
+* **`batch.size` and `linger.ms`** – Helped control how much data we send and how frequently.
+* **`buffer.memory`** – We ensured the buffer size was enough but not too large to cause a flood.
+* **`acks=all` and `retries`** – Ensured **reliable delivery** without increasing load unnecessarily.
+
+> 🔹 **Key Benefit:** Reduces uncontrolled data flow and aligns producer speed with consumer capacity.
+
+
+3. **Use Bounded Internal Queues**
+   Our consumers push messages into **bounded in-memory queues**.
+   When the queue reached a certain threshold, we **temporarily paused message consumption** until the downstream processing completed.
+
+> 🔹 **Key Benefit:** Protects the system from downstream bottlenecks.
+
+
+4. **Monitor Consumer Lag**
+   We used **Prometheus and Grafana** to monitor **consumer lag** in real-time.
+   Whenever lag spiked, we either **scaled consumers horizontally** or identified **processing bottlenecks** in the application.
+
+> 🔹 **Key Benefit:** Early detection of backpressure buildup.
+
+
+5. **Kafka Streams (where applicable)**
+   In Kafka Streams, **backpressure is handled internally** using **state stores and flow control mechanisms**.
+   This gave us better stability when handling complex video processing pipelines.
+
+> 🔹 **Key Benefit:** Out-of-the-box flow control in streaming apps.
+
+
+
 
 #### 30. **Common Scenarios**
 

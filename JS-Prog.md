@@ -12,7 +12,7 @@
 | Frequent |  • [Top K Frequent Elements](#top-k-frequent-elements)  • [Character Frequency Count](#character-frequency-count) • [Most Frequent Character](#Most-Frequent-Character-in-a-String) • [Count Frequency - Array](#Count-Frequency-of-Array-Element) • [Minimum Window Substring](#Minimum-Window-Substring) 
 | Functions |   • [Factorial](#factorial) • [Fibonacci](#fibonacci) • [Power Function](#power-function) • [Debounce Function](#debounce-function) • [Throttle Function](#throttle-function) • [Binary Search](#Binary-Search) 
 | Patterns | • [Stock Span Problem](#Stock-Span-Problem) • [Match Filename Pattern]((#filename-and-pattern-match)) 
-| Searching |  • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)    • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
+| Searching |  [Search algorithm](#Search-algorithm) • [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)    • [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
 | Graph Problems | • [BFS Traversal](#bfs) • [DFS Traversal](#dfs) • [Number of Islands (Matrix BFS/DFS)](#number-of-islands) • [Detect Cycle in Graph](#detect-cycle-in-graph)  • [Clone Graph](#clone-graph) • [Shortest Path in Binary Matrix](#shortest-path-in-binary-matrix) • [Word Ladder](#word-ladder) • [Dijkstra’s Algorithm](#dijkstras-algorithm) • [LRU](#LRU)
 | Binary Tree | • [Inorder / Preorder / Postorder Traversal](#inorder-preorder-postorder-traversal) • [Level Order Traversal](#level-order-traversal) • [Maximum Depth of Binary Tree](#maximum-depth-of-binary-tree) • [Symmetric Tree](#symmetric-tree) • [Diameter of Binary Tree](#diameter-of-binary-tree) • [Lowest Common Ancestor (BST & Binary Tree)](#lowest-common-ancestor) • [Serialize and Deserialize Binary Tree](#serialize-and-deserialize-binary-tree) • [Path Sum](#path-sum) • [Convert Sorted Array to BST](#convert-sorted-array-to-bst) • [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)   • [Trapping Rain Water](#trapping-rain-water)
 
@@ -5289,4 +5289,17 @@ lot.parkVehicle(car2);
 // Check available car spots
 console.log("🚙 Available CAR spots:", lot.getAvailableSpots(VehicleType.CAR));
 ```
+## Search algorithm 
+
+
+Condition	Search Algorithm	Description	Time Complexity (Worst Case)	Notes
+
+Unsorted array	Linear Search	Check each element one by one	O(n)	Simple, works on any array
+Sorted array	Binary Search	Repeatedly split search space in half	O(log n)	Much faster, requires sorted data
+Fast membership test	Hash Set	Use hash table for O(1) membership lookup	O(1) average	No indexing/order preserved
+Dynamic sorted data	Balanced Trees (AVL, RB-Tree)	Tree structure for fast insert/search/delete	O(log n)	Complex, used in advanced systems
+
+
+
+---
 

@@ -5289,17 +5289,14 @@ lot.parkVehicle(car2);
 // Check available car spots
 console.log("🚙 Available CAR spots:", lot.getAvailableSpots(VehicleType.CAR));
 ```
-## Search algorithm 
+## Search Algorithm
 
-
-Condition	Search Algorithm	Description	Time Complexity (Worst Case)	Notes
-
-Unsorted array	Linear Search	Check each element one by one	O(n)	Simple, works on any array
-Sorted array	Binary Search	Repeatedly split search space in half	O(log n)	Much faster, requires sorted data
-Fast membership test	Hash Set	Use hash table for O(1) membership lookup	O(1) average	No indexing/order preserved
-Dynamic sorted data	Balanced Trees (AVL, RB-Tree)	Tree structure for fast insert/search/delete	O(log n)	Complex, used in advanced systems
-
-
+| Condition           | Search Algorithm              | Description                                         | Time Complexity (Worst Case) | Notes                                    |
+|---------------------|--------------------------------|-----------------------------------------------------|--------------------------------|------------------------------------------|
+| Unsorted array      | Linear Search                  | Check each element one by one                       | O(n)                           | Simple, works on any array               |
+| Sorted array        | Binary Search                  | Repeatedly split search space in half                | O(log n)                       | Much faster, requires sorted data        |
+| Fast membership test| Hash Set                       | Use hash table for O(1) membership lookup           | O(1) average                    | No indexing/order preserved              |
+| Dynamic sorted data | Balanced Trees (AVL, RB-Tree)  | Tree structure for fast insert/search/delete        | O(log n)                       | Complex, used in advanced systems        |
 
 ---
 

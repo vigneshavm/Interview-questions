@@ -1,11 +1,15 @@
- - [choosing-the-right-isolation-level-for-banking-transactions](#-choosing-the-right-isolation-level-for-banking-transactions)
- - [deadlock-detection-and-prevention-in-banking-systems](#-deadlock-detection-and-prevention-in-banking-systems)
- - [handling-concurrent-transfers-on-the-same-account](#-handling-concurrent-transfers-on-the-same-account)
- - [implementing-a-money-transfer-with-concurrency-control](#-implementing-a-money-transfer-with-concurrency-control)
- - [implementing-idempotency-in-a-debit-api](#-implementing-idempotency-in-a-debit-api)
- - [maintaining-consistency-in-distributed-transactions-microservices](#-maintaining-consistency-in-distributed-transactions-microservices)
- - [pessimistic-vs-optimistic-locking-in-financial-applications](#-pessimistic-vs-optimistic-locking-in-financial-applications)
-- [preventing-race-conditions-in-concurrent-withdrawals](#-preventing-race-conditions-in-concurrent-withdrawals)
+
+
+
+
+* [Isolation](#-choosing-the-right-isolation-level-for-banking-transactions)
+* [Deadlock detection and-prevention](#-deadlock-detection-and-prevention-in-banking-systems)
+* [Handling concurrent](#-handling-concurrent-transfers-on-the-same-account)
+* [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control)
+* [Implementing idempotency](#implementing-idempotency-in-a-debit-api)
+* [Consistency Across Microservices](#consistency-across-microservices)
+* [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications)
+* [preventing-race-conditions](#preventing-race-conditions-in-concurrent-withdrawals)
 
 
 

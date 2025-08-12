@@ -784,29 +784,15 @@ startConsumer().catch(console.error);
 
 ### **monolithic vs microservices**
 
-**Monolithic (Pros)**:
+| Aspect   | Monolithic                                            | Microservices                                                          |
+| -------- | ----------------------------------------------------- | ---------------------------------------------------------------------- |
+| **Pros** | - Easier to develop and deploy initially              | - Decoupled services; independent deployments                          |
+|          | - Simplified testing and local development            | - Easier horizontal scaling                                            |
+|          | - Lower operational overhead                          | - Teams can own services end-to-end                                    |
+| **Cons** | - Tight coupling, harder to scale parts independently | - Higher complexity (orchestration, service discovery)                 |
+|          | - Codebase grows messy over time                      | - Requires distributed tracing, API gateway, versioning                |
+|          | - Single point of failure                             | - Communication overhead (network latency, message queue dependencies) |
 
-* Easier to develop and deploy initially
-* Simplified testing and local development
-* Lower operational overhead
-
-**Monolithic (Cons)**:
-
-* Tight coupling, harder to scale parts independently
-* Codebase grows messy over time
-* Single point of failure
-
-**Microservices (Pros)**:
-
-* Decoupled services; independent deployments
-* Easier horizontal scaling
-* Teams can own services end-to-end
-
-**Microservices (Cons)**:
-
-* Higher complexity (orchestration, service discovery)
-* Requires distributed tracing, API gateway, versioning
-* Communication overhead (network latency, message queue dependencies)
 
 I prefer **modular monolith** early on, and split to microservices only when the business and scaling needs justify it.
 

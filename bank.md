@@ -2,9 +2,9 @@
 
 
 
-* [Isolation](#-choosing-the-right-isolation-level-for-banking-transactions)
-* [Deadlock detection and-prevention](#-deadlock-detection-and-prevention-in-banking-systems)
-* [Handling concurrent](#-handling-concurrent-transfers-on-the-same-account)
+* [Isolation](#choosing-the-right-isolation-level-for-banking-transactions)
+* [Deadlock detection and-prevention](#deadlock-detection-and-prevention-in-banking-systems)
+* [Handling concurrent](#handling-concurrent-transfers-on-the-same-account)
 * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control)
 * [Implementing idempotency](#implementing-idempotency-in-a-debit-api)
 * [Consistency Across Microservices](#consistency-across-microservices)
@@ -12,8 +12,7 @@
 * [preventing-race-conditions](#preventing-race-conditions-in-concurrent-withdrawals)
 
 
-
-### ✅ **Implementing a Money Transfer with Concurrency Control**
+### **Implementing a Money Transfer with Concurrency Control**
 
 **Answer:**
 
@@ -32,7 +31,7 @@ This ensures **no race conditions** and maintains **consistency** and **isolatio
 
 ---
 
-### ✅ **Choosing the Right Isolation Level for Banking Transactions**
+### **Choosing the Right Isolation Level for Banking Transactions**
 
 **Answer:**
 
@@ -48,7 +47,7 @@ This ensures **consistent reads** during a transaction and **prevents double-spe
 
 ---
 
-### ✅ **Handling Concurrent Transfers on the Same Account**
+### **Handling Concurrent Transfers on the Same Account**
 
 **Answer:**
 
@@ -62,7 +61,7 @@ This avoids **overdrafts** and **concurrent deductions**. I also implement **ret
 
 ---
 
-### ✅ **Pessimistic vs Optimistic Locking in Financial Applications**
+### **Pessimistic vs Optimistic Locking in Financial Applications**
 
 **Answer:**
 
@@ -75,7 +74,7 @@ For non-critical updates (e.g., user profile), **optimistic locking** can improv
 
 ---
 
-### ✅ **Deadlock Detection and Prevention in Banking Systems**
+### **Deadlock Detection and Prevention in Banking Systems**
 
 **Answer:**
 
@@ -90,7 +89,7 @@ This ensures **reliability** without sacrificing **performance**.
 
 ---
 
-### ✅ **Implementing Idempotency in a Debit API**
+### **Implementing Idempotency in a Debit API**
 
 **Answer:**
 
@@ -105,7 +104,7 @@ This prevents **duplicate deductions** during **retries or network failures**.
 
 ---
 
-### ✅ **Preventing Race Conditions in Concurrent Withdrawals**
+### **Preventing Race Conditions in Concurrent Withdrawals**
 
 **Answer:**
 
@@ -125,7 +124,7 @@ This ensures **one withdrawal is processed at a time**.
 
 ---
 
-### ✅ **Maintaining Consistency in Distributed Transactions (Microservices)**
+### **Maintaining Consistency in Distributed Transactions (Microservices)**
 
 **Answer:**
 

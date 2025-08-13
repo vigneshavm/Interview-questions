@@ -41,7 +41,7 @@
 |--------------------------|------------|
 | **Database Design**      | [Designing a Database](#designing-a-database), [Normalization](#normalization), [Normal Form](#normal-form), [Denormalization](#denormalization), [One to One, One to Many, Many to Many](#one-to-one-one-to-many-many-to-many-relationships) |
 | **Database Migration**   | [Database Migration](#database-migration), [Zero Downtime Migration](#zero-downtime-migration), [Rollback Strategy in DB Migration](#rollback-strategy-in-db-migration), [Data Safety During Migrations](#data-safety-during-migrations) |
-| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions]
+| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions for SQL](#scenario-based-questions)
 
 ## CAP Theorem
 

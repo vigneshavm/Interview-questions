@@ -15,7 +15,7 @@
 | **Replica & Consistency** | [Replica Set](#replica-set) - [Clustering & Replication](#clustering--replication) - [Replication and Failover](#replication-and-how-failover-works-in-mongodb) - [Durability & Consistency](#mongodb-ensure-durability-and-consistency) - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) |
 | **Special Use Cases**         | [Capped Collection](#capped-collection-in-mongodb) - [Schema Design](#schema-design) - [Working Set](#working-set) - [Schema-less Design Impact](#impact-of-schema-less-design-on-validationconsistency) - [High Availability & Fault Tolerance](#ensuring-high-availability-and-fault-tolerance) - [Optimizing $lookup Operations](#optimizing-multiple-lookup-operations-in-aggregations) - [Data Migration Between Clusters or SQL](#migrating-data-between-clusters-or-from-sql-to-mongodb) - [Production Monitoring & Tuning](#monitoring-and-tuning-mongodb-in-production) - [Audit Log Schema](#design-schema-for-audit-logshistorical-data) |
 | **MongoDB & Node.js**         | [MongoDB with Node.js](#mongodb-with-nodejs) - [useNewUrlParser & useUnifiedTopology](#usenewurlparser-and-useunifiedtopology-in-mongoose) - [Mongoose vs Native Driver](#mongoose-vs--mongodb-native-driver) |
-| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions](#scenario-based-questions) - [SQL Feature Comparison](#feature-by-feature) |
+(#scenario-based-questions) - [SQL Feature Comparison](#feature-by-feature) |
 | **Limitations & Usecases** | [Limitations](#limitations-of-mongodb-and-how-to-overcome-them) - [Key Limitations](#key-limitations) - [Databases for a Social Media App](#databases-for-a-social-media-app) |
 
 
@@ -32,10 +32,16 @@
 | **Security & Advanced Queries** | [Common Table Expression (CTE)](#cte), [Detect and Avoid SQL Injection](#detect-and-avoid-sql-injection), [Insert Unique IDs Without Auto-Increment](#approaches-to-insert-unique-ids-without-auto-increment-or-primary-key), [Delete and Rollback](#delete-and-rollback) |
 | **SQL Concepts**         | [Window Functions](#window-functions), [View](#view), [Triggers](#triggers), [Stored Procedure](#stored-procedure), [Triggers vs Stored Procedures](#triggers-vs-stored-procedures), [Constraints](#constraints) |
 | **Operators & Indexes**  | [`IN` Operator](#in-operator), [`TRUNCATE` vs `DELETE` vs `DROP`](#truncate-vs-delete-vs-drop), [`UNION` and `UNION ALL`](#union-and-union-all), [Indexes](#indexes), [Index Drawbacks](#index-drawbacks) |
-| **Database Design**      | [Designing a Database](#designing-a-database), [Normalization](#normalization), [Normal Form](#normal-form), [Denormalization](#denormalization), [One to One, One to Many, Many to Many](#one-to-one-one-to-many-many-to-many-relationships) |
-| **Database Migration**   | [Database Migration](#database-migration), [Zero Downtime Migration](#zero-downtime-migration), [Rollback Strategy in DB Migration](#rollback-strategy-in-db-migration), [Data Safety During Migrations](#data-safety-during-migrations) |
 | **SQL Programs**         | [Second Highest Salary](#second-highest-salary), [3rd Largest Value](#3rd-largest-value), [Pagination](#pagination), [Return Records Without NULL `name`](#return-records-without-null-name), [Update Gender Vice Versa](#single-update-gender-vice-versa), [Update Based on Another Table](#update-data-in-one-table-based-on-another) |
 | **Duplicates & Aggregation** | [Find Duplicate Rows](#find-duplicate-rows), [Find Duplicate Salaries](#find-duplicate-salaries), [Total Salary by Department](#get-total-salary-by-department), [Rank Salaries by Department (Window Fn)](#window-function-to-rank-salaries-within-departments), [Recursive CTE – Employee Hierarchy](#recursive-cte--build-employee-hierarchy-self-join-style) |
+
+
+
+| **Category**             | **Topics** |
+|--------------------------|------------|
+| **Database Design**      | [Designing a Database](#designing-a-database), [Normalization](#normalization), [Normal Form](#normal-form), [Denormalization](#denormalization), [One to One, One to Many, Many to Many](#one-to-one-one-to-many-many-to-many-relationships) |
+| **Database Migration**   | [Database Migration](#database-migration), [Zero Downtime Migration](#zero-downtime-migration), [Rollback Strategy in DB Migration](#rollback-strategy-in-db-migration), [Data Safety During Migrations](#data-safety-during-migrations) |
+| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions]
 
 ## CAP Theorem
 

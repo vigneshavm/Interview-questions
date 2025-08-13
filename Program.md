@@ -7,21 +7,21 @@
 | **Custom Hooks**| [useDebounce](#Custom-useDebounce-hook) , [Throttling](#Throttling) , [useToggle](#usetoggle--toggle-a-boolean) , [usePrevious – Track previous value](#useprevious--track-previous-value) , [useFetch – Generic fetch logic](#usefetch--generic-fetch-logic) , [useWindowWidth – Track window width](#usewindowwidth--track-window-width) - [syncs state to localStorage useLocalStorage](#useLocalStorage)|
 
 
-| 🧩 **Nested Data Utilities**                                                        | 🧾 **Object Utilities**                                           | 🧮 **Array/Object Conversion & Lookup**                                             |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [Nested Property – Filter](#nested-property-filter)                                 | [Key Renaming](#key-renaming)                                     | [Nested Array of Objects – Extract Fields](#nested-array-of-objects-extract-fields) |
-| [Nested Property Update Without Mutation](#nested-property-update-without-mutation) | [Grouping Key](#key-grouping)                                     | [Array of Objects into a Lookup Object](#array-of-objects-into-a-lookup-object)     |
-| [Nested Object – Flatten](#nested-object-flatten)                                   | [Custom `map()` for Objects](#custom-map-for-objects)             | [Merge Two Arrays by ID](#merge-two-arrays-by-id)                                   |
+| 🧩 **Nested Data Utilities**                                                        | 🧾 **Object Utilities**                                           | 🧮 **Array/Object Conversion & Lookup**                                             | 🔍 **Data Cleaning & Aggregation**                                    |  **Compare** | 🧪 **Advanced Transformations**                                                     |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------- |--------------------------------------------------------------------- | - | ----------------------------------------------------------------------------------- |
+| [Nested Property – Filter](#nested-property-filter)                                 | [Key Renaming](#key-renaming)                                     | [Nested Array of Objects – Extract Fields](#nested-array-of-objects-extract-fields) | [Extract Unique Values by Key](#extract-unique-values-by-key)         | [Compare JSON objects](#Compare-JSON-objects)  | [Transform Data Based on External Schema](#transform-data-based-on-external-schema) |
+| [Nested Property Update Without Mutation](#nested-property-update-without-mutation) | [Grouping Key](#key-grouping)                                     | [Array of Objects into a Lookup Object](#array-of-objects-into-a-lookup-object)     | [Remove Duplicates by Value](#remove-duplicates-by-value)             | [Compare array](#Compare-array)  | [Chainable Data Transform Utility](#chainable-data-transform-utility)               |
+| [Nested Object – Flatten](#nested-object-flatten)                                   | [Custom `map()` for Objects](#custom-map-for-objects)             | [Merge Two Arrays by ID](#merge-two-arrays-by-id)                                   |[Group Products by Key then Count](#group-products-by-key-then-count) |   
 | [Nested Property – Sort](#nested-property-sort)                                     | [Invert Key-Value Pairs](#invert-key-value-pairs)                 | [Convert Flat List to Tree Structure](#convert-flat-list-to-tree-structure)         |
 | [Nested – Find Deepest Key Path](#nested-find-deepest-key-path)                     | [Remove Keys Based on Condition](#remove-keys-based-on-condition) |                                                                                     |
 | [Nested Objects – Recursive Merge of Two](#nested-objects-recursive-merge-of-two)   | [Convert Object to Query String](#convert-object-to-query-string) |                                                                                     |
 
 
-| 🔍 **Data Cleaning & Aggregation**                                    |  **Compare** | 🧪 **Advanced Transformations**                                                     |
-| --------------------------------------------------------------------- | - | ----------------------------------------------------------------------------------- |
-| [Extract Unique Values by Key](#extract-unique-values-by-key)         | [Compare JSON objects](#Compare-JSON-objects)  | [Transform Data Based on External Schema](#transform-data-based-on-external-schema) |
-| [Remove Duplicates by Value](#remove-duplicates-by-value)             | [Compare array](#Compare-array)  | [Chainable Data Transform Utility](#chainable-data-transform-utility)               |
-| [Group Products by Key then Count](#group-products-by-key-then-count) |   |                                                                                     |
+
+
+
+
+                                                                                  |
 
 ---
 

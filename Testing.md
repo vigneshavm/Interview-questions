@@ -2857,13 +2857,13 @@ function ProductCard({ product }) {
  - not only in JavaScript but in any object-oriented or structured programming language.  
 
 
-| Principle | Key Idea                                   |
-|:---------- |:------------------------------------------ |
-| SRP        | One responsibility per function/class     |
-| OCP        | Open to extend, closed to modify           |
-| LSP        | Subtypes can substitute base types         |
-| ISP        | Prefer many small interfaces               |
-| DIP        | Depend on abstractions, not concretions    |
+| Principle | Key Idea                                   |Key Idea                                   |
+|:---------- |:------------------------------------------ :------------------------------------------ |
+| SRP        | One responsibility per function/class     | Single Responsibility Principle
+| OCP        | Open to extend, closed to modify           | Open/Closed Principle
+| LSP        | Subtypes can substitute base types         | Liskov Substitution Principle 
+| ISP        | Prefer many small interfaces               | Interface Segregation Principle
+| DIP        | Depend on abstractions, not concretions    | Dependency Inversion Principle 
 
 **“SOLID to keep the codebase clean and scalable.**
 

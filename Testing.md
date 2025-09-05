@@ -2855,7 +2855,7 @@ function ProductCard({ product }) {
 ## SOLID principles
  - The **SOLID principles** are **five design principles** that help you write **better, cleaner, more maintainable** code 
  - not only in JavaScript but in any object-oriented or structured programming language.  
----
+
 
 | Principle | Key Idea                                   |
 |:---------- |:------------------------------------------ |
@@ -2864,6 +2864,20 @@ function ProductCard({ product }) {
 | LSP        | Subtypes can substitute base types         |
 | ISP        | Prefer many small interfaces               |
 | DIP        | Depend on abstractions, not concretions    |
+
+**“SOLID to keep the codebase clean and scalable.**
+
+For example, with **SRP (Single Responsibility Principle)**, we **separated responsibilities** — booking requests, payments, and notifications were split into different services instead of one big class.
+
+With **OCP (Open/Closed Principle)**, we **designed the payment module to be extendable**; today we use Razorpay, but tomorrow we can plug in Stripe or Apple Pay **without modifying core logic**.
+
+For **LSP (Liskov Substitution Principle)**, we **structured celebrities as categories (A, B, or C list)**, but they all share the same base behaviors — accepting requests, uploading videos, and viewing payouts — so they can be **used interchangeably without breaking the system**.
+
+With **ISP (Interface Segregation Principle)**, we **didn’t force every user to use the same interface** — fans only get request and payment actions, celebrities get video upload and payout features, and admins manage listings.
+
+Finally, with **DIP (Dependency Inversion Principle)**, our **notification service depends on an abstraction**, not directly on WhatsApp or email APIs — so **adding SMS via Sinch** was just a matter of creating a new implementation, without touching the existing service.
+
+**Overall, SOLID helped us keep Shoutout modular and easy to extend as the product grows.”**
 
 
 ### S — Single Responsibility Principle (SRP)

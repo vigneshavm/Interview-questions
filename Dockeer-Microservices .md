@@ -20,6 +20,8 @@
 | **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
 | **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices overview](#Microservice-overview)
 
+- [SOLID Principles](#solid-principles)
+
 ## **Microservices Architecture**
 
 - In my microservices architecture with Node.js, 
@@ -1997,4 +1999,91 @@ const app = express();
 app.get('/', (req, res) => res.send('Payment Service Running'));
 app.listen(3002, () => console.log('Payment Service on port 3002'));
 ```
+
+
+
+
+
+
+
+## SOLID principles
+ - The **SOLID principles** are **five design principles** that help you write **better, cleaner, more maintainable** code 
+ - not only in JavaScript but in any object-oriented or structured programming language.  
+
+
+| Principle | Key Idea                                   |Key Idea                                   |
+|:---------- |:------------------------------------------ :------------------------------------------ |
+| SRP        | One responsibility per function/class     | Single Responsibility Principle
+| OCP        | Open to extend, closed to modify           | Open/Closed Principle
+| LSP        | Subtypes can substitute base types         | Liskov Substitution Principle 
+| ISP        | Prefer many small interfaces               | Interface Segregation Principle
+| DIP        | Depend on abstractions, not concretions    | Dependency Inversion Principle 
+
+**“SOLID to keep the codebase clean and scalable.**
+
+For example, with **SRP (Single Responsibility Principle)**, we **separated responsibilities** — booking requests, payments, and notifications were split into different services instead of one big class.
+
+With **OCP (Open/Closed Principle)**, we **designed the payment module to be extendable**; today we use Razorpay, but tomorrow we can plug in Stripe or Apple Pay **without modifying core logic**.
+
+For **LSP (Liskov Substitution Principle)**, we **structured celebrities as categories (A, B, or C list)**, but they all share the same base behaviors — accepting requests, uploading videos, and viewing payouts — so they can be **used interchangeably without breaking the system**.
+
+With **ISP (Interface Segregation Principle)**, we **didn’t force every user to use the same interface** — fans only get request and payment actions, celebrities get video upload and payout features, and admins manage listings.
+
+Finally, with **DIP (Dependency Inversion Principle)**, our **notification service depends on an abstraction**, not directly on WhatsApp or email APIs — so **adding SMS via Sinch** was just a matter of creating a new implementation, without touching the existing service.
+
+**Overall, SOLID helped us keep Shoutout modular and easy to extend as the product grows.”**
+
+
+### S — Single Responsibility Principle (SRP)
+
+* Easy to test
+* Easy to modify one feature without breaking another
+
+- Each file/class/function should do **one thing only**.
+
+- **Definition**: A class/module/function should **have only one reason to change** — meaning it should **do only one thing**.
+- **In JS**: Keep functions small and focused.
+
+
+### O — Open/Closed Principle (OCP)
+➡ Add a new discount type without modifying existing code.
+
+- Want to apply multiple discount strategies?
+- **Definition**: Software entities (classes, modules, functions) should be **open for extension but closed for modification**.
+- **In JS**: You should be able to **add new behavior without modifying existing code**.
+
+### L — Liskov Substitution Principle (LSP)
+- Subclasses should behave like their parents.
+
+- **Definition**: Subtypes must be **substitutable for their base types** without breaking the program.
+- **In JS**: Derived classes should fully behave like their base class.
+
+
+### I — Interface Segregation Principle (ISP)
+- Don't force classes to implement unused methods.
+
+- **Definition**: Clients should **not be forced to depend on interfaces they do not use**.
+- **In JS**: Break large interfaces into smaller, specific ones.
+
+> So if a class only needs "print", it doesn't have to implement "fax" or "scan".
+
+---
+
+### D — Dependency Inversion Principle (DIP)
+- Depend on abstractions (interfaces), not on concrete classes.
+
+- **Definition**: High-level modules should not depend on low-level modules. Both should depend on abstractions.
+- **In JS**: Depend on **interfaces or abstractions**, not concrete implementations.
+
+> Now you can easily switch from `MySQLDatabase` to `MongoDatabase` without changing `UserService`.
+
+
+
+
+
+
+
+
+
+
 

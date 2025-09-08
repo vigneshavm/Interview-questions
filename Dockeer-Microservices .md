@@ -21,6 +21,7 @@
 | **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices overview](#Microservice-overview)
 
 - [SOLID Principles](#solid-principles)
+- [Dependency Injection](#dependency-injection)
 
 ## **Microservices Architecture**
 

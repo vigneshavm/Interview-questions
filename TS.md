@@ -3,7 +3,7 @@
 | **Core Concepts**                 | [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript) • [`any` vs `unknown` Types](#any-vs-unknown) • [Duck Typing](#duck-typing) • [Class](#class) • [JavaScript & TypeScript Performance Optimization Checklist](#javascript-typescript-performance-optimization-checklist)       |
 | **Types**                         | [Type Definition](#Type-Definition) • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing) • [Type Decorators](#decorators) • [Conditional Types](#conditional-types) • [Template Literal Types](#template-literal-types) • [Generics Types](#generics)  • [Enum](#enum) |
 | **OOP (Object-Oriented)**         | [Polymorphism](#polymorphism) • [Class](#class) • [Immutable Class](#immutable-class) • [Inheritance](#inheritance) • [TypeScript handle inheritance](#TypeScript-handle-inheritance) • [Encapsulation](#encapsulation)   • [Interfaces vs Abstract Classes](#Interfaces-vs-Abstract-Classes)                                                                                                                                                                |
-| **Types & Interfaces**            | [Interface vs Type](#interface-vs-type)  • [Mapped Types](#mapped-types) • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record) • [Union vs Intersection Types](#union-and-intersection-types)                            |
+| **Types & Interfaces**            | [Interface vs Type](#interface-vs-type)  • [Mapped Types](#mapped-types) • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record) • [Union Types](#union-types)        • [Intersection Types](#intersection-types)                      |
 | **Advanced Types**                | [`keyof` and `typeof` Operators](#keyof-vs-typeof) • [`readonly` vs `const`](#readonly-vs-const)                                                                                                                                                                                                                           |
 | **Generics**                      | [Generic Functions and Classes](#generics) • [Constraining Generics with `extends`](#constraining-generics-with-extends)                                                                                                                                                                                                   |
 | **Modules, Namespaces, Compiler** | [Namespaces and Modules](#namespaces-and-modules) • [Module System](#module-system-in-typescript) • [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options) • [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)                           |
@@ -1105,7 +1105,7 @@ Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import**
 
 
 
-## **Union** and **Intersection Types** 
+## **Union Types** 
 ---
 
  **Union Types (`|`)**
@@ -1128,6 +1128,9 @@ Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import**
   ```
   
 ---
+
+
+## **Intersection Types** 
 
 ** **Intersection Types (`&`)**
 - **Definition**: A type that requires a value to **satisfy all combined types**.
@@ -2392,3 +2395,25 @@ printUser(user1);
 > **When do I use it?**
 > I typically use enums when I have a **fixed set of related values** like statuses, categories, or roles. For instance, in a booking system, I would use an enum for statuses like `Pending`, `Confirmed`, and `Cancelled` so the same set of constants is consistently used across API responses, business logic, and UI.
 
+
+
+
+## visibility:hidden display:none *ngIf
+
+
+> In web development, the difference between `visibility:hidden` and `display:none` is important.
+>
+> * **`visibility:hidden`** → The element stays in the DOM and still takes up space in the layout, but it isn’t visible. For example, you might use this when you want to hide content temporarily without breaking alignment.
+>
+> * **`display:none`** → The element is still in the DOM, but it’s completely removed from the layout flow, so it doesn’t take up space. This is typically used when you want to completely collapse the element.
+>
+> In **Angular specifically**, `[hidden]` is similar to applying `display:none` via binding, while `*ngIf` actually removes the element from the DOM itself.
+>
+> * `*ngIf` is useful when the element is **conditionally created/destroyed** for performance reasons, since it avoids rendering unnecessary elements.
+> * `[hidden]` or `display:none` is useful if you just want to **toggle visibility** without re-rendering.
+>
+> **In short**:
+>
+> * `visibility:hidden` → invisible but still takes space.
+> * `display:none` → invisible and no space taken.
+> * `*ngIf` → not even in the DOM until condition is true.

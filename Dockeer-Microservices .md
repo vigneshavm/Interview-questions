@@ -2355,6 +2355,11 @@ In this example, `Car` depends on `Engine`. Instead of `Car` creating its own en
 
 ---
 
+## **KISS**
+
+-  (Keep It Simple, Stupid)
+-  **Real-time Benefit**  - Cleaner, readable code. and Easy to unit test `getFinalPrice`.
+
 
 
 

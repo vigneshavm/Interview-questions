@@ -1,7 +1,7 @@
 | **Category**                        | **Topics**                                                                                                                                                                                                                                                    |
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Core Concepts**          | • [Angular](#angular)  • [Angular CLI](#Angular-CLI) • [Angular 17](#Angular-17) • [Angular 19](#Angular-19) • [NgModules and App Structure](#ngmodules-and-app-structure)  • [Module and Component](#module-and-component)  • [Component-Based Architecture](#component-based-architecture) • [Standalone Components](#standalone-components) |
-| **Components**         | • [Component Communication](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) 
+| **Components**         | • [Component Communication](#component-communication-techniques) • [Input and Output Decorators](#input-and-output-decorators) • [EventEmitter](#eventemitter) • [ViewChild and ViewChildren](#viewchild-and-viewchildren) • [HostListener and HostBinding](#hostlistener-and-hostbinding) - [View Encapsulation](#View-Encapsulation)
 | **Templates**         | • [Component Factory](#component-factory) • [ngComponentOutlet](#ngComponentOutlet) • [Lifecycle Hooks](#angular-lifecycle-hooks)  • [component composition(Component Inside Another)](#Using-One-Component-Inside-Another ) • [Deferred Views](#Deferred-Views)|
 | **Injection and HTTP**| • [Dependency Injection](#dependency-injection)    • [providedIn](#providedIn) • [Singleton service](#Singleton-service)         • [HttpClientModule](#httpclientmodule) • [HTTP Interceptors](#http-interceptors-in-angular)                 • [Lazy Loading](#lazy-loading)                • [Memory Leak](#Memory-Leak)                                                                       |
 | **Routing**           | • [Routing & Child Routes](#routing--child-routes)  • [AuthGuard](#authguard) • [Authentication](#authentication) • [Secure Angular Routes](#Secure-Routes) • [Token Expiration](#token-expiration) • [Protect UI Elements](#protect-ui-elements)  • [Secure Role-Based Routing](#secure-role-based-routing) • [Store Auth Tokens](#store-authentication-tokens) |
@@ -5325,4 +5325,47 @@ export const adminRoutes: Routes = [
   }
 ];
 ```
+
+
+
+
+
+## View Encapsulation
+
+In Angular, **View Encapsulation** controls how component styles are applied and whether they are isolated from the rest of the application. Angular offers three modes through the `ViewEncapsulation` enum:
+
+- It’s important because it helps maintain **style isolation**, avoiding conflicts between different components. 
+- Without encapsulation, large Angular apps can quickly run into **CSS bleeding issues** where one component’s styles accidentally override another’s.
+
+1. **Emulated (default):**
+   Angular simulates Shadow DOM by adding unique attributes to elements.
+
+   * Styles are scoped only to that component.
+   * Prevents styles from leaking out, but global styles can still affect it.
+   * ✅ Best for most real-world projects.
+
+2. **Shadow DOM:**
+   Uses the browser’s native Shadow DOM.
+
+   * Styles and DOM are completely isolated — no leakage in or out.
+   * Perfect when creating reusable web components.
+   * But not always needed for standard Angular apps.
+
+3. **None:**
+   No encapsulation — the component’s styles are added to the global stylesheet.
+
+   * Styles apply everywhere, which can cause conflicts.
+   * Useful for global themes or legacy cases.
+
+**In short:**
+
+* *Emulated* → Default and practical in most cases.
+* *ShadowDom* → For strict isolation and reusable web components.
+* *None* → For global styles/themes.
+
+---
+
+
+
+
 

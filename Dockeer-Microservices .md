@@ -465,7 +465,63 @@ Saga result: { status: 'failed', reason: 'Celebrity not available' }
 
 
 
-### **Circuit Breaker**
+## Circuit Breaker
+
+- The **Circuit Breaker** is a **resilience pattern** used in distributed systems to **prevent cascading failures** and allow systems to recover gracefully when a downstream service is failing or unresponsive.
+
+- The **Circuit Breaker pattern** is a crucial component in **fault-tolerant microservices**, helping isolate failures and allowing systems to degrade gracefully instead of collapsing entirely.
+
+
+### 🧠 Why It's Important:
+
+* Prevents **system overload** from repeated failed calls.
+* Enables **fast failure**, improving user experience.
+* Allows **recovery** without restarting the entire service.
+
+---
+
+### 📦 Example (Microservices):
+
+Service A calls Service B. If B is down:
+
+* With Circuit Breaker:
+
+  * A stops calling B after repeated failures.
+  * It retries after a delay instead of hammering B continuously.
+
+---
+
+### 🔌 Real-World Analogy:
+
+Think of it like an electrical circuit breaker — it “trips” to **prevent overload or damage** when something goes wrong.
+
+---
+
+### 🔁 How It Works:
+
+The circuit breaker can be in one of **three states**:
+
+1. **Closed**:
+
+   * All requests pass through.
+   * If failures exceed a threshold, it **trips** (moves to Open).
+
+2. **Open**:
+
+   * Requests are **immediately rejected** (fail fast).
+   * A timeout begins (cool-down period).
+
+3. **Half-Open**:
+
+   * A limited number of requests are allowed to check if the service has recovered.
+   * If successful, the circuit **closes**; otherwise, it goes back to **Open**.
+
+---
+
+
+### 🛠️ Tools/Libraries:
+
+* **Node.js**: `opossum`
 
 * **Purpose:** Prevents cascading failures when a service is slow or unresponsive.
 * **States:**

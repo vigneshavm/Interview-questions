@@ -2363,24 +2363,16 @@ printUser(user1);
 
 ## Interfaces vs Abstract Classes
 
-
-- I follow a simple rule:
-  - **Use `interface` for defining "what it should do", and `abstract class` for "what it should do + partially how to do it."**
-
-- In TypeScript, both interfaces and abstract classes help **enforce structure and contracts** in code, 
-- **I typically use an interface** when I only need to define the **shape or structure** of an object or class — for example, when I'm ensuring a class implements certain methods or properties.
-- Interfaces are very flexible — they support **multiple inheritance** and **declaration merging**, which is great for scaling large applications.
-
-- On the other hand, **I use an abstract class** when I want to provide **shared behavior or partial implementation**.
--  Abstract classes can include logic — like default methods or constructors — which helps when multiple derived classes share common functionality.
-
-- A key difference is that a class can implement **multiple interfaces** but can only **extend one abstract class**. So, when I need code reuse and a base structure — abstract class fits well. When I just need a contract — interfaces are my go-to.
-
-- **Example use case:**
-- If I'm building a `Vehicle` hierarchy and I want all vehicles to share a `stop()` method while forcing each to define its own `drive()` method — I’d go with an **abstract class**.
-- But if I just want to define a `Drivable` interface that can be used across unrelated classes, I’d use an **interface**.
+> In TypeScript, I use **interfaces** when I just need to define a **contract or shape** — basically *what* something should do. They’re **flexible**, support **multiple inheritance**, and are great when I want to enforce consistency across **unrelated classes**.
+>
+> On the other hand, I use an **abstract class** when I need to define not only *what* should be done but also **share some common behavior**. Abstract classes can include **constructors** and **default methods**, which makes them useful for **code reuse**.
+>
+> **Key difference:** a class can implement **multiple interfaces**, but it can only **extend one abstract class**.
 
 
+> We **cannot create an instance** directly from an abstract class.
+* Abstract class = blueprint, cannot be instantiated.
+* Used to enforce a contract + share reusable code.
 
 
 

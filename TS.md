@@ -1,7 +1,7 @@
 | **Category**                      | **Topics & Links**                                                                                                                                                                                                                                                                                                          |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Core Concepts**                 | [TypeScript vs JavaScript – Benefits & Improvements](#how-typescript-improves-javascript) • [`any` vs `unknown` Types](#any-vs-unknown) • [Duck Typing](#duck-typing) • [Class](#class) • [JavaScript & TypeScript Performance Optimization Checklist](#javascript-typescript-performance-optimization-checklist)       |
-| **Types**                         | [Type Definition](#Type-Definition) • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing) • [Type Decorators](#decorators) • [Conditional Types](#conditional-types) • [Template Literal Types](#template-literal-types) • [Generics Types](#generics) |
+| **Types**                         | [Type Definition](#Type-Definition) • [Type Inference](#type-inference) • [Type Checking](#type-checking) • [Type Coercion](#type-coercion-in-operations) • [Type Narrowing](#type-narrowing) • [Type Decorators](#decorators) • [Conditional Types](#conditional-types) • [Template Literal Types](#template-literal-types) • [Generics Types](#generics)  • [Enum](#enum) |
 | **OOP (Object-Oriented)**         | [Polymorphism](#polymorphism) • [Class](#class) • [Immutable Class](#immutable-class) • [Inheritance](#inheritance) • [TypeScript handle inheritance](#TypeScript-handle-inheritance) • [Encapsulation](#encapsulation)   • [Interfaces vs Abstract Classes](#Interfaces-vs-Abstract-Classes)                                                                                                                                                                |
 | **Types & Interfaces**            | [Interface vs Type](#interface-vs-type)  • [Mapped Types](#mapped-types) • [Utility Types: `Partial`, `Pick`, `Omit`, `Record`](#partial-pick-omit-record) • [Union vs Intersection Types](#union-and-intersection-types)                            |
 | **Advanced Types**                | [`keyof` and `typeof` Operators](#keyof-vs-typeof) • [`readonly` vs `const`](#readonly-vs-const)                                                                                                                                                                                                                           |
@@ -2379,4 +2379,24 @@ printUser(user1);
 - **Example use case:**
 - If I'm building a `Vehicle` hierarchy and I want all vehicles to share a `stop()` method while forcing each to define its own `drive()` method — I’d go with an **abstract class**.
 - But if I just want to define a `Drivable` interface that can be used across unrelated classes, I’d use an **interface**.
+
+
+
+
+
+
+## Enum
+
+> In TypeScript, an **enum** is a way to define a group of named constants. Instead of using plain strings or numbers across the code, enums give those values a meaningful name.
+>
+> **For example**: I might have user roles like `Admin`, `Editor`, and `Viewer`. Instead of hardcoding `"admin"` or `"viewer"` in multiple places, I would define them inside an enum, which makes the code cleaner and type-safe.
+>
+> **Why use it?**
+>
+> * It improves **readability** because `UserRole.Admin` is much clearer than just `"A"` or `0`.
+> * It gives **type safety**, so you can’t accidentally assign an invalid value.
+> * It makes the code more **maintainable**, since if the value changes, I only update the enum in one place.
+>
+> **When do I use it?**
+> I typically use enums when I have a **fixed set of related values** like statuses, categories, or roles. For instance, in a booking system, I would use an enum for statuses like `Pending`, `Confirmed`, and `Cancelled` so the same set of constants is consistently used across API responses, business logic, and UI.
 

@@ -1,10 +1,9 @@
 | **Category**           | **Topics** |
 |------------------------|------------|
-| **HTML Basics**        | [HTML5 vs HTML4](#html5-vs-html4) ,  [`<section>` vs `<div>`](#section-vs-div) , [`<div>` vs `<span>`](#div-vs-span) ,  [HTML5 Form Enhancements](#html5-form-enhancements) ,  [Semantic Tags in HTML5](#semantic-tags-in-html5) ,[Creating Custom Tags](#creating-custom-tags-in-html5) , [`alt` in `<img>`](#purpose-of-alt-in-img) , [`id` vs `class`](#id-vs-class) ,  [`async` vs `defer`](#async-vs-defer) , [Block vs Inline elements](#Block-vs-Inline-elements)
+| **HTML Basics**        | [HTML5 vs HTML4](#html5-vs-html4) ,  [`<section>` vs `<div>`](#section-vs-div) , [`<div>` vs `<span>`](#div-vs-span) ,  [HTML5 Form Enhancements](#html5-form-enhancements) ,  [Semantic Tags in HTML5](#semantic-tags-in-html5) ,[Creating Custom Tags](#creating-custom-tags-in-html5) , [`alt` in `<img>`](#purpose-of-alt-in-img) , [`id` vs `class`](#id-vs-class) ,  [`async` vs `defer`](#async-vs-defer) , [Block vs Inline elements](#Block-vs-Inline-elements) , - [visibility:hidden display:none *ngIf](#visibilityhidden-displaynone-ngif)
 | **CSS Basics**         | [CSS3 Features](#css3-features) ,  [CSS Padding Shorthand](#css-padding-shorthand) , [CSS Positioning](#css-positioning) ,  [`em`, `rem`, `%`, and `px`](#em-rem--and-px) ,  [CSS Specificity](#css-specificity) , [CSS Box Model](#css-box-model) , [Descendant](#descendant) , - [Pseudo classes vs Pseudo elements](#Pseudo-classes-vs-Pseudo-elements) - [CSS Grid vs Flexbox](#CSS-Grid-vs-Flexbox) - [Responsive layout](#responsive-layout) - [visibility: hidden vs display: none](#visibility-hidden-vs-display-none) - [Center a div both vertically and horizontally](#center-a-div-both-vertically-and-horizontally) - [z-index](#z-index)
 | **LESS & SASS Intro**  | [CSS Preprocessor](#css-preprocessor) ,[SASS vs LESS](#sass-vs-less) ,[Variables and Nesting](#variables-and-nesting) ,[Mixins in SASS and LESS](#mixins-in-sass-and-less) ,[@mixin vs @extend](#mixin-vs-extend) ,[SASS Partials](#sass-partials) ,[Loops and Functions](#loops-and-functions) ,
-| **SCSS Advanced**      | [SCSS vs CSS](#scss-vs-css) ,[SCSS Variables](#scss-variables) ,[SCSS Nesting](#scss-nesting) ,[SCSS Mixins](#scss-mixins) ,[SCSS Functions](#scss-functions) ,[Mixins and Functions](#mixins-and-functions) ,[@extend](#extend) ,[SCSS Modularity](#scss-modularity) ,[Partials](#partials) ,[@use and @import](#use-and-import) ,[SCSS File Organization](#scss-file-organization) ,[SCSS Control Directives](#scss-control-directives) ,[SCSS Debug](#scss-debug) ,[SCSS Variables Sharing](#scss-variables-sharing) ,[SCSS Maintainability](#scss-maintainability) ,[SCSS Pitfalls](#scss-pitfalls) ,
-
+| **SCSS Advanced**      | [SCSS vs CSS](#scss-vs-css) ,[SCSS Variables](#scss-variables) ,[SCSS Nesting](#scss-nesting) ,[SCSS Mixins](#scss-mixins) ,[SCSS Functions](#scss-functions) ,[Mixins and Functions](#mixins-and-functions) ,[@extend](#extend) ,[SCSS Modularity](#scss-modularity) ,[Partials](#partials) ,[@use and @import](#use-and-import) ,[SCSS File Organization](#scss-file-organization) ,[SCSS Control Directives](#scss-control-directives) ,[SCSS Debug](#scss-debug) ,[SCSS Variables Sharing](#scss-variables-sharing) ,[SCSS Maintainability](#scss-maintainability) ,[SCSS Pitfalls](#scss-pitfalls)
 
 
 
@@ -913,4 +912,30 @@ SCSS makes CSS:
 
 
 # **`z index`?**    
-- Controls stack order; works only on positioned elements.      
+- Controls stack order; works only on positioned elements.
+- 
+
+
+
+
+## visibility:hidden display:none *ngIf
+
+
+> In web development, the difference between `visibility:hidden` and `display:none` is important.
+>
+> * **`visibility:hidden`** → The element stays in the DOM and still takes up space in the layout, but it isn’t visible. For example, you might use this when you want to hide content temporarily without breaking alignment.
+>
+> * **`display:none`** → The element is still in the DOM, but it’s completely removed from the layout flow, so it doesn’t take up space. This is typically used when you want to completely collapse the element.
+>
+> In **Angular specifically**, `[hidden]` is similar to applying `display:none` via binding, while `*ngIf` actually removes the element from the DOM itself.
+>
+> * `*ngIf` is useful when the element is **conditionally created/destroyed** for performance reasons, since it avoids rendering unnecessary elements.
+> * `[hidden]` or `display:none` is useful if you just want to **toggle visibility** without re-rendering.
+>
+> **In short**:
+>
+> * `visibility:hidden` → invisible but still takes space.
+> * `display:none` → invisible and no space taken.
+> * `*ngIf` → not even in the DOM until condition is true.
+
+---

@@ -14,14 +14,12 @@
 |----------------------------|------------|
 | **API Design & Interface** | [Versioning & Backward Compatibility](#versioning--backward-compatibility) - [Swagger](#swagger)  - [Manage multiple service endpoints](#manage-multiple-service-endpoints) |
 | **Reliability & Resilience** | [Rate Limiting & Throttling](#rate-limiting--throttling) - [Circuit Breaker](#circuit-breaker) - [Error Handling & Fault Tolerance](#error-handling--fault-tolerance) - [Logs and Tracing](#logs-and-tracing) |
-| **Patterns & Orchestration** | [SAGA Pattern](#saga-pattern) - [Observer Pattern](#observer-pattern) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway) |
+| **Patterns & Orchestration** |   - [SOLID Principles](#solid-principles) - [Dependency Injection](#dependency-injection) - [Prototype Pattern](#prototype-pattern) - [Observer Pattern](#observer-pattern) - [Module Pattern](#module-pattern) - [Factory Pattern](#factory-pattern) - [Singleton Pattern](#singleton-pattern) - [SAGA Pattern](#saga-pattern) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway)   |
 | **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) |
 | **Scaling & Operations** | [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture) |
 | **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
 | **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices overview](#Microservice-overview)
 
-- [SOLID Principles](#solid-principles)
-- [Dependency Injection](#dependency-injection)
 
 ## **Microservices Architecture**
 
@@ -2144,7 +2142,7 @@ For instance, the **Singleton Pattern** ensures that a class has only one instan
 #### **Singleton Pattern**
 
 
- 
+
 The **Singleton Pattern** ensures that a class has only one instance and provides a global point of access to that instance. This pattern is particularly useful for scenarios where only one object is needed to coordinate actions (like a logging service or a configuration manager).
 
 **Example**:
@@ -2174,6 +2172,7 @@ Here, even though we create two instances of `Singleton`, they both point to the
 ---
 
 #### **Factory Pattern**
+
 
 
  
@@ -2249,7 +2248,6 @@ In this example, the `counterModule` encapsulates the `count` variable, exposing
 #### **Observer Pattern**
 
 
- 
 The **Observer Pattern** is a behavioral design pattern where an object (the **subject**) maintains a list of its dependent objects (the **observers**) and notifies them of any state changes, typically by calling one of their methods. This pattern is useful in scenarios where multiple objects need to be updated when the state of another object changes, like in UI event handling or real-time notifications.
 
 **Example**:
@@ -2293,8 +2291,6 @@ Here, when the `Subject` notifies its observers, all registered observers react 
 
 #### **Prototype Pattern**
 
-
- 
 The **Prototype Pattern** is a creational design pattern used to create new objects by cloning an existing object (prototype). It is particularly useful when object creation is costly, and you need to produce several identical objects. In JavaScript, this can be implemented using the `Object.create()` method to clone an object.
 
 **Example**:

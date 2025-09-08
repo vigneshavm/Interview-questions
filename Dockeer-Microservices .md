@@ -14,7 +14,7 @@
 |----------------------------|------------|
 | **API Design & Interface** | [Versioning & Backward Compatibility](#versioning--backward-compatibility) - [Swagger](#swagger)  - [Manage multiple service endpoints](#manage-multiple-service-endpoints) |
 | **Reliability & Resilience** | [Rate Limiting & Throttling](#rate-limiting--throttling) - [Circuit Breaker](#circuit-breaker) - [Error Handling & Fault Tolerance](#error-handling--fault-tolerance) - [Logs and Tracing](#logs-and-tracing) |
-| **Patterns & Orchestration** |   - [SOLID Principles](#solid-principles) - [Dependency Injection](#dependency-injection) - [Prototype Pattern](#prototype-pattern) - [Observer Pattern](#observer-pattern) - [Module Pattern](#module-pattern) - [Factory Pattern](#factory-pattern) - [Singleton Pattern](#singleton-pattern) - [SAGA Pattern](#saga-pattern) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway)   |
+| **Patterns & Orchestration** |   - [SOLID Principles](#solid-principles) - [Design Patterns](#Design-Patterns) - [Dependency Injection](#dependency-injection) - [Prototype Pattern](#prototype-pattern) - [Observer Pattern](#observer-pattern) - [Module Pattern](#module-pattern) - [Factory Pattern](#factory-pattern) - [Singleton Pattern](#singleton-pattern) - [SAGA Pattern](#saga-pattern) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway)   - [Prototype Pattern](#prototype-pattern)|
 | **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) |
 | **Scaling & Operations** | [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture) |
 | **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
@@ -2088,21 +2088,12 @@ Design patterns are proven, reusable solutions to common problems in software de
 **Example**:
 For instance, the **Singleton Pattern** ensures that a class has only one instance, which is useful in situations like managing database connections or configuration settings.
 
----
-
----
-
-### 📦 Creational Patterns
 
 | #  | Pattern         | Purpose                                          | JavaScript Example/Usage              |
 |:--:|------------------|--------------------------------------------------|---------------------------------------|
 | 1  | **Builder**       | Build complex objects step by step               | Fluent APIs, chainable methods        |
 | 2  | **Prototype**     | Clone or reuse existing objects                  | `Object.create()`, prototypes         |
 | 3  | **Singleton**     | Ensure only one instance exists                  | Module pattern, shared config state   |
-
----
-
-### 🏗️ Structural Patterns
 
 | #  | Pattern            | Purpose                                           | JavaScript Example/Usage                  |
 |:--:|--------------------|---------------------------------------------------|-------------------------------------------|
@@ -2114,10 +2105,6 @@ For instance, the **Singleton Pattern** ensures that a class has only one instan
 | 9  | **Flyweight**       | Share small reusable objects                      | DOM optimization, game asset sharing      |
 | 10 | **Proxy**           | Control access to objects                         | ES6 `Proxy`, API calls, validation layers |
 
----
-
-### 🧠 Behavioral Patterns
-
 | #  | Pattern                  | Purpose                                           | JavaScript Example/Usage               |
 |:--:|---------------------------|---------------------------------------------------|----------------------------------------|
 | 11 | **Chain of Responsibility** | Pass requests along a chain until handled        | Express.js middleware flow             |
@@ -2128,15 +2115,13 @@ For instance, the **Singleton Pattern** ensures that a class has only one instan
 | 16 | **Observer**              | Notify objects on state changes                   | DOM events, Reactive programming (RxJS)|
 | 17 | **Visitor**               | Add new operations without changing structures    | Operations on data trees, AST traversal |
 
-
-
 | **Design Pattern**   | **Description** |
 |----------------------|-----------------|
 | **Singleton Pattern** | Ensures that a class has only one instance and provides a global point of access to it. Useful for services like logging or configuration where a single shared instance is needed. |
 | **Factory Pattern** | Provides a way to create objects without specifying the exact class. Defines an interface for object creation, but the instantiation is handled by methods or subclasses. Promotes loose coupling. |
 | **Module Pattern** | Encapsulates code in a self-contained unit to maintain a clean global namespace. Uses closures to expose public members while keeping other functionality private. |
 | **Observer Pattern** | A behavioral pattern where an object (subject) maintains a list of dependents (observers) and notifies them of changes. Useful in UI event handling or real-time systems. |
-| [Prototype Pattern](#prototype-pattern) | Creates new objects by cloning an existing object (prototype). Useful when object creation is costly. In JavaScript, implemented using `Object.create()`. |
+| **Prototype Pattern** | Creates new objects by cloning an existing object (prototype). Useful when object creation is costly. In JavaScript, implemented using `Object.create()`. |
 
 
 #### **Singleton Pattern**
@@ -2352,7 +2337,7 @@ In this example, `Car` depends on `Engine`. Instead of `Car` creating its own en
 
 ---
 
-## **KISS**
+#### **KISS**
 
 -  (Keep It Simple, Stupid)
 -  **Real-time Benefit**  - Cleaner, readable code. and Easy to unit test `getFinalPrice`.

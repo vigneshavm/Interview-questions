@@ -522,59 +522,6 @@ const studentScores: Scores = {
 
 ---
 
-# Union Types (`|`) vs Intersection Types (`&`) in TypeScript
-
-| **Feature**                  | **Union Types (`|`)**                                                              | **Intersection Types (`&`)**                                                         |
-|-----------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| **Definition**               | Allows a value to be **one of several types**.                                     | Combines multiple types into a **single type that must satisfy all** of them.        |
-| **Operator**                 | `|` (pipe symbol)                                                                  | `&` (ampersand symbol)                                                               |
-| **Type Combination**         | Represents a value that can be **any one** of the listed types.                    | Represents a value that must conform to **all combined types**.                      |
-| **Example**                  | `type A = string \| number;`                                                       | `type A = { name: string } & { age: number };`                                       |
-| **Resulting Type**           | The value can be of **either** type (not necessarily both).                        | The value must include **all properties** from each intersected type.                |
-| **Use Case**                 | When a value can be **one of multiple types** (e.g., string or number).            | When you want to **merge multiple types** into one (e.g., combining object shapes).  |
-| **Compatibility with Types** | A value must be compatible with **at least one** of the types.                     | A value must satisfy **all type constraints simultaneously**.                        |
-| **Example with Primitives**  | `let value: string \| number = "Hi"; value = 42;`                                  | Not typically used with primitives.                                                  |
-| **Example with Objects**     | `type Animal = { legs: number } \| { wings: number };`                             | `type Animal = { legs: number } & { wings: number };`                                |
-| **Result for Objects**       | The object can have **either** `legs` or `wings` (not both).                      | The object must have **both** `legs` **and** `wings`.                                |
-| **Type Narrowing**           | Use `typeof`, `instanceof`, or property checks to narrow the type at runtime.      | Works when accessing **common properties** or using custom type guards.              |
-
-
- **Key Takeaways:**
-- **Union Types** (`|`): A value can be **one** of multiple types.
-- **Intersection Types** (`&`): A value must satisfy **all** the types in the intersection.
-
----
-
- **Example:**
-
-**Union Type Example:**
-```ts
-type StringOrNumber = string | number;
-
-let value: StringOrNumber = "Hello";
-value = 42;  // Both string and number are allowed
-```
-
-**Intersection Type Example:**
-```ts
-interface Person {
-  name: string;
-}
-
-interface Worker {
-  job: string;
-}
-
-type Employee = Person & Worker;
-
-const employee: Employee = {
-  name: "Alice",
-  job: "Engineer",
-}; // Must have both `name` and `job` properties
-```
-
----
-
 
 
 
@@ -936,17 +883,6 @@ const name = getProperty(user, "name"); // ✅ name is string
 
 
 
-## **Union Types**
-  - In TypeScript, Union Types let a variable hold more than one type.
- - For example, I can say let id: string | number;, which means id can either be a string or a number. If I assign a boolean to it, TypeScript will show an error.
- - We use the | symbol to join the types. It’s very helpful when you expect a function or a variable to handle multiple types of inputs.
- - A common place where I use Union Types is in functions. Like, if I have a printId function, it can accept either a string or a number, and inside the function, I can check using typeof to know what exactly it is.
- - It's useful because it keeps the flexibility without losing type safety, unlike using any.
- - We often use Union Types when handling different kinds of user inputs, API responses, or when something might be undefined or a specific type."**
----
-
-
-
 
 
 
@@ -1157,6 +1093,58 @@ Here, `mathUtils.ts` is a **module** because it uses `export`, and we **import**
 ** **Key Differences**
 - **Union Types (`|`)**: Choose **one** from multiple types.
 - **Intersection Types (`&`)**: Combine **all** types together, meaning the value must match **all** constraints.
+- **Union Types** (`|`): A value can be **one** of multiple types.
+- **Intersection Types** (`&`): A value must satisfy **all** the types in the intersection.
+
+
+# Union Types (`|`) vs Intersection Types (`&`) in TypeScript
+
+| **Feature**                  | **Union Types (`|`)**                                                              | **Intersection Types (`&`)**                                                         |
+|-----------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| **Definition**               | Allows a value to be **one of several types**.                                     | Combines multiple types into a **single type that must satisfy all** of them.        |
+| **Operator**                 | `|` (pipe symbol)                                                                  | `&` (ampersand symbol)                                                               |
+| **Type Combination**         | Represents a value that can be **any one** of the listed types.                    | Represents a value that must conform to **all combined types**.                      |
+| **Example**                  | `type A = string \| number;`                                                       | `type A = { name: string } & { age: number };`                                       |
+| **Resulting Type**           | The value can be of **either** type (not necessarily both).                        | The value must include **all properties** from each intersected type.                |
+| **Use Case**                 | When a value can be **one of multiple types** (e.g., string or number).            | When you want to **merge multiple types** into one (e.g., combining object shapes).  |
+| **Compatibility with Types** | A value must be compatible with **at least one** of the types.                     | A value must satisfy **all type constraints simultaneously**.                        |
+| **Example with Primitives**  | `let value: string \| number = "Hi"; value = 42;`                                  | Not typically used with primitives.                                                  |
+| **Example with Objects**     | `type Animal = { legs: number } \| { wings: number };`                             | `type Animal = { legs: number } & { wings: number };`                                |
+| **Result for Objects**       | The object can have **either** `legs` or `wings` (not both).                      | The object must have **both** `legs` **and** `wings`.                                |
+| **Type Narrowing**           | Use `typeof`, `instanceof`, or property checks to narrow the type at runtime.      | Works when accessing **common properties** or using custom type guards.              |
+
+
+---
+
+ **Example:**
+
+**Union Type Example:**
+```ts
+type StringOrNumber = string | number;
+
+let value: StringOrNumber = "Hello";
+value = 42;  // Both string and number are allowed
+```
+
+**Intersection Type Example:**
+```ts
+interface Person {
+  name: string;
+}
+
+interface Worker {
+  job: string;
+}
+
+type Employee = Person & Worker;
+
+const employee: Employee = {
+  name: "Alice",
+  job: "Engineer",
+}; // Must have both `name` and `job` properties
+```
+
+---
 
 
 

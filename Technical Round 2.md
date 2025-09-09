@@ -1023,12 +1023,7 @@ LLD describes **how each module/component will be implemented**. It focuses on *
 - Optimize change detection with OnPush strategy
 - Implement virtual scrolling for large lists
 - Review API response times and implement caching
-- Identify bottlenecks using Angular DevTools and browser profiler
-- Check for memory leaks in subscriptions and event listeners
-- Analyze bundle size and implement lazy loading
-- Optimize change detection with OnPush strategy
-- Implement virtual scrolling for large lists
-- Review API response times and implement caching
+
 
 ### Team Conflict Resolution
 **Question**: "Two senior developers disagree on architecture approach. How do you handle this?"

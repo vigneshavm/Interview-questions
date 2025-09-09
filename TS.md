@@ -9,7 +9,7 @@
 | **Modules, Namespaces, Compiler** | [Namespaces and Modules](#namespaces-and-modules) • [Module System](#module-system-in-typescript) • [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options) • [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)                           |
 | **Functions & Behavior**          | [Function Overloading](#function-overloading) • [Declaration Merging](#declaration-merging)                                                                                                                                                                                                                                |
 | **Objects & Collections**         | [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects) • [`Map` vs `WeakMap`](#map-vs-weakmap) • [`Set` vs `WeakSet`](#set-vs-weakset) • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)                                                                                                  |
-| **Patterns & Orchestration** |     - [SOLID Principles](#solid-principles) - [SAGA Pattern](#SAGA-Pattern) |
+| **Patterns & Orchestration** |     - [SOLID Principles](#solid-principles) - [SAGA Pattern](#SAGA-Pattern) - [Circuit Breaker](#circuit-breaker)|
 
 
  
@@ -2583,4 +2583,84 @@ await shoutoutSaga({
 
 
 ---
+
+
+### **Circuit Breaker**
+
+**What it is:**
+
+* The **Circuit Breaker** is a **resilience/fault-tolerance pattern** used in **distributed systems** to **prevent cascading failures** and allow the system to **recover gracefully** when a downstream service is failing or slow.
+* Crucial in **microservices** to **isolate failures** and enable **graceful degradation** instead of complete system collapse.
+
+---
+
+### **Why it’s important:**
+
+* Prevents **system overload** from repeated failed calls.
+* Enables **fast failure**, improving user experience.
+* Allows **automatic recovery** without restarting services.
+
+---
+
+### **How it works (States):**
+
+| State         | Behavior                                                                               |
+| ------------- | -------------------------------------------------------------------------------------- |
+| **Closed**    | All requests pass; failure count monitored; trips to Open if threshold exceeded.       |
+| **Open**      | Requests are immediately rejected; timeout begins before trying again.                 |
+| **Half-Open** | Limited requests allowed to test recovery; if successful, closes; otherwise, re-opens. |
+
+---
+
+**Key Benefits to highlight in interview:**
+
+* **Increases resilience** in microservices.
+* **Prevents cascading failures**.
+* **Supports graceful degradation**.
+* **Enables automatic recovery**.
+
+
+
+
+### **Real-world analogy:**
+
+* Like an **electrical circuit breaker**: trips to prevent overload or damage.
+
+---
+
+### **Use Cases:**
+
+* Protect a service calling **payment gateways** or **third-party APIs**.
+* Maintain **system stability** even when dependent services are slow/unresponsive.
+
+### **Example (Node.js with `opossum`):**
+
+```javascript
+const CircuitBreaker = require('opossum');
+
+async function callServiceB() {
+  // Simulate service call
+  if (Math.random() < 0.7) throw new Error("Service B failed");
+  return "Success from B";
+}
+
+const breaker = new CircuitBreaker(callServiceB, {
+  timeout: 3000, // time before failing
+  errorThresholdPercentage: 50, // % failures to trip
+  resetTimeout: 5000 // time before trying again
+});
+
+breaker.fire()
+  .then(console.log)
+  .catch(console.error);
+```
+
+**Explanation:**
+
+* The breaker **monitors failures**.
+* Trips to **Open** if failures exceed threshold.
+* Automatically retries after **resetTimeout** (Half-Open).
+
+---
+
 

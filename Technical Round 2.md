@@ -683,6 +683,22 @@ Here are some of the **critical architectural challenges** I’ve faced — and 
 
 ### Agile Concepts
 
+In **Agile**, an **Epic** is:
+
+* A **large body of work** that can’t be completed in a single sprint.
+* It’s **too big to estimate or deliver at once**, so it’s broken down into smaller, manageable **user stories** or **tasks**.
+* Epics help in organizing work at a **higher level** and keeping the **product backlog structured**.
+
+👉 Epic: **“Invoice Management”**
+
+* User Story 1: As an admin, I want to create invoices so I can bill customers.
+* User Story 2: As a user, I want to download invoices as PDF so I can share them.
+* User Story 3: As an admin, I want to update invoice status so I can track payments.
+
+Analogy:
+ - Epic = Book
+ - User Stories = Chapters
+ - Tasks = Pages
 
 
 

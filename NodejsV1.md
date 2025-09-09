@@ -10,7 +10,7 @@
 | **Async and Middleware** |  [BackPressure](#BackPressure)  - [FS(File System)](#FS), - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
 | **Package JSON**             | [package.json](#packagejson),  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
 | **REST API & Security**      | [REST API](#rest-api),  - [RESTAPI version](#restapi-version) - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) , - [API Slow](#API-Slow) |
-| **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) |
+| **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) -[Keep secrets in Node.js](#keep-secrets-in-nodejs) |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
 | **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) |
@@ -5787,5 +5787,20 @@ I check where the time is being spent:
 * If code is blocking → offload to workers (BullMQ, RabbitMQ) or use async streams.
 * If external API is slow → add retries, circuit breakers (e.g., with **opossum** library), or caching.
 * If infra issue → scale horizontally (containers/instances) or use Node clustering/PM2.
+
+
+## Keep secrets in Node.js
+
+"In Node.js, we **never hardcode secrets** like API keys, tokens, or database passwords directly in the code.
+
+* For **local development**, we usually store secrets in **environment variables** using a `.env` file with libraries like `dotenv`.
+* In **production**, it’s a best practice to use a **secret manager** such as AWS Secrets Manager, Azure Key Vault, Google Secret Manager, or HashiCorp Vault. These tools allow secure storage, encryption, rotation, and controlled access to secrets.
+* Additionally, we ensure secrets are never committed to source control, apply **least privilege access**, and set up **rotation policies** for high-security environments.
+
+So, in short: **`.env` for local, Secret Manager for production** — that keeps the application both flexible and secure."
+
+---
+
+
 
 

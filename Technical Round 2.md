@@ -13,7 +13,7 @@
 
 
 
-- [Performance Issues](#performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management)
+- [Performance Issues](#angular-performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management)
 - [Production Incident](#production-incident) - [Technical Debt Management](#technical-debt-management) - [Database Performance Crisis](#database-performance-crisis)
 - [Cloud Migration Challenge](#cloud-migration-challenge) - [Security Breach Response](#security-breach-response)
 - [Cross-Cultural Team Management](#cross-cultural-team-management) - [Technology Stack Decision](#technology-stack-decision)
@@ -1013,7 +1013,7 @@ LLD describes **how each module/component will be implemented**. It focuses on *
 
 
 
-### Performance Issues
+### Angular Performance Issues
 **Question**: "A client reports their Angular application is slow. Walk me through your troubleshooting approach."
 
 **Response Framework**:

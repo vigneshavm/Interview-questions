@@ -9,7 +9,7 @@
 | **Modules, Namespaces, Compiler** | [Namespaces and Modules](#namespaces-and-modules) • [Module System](#module-system-in-typescript) • [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options) • [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)                           |
 | **Functions & Behavior**          | [Function Overloading](#function-overloading) • [Declaration Merging](#declaration-merging)                                                                                                                                                                                                                                |
 | **Objects & Collections**         | [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects) • [`Map` vs `WeakMap`](#map-vs-weakmap) • [`Set` vs `WeakSet`](#set-vs-weakset) • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)                                                                                                  |
-| **Patterns & Orchestration** |     - [SOLID Principles](#solid-principles) - [SAGA Pattern](#SAGA-Pattern) - [Circuit Breaker](#circuit-breaker)|
+| **Patterns & Orchestration** |     - [Design Patterns](#Design-Patterns)   - [SOLID Principles](#solid-principles) - [SAGA Pattern](#SAGA-Pattern) - [Singleton Pattern](#singleton-pattern) - [Factory Pattern](#factory-pattern)  - [Module Pattern](#module-pattern)  - [Observer Pattern](#observer-pattern) - [Prototype Pattern](#prototype-pattern) - [Dependency Injection](#dependency-injection)  - [Circuit Breaker](#circuit-breaker) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway)  |
 
 
  
@@ -2662,5 +2662,396 @@ breaker.fire()
 * Automatically retries after **resetTimeout** (Half-Open).
 
 ---
+
+## **Singleton Pattern**
+
+* **Singleton Pattern** ensures a class has **only one instance** and provides a **global point of access**.
+* In **Node.js**, modules are **cached**, which naturally allows implementing singletons.
+* Useful for **shared resources** like **database connections, configuration settings, or logging**.
+* Prevents **multiple instances** and ensures **consistency** across the application.
+
+
+**Example**:
+```javascript
+class Singleton {
+  constructor() {
+    if (!Singleton.instance) {
+      Singleton.instance = this;
+    }
+    return Singleton.instance;
+  }
+
+  show() {
+    console.log("Singleton instance");
+  }
+}
+
+const instance1 = new Singleton();
+const instance2 = new Singleton();
+
+instance1.show();  // Outputs: Singleton instance
+console.log(instance1 === instance2);  // Outputs: true
+```
+
+Here, even though we create two instances of `Singleton`, they both point to the same object.
+
+---
+
+## **Factory Pattern**
+
+
+*"The Factory Pattern is a **creational design pattern** that provides a way to **create objects without exposing the instantiation logic** to the client. It allows the client to request objects through a **common interface** while the factory decides the concrete implementation."*
+
+**Key points (for interview):**
+
+* **Encapsulates object creation** to reduce tight coupling.
+* **Provides flexibility** to add new types of objects without changing client code.
+* **Promotes code reusability** and maintainability.
+
+---
+
+### **When to use it?**
+
+* When **object creation is complex** or involves logic.
+* When **clients shouldn’t know the concrete classes** being instantiated.
+* When building **scalable and maintainable applications** with many object types.
+
+---
+
+**Pro tip for interview:**
+
+* Emphasize **“object creation encapsulation, flexibility, and maintainability”**.
+* Mention that it’s widely used in **microservices, APIs, or complex systems** where object types vary.
+
+---
+
+### **Example (JavaScript):**
+
+```javascript
+class Car {
+  constructor(model) {
+    this.model = model;
+  }
+  drive() {
+    console.log(`Driving a ${this.model} car`);
+  }
+}
+
+class Bike {
+  constructor(model) {
+    this.model = model;
+  }
+  ride() {
+    console.log(`Riding a ${this.model} bike`);
+  }
+}
+
+class VehicleFactory {
+  static createVehicle(type, model) {
+    if (type === "car") return new Car(model);
+    if (type === "bike") return new Bike(model);
+  }
+}
+
+// Usage
+const vehicle1 = VehicleFactory.createVehicle("car", "Honda");
+const vehicle2 = VehicleFactory.createVehicle("bike", "Yamaha");
+
+vehicle1.drive(); // Driving a Honda car
+vehicle2.ride();  // Riding a Yamaha bike
+```
+
+**Explanation:**
+
+* The **factory decides which class to instantiate**.
+* The client **doesn’t need to know the details** of the creation process.
+
+
+---
+
+## **Module Pattern**
+
+*"The Module Pattern is a **structural design pattern** in JavaScript that **encapsulates code into a single unit**, allowing **private and public members**. It helps in organizing code, avoiding global namespace pollution, and providing **reusable, maintainable modules**."*
+
+
+* **Encapsulation:** Keeps variables and functions **private** inside the module.
+* **Public API:** Exposes only what’s needed via **returned object**.
+* **Namespace management:** Avoids polluting the global scope.
+* **Reusability:** Modules can be imported and reused across the application.
+
+
+
+### **When to use it?**
+
+* When you want to **organize code into logical units**.
+* To **hide implementation details** while exposing a clean interface.
+* When building **scalable JavaScript applications**.
+
+
+
+**Pro tip for interview:**
+
+* Highlight **“encapsulation, private vs public members, reusable, avoids global scope pollution”**.
+* Mention that in modern JS, **ES6 modules** (`export`/`import`) are the standard way to implement the module pattern.
+
+
+
+### **Example (JavaScript):**
+
+```javascript
+const CounterModule = (function () {
+  // Private variable
+  let count = 0;
+
+  // Private function
+  function logCount() {
+    console.log(`Current count: ${count}`);
+  }
+
+  // Public API
+  return {
+    increment() {
+      count++;
+      logCount();
+    },
+    decrement() {
+      count--;
+      logCount();
+    },
+    reset() {
+      count = 0;
+      logCount();
+    }
+  };
+})();
+
+// Usage
+CounterModule.increment(); // Current count: 1
+CounterModule.increment(); // Current count: 2
+CounterModule.reset();     // Current count: 0
+```
+
+**Explanation:**
+
+* `count` and `logCount` are **private**.
+* Only `increment`, `decrement`, and `reset` are **exposed publicly**.
+
+---
+
+## **Observer Pattern**
+
+
+The **Observer Pattern** is a behavioral design pattern where an object (the **subject**) maintains a list of its dependent objects (the **observers**) and notifies them of any state changes, typically by calling one of their methods. This pattern is useful in scenarios where multiple objects need to be updated when the state of another object changes, like in UI event handling or real-time notifications.
+
+**Example**:
+```javascript
+class Subject {
+  constructor() {
+    this.observers = [];
+  }
+
+  addObserver(observer) {
+    this.observers.push(observer);
+  }
+
+  notifyObservers(data) {
+    this.observers.forEach(observer => observer.update(data));
+  }
+}
+
+class Observer {
+  update(data) {
+    console.log("Received data:", data);
+  }
+}
+
+const subject = new Subject();
+const observer1 = new Observer();
+const observer2 = new Observer();
+
+subject.addObserver(observer1);
+subject.addObserver(observer2);
+
+subject.notifyObservers("New update available!");
+// Outputs:
+// Received data: New update available!
+// Received data: New update available!
+```
+
+Here, when the `Subject` notifies its observers, all registered observers react to the change.
+
+---
+
+## **Prototype Pattern**
+
+
+*"The Prototype Pattern is a **creational design pattern** that allows you to **create new objects by copying an existing object**, rather than creating them from scratch. This is especially useful when object creation is **expensive** or **complex**."*
+
+* **Cloning:** New objects are created by **cloning an existing prototype**.
+* **Efficiency:** Reduces overhead when creating similar objects repeatedly.
+* **Dynamic object creation:** Can create objects **at runtime** without knowing their exact classes.
+* **Avoids subclassing:** New objects can be created without extending classes.
+
+### **When to use it?**
+
+* When object creation is **resource-intensive** (e.g., reading from a database or heavy computation).
+* When you need **many similar objects** with slight variations.
+* When **runtime flexibility** is required in creating objects.
+
+**Pro tip for interview:**
+
+* Emphasize **“object cloning, efficiency, runtime object creation, avoids subclassing”**.
+* Highlight that it’s a **creational pattern** like Singleton, Factory, etc.
+
+
+
+### **Example (JavaScript):**
+
+```javascript
+const carPrototype = {
+  brand: "Toyota",
+  getDetails() {
+    return `${this.brand} car`;
+  }
+};
+
+const car1 = Object.create(carPrototype);
+car1.brand = "Honda";
+
+const car2 = Object.create(carPrototype);
+car2.brand = "Ford";
+
+console.log(car1.getDetails()); // Honda car
+console.log(car2.getDetails()); // Ford car
+```
+
+**Explanation:**
+
+* `Object.create(carPrototype)` **clones the prototype object**, allowing multiple objects with shared behavior.
+
+---
+
+
+
+## **Dependency Injection**
+
+
+ 
+**Dependency Injection (DI)** is a design pattern used to implement **inversion of control**, where an object’s dependencies (like services or components) are injected into it rather than the object creating them itself. DI promotes loose coupling between classes, making it easier to manage dependencies, test components, and scale applications.
+
+**Example**:
+```javascript
+class Engine {
+  start() {
+    console.log("Engine started");
+  }
+}
+
+class Car {
+  constructor(engine) {
+    this.engine = engine;
+  }
+
+  drive() {
+    this.engine.start();
+    console.log("Car is driving");
+  }
+}
+
+const engine = new Engine();
+const car = new Car(engine);  // Injecting the engine dependency
+car.drive();
+// Outputs:
+// Engine started
+// Car is driving
+```
+
+In this example, `Car` depends on `Engine`. Instead of `Car` creating its own engine, it receives an `Engine` instance via its constructor, making it easier to replace the `Engine` with a mock or a different implementation for testing.
+
+---
+
+
+
+### **Service Discovery**
+
+* **Purpose:** Enables services to find each other dynamically — no hardcoded IPs.
+* **Types:**
+
+  * **Client-side:** Clients query registry (e.g., Eureka).
+  * **Server-side:** Load balancer handles discovery (e.g., AWS ELB).
+* **Use Case:** In Kubernetes, services discover each other via DNS even as pods scale.
+* **Key Benefits:**
+
+  * Increases scalability and automation.
+  * Supports dynamic environments (containers, cloud).
+* **Tools:** `Kubernetes DNS`, `Consul`, `Eureka`, `AWS Cloud Map`.
+
+---
+
+### **API Gateway**
+
+* **Purpose:** Single entry point to a microservices architecture.
+* **Responsibilities:**
+
+  * Routing, authentication, rate limiting, response transformation, aggregation.
+* **Use Case:** Unified access layer for mobile/web apps in social or e-commerce platforms.
+* **Key Benefits:**
+
+  * Simplifies clients (aggregates multiple APIs).
+  * Centralizes cross-cutting concerns (security, logging).
+* **Tools:** `Kong`, `NGINX`, `AWS API Gateway`, `Express Gateway`.
+
+---
+
+## **KISS**
+
+-  (Keep It Simple, Stupid)
+-  **Real-time Benefit**  - Cleaner, readable code. and Easy to unit test `getFinalPrice`.
+
+## **Design Patterns**
+
+
+ 
+Design patterns are proven, reusable solutions to common problems in software design. They are not code templates but rather general solutions that can be adapted to specific needs. Design patterns improve code readability, reusability, maintainability, and scalability. They help developers avoid reinventing the wheel by providing standard approaches to solving design issues.
+
+**Example**:
+For instance, the **Singleton Pattern** ensures that a class has only one instance, which is useful in situations like managing database connections or configuration settings.
+
+
+| #  | Pattern         | Purpose                                          | JavaScript Example/Usage              |
+|:--:|------------------|--------------------------------------------------|---------------------------------------|
+| 1  | **Builder**       | Build complex objects step by step               | Fluent APIs, chainable methods        |
+| 2  | **Prototype**     | Clone or reuse existing objects                  | `Object.create()`, prototypes         |
+| 3  | **Singleton**     | Ensure only one instance exists                  | Module pattern, shared config state   |
+
+| #  | Pattern            | Purpose                                           | JavaScript Example/Usage                  |
+|:--:|--------------------|---------------------------------------------------|-------------------------------------------|
+| 4  | **Adapter**         | Convert one interface to another                  | API format converters, wrapper classes    |
+| 5  | **Bridge**          | Separate abstraction from implementation          | UI platform adapters                      |
+| 6  | **Composite**       | Treat individual and composite objects uniformly  | DOM trees, React/Vue component trees      |
+| 7  | **Decorator**       | Add behavior to objects without modifying them    | Higher-order functions, decorators        |
+| 8  | **Facade**          | Simplify complex subsystems with one interface     | Utility libraries like jQuery             |
+| 9  | **Flyweight**       | Share small reusable objects                      | DOM optimization, game asset sharing      |
+| 10 | **Proxy**           | Control access to objects                         | ES6 `Proxy`, API calls, validation layers |
+
+| #  | Pattern                  | Purpose                                           | JavaScript Example/Usage               |
+|:--:|---------------------------|---------------------------------------------------|----------------------------------------|
+| 11 | **Chain of Responsibility** | Pass requests along a chain until handled        | Express.js middleware flow             |
+| 12 | **Command**               | Encapsulate a request as an object                | UI buttons triggering actions          |
+| 13 | **Iterator**              | Access elements of a collection sequentially      | `Symbol.iterator`, custom generators   |
+| 14 | **Mediator**              | Centralize communication between components       | Event bus, chat applications           |
+| 15 | **Memento**               | Save and restore object state                     | Undo/redo in text editors               |
+| 16 | **Observer**              | Notify objects on state changes                   | DOM events, Reactive programming (RxJS)|
+| 17 | **Visitor**               | Add new operations without changing structures    | Operations on data trees, AST traversal |
+
+| **Design Pattern**   | **Description** |
+|----------------------|-----------------|
+| **Singleton Pattern** | Ensures that a class has only one instance and provides a global point of access to it. Useful for services like logging or configuration where a single shared instance is needed. |
+| **Factory Pattern** | Provides a way to create objects without specifying the exact class. Defines an interface for object creation, but the instantiation is handled by methods or subclasses. Promotes loose coupling. |
+| **Module Pattern** | Encapsulates code in a self-contained unit to maintain a clean global namespace. Uses closures to expose public members while keeping other functionality private. |
+| **Observer Pattern** | A behavioral pattern where an object (subject) maintains a list of dependents (observers) and notifies them of changes. Useful in UI event handling or real-time systems. |
+| **Prototype Pattern** | Creates new objects by cloning an existing object (prototype). Useful when object creation is costly. In JavaScript, implemented using `Object.create()`. |
+
+
 
 

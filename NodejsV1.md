@@ -2069,6 +2069,15 @@ HTTP/1.1 201 Created
 Location: /v1/invoices/123e4567
 Content-Type: application/json
 
+Location header Benefits:
+- Clarity: Client knows the exact URL of the new resource.
+- Consistency: Aligns with REST best practices.
+- Efficiency: No need for clients to rebuild the resource path manually.
+
+Summary for PUT:
+- 200 OK (or 204 No Content) → when updating an existing resource.
+- 201 Created + Location header → when the resource didn’t exist before and the PUT caused its creation.
+
 | Method    | Purpose                       | Response Body | Common Use Case                         |
 | --------- | ----------------------------- | ------------- | --------------------------------------- |
 | `HEAD`    | Headers only                  | ❌ No          | Metadata checks, health checks          |

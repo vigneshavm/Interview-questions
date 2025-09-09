@@ -9,7 +9,7 @@
 | **Modules, Namespaces, Compiler** | [Namespaces and Modules](#namespaces-and-modules) • [Module System](#module-system-in-typescript) • [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options) • [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)                           |
 | **Functions & Behavior**          | [Function Overloading](#function-overloading) • [Declaration Merging](#declaration-merging)                                                                                                                                                                                                                                |
 | **Objects & Collections**         | [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects) • [`Map` vs `WeakMap`](#map-vs-weakmap) • [`Set` vs `WeakSet`](#set-vs-weakset) • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)                                                                                                  |
-| **Patterns & Orchestration** |     - [Design Patterns](#Design-Patterns)   - [SOLID Principles](#solid-principles) - [SAGA Pattern](#SAGA-Pattern) - [Singleton Pattern](#singleton-pattern) - [Factory Pattern](#factory-pattern)  - [Module Pattern](#module-pattern)  - [Observer Pattern](#observer-pattern) - [Prototype Pattern](#prototype-pattern) - [Dependency Injection](#dependency-injection)  - [Circuit Breaker](#circuit-breaker) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway)  |
+| **Patterns & Orchestration** |     - [Design Principles & Patterns – When to Use](#design-principles--patterns--when-to-use) - [Design Patterns](#Design-Patterns)   - [SOLID Principles](#solid-principles) - [SAGA Pattern](#SAGA-Pattern) - [Singleton Pattern](#singleton-pattern) - [Factory Pattern](#factory-pattern)  - [Module Pattern](#module-pattern)  - [Observer Pattern](#observer-pattern) - [Prototype Pattern](#prototype-pattern) - [Dependency Injection](#dependency-injection)  - [Circuit Breaker](#circuit-breaker) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway)  |
 
 
  
@@ -3051,6 +3051,35 @@ For instance, the **Singleton Pattern** ensures that a class has only one instan
 | **Module Pattern** | Encapsulates code in a self-contained unit to maintain a clean global namespace. Uses closures to expose public members while keeping other functionality private. |
 | **Observer Pattern** | A behavioral pattern where an object (subject) maintains a list of dependents (observers) and notifies them of changes. Useful in UI event handling or real-time systems. |
 | **Prototype Pattern** | Creates new objects by cloning an existing object (prototype). Useful when object creation is costly. In JavaScript, implemented using `Object.create()`. |
+
+### **Design Principles & Patterns – When to Use**
+
+**Quick Tip for Interviews:**
+
+* **Principles (SOLID, DI)** → **design & maintainability**.
+* **Creational patterns (Singleton, Factory, Prototype)** → **object creation**.
+* **Behavioral patterns (Observer)** → **object interaction & event-driven systems**.
+* **Distributed system patterns (SAGA, Circuit Breaker, Service Discovery, API Gateway)** → **microservices & fault tolerance**.
+* **Structural/organization (Module)** → **code encapsulation and reuse**.
+
+
+| Concept                       | When to Use / Purpose                                                                                                                                                             |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **SOLID Principles**          | Always, to write **clean, maintainable, scalable, and loosely coupled code**. Use them while designing classes, modules, and interfaces.                                          |
+| **Singleton Pattern**         | When you need **only one instance** of a class across the app (e.g., **Logger, Config, DB connection**).                                                                          |
+| **Factory Pattern**           | When **object creation is complex** or you want to **hide instantiation logic** from clients (e.g., creating different types of vehicles, payment methods).                       |
+| **Module Pattern**            | When you want to **encapsulate code** into a reusable module with **private and public members** (e.g., JS utility modules, config modules).                                      |
+| **Observer Pattern**          | When **one object’s state changes affect many others** and you want **loose coupling** (e.g., event-driven systems, notifications, UI updates).                                   |
+| **Prototype Pattern**         | When you need **many similar objects** and **cloning existing objects** is more efficient than creating new ones (e.g., game characters, complex data templates).                 |
+| **Dependency Injection (DI)** | When you want **loose coupling** and **easy testability**, letting a framework or container provide dependencies (e.g., service classes needing repositories).                    |
+| **SAGA Pattern**              | In **microservices**, when a **single transaction spans multiple services**, and you need **eventual consistency** with compensating actions (e.g., e-commerce orders, payments). |
+| **Circuit Breaker**           | When calling **unreliable services** or third-party APIs, to **prevent cascading failures** and allow graceful recovery (e.g., payment gateways, external APIs).                  |
+| **Service Discovery**         | In **dynamic microservice architectures**, to **find and communicate with services automatically** instead of hardcoding addresses (e.g., Kubernetes, Eureka).                    |
+| **API Gateway**               | When you want **centralized entry for microservices**, **routing, authentication, throttling, and aggregation** of requests (e.g., microservice front door).                      |
+
+---
+
+
 
 
 

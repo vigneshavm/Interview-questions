@@ -12,6 +12,17 @@
 | High-Level Design  and  Low-Level Design   | [High-Level Design](#high-level-design), -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   
 
 
+
+- [Performance Issues](#performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management)
+- [Production Incident](#production-incident) - [Technical Debt Management](#technical-debt-management) - [Database Performance Crisis](#database-performance-crisis)
+- [Cloud Migration Challenge](#cloud-migration-challenge) - [Security Breach Response](#security-breach-response)
+- [Cross-Cultural Team Management](#cross-cultural-team-management) - [Technology Stack Decision](#technology-stack-decision)
+- [Agile Transformation Resistance](#agile-transformation-resistance) - [Vendor Integration Challenge](#vendor-integration-challenge)
+- [Junior Developer Struggling](#junior-developer-struggling) - [Scope Creep Management](#scope-creep-management)
+- [System Integration Failure](#system-integration-failure)
+
+
+
 ### **Troubleshooting Debugging and Upgrading existing software**
 
 - Troubleshooting, debugging, and upgrading existing software are core parts of my development process.
@@ -1000,6 +1011,200 @@ LLD describes **how each module/component will be implemented**. It focuses on *
 
 ---
 
+
+
+### Performance Issues
+**Question**: "A client reports their Angular application is slow. Walk me through your troubleshooting approach."
+
+**Response Framework**:
+- Identify bottlenecks using Angular DevTools and browser profiler
+- Check for memory leaks in subscriptions and event listeners
+- Analyze bundle size and implement lazy loading
+- Optimize change detection with OnPush strategy
+- Implement virtual scrolling for large lists
+- Review API response times and implement caching
+- Identify bottlenecks using Angular DevTools and browser profiler
+- Check for memory leaks in subscriptions and event listeners
+- Analyze bundle size and implement lazy loading
+- Optimize change detection with OnPush strategy
+- Implement virtual scrolling for large lists
+- Review API response times and implement caching
+
+### Team Conflict Resolution
+**Question**: "Two senior developers disagree on architecture approach. How do you handle this?"
+
+**Response Framework**:
+- Listen to both perspectives without taking sides
+- Facilitate technical discussion focused on pros/cons
+- Consider factors: scalability, maintainability, team expertise, timeline
+- Make data-driven decision with clear rationale
+- Document decision and communicate to stakeholders
+- Ensure team alignment and commitment
+
+### Tight Deadline Management
+**Question**: "You have 3 weeks to deliver a critical feature, but your estimate is 5 weeks. What's your approach?"
+
+**Response Framework**:
+- Reassess scope and identify MVP features
+- Negotiate with stakeholders on requirements prioritization
+- Evaluate team capacity and consider temporary resource allocation
+- Implement parallel development streams where possible
+- Increase communication frequency and risk monitoring
+- Prepare contingency plans and escalation paths
+
+### Production Incident
+**Question**: "Your application is down in production. Walk me through your response."
+
+**Response Framework**:
+- Immediate: Check monitoring dashboards and alerts
+- Triage: Assess impact scope and user affected count
+- Communication: Notify stakeholders and establish incident channel
+- Investigation: Review logs, recent deployments, infrastructure changes
+- Mitigation: Implement quick fix or rollback if possible
+- Resolution: Address root cause and implement permanent fix
+- Post-mortem: Document lessons learned and process improvements
+
+### Technical Debt Management
+**Question**: "How do you balance feature development with technical debt reduction?"
+
+**Response Framework**:
+- Categorize technical debt by risk and impact
+- Allocate 15-20% of sprint capacity for technical improvements
+- Integrate refactoring with feature development when possible
+- Communicate business impact of technical debt to stakeholders
+- Create measurable metrics for code quality improvement
+- Establish coding standards and review processes
+
+
+
+
+
+### Database Performance Crisis
+**Question**: "Your E&P application's database queries are timing out, affecting 500+ global users. The client is escalating. What's your immediate action plan?"
+
+**Response Framework**:
+- **Immediate (0-15 mins)**: Check database server health, CPU/memory usage, active connections
+- **Short-term (15-60 mins)**: Identify slow queries using query logs, implement query hints or indexes
+- **Communication**: Update client every 30 minutes with specific progress updates
+- **Investigation**: Analyze query execution plans, check for table locks, review recent data growth
+- **Resolution**: Optimize queries, add missing indexes, consider read replicas for reporting
+- **Follow-up**: Implement monitoring alerts, establish query performance baselines
+- **Example Response**: "I had a similar situation with a production system handling seismic data. We discovered missing indexes on date range queries were causing full table scans on 50M+ records."
+
+### Cloud Migration Challenge
+**Question**: "You need to migrate a legacy on-premises E&P application to AWS while maintaining 99.9% uptime. How do you approach this?"
+
+**Response Framework**:
+- **Assessment Phase**: Inventory current architecture, dependencies, data volumes
+- **Strategy**: Blue-green deployment approach with gradual traffic shifting
+- **Data Migration**: Use AWS DMS for database migration with minimal downtime
+- **Application**: Containerize applications, implement health checks and circuit breakers
+- **Testing**: Comprehensive testing in staging environment mirroring production
+- **Rollback Plan**: Maintain on-premises infrastructure until full validation
+- **Monitoring**: Enhanced monitoring during migration window
+- **Example Response**: "In my previous role, we migrated a 24/7 production monitoring system. We used feature toggles to gradually shift user traffic and maintained dual-write capability for 30 days."
+
+### Security Breach Response
+**Question**: "Your team discovers unauthorized access to sensitive E&P well data. Walk me through your incident response."
+
+**Response Framework**:
+- **Immediate Containment**: Isolate affected systems, revoke compromised credentials
+- **Assessment**: Determine scope of breach, data accessed, and entry point
+- **Legal/Compliance**: Notify legal team, prepare for regulatory reporting requirements
+- **Communication**: Brief executive leadership, prepare client communication plan
+- **Investigation**: Preserve logs, work with security team to analyze attack vector
+- **Remediation**: Patch vulnerabilities, enhance access controls, update security policies
+- **Recovery**: Restore systems from clean backups, implement additional monitoring
+- **Prevention**: Security training, penetration testing, regular security audits
+
+### Cross-Cultural Team Management
+**Question**: "You're leading a team with developers in India, testers in Poland, and stakeholders in the US. There are frequent miscommunications. How do you resolve this?"
+
+**Response Framework**:
+- **Root Cause Analysis**: Identify if issues are timezone, language, or process-related
+- **Communication Standards**: Establish written communication protocols, meeting etiquette
+- **Tool Implementation**: Use collaborative tools (Slack, Confluence, Jira) with proper notification settings
+- **Meeting Optimization**: Record important meetings, rotating meeting times fairly
+- **Cultural Sensitivity**: Provide cross-cultural training, encourage open dialogue
+- **Process Improvement**: Implement detailed user stories, acceptance criteria, and demo sessions
+- **Regular Check-ins**: Weekly one-on-ones with key team members across regions
+
+### Technology Stack Decision
+**Question**: "The client wants to modernize their E&P data visualization from an old Java system. They're considering Angular vs React, and Node.js vs .NET Core. How do you make this recommendation?"
+
+**Response Framework**:
+- **Requirements Analysis**: Performance needs, team expertise, integration requirements, timeline
+- **Technical Evaluation**: Create proof-of-concept with both stacks using sample E&P data
+- **Considerations for E&P Domain**: 3D visualization capabilities, large dataset handling, real-time updates
+- **Team Factors**: Current team skills, training requirements, hiring market availability
+- **Ecosystem**: Third-party library availability, community support, long-term maintenance
+- **Decision Matrix**: Score each option against weighted criteria
+- **Recommendation**: Present data-driven recommendation with implementation roadmap
+
+### Agile Transformation Resistance
+**Question**: "You're implementing Agile in a traditionally waterfall E&P project team. Senior developers are resistant and stakeholders want detailed upfront planning. How do you handle this?"
+
+**Response Framework**:
+- **Stakeholder Education**: Explain Agile benefits with E&P industry examples
+- **Hybrid Approach**: Start with Scrum ceremonies while maintaining some documentation
+- **Quick Wins**: Demonstrate value through early deliverables and faster feedback cycles
+- **Champion Identification**: Work with early adopters to influence resistant team members
+- **Risk Mitigation**: Address concerns about planning and predictability
+- **Gradual Transition**: Phase in practices over multiple sprints rather than big-bang approach
+- **Metrics**: Show improved delivery speed and quality through sprint retrospectives
+
+
+
+### Vendor Integration Challenge
+**Question**: "Your E&P application needs to integrate with 5 different third-party seismic data providers, each with different APIs and data formats. One vendor's API is frequently down. How do you design a resilient solution?"
+
+**Response Framework**:
+- **Architecture Design**: Implement adapter pattern for each vendor with standardized internal format
+- **Resilience Patterns**: Circuit breaker, retry with exponential backoff, bulkhead isolation
+- **Data Strategy**: Implement caching layer and offline capabilities
+- **Monitoring**: Health checks for each vendor, alerting on failures
+- **Fallback Options**: Secondary data sources, graceful degradation of features
+- **Contract Negotiation**: SLA requirements, penalty clauses for downtime
+- **Testing Strategy**: Chaos engineering to simulate vendor failures
+
+
+
+### Junior Developer Struggling
+**Question**: "A junior developer on your team is consistently missing deadlines and producing buggy code. Other team members are complaining. How do you address this?"
+
+**Response Framework**:
+- **One-on-One Discussion**: Understand underlying issues (knowledge gaps, personal challenges)
+- **Skill Assessment**: Identify specific technical areas needing improvement
+- **Mentorship Program**: Pair with senior developer, code review process enhancement
+- **Task Adjustment**: Assign appropriate complexity tasks with clear acceptance criteria
+- **Training Plan**: Structured learning path with measurable milestones
+- **Progress Monitoring**: Weekly check-ins, feedback sessions
+- **Team Communication**: Address team concerns while maintaining individual's confidence
+- **Decision Timeline**: Set clear improvement timeline with defined success metrics
+
+### Scope Creep Management
+**Question**: "Midway through a 6-month E&P data management project, the client requests additional features that would double the scope. They expect the same timeline. How do you handle this?"
+
+**Response Framework**:
+- **Impact Analysis**: Calculate time, resource, and risk implications of new requirements
+- **Stakeholder Meeting**: Present analysis with clear trade-offs and options
+- **Options Presentation**: Phase 2 approach, extended timeline, or reduced Phase 1 scope
+- **Value Prioritization**: Work with client to rank features by business impact
+- **Documentation**: Formal change request process with sign-offs
+- **Team Protection**: Ensure team doesn't bear unrealistic pressure
+- **Communication**: Regular updates on revised timeline and deliverables
+
+### System Integration Failure
+**Question**: "Your new Angular application needs to integrate with a legacy mainframe system for E&P production data. The integration keeps failing, and you have no mainframe expertise on your team. Launch is in 2 weeks."
+
+**Response Framework**:
+- **Expert Consultation**: Immediately engage mainframe specialists or vendor support
+- **Alternative Solutions**: API gateway, middleware solutions, data replication strategies
+- **Risk Assessment**: Evaluate impact of delayed integration vs workaround solutions
+- **Parallel Work**: Continue with other features while addressing integration
+- **Stakeholder Communication**: Transparent updates on challenges and mitigation plans
+- **Contingency Planning**: Manual data export/import as temporary solution
+- **Knowledge Transfer**: Ensure team learns from specialists for future maintenance
 
 
 

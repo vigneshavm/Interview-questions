@@ -9,6 +9,7 @@
 | **Upgrade Topics**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
 | **Additional Topics** | -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Agile Concepts](#Agile-Concepts) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
 | **Bank** | -  [Isolation](#choosing-the-right-isolation-level-for-banking-transactions)  -  [Deadlock detection and-prevention](#deadlock-detection-and-prevention-in-banking-systems) -  [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api) * [Consistency Across Microservices](#consistency-across-microservices) * [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications) * [preventing-race-conditions](#preventing-race-conditions-in-concurrent-withdrawals)
+| High-Level Design  and  Low-Level Design   | [High-Level Design](#high-level-design), -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   
 
 
 ### **Troubleshooting Debugging and Upgrading existing software**
@@ -911,6 +912,79 @@ Options:
    * Safe and reliable for **eventual consistency**
 
 I choose the right pattern based on **criticality**, **latency**, and **reliability** of the use case.
+
+
+
+
+### **High-Level Design**
+
+**Definition:**
+HLD describes the **overall architecture and structure of a system**. It focuses on **what the system will do**, its components, and their relationships, **without going into detailed implementation**.
+
+**Key points to mention in an interview:**
+
+* **Audience:** Primarily for stakeholders, architects, and senior developers.
+* **Scope:** System architecture, modules, data flow, technology stack, external interfaces.
+* **Focus:** Design at the **component/module level**, not code.
+* **Artifacts:**
+
+  * Block diagrams / architecture diagrams
+  * Flowcharts for major modules
+  * Technology stack decisions (e.g., Node.js backend, React frontend, MySQL database)
+* **Example:**
+
+  > “For a shoutout video app, the HLD would show modules like User App, Celebrity App, Admin Panel, Payment Gateway, Video Storage, Notification Service, and their interactions via APIs.”
+
+**How to say it in an interview:**
+
+> “HLD is the blueprint of the system. It explains how different modules interact, what technologies are used, and the overall flow, without going into code specifics.”
+
+---
+
+### **Low-Level Design**
+
+**Definition:**
+LLD describes **how each module/component will be implemented**. It focuses on **detailed logic, classes, methods, database schemas, and APIs**.
+
+**Key points to mention in an interview:**
+
+* **Audience:** Developers who will implement the code.
+* **Scope:** Internal design of modules, classes, data structures, APIs, algorithms.
+* **Focus:** **Code-level details** to guide development.
+* **Artifacts:**
+
+  * Class diagrams / sequence diagrams
+  * Database schema with table structures
+  * Pseudocode or flowcharts for algorithms
+  * API contracts (request/response structures)
+* **Example:**
+
+  > “For the Video Request module, LLD would define `RequestController` methods (`createRequest`, `cancelRequest`), `Request` model structure, validation rules, payment flow, and notification triggers.”
+
+**How to say it in an interview:**
+
+> “LLD is where we translate the high-level architecture into actual code-level designs, specifying classes, methods, data models, and APIs to implement each module.”
+
+---
+
+### **Key Differences HLD Vs LLD**
+
+
+* If asked to **draw**, start with **HLD** (big boxes, arrows showing module interaction), then **zoom into LLD** (class/method-level details).
+* Always **mention why HLD first, then LLD**, showing you understand **top-down design thinking**.
+
+
+| Feature      | HLD                                                           | LLD                                                                                    |
+| ------------ | ------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Focus        | System architecture and module interactions                   | Detailed design of each module/component                                               |
+| Detail Level | High-level, abstract                                          | Low-level, concrete                                                                    |
+| Audience     | Stakeholders, architects                                      | Developers                                                                             |
+| Artifacts    | Architecture diagrams, module diagrams                        | Class diagrams, sequence diagrams, database schema, pseudocode                         |
+| Example      | Payment Gateway interacts with Escrow & Notification services | `PaymentService.processPayment()` checks escrow, calculates GST, triggers notification |
+
+---
+
+
 
 
 

@@ -9,7 +9,7 @@
 | **Modules, Namespaces, Compiler** | [Namespaces and Modules](#namespaces-and-modules) • [Module System](#module-system-in-typescript) • [`tsconfig.json` Compiler Options](#tsconfigjson-compiler-options) • [`esModuleInterop` vs `allowSyntheticDefaultImports`](#esmoduleinterop-vs-allowsyntheticdefaultimports)                           |
 | **Functions & Behavior**          | [Function Overloading](#function-overloading) • [Declaration Merging](#declaration-merging)                                                                                                                                                                                                                                |
 | **Objects & Collections**         | [`Map` vs Plain JavaScript Object](#difference-between-map-and-plain-objects) • [`Map` vs `WeakMap`](#map-vs-weakmap) • [`Set` vs `WeakSet`](#set-vs-weakset) • [WeakMap and WeakSet Usage](#weakmap-and-weakset-usage)                                                                                                  |
-| **Patterns & Orchestration** |     - [SOLID Principles](#solid-principles) |
+| **Patterns & Orchestration** |     - [SOLID Principles](#solid-principles) - [SAGA Pattern](#SAGA-Pattern) |
 
 
  
@@ -2486,5 +2486,101 @@ Finally, with **DIP (Dependency Inversion Principle)**, our **notification servi
 
 > Now you can easily switch from `MySQLDatabase` to `MongoDatabase` without changing `UserService`.
 
+## SAGA Pattern
 
+* **Event-driven, distributed transaction pattern** for microservices.
+* Breaks a **long-running transaction** into **independent steps** with **compensating actions**.
+* Ensures **eventual consistency** without using 2PC (two-phase commit).
+
+**Patterns:**
+
+* **Choreography:** Services listen/respond to events, no central controller.
+* **Orchestration:** Central orchestrator manages the flow of steps.
+
+**Use Case:**
+
+* E-commerce or shoutout platform flow — **Order → Payment → Inventory → Shipping**.
+* Each service completes its action; if any step fails, **compensating transactions** roll back previous steps.
+
+**Benefits:**
+
+* Maintains **data consistency**.
+* Supports **failure recovery** with compensation.
+* Avoids **distributed locks** and complex ACID transactions.
+
+
+---
+
+**Key Points to Highlight in Interview:**
+
+* **Centralized vs event-driven coordination** (Orchestration vs Choreography).
+* **Compensating transactions** ensure rollback on failure.
+* Supports **eventual consistency** in distributed systems.
+* Works well in **microservices architecture** where ACID is impractical.
+* Practical demonstration: **Node.js orchestrator, async/await, MongoDB/RabbitMQ for persistence and messaging**.
+
+---
+
+### **Shoutout Video Platform Example (Node.js)**
+
+**Flow:**
+
+```
+[User Request]
+    ↓
+[Reserve Request]  → (Compensate: Cancel reservation)
+    ↓
+[Charge Payment]   → (Compensate: Refund)
+    ↓
+[Notify Celebrity] → (Compensate: Cancel + Refund)
+    ↓
+[Upload Video]     → (Compensate: Refund after SLA expiry)
+    ↓
+[Mark Delivered + Release Payout]
+```
+
+**Node.js Orchestrator Snippet:**
+
+```js
+async function shoutoutSaga(data) {
+  let request, payment, notification;
+
+  try {
+    request = await RequestService.reserve({ requestId: data.requestId });
+    payment = await PaymentService.charge(data.userId, data.amount);
+    notification = await NotificationService.notify(data.celebrityId, data.requestId);
+
+    console.log("✅ Saga completed successfully");
+    return { status: "success" };
+
+  } catch (error) {
+    console.log("❌ Saga failed, compensating...");
+
+    if (notification?.notificationId) await NotificationService.undo(notification.notificationId);
+    if (payment?.paymentId) await PaymentService.refund(payment.paymentId);
+    if (request?.requestId) await RequestService.cancel(request.requestId);
+
+    return { status: "failed", reason: error.message };
+  }
+}
+```
+
+**Example Run:**
+
+```js
+await shoutoutSaga({
+  requestId: "REQ001",
+  userId: "USER001",
+  celebrityId: "CELEB001",
+  amount: 999
+});
+```
+
+**Output:**
+
+* On success: all steps complete, payout released.
+* On failure: previous steps **rolled back** using compensation.
+
+
+---
 

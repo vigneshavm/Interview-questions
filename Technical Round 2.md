@@ -13,13 +13,9 @@
 
 
 
-- [Performance Issues](#angular-performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management)
-- [Production Incident](#production-incident) - [Technical Debt Management](#technical-debt-management) - [Database Performance Crisis](#database-performance-crisis)
-- [Cloud Migration Challenge](#cloud-migration-challenge) - [Security Breach Response](#security-breach-response)
-- [Cross-Cultural Team Management](#cross-cultural-team-management) - [Technology Stack Decision](#technology-stack-decision)
-- [Agile Transformation Resistance](#agile-transformation-resistance) - [Vendor Integration Challenge](#vendor-integration-challenge)
-- [Junior Developer Struggling](#junior-developer-struggling) - [Scope Creep Management](#scope-creep-management)
-- [System Integration Failure](#system-integration-failure)
+- [Performance Issues](#angular-performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management) - [Production Incident](#production-incident) - [Technical Debt Management](#technical-debt-management) - [Database Performance Crisis](#database-performance-crisis)
+- [Cloud Migration Challenge](#cloud-migration-challenge) - [Security Breach Response](#security-breach-response) - [Cross-Cultural Team Management](#cross-cultural-team-management) - [Technology Stack Decision](#technology-stack-decision)
+- [Agile Transformation Resistance](#agile-transformation-resistance) - [Vendor Integration Challenge](#vendor-integration-challenge) - [Junior Developer Struggling](#junior-developer-struggling) - [Scope Creep Management](#scope-creep-management) - [System Integration Failure](#system-integration-failure)
 
 
 

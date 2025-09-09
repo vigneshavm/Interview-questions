@@ -5799,8 +5799,11 @@ I check where the time is being spent:
 
 So, in short: **`.env` for local, Secret Manager for production** — that keeps the application both flexible and secure."
 
-- In a Jenkins CI/CD pipeline, we never hardcode secrets. Instead, we store them in the Jenkins Credentials Store and inject them at runtime using the withCredentials block. Each environment (dev, stage, prod) has its own separate credentials, and the pipeline picks the right one based on the deployment target.
-- For enterprise setups, we integrate Jenkins with Secret Managers like AWS Secrets Manager or HashiCorp Vault to enable secure storage, automatic rotation, and auditing. This ensures secrets are always isolated, encrypted, and environment-specific."
+- In a **Jenkins CI/CD pipeline**, we **never hardcode secrets**. Instead, we store them in the **Jenkins Credentials Store** and **inject them at runtime** using the `withCredentials` block.
+- Each **environment (dev, stage, prod)** has its own **separate credentials**, and the pipeline picks the right one based on the **deployment target**. For **enterprise setups**,
+- we integrate Jenkins with **Secret Managers** like **AWS Secrets Manager** or **HashiCorp Vault** to enable **secure storage, automatic rotation, and auditing**.
+- This ensures secrets are always **isolated, encrypted, and environment-specific**."
+
 
 ---
 

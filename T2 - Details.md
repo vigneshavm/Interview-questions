@@ -20,8 +20,8 @@
 | Agile Methodology & Process Management | Measure project success and team performance from the beginning? | [Go](#measure-project-success-and-team-performance-from-the-beginning) |
 
 
-**Main Section** | **Sub-Title** | **Link** |
-------------------|---------------|----------|
+**Main Section** | **Sub-Title** |
+------------------|---------------|
 | **Requirements Analysis & Project Initiation** | Project Initiation Requirements (#project-initiation-requirements) |
 - Managing stakeholder pressure while ensuring proper software planning and quality delivery (#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) |
 - Managing conflicting requirements from multiple stakeholders (#managing-conflicting-requirements-from-multiple-stakeholders) |

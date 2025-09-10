@@ -20,19 +20,16 @@
 | Agile Methodology & Process Management | Measure project success and team performance from the beginning? | [Go](#measure-project-success-and-team-performance-from-the-beginning) |
 
 
-**Main Section** | **Sub-Title** |
-------------------|---------------|
-| **Requirements Analysis & Project Initiation** | Project Initiation Requirements (#project-initiation-requirements) |
-- Managing stakeholder pressure while ensuring proper software planning and quality delivery (#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) |
-- Managing conflicting requirements from multiple stakeholders (#managing-conflicting-requirements-from-multiple-stakeholders) |
-| **Architecture & Technical Planning** | Technology stack selection for a new project? (#technology-stack-selection-for-a-new-project) |
-- Design the system architecture for a complex web application. (#design-the-system-architecture-for-a-complex-web-application) |
-- Handle performance requirements from the beginning of a project? (#handle-performance-requirements-from-the-beginning-of-a-project) |
-| **Team Management & Process Setup** | Build and structure effective teams (#build-and-structure-effective-teams) |
-- Ensure code quality and maintainability from project start? (#ensure-code-quality-and-maintainability-from-project-start) |
-| **Risk Management & Problem Solving** | Common risks in software projects and how do you mitigate them? (#common-risks-in-software-projects-and-how-do-you-mitigate-them) - Technical blocker emerges 3 weeks into development. How do you handle this? (#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
-| **Client Communication & Stakeholder Management** | Manage client expectations during project startup when there are many unknowns? (#manage-client-expectations-during-project-startup-when-there-are-many-unknowns) - Add features mid-project that weren’t in the original scope. How do you handle this? (#add-features-mid-project-that-werent-in-the-original-scope-how-do-you-handle-this) - Communicate technical concepts to non-technical stakeholders? (#communicate-technical-concepts-to-non-technical-stakeholders) |
-| **Agile Methodology & Process Management** | Implement Agile methodology in a new project team? (#implement-agile-methodology-in-a-new-project-team) - Measure project success and team performance from the beginning? (#measure-project-success-and-team-performance-from-the-beginning) |
+# 📑 Detailed Lookup / Quick Navigation  
+
+| **Main Section** | **Sub-Titles (with Links)** |
+|------------------|------------------------------|
+| **Requirements Analysis & Project Initiation** | - [Project Initiation Requirements](#project-initiation-requirements)<br> - [Managing stakeholder pressure while ensuring proper software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery)<br> - [Managing conflicting requirements from multiple stakeholders](#managing-conflicting-requirements-from-multiple-stakeholders) |
+| **Architecture & Technical Planning** | - [Technology stack selection for a new project?](#technology-stack-selection-for-a-new-project)<br> - [Design the system architecture for a complex web application.](#design-the-system-architecture-for-a-complex-web-application)<br> - [Handle performance requirements from the beginning of a project?](#handle-performance-requirements-from-the-beginning-of-a-project) |
+| **Team Management & Process Setup** | - [Build and structure effective teams](#build-and-structure-effective-teams)<br> - [Ensure code quality and maintainability from project start?](#ensure-code-quality-and-maintainability-from-project-start) |
+| **Risk Management & Problem Solving** | - [Common risks in software projects and how do you mitigate them?](#common-risks-in-software-projects-and-how-do-you-mitigate-them)<br> - [Technical blocker emerges 3 weeks into development. How do you handle this?](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
+| **Client Communication & Stakeholder Management** | - [Manage client expectations during project startup when there are many unknowns?](#manage-client-expectations-during-project-startup-when-there-are-many-unknowns)<br> - [Add features mid-project that weren’t in the original scope. How do you handle this?](#add-features-mid-project-that-werent-in-the-original-scope-how-do-you-handle-this)<br> - [Communicate technical concepts to non-technical stakeholders?](#communicate-technical-concepts-to-non-technical-stakeholders) |
+| **Agile Methodology & Process Management** | - [Implement Agile methodology in a new project team?](#implement-agile-methodology-in-a-new-project-team)<br> - [Measure project success and team performance from the beginning?](#measure-project-success-and-team-performance-from-the-beginning) |
 
 ## Requirements Analysis & Project Initiation
 ### Project Initiation Requirements

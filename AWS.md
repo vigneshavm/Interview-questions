@@ -1774,6 +1774,21 @@ await client.send(command); // Returns immediately
 
 ### Amazon S3
 
+- [S3 deleltion](#s3-deletion)
+
+## s3 deletion
+In S3, **object deletion behavior depends on versioning**.
+
+* **Without versioning**, a delete request **permanently removes the object**, and it cannot be recovered.
+* **With versioning enabled**, a delete request doesn’t remove the data immediately. Instead, S3 creates a **delete marker** that becomes the latest version, so the object looks deleted but **older versions are still retained**. You can restore the object by removing the delete marker.
+* To **permanently remove an object in a versioned bucket**, you must delete it using its **`VersionId`**.
+* Additionally, S3 supports **event notifications** like `s3:ObjectRemoved:Delete` and `s3:ObjectRemoved:DeleteMarkerCreated` so you can trigger Lambda, SQS, or SNS when deletions occur.
+
+**Key point:** *No versioning → permanent delete, With versioning → delete marker (recoverable), Permanent removal → delete by VersionId.*
+
+
+
+
 | **Topic**                             | **Answer**                                                                                                                                                                                                               |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Overview of Amazon S3**             | Amazon S3 (**Simple Storage Service**) is an **object storage service** offering **scalability, availability, and durability** for storing any volume of data.                                                           |

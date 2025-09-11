@@ -1069,6 +1069,7 @@ export default App;
 
 ## Redux – Predictable State Management
 
+
 **Redux** is a predictable state container for JavaScript applications.  
 It helps manage **application state** in a **centralized store**, making data flow easier to debug and test.
 
@@ -1093,6 +1094,11 @@ It helps manage **application state** in a **centralized store**, making data fl
 4. **Store** updates, and **UI** re-renders with new state
 
 ---
+** Two actions are dispatched "simultaneously" and both try to update the store**
+ - Redux processes actions synchronously, one after another.
+- If two actions update different slices → both updates are kept.
+- If they update the same slice/key → the last dispatched action wins.
+- For async actions (like API calls), the order of completion determines the final state. The last resolved action wins if both write to the same piece of state.
 
 ```jsx
 // Action

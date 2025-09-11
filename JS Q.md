@@ -5410,6 +5410,30 @@ console.log(a, "A5"); // 10 A5
 
 
 
+```js
+x = 5;
+y = 10;
+x = x++ + y++;
+```
+
+### Variations (what happens if we swap increments)
+
+| Expression      | Result of RHS | Final `x` | Final `y` | Explanation                                         |
+| --------------- | ------------- | --------- | --------- | --------------------------------------------------- |
+| `x = x++ + y++` | 5 + 10 = 15   | 15        | 11        | `x++` → 5 (`x=6`), `y++` → 10 (`y=11`), assign → 15 |
+| `x = ++x + y++` | 6 + 10 = 16   | 16        | 11        | `++x` → 6, `y++` → 10 (`y=11`), assign → 16         |
+| `x = x++ + ++y` | 5 + 11 = 16   | 16        | 11        | `x++` → 5 (`x=6`), `++y` → 11, assign → 16          |
+| `x = ++x + ++y` | 6 + 11 = 17   | 17        | 11        | `++x` → 6, `++y` → 11, assign → 17                  |
+
+
+👉 In all cases:
+
+* `y` ends at `11` (because only increment happens, no overwrite).
+* `x` ends at the RHS expression’s result (because it’s reassigned).
+
+---
+
+
 
 ### **JS Object Coercion**
 

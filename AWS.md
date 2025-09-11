@@ -1778,7 +1778,7 @@ await client.send(command); // Returns immediately
 
 ## s3 deletion
 In S3, **object deletion behavior depends on versioning**.
-
+* **Default behavior = Permanent deletion (no recovery).**
 * **Without versioning**, a delete request **permanently removes the object**, and it cannot be recovered.
 * **With versioning enabled**, a delete request doesn’t remove the data immediately. Instead, S3 creates a **delete marker** that becomes the latest version, so the object looks deleted but **older versions are still retained**. You can restore the object by removing the delete marker.
 * To **permanently remove an object in a versioned bucket**, you must delete it using its **`VersionId`**.

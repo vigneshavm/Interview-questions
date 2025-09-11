@@ -1774,9 +1774,9 @@ await client.send(command); // Returns immediately
 
 ### Amazon S3
 
-- [S3 deleltion](#s3-deletion)
+- [S3 deleltion](#s3-deletion) - [S3 Events](#s3-Events)
 
-## s3 deletion
+## S3 deletion
 In S3, **object deletion behavior depends on versioning**.
 * **Default behavior = Permanent deletion (no recovery).**
 * **Without versioning**, a delete request **permanently removes the object**, and it cannot be recovered.
@@ -1786,7 +1786,34 @@ In S3, **object deletion behavior depends on versioning**.
 
 **Key point:** *No versioning → permanent delete, With versioning → delete marker (recoverable), Permanent removal → delete by VersionId.*
 
+## S3 Events
 
+In Amazon S3, **events work through bucket notifications**. By default, S3 does **not** send any events — you have to **configure them**.
+
+* **Trigger:** An event is generated when certain actions happen in the bucket, such as **object creation, deletion, or restoration**.
+* **Event Types:** Examples include **`s3:ObjectCreated:*`** (uploads), **`s3:ObjectRemoved:*`** (deletes), and **`s3:ObjectRestore:Completed`** (restore from Glacier).
+* **Filtering:** You can add **prefix and suffix filters** (e.g., only trigger for `images/*.jpg`).
+* **Destinations:** Events can be delivered to:
+
+  * **AWS Lambda** → run custom code automatically
+  * **Amazon SQS** → push to a queue for processing
+  * **Amazon SNS** → publish notifications to subscribers
+
+**Key Points:**
+
+* **Events are not retroactive** (only trigger after setup).
+* **S3 must have permissions** to invoke the target service.
+* Events may be **batched** when many objects are updated quickly.
+
+**Config**
+1. **AWS Management Console:**
+
+   * Go to the **S3 bucket → Properties → Event notifications**.
+   * Click **Create event notification**.
+   * Choose **event types** (e.g., `ObjectCreated`, `ObjectRemoved`), **optional filters** (prefix/suffix), and **destination** (Lambda, SNS, SQS).
+
+
+---
 
 
 | **Topic**                             | **Answer**                                                                                                                                                                                                               |

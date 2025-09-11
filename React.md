@@ -1094,7 +1094,7 @@ It helps manage **application state** in a **centralized store**, making data fl
 4. **Store** updates, and **UI** re-renders with new state
 
 ---
-** Two actions are dispatched "simultaneously" and both try to update the store**
+**Two actions are dispatched "simultaneously" and both try to update the store**
  - Redux processes actions synchronously, one after another.
 - If two actions update different slices → both updates are kept.
 - If they update the same slice/key → the last dispatched action wins.

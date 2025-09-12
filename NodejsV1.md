@@ -2579,7 +2579,7 @@ export const refreshToken = (req: Request, res: Response) => {
 ## packagejson vs package lockjson
 
 * **`package.json`** defines the **metadata and dependencies** of a Node.js project. It tells npm **what packages are needed** and can include **version ranges**.
-* **`package-lock.json`** records the **exact versions** of those packages **and all nested dependencies**. It’s **auto-generated** and ensures **reproducible builds** across environments.
+* **`package-lock.json`** records the **exact versions** of those packages **and all nested dependencies**. It’s **auto-generated** and ensures **Consistent builds** across environments.
 * **Key point**: `package.json` is **for humans**, `package-lock.json` is **for the system**.
 * Example: Even if `package.json` allows a range, **package-lock.json guarantees everyone installs `express@4.18.2`**.
 

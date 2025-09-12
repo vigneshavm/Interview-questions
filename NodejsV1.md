@@ -8,7 +8,7 @@
 | **Processes**                | [Event Loop](#event-loop),  - [Async I/O Handling](#asynchronous-io-handling),  - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks),  - [Async Execution Order](#Async-Execution-Order),  - [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick),   |
 | **Processes**                | - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
 | **Async and Middleware** |  [BackPressure](#BackPressure)  - [FS(File System)](#FS), - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
-| **Package JSON**             | [package.json](#packagejson),  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
+| **Package JSON**             | [package.json](#packagejson),  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [npm install vs npm ci](#npm-install-vs-npm-ci] - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
 | **REST API & Security**      | [REST API](#rest-api),  -[HTTP methods](#http-methods) - [RESTAPI version](#restapi-version) - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) , - [API Slow](#API-Slow) -[Prevent Abusive Network API Call](#Prevent-abusive-network-calls-in-an-API)|
 | **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) -[Keep secrets in Node.js](#keep-secrets-in-nodejs) |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
@@ -5959,6 +5959,9 @@ So, in short: **`.env` for local, Secret Manager for production** — that keeps
 
 ---
 
+## npm install vs npm ci
 
+ - `npm install` looks at `package.json` and installs dependencies, updating `package-lock.json` if needed. It’s used in local development when you may add or update packages.
+ - `npm ci` is meant for CI/CD – it removes `node_modules` and installs exactly what’s in `package-lock.json`, ensuring reproducible and faster builds. It will fail if `package.json` and lockfile are out of sync.
 
-
+So, **install = flexible for dev**, **ci = strict and deterministic for pipelines**.

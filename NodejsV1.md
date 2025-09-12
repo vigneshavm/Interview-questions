@@ -102,37 +102,123 @@ tsconfig.json
 
 ## **Event Loop**
 
- - The **event loop** is the mechanism helps to perform **non-blocking I/O operations** —despite being **single-threaded**
- - by **offloading operations** (like timers, I/O, or events) and **processing their callbacks asynchronously**.
-* It **enables asynchronous operations like network requests, file I/O, or database queries to be performed without blocking the main thread**.
 
-* Node.js achieves this through a combination of:
-  * **Event-driven architecture**   * **Callback functions**   * **The libuv library**, which manages the thread pool and event loop.
+* The **event loop** is the mechanism that allows Node.js to perform **non-blocking I/O** on a **single thread**.
+* It achieves this by **offloading async operations** (network, file I/O, timers) to **libuv’s thread pool**, then processing their **callbacks asynchronously**.
 * As a result, Node.js can efficiently handle **thousands of concurrent connections**.
+
+
+* **Call Stack** → Runs synchronous code.
+* **Event Queue (Macrotasks)** → Timers, I/O, `setTimeout`, `setImmediate`.
+* **Microtask Queue** → Promises, `process.nextTick`, always runs **before macrotasks**.
+* The **event loop** coordinates between them to make async feel seamless.
+
+
+**Execution Flow**
+
+1. Run all **synchronous code** (top-level).
+2. Process **process.nextTick()** queue.
+3. Process **microtask queue** (Promises).
+4. Enter **event loop phase** (timers, poll, check, etc.).
+5. After each phase, run microtasks again.
+6. Repeat infinitely.
+
+
+- [Call Stack](#call-stack)
+- [Event Queue (Macrotask Queue)](#event-queue-macrotask-queue)
+- [Microtask Queue (Task Queue)](#microtask-queue-task-queue)
+- [Event Loop Phases](#event-loop-phases)
+- [Microtasks vs Macrotasks](#microtasks-vs-macrotasks)
+
+
+### **Call Stack**
+
+* The **call stack** is where JavaScript executes code **synchronously**.
+* Functions are pushed when called and popped when returned.
+* If the call stack is **busy**, nothing else runs (that’s why heavy computation blocks the event loop).
+
+👉 Example:
+
+```js
+function a() { b(); }
+function b() { console.log("Hello"); }
+a(); // Call stack: [a → b], then pops off
+```
 
 ---
 
-### 2. Phases of the Event Loop
-Each tick of the event loop is divided into **phases**, which are executed in a specific order:
+### **Event Queue (Macrotask Queue)**
 
-| Phase                 | Description                                                                   |
-| --------------------- | ----------------------------------------------------------------------------- |
-| **Timers**            | Executes callbacks from `setTimeout()` and `setInterval()`                    |
-| **Pending Callbacks** | Executes I/O callbacks deferred to the next loop iteration                    |
-| **Idle/Prepare**      | Internal use (preparing for the next cycle)                                   |
-| **Poll**              | Retrieves new I/O events; executes I/O-related callbacks (e.g., file, socket) |
-| **Check**             | Executes callbacks from `setImmediate()`                                      |
-| **Close Callbacks**   | Executes callbacks for closed resources (e.g., `socket.on('close')`)          |
+* Holds **callbacks** from async operations (timers, DOM events, I/O).
+* Works in **FIFO order** (first in, first out).
+* When the **call stack is empty**, the event loop moves one task from the **event queue** into the stack.
 
-**Event Queue** -The Event Queue (also known as the Callback Queue or Task Queue) 
+👉 Example:
 
-- The event queue is FIFO (First In, First Out).
-- It handles macrotasks like setTimeout, setInterval, DOM events.
-- Microtasks (like Promise.then) are handled by the microtask queue, which has higher priority than the event queue.
+```js
+console.log("start");
+setTimeout(() => console.log("timeout"), 0); // goes into event queue
+console.log("end");
+// Output: start → end → timeout
+```
+
+---
+
+### **Microtask Queue (Task Queue)**
 
 
-### 3. How the Event Loop Works (Step-by-Step)
+* Holds **microtasks**, which have **higher priority** than macrotasks.
+* Includes: `Promise.then()`, `queueMicrotask()`, and `process.nextTick()` (Node.js).
+* After **every execution of the call stack** (and between event loop phases), all microtasks are processed **before any macrotasks**.
 
+👉 Example:
+
+```js
+console.log("start");
+
+setTimeout(() => console.log("timeout"), 0);   // macrotask
+Promise.resolve().then(() => console.log("promise")); // microtask
+
+console.log("end");
+// Output: start → end → promise → timeout
+```
+
+---
+
+
+
+
+
+### **Event Loop Phases**
+
+Executed in a defined order:
+
+1. **Timers** → Executes callbacks from `setTimeout()` and `setInterval()`.
+2. **Pending Callbacks** → Executes I/O callbacks deferred to the next loop iteration.
+3. **Idle/Prepare** → Internal (libuv preparing for next cycle).
+4. **Poll** → Retrieves new I/O events and executes I/O callbacks (sockets, files).
+5. **Check** → Executes `setImmediate()` callbacks.
+6. **Close Callbacks** → Handles `socket.on('close')`, cleanup, etc.
+
+---
+
+### **Microtasks vs Macrotasks**
+
+* **Microtasks** → Run *immediately after* the current operation, **before moving to the next phase**.
+
+  * Examples: `process.nextTick()`, `Promise.then()`, `queueMicrotask()`.
+* **Macrotasks** → Scheduled in phases of the event loop.
+
+  * Examples: `setTimeout()`, `setInterval()`, `setImmediate()`, I/O callbacks.
+* **Priority order**:
+
+  1. Current synchronous code.
+  2. `process.nextTick()` (highest priority).
+  3. Other microtasks (Promises).
+  4. Next event loop phase (macrotask).
+
+
+**Execution**
    
   * **Node.js begins by executing top-level synchronous code** directly on the **call stack**.
   * **Asynchronous operations** (e.g., file system access, DNS lookups, network calls, crypto) are **offloaded to the libuv thread pool**.
@@ -169,24 +255,6 @@ Each tick of the event loop is divided into **phases**, which are executed in a 
 │  └ close callbacks            │
 └───────────────────────────────┘
 ```
-
-
-### **Microtasks vs Macrotasks**
-
-
-| Category       | Description                                                                            | Examples                                                         |
-| -------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| **Microtasks** | Executed **immediately after the current operation**, before the next event loop tick. | `process.nextTick()`, `Promise.then()`, `queueMicrotask()`       |
-| **Macrotasks** | Scheduled in specific **phases of the event loop**. They are executed one per tick.    | `setTimeout()`, `setInterval()`, `setImmediate()`, I/O callbacks |
-
-
- - Microtasks always run after the currently executing task and before the next phase begins.
- - process.nextTick() is a special kind of microtask that runs before other microtasks like Promises.
-- process.nextTick(): Even higher — before other microtasks.
- - Microtasks: Higher priority, run between phases.
- - Macrotasks: Scheduled in specific phases of the event loop.
-
-
 
 
 ---

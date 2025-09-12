@@ -5961,12 +5961,15 @@ So, in short: **`.env` for local, Secret Manager for production** — that keeps
 
 ## npm install vs npm ci
 
- - `npm install` looks at `package.json` and installs dependencies, updating `package-lock.json` if needed. It’s used in local development when you may add or update packages.
- - `npm ci` is meant for CI/CD – it removes `node_modules` and installs exactly what’s in `package-lock.json`, ensuring reproducible and faster builds. It will fail if `package.json` and lockfile are out of sync.
+
+* **`npm install`** looks at **`package.json`** and installs dependencies, **updating `package-lock.json` if needed**. It’s used in **local development** when you may **add or update packages**.
+* **`npm ci`** is meant for **CI/CD** – it **removes `node_modules`** and installs **exactly what’s in `package-lock.json`**, ensuring **reproducible and faster builds**. It will **fail if `package.json` and lockfile are out of sync**.
 
 So, **install = flexible for dev**, **ci = strict and deterministic for pipelines**.
 
 
+
+---
 
 
 

@@ -9,7 +9,7 @@
 | **Processes**                | - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
 | **Async and Middleware** |  [BackPressure](#BackPressure)  - [FS(File System)](#FS), - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
 | **Package JSON**             | [package.json](#packagejson),  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
-| **REST API & Security**      | [REST API](#rest-api),  -[HTTP methods](#http-methods) - [RESTAPI version](#restapi-version) - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) , - [API Slow](#API-Slow) |
+| **REST API & Security**      | [REST API](#rest-api),  -[HTTP methods](#http-methods) - [RESTAPI version](#restapi-version) - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) , - [API Slow](#API-Slow) -[Prevent Abusive Network API Call](#Prevent-abusive-network-calls-in-an-API)|
 | **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) -[Keep secrets in Node.js](#keep-secrets-in-nodejs) |
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
@@ -4971,6 +4971,41 @@ npm start
 * Open `http://localhost:3000` in two browser tabs.
 * Type a message and send.
 * You’ll see real-time messages on both tabs!
+
+
+
+
+
+
+## Prevent abusive network calls in an API
+
+I follow a **multi-layered approach**:
+
+1. **Rate Limiting & Throttling** – I apply limits per IP, per user, or per token to stop spamming. This can be done at the API Gateway, with Nginx, or using libraries like *express-rate-limit* in Node.js.
+
+2. **Authentication & Authorization** – Every API call is authenticated using JWT or OAuth, and role-based authorization ensures that only permitted users can access sensitive endpoints.
+
+3. **Input Validation & Payload Control** – I validate and sanitize inputs with Joi or Zod, and I restrict payload sizes to prevent unnecessary large requests.
+
+4. **Caching & Idempotency** – I use caching for frequently requested data and idempotency keys for POST calls, which avoids duplicate processing from repeated requests.
+
+5. **Infrastructure Protections** – At the Nginx or WAF layer, I enforce request limits, block suspicious User-Agents, and use AWS WAF to filter out injection attacks or DDoS patterns.
+
+6. **Monitoring & Alerts** – I continuously log and monitor traffic with CloudWatch or ELK, and set up anomaly detection with tools like GuardDuty or Fail2Ban to automatically respond to abusive patterns.
+
+By combining these layers — **API design, infrastructure controls, and monitoring** — I can effectively prevent abusive and unnecessary network calls.”
+
+---
+
+
+
+
+
+
+
+
+
+
 
 
 

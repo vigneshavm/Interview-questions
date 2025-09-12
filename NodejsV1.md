@@ -5746,28 +5746,27 @@ fs.copyFile(source, destination, (err) => {
 
 ## RESTAPI version 
 
-- For REST API versioning, I typically use **URI versioning** like `/api/v1/` — it's clean, cache-friendly, and easy to manage in Express or any routing layer.*
+* **Primary approach:** I use **URI versioning** (`/api/v1/`) — it’s clean, cache-friendly, and simple to implement in frameworks like Express.
+* **Principles I follow:**
 
-- I follow these principles:*
+  1. **Non-breaking changes** stay within the same version.
+  2. **Breaking changes** trigger a new version (`/api/v2/`).
+  3. Old versions are **deprecated gradually**, with communication and monitoring.
+* **Alternative:** For advanced clients, I also support **header-based versioning** (e.g., `Accept: application/vnd.company.v1+json`).
+* **Process & stability:** I **document all versions** in Swagger/OpenAPI and maintain **CI/CD test coverage** across active versions to ensure backward compatibility and smooth migrations.
 
-* ***Non-breaking changes** stay in the same version.*
-* ***Breaking changes** trigger a new version.*
-* *Old versions are **deprecated gradually** with proper communication and monitoring.*
+**Example:**
 
-- If needed, I also support **header-based versioning** for advanced clients — using headers like `Accept: application/vnd.myapp.v1+json`.*
+* URL versioning → `GET /api/v1/users`
+* Header versioning →
 
-- Finally, I document each version using **Swagger/OpenAPI** and ensure test coverage across all active versions through CI/CD. This ensures **backward compatibility**, smooth client migration, and long-term API stability."*
+  ```
+  GET /users
+  Accept: application/vnd.company.v1+json
+  ```
 
+---
 
-Via URL versioning:
-```ts
-GET /api/v1/users
-```
-Or via headers (less common):
-```http
-GET /users
-Accept: application/vnd.company.v1+json
-```
 
 ## Why V8 Engine
 

@@ -5868,24 +5868,17 @@ User.findAll({
 
 ## API Slow 
 
-- So depending on the case,
-- if it’s external I use retries/caching,
-- if it’s app logic I profile the code,
-- if it’s DB I add indexes or caching, and
-- if it’s infra I scale horizontally.
-- The key is to measure first, then fix only where the real bottleneck is.”
 
-### **1. Detect the Slowness (Identify the Symptom)**
+
+**1. Detect the Slowness (Identify the Symptom)**
 
 * **Monitoring latency** → Use **APM tools** (New Relic, Datadog, Elastic APM) or simple logging with timestamps. Track metrics like **p50, p95, p99 response times**.
 * **Load testing** → Use **k6, Artillery, JMeter** to simulate real traffic and confirm if slowness appears under load.
   👉 *This tells you where and when the API is slow.*
 
----
+ **2. Narrow Down the Bottleneck (Where is the time spent?)**
 
-### **2. Narrow Down the Bottleneck (Where is the time spent?)**
-
-#### 🔹 **Network / External Factors**
+ 🔹 **Network / External Factors**
 
 * **When to suspect** → API depends on external services (payment gateways, 3rd party APIs).
 * **Tools / Fixes**:
@@ -5895,9 +5888,7 @@ User.findAll({
   * Use **caching** for static external responses.
     👉 *If slowness is only when external API is called → issue is external, not yours.*
 
----
-
-#### 🔹 **Application Layer (Node.js/Express logic)**
+ 🔹 **Application Layer (Node.js/Express logic)**
 
 * **When to suspect** → CPU spikes, event loop lag, blocking code (e.g., JSON parsing, loops, crypto).
 * **Tools / Fixes**:
@@ -5907,9 +5898,7 @@ User.findAll({
   * Make handlers **async/non-blocking**.
     👉 *If only certain endpoints are slow, check the logic — avoid blocking the single Node.js thread.*
 
----
-
-#### 🔹 **Database Layer (MongoDB/MySQL/Postgres)**
+ 🔹 **Database Layer (MongoDB/MySQL/Postgres)**
 
 * **When to suspect** → API works but queries are slow.
 * **Tools / Fixes**:
@@ -5921,9 +5910,7 @@ User.findAll({
   * Apply **pagination** for large datasets instead of returning everything.
     👉 *If database CPU/IO is high or query time is long → DB is the bottleneck.*
 
----
-
-#### 🔹 **Infrastructure Layer (Server/Cloud/AWS)**
+🔹 **Infrastructure Layer (Server/Cloud/AWS)**
 
 * **When to suspect** → Everything is optimized, but response times increase under load.
 * **Tools / Fixes**:
@@ -5934,9 +5921,7 @@ User.findAll({
   * Use **CDN (CloudFront)** for static content and caching.
     👉 *If slowness happens only under load → infra scaling issue.*
 
----
-
-### **3. Fix and Re-Test**
+ **3. Fix and Re-Test**
 
 * **DB bottleneck** → Add indexes, cache, pagination.
 * **Code bottleneck** → Optimize logic, async processing, workers.
@@ -5944,6 +5929,14 @@ User.findAll({
 * **Infra bottleneck** → Scale horizontally, increase resources.
 * Re-test with **load testing tools** to confirm improvements.
 
+
+- So depending on the case,
+- if it’s external I use retries/caching,
+- if it’s app logic I profile the code,
+- if it’s DB I add indexes or caching, and
+- if it’s infra I scale horizontally.
+- The key is to measure first, then fix only where the real bottleneck is.”
+- 
 ---
 
 

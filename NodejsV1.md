@@ -110,7 +110,7 @@ tsconfig.json
 
 * **Call Stack** → Runs synchronous code.
 * **Event Queue (Macrotasks)** → Timers, I/O, `setTimeout`, `setImmediate`.
-* **Microtask Queue** → Promises, `process.nextTick`, always runs **before macrotasks**.
+* **Task Queue (Microtask)** → Promises, `process.nextTick`, always runs **before macrotasks**.
 * The **event loop** coordinates between them to make async feel seamless.
 
 

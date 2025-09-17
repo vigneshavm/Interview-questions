@@ -19,12 +19,7 @@
 
 
 
-- [Security and compliance](#security-and-compliance)
-- [Ensure code-level safety](#ensure-code-level-safety-for-example-with-null-checks)
-- [Implement security across](#implement-security-across)
-- [Design for scalability on AWS](#design-for-scalability-on-aws)
-- [Docker deployment challenges](#docker-deployment-challenges)
-- [Challenges in microservices deployment](#challenges-in-microservices-deployment)
+- [Security and compliance](#security-and-compliance)   - [Ensure code-level safety](#ensure-code-level-safety-for-example-with-null-checks) - [Implement security across](#implement-security-across) - [Design for scalability on AWS](#design-for-scalability-on-aws) - [Docker deployment challenges](#docker-deployment-challenges) - [Challenges in microservices deployment](#challenges-in-microservices-deployment)
 
 
 

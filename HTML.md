@@ -192,6 +192,14 @@ my-card {
 | `async`   | Loads in parallel | As soon as downloaded |  May block     |
 | `defer`   | Loads in parallel | After HTML parsed     | ❌ No            |
 
+
+| Attribute/Tag  | Behavior                                                                                                                                               | Execution Timing                                                                  | Use Case Example                                                             |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **`<script>`** | Loads and executes JavaScript immediately. HTML parsing is **blocked** until the script finishes loading and running.                                  | Executes **immediately** when encountered in the HTML, before continuing parsing. | Inline scripts or critical scripts that must run before anything else.       |
+| **`async`**    | Script is **fetched asynchronously** while HTML parsing continues. Once downloaded, it executes **immediately**, even if HTML parsing is not finished. | Execution order is **not guaranteed** (depends on download speed).                | Independent scripts (e.g., analytics, ads, tracking) that don’t rely on DOM. |
+| **`defer`**    | Script is **fetched asynchronously** while HTML parsing continues. Execution is **deferred until HTML parsing is complete**.                           | Executes **after HTML parsing is done**, in the order they appear.                | DOM-dependent scripts (e.g., main app logic, DOM manipulation).              |
+
+
 ---
 
 ## 🟦 CSS3 Interview Questions

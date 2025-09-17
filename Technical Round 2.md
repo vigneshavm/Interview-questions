@@ -15,7 +15,7 @@
 | **Risk** | - [Common risks in software projects and how do you mitigate them?](#common-risks-in-software-projects-and-how-do-you-mitigate-them) - [Technical blocker emerges 3 weeks into development. How do you handle this?](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
 | **Agile** | - [Implement Agile methodology in a new project team?](#implement-agile-methodology-in-a-new-project-team) - [Measure project success and team performance from the beginning?](#measure-project-success-and-team-performance-from-the-beginning) - - [Agile Concepts](#Agile-Concepts) ,  - [Agile Transformation Resistance](#agile-transformation-resistance)  |
 | **Other** | - [Angular Performance Issues](#angular-performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management) - [Production Incident](#production-incident) - [Technical Debt Management](#technical-debt-management) - [Database Performance Crisis](#database-performance-crisis)
-- [Cloud Migration Challenge](#cloud-migration-challenge) - [Security Breach Response](#security-breach-response) - [Cross-Cultural Team Management](#cross-cultural-team-management) - [Technology Stack Decision](#technology-stack-decision) - [Vendor Integration Challenge](#vendor-integration-challenge)  - [Scope Creep Management](#scope-creep-management) - [System Integration Failure](#system-integration-failure)
+- [Cloud Migration Challenge](#cloud-migration-challenge) - [Security Breach Response](#security-breach-response) - [Cross-Cultural Team Management](#cross-cultural-team-management) - [Vendor Integration Challenge](#vendor-integration-challenge)  - [Scope Creep Management](#scope-creep-management) - [System Integration Failure](#system-integration-failure)
 - [Security and compliance](#security-and-compliance)   - [Ensure code-level safety](#ensure-code-level-safety-for-example-with-null-checks) - [Implement security across](#implement-security-across) - [Design for scalability on AWS](#design-for-scalability-on-aws) - [Docker deployment challenges](#docker-deployment-challenges) 
 
 ### **Troubleshooting Debugging and Upgrading existing software**
@@ -1099,17 +1099,6 @@ LLD describes **how each module/component will be implemented**. It focuses on *
 - **Process Improvement**: Implement detailed user stories, acceptance criteria, and demo sessions
 - **Regular Check-ins**: Weekly one-on-ones with key team members across regions
 
-### Technology Stack Decision
-**Question**: "The client wants to modernize their E&P data visualization from an old Java system. They're considering Angular vs React, and Node.js vs .NET Core. How do you make this recommendation?"
-
-**Response Framework**:
-- **Requirements Analysis**: Performance needs, team expertise, integration requirements, timeline
-- **Technical Evaluation**: Create proof-of-concept with both stacks using sample E&P data
-- **Considerations for E&P Domain**: 3D visualization capabilities, large dataset handling, real-time updates
-- **Team Factors**: Current team skills, training requirements, hiring market availability
-- **Ecosystem**: Third-party library availability, community support, long-term maintenance
-- **Decision Matrix**: Score each option against weighted criteria
-- **Recommendation**: Present data-driven recommendation with implementation roadmap
 
 ### Agile Transformation Resistance
 **Question**: "You're implementing Agile in a traditionally waterfall E&P project team. Senior developers are resistant and stakeholders want detailed upfront planning. How do you handle this?"

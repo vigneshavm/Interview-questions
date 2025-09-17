@@ -18,8 +18,7 @@
 | **Scaling & Operations** | [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture) |
 | **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
 | **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices overview](#Microservice-overview)
-| **Cross-Cutting Topics** | -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices) -  [Consistency Across Microservices](#maintaining-consistency-in-distributed-transactions-microservices) -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices),
-- [Challenges in microservices deployment](#challenges-in-microservices-deployment)
+| **Cross-Cutting Topics** | -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices) -  [Consistency Across Microservices](#maintaining-consistency-in-distributed-transactions-microservices) -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), - [Challenges in microservices deployment](#challenges-in-microservices-deployment)
 
 
 | **Patterns & Orchestration** |            

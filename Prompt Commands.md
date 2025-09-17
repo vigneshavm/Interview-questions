@@ -30,7 +30,7 @@ Please guide me through:
 5. AWS services to use
 6. Potential bottlenecks and solutions
 
-Format my response as if I'm explaining to senior stakeholders in a 15-minute presentation.
+Format my response as if I'm explaining to interview panal.
 ```
 
 **Prompt 2: Monolith to Microservices Migration**
@@ -48,6 +48,7 @@ Help me create a structured response covering:
 6. Rollback strategies
 
 Include specific examples and technologies I should mention.
+Format my response as if I'm explaining to interview panal.
 ```
 
 **Prompt 3: Real-time Chat Application**
@@ -66,6 +67,7 @@ Guide me through a comprehensive answer including:
 7. Cost optimization strategies
 
 Structure this as a technical deep-dive presentation.
+Format my response as if I'm explaining to interview panal.
 ```
 
 ### React & Frontend Prompts
@@ -84,7 +86,7 @@ Structure my response to cover:
 5. Trade-offs between different optimization techniques
 6. Long-term maintenance considerations
 
-Make it sound like I'm mentoring a senior developer.
+Make it sound like I'm explaining to interview panal.
 ```
 
 **Prompt 5: React Hooks Deep Dive**
@@ -101,7 +103,7 @@ Help me create a response that includes:
 5. Alternative approaches
 6. Best practices for team adoption
 
-Format as if I'm conducting a technical training session.
+Format as if I'm explaining to interview panal.
 ```
 
 ### Node.js & Backend Prompts
@@ -120,7 +122,7 @@ Structure my response to demonstrate:
 5. Debugging and optimization strategies
 6. How this knowledge influences architectural decisions
 
-Present as if explaining to both technical and semi-technical audience members.
+Present as if explaining to I'm explaining to interview panal.
 ```
 
 **Prompt 7: Authentication Strategies**
@@ -138,7 +140,7 @@ Guide me through a comprehensive answer covering:
 6. Compliance and regulatory requirements
 7. Scalability and performance impacts
 
-Structure as a technical decision-making presentation.
+Structure as a I'm explaining to interview panal.
 ```
 
 ### AWS & Cloud Prompts
@@ -158,7 +160,7 @@ Help me structure a response that shows:
 6. Migration strategies between the two
 7. Monitoring and troubleshooting approaches
 
-Format as if I'm advising a technical steering committee.
+Format as if I'm explaining to interview panal.
 ```
 
 **Prompt 9: Disaster Recovery Strategy**
@@ -176,7 +178,7 @@ Guide my response to cover:
 6. Cost optimization strategies
 7. Compliance and audit requirements
 
-Present as a comprehensive disaster recovery plan presentation.
+Present as a I'm explaining to interview panal.
 ```
 
 ## Leadership & Management Prompts
@@ -198,7 +200,7 @@ Structure my response using the STAR method and include:
 6. Results and lessons learned
 7. How this experience shapes future decisions
 
-Make it compelling and demonstrate senior leadership thinking.
+Make it I'm explaining to interview panal.
 ```
 
 **Prompt 11: Technology Evaluation Process**
@@ -216,7 +218,7 @@ Help me create a response showing:
 6. Success metrics and monitoring
 7. Examples from my experience
 
-Format as if I'm presenting to engineering leadership.
+Format as if I'm explaining to interview panal.
 ```
 
 ### Team Management Prompts
@@ -236,7 +238,7 @@ Structure my answer to demonstrate:
 6. Creating learning opportunities
 7. Measuring mentoring success
 
-Present as if sharing best practices with other technical managers.
+Present as I'm explaining to interview panal.
 ```
 
 **Prompt 13: Team Conflict Resolution**
@@ -254,7 +256,7 @@ Guide my STAR-method response to show:
 6. Team dynamics improvement
 7. Leadership lessons learned
 
-Make it demonstrate mature conflict resolution skills.
+Make it I'm explaining to interview panal.
 ```
 
 ### Stakeholder Management Prompts
@@ -274,7 +276,7 @@ Help me structure a response covering:
 6. Building trust and credibility
 7. Specific examples and success stories
 
-Format as if I'm training other technical leads.
+Format as I'm explaining to interview panal.
 ```
 
 **Prompt 15: Managing Scope Creep**
@@ -292,7 +294,7 @@ Structure my response to show:
 6. Negotiation and compromise strategies
 7. Documentation and tracking systems
 
-Present as a project management best practices guide.
+Present as a I'm explaining to interview panal.
 ```
 
 ## DevOps & Infrastructure Prompts
@@ -312,7 +314,7 @@ Guide me through a comprehensive response including:
 6. Monitoring and rollback procedures
 7. Performance optimization
 
-Structure as a technical architecture presentation.
+Structure I'm explaining to interview panal.
 ```
 
 **Prompt 17: Infrastructure as Code**
@@ -330,7 +332,7 @@ Help me create a response covering:
 6. Version control and deployment workflows
 7. Security and compliance considerations
 
-Format as if I'm leading a DevOps strategy session.
+Format as I'm explaining to interview panal.
 ```
 
 ## AI/ML Integration Prompts
@@ -350,7 +352,7 @@ Structure my response to cover:
 6. Monitoring and observability
 7. Security and privacy considerations
 
-Present as if advising on AI strategy implementation.
+Present as I'm explaining to interview panal.
 ```
 
 **Prompt 19: LLM Implementation**
@@ -368,7 +370,7 @@ Guide my response to include:
 6. Compliance and ethical considerations
 7. Scaling and performance optimization
 
-Format as a strategic AI implementation plan.
+Format as a I'm explaining to interview panal.
 ```
 
 ## Problem-Solving & Crisis Management Prompts
@@ -388,7 +390,7 @@ Help me structure a STAR response showing:
 6. Post-incident review and improvements
 7. Prevention measures and process changes
 
-Make it demonstrate strong crisis leadership.
+Make it I'm explaining to interview panal.
 ```
 
 **Prompt 21: Complex Performance Issue**
@@ -406,7 +408,7 @@ Structure my response to show:
 6. Performance validation and monitoring
 7. Knowledge sharing and documentation
 
-Present as a technical case study.
+Present asI'm explaining to interview panal.
 ```
 
 ## Security & Compliance Prompts
@@ -426,7 +428,7 @@ Guide my comprehensive response covering:
 6. Security monitoring and incident response
 7. Team training and security culture
 
-Format as a security strategy presentation.
+Format as a I'm explaining to interview panal.
 ```
 
 **Prompt 23: Data Compliance Implementation**
@@ -444,7 +446,7 @@ Help me structure a response including:
 6. Incident response and breach procedures
 7. Training and awareness programs
 
-Present as a compliance strategy overview.
+Present as a I'm explaining to interview panal.
 ```
 
 ## Questions You Should Ask - Preparation Prompts
@@ -461,27 +463,6 @@ Help me prepare thoughtful questions to ask during my Digital Lead interview tha
 6. Evaluate the company's commitment to innovation
 7. Determine alignment with my career goals
 
-Format these as open-ended questions that will generate insightful discussions and help me evaluate if this role is the right fit.
+Format these I'm explaining to interview panal.
 ```
 
----
-
-## Usage Instructions
-
-1. **Copy the relevant prompt** based on the topic you want to practice
-2. **Paste it into Claude or another AI assistant**
-3. **Provide context about your background** if needed
-4. **Practice the response multiple times** to refine your delivery
-5. **Time yourself** to ensure you can deliver within interview timeframes
-6. **Record yourself** to improve your presentation style
-7. **Adapt the responses** to your specific experiences and examples
-
-## Practice Tips
-
-- **Use real examples** from your experience when possible
-- **Practice explaining complex concepts simply** for stakeholder scenarios
-- **Focus on business impact** not just technical details
-- **Be prepared to go deeper** on any technology you mention
-- **Show your thought process** and decision-making framework
-- **Practice transitioning between topics** smoothly
-- **Prepare follow-up responses** for likely follow-up questions

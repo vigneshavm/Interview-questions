@@ -1,6 +1,6 @@
 | **Category**                | **Topics** |
 |----------------------------|------------|
-| **Build & Compilation**    | [`<script>`, async, defer](#script-and-async-and-defer) - [Tree Shaking](#tree-shaking-in-modern-bundlers) - [Compiler](#Compiler) - [Transpiling](#transpiling-javascript-code) - [Polyfills](#polyfills-and-backward-compatibility) - [Babel](#role-of-babel-in-modern-development) |
+| **Build & Compilation**    | - [Tree Shaking](#tree-shaking-in-modern-bundlers) - [Compiler](#Compiler) - [Transpiling](#transpiling-javascript-code) - [Polyfills](#polyfills-and-backward-compatibility) - [Babel](#role-of-babel-in-modern-development) |
 | **Bundlers & Tools**       | [Customize Webpack](#customize-webpack) - [Webpack & Vite](#webpack-and-vite-bundling-process) - [Reduce large bundle size](#Reduce-large-bundle-size) - [Reduce the Bundle Size](#reduce-the-bundle-size) - [Plugins](#Plugins) - [Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization) |
 | **Testing Basics**         | [Testing Types](#types-of-testing-in-software-development) - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests) - [Mocks and Stubs](#mocks-and-stubs-in-testing) - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript) - [Jest and React Testing Library](#Jest-and-React-Testing-Library) |
 | **Testing Adv** | [Unit test external API call](#Unit-test-external-API-call) - [Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest) - [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai) - [Mock Testing](#mock-testing) - [Mocking APIs Tests](#Mocking-APIs-Tests) - [Testing Hooks](#Testing-Hooks)  |
@@ -21,39 +21,7 @@
 ---
 
 
-#### **script and async and defer**
 
-
-
- - The `<script>` tag is used to include JavaScript files in an HTML document. 
- - By default, when a `<script>` is encountered, the HTML parsing is paused until the script is loaded and executed, which can lead to delays in rendering.
- - The `async` and `defer` attributes help optimize script loading behavior.
-
-- **`async`**:
--  The script is fetched asynchronously (in parallel with the HTML parsing) and executed as soon as it is available,
--  without waiting for the HTML parsing to finish.
--  This can cause the script to execute before the HTML parsing is complete.
-  
-  **Example**:
-  ```html
-  <script src="script.js" async></script>
-  ```
-
-- **`defer`**:
-- The script is fetched asynchronously,
-- but it is executed only after the HTML document has been completely parsed.
--  It ensures that scripts are executed in the order they appear in the document.
-
-  **Example**:
-  ```html
-  <script src="script.js" defer></script>
-  ```
-
-**Key Difference**:
-- `async` is ideal for scripts that don’t depend on other scripts.
-- `defer` is better for scripts that rely on the DOM being fully loaded before executing.
-
----
 
 
 

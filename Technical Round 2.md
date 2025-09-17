@@ -5,19 +5,18 @@
 | **Project** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints) - [Project Initiation Requirements](#project-initiation-requirements) - [Managing pressure software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) - [Managing requirements conflicting ](#managing-conflicting-requirements-from-multiple-stakeholders) |
 | **Leadership** | -  [Help junior developers](#help-junior-developers-get-up-to-speed), -  [Onboard developer](#onboard-new-developer), -  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member), -  [Miss deadlines](#teammate-consistently-miss-deadlines), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help) - [Junior Developer Struggling](#junior-developer-struggling) -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), - [Build Teams](#build-and-structure-effective-teams) - [Ensure code quality?](#ensure-code-quality-and-maintainability-from-project-start) |
 | **Arch & System Design** | [Application architecture challenges](#application-architecture-challenges), -  [Approach system design](#approach-system-design-for-a-new-product), -  [Design scalable and highly system](#design-a-system-that-is-scalable-and-highly-available), -  [Design a system](#design-a-system-like-youtube--uber--whatsapp), -  [Recent architectural decision](#recent-architectural-decision), -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service) , - [Architectural decisions](#architectural-decisions), -  [Technical leadership](#technical-leadership), |
-| **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices), -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
+| **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
 | **Client-Facing**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs), -  [Security issue](#security-issue-on-production), -  [Track project progress](#track-project-progress), , -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s) - [Manage client expectations during project startup when there are many unknowns?](#manage-client-expectations-during-project-startup-when-there-are-many-unknowns) - [Add features mid-project that weren’t in the original scope. How do you handle this?](#add-features-mid-project-that-werent-in-the-original-scope-how-do-you-handle-this) - [Communicate technical concepts to non-technical stakeholders?](#communicate-technical-concepts-to-non-technical-stakeholders) |
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
 | **Additional** | -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
-| **Bank** | -  [Isolation](#choosing-the-right-isolation-level-for-banking-transactions)  -  [Deadlock detection and-prevention](#deadlock-detection-and-prevention-in-banking-systems) -  [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api) * [Consistency Across Microservices](#consistency-across-microservices) * [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications) * [preventing-race-conditions](#preventing-race-conditions-in-concurrent-withdrawals)
+| **Bank** | -  [Isolation](#choosing-the-right-isolation-level-for-banking-transactions)  -  [Deadlock detection and-prevention](#deadlock-detection-and-prevention-in-banking-systems) -  [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api) * [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications) * [preventing-race-conditions](#preventing-race-conditions-in-concurrent-withdrawals)
 | **Design Documents** | [High-Level Design](#high-level-design), -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   
 | **Planning** | - [Technology selection (new project)](#technology-stack-selection-for-a-new-project) - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application) - [Handle performance requirements](#handle-performance-requirements-from-the-beginning-of-a-project) |
 | **Risk** | - [Common risks in software projects and how do you mitigate them?](#common-risks-in-software-projects-and-how-do-you-mitigate-them) - [Technical blocker emerges 3 weeks into development. How do you handle this?](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
 | **Agile** | - [Implement Agile methodology in a new project team?](#implement-agile-methodology-in-a-new-project-team) - [Measure project success and team performance from the beginning?](#measure-project-success-and-team-performance-from-the-beginning) - - [Agile Concepts](#Agile-Concepts) ,  - [Agile Transformation Resistance](#agile-transformation-resistance)  |
 | **Other** | - [Angular Performance Issues](#angular-performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management) - [Production Incident](#production-incident) - [Technical Debt Management](#technical-debt-management) - [Database Performance Crisis](#database-performance-crisis)
 - [Cloud Migration Challenge](#cloud-migration-challenge) - [Security Breach Response](#security-breach-response) - [Cross-Cultural Team Management](#cross-cultural-team-management) - [Technology Stack Decision](#technology-stack-decision) - [Vendor Integration Challenge](#vendor-integration-challenge)  - [Scope Creep Management](#scope-creep-management) - [System Integration Failure](#system-integration-failure)
-- [Security and compliance](#security-and-compliance)   - [Ensure code-level safety](#ensure-code-level-safety-for-example-with-null-checks) - [Implement security across](#implement-security-across) - [Design for scalability on AWS](#design-for-scalability-on-aws) - [Docker deployment challenges](#docker-deployment-challenges) - [Challenges in microservices deployment](#challenges-in-microservices-deployment)
-
+- [Security and compliance](#security-and-compliance)   - [Ensure code-level safety](#ensure-code-level-safety-for-example-with-null-checks) - [Implement security across](#implement-security-across) - [Design for scalability on AWS](#design-for-scalability-on-aws) - [Docker deployment challenges](#docker-deployment-challenges) 
 
 ### **Troubleshooting Debugging and Upgrading existing software**
 
@@ -633,27 +632,7 @@ These types of questions test your **end-to-end architecture thinking**.
 
 ---
 
-##  **Tradeoffs between monolith and microservices**
 
-| **Monolith**                               | **Microservices**                                                     |
-|--------------------------------------------|------------------------------------------------------------------------|
-| ✅ Easier to develop and test initially     | ✅ Better scalability and service isolation                            |
-| ❌ Harder to scale                          | ❌ Requires strong DevOps and CI/CD maturity                          |
-| ❌ Tight coupling between modules           | ❌ Needs service discovery, monitoring, and distributed tracing        |
-
-
- - I usually start with a **modular monolith** and migrate to microservices when the team and product maturity allow it.
-
----
-
-##  **Ensure data integrity across microservices?**
-
- - Use **sagas** or **eventual consistency patterns**.
- - Implement **outbox pattern** to store events with DB transaction and publish asynchronously.
- - Use **correlation IDs** for debugging and tracing.
- - Validate inputs via shared schemas (e.g., Protobuf, JSON Schema).
-
----
 
 ##  **Prevent single points of failure in a system design**
 

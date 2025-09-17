@@ -7,8 +7,6 @@ Space Complexity - flow o(n)
 
 # Digital Lead Interview Practice Prompts
 
-## How to Use These Prompts
-Copy and paste these prompts into Claude or any AI assistant to practice your responses. Each prompt is designed to help you structure comprehensive, interview-ready answers.
 
 ---
 
@@ -30,7 +28,7 @@ Please guide me through:
 5. AWS services to use
 6. Potential bottlenecks and solutions
 
-Format my response as if I'm explaining to interview panal.
+Format my response as if I'm explaining to interview panal. Quick end-to-end example pitch (what to say in 2–3 minutes) - Highlight key point in bold
 ```
 
 **Prompt 2: Monolith to Microservices Migration**

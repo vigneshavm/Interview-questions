@@ -22,12 +22,9 @@
 
 
 | **Patterns & Orchestration** |            
-- [SOLID Principles](#solid-principles) - [SAGA Pattern](#saga-pattern)
-- [Design Patterns](#Design-Patterns)  - [Singleton Pattern](#singleton-pattern)
-- [Prototype Pattern](#prototype-pattern) - [Module Pattern](#module-pattern)
-- [Factory Pattern](#factory-pattern)  - [Observer Pattern](#observer-pattern)
-- [Dependency Injection](#dependency-injection) - [Service Discovery](#service-discovery)
-- [API Gateway](#api-gateway) - [Circuit Breaker](#circuit-breaker)
+- [SOLID Principles](#solid-principles) - [SAGA Pattern](#saga-pattern) - [Design Patterns](#Design-Patterns)  - [Singleton Pattern](#singleton-pattern)
+- [Prototype Pattern](#prototype-pattern) - [Module Pattern](#module-pattern) - [Factory Pattern](#factory-pattern)  - [Observer Pattern](#observer-pattern)
+- [Dependency Injection](#dependency-injection) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway) - [Circuit Breaker](#circuit-breaker)
 
 ## **Microservices Architecture**
 

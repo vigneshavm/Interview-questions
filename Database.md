@@ -4583,13 +4583,13 @@ CREATE TABLE Employee (
 
 ### **Choosing the Right Isolation Level**
 
-For critical operations like fund transfers, I prefer SERIALIZABLE or at least REPEATABLE READ to avoid:
+For critical operations like fund transfers, **I prefer SERIALIZABLE or at least REPEATABLE READ** to avoid:
 
-This ensures consistent reads during a transaction and prevents double-spending.
+This ensures consistent reads during a **transaction and prevents double-spending**.
 
-* **Dirty Reads** → reading uncommitted changes from another transaction.
-* **Non-repeatable Reads** → same query returning different results within one transaction.
-* **Phantom Reads** → new rows appear/disappear during a transaction’s query.
+* *Dirty Reads* → reading uncommitted changes from another transaction.
+* *Non-repeatable Reads* → same query returning different results within one transaction.
+* *Phantom Reads* → new rows appear/disappear during a transaction’s query.
 
 * **Higher isolation = better consistency but lower performance** (due to more locking and blocking).
 * **Lower isolation = better performance but risk of anomalies**.

@@ -40,7 +40,7 @@
 |--------------------------|------------|
 | **Database Design**      | [Designing a Database](#designing-a-database), [Normalization](#normalization), [Normal Form](#normal-form), [Denormalization](#denormalization), [One to One, One to Many, Many to Many](#one-to-one-one-to-many-many-to-many-relationships) |
 | **Database Migration**   | [Database Migration](#database-migration), [Zero Downtime Migration](#zero-downtime-migration), [Rollback Strategy in DB Migration](#rollback-strategy-in-db-migration), [Data Safety During Migrations](#data-safety-during-migrations) - [SQL Feature Comparison](#feature-by-feature)|
-| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions for SQL](#scenario-based-questions) - [Choosing the Right Isolation Level](#Choosing-the-Right-Isolation-Level)
+| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions for SQL](#scenario-based-questions) - [Choosing the Right Isolation Level](#Choosing-the-Right-Isolation-Level) - [Race Conditions](#Race-Conditions)
 
 
 
@@ -4600,6 +4600,80 @@ This ensures consistent reads during a **transaction and prevents double-spendin
 *  This ensures **consistent reads** during a transaction and **prevents double-spending**.
 
 ---
+
+
+## Race Conditions
+ - Ensures one withdrawal is processed at a time.
+
+
+**MYSQL**
+* In **MySQL**, use **row-level locking + transactions** (`SELECT … FOR UPDATE`).
+* `SELECT … FOR UPDATE` prevents another transaction from reading/updating the same account until the current one finishes.
+* Wrapping in `START TRANSACTION … COMMIT` ensures atomicity.
+* If two withdrawals come in, the second one **waits** until the first completes.
+* If you need maximum safety → set **isolation level = SERIALIZABLE**.
+
+```sql
+START TRANSACTION;
+
+-- Lock the row so no other transaction can read/update until commit/rollback
+SELECT balance 
+FROM accounts 
+WHERE account_id = 123 
+FOR UPDATE;
+
+-- Check sufficient funds
+IF balance >= 8000 THEN
+    UPDATE accounts
+    SET balance = balance - 8000
+    WHERE account_id = 123;
+END IF;
+
+COMMIT;
+```
+**MongoDB**
+
+* In **MongoDB**, prefer **atomic conditional updates** for single-document operations, or use **transactions** for multi-document consistency.
+
+
+**Single collection**
+```javascript
+// In MongoDB, you can do this atomically in a single update
+db.accounts.updateOne(
+  { _id: 123, balance: { $gte: 8000 } }, // condition: balance must be enough
+  { $inc: { balance: -8000 } }            // deduct amount
+);
+```
+
+**Mutiple collection**
+
+```javascript
+const session = db.getMongo().startSession();
+session.startTransaction();
+
+const accounts = session.getDatabase("bank").accounts;
+
+// Lock-like behavior via transaction
+const acc = accounts.findOne({ _id: 123 });
+
+if (acc.balance >= 8000) {
+    accounts.updateOne(
+        { _id: 123 },
+        { $inc: { balance: -8000 } }
+    );
+    session.getDatabase("bank").transactions.insertOne({
+        account_id: 123,
+        type: "withdrawal",
+        amount: 8000,
+        date: new Date()
+    });
+}
+
+session.commitTransaction();
+session.endSession();
+```
+
+
 
 
 

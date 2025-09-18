@@ -40,7 +40,9 @@
 |--------------------------|------------|
 | **Database Design**      | [Designing a Database](#designing-a-database), [Normalization](#normalization), [Normal Form](#normal-form), [Denormalization](#denormalization), [One to One, One to Many, Many to Many](#one-to-one-one-to-many-many-to-many-relationships) |
 | **Database Migration**   | [Database Migration](#database-migration), [Zero Downtime Migration](#zero-downtime-migration), [Rollback Strategy in DB Migration](#rollback-strategy-in-db-migration), [Data Safety During Migrations](#data-safety-during-migrations) - [SQL Feature Comparison](#feature-by-feature)|
-| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions for SQL](#scenario-based-questions) - [Choosing the Right Isolation Level](#Choosing-the-Right-Isolation-Level) - [Race Conditions](#Race-Conditions)
+| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions for SQL](#scenario-based-questions) 
+
+- [Choosing the Right Isolation Level](#Choosing-the-Right-Isolation-Level) - [Race Conditions](#Race-Conditions) - [Deadlock detection and prevention](#Deadlock-detection-and-prevention) 
 
 
 
@@ -4672,6 +4674,29 @@ if (acc.balance >= 8000) {
 session.commitTransaction();
 session.endSession();
 ```
+
+### Deadlock detection and prevention
+
+* A **deadlock** happens when two or more transactions are **waiting on each other’s locked resources** and none can proceed.
+* Databases use **deadlock detection** to avoid permanent blocking.
+* The system builds a **wait-for graph** → if there’s a **cycle**, that indicates a deadlock.
+* Once detected, the database performs **victim selection**:
+
+  * Chooses a **low-cost / low-priority transaction** as the victim.
+  * That transaction is **rolled back**, and others continue.
+* Example database behaviors:
+
+  * **MySQL (InnoDB)** → error **1213** (“Deadlock found; try restarting transaction”).
+  * **SQL Server** → error **1205**.
+  * **Oracle** → error **ORA-00060**.
+* To **prevent deadlocks**, I follow best practices:
+
+  * **Consistent resource locking order** (e.g., always lock Account A before Account B).
+  * Keep **transactions short**.
+  * Use **timeouts** or **lower isolation levels** if acceptable.
+  * Implement **retry logic** in the application layer.
+
+👉 In short: **Deadlock detection finds cycles, picks a victim, rolls it back, and allows other transactions to continue smoothly.**
 
 
 

@@ -40,7 +40,10 @@
 |--------------------------|------------|
 | **Database Design**      | [Designing a Database](#designing-a-database), [Normalization](#normalization), [Normal Form](#normal-form), [Denormalization](#denormalization), [One to One, One to Many, Many to Many](#one-to-one-one-to-many-many-to-many-relationships) |
 | **Database Migration**   | [Database Migration](#database-migration), [Zero Downtime Migration](#zero-downtime-migration), [Rollback Strategy in DB Migration](#rollback-strategy-in-db-migration), [Data Safety During Migrations](#data-safety-during-migrations) - [SQL Feature Comparison](#feature-by-feature)|
-| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions for SQL](#scenario-based-questions)
+| **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions for SQL](#scenario-based-questions) - [Choosing the Right Isolation Level](#Choosing-the-Right-Isolation-Level)
+
+
+
 
 ## CAP Theorem
 
@@ -4578,7 +4581,25 @@ CREATE TABLE Employee (
 );
 ```
 
+### **Choosing the Right Isolation Level**
 
+For critical operations like fund transfers, I prefer SERIALIZABLE or at least REPEATABLE READ to avoid:
+
+This ensures consistent reads during a transaction and prevents double-spending.
+
+* **Dirty Reads** → reading uncommitted changes from another transaction.
+* **Non-repeatable Reads** → same query returning different results within one transaction.
+* **Phantom Reads** → new rows appear/disappear during a transaction’s query.
+
+* **Higher isolation = better consistency but lower performance** (due to more locking and blocking).
+* **Lower isolation = better performance but risk of anomalies**.
+* So, you choose the **right isolation level** depending on the **criticality of data vs. performance requirements**.
+
+* But since **SERIALIZABLE can reduce performance**, I often go with **REPEATABLE READ combined with explicit row-level locking** (SELECT FOR UPDATE).
+
+*  This ensures **consistent reads** during a transaction and **prevents double-spending**.
+
+---
 
 
 

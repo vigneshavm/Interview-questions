@@ -15,7 +15,7 @@
 | **Replica & Consistency** | [Replica Set](#replica-set) - [Clustering & Replication](#clustering--replication) - [Replication and Failover](#replication-and-how-failover-works-in-mongodb) - [Durability & Consistency](#mongodb-ensure-durability-and-consistency) - [Write Concerns & Read Preferences](#write-concerns-and-read-preferences) |
 | **Special Use Cases**         | [Capped Collection](#capped-collection-in-mongodb) - [Schema Design](#schema-design) - [Working Set](#working-set) - [Schema-less Design Impact](#impact-of-schema-less-design-on-validationconsistency) - [High Availability & Fault Tolerance](#ensuring-high-availability-and-fault-tolerance) - [Optimizing $lookup Operations](#optimizing-multiple-lookup-operations-in-aggregations) - [Data Migration Between Clusters or SQL](#migrating-data-between-clusters-or-from-sql-to-mongodb) - [Production Monitoring & Tuning](#monitoring-and-tuning-mongodb-in-production) - [Audit Log Schema](#design-schema-for-audit-logshistorical-data) |
 | **MongoDB & Node.js**         | [MongoDB with Node.js](#mongodb-with-nodejs) - [useNewUrlParser & useUnifiedTopology](#usenewurlparser-and-useunifiedtopology-in-mongoose) - [Mongoose vs Native Driver](#mongoose-vs--mongodb-native-driver) |
-| **Limitations & Usecases** | [Limitations](#limitations-of-mongodb-and-how-to-overcome-them) - [Key Limitations](#key-limitations) - [Databases for a Social Media App](#databases-for-a-social-media-app) |
+| **Limitations & Usecases** | [Key Limitations](#key-limitations) - [Databases for a Social Media App](#databases-for-a-social-media-app) |
 
 
 
@@ -1689,17 +1689,7 @@ mongofiles -d mydb put video.mp4
 
 ---
 
-## Limitations of MongoDB and How to Overcome Them?
 
-| Limitation                       | Solution                              |
-|----------------------------------|----------------------------------------|
-| 16MB Document Limit              | Use GridFS                            |
-| No Native Joins (before $lookup) | Use `$lookup`, embed docs             |
-| Eventual Consistency in Shards  | Use write concern: `majority`         |
-| Limited Indexes per Collection  | Use compound indexes wisely           |
-| Aggregation Memory Limit        | Use `allowDiskUse: true`              |
-
----
 
 
 
@@ -2540,6 +2530,15 @@ COMMIT;
 - Joins are expensive – $lookup should be used carefully on large datasets.
 - Write Amplification – With large documents, frequent updates can be inefficient.
 
+| Limitation                       | Solution                              |
+|----------------------------------|----------------------------------------|
+| 16MB Document Limit              | Use GridFS                            |
+| No Native Joins (before $lookup) | Use `$lookup`, embed docs             |
+| Eventual Consistency in Shards  | Use write concern: `majority`         |
+| Limited Indexes per Collection  | Use compound indexes wisely           |
+| Aggregation Memory Limit        | Use `allowDiskUse: true`              |
+
+---
 
 
 

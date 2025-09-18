@@ -9,7 +9,6 @@
 | **Client-Facing**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs), -  [Security issue](#security-issue-on-production), -  [Track project progress](#track-project-progress), , -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s) - [Manage client expectations during project startup when there are many unknowns?](#manage-client-expectations-during-project-startup-when-there-are-many-unknowns) - [Add features mid-project that weren’t in the original scope. How do you handle this?](#add-features-mid-project-that-werent-in-the-original-scope-how-do-you-handle-this) - [Communicate technical concepts to non-technical stakeholders?](#communicate-technical-concepts-to-non-technical-stakeholders) |
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
 | **Additional** | -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
-| **Bank** | [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api) * [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications) 
 | **Design Documents** | [High-Level Design](#high-level-design), -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   
 | **Planning** | - [Technology selection (new project)](#technology-stack-selection-for-a-new-project) - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application) - [Handle performance requirements](#handle-performance-requirements-from-the-beginning-of-a-project) |
 | **Risk** | - [Common risks in software projects and how do you mitigate them?](#common-risks-in-software-projects-and-how-do-you-mitigate-them) - [Technical blocker emerges 3 weeks into development. How do you handle this?](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
@@ -779,73 +778,6 @@ Analogy:
 - I’m now looking forward to exploring new challenges where I can leverage my full-stack expertise and cloud skills to deliver impactful solutions.
 
 ------
-
-
-
-### **Implementing a Money Transfer with Concurrency Control**
-
-**Answer:**
-
-In a banking system, money transfer involves **debiting one account and crediting another**. It's critical that this operation is **atomic** — either **both updates happen**, or **neither does**.
-
-I would:
-
-* Use a **database transaction** to ensure **ACID properties**
-* Apply **row-level pessimistic locks** using `**SELECT ... FOR UPDATE**`
-* **Check balance** on the source account
-* **Debit sender, credit receiver**
-* **Commit** the transaction
-* On failure, **rollback** to prevent partial updates
-
-This ensures **no race conditions** and maintains **consistency** and **isolation**.
-
----
-
-
-
-### **Handling Concurrent Transfers on the Same Account**
-
-**Answer:**
-
-To handle this:
-
-* I use **pessimistic locking** via `**SELECT ... FOR UPDATE**` on the account row.
-* This ensures **only one transaction** can modify the row at a time.
-* **Second transaction waits** until the first completes.
-
-This avoids **overdrafts** and **concurrent deductions**. I also implement **retry logic** or **request deduplication** for safety.
-
----
-
-### **Pessimistic vs Optimistic Locking in Financial Applications**
-
-**Answer:**
-
-* **Pessimistic locking**: Assumes **conflict is likely**. Locks data early.
-* **Optimistic locking**: Assumes **conflict is rare**, uses a **version column** to detect conflicts.
-
-In **banking apps**, I prefer **pessimistic locking** for sensitive operations like **fund transfers**, as **correctness is more important than performance**.
-
-For non-critical updates (e.g., user profile), **optimistic locking** can improve throughput.
-
----
-
-
-
-### **Implementing Idempotency in a Debit API**
-
-**Answer:**
-
-To make a **debit API idempotent**:
-
-* Require a **unique transaction ID** from the client
-* Check for **existing transaction** in DB using that ID
-* If found, **return existing result**
-* If not, **process the debit** and store the ID
-
-This prevents **duplicate deductions** during **retries or network failures**.
-
----
 
 
 ### **Maintaining Consistency in Distributed Transactions (Microservices)**

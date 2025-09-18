@@ -9,7 +9,7 @@
 | **Client-Facing**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs), -  [Security issue](#security-issue-on-production), -  [Track project progress](#track-project-progress), , -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s) - [Manage client expectations during project startup when there are many unknowns?](#manage-client-expectations-during-project-startup-when-there-are-many-unknowns) - [Add features mid-project that weren’t in the original scope. How do you handle this?](#add-features-mid-project-that-werent-in-the-original-scope-how-do-you-handle-this) - [Communicate technical concepts to non-technical stakeholders?](#communicate-technical-concepts-to-non-technical-stakeholders) |
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
 | **Additional** | -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
-| **Bank** | -  [Deadlock detection and-prevention](#deadlock-detection-and-prevention-in-banking-systems) -  [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api) * [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications) 
+| **Bank** | [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api) * [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications) 
 | **Design Documents** | [High-Level Design](#high-level-design), -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   
 | **Planning** | - [Technology selection (new project)](#technology-stack-selection-for-a-new-project) - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application) - [Handle performance requirements](#handle-performance-requirements-from-the-beginning-of-a-project) |
 | **Risk** | - [Common risks in software projects and how do you mitigate them?](#common-risks-in-software-projects-and-how-do-you-mitigate-them) - [Technical blocker emerges 3 weeks into development. How do you handle this?](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
@@ -830,20 +830,7 @@ For non-critical updates (e.g., user profile), **optimistic locking** can improv
 
 ---
 
-### **Deadlock Detection and Prevention in Banking Systems**
 
-**Answer:**
-
-To prevent or handle **deadlocks**, I:
-
-1. Ensure **consistent locking order** (e.g., always lock Account A before B)
-2. Use **short transactions**
-3. Rely on **database deadlock detection** to kill the cheaper transaction
-4. Add **retry logic** with backoff in the app layer
-
-This ensures **reliability** without sacrificing **performance**.
-
----
 
 ### **Implementing Idempotency in a Debit API**
 

@@ -54,14 +54,14 @@ For **MongoDB**
 
 ### **MongoDB Aggregation Execution Order**
 
-🔹 **\$match** →  (like `WHERE`)
-🔹 **\$lookup** →  (like `JOIN ... ON`)
-🔹 **\$unwind** → flattens 
-🔹 **\$group** →  (like `GROUP BY`)
-🔹 **\$match (post-group)** → acts like `HAVING`
-🔹 **\$project** → selects specific fields (like `SELECT`)
-🔹 **\$sort** → orders results (like `ORDER BY`)
-🔹 **\$skip / \$limit** → pagination (like `LIMIT / OFFSET`)
+ **\$match** →  (like `WHERE`)
+**\$lookup** →  (like `JOIN ... ON`)
+**\$unwind** → flattens 
+**\$group** →  (like `GROUP BY`)
+**\$match (post-group)** → acts like `HAVING`
+**\$project** → selects specific fields (like `SELECT`)
+**\$sort** → orders results (like `ORDER BY`)
+**\$skip / \$limit** → pagination (like `LIMIT / OFFSET`)
 
 
 

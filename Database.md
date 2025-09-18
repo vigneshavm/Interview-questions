@@ -43,7 +43,7 @@
 | **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions for SQL](#scenario-based-questions) 
 
 - [Choosing the Right Isolation Level](#Choosing-the-Right-Isolation-Level) - [Race Conditions](#Race-Conditions) - [Deadlock detection and prevention](#Deadlock-detection-and-prevention) 
-
+- [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api) * [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications) 
 
 
 
@@ -4697,6 +4697,69 @@ session.endSession();
   * Implement **retry logic** in the application layer.
 
 👉 In short: **Deadlock detection finds cycles, picks a victim, rolls it back, and allows other transactions to continue smoothly.**
+
+
+
+
+### **Implementing a Money Transfer with Concurrency Control**
+
+
+
+In a banking system, money transfer involves **debiting one account and crediting another**. It's critical that this operation is **atomic** — either **both updates happen**, or **neither does**.
+
+I would:
+
+* Use a **database transaction** to ensure **ACID properties**
+* Apply **row-level pessimistic locks** using `**SELECT ... FOR UPDATE**`
+* **Check balance** on the source account
+* **Debit sender, credit receiver**
+* **Commit** the transaction
+* On failure, **rollback** to prevent partial updates
+
+This ensures **no race conditions** and maintains **consistency** and **isolation**.
+
+---
+
+
+
+### **Handling Concurrent Transfers on the Same Account**
+
+To handle this:
+
+* I use **pessimistic locking** via `**SELECT ... FOR UPDATE**` on the account row.
+* This ensures **only one transaction** can modify the row at a time.
+* **Second transaction waits** until the first completes.
+
+This avoids **overdrafts** and **concurrent deductions**. I also implement **retry logic** or **request deduplication** for safety.
+
+---
+
+### **Pessimistic vs Optimistic Locking in Financial Applications**
+
+
+* **Pessimistic locking**: Assumes **conflict is likely**. Locks data early.
+* **Optimistic locking**: Assumes **conflict is rare**, uses a **version column** to detect conflicts.
+
+In **banking apps**, I prefer **pessimistic locking** for sensitive operations like **fund transfers**, as **correctness is more important than performance**.
+
+For non-critical updates (e.g., user profile), **optimistic locking** can improve throughput.
+
+---
+
+
+
+### **Implementing Idempotency in a Debit API**
+
+To make a **debit API idempotent**:
+
+* Require a **unique transaction ID** from the client
+* Check for **existing transaction** in DB using that ID
+* If found, **return existing result**
+* If not, **process the debit** and store the ID
+
+This prevents **duplicate deductions** during **retries or network failures**.
+
+---
 
 
 

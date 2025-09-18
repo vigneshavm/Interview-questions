@@ -1,6 +1,6 @@
  - [MongoDB Overview](#mongo-overview)
  - [SQL Overview](#sql-overview)
-
+- [Query Execution order](#Query-Execution-order)
 
 ## MongoDB Overview
 
@@ -44,6 +44,42 @@
 
 - [Choosing the Right Isolation Level](#Choosing-the-Right-Isolation-Level) - [Race Conditions](#Race-Conditions) - [Deadlock detection and prevention](#Deadlock-detection-and-prevention) 
 - [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api) * [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications) 
+
+
+## Query Execution order
+
+**FROM → JOIN → ON → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT**
+
+For **MongoDB**
+
+### **MongoDB Aggregation Execution Order**
+
+🔹 **\$match** →  (like `WHERE`)
+🔹 **\$lookup** →  (like `JOIN ... ON`)
+🔹 **\$unwind** → flattens 
+🔹 **\$group** →  (like `GROUP BY`)
+🔹 **\$match (post-group)** → acts like `HAVING`
+🔹 **\$project** → selects specific fields (like `SELECT`)
+🔹 **\$sort** → orders results (like `ORDER BY`)
+🔹 **\$skip / \$limit** → pagination (like `LIMIT / OFFSET`)
+
+
+
+👉 Example:
+**SQL:**
+
+```sql
+SELECT city, COUNT(*)  FROM customers  WHERE age > 25  GROUP BY city  HAVING COUNT(*) > 5  ORDER BY city  LIMIT 10;
+```
+
+**MongoDB:**
+
+```js
+db.customers.aggregate([
+  { $match: { age: { $gt: 25 } } },{ $group: { _id: "$city", count: { $sum: 1 } } }, 
+  { $match: { count: { $gt: 5 } } }, { $sort: { _id: 1 } }, { $limit: 10 }                             
+])
+```
 
 
 

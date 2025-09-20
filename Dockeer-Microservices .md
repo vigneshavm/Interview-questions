@@ -638,9 +638,9 @@ The circuit breaker can be in one of **three states**:
 
 * **Purpose:** Enables services to find each other dynamically — no hardcoded IPs.
 
-“In microservices, hardcoding endpoints doesn’t work because Docker containers and pods get new IPs as they scale. In one project, we solved this with **Consul service discovery**. Each **Node.js service registered itself** with Consul on startup and exposed a **health check endpoint**.
+“In microservices, **hardcoding endpoints doesn’t work because Docker containers and pods get new IPs as they scale**. In one project, we **solved this with Consul service discovery**. Each **Node.js service registered itself** with Consul on startup and exposed a **health check endpoint**.
 
-When our **order-service** needed the **user-service**, it just asked Consul for the current healthy instances instead of relying on fixed IPs. That allowed us to scale user-service from 2 to 10 containers with no code change.
+When our **order-service** needed the **user-service**, it just **asked Consul for the current healthy instances instead of relying on fixed IPs**. That allowed us to scale user-service from 2 to 10 containers with no code change.
 
 We also added **client-side load balancing, retries, and circuit breakers** so traffic was spread out and failures didn’t cascade.
 

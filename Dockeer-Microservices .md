@@ -13,11 +13,11 @@
 | **Category**               | **Topics** |
 |----------------------------|------------|
 | **API Design & Interface** | [Versioning & Backward Compatibility](#versioning--backward-compatibility) - [Swagger](#swagger)  - [Manage multiple service endpoints](#manage-multiple-service-endpoints) |
-| **Reliability & Resilience** | [Rate Limiting & Throttling](#rate-limiting--throttling)  - [Error Handling & Fault Tolerance](#error-handling--fault-tolerance) - [Logs and Tracing](#logs-and-tracing) |
-| **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) |
-| **Scaling & Operations** | [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture) [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices)|
+| **Reliability & Resilience** | [Rate Limiting & Throttling](#rate-limiting--throttling)  - [Error Handling & Fault Tolerance](#error-handling--fault-tolerance) - [Logging System and Tracing](#logs-and-tracing) |
+| **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) - [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment)|
+| **Scaling & Operations** |  - [Microservices overview](#Microservice-overview) - [Microservices Architecture](#microservices-architecture) [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices)|
 | **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
-| **Cross-Cutting Topics** |  - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices overview](#Microservice-overview)
+| **Cross-Cutting Topics** |   - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) 
 | **Cross-Cutting Topics** |  -  [Consistency Across Microservices](#maintaining-consistency-in-distributed-transactions-microservices) -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), - [Challenges in microservices deployment](#challenges-in-microservices-deployment)
 
 
@@ -142,6 +142,26 @@
 * Use tools like **Prometheus + Grafana**, **ELK**, or **Jaeger for tracing**.
 * Correlate logs via **trace IDs** or **correlation IDs**.
 
+
+
+* Use **structured logging** (`pino` for performance, or `winston`)
+* Include **correlation IDs** (request ID) to trace requests across services
+* Use **log levels** (info, warn, error, debug)
+* Log to **stdout** in containers and ship to tools like:
+
+  * **Elastic Stack** (ELK)
+  * **Grafana Loki**
+  * **Datadog**, **New Relic**
+* For production, logs go to a centralized service over syslog or HTTP.
+* Example:
+
+  ```ts
+  logger.info({ reqId, userId, action: 'UserLogin' }, 'User login request received');
+  ```
+
+Log rotation, redaction of PII, and alerting thresholds are all part of the strategy.
+
+---
 ---
 
 
@@ -951,26 +971,7 @@ This ensures that breaking changes between services are caught during build time
 
 
 
-### **Logging system**
 
-* Use **structured logging** (`pino` for performance, or `winston`)
-* Include **correlation IDs** (request ID) to trace requests across services
-* Use **log levels** (info, warn, error, debug)
-* Log to **stdout** in containers and ship to tools like:
-
-  * **Elastic Stack** (ELK)
-  * **Grafana Loki**
-  * **Datadog**, **New Relic**
-* For production, logs go to a centralized service over syslog or HTTP.
-* Example:
-
-  ```ts
-  logger.info({ reqId, userId, action: 'UserLogin' }, 'User login request received');
-  ```
-
-Log rotation, redaction of PII, and alerting thresholds are all part of the strategy.
-
----
 
 
 

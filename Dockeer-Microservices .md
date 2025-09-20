@@ -2544,10 +2544,12 @@ In this example, `Car` depends on `Engine`. Instead of `Car` creating its own en
 
 ###  **Ensure data integrity across microservices?**
 
- - Use **sagas** or **eventual consistency patterns**.
- - Implement **outbox pattern** to store events with DB transaction and publish asynchronously.
- - Use **correlation IDs** for debugging and tracing.
- - Validate inputs via shared schemas (e.g., Protobuf, JSON Schema).
+* In microservices, **data integrity is tricky** since each service owns its own database.
+* We solved it using the **Saga pattern with RabbitMQ** for cross-service workflows.
+* On failure, we triggered **compensating transactions** (e.g., refund payment if inventory ran out).
+* Made operations **idempotent** and added **audit logs** for reconciliation.
+* Result: **order inconsistencies dropped from double digits to a few percent** while services stayed scalable.
+
 
 ---
 

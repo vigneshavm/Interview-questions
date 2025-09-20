@@ -15,10 +15,10 @@
 | **API Design & Interface** | [Versioning & Backward Compatibility](#versioning--backward-compatibility) - [Swagger](#swagger)  - [Manage multiple service endpoints](#manage-multiple-service-endpoints) |
 | **Reliability & Resilience** | [Rate Limiting & Throttling](#rate-limiting--throttling)  - [Error Handling & Fault Tolerance](#error-handling--fault-tolerance) - [Logs and Tracing](#logs-and-tracing) |
 | **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) |
-| **Scaling & Operations** | [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture) |
+| **Scaling & Operations** | [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment) - [Microservices Architecture](#microservices-architecture) [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices)|
 | **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
-| **Cross-Cutting Topics** | [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices overview](#Microservice-overview)
-| **Cross-Cutting Topics** | -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices) -  [Consistency Across Microservices](#maintaining-consistency-in-distributed-transactions-microservices) -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), - [Challenges in microservices deployment](#challenges-in-microservices-deployment)
+| **Cross-Cutting Topics** |  - [Logging System](#logging-system) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) - [Distributed Data Consistency](#data-consistency-across-distributed-services) - [Microservices overview](#Microservice-overview)
+| **Cross-Cutting Topics** |  -  [Consistency Across Microservices](#maintaining-consistency-in-distributed-transactions-microservices) -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), - [Challenges in microservices deployment](#challenges-in-microservices-deployment)
 
 
 | **Patterns & Orchestration** |            

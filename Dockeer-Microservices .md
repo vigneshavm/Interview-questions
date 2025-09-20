@@ -637,16 +637,17 @@ The circuit breaker can be in one of **three states**:
 ### **Service Discovery**
 
 * **Purpose:** Enables services to find each other dynamically — no hardcoded IPs.
-* **Types:**
 
-  * **Client-side:** Clients query registry (e.g., Eureka).
-  * **Server-side:** Load balancer handles discovery (e.g., AWS ELB).
-* **Use Case:** In Kubernetes, services discover each other via DNS even as pods scale.
-* **Key Benefits:**
+“In microservices, hardcoding endpoints doesn’t work because Docker containers and pods get new IPs as they scale. In one project, we solved this with **Consul service discovery**. Each **Node.js service registered itself** with Consul on startup and exposed a **health check endpoint**.
 
-  * Increases scalability and automation.
-  * Supports dynamic environments (containers, cloud).
-* **Tools:** `Kubernetes DNS`, `Consul`, `Eureka`, `AWS Cloud Map`.
+When our **order-service** needed the **user-service**, it just asked Consul for the current healthy instances instead of relying on fixed IPs. That allowed us to scale user-service from 2 to 10 containers with no code change.
+
+We also added **client-side load balancing, retries, and circuit breakers** so traffic was spread out and failures didn’t cascade.
+
+This made deployments predictable and reduced our service discovery failures to **under 1%**.”
+
+
+* **Tools:** `Consul`.
 
 ---
 

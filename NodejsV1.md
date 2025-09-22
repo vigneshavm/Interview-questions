@@ -123,7 +123,7 @@ tsconfig.json
 5. After each phase, run microtasks again.
 6. Repeat infinitely.
 
-
+- [Event Loop Execution](#Event-Loop-Execution)
 - [Call Stack](#call-stack)
 - [Event Queue (Macrotask Queue)](#event-queue-macrotask-queue)
 - [Microtask Queue (Task Queue)](#microtask-queue-task-queue)
@@ -218,7 +218,7 @@ Executed in a defined order:
   4. Next event loop phase (macrotask).
 
 
-**Execution**
+**Event Loop Execution**
    
   * **Node.js begins by executing top-level synchronous code** directly on the **call stack**.
   * **Asynchronous operations** (e.g., file system access, DNS lookups, network calls, crypto) are **offloaded to the libuv thread pool**.

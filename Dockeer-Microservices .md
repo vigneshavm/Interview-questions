@@ -975,9 +975,6 @@ This ensures that breaking changes between services are caught during build time
 
 
 ##  **Data consistency across distributed services?**
-Perfect — you already have the **raw material** for a strong interview answer. Let me clean it up into a **structured, concise, interview-style response** for *Maintaining Consistency in Distributed Transactions (Microservices)*:
-
-
 
 In microservices, maintaining **data consistency** is challenging because services have independent databases, async communication, and possible partial failures.
 I approach this problem using well-known patterns, depending on the use case:
@@ -986,9 +983,9 @@ I approach this problem using well-known patterns, depending on the use case:
 **1. SAGA Pattern (Choreography / Orchestration)**
 
 * Each service executes a **local transaction**.
-* If one step fails, compensating actions roll back previous steps.
+* If one step fails, compensating actions roll back previous steps - *Tools:  RabbitMQ*
 * Example: *Order → Payment → Inventory → Notification*. If payment fails, the order is canceled and inventory restored.
-* Tools: Kafka (choreography), custom orchestrator or queue (Bull, RabbitMQ).
+
 
 
 **2. Event-Driven Architecture with Durable Queues**
@@ -1039,7 +1036,9 @@ I approach this problem using well-known patterns, depending on the use case:
 
 
 👉 **Summary:**
-For distributed consistency, I typically combine **SAGA for long-running workflows, Outbox for safe event publishing, and durable message queues for async communication**. I also ensure **idempotency, monitoring, and schema validation**. The exact choice depends on **business criticality, latency tolerance, and reliability needs**.
+For distributed consistency, 
+- I typically combine **SAGA for long-running workflows, Outbox for safe event publishing, and durable message queues for async communication**. 
+- I also ensure **idempotency, monitoring, and schema validation**. The exact choice depends on **business criticality, latency tolerance, and reliability needs**.
 
 ---
 

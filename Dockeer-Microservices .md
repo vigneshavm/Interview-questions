@@ -17,8 +17,7 @@
 | **Code & Configuration** | [Shared Libraries & Code Reuse](#shared-libraries--code-reuse) - [Configuration Management](#configuration-management) - [Scalability & Handle Load](#scalability--handle-load) - [DevOps & Deployment](#devops--deployment)|
 | **Scaling & Operations** |  - [Microservices overview](#Microservice-overview) - [Microservices Architecture](#microservices-architecture) [Microservices Communication](#microservices-communication) - [Monolithic vs Microservices](#monolithic-vs-microservices) -  [Tradeoffs between monolith and microservices](#tradeoffs-between-monolith-and-microservices)|
 | **Quality & Security** | [Testing Strategy](#testing-strategy) - [Authentication & Authorization](#authentication--authorization) |
-| **Cross-Cutting Topics** |   - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) 
-| **Cross-Cutting Topics** |  -  [Data Consistency Across Microservices](#data-consistency-across-distributed-services)  -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), - [Challenges in microservices deployment](#challenges-in-microservices-deployment)
+| **Cross-Cutting Topics** |  -  [Data Consistency Across Microservices](#data-consistency-across-distributed-services)  -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), - [Challenges in microservices deployment](#challenges-in-microservices-deployment) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) 
 
 
 | **Patterns & Orchestration** |            

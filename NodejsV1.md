@@ -5913,18 +5913,37 @@ User.findAll({
 
 ## Keep secrets in Node.js
 
-"In Node.js, we **never hardcode secrets** like API keys, tokens, or database passwords directly in the code.
 
-* For **local development**, we usually store secrets in **environment variables** using a `.env` file with libraries like `dotenv`.
-* In **production**, it’s a best practice to use a **secret manager** such as AWS Secrets Manager, Azure Key Vault, Google Secret Manager, or HashiCorp Vault. These tools allow secure storage, encryption, rotation, and controlled access to secrets.
-* Additionally, we ensure secrets are never committed to source control, apply **least privilege access**, and set up **rotation policies** for high-security environments.
+🔹 **In Node.js Applications**
 
-So, in short: **`.env` for local, Secret Manager for production** — that keeps the application both flexible and secure."
+* We **never hardcode secrets** like API keys, tokens, or DB passwords in the source code.
+* For **local development**, we use `.env` files with libraries like `dotenv` (always git-ignored).
+* For **production**, we rely on **secret managers** such as **AWS Secrets Manager, Azure Key Vault, Google Secret Manager, or HashiCorp Vault**.
 
-- In a **Jenkins CI/CD pipeline**, we **never hardcode secrets**. Instead, we store them in the **Jenkins Credentials Store** and **inject them at runtime** using the `withCredentials` block.
-- Each **environment (dev, stage, prod)** has its own **separate credentials**, and the pipeline picks the right one based on the **deployment target**. For **enterprise setups**,
-- we integrate Jenkins with **Secret Managers** like **AWS Secrets Manager** or **HashiCorp Vault** to enable **secure storage, automatic rotation, and auditing**.
-- This ensures secrets are always **isolated, encrypted, and environment-specific**."
+  * These provide **encryption, automatic rotation, access control, and auditing**.
+* We also follow security best practices:
+
+  * **Never commit secrets to version control**.
+  * Apply **least privilege access**.
+  * Enforce **rotation policies** in high-security environments.
+
+👉 *In short: `.env` for local, Secret Manager for production — keeping the application secure and scalable.*
+
+---
+
+🔹 **In Jenkins CI/CD Pipelines**
+
+* Secrets are **never hardcoded in pipeline scripts**.
+* We store them in the **Jenkins Credentials Store** and inject at runtime using the `withCredentials` block.
+* Each environment (**dev, stage, prod**) has its **own isolated credentials**, and the pipeline picks the right one dynamically.
+* For **enterprise setups**, Jenkins integrates with **Secret Managers** (e.g., AWS Secrets Manager, HashiCorp Vault) to enable:
+
+  * **Centralized secret storage**
+  * **Automatic rotation**
+  * **Access auditing**
+
+👉 *This ensures secrets are always encrypted, isolated per environment, and securely managed throughout the CI/CD pipeline.*
+
 
 
 ---

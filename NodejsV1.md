@@ -15,7 +15,7 @@
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
 | **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) |
 | **Performance Optimization** | [Performance Optimization](#performance-optimization),  - [Performance Pitfalls](#common-performance-pitfalls),  - [Handle CPU Tasks](#Handle-CPU-intensive-task) |
-| **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets)  - [100K Concurrent](#Handling-100000-concurrent-requests),    - [High Traffic Scaling](#Scaling-High-Traffic),  - [Scalability Issues](#scalability-issues) |
+| **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets)  - [100K Concurrent](#Handling-100000-concurrent-requests),    - [High Traffic Scaling](#Scaling-High-Traffic) |
 | **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production),  - [PM2](#pm2),  - [Load Balancing](#load-balancing) |
 | **Timeout**     | [Common Cases Timeout Errors](#Common-Cases-Timeout-Errors) , - [Handle Timeout Issue](#Debugging-Steps-I-Follow-For-Timeout)  |
 | **Database Interaction**     | [JOINs in Sequelize](#JOINs-in-Sequelize) [SQL Connection](#sql-connection),  - [MongoDB Connection](#mongodb-connection),  - [DB Connections](#database-connections),  - [Transactions](#database-transactions) |
@@ -2052,14 +2052,6 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
 
 
 
-##  **Scalability issues**
-   - **Clustering**: Use the `cluster` module to utilize multi-core systems by spawning worker processes.
-   - **Load Balancing**: Distribute incoming requests across multiple servers using NGINX, HAProxy, or AWS Elastic Load Balancer.
-   - **Horizontal Scaling**: Deploy multiple instances of the application using containers (e.g., Docker) and orchestration tools like Kubernetes.
-   - **Caching**: Use Redis or Memcached to cache frequently accessed data.
-   - **Optimize Queries**: Use efficient database queries and indexing.
-
----
 
 
 
@@ -3165,21 +3157,23 @@ npm install -g pm2
 ### **Scaling High Traffic**
   To design a scalable API:
 - **Stateless Design**:   - Design APIs and services to be stateless so they can scale horizontally (multiple instances).
-- **Load Balancing**:  - Use **Nginx, AWS ELB**, or **HAProxy** to distribute requests among instances.
-- **Caching**: - Use **Redis or Memcached** for frequent reads and rate-limiting.
-  - Leverage HTTP caching and CDN (like Cloudflare).
-- **Database Optimization**:  - Use indexing, query optimization, and read-replicas.
+- **Load Balancing**:  - Use **Nginx** to distribute requests among instances.
+- **Asynchronous I/O**: Leverage Node’s non-blocking nature to handle multiple requests concurrently.
 - **Microservices** (Optional at scale):  - Break the monolith into smaller, independently deployable services.
 - **Stateless API**: Follow REST principles — keep APIs stateless to allow horizontal scaling.
-- **Clustering**: Use Node.js cluster module or process managers like PM2 to utilize multiple CPU cores.
-- **Load balancing**: Deploy behind a load balancer (e.g., NGINX, AWS ALB).
+- **Horizontal Scaling**: Deploy multiple instances of the application using containers (e.g., Docker) and orchestration tools like Kubernetes.
+- **Clustering**: Use Node.js cluster module or process managers like PM2 to utilize multiple CPU cores by spawning worker processes.
 - **Database optimization**: Use connection pooling, caching (e.g., Redis), and indexing for performance.
-- **Asynchronous I/O**: Leverage Node’s non-blocking nature to handle multiple requests concurrently.
+- **Database Optimization**:  - Use indexing, query optimization, and read-replicas.
+- **Optimize Queries**: Use efficient database queries and indexing.
+- **Caching**: - Use **Redis** for frequent reads and rate-limiting.
+-  **Caching**: Use Redis or Memcached to cache frequently accessed data.
 - **Rate limiting**: Prevent abuse using libraries like express-rate-limit.
 - **Pagination**: Implement for large datasets to avoid memory pressure.
 - **Monitoring**: Use tools like Prometheus, Grafana, New Relic, or Elastic APM.
 * **Auto-scale services** using metrics (CPU, latency, etc.).
 * Use **CloudFront/CDN** for static content offload.
+* Leverage HTTP caching and CDN (like Cloudflare).
 * Put async tasks into **background workers** (e.g., Bull, Agenda) to decouple long operations.
 * Enable **API rate limiting and quota enforcement** for users.
 * Apply **back-pressure** techniques for APIs interacting with downstream systems.

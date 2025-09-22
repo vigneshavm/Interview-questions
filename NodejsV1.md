@@ -15,7 +15,7 @@
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
 | **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) |
 | **Performance Optimization** | [Performance Optimization](#performance-optimization),  - [Performance Pitfalls](#common-performance-pitfalls),  - [Handle CPU Tasks](#Handle-CPU-intensive-task) |
-| **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets) , [Concurrent Requests](#Concurrent-CPU-intensive-requests),  - [100K Concurrent](#Handling-100000-concurrent-requests),  - [Handle Concurrency](#Handle-Concurrency),  - [High Traffic Scaling](#Scaling-High-Traffic),  - [Scalability Issues](#scalability-issues) |
+| **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets)  - [100K Concurrent](#Handling-100000-concurrent-requests),    - [High Traffic Scaling](#Scaling-High-Traffic),  - [Scalability Issues](#scalability-issues) |
 | **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production),  - [PM2](#pm2),  - [Load Balancing](#load-balancing) |
 | **Timeout**     | [Common Cases Timeout Errors](#Common-Cases-Timeout-Errors) , - [Handle Timeout Issue](#Debugging-Steps-I-Follow-For-Timeout)  |
 | **Database Interaction**     | [JOINs in Sequelize](#JOINs-in-Sequelize) [SQL Connection](#sql-connection),  - [MongoDB Connection](#mongodb-connection),  - [DB Connections](#database-connections),  - [Transactions](#database-transactions) |
@@ -4261,18 +4261,7 @@ Use tools like `clinic.js`, `0x`, or built-in `--trace-events` to inspect your a
 
 
 
-## **Handle Concurrency**
 
-**"So, while Node.js is single-threaded, I handle concurrency effectively using:**
-
-* **`async/await`** for I/O
-* **`worker_threads`** for CPU work
-* **`cluster`** and **PM2** for scaling
-* `Bull`/`RabbitMQ` for background jobs,
-* locks & DB transactions for safe data handling,
-* reverse proxies, caching, and DB pooling for performance,
-* monitoring tools to track event loop lag and memory,
-* and Docker/Kubernetes for horizontal scalability."\*\*
 
 
 ## Handling 100000 concurrent requests
@@ -4399,37 +4388,6 @@ parentPort.postMessage(result);
 
 ---
 
-## Concurrent CPU intensive requests
-
-- Node.js is single-threaded and excels at I/O-bound operations, but it's not ideal for CPU-heavy tasks like encryption, image processing, or complex math. 
-- Blocking the event loop with such tasks can degrade performance for all users.
-
-- So in production, I never run CPU-bound logic directly on the main thread. 
-- Instead, I offload it using the `worker_threads` module. 
-- However, creating a new worker for each request is inefficient — it introduces thread startup overhead, consumes memory, and doesn't scale under load.
-
-- My preferred solution is to use a **worker pool** — a fixed set of reusable threads.
-- It allows tasks to be queued and processed without overwhelming system resources. I usually align the pool size with the number of CPU cores for optimal performance.
-
-- For implementation, I use libraries like `poolifier` or `Piscina`, which abstract worker management and provide good performance metrics. 
-- Under extreme workloads, I offload tasks to background queues or dedicated microservices built in performant languages like Go or Rust.
-
-- This approach ensures the Node.js event loop remains non-blocking and responsive, even when handling CPU-intensive operations.
-
-**Key Points Interviewer Looks For (All Covered)**
-
-* Awareness of Node.js event loop limitations ✅
-* Knowledge of `worker_threads` and when not to use them per request ✅
-* Use of **worker pool** for concurrency control ✅
-* Familiarity with production-ready libraries like `poolifier`, `Piscina` ✅
-* Scaling strategies: queueing, microservices ✅
-* Thought process around performance tuning (CPU-core-based sizing) ✅
-
----
-
-
-
----
 
 ## Single Sign On
 **"Yes, I’ve implemented Single Sign-On (SSO) in enterprise-grade applications where users needed seamless access across multiple platforms with a single authentication step."**

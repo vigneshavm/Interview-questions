@@ -114,15 +114,6 @@ tsconfig.json
 * The **event loop** coordinates between them to make async feel seamless.
 
 
-**Execution Flow**
-
-1. Run all **synchronous code** (top-level).
-2. Process **process.nextTick()** queue.
-3. Process **microtask queue** (Promises).
-4. Enter **event loop phase** (timers, poll, check, etc.).
-5. After each phase, run microtasks again.
-6. Repeat infinitely.
-
 - [Event Loop Execution](#Event-Loop-Execution)
 - [Call Stack](#call-stack)
 - [Event Queue (Macrotask Queue)](#event-queue-macrotask-queue)
@@ -230,7 +221,13 @@ Executed in a defined order:
   * **Microtasks** are processed **between every phase**, and `process.nextTick()` is prioritized over Promises.
   * This **cycle repeats continuously**, allowing Node.js to handle a large number of concurrent operations efficiently, without blocking.
 
-
+**Execution Flow**
+1. Run all **synchronous code** (top-level).
+2. Process **process.nextTick()** queue.
+3. Process **microtask queue** (Promises).
+4. Enter **event loop phase** (timers, poll, check, etc.).
+5. After each phase, run microtasks again.
+6. Repeat infinitely.
 
 **Execution Priority**
 - 1.Current synchronous code runs (call stack).

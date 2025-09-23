@@ -4740,12 +4740,15 @@ session.endSession();
 ### **Pessimistic vs Optimistic Locking in Financial Applications**
 
 
-* **Pessimistic locking**: Assumes **conflict is likely**. Locks data early.
-* **Optimistic locking**: Assumes **conflict is rare**, uses a **version column** to detect conflicts.
+“In databases, a **lock** is just a way to control concurrent access so two transactions don’t overwrite the same data incorrectly. Now, there are two main strategies.
 
-In **banking apps**, I prefer **pessimistic locking** for sensitive operations like **fund transfers**, as **correctness is more important than performance**.
+**Pessimistic locking** assumes conflicts are likely. The transaction acquires a lock up front and no one else can change that record until it’s done. That guarantees correctness but reduces concurrency and can even cause deadlocks. In financial systems, I’d use this for **sensitive operations like fund transfers or account balance updates**, where correctness is far more important than raw throughput.
 
-For non-critical updates (e.g., user profile), **optimistic locking** can improve throughput.
+- **FOR UPDATE** locks the selected rows until the transaction commits.
+
+**Optimistic locking**, on the other hand, assumes conflicts are rare. Instead of locking, it uses a **version column or timestamp**—when you commit, it checks if the row was modified in the meantime. If yes, it retries. This gives much better performance and avoids deadlocks, but it only works well when conflicts are infrequent. So I’d use it for **non-critical updates like user profile edits or notification settings**, where retries are acceptable.
+- Uses a **version column** to detect if another transaction modified the row.
+So in short: **pessimistic for money movement, optimistic for everything else where scalability matters.**”
 
 ---
 

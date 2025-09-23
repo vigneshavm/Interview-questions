@@ -41,8 +41,8 @@
 | **Database Design**      | [Designing a Database](#designing-a-database), [Normalization](#normalization), [Normal Form](#normal-form), [Denormalization](#denormalization), [One to One, One to Many, Many to Many](#one-to-one-one-to-many-many-to-many-relationships) |
 | **Database Migration**   | [Database Migration](#database-migration), [Zero Downtime Migration](#zero-downtime-migration), [Rollback Strategy in DB Migration](#rollback-strategy-in-db-migration), [Data Safety During Migrations](#data-safety-during-migrations) - [SQL Feature Comparison](#feature-by-feature)|
 | **Theory & Scenarios**        | [CAP Theorem](#cap-theorem) - [Time Series](#time-series) - [ACID Properties](#acid-properties) - [Two-Phase Commit](#two-phase-commit) - [Handling Large Datasets](#handling-large-datasets-efficiently-in-mongodb) - [Scenario-Based Questions for SQL](#scenario-based-questions) 
-| **Lock**        | [Choosing the Right Isolation Level](#Choosing-the-Right-Isolation-Level) - [Race Conditions](#Race-Conditions) - [Deadlock detection and prevention](#Deadlock-detection-and-prevention) 
-| **concurrent**        | [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Concurrency Control](#implementing-a-money-transfer-with-concurrency-control) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api) * [locking pessimistic vs optimistic](#pessimistic-vs-optimistic-locking-in-financial-applications) 
+| **Lock**        | * [Locking](#pessimistic-vs-optimistic-locking-in-financial-applications) - [Isolation Level](#Choosing-the-Right-Isolation-Level) - [Race Conditions](#Race-Conditions) - [Deadlock detection and prevention](#Deadlock-detection-and-prevention) 
+| **concurrent**        | [Handling concurrent](#handling-concurrent-transfers-on-the-same-account) * [Implementing idempotency](#implementing-idempotency-in-a-debit-api)  
 
 
 ## Query Execution order
@@ -4735,38 +4735,7 @@ session.endSession();
 
 
 
-### **Implementing a Money Transfer with Concurrency Control**
 
-
-
-In a banking system, money transfer involves **debiting one account and crediting another**. It's critical that this operation is **atomic** — either **both updates happen**, or **neither does**.
-
-I would:
-
-* Use a **database transaction** to ensure **ACID properties**
-* Apply **row-level pessimistic locks** using `**SELECT ... FOR UPDATE**`
-* **Check balance** on the source account
-* **Debit sender, credit receiver**
-* **Commit** the transaction
-* On failure, **rollback** to prevent partial updates
-
-This ensures **no race conditions** and maintains **consistency** and **isolation**.
-
----
-
-
-
-### **Handling Concurrent Transfers on the Same Account**
-
-To handle this:
-
-* I use **pessimistic locking** via `**SELECT ... FOR UPDATE**` on the account row.
-* This ensures **only one transaction** can modify the row at a time.
-* **Second transaction waits** until the first completes.
-
-This avoids **overdrafts** and **concurrent deductions**. I also implement **retry logic** or **request deduplication** for safety.
-
----
 
 ### **Pessimistic vs Optimistic Locking in Financial Applications**
 
@@ -4798,5 +4767,34 @@ This prevents **duplicate deductions** during **retries or network failures**.
 
 
 
+
+
+
+
+### **Handling Concurrent Transfers on the Same Account**
+
+To handle this:
+
+* I use **pessimistic locking** via `**SELECT ... FOR UPDATE**` on the account row.
+* This ensures **only one transaction** can modify the row at a time.
+* **Second transaction waits** until the first completes.
+
+This avoids **overdrafts** and **concurrent deductions**. I also implement **retry logic** or **request deduplication** for safety.
+
+
+In a banking system, money transfer involves **debiting one account and crediting another**. It's critical that this operation is **atomic** — either **both updates happen**, or **neither does**.
+
+I would:
+
+* Use a **database transaction** to ensure **ACID properties**
+* Apply **row-level pessimistic locks** using `**SELECT ... FOR UPDATE**`
+* **Check balance** on the source account
+* **Debit sender, credit receiver**
+* **Commit** the transaction
+* On failure, **rollback** to prevent partial updates
+
+This ensures **no race conditions** and maintains **consistency** and **isolation**.
+
+---
 
 

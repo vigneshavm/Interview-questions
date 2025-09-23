@@ -209,7 +209,7 @@ Executed in a defined order:
   4. Next event loop phase (macrotask).
 
 
-**Event Loop Execution**
+### **Event Loop Execution**
    
   * **Node.js begins by executing top-level synchronous code** directly on the **call stack**.
   * **Asynchronous operations** (e.g., file system access, DNS lookups, network calls, crypto) are **offloaded to the libuv thread pool**.

@@ -15,7 +15,7 @@
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
 | **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) |
 | **Performance Optimization** | [Performance Optimization](#performance-optimization),  - [Performance Pitfalls](#common-performance-pitfalls),  - [Handle CPU Tasks](#Handle-CPU-intensive-task) |
-| **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets)  - [100K Concurrent](#Handling-100000-concurrent-requests),    - [High Traffic Scaling](#Scaling-High-Traffic) |
+| **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets)  - [100K Concurrent](#Handling-100000-concurrent-requests),    - [High Traffic Scalable](#Scaling-High-Traffic) |
 | **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production),  - [PM2](#pm2),  - [Load Balancing](#load-balancing) |
 | **Timeout**     | [Common Cases Timeout Errors](#Common-Cases-Timeout-Errors) , - [Handle Timeout Issue](#Debugging-Steps-I-Follow-For-Timeout)  |
 | **Database Interaction**     | [JOINs in Sequelize](#JOINs-in-Sequelize) [SQL Connection](#sql-connection),  - [MongoDB Connection](#mongodb-connection),  - [DB Connections](#database-connections),  - [Transactions](#database-transactions) |

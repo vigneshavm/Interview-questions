@@ -3,8 +3,8 @@
 | **Topic**                     | **Description / Anchor**                                                                                                                                                                                                                                                                                                                                                                   |
 |-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Project** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints) - [Project Initiation Requirements](#project-initiation-requirements) - [Managing pressure software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) - [Managing requirements conflicting ](#managing-conflicting-requirements-from-multiple-stakeholders) |
-| **Leadership** | -  [Help junior developers](#help-junior-developers-get-up-to-speed), -  [Onboard developer](#onboard-new-developer), -  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member), -  [Miss deadlines](#teammate-consistently-miss-deadlines), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help) - [Junior Developer Struggling](#junior-developer-struggling) -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), - [Build Teams](#build-and-structure-effective-teams) - [Ensure code quality?](#ensure-code-quality-and-maintainability-from-project-start) |
-| **Arch & System Design** | [Application architecture challenges](#application-architecture-challenges), -  [Approach system design](#approach-system-design-for-a-new-product), -  [Design scalable and highly system](#design-a-system-that-is-scalable-and-highly-available), -  [Design a system](#design-a-system-like-youtube--uber--whatsapp), -  [Recent architectural decision](#recent-architectural-decision), -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service) , - [Architectural decisions](#architectural-decisions), -  [Technical leadership](#technical-leadership), |
+| **Leadership** | -  [Help junior developers](#help-junior-developers-get-up-to-speed), -  [Onboard developer](#onboard-new-developer), -  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member), -  [Miss deadlines](#teammate-consistently-miss-deadlines), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help) - [Junior Developer Struggling](#junior-developer-struggling) -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), - [Build Teams](#build-and-structure-effective-teams) - [Ensure code quality?](#ensure-code-quality-and-maintainability-from-project-start) -  [Technical leadership](#technical-leadership), |
+| **Arch & System Design** | [Application architecture challenges](#Architectural-Decisions),    -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)   |
 | **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
 | **Client-Facing**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs), -  [Security issue](#security-issue-on-production), -  [Track project progress](#track-project-progress), , -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s) - [Manage client expectations during project startup when there are many unknowns?](#manage-client-expectations-during-project-startup-when-there-are-many-unknowns) - [Add features mid-project that weren’t in the original scope. How do you handle this?](#add-features-mid-project-that-werent-in-the-original-scope-how-do-you-handle-this) - [Communicate technical concepts to non-technical stakeholders?](#communicate-technical-concepts-to-non-technical-stakeholders) |
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
@@ -104,14 +104,6 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 
 
-
-### **Architectural Decisions**
-
-- I’ve had the opportunity to participate in key architectural decisions and provide technical leadership across several projects — particularly involving full-stack development with React, Next.js, Node.js, and TypeScript."**
-- I help design **scalable and modular architectures** — whether it’s deciding between CSR, SSR, or ISR in Next.js, or structuring backend services using REST or GraphQL.
-- I contribute to **data modeling** decisions, ensuring normalized, performant schemas for SQL/NoSQL databases.
-- I’ve implemented **middleware-based backend architecture** in Node.js using Express or NestJS, separating concerns like auth, logging, and error handling.
-- In frontend projects, I’ve led decisions around **component structure**, **state management (e.g., Redux vs. Context API)**, and **code-splitting strategies** for performance.
 
 ### **Technical Leadership**
 
@@ -499,25 +491,6 @@ To handle this smoothly, I followed these steps:
 
 ---
 
-### **Recent architectural decision**
-
-
-- In a recent project for a **multi-tenant education platform**, we needed **scalability, modularity**, and **fast feature delivery**.
-I proposed a **microservices-based architecture** with:
- * **Node.js + Express** for backend services for **performance and developer familiarity**.
- * **MongoDB** for fast and flexible **schema-less design** to handle varied course content.
- * **React + Redux** on the frontend for **component reuse, state management**, and **SEO-friendly SSR fallback** for some pages.
- * **Docker + Kubernetes** for **scalable deployments**, and **GitHub Actions** for CI/CD.
-
- We chose this stack because it aligned with:
-
- * Our team's **existing expertise** (MEAN/MERN)
- * **API-first needs**
- * A roadmap that included **adding mobile apps via React Native** later
-
-- This helped us **deliver modules faster**, enabled **independent scaling**, and improved **fault isolation**.
-
----
 
 ### **server side rendering vs client side rendering**
 
@@ -539,28 +512,8 @@ I proposed a **microservices-based architecture** with:
 ---
 
 
-##  **Approach system design for a new product**
 
- - I follow a structured approach:
->
- - 1. **Understand the Requirements** – Both functional and non-functional (scalability, latency, consistency).
- - 2. **Identify Key Components** – Divide the system into services, APIs, databases, and interfaces.
- - 3. **Define Data Flow & Communication** – Synchronous vs. asynchronous, REST/gRPC/message queues.
- - 4. **Plan for Scalability** – Horizontal scaling, caching, load balancing.
- - 5. **Ensure Fault Tolerance** – Retry logic, circuit breakers, redundancy.
- - 6. **Address Data Storage** – SQL vs NoSQL, indexing, sharding.
- - 7. **Security & Compliance** – Authentication (OAuth2/JWT), rate limiting, encryption.
- - 8. **Monitoring & Observability** – Logs, metrics, alerts.
 
----
-
-##  **Design a system that is scalable and highly available**
-
- - *Scalability**: I use stateless services with horizontal scaling (e.g., auto-scaling groups in AWS), database sharding, and distributed caches like Redis or Memcached.
- - *High Availability**: I ensure redundancy at every layer: multiple instances, active-passive DB replicas, and use of load balancers with health checks.
- - *Resilience**: Use patterns like circuit breakers (e.g., Hystrix), retries with exponential backoff, and message queues for decoupling services.
-
----
 
 ##  **Decide between SQL and NoSQL**
 
@@ -587,21 +540,6 @@ I proposed a **microservices-based architecture** with:
 
 ---
 
-##  **Design a system like YouTube / Uber / WhatsApp?**
-
-These types of questions test your **end-to-end architecture thinking**.
-
-**Answer (high level):**
-
- - *Frontend**: Web and mobile clients with responsive design.
- - *Backend Services**: Microservices architecture using REST/gRPC. Services include user management, video management, chat, notifications, analytics.
- - *Storage**: Media stored in object storage (like AWS S3), metadata in PostgreSQL, real-time data in Redis.
- - *Streaming**: Use a CDN and video transcoding services like Mux or FFmpeg pipeline.
- - *Real-time**: Use WebSockets or MQTT for instant notifications/chat.
- - *Scalability**: Auto-scaling Kubernetes clusters, load balancing via Nginx/Envoy.
- - *Security**: OAuth2 for auth, HTTPS everywhere, audit logs.
-
----
 
 ##  **Handle consistency in distributed systems**
 
@@ -642,27 +580,6 @@ These types of questions test your **end-to-end architecture thinking**.
  - Have **circuit breakers and retry logic** in place.
 
 ---
-
-
-## **Application architecture challenges**
-
-- Architecture is not just about technical choices — it’s about enabling **fast, safe, and scalable product delivery**. I've learned to favor **evolutionary architecture**, observability, and **DX (developer experience)** so teams can iterate quickly without breaking systems.
-
-Here are some of the **critical architectural challenges** I’ve faced — and how I approached them:
-
-
-| **Challenge**                  | **Details**                                              | **Solution / Approach**                                                                                   |
-|-------------------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| Monolith vs Microservices      | Tight coupling, long deployments, hard to scale           | Started with modular monolith → Gradually split into microservices using Node.js, REST/Kafka, Docker/K8s  |
-| State Management (Frontend)    | Deeply nested states in React/Angular                     | Used Redux/NgRx, modular slices, SSR with Next.js                                                         |
-| MongoDB Query Performance      | Slow queries, large documents, aggregation latency        | Normalized data selectively, added indexes, cached with Redis, offloaded analytics to ElasticSearch       |
-| Async Processing & Reliability | UI blocked by heavy tasks (uploads, payments, emails)     | Used BullMQ/RabbitMQ, background Node workers, idempotent handlers, retry with backoff                    |
-| Authentication & Authorization | Complex roles (admin/user/mod), token handling            | JWT + refresh tokens, RBAC, CSRF/XSS protection, secure headers                                           |
-| Global Scalability             | High latency for international users                      | CDN (CloudFront), Geo-sharding in MongoDB, load balancing with Nginx/API Gateway                          |
-| Codebase Maintainability       | Large codebase → merge conflicts, inconsistent practices  | Monorepo with Nx/Turborepo, TypeScript across stack, ESLint/Prettier, OpenAPI contracts                   |
-| CI/CD & Deployment             | Manual deployments caused errors                          | GitHub Actions, Dockerized services, blue-green/canary deploys in Kubernetes                              |
-| Observability                  | Production issues were hard to trace                      | Centralized logs (Winston + ELK), tracing (OpenTelemetry), metrics/alerts (Prometheus + Grafana)          |
-| Org vs Architecture Alignment  | Scaling teams didn't match code boundaries                | Restructured domains with bounded contexts, internal shared libs, team-specific services                  |
 
 
 
@@ -1358,4 +1275,48 @@ I establish a **baseline in the first month**, set up a metrics dashboard, and r
 For example, one dashboard I used included **velocity trend, bug burn-down, code coverage, stakeholder satisfaction, and team happiness index**. This balance of delivery, quality, and people metrics kept the project on track and the team motivated.”
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### **Architectural Decisions**
+
+
+💡 *“I’ve been involved in multiple **architectural decisions** with **React, Angular, Node.js, and TypeScript**. On the **frontend**, I’ve led decisions on **component structure, state management, and rendering modes (CSR, SSR, ISR)** to optimize for **SEO and performance**. On the **backend**, I’ve designed **REST and GraphQL APIs**, using **middleware patterns** in Node.js for **authentication, logging, and error handling**. I’ve also worked on **SQL/NoSQL data modeling**, optimized queries, and implemented **Redis caching** for performance.”*
+
+*“A good example was a **multi-tenant education platform**. We chose a **microservices architecture** with **Node.js**, **MongoDB** for schema flexibility, **React with SSR fallback** for SEO, and **Docker + Kubernetes** for deployment. This helped us achieve **scalability, modularity, and faster feature delivery**.”*
+
+*“When I approach **system design**, I start with **requirements**, break the system into **services**, plan **data flows**, ensure **scalability with caching and load balancing**, and add **resilience with queues and circuit breakers**. I also prioritize **security (JWT/OAuth, encryption)** and **observability (logs, metrics, tracing)**.”*
+
+*“Some challenges I’ve solved include **evolving a monolith into microservices**, **scaling MongoDB with caching and indexing**, **handling async workloads with BullMQ**, and **ensuring fault tolerance with retries and circuit breakers**. Overall, my focus is always on **balancing scalability, maintainability, and speed of delivery**.”*
+
+
+| **Challenge**                  | **Details**                                              | **Solution / Approach**                                                                                   |
+|-------------------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| Monolith vs Microservices      | Tight coupling, long deployments, hard to scale           | Started with modular monolith → Gradually split into microservices using Node.js, REST/Kafka, Docker/K8s  |
+| State Management (Frontend)    | Deeply nested states in React/Angular                     | Used Redux/NgRx, modular slices, SSR with Next.js                                                         |
+| MongoDB Query Performance      | Slow queries, large documents, aggregation latency        | Normalized data selectively, added indexes, cached with Redis, offloaded analytics to ElasticSearch       |
+| Async Processing & Reliability | UI blocked by heavy tasks (uploads, payments, emails)     | Used BullMQ/RabbitMQ, background Node workers, idempotent handlers, retry with backoff                    |
+| Authentication & Authorization | Complex roles (admin/user/mod), token handling            | JWT + refresh tokens, RBAC, CSRF/XSS protection, secure headers                                           |
+| Global Scalability             | High latency for international users                      | CDN (CloudFront), Geo-sharding in MongoDB, load balancing with Nginx/API Gateway                          |
+| Codebase Maintainability       | Large codebase → merge conflicts, inconsistent practices  | Monorepo with Nx/Turborepo, TypeScript across stack, ESLint/Prettier, OpenAPI contracts                   |
+| CI/CD & Deployment             | Manual deployments caused errors                          | GitHub Actions, Dockerized services, blue-green/canary deploys in Kubernetes                              |
+| Observability                  | Production issues were hard to trace                      | Centralized logs (Winston + ELK), tracing (OpenTelemetry), metrics/alerts (Prometheus + Grafana)          |
+| Org vs Architecture Alignment  | Scaling teams didn't match code boundaries                | Restructured domains with bounded contexts, internal shared libs, team-specific services                  |
+
 

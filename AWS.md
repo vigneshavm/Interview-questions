@@ -1,22 +1,23 @@
 
-
 **Azure** - [Azure](#Azure)
 
-- [Fan-out architecture using AWS SQS and SNS](#fan-out-architecture-using-aws-sqs-and-sns) - [Azure Service Bus handles dead-letter messages](#azure-service-bus-handles-dead-letter-messages)
-- [Difference between Kafka and SQS](#kafka-and-sqs) - [Using Pushpin to broadcast real-time messages](#pushpin-to-broadcast-real-time-messages)
-- [Handling message duplication or retries](#handling-message-duplication-or-retries) - [Scaling a queue-based system under high load](#scaling-a-queue-based-system-under-high-load) - [Trade-offs when choosing Kafka over SQS](#trade-offs-when-choosing-kafka-over-sqs)
-
-- [SQS](#SQS) - [SQS Best Practice](#SQS-Best-Practice)
-- [SNS](#SNS) - [SNS Best Practice](#SNS-Best-Practice)
-- [Amazon Kinesis Data Streams](#amazon-kinesis-data-streams)
-- [Lambda](#Lambda)
-- [Amazon S3](#Amazon-S3) - [Amazon S3 Policies & Interview Questions](#Amazon-S3-Policies-&-Interview-Questions)
-
+**AWS** - [Lambda](#Lambda) - [Amazon S3](#Amazon-S3) - [Amazon S3 Policies & Interview Questions](#Amazon-S3-Policies-&-Interview-Questions) - [SQS](#SQS) - [SQS Best Practice](#SQS-Best-Practice) - [SNS](#SNS) - [SNS Best Practice](#SNS-Best-Practice) - [Amazon Kinesis Data Streams](#amazon-kinesis-data-streams)
 
 | **Category**           | **Topics** |
 |------------------------|------------|
 | **AWS API Gateway**    | [API Gateway](#aws-api-gateway), [Types of APIs](#types-of-apis-in-api-gateway), [REST vs HTTP API](#rest-api-vs-http-api), [Integration Types](#integration-types-supported-by-api-gateway), [Lambda Integration](#how-api-gateway-integrates-with-aws-lambda), [Stages](#stages-in-api-gateway), [Usage Plans](#usage-plans-in-api-gateway), [Throttling](#throttling-in-api-gateway), [Security](#securing-your-api-in-api-gateway), [Lambda Authorizer](#lambda-authorizer), [Static Content](#can-api-gateway-serve-static-content), [Payload Limit](#payload-limit-for-api-gateway), [Secure Video Upload](#building-a-secure-video-upload-system), [CORS](#handling-cors-in-api-gateway), [Caching](#how-api-gateway-handles-caching) |
 | **Amazon DynamoDB**    | [DynamoDB Overview](#amazon-dynamodb), [Features](#dynamodb-features), [Durability & Availability](#dynamodb-ensure-data-durability-and-availability), [Query](#perform-a-query-in-dynamodb), [Security](#secure-dynamodb-data), [Table Design](#best-practice-for-designing-dynamodb-tables), [Query vs Scan](#difference-between-query-and-scan-in-dynamodb), [Limits](#limits-of-dynamodb), [Transactions](#handle-transactions-in-dynamodb), [Capacity Modes](#readwrite-capacity-modes-in-dynamodb), [Streams](#dynamodb-streams), [Scaling](#dynamodb-handle-scaling), [GSI vs LSI](#global-secondary-index-gsi-and-local-secondary-index-lsi), [Partition vs Sort Key](#difference-between-a-partition-key-and-a-sort-key), [Primary Key Types](#primary-keys-types), [Primary Key](#primary-key-in-dynamodb), [MongoDB vs DynamoDB](#MongoDB-vs-Amazon-DynamoDB) |
+
+
+
+- [Fan-out architecture using AWS SQS and SNS](#fan-out-architecture-using-aws-sqs-and-sns) - [Azure Service Bus handles dead-letter messages](#azure-service-bus-handles-dead-letter-messages)
+- [Difference between Kafka and SQS](#kafka-and-sqs) - [Using Pushpin to broadcast real-time messages](#pushpin-to-broadcast-real-time-messages)
+- [Handling message duplication or retries](#handling-message-duplication-or-retries) - [Scaling a queue-based system under high load](#scaling-a-queue-based-system-under-high-load) - [Trade-offs when choosing Kafka over SQS](#trade-offs-when-choosing-kafka-over-sqs)
+
+
+
+
+
 
 ## Lambda
 

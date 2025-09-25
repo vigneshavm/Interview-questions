@@ -199,6 +199,25 @@ my-card {
 | **`async`**    | Script is **fetched asynchronously** while HTML parsing continues. Once downloaded, it executes **immediately**, even if HTML parsing is not finished. | Execution order is **not guaranteed** (depends on download speed).                | Independent scripts (e.g., analytics, ads, tracking) that don’t rely on DOM. |
 | **`defer`**    | Script is **fetched asynchronously** while HTML parsing continues. Execution is **deferred until HTML parsing is complete**.                           | Executes **after HTML parsing is done**, in the order they appear.                | DOM-dependent scripts (e.g., main app logic, DOM manipulation).              |
 
+Async
+ •Script downloads while HTML parses
+ •Executes immediately when ready (pausing parsing)
+ •Execution order is not guaranteed
+ •Best for independent scripts (analytics, ads, tracking pixels)
+
+Defer
+ •Script downloads while HTML parses
+ •Executes after HTML parsing finishes
+ •Execution order is maintained
+ •Perfect for scripts that need DOM ready (UI logic, app code)
+
+React & Modern Frameworks
+Tools like CRA, Vite, Next.js automatically use defer for your bundled JS.
+That’s why your React app waits for DOM parsing before mounting smoothly.
+
+✅ Rule of Thumb
+ • Use async → For scripts that don’t touch the DOM
+ • Use defer → For scripts that need DOM ready
 
 ---
 

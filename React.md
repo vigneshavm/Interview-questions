@@ -2011,6 +2011,27 @@ const MyComponent = React.memo(function ({ name }) {
 
 ---
 
+*"Both `useCallback` and `useMemo` are **React hooks for performance optimization**, but they solve different problems.*
+
+* **`useCallback(fn, deps)`** returns a **memoized function reference**. I use it when passing functions as props to child components — it ensures the same function instance is reused across renders, preventing unnecessary re-renders.
+
+  * *Example:* If I have a `handleClick` function that I pass into a child button component, wrapping it with `useCallback` ensures the child doesn’t re-render every time the parent updates.
+
+* **`useMemo(factory, deps)`** returns a **memoized value**. I use it for expensive calculations or derived data so React doesn’t recompute on every render unless dependencies change.
+
+  * *Example:* If I’m filtering or sorting a large dataset, I’ll wrap that logic in `useMemo` so it only recalculates when the data or filter changes.
+
+So, in short:
+
+* **`useCallback` → memoizes a function.**
+* **`useMemo` → memoizes a computed value.**
+
+In practice, I often combine them — for instance, in a large table component: I’ll use `useMemo` to generate a filtered dataset and `useCallback` to memoize the row-click handler.
+
+Also, I’m careful not to **overuse them** — because memoization itself has a cost. I usually rely on the **React Profiler** to see where these optimizations actually improve performance."*
+
+
+
 | Hook         | Purpose                                      | Use Case                                                                 |
 |--------------|----------------------------------------------|--------------------------------------------------------------------------|
 | `useCallback` | Returns a **memoized function**              | Prevents **re-creation** of functions on every render (useful for props) |

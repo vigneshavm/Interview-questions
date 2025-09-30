@@ -1379,6 +1379,23 @@ This ensures that if the component fails to load, an appropriate error message i
 
 ---
 
+## React Router
+****  
+React Router is used for navigation in React apps, enabling multi-page experiences in SPAs.
+
+```jsx
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+  </Routes>
+</BrowserRouter>
+```
+
+---
+
+
+
 
 ## Roles Routes
 
@@ -1460,21 +1477,6 @@ Accessed via `/settings/profile` and `/settings/account`.
 
 
 
-
-## React Router
-****  
-React Router is used for navigation in React apps, enabling multi-page experiences in SPAs.
-
-```jsx
-<BrowserRouter>
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/about" element={<About />} />
-  </Routes>
-</BrowserRouter>
-```
-
----
 
 
 

@@ -1361,13 +1361,18 @@ This ensures that if the component fails to load, an appropriate error message i
 
 ## Strict Mode in React
 
-`<React.StrictMode>` is a tool for highlighting potential problems in an app during development.
+*"Strict Mode in React is a **development-only feature** that helps identify potential problems in an application. It doesn’t affect production builds, but during development it intentionally runs certain functions and lifecycle methods **twice** to surface issues early.
 
- Detects:
+Some of the issues it helps catch are:
 
-- Unsafe lifecycle methods  
-- Legacy API usage  
-- Side effects
+* **Unsafe lifecycle methods** (like `componentWillMount`, `componentWillReceiveProps`).
+* **Accidental side effects** in rendering (for example, if a function isn’t pure).
+* **Legacy API usage** like old context or deprecated methods.
+* **Identifying unexpected re-renders** when using hooks.
+
+Developers enable it by wrapping parts of the app with `<React.StrictMode>` in `index.js`.
+
+For example:
 
 ```jsx
 <React.StrictMode>
@@ -1375,7 +1380,19 @@ This ensures that if the component fails to load, an appropriate error message i
 </React.StrictMode>
 ```
 
-> 🚫 It **doesn't affect production** behavior.
+In practice, I find Strict Mode valuable because it acts like a **“linter for React behavior”** — catching bugs that may not show up until later. In React 18, it’s even more important because it works with features like **Concurrent Rendering** to ensure components are resilient to being mounted/unmounted multiple times."*
+
+
+👉 **Key Highlights for interview:**
+
+* Strict Mode = **development-only tool**
+* Helps catch **unsafe lifecycles, side effects, deprecated APIs**
+* Runs some functions **twice on purpose**
+* Doesn’t affect **production builds**
+* Crucial in **React 18+ for concurrent features**
+
+
+*"I treat Strict Mode as a safeguard — if my code runs correctly in Strict Mode, I can be confident it will behave predictably in production, even with React’s new concurrent rendering features."*
 
 ---
 

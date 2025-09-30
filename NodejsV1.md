@@ -102,31 +102,32 @@ tsconfig.json
 
 ## **Event Loop**
 
+*"The **Event Loop** is a core mechanism in JavaScript and Node.js that enables **non-blocking, asynchronous execution** on a **single thread**. It allows JavaScript to handle multiple operations concurrently without blocking the main thread.
 
-* The **event loop** is the mechanism that allows Node.js to perform **non-blocking I/O** on a **single thread**.
-* It achieves this by **offloading async operations** (network, file I/O, timers) to **libuv’s thread pool**, then processing their **callbacks asynchronously**.
-* As a result, Node.js can efficiently handle **thousands of concurrent connections**.
+Here’s how it works in Node.js:
 
+1. **Call Stack** – Executes **synchronous code** in a LIFO order.
+2. **Web APIs / Background** – Async operations like network requests, file I/O, timers are offloaded to **libuv’s thread pool**. Once completed, their callbacks are queued.
+3. **Task Queues** – Node.js maintains two main queues:
 
-* **Call Stack** → Runs synchronous code.
-* **Event Queue (Macrotasks)** → Timers, I/O, `setTimeout`, `setImmediate`.
-* **Task Queue (Microtask)** → Promises, `process.nextTick`, always runs **before macrotasks**.
-* The **event loop** coordinates between them to make async feel seamless.
+   * **Microtasks** → Promises, `process.nextTick` (higher priority, executed before macrotasks).
+   * **Macrotasks / Event Queue** → Timers, I/O callbacks, `setTimeout`, `setImmediate`.
+4. **Event Loop Execution** – The loop continuously checks the stack and queues, pushing callbacks from queues to the stack when it’s empty.
 
+**Example:**
 
+```javascript
+console.log('Start');
 
-- The **Event Loop** in JavaScript is a mechanism that allows **non-blocking, asynchronous execution** even though JavaScript is single-threaded. 
-- It continuously checks the **call stack** and the **task queues** to determine what should run next.
+setTimeout(() => console.log('Timeout'), 0);
 
-Here’s how it works step by step:
+Promise.resolve().then(() => console.log('Promise'));
 
-1. **Call Stack** – JavaScript executes functions in a stack (LIFO). Synchronous code goes here first.
-2. **Web APIs / Background** – Asynchronous operations like `setTimeout`, network requests, or DOM events are handled outside the main thread. Once they complete, their callbacks are added to a **task queue**.
-3. **Task Queue / Microtask Queue** – The event loop picks tasks from the queue and pushes them onto the call stack when it’s empty. Microtasks (like **Promises**) have higher priority than regular tasks.
-4. **Execution** – The stack executes each task until it’s empty, then the event loop picks the next task from the queue.
-
+console.log('End');
+```
 
 **Output:**
+
 ```
 Start
 End
@@ -135,8 +136,10 @@ Timeout
 ```
 
 * Synchronous code runs first (`Start`, `End`).
-* **Promises** go to the microtask queue → executed next.
-* `setTimeout` goes to the task queue → executed last.
+* **Microtasks** (Promises) execute next.
+* **Macrotasks** (`setTimeout`) run last.
+
+This architecture allows Node.js to handle **thousands of concurrent connections efficiently**, making it ideal for I/O-heavy applications while keeping JavaScript single-threaded."*
 
 
 

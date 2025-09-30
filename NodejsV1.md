@@ -114,6 +114,32 @@ tsconfig.json
 * The **event loop** coordinates between them to make async feel seamless.
 
 
+
+- The **Event Loop** in JavaScript is a mechanism that allows **non-blocking, asynchronous execution** even though JavaScript is single-threaded. 
+- It continuously checks the **call stack** and the **task queues** to determine what should run next.
+
+Here’s how it works step by step:
+
+1. **Call Stack** – JavaScript executes functions in a stack (LIFO). Synchronous code goes here first.
+2. **Web APIs / Background** – Asynchronous operations like `setTimeout`, network requests, or DOM events are handled outside the main thread. Once they complete, their callbacks are added to a **task queue**.
+3. **Task Queue / Microtask Queue** – The event loop picks tasks from the queue and pushes them onto the call stack when it’s empty. Microtasks (like **Promises**) have higher priority than regular tasks.
+4. **Execution** – The stack executes each task until it’s empty, then the event loop picks the next task from the queue.
+
+
+**Output:**
+```
+Start
+End
+Promise
+Timeout
+```
+
+* Synchronous code runs first (`Start`, `End`).
+* **Promises** go to the microtask queue → executed next.
+* `setTimeout` goes to the task queue → executed last.
+
+
+
 - [Event Loop Execution](#Event-Loop-Execution)
 - [Call Stack](#call-stack)
 - [Event Queue (Macrotask Queue)](#event-queue-macrotask-queue)

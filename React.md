@@ -1,6 +1,6 @@
 | **Category**                          | **Topics**                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **React Basics** | • [React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) •  [Virtual DOM](#virtual-dom) • [Single Page Applications (SPA)](#single-page-applications-spa) • [JSX vs HTML](#jsx-vs-html) • [Why Use React](#why-use-react) - [React 18 key changes](#React-18-key-changes)
+| **React Basics** | • [React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) •  [Virtual DOM](#virtual-dom)  •  [Compare nodes internally in the Virtual DOM](#Compare-nodes-internally-in-the-Virtual-DOM) • [Single Page Applications (SPA)](#single-page-applications-spa) • [JSX vs HTML](#jsx-vs-html) • [Why Use React](#why-use-react) - [React 18 key changes](#React-18-key-changes)
 | **React Component Types**          | •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) - [Render Props](Render-Props) •  [Conditional Rendering](#Conditional-Rendering) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) •|
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) •  [Reacts Concurrent Mode](#Reacts-Concurrent-Mode) |
@@ -549,6 +549,21 @@ ReactDOM.render(virtualDOM, document.getElementById('root'));
 ```
 
 ---
+
+
+## Compare nodes internally in the Virtual DOM
+
+*"When React updates the UI, it builds a new **Virtual DOM tree** and compares it with the previous one using a process called **reconciliation**. Internally, it uses an efficient **diffing algorithm**:
+
+1. **Element type check** – If the **element type** (like `<div>` vs `<span>` or `Button` vs `Card`) is different, React assumes the entire subtree has changed and will destroy the old node and build a new one.
+2. **Props comparison** – If the type is the same, React does a **shallow comparison of props** and updates only the changed attributes in the real DOM.
+3. **Children comparison** – For child nodes, React uses the **key attribute** to match elements between old and new trees. If keys are stable and unique, React can reorder or update children efficiently instead of re-rendering the whole list.
+
+This approach keeps the diffing process close to **O(n)** complexity, instead of the expensive O(n³) tree comparison. That’s why React apps can update the UI quickly, even when the DOM structure is large."*
+
+---
+
+
 
 ## Lifecycle Methods 
 

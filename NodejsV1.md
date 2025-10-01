@@ -1,6 +1,9 @@
 
 
 
+
+
+
 | **Category**                 | **Topics** |
 |-----------------------------|------------|
 | **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), - [Why V8 Engine](#Why-V8-Engine) - [Handle Multiple Requests](#nodejs-handle-multiple-requests),  - [Single-Threaded Nature](#single-threaded-nature), - [node js 22 features](#node-js-22-features) - [Node js 20 features](#Node-js-20-features) |
@@ -8,7 +11,7 @@
 | **Processes**                | [Event Loop](#event-loop),  - [Async I/O Handling](#asynchronous-io-handling),  - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks),  - [Async Execution Order](#Async-Execution-Order),  - [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick),   |
 | **Processes**                | - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
 | **Async and Middleware** |  [BackPressure](#BackPressure)  - [FS(File System)](#FS), - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
-| **Package JSON**             | [package.json](#packagejson),  - [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [npm install vs npm ci](#npm-install-vs-npm-ci) - [npm vs npx](#npm-vs-npx) - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
+| **Package JSON**             | [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [npm install vs npm ci](#npm-install-vs-npm-ci) - [npm vs npx](#npm-vs-npx) - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
 | **REST API & Security**      | [REST API](#rest-api),  -[HTTP methods](#http-methods) - [RESTAPI version](#restapi-version) - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , - [Handle retries](#Handle-retries) , - [API Slow](#API-Slow) -[Prevent Abusive Network API Call](#Prevent-abusive-network-calls-in-an-API)|
 | **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) -[Keep secrets in Node.js](#keep-secrets-in-nodejs) - [Security & Vulnerability Handling in High-Traffic APIs](#security--vulnerability-handling-in-high-traffic-apis)|
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
@@ -2600,6 +2603,13 @@ export const refreshToken = (req: Request, res: Response) => {
 * **`package-lock.json`** records the **exact versions** of those packages **and all nested dependencies**. It’s **auto-generated** and ensures **Consistent builds** across environments.
 * **Key point**: `package.json` is **for humans**, `package-lock.json` is **for the system**.
 * Example: Even if `package.json` allows a range, **package-lock.json guarantees everyone installs `express@4.18.2`**.
+
+
+* **Apps → commit `package-lock.json`** --> Run using npm ci in CI/CD pipelines instead of npm install
+* **Libraries → don’t commit lock file**
+* Use **semver ranges + peer dependencies** for predictable behavior
+* Test library against multiple versions in CI
+* In CI/CD for libraries, we often run **integration tests against multiple versions of dependencies** to ensure compatibility instead of locking versions with a lock file."*
 
 
 ###  **1. `package.json`** – _The Project Manifest_

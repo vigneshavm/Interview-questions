@@ -586,31 +586,24 @@ To handle this smoothly, I followed these steps:
 
 ### Agile Concepts
 
-In **Agile**, an **Epic** is:
+*"In Agile, I work with **Epics, User Stories, and Tasks** to organize work efficiently. 
 
-* A **large body of work** that can’t be completed in a single sprint.
-* It’s **too big to estimate or deliver at once**, so it’s broken down into smaller, manageable **user stories** or **tasks**.
-* Epics help in organizing work at a **higher level** and keeping the **product backlog structured**.
+- **Epic**         --> An **Epic** is a large feature or module, like 'Invoice Management,'* Epics help in organizing work at a **higher level** and keeping the **product backlog structured**.
+- **User Stories** --> which we break down into smaller **user stories** that are testable and deliverable. For example, creating invoices, downloading invoices, and updating invoice status would be separate stories within the Epic.
+- **Tasks**        --> Tasks within each story allow parallel development and clear tracking."*
 
-👉 Epic: **“Invoice Management”**
+*"For estimation, I use **story points** based on complexity and dependencies, following the **Fibonacci sequence** and **planning poker** to align the team. I track **velocity** as a rolling average over the past few sprints and plan at **80–90% capacity** to accommodate unplanned work."*
 
-* User Story 1: As an admin, I want to create invoices so I can bill customers.
-* User Story 2: As a user, I want to download invoices as PDF so I can share them.
-* User Story 3: As an admin, I want to update invoice status so I can track payments.
+*"We split large stories using **vertical slicing**—ensuring each slice delivers end-to-end value—and break full-stack features into **frontend, backend, database, and tests** to enable parallel work."*
 
-Analogy:
- - Epic = Book
- - User Stories = Chapters
- - Tasks = Pages
+*"During sprints, we monitor progress via **daily stand-ups, Jira, and burndown charts**. Minor changes are absorbed; major changes become new stories in the next sprint to protect current sprint goals. Our **Definition of Done** includes code review, testing, merging, and QA signoff for release readiness."*
 
+*"We set **frequent milestones**, typically at the end of sprints or key feature sets, to track progress and ensure continuous delivery. Finally, in **retrospectives**, we analyze what went well, what didn’t, and implement actionable improvements to optimize team performance and delivery quality."*
+
+*"Using this approach in projects like a **payment module with Razorpay integration**, we were able to **deliver complex features on time, maintain consistent velocity, and avoid burnout**, while improving visibility and predictability across the team."*
 
 
-- "I base estimates on prior complexity and edge case handling.
--  In **Shoutout**, a payment module involving Razorpay integration was assigned 8 points due to external dependencies and testing. 
-- We balanced velocity over time and maintained historical velocity tracking. 
-- This allowed realistic sprint planning and prevented burnout."*
 
----
 
 | **Interview Question**                          | **Answer (Interview-Style)**                                                                                                                                                                        |
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

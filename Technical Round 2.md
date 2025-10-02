@@ -4,7 +4,7 @@
 |-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Project** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints) - [Project Initiation Requirements](#project-initiation-requirements) - [Managing pressure software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) - [Managing requirements conflicting ](#managing-conflicting-requirements-from-multiple-stakeholders) |
 | **Leadership** | -  [Help junior developers](#help-junior-developers-get-up-to-speed), -  [Onboard developer](#onboard-new-developer), -  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member), -  [Miss deadlines](#teammate-consistently-miss-deadlines), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help) - [Junior Developer Struggling](#junior-developer-struggling) -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), - [Build Teams](#build-and-structure-effective-teams) - [Ensure code quality?](#ensure-code-quality-and-maintainability-from-project-start) -  [Technical leadership](#technical-leadership), |
-| **Arch & System Design** | -[Architecture Used](#Architecture-Used) - [Application architecture challenges](#Architectural-Decisions), - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application)    -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)   |
+| **Arch & System Design** | -[Architecture Used](#Architecture-Used) - [Architectural Decisions](#Architectural-Decisions), -[Application architecture challenges](#Application-architecture-challenges) - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application)    -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)   |
 | **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
 | **Additional** | -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
@@ -1366,5 +1366,69 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 | CI/CD & Deployment             | Manual deployments caused errors                          | GitHub Actions, Dockerized services, blue-green/canary deploys in Kubernetes                              |
 | Observability                  | Production issues were hard to trace                      | Centralized logs (Winston + ELK), tracing (OpenTelemetry), metrics/alerts (Prometheus + Grafana)          |
 | Org vs Architecture Alignment  | Scaling teams didn't match code boundaries                | Restructured domains with bounded contexts, internal shared libs, team-specific services                  |
+
+
+---
+
+
+## **Application architecture challenges**
+
+
+
+
+- "When designing and implementing full-stack applications, there are several key architectural challenges I often encounter:"*
+
+- "Overall, architectural challenges revolve around **balancing scalability, performance, maintainability, reliability, and security**. My approach is to identify trade-offs early, choose the right tools and patterns, and continuously monitor and optimize the system as it grows."
+
+
+
+### **1️⃣ Scalability**
+
+* Ensuring the system can **handle increased load** without degrading performance.
+* Challenges include **database scaling**, API throttling, and managing **stateful vs stateless services**.
+* **Solution:** Use caching (Redis), load balancing, and, where appropriate, **microservices** to scale independently.
+
+
+
+### **2️⃣ Maintainability**
+
+* Large codebases can become hard to maintain if layers and modules are not **well-structured**.
+* Challenge: Avoiding **spaghetti code**, tightly coupled components, or monolithic designs.
+* **Solution:** Implement **layered architecture**, **component-based frontend**, and **separation of concerns** in backend services.
+
+
+
+### **3️⃣ Performance**
+
+* Bottlenecks can occur in **database queries, API responses, and frontend rendering**.
+* Challenge: Optimizing **async operations**, heavy computations, or large data transfers.
+* **Solution:** Use **async patterns**, database indexing, caching, pagination, and lazy loading in the frontend.
+
+
+
+### **4️⃣ Reliability & Fault Tolerance**
+
+* Handling **failures gracefully** without crashing the entire application.
+* Challenge: Network errors, service outages, or async job failures.
+* **Solution:** Use **retry mechanisms, queues (BullMQ/RabbitMQ), circuit breakers**, and monitoring.
+
+
+
+### **5️⃣ Security**
+
+* Ensuring **data integrity and secure access** is critical.
+* Challenge: Authentication, authorization, and data encryption.
+* **Solution:** JWT/OAuth2 for auth, SSL/TLS, input validation, and secure storage practices.
+
+
+
+### **6️⃣ Integration & Flexibility**
+
+* Applications often need to **integrate with multiple services or databases**.
+* Challenge: Choosing between **REST vs GraphQL**, SQL vs NoSQL, or handling API versioning.
+* **Solution:** Careful **service design**, clear contracts, and modular APIs.
+
+---
+
 
 

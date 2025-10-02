@@ -4,7 +4,7 @@
 |-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Project** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints) - [Project Initiation Requirements](#project-initiation-requirements) - [Managing pressure software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) - [Managing requirements conflicting ](#managing-conflicting-requirements-from-multiple-stakeholders) |
 | **Leadership** | -  [Help junior developers](#help-junior-developers-get-up-to-speed), -  [Onboard developer](#onboard-new-developer), -  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member), -  [Miss deadlines](#teammate-consistently-miss-deadlines), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help) - [Junior Developer Struggling](#junior-developer-struggling) -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), - [Build Teams](#build-and-structure-effective-teams) - [Ensure code quality?](#ensure-code-quality-and-maintainability-from-project-start) -  [Technical leadership](#technical-leadership), |
-| **Arch & System Design** | -[Architecture Used](#Architecture-Used) - [Architectural Decisions](#Architectural-Decisions), -[Application architecture challenges](#Application-architecture-challenges) - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application)    -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)   |
+| **Arch & System Design** | -[Architecture Used](#Architecture-Used) - [Architectural Decisions](#Architectural-Decisions), -[Application architecture challenges](#Application-architecture-challenges) - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application)  -[Recent architectural challenges](#Recent-architectural-challenges)  -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)   |
 | **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
 | **Additional** | -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
@@ -1484,6 +1484,63 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 * **Solution:** Careful **service design**, clear contracts, and modular APIs.
 
 ---
+
+
+### **Recent architectural challenges**
+
+*"Yes, recently while working on PlanUSA, I faced several architectural challenges while building a multi-tenant web platform supporting high concurrent users, dynamic content, and multiple integrations (payment gateways, reporting tools, and third-party APIs)."*
+
+
+
+#### **1️⃣ Context:**
+
+* **Tech Stack:** React frontend, Node.js backend, MongoDB/MySQL.
+* **User Base:** Targeted up to **10,000 concurrent users** across multiple tenants.
+* **Existing System:** Monolithic backend, slow deployments, and performance bottlenecks.
+
+
+
+#### **2️⃣ Challenges & Actions (with Quantified Impact):**
+
+1. **Scalability & Performance:**
+
+   * Challenge: API response times were **averaging 1.5–2 seconds** under load.
+   * Action: Introduced **Redis caching**, optimized queries, and implemented **load balancing**.
+   * Result: Reduced API response times by **50%**, handled **10,000+ concurrent requests** smoothly.
+
+2. **Monolith-to-Microservices Transition:**
+
+   * Challenge: Slow deployments and tightly coupled code.
+   * Action: Broke the backend into **microservices** with an **API Gateway** for routing.
+   * Result: Deployment time reduced from **3 hours to 30 minutes**, and independent feature delivery improved **developer productivity by 40%**.
+
+3. **Database Optimization:**
+
+   * Challenge: Slow queries due to large collections and joins.
+   * Action: Added **indexes, sharded collections**, and optimized schema.
+   * Result: Query performance improved by **60%**, reducing backend latency.
+
+4. **Asynchronous Workloads:**
+
+   * Challenge: Background tasks like report generation were blocking main threads.
+   * Action: Implemented **BullMQ queues** with retry mechanisms.
+   * Result: Task processing throughput increased by **70%**, reducing failed job retries.
+
+5. **Security & Compliance:**
+
+   * Challenge: Multi-tenant data isolation and secure access.
+   * Action: Implemented **JWT authentication, role-based access, and encryption**.
+   * Result: Achieved **100% compliance** with internal security standards, and zero breaches during production.
+
+
+
+#### **3️⃣ Outcome:**
+
+* **High Performance:** API response times cut by **50%**, system handled **10k+ concurrent users**.
+* **Faster Feature Delivery:** Deployment time reduced by **90%**.
+* **Reliable & Secure:** Multi-tenant isolation and async tasks ensured **0 downtime** and **fault tolerance**.
+* **Developer Productivity:** Modular microservices improved collaboration and **reduced merge conflicts by ~35%**.
+
 
 
 

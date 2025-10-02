@@ -623,6 +623,7 @@ Analogy:
 | **Track progress in a sprint?**      | Through **daily standups**, **Jira status**, and **burndown charts**. If tasks are stuck too long or the chart flattens, I proactively identify blockers and resolve them.                          |
 | **Run sprint planning?**             | I review team capacity and velocity, then pull high-priority items. We estimate together, define acceptance criteria, and ensure stories are sized for 1–2 days of work max.                        |
 | **Run retrospectives?**              | I use the format: “What went well?”, “What didn’t?”, and “What can we improve?”. We keep it action-oriented and track changes in the next sprint.                                                   |
+| **Milestone?**              | Milestones are set **frequently enough to track progress and deliver value**, often at the end of sprints for features and after multiple sprints for releases, ensuring the team continuously delivers working software..                                                   |
 
 ---
 

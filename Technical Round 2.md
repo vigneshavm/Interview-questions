@@ -12,7 +12,7 @@
 | **Planning** | - [Technology selection (new project)](#technology-stack-selection-for-a-new-project) - [Handle performance requirements](#handle-performance-requirements-from-the-beginning-of-a-project) |
 | **Risk** | - [Common risks in software projects and how do you mitigate them?](#common-risks-in-software-projects-and-how-do-you-mitigate-them) - [Technical blocker emerges 3 weeks into development. How do you handle this?](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
 | **Security** | - [Security Breach Response](#security-breach-response) - [Security and compliance](#security-and-compliance) - [Implement security across](#implement-security-across) -  [Security issue](#security-issue-on-production), |
-| **Agile** | - [Agile Concepts](#Agile-Concepts) , - [Implement Agile methodology](#implement-agile-methodology-in-a-new-project-team) - [Measure project success](#measure-project-success-and-team-performance-from-the-beginning)   - [Agile Transformation](#agile-transformation-resistance)  |
+| **Agile** | - [Agile Concepts](#Agile-Concepts) , - [Agile process](#Agile-process) - [Implement Agile methodology](#implement-agile-methodology-in-a-new-project-team) - [Measure project success](#measure-project-success-and-team-performance-from-the-beginning)   - [Agile Transformation](#agile-transformation-resistance)  |
 | **Other** | - [Angular Performance Issues](#angular-performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management) - [Production Incident](#production-incident) - [Technical Debt Management](#technical-debt-management) - [Database Performance Crisis](#database-performance-crisis) |
 | **Other** | - [Cloud Migration Challenge](#cloud-migration-challenge) - [Cross-Cultural Team Management](#cross-cultural-team-management) - [Vendor Integration Challenge](#vendor-integration-challenge)  - [Scope Creep Management](#scope-creep-management) - [System Integration Failure](#system-integration-failure) - [Ensure code-level safety](#ensure-code-level-safety-for-example-with-null-checks) - [Design for scalability on AWS](#design-for-scalability-on-aws) - [Docker deployment challenges](#docker-deployment-challenges) |
 | **Client-Facing**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs),  -  [Track project progress](#track-project-progress), , -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Secure backend APIs](#performant-and-secure-backend-apis), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s) - [Manage client expectations during project startup when there are many unknowns?](#manage-client-expectations-during-project-startup-when-there-are-many-unknowns) - [Add features mid-project that weren’t in the original scope. How do you handle this?](#add-features-mid-project-that-werent-in-the-original-scope-how-do-you-handle-this) - [Communicate technical concepts to non-technical stakeholders?](#communicate-technical-concepts-to-non-technical-stakeholders) |
@@ -1543,5 +1543,25 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 * **Developer Productivity:** Modular microservices improved collaboration and **reduced merge conflicts by ~35%**.
 
 
+
+
+
+---
+
+
+### Agile process
+
+| **Step**                                        | **Description**                                          | **Key Activities**                                                                                  |
+| ----------------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| 1. **Requirement Gathering & Backlog Creation** | **Collect high-level requirements** and define the scope | **Create product backlog**, **prioritize user stories/features/tasks**                              |
+| 2. **Sprint Planning**                          | **Plan the work for the upcoming sprint**                | **Select user stories**, **define sprint goals**, **estimate effort**, **assign tasks**             |
+| 3. **Sprint Execution / Development**           | **Develop features iteratively** within the sprint       | **Daily stand-ups**, **coding**, **pair programming**, **code reviews**, **unit testing**           |
+| 4. **Continuous Integration & Testing**         | **Ensure integrated, working code**                      | **Integrate code frequently**, **perform unit/integration/automated tests**                         |
+| 5. **Sprint Review / Demo**                     | **Showcase completed work** to stakeholders              | **Demonstrate features**, **gather feedback**, **note improvement points**                          |
+| 6. **Sprint Retrospective**                     | **Reflect on team performance and process**              | **Discuss successes**, **challenges**, and **action items** for process improvement                 |
+| 7. **Release / Deployment**                     | **Deploy completed features or product increments**      | **Deploy to staging/production**, **ensure stability**, **release milestones**                      |
+| 8. **Repeat / Iterate**                         | **Continue Agile cycle** for remaining backlog           | **Plan next sprint**, **implement feedback**, **deliver incrementally**, **continuous improvement** |
+
+---
 
 

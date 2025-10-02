@@ -1117,13 +1117,13 @@ This structured approach ensures the chosen stack is both **fit for purpose toda
 
 *"When designing the system architecture for a complex web application, I structure my approach into three phases: High-Level Architecture, Application Architecture, and Non-Functional Requirements."*
 
-### **1️⃣ High-Level Architecture**
+#### **1️⃣ High-Level Architecture**
 
 * Map the **system context, major boundaries, and data flows**.
 * Define the **deployment model** and **scalability requirements**.
 * Identify **critical modules**, external integrations, and expected **user load**.
 
-### **2️⃣ Application Architecture**
+#### **2️⃣ Application Architecture**
 
 **Frontend:**
 
@@ -1152,7 +1152,7 @@ This structured approach ensures the chosen stack is both **fit for purpose toda
 
 
 
-### **3️⃣ Non-Functional Requirements**
+#### **3️⃣ Non-Functional Requirements**
 
 **Security:**
 

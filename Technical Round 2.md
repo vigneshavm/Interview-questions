@@ -1338,13 +1338,20 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 ### **Architectural Decisions**
 
 
-💡 *“I’ve been involved in multiple **architectural decisions** with **React, Angular, Node.js, and TypeScript**. On the **frontend**, I’ve led decisions on **component structure, state management, and rendering modes (CSR, SSR, ISR)** to optimize for **SEO and performance**. On the **backend**, I’ve designed **REST and GraphQL APIs**, using **middleware patterns** in Node.js for **authentication, logging, and error handling**. I’ve also worked on **SQL/NoSQL data modeling**, optimized queries, and implemented **Redis caching** for performance.”*
+- "Yes, I have been actively involved in **architectural decisions** in multiple full-stack projects. My approach is to **balance scalability, performance, and maintainability** while ensuring the team can deliver features efficiently. I don’t just implement code; I also participate in architectural discussions, evaluate trade-offs between tools and technologies, and make decisions that impact overall system performance and developer productivity."
 
-*“A good example was a **multi-tenant education platform**. We chose a **microservices architecture** with **Node.js**, **MongoDB** for schema flexibility, **React with SSR fallback** for SEO, and **Docker + Kubernetes** for deployment. This helped us achieve **scalability, modularity, and faster feature delivery**.”*
+- "On the frontend, I’ve led decisions around **component structure, state management**, and **rendering modes** like CSR, SSR, and ISR to optimize both **performance and SEO**. On the backend, I’ve designed **REST and GraphQL APIs**, implemented **middleware patterns** for authentication, logging, and error handling, and worked extensively on **SQL/NoSQL data modeling, query optimization, and Redis caching** to improve performance."
 
-*“When I approach **system design**, I start with **requirements**, break the system into **services**, plan **data flows**, ensure **scalability with caching and load balancing**, and add **resilience with queues and circuit breakers**. I also prioritize **security (JWT/OAuth, encryption)** and **observability (logs, metrics, tracing)**.”*
+- "For example, in a project with a React/Angular frontend, Node.js backend, and MongoDB/MySQL, we needed a **scalable and high-performance architecture**. I chose a **component-based React architecture** with **Context API/Redux** for state management, structured the **Node.js backend in a layered fashion** with controllers, services, and repositories, and implemented **async event-driven patterns** for non-blocking I/O. We also evaluated **MongoDB vs MySQL**, designed schemas and indexes, added **Redis caching**, and decided between **REST vs GraphQL** based on API flexibility. As a result, we achieved a **highly maintainable codebase**, **faster feature delivery**, **reduced API response times**, and **reliable scaling** under heavy user load."
 
-*“Some challenges I’ve solved include **evolving a monolith into microservices**, **scaling MongoDB with caching and indexing**, **handling async workloads with BullMQ**, and **ensuring fault tolerance with retries and circuit breakers**. Overall, my focus is always on **balancing scalability, maintainability, and speed of delivery**.”*
+- "A concrete example is a **multi-tenant education platform** where we adopted a **microservices architecture** with Node.js, MongoDB for schema flexibility, React with SSR fallback for SEO, and **Docker + Kubernetes** for deployment. This setup gave us **scalability, modularity, and faster feature delivery**."
+
+- "When approaching system design, I start by **understanding requirements**, break the system into **services**, plan **data flows**, ensure **scalability** with caching and load balancing, and build **resilience** using queues and circuit breakers. I also focus on **security** using JWT/OAuth and encryption, and **observability** via logs, metrics, and tracing."
+
+- "Some challenges I’ve solved include evolving a **monolith into microservices**, scaling **MongoDB with caching and indexing**, handling **asynchronous workloads** using BullMQ, and ensuring **fault tolerance** with retries and circuit breakers. Overall, my focus is always on **balancing scalability, maintainability, and speed of delivery**."
+
+
+
 
 
 | **Challenge**                  | **Details**                                              | **Solution / Approach**                                                                                   |

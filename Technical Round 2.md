@@ -4,7 +4,7 @@
 |-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Project** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints) - [Project Initiation Requirements](#project-initiation-requirements) - [Managing pressure software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) - [Managing requirements conflicting ](#managing-conflicting-requirements-from-multiple-stakeholders) |
 | **Leadership** | -  [Help junior developers](#help-junior-developers-get-up-to-speed), -  [Onboard developer](#onboard-new-developer), -  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member), -  [Miss deadlines](#teammate-consistently-miss-deadlines), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help) - [Junior Developer Struggling](#junior-developer-struggling) -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers), -  [Lead code reviews](#lead-code-reviews), - [Build Teams](#build-and-structure-effective-teams) - [Ensure code quality?](#ensure-code-quality-and-maintainability-from-project-start) -  [Technical leadership](#technical-leadership), |
-| **Arch & System Design** | [Application architecture challenges](#Architectural-Decisions), - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application)    -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)   |
+| **Arch & System Design** | -[Architecture Used](#Architecture-Used) - [Application architecture challenges](#Architectural-Decisions), - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application)    -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)   |
 | **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) |
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
 | **Additional** | -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
@@ -1280,6 +1280,46 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 
 
 
+
+
+### **Architecture Used**
+
+*"The architecture I typically use in such full-stack applications is a **layered (n-tier) architecture** combined with **client-server principles** and **component-based frontend architecture**."*
+
+*"So, in short, it’s a **layered, n-tier client-server architecture** with a **component-based frontend** and **asynchronous event-driven backend**, which provides **scalability, maintainability, and clear separation of concerns**."*
+
+#### **Explanation:**
+
+1. **Presentation Layer (Front-end)**
+
+   * React/Angular implements a **component-based architecture**.
+   * Responsible for rendering UI, managing local state, and interacting with APIs.
+
+2. **Application / Business Logic Layer (Back-end)**
+
+   * Node.js + Express (or NestJS) acts as the **server layer**.
+   * Implements business logic, authentication/authorization, and API endpoints (REST or GraphQL).
+   * Handles async operations via **event-driven, non-blocking I/O**.
+
+3. **Data Layer (Database)**
+
+   * MongoDB or MySQL serves as the **persistence layer**.
+   * Responsible for CRUD operations, data consistency, and query execution.
+
+
+
+#### **Additional Architectural Concepts**
+
+* **Separation of Concerns:** Each layer has a single responsibility — UI, business logic, or data.
+* **N-Tier Architecture:** Frontend (UI) → Backend (API/Logic) → Database.
+* **Optional Enhancements:**
+
+  * **Caching layer** (Redis) to reduce DB load.
+  * **Microservices** for scalable and independent modules in large systems.
+  * **CI/CD pipelines** for automated deployment.
+
+
+---
 
 
 

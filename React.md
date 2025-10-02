@@ -887,11 +887,16 @@ const withLoading = (WrappedComponent) => {
 
 Portals let you render a component **outside the main DOM hierarchy**.
 
+* **Definition**: A way to render children outside parent DOM hierarchy.
+* **API**: `ReactDOM.createPortal(child, container)`.
+* **Common Use Cases**: Modals, dialogs, tooltips, dropdowns, notifications - that need to escape `overflow: hidden` or `z-index` issues.
+* **Event System**: Events still propagate through React’s hierarchy.
+* **Impact**: Cleaner UI layering, fewer CSS/z-index issues, improved user experience.
+
 ```jsx
 ReactDOM.createPortal(<Modal />, document.getElementById('modal-root'));
 ```
 
-**Use cases:** Modals, tooltips, dropdowns that need to escape `overflow: hidden` or `z-index` issues.
 
 ---
 

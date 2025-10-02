@@ -7,7 +7,7 @@
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules)  •  [`useRef` vs `useState`](#useRef-vs-useState)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) •  [Handle Large Forms](#Handle-Large-Forms)|
-| **React Others**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef) •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query)   •  [React Window](#React-Window) •  [Redux Virtualized](#react-virtualized)  - [Recursion](#Recursion) 
+| **React Others**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef)  •    [forwardRef ](#forwardRef) •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR – What and Why?](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query)   •  [React Window](#React-Window) •  [Redux Virtualized](#react-virtualized)  - [Recursion](#Recursion) 
 | **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
@@ -2639,7 +2639,6 @@ In React, a **Ref** (short for reference) is used to **access a DOM element or R
 
 You create a ref using `useRef` (in functional components) or `createRef` (in class components).
 
----
 
 ###  **Common Use Cases for Refs**:
 
@@ -2649,7 +2648,6 @@ You create a ref using `useRef` (in functional components) or `createRef` (in cl
 4. **Interfacing with third-party DOM libraries**  
 5. **Storing mutable values that persist across renders**
 
----
 
 ###  **Example: Focusing an Input Field**
 

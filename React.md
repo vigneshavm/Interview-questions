@@ -2633,10 +2633,6 @@ Because it **scales well**, keeps your code DRY (Don't Repeat Yourself), and wor
 - If I’m in a **function component**, I’ll almost always use `useRef` — not just for DOM access, but also as a container for values that need to survive re-renders without triggering them."*
 
 
----
-
-Would you like me to also give you a **small real-world analogy** (like “useRef is like a hidden box that doesn’t reset between renders”)? That usually makes it easier to explain in interviews.
-
 
 ---
 

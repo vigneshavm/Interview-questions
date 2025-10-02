@@ -1113,27 +1113,82 @@ This structured approach ensures the chosen stack is both **fit for purpose toda
 
 ### Design the system architecture for a complex web application."
 
-
 “My approach to architecture design is structured into three phases.
 
-**First, High-Level Architecture** — I map the system context, major boundaries, data flows, deployment model, and scalability requirements.
+*"When designing the system architecture for a complex web application, I structure my approach into three phases: High-Level Architecture, Application Architecture, and Non-Functional Requirements."*
 
-**Second, Application Architecture** — I define frontend and backend patterns, database design, and integration architecture with APIs, messaging, and caching.
+### **1️⃣ High-Level Architecture**
 
-**Third, Non-Functional Requirements** — I address security, performance, monitoring, and DevOps, including CI/CD pipelines and deployment strategy.
+* Map the **system context, major boundaries, and data flows**.
+* Define the **deployment model** and **scalability requirements**.
+* Identify **critical modules**, external integrations, and expected **user load**.
 
-I always apply principles of **modularity, scalability, maintainability, security, and reliability**.
+### **2️⃣ Application Architecture**
 
-To validate, I run proofs-of-concept for risky areas, review with the team, present trade-offs to stakeholders, and document all decisions.
+**Frontend:**
 
-The result is clear architecture diagrams, stack recommendations, and a roadmap that balances **technical soundness with business goals**.”
+* Use **component-based frameworks** like React or Angular.
+* Decide on **rendering strategies** (CSR, SSR, ISR) based on SEO and performance.
+* Implement **state management** (Redux, Context API, NgRx) and optimize performance with **lazy loading, code splitting, and caching**.
+
+**Backend:**
+
+* Layered architecture: **Controllers → Services → Repositories**.
+* Design **REST or GraphQL APIs**.
+* Use **middleware** for authentication, logging, and error handling.
+* Handle async tasks using **event-driven patterns, queues, and workers**.
+
+**Database & Storage:**
+
+* Use **SQL** for structured, transactional data and **NoSQL** for flexible, schema-less data.
+* Optimize queries, use **indexes**, and implement **caching with Redis**.
+* Store static assets via **CDN or object storage**.
+
+**Integration & Microservices:**
+
+* Break large systems into **microservices** for modularity and independent scaling.
+* Use **API Gateway** for routing, authentication, and rate limiting.
+* Ensure reliable inter-service communication with **REST, gRPC, or messaging queues**.
+
+
+
+### **3️⃣ Non-Functional Requirements**
+
+**Security:**
+
+* Implement **JWT/OAuth2, role-based access, and encryption**.
+
+**Performance & Scalability:**
+
+* Use **caching, load balancing, and horizontal scaling**.
+
+**Reliability & Observability:**
+
+* Implement **monitoring, logging, metrics, and tracing**.
+* Ensure **fault tolerance** with retries, circuit breakers, and queue-based async processing.
+
+**DevOps & Deployment:**
+
+* Containerize services with **Docker** and orchestrate using **Kubernetes**.
+* Implement **CI/CD pipelines** with automated build, test, and deployment.
+* Use **blue-green or canary deployments** to minimize downtime.
+
+
+
+### **Validation & Outcome**
+
+* Run **proofs-of-concept** for risky components and review with the team.
+* Document **trade-offs** and decisions clearly for stakeholders.
+* The result is a **modular, scalable, maintainable, and secure system** that meets business goals and performs reliably under load.
+
+
 
 ---
 
 
 ### Handle performance requirements from the beginning of a project?"
 
----
+
 
 “I believe **performance must be designed in from the start, not added later**.
 

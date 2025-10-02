@@ -166,6 +166,7 @@ const element = <h1>Hello, {user.name}</h1>;
 
 - [Comparison Table: Class Components vs Functional Components](#comparison-table-class-components-vs-functional-components)
 - [Class Components](#class-components)
+- [Error Handling in Class Components](#error-handling-in-class-components)
 - [Functional Components](#functional-components)
 - [Why the Shift to Functional Components](#why-the-shift-to-functional-components)
 - [Comparison of Bundle Size & Performance](#comparison-of-bundle-size-performance)
@@ -6012,3 +6013,48 @@ Sure! Here's how you can confidently and concisely answer this question in an **
 
 
 - If the child component is expensive to render and doesn’t depend on the parent’s state or props, wrapping it with `React.memo()` (or using `useMemo` for values) helps avoid **unnecessary renders**, improving performance.
+
+
+
+
+## **Error Handling in Class Components**
+
+
+“In React, error handling in **class components** is mainly achieved using **Error Boundaries**.
+
+An **Error Boundary** is a special class component that acts like a **try/catch block for React’s component tree**. It prevents the **entire app from crashing** if a child component throws an error during **rendering, lifecycle methods, or constructors**.
+
+To create an Error Boundary, I implement two key lifecycle methods:
+
+* **`static getDerivedStateFromError(error)`** → updates state to render a **fallback UI**.
+* **`componentDidCatch(error, info)`** → **logs error details** for debugging or reporting (e.g., to **Sentry**).
+
+This ensures that instead of a **white screen of death**, users see a **graceful fallback UI** (like *“Something went wrong. Please refresh.”*).
+
+
+
+🔹 **Error Boundaries catch:**
+
+* **Rendering errors**
+* **Lifecycle errors**
+* **Constructor errors** in child components
+
+🔹 **Error Boundaries don’t catch:**
+
+* **Event handler errors** (handled via **try/catch** inside handlers)
+* **Async errors** (e.g., `fetch`, `setTimeout`) → handled via **.catch / try-catch**
+* **Server-side rendering errors**
+
+
+
+💡 **Best Practices:**
+
+* Wrap **critical areas** (routes, dashboards, or widgets) with Error Boundaries.
+* Use **multiple boundaries** (e.g., one for **payment widget**, another for **chat widget**) → so one faulty module doesn’t crash everything.
+* **Log errors centrally** (e.g., **Sentry, Datadog**) for debugging & monitoring.
+
+
+
+👉 So in short: *Error Boundaries provide **resilience**, **better UX**, and **controlled recovery** instead of exposing users to raw errors.*
+
+---

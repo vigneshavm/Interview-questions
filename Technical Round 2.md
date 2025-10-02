@@ -4,7 +4,7 @@
 |-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Project** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints) - [Project Initiation Requirements](#project-initiation-requirements) - [Managing pressure software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) - [Managing requirements conflicting ](#managing-conflicting-requirements-from-multiple-stakeholders) |
 | **Leadership** | -  [Help junior developers](#help-junior-developers-get-up-to-speed) - [Junior Developer Struggling](#junior-developer-struggling) -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers)  -  [Onboard developer](#onboard-new-developer), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help)  -  [Miss deadlines](#teammate-consistently-miss-deadlines),   - [Build Teams](#build-and-structure-effective-teams)  -  [Technical leadership](#technical-leadership), |
-| **Code Quality** |  -  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member),   -  [Lead code reviews](#lead-code-reviews),  - [Ensure code quality?](#ensure-code-quality-and-maintainability-from-project-start) |
+| **Code Quality** |  -  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member),   -  [Lead code reviews](#lead-code-reviews),  - [Ensure code quality?](#ensure-code-quality-and-maintainability-from-project-start) -[Code coverage and Improvement strategies](#code-coverage-and-improvement-strategies)|
 | **Architecture** | -[Architecture Used](#Architecture-Used) - [Architectural Decisions](#Architectural-Decisions), -[Application architecture challenges](#Application-architecture-challenges) - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application)  -[Recent architectural challenges](#Recent-architectural-challenges)     |
 | **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)|
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
@@ -1545,5 +1545,59 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 * **Week 1:** Assign a **buddy**, introduce them to the **product, architecture, dev workflow**, and tools like **Git, Postman, Jira, CI/CD pipelines**.
 * **Week 2 onward:** Assign **low-risk tasks** like **bug fixes or minor features** to build **confidence and code familiarity**.
 - I schedule **regular check-ins** during the first month, ensure access to **documentation**, and foster **early integration into team culture**.
+
+---
+
+
+
+
+
+
+### Code coverage and Improvement strategies
+
+
+*"Code coverage is a measure of how much of your code is exercised by automated tests—unit tests, integration tests, and end-to-end tests. Maintaining high coverage helps ensure **reliable, maintainable, and bug-resistant software**."*
+
+**Steps to improve code coverage:**
+
+**1. Analyze Current Coverage:**
+
+* Use tools like **Jest, Mocha, Istanbul/nyc, or CodeCov** to generate coverage reports.
+* Identify **uncovered critical paths**, edge cases, and modules lacking tests.
+
+**2. Prioritize Testing Critical Paths:**
+
+* Start with **business-critical logic** and **complex functions**.
+* Cover **async operations, API endpoints, error handling, and edge cases**.
+
+**3. Incrementally Add Unit Tests:**
+
+* Break code into **testable units** (functions, modules).
+* Write **unit tests** for each function, ensuring proper input/output handling.
+
+**4. Integration and E2E Tests:**
+
+* Add **integration tests** to validate component or service interactions.
+* Use **E2E tests** (Cypress, Playwright) to cover user flows and edge scenarios.
+
+**5. Mock External Dependencies:**
+
+* Mock APIs, databases, and external services to reliably test modules without side effects.
+
+**6. Enforce Coverage in CI/CD:**
+
+* Integrate coverage tools in **CI pipelines**.
+* Set **minimum coverage thresholds** to prevent regressions.
+
+**7. Refactor & Test Legacy Code:**
+
+* For legacy or complex modules, **refactor for testability** while adding tests gradually.
+
+**8. Continuous Review & Improvement:**
+
+* Include coverage discussion in **code reviews**.
+* Track coverage trends over time to ensure **progress, not just numbers**.
+
+*"In practice, I improved coverage from ~55% to over 85% in a React/Node.js project by incrementally adding tests for critical modules, mocking external APIs, and integrating coverage checks in the CI pipeline. This **reduced production bugs by ~25%** and increased confidence for safe deployments."*
 
 ---

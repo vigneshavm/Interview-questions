@@ -2613,6 +2613,21 @@ Because it **scales well**, keeps your code DRY (Don't Repeat Yourself), and wor
 
 ---
 
+### **Ref vs useRef**
+
+
+*"In React, both `ref` and `useRef` are used to **access values outside the normal render flow**, but they’re slightly different.
+
+* A `ref` created with `React.createRef` is usually used in **class components** or attached directly to a **DOM element**. It gives me access to the DOM node or a component instance, but it gets **recreated on every render**, so it’s more suitable for one-off use cases.
+
+* `useRef`, on the other hand, is a **hook** designed for function components. **It returns a mutable object whose `.current` property persists across re-renders**. That makes it more flexible — I can use it not only to access DOM nodes but also to store mutable values like timers, previous state, or counters, without causing re-renders.
+
+So in short:
+
+* **`ref` → mainly for DOM nodes, resets on re-render.**
+* **`useRef` → persists across renders, works as a stable container for any mutable value.**
+
+If I just need DOM access, either works. But if I need persistence across renders, `useRef` is the right choice."*
 
 
 ---

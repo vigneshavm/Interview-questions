@@ -1,7 +1,8 @@
 | **Category**                          | **Topics**                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **React Basics** | • [React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) •  [Virtual DOM](#virtual-dom)  •  [Virtual DOM Internally](#Compare-nodes-internally-in-the-Virtual-DOM) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) • [Single Page Applications (SPA)](#single-page-applications-spa)  • [Why Use React](#why-use-react) 
-| **React Component Types**          | - [React 18 key changes](#React-18-key-changes) • [JSX vs HTML](#jsx-vs-html) •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
+| **React Component Types**          | - [React 18 key changes](#React-18-key-changes) 
+• [React 19 – Key Changes](#react-19--key-changes) • [JSX vs HTML](#jsx-vs-html) •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) - [Render Props](Render-Props) •  [Conditional Rendering](#Conditional-Rendering) |
 | **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) |
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules)  •  [`useRef` vs `useState`](#useRef-vs-useState)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
@@ -4831,15 +4832,38 @@ Let me know if you'd like a **follow-up response** for:
 
 
 
-Here’s how to **convert your explanation into an interview-style answer** for React 18’s new root API:
+---
+
+## React 19 – Key Changes
+
+
+> *“React 19 focuses on improving async handling (Actions, `use`), strengthening SSR, simplifying refs and context, adding built-in metadata/resource support, and improving error handling and Web Component integration.”*
+
+
+1. **Actions API** – New way to handle async actions (like form submits) with built-in pending, error, and optimistic state support.
+2. **`use` Hook** – Lets components read promises directly, simplifying Suspense-based data fetching.
+3. **Improved SSR / Hydration** – New `prerender` APIs and clearer hydration error reporting for SEO and debugging.
+4. **Ref Improvements** – Function components can accept `ref` directly (no need for `forwardRef`), and ref callbacks can return cleanup functions.
+5. **Context Shorthand** – Can use `<Context value={…}>` instead of `<Context.Provider>`.
+6. **`useDeferredValue` Enhancements** – Supports an `initialValue` for smoother first render.
+7. **Metadata & Resources** – Built-in support for `<title>`, `<meta>`, `<link>`, `<style>`, `<script>`, plus preloading and preconnecting resources.
+8. **Custom Elements Support** – Better interoperability with Web Components.
+9. **Error Handling & Logging** – Cleaner error messages and new root error handling options (`onCaughtError`, `onUncaughtError`).
+
+---
+
+
+
+
+
+
+
+
 
 ---
 
 ## React 18 key changes
 
----
-
-### 🔑 **Summary (Key Points to Mention):**
 
 | Feature            | Purpose                              |
 | ------------------ | ------------------------------------ |

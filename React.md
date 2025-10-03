@@ -4032,75 +4032,37 @@ Use high contrast for text & backgrounds. Check contrast ratios:
 
 ## React Fiber
 
+**“React Fiber breaks rendering into small units of work, making it interruptible and prioritized. This keeps apps responsive under heavy load and enables advanced features like Suspense and concurrent rendering.”**
+*"In one project with complex dashboards, React Fiber helped reduce input lag by nearly **40%** during heavy re-renders. Animations remained smooth even when large background updates were happening."*
+**React Fiber is the complete rewrite of React’s reconciliation algorithm introduced in React 16.**
+It makes React rendering **incremental, interruptible, and prioritized**, solving performance issues that existed in earlier versions.
 
-**React Fiber** is the complete rewrite of React’s reconciliation algorithm, introduced in **React 16**. It improves how React handles updates, especially in terms of **performance**, **interruptibility**, and **granular control** over rendering.
+### 🔄 How it Works
 
----
+* In React 15 and earlier, reconciliation was **stack-based, synchronous, and non-interruptible**.
+  → A large component tree render could block the **main thread**, causing **UI jank**.
 
-### 🔄 What is Reconciliation?
+* Fiber replaces that with a **linked list–based tree structure**, where each node (Fiber) is a **unit of work** that React can:
 
-Reconciliation is the process React uses to:
-- Compare the **previous virtual DOM tree** with the **new one**,
-- And determine the **minimum number of changes** needed to update the real DOM.
+  * **Pause**
+  * **Resume**
+  * **Abort**
+  * Or **re-prioritize**
 
----
+* Rendering now happens in **two phases**:
 
-## ⚡ React Fiber: The New Reconciliation Engine
+  1. **Render Phase (work-in-progress):** Can be interrupted; React builds the tree of changes.
+  2. **Commit Phase:** Synchronous, applies DOM changes.
 
-Fiber replaces the **stack-based** reconciliation from React 15 and earlier with a **linked list** structure.
 
----
+### 🚀 Key Benefits
 
-### 🚫 Previous Algorithm (Stack Reconciler)
+* **Interruptible rendering** → React can pause updates and keep the UI responsive.
+* **Prioritization** → User input and animations get **higher priority** than background work.
+* **Incremental rendering** → Large component trees can be rendered in **chunks** across frames.
+* **Error boundaries** → Safer error handling in UI.
+* **Foundation for Concurrent React** → Enables features like `Suspense`, `startTransition`, and time-slicing.
 
-- **Synchronous and non-interruptible**: Once rendering started, React had to go through the entire component tree before it could do anything else.
-- **Recursive call stack**: It used the JS call stack for recursion.
-- Large updates could **block the main thread**, making apps feel sluggish.
-- No fine-grained control over priority — all updates were treated equally.
-
----
-
-###  Fiber: What Changed?
-
-React Fiber introduced a **work loop** with these features:
-
-| Feature | Description |
-|--------|-------------|
-| **Interruptible rendering** | Work can be paused, resumed, or aborted. Useful for keeping apps responsive during large updates. |
-| **Prioritization** | Updates can have different **priorities** (e.g., animations vs. user input). |
-| **Incremental rendering** | Large component trees can be broken into **chunks** and processed over multiple frames. |
-| **Concurrency-ready** | It's the foundation for **Concurrent React** (e.g., `startTransition`, `Suspense`, `useDeferredValue`). |
-| **Linked list tree structure** | Each Fiber node points to its **child**, **sibling**, and **return** (parent), allowing React to traverse and manipulate the tree in small units of work. |
-| **Better error handling** | Introduced **error boundaries** with proper support to catch errors during rendering. |
-
----
-
-###  Visual: Fiber Node (simplified)
-```js
-{
-  type: 'div',
-  child: <FiberNode>,      // First child
-  sibling: <FiberNode>,    // Next sibling
-  return: <FiberNode>,     // Parent node
-  alternate: <FiberNode>,  // Link to the old fiber
-  effectTag: 'PLACEMENT',  // What kind of update is needed
-}
-```
-
----
-
-###  Summary – Fiber vs Old Reconciler
-
-| Feature | Stack Reconciler | React Fiber |
-|--------|------------------|-------------|
-| Execution | Synchronous | Asynchronous & interruptible |
-| Data Structure | Recursion on JS stack | Custom linked list |
-| Priority Support | No | Yes |
-| Animation & Input Handling | Sluggish under load | Much smoother |
-| Error Boundaries | No | Yes |
-| Foundation for Concurrent Features | ❌ |  |
-
----
 
 ---
 

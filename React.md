@@ -4406,111 +4406,180 @@ A **memory leak occurs** when an application **retains references to objects tha
 *"In a React dashboard project, we had **thousands of detached canvas nodes** because **event listeners weren’t cleaned up**. After fixing the cleanup inside `useEffect` and **clearing intervals properly**, the **memory stabilized** and overall **app performance improved significantly**."*
 
 
-| **Cause**                                                           | **Problem**                                              | **Fix / Example**                                                                                                                                                                                                                                                                                    |
-| ------------------------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Uncleared `setTimeout` / `setInterval`**                          | Timers keep running even after component unmounts.       | `jsx\nuseEffect(() => {\n  const timer = setTimeout(() => {\n    // logic\n  }, 1000);\n  return () => clearTimeout(timer); // ✅ cleanup\n}, []);\n`                                                                                                                                                 |
-| **Unsubscribed External Listeners (WebSocket, EventEmitter, etc.)** | Subscriptions keep references alive.                     | `jsx\nuseEffect(() => {\n  socket.on(\"data\", handleData);\n  return () => socket.off(\"data\", handleData); // ✅ cleanup\n}, []);\n`                                                                                                                                                               |
-| **Unremoved DOM Event Listeners**                                   | Event listeners remain after unmount → leaks DOM nodes.  | `jsx\nuseEffect(() => {\n  window.addEventListener(\"resize\", handleResize);\n  return () => window.removeEventListener(\"resize\", handleResize); // ✅ cleanup\n}, []);\n`                                                                                                                         |
-| **Stale Closures / Async Calls after Unmount**                      | Async call updates state after unmount → warning + leak. | `jsx\nuseEffect(() => {\n  let isMounted = true;\n  fetchData().then(data => {\n    if (isMounted) setState(data);\n  });\n  return () => { isMounted = false; };\n}, []);\n`                                                                                                                        |
-| **Using AbortController** (Alternative to above)                    | Cancel fetch when unmounted.                             | `jsx\nuseEffect(() => {\n  const controller = new AbortController();\n  fetch(url, { signal: controller.signal })\n    .then(res => res.json())\n    .then(setData)\n    .catch(err => {\n      if (err.name !== \"AbortError\") throw err;\n    });\n  return () => controller.abort();\n}, []);\n` |
-| **Global Variables / Caches**                                       | Global refs to components/DOM prevent GC.                | `js\n// ❌ Bad\nwindow.myCache = someComponentInstance;\n`                                                                                                                                                                                                                                            |
-| **Improper use of Refs**                                            | Refs persist → storing large objects leaks memory.       | `jsx\nconst largeDataRef = useRef(heavyData); // ⚠️ risky if unused\n`                                                                                                                                                                                                                               |
+Got it 👍 — I'll give you **properly formatted, copy-ready code examples** for each memory leak scenario with the **cause, problem, and fix**.
 
+---
 
-**Common Causes of Memory Leaks in React**
+## 🧠 Common Causes of Memory Leaks in React (with Code Examples)
 
-**Uncleared `setTimeout` / `setInterval`** 
+---
 
-Timers continue to run even after the component is unmounted.
+### 1. **Uncleared `setTimeout` / `setInterval`**
+
+❌ Problem: Timers continue running after unmount.
+
+✅ Fix: Always clear them in cleanup.
 
 ```jsx
-useEffect(() => {
-  const timer = setTimeout(() => {
-    // logic
-  }, 1000);
+import { useEffect } from "react";
 
-  return () => clearTimeout(timer); // ✅ cleanup
-}, []);
+function TimerComponent() {
+  useEffect(() => {
+    const timer = setInterval(() => {
+      console.log("Tick...");
+    }, 1000);
+
+    return () => clearInterval(timer); // ✅ cleanup on unmount
+  }, []);
+
+  return <div>Timer Running...</div>;
+}
 ```
 
+---
 
-**Unsubscribed External Listeners (WebSocket, EventEmitter, etc.)**
+### 2. **Unsubscribed External Listeners (WebSocket, EventEmitter)**
 
-Failing to unsubscribe from listeners keeps references alive.
+❌ Problem: Active subscriptions keep references alive.
+
+✅ Fix: Unsubscribe in cleanup.
 
 ```jsx
-useEffect(() => {
-  socket.on("data", handleData);
+import { useEffect } from "react";
 
-  return () => socket.off("data", handleData); // ✅ cleanup
-}, []);
+function WebSocketComponent({ socket }) {
+  useEffect(() => {
+    const handleData = (data) => {
+      console.log("Received:", data);
+    };
+
+    socket.on("data", handleData);
+
+    return () => {
+      socket.off("data", handleData); // ✅ cleanup
+    };
+  }, [socket]);
+
+  return <div>WebSocket Listener Active</div>;
+}
 ```
 
+---
 
-**Unremoved DOM Event Listeners**
+### 3. **Unremoved DOM Event Listeners**
 
-Directly added DOM listeners must be removed manually.
+❌ Problem: Event listener still attached after unmount.
+
+✅ Fix: Remove in cleanup.
 
 ```jsx
-useEffect(() => {
-  window.addEventListener("resize", handleResize);
+import { useEffect } from "react";
 
-  return () => window.removeEventListener("resize", handleResize); // ✅ cleanup
-}, []);
+function ResizeComponent() {
+  useEffect(() => {
+    const handleResize = () => {
+      console.log("Window resized:", window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // ✅ cleanup
+    };
+  }, []);
+
+  return <div>Resize Window to Test</div>;
+}
 ```
 
-**Stale Closures / Async Calls after Unmount**
+---
 
-An async call updating state after a component is gone can cause warnings or leaks.
+### 4. **Stale Closures / Async Calls after Unmount**
+
+❌ Problem: Fetch tries to update state even after unmount.
+
+✅ Fix: Track `isMounted`.
 
 ```jsx
-useEffect(() => {
-  let isMounted = true;
+import { useEffect, useState } from "react";
 
-  fetchData().then(data => {
-    if (isMounted) setState(data); // ✅ only update if mounted
-  });
+function DataFetcher() {
+  const [data, setData] = useState(null);
 
-  return () => {
-    isMounted = false;
-  };
-}, []);
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
+      .then((res) => res.json())
+      .then((result) => {
+        if (isMounted) {
+          setData(result); // ✅ only update if mounted
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+}
 ```
 
-Or with an `AbortController`:
+---
+
+### 5. **Using `AbortController` to Cancel Fetch**
+
+✅ Alternative: Abort request on unmount.
 
 ```jsx
-useEffect(() => {
-  const controller = new AbortController();
+import { useEffect, useState } from "react";
 
-  fetch(url, { signal: controller.signal })
-    .then(res => res.json())
-    .then(data => setData(data))
-    .catch(err => {
-      if (err.name !== "AbortError") throw err;
-    });
+function AbortableFetcher({ url }) {
+  const [data, setData] = useState(null);
 
-  return () => controller.abort();
-}, []);
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch(url, { signal: controller.signal })
+      .then((res) => res.json())
+      .then(setData)
+      .catch((err) => {
+        if (err.name !== "AbortError") throw err;
+      });
+
+    return () => controller.abort(); // ✅ cancel fetch on unmount
+  }, [url]);
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+}
 ```
 
-**Global Variables / Caches**
+---
 
-Storing references to components or DOM nodes globally can prevent GC (garbage collection).
+### 6. **Improper Global Variables**
+
+❌ Problem: Keeping components in global scope prevents GC.
 
 ```js
-// Bad: storing a component instance or DOM node globally
+// ❌ Bad: This keeps component/DOM reference forever
 window.myCache = someComponentInstance;
 ```
 
+✅ Fix: Use proper state managers (Redux, Context, React Query) instead of globals.
 
-**Improper use of Refs**
+---
 
-Refs persist across renders. Holding large objects (e.g. DOM elements, event targets) unnecessarily can cause leaks.
+### 7. **Improper use of Refs**
+
+❌ Problem: Keeping large objects in refs unnecessarily.
 
 ```jsx
-const largeDataRef = useRef(heavyData); // ⚠️ can leak if not used carefully
+const heavyRef = useRef(largeObject); // ⚠️ may leak memory
 ```
+
+✅ Fix: Only store lightweight DOM refs or necessary values.
+
 
 **How to Detect Memory Leaks**
 

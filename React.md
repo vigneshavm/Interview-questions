@@ -1646,8 +1646,7 @@ Error boundaries catch JavaScript errors in child components and display a fallb
 
 ## React Hooks 
 
-React Hooks are functions that let you "hook into" React state and lifecycle features from function components.
-
+"React Hooks are functions that let you **use state and lifecycle features in functional components without needing class components**."
 
 
 | **Hook**                   | **Purpose**                                                                 | **When to Use**                                                          | **Example Use Case**                                 |

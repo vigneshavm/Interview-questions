@@ -2707,11 +2707,11 @@ function SignupForm() {
   * For example: focusing an input, triggering a method on a child component.
   * But in **function components**, I generally prefer `useRef`.
 
-* **When to use `useRef`:**
-  * **`useRef` → persists across renders, works as a stable container for any mutable value.**
-  * In **function components** (modern React) for DOM manipulation (focus, scroll, play video, etc.).
-  * When I need to **persist mutable values across renders** without causing a re-render.
-
+* **When to use `useRef`:
+  
+   * * **Persist values across renders** without triggering re-renders (unlike `useState`).
+   * * **Access DOM elements directly** in functional components (replacement for `React.createRef()` in class components).
+   * * **Store mutable variables** for timers, intervals, previous props/state, or external library instances.
     * Example: storing a timer ID, caching a value, tracking previous state, or counting renders.
 
 - *"So, if I’m in a **class component**, I’ll reach for `ref`.

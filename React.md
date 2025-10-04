@@ -3,7 +3,8 @@
 | **React Basics** | • [React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) •  [Virtual DOM](#virtual-dom)  •  [Virtual DOM Internally](#Compare-nodes-internally-in-the-Virtual-DOM) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) • [Single Page Applications (SPA)](#single-page-applications-spa)  • [Why Use React](#why-use-react) 
 | **React Component Types**          | - [React 18 key changes](#React-18-key-changes) • [React 19 – Key Changes](#react-19--key-changes) • [JSX vs HTML](#jsx-vs-html) •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) - [Render Props](Render-Props) •  [Conditional Rendering](#Conditional-Rendering) |
-| **State Management Techniques**          | •  [Redux](#redux--predictable-state-management) •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) |
+| **State Management Techniques**          |  •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) |
+| **Redux**          | •  [Redux](#redux--predictable-state-management) -[Middleware](#middleware-in-redux) -[Store Creation](#store-creation-in-redux) - [Store Configuration](#store-configuration-in-redux-toolkit) |
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules)  •  [`useRef` vs `useState`](#useRef-vs-useState)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) •  [Handle Large Forms](#Handle-Large-Forms)|
@@ -15,7 +16,7 @@
 | **Performance Optimization**          | •  [Performance Optimization](#performance-optimization) •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [Memory leaks](#Memory-leaks) •  [Structure Large Scale Application](#large-scale-application) •  [During-a-React-Re-render](#What-Happens-During-a-React-Re-render)
 | **Call components**          | [Passing data child to parent](#Passing-data-child-to-parent) •  [function call child -> parent](#call-child-components-function-from-a-parent) •  [function call parent->child](#call-a-parent-components-function-from-a-child-in-react) •  [Parent → Child Rendering in React](#parent-child-rendering-in-react) •  [Rerender parent component to child component](#rerender-parent-component-to-child-component)
 
-
+- [Auto Batching](#auto-batching) - [Signals](#Signals) 
 ---
 
 ## Create React App using Typescript
@@ -6389,3 +6390,197 @@ const root = createRoot(document.getElementById('root'), {
 root.render(<App />);
 ```
 
+
+##  **Auto Batching**
+
+
+
+**Auto-batching** is a **React  performance optimization feature** (React 17+ and improved in 18+) that automatically **groups multiple state updates in the same event loop are batched together** into a **single re-render**, instead of rendering after each `setState` call.
+
+- In React 18+, it also works across **async boundaries** like promises and timeouts, reducing unnecessary re-renders and improving performance."
+
+
+**Why it matters:**
+
+* Without auto-batching, multiple `setState` calls trigger **separate renders**, increasing unnecessary DOM updates.
+* With auto-batching, React **combines updates** in the same event loop, **rendering once**, improving **performance**.
+
+**Example:**
+
+```js
+// Without auto-batching
+setCount1(count1 + 1); // triggers render
+setCount2(count2 + 1); // triggers render again
+
+// With auto-batching
+setCount1(count1 + 1);
+setCount2(count2 + 1);
+// React renders only once
+```
+
+**Key Points for Interviews:**
+
+* Works across multiple state updates **inside event handlers**.
+* In **React 18+**, works with **async functions, promises, and timeouts**.
+* Reduces **unnecessary re-renders**, improving app **efficiency and performance**.
+
+
+
+
+## Signals 
+
+
+
+- Signals are **reactive state primitives** introduced in React 19+. 
+- They **hold a value and automatically update any dependent code without re-rendering the entire component tree**. 
+- Compared to `useState`, signals enable **fine-grained reactivity**, which reduces unnecessary re-renders and improves performance, especially in large or highly dynamic applications."
+
+**Why it matters:**
+
+* Provides **fine-grained reactivity** for large or complex components.
+* Reduces **performance bottlenecks** caused by frequent state updates.
+* Ideal for **high-frequency updates**, such as real-time dashboards, live forms, or animations.
+
+**Use Case Example:**
+*"In a dashboard application with 50+ charts updating every second from live data streams, using `useState` would trigger re-renders across all components, causing noticeable lag. By switching to **signals**, only the charts whose underlying data changed would re-render. This **improved performance by ~40%**, reduced browser CPU usage, and kept the UI highly responsive for end-users."*
+
+**Key Takeaways for Teams:**
+
+* Signals **track dependencies automatically**.
+* Updates propagate **only to affected components**, not the entire tree.
+* Enables **scalable and maintainable state management** in large React applications.
+
+
+
+
+## **Middleware in Redux**
+
+
+- **Middleware in Redux is a **mechanism to intercept actions before they reach the reducer**. 
+- It’s useful for cross-cutting concerns like logging, analytics, authentication checks, or handling asynchronous operations. 
+- For example, `redux-thunk` allows async API calls in actions, and `redux-logger` logs every action and state change, helping the team debug and monitor the application."*
+
+**Use Case:**
+*In a large e-commerce app, I used `redux-thunk` middleware to handle async API calls for fetching product details. Actions like `FETCH_PRODUCTS_REQUEST` and `FETCH_PRODUCTS_SUCCESS` were dispatched inside thunks. `redux-logger` helped the team trace dispatched actions and state updates, reducing debugging time by ~40%.*
+
+**Example Code:**
+
+```javascript
+import { configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
+import rootReducer from './reducers';
+import thunk from 'redux-thunk';
+
+// Configure store with middleware
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware().concat(thunk, logger)
+});
+
+export default store;
+```
+
+**Key Points for Interview:**
+
+* **Intercept actions before reducers**
+* **Handle async operations** with `redux-thunk`
+* **Log actions/state** with `redux-logger`
+* **Improves maintainability and debugging**, especially in large apps
+
+
+
+
+---
+
+## Store Creation in Redux**
+
+
+- "The Redux store is the **single source of truth for application state**. 
+- It **holds all the state and allows components to read state and dispatch actions**.
+- In classic Redux, we create it using `createStore` with a root reducer. In modern Redux Toolkit, we use `configureStore`, which simplifies setup, automatically applies middleware like `redux-thunk`, and enables DevTools out-of-the-box."*
+
+**Use Case:**
+*In a social media application, I created a centralized store to manage user authentication, posts, and notifications. By using `configureStore`, we could integrate slices like `userSlice` and `postsSlice` easily, with DevTools enabled for debugging and middleware for async actions.*
+
+**Key Points for Interview:**
+
+* **Single source of truth** for app state
+* **Centralized state management** for predictable updates
+* **Modern Redux Toolkit** simplifies setup, middleware, and DevTools
+* **Supports scalable architecture** by combining feature slices
+
+**Example Code (Classic Redux):**
+
+```javascript
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+
+// Classic Redux store creation
+const store = createStore(rootReducer);
+
+export default store;
+```
+
+**Example Code (Redux Toolkit):**
+
+```javascript
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './reducers';
+
+// Modern Redux Toolkit store creation
+const store = configureStore({
+  reducer: rootReducer
+});
+
+export default store;
+```
+
+
+
+---
+
+
+
+### **Store Configuration in Redux Toolkit**
+
+
+- "Store configuration in Redux Toolkit allows us to **combine reducers**, **apply middleware**, and **enable DevTools** easily. 
+- By default, `configureStore` includes **redux-thunk** for handling async actions. We can also add **custom middleware**, such as `redux-logger` for logging dispatched actions, without writing boilerplate code. 
+- This setup ensures **maintainable**, **scalable**, and **debug-friendly** state management."*
+
+**Use Case:**
+*In a **task management app**, I configured the store with slices for **tasks**, **users**, and **notifications**. Using `configureStore`, I added **redux-logger** to monitor dispatched actions during development, while **redux-thunk** handled API calls for fetching tasks and updating statuses. **DevTools** enabled real-time inspection of state changes, improving debugging and team collaboration.*
+
+
+**Key Points for Interview:**
+
+* **Middleware intercepts actions** (e.g., async logic, logging)
+* **Store holds the app state** as a **single source of truth**
+* **configureStore simplifies setup** (reducers, middleware, DevTools)
+* **Supports scalable and maintainable architecture** by combining multiple slices
+
+
+**Example Code:**
+
+```javascript
+import { configureStore } from '@reduxjs/toolkit';
+import tasksReducer from './tasksSlice';
+import usersReducer from './usersSlice';
+import notificationsReducer from './notificationsSlice';
+import logger from 'redux-logger';
+
+const store = configureStore({
+  reducer: {
+    tasks: tasksReducer,
+    users: usersReducer,
+    notifications: notificationsReducer
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  devTools: true
+});
+
+export default store;
+```
+
+---

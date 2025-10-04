@@ -790,12 +790,88 @@ export default function App() {
 
 ## Props Drilling 
 
-Props drilling is the process of passing props through multiple levels of components that don’t need the data, just to reach the desired child.
 
-**Solution:**
 
-- Use **React Context API** to avoid drilling  
-- Or use **state management** libraries like Redux, Zustand, Recoil
+**Definition:**
+*"**Props drilling** is the process of **passing props through multiple intermediate components just so a deeply nested child can access them**. This leads to unnecessary boilerplate and hurts maintainability in large apps."*
+
+**Problem:**
+
+* **Intermediate components** receive props they don’t actually need.
+* **Difficult to maintain** and refactor as the app grows.
+* Can create **tightly coupled components**.
+
+**Solution / Best Practices:**
+*"Instead of passing props through multiple layers, I use **React Context** to provide shared state at a higher level and consume it wherever needed. This reduces boilerplate, improves maintainability, and scales well for large apps."*
+
+* Use **React Context API** for shared state.
+* For server or global state, consider **React Query** or **lightweight stores** like **Redux**.
+* Only pass props when truly needed for **component-specific functionality**.
+
+**Key Point:**
+*"The goal is to **avoid unnecessary prop chains**, **improve code readability**, and make the app **more maintainable and scalable**."*
+
+**Problem**
+```jsx
+function App() {
+  const user = { name: "Vignesh" };
+  return <Parent user={user} />;
+}
+
+function Parent({ user }) {
+  return <Child user={user} />;
+}
+
+function Child({ user }) {
+  return <GrandChild user={user} />;
+}
+
+function GrandChild({ user }) {
+  return <h1>Hello {user.name}</h1>;
+}
+```
+**Solution**
+
+**Step 1: Create a Context**
+```jsx
+import React, { createContext, useContext } from 'react';
+
+// Create context
+const UserContext = createContext(null);
+```
+
+**Step 2: Provide Context at a high level**
+
+```jsx
+function App() {
+  const user = { name: 'Vignesh' };
+
+  return (
+    <UserContext.Provider value={user}>
+      <Parent />
+    </UserContext.Provider>
+  );
+}
+```
+
+**Step 3: Consume Context in deeply nested components**
+
+```jsx
+function GrandChild() {
+  const user = useContext(UserContext); // no props drilling needed
+  return <h1>Hello {user.name}</h1>;
+}
+
+function Child() {
+  return <GrandChild />;
+}
+
+function Parent() {
+  return <Child />;
+}
+```
+
+
 
 ---
 

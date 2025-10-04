@@ -259,6 +259,17 @@ function printLength(value: string | string[]) {
 * In practice, I prefer using `interface` when I'm modeling plain object structures, especially when working with class-based OOP code.
 * But I go with `type` when I need more **type-level logic**, such as **unions**, **intersections**, or combining **different kinds of data**.
 
+**Type Alias**
+* **Definition:** `type` allows you to give a name to any type: primitive, union, tuple, object, etc.
+* **Flexibility:** Can represent **any type**, including primitives, unions, intersections, tuples, etc.
+* **Cannot be reopened:** Once defined, you cannot add new properties later.
+
+**Interface**
+
+* **Definition:** `interface` is primarily used to describe **object shapes**.
+* **Extensible:** Can be **merged** or **extended** with `extends`.
+* **Supports declaration merging:** You can declare the same interface multiple times, and TypeScript merges them.
+
 - [interface](#interface)
 - [type](#type)
 - [Extending Interfaces](#Extending-Interfaces)

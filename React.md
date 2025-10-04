@@ -5014,15 +5014,16 @@ Let me know if you'd like a **follow-up response** for:
 > *“React 19 focuses on improving async handling (Actions, `use`), strengthening SSR, simplifying refs and context, adding built-in metadata/resource support, and improving error handling and Web Component integration.”*
 
 
-1. **Actions API** – New way to handle async actions (like form submits) with built-in pending, error, and optimistic state support.
-2. **`use` Hook** – Lets components read promises directly, simplifying Suspense-based data fetching.
-3. **Improved SSR / Hydration** – New `prerender` APIs and clearer hydration error reporting for SEO and debugging.
-4. **Ref Improvements** – Function components can accept `ref` directly (no need for `forwardRef`), and ref callbacks can return cleanup functions.
-5. **Context Shorthand** – Can use `<Context value={…}>` instead of `<Context.Provider>`.
-6. **`useDeferredValue` Enhancements** – Supports an `initialValue` for smoother first render.
-7. **Metadata & Resources** – Built-in support for `<title>`, `<meta>`, `<link>`, `<style>`, `<script>`, plus preloading and preconnecting resources.
-8. **Custom Elements Support** – Better interoperability with Web Components.
-9. **Error Handling & Logging** – Cleaner error messages and new root error handling options (`onCaughtError`, `onUncaughtError`).
+1. **Actions API** – New way to handle async actions (like form submits) with built-in pending, error, and optimistic state support. [Example Actions API](#example-actions-api) 
+2. **`use` Hook** – Lets components read promises directly, simplifying Suspense-based data fetching. [Example `use` Hook](#example-use-hook)
+3. **Improved SSR / Hydration** – New `prerender` APIs and clearer hydration error reporting for SEO and debugging. [Example Improved SSR / Hydration](#example-improved-ssr--hydration)
+4. **Ref Improvements** – Function components can accept `ref` directly (no need for `forwardRef`), and ref callbacks can return cleanup functions.[Example Ref Improvements](#example-ref-improvements)
+5. **Context Shorthand** – Can use `<Context value={…}>` instead of `<Context.Provider>`.[Example Context Shorthand](#example-context-shorthand)
+6. **`useDeferredValue` Enhancements** – Supports an `initialValue` for smoother first render.[Example `useDeferredValue` Enhancements](#example-usedeferredvalue-enhancements)
+7. **Metadata & Resources** – Built-in support for `<title>`, `<meta>`, `<link>`, `<style>`, `<script>`, plus preloading and preconnecting resources.[Example Metadata & Resource Loading](#example-metadata--resource-loading)
+8. **Custom Elements Support** – Better interoperability with Web Components.[Example Custom Elements Support](#example-custom-elements-support)
+9. **Error Handling & Logging** – Cleaner error messages and new root error handling options (`onCaughtError`, `onUncaughtError`).[Example Error Handling & Logging](#example-error-handling--logging)
+
 
 ---
 
@@ -6224,3 +6225,167 @@ This ensures that instead of a **white screen of death**, users see a **graceful
 👉 So in short: *Error Boundaries provide **resilience**, **better UX**, and **controlled recovery** instead of exposing users to raw errors.*
 
 ---
+
+
+
+
+ -[Example Actions API](#example-actions-api)
+  -[Example `use` Hook](#example-use-hook)
+  - [Example Improved SSR / Hydration](#example-improved-ssr--hydration)
+  - [Example Ref Improvements](#example-ref-improvements)
+  - [Example Context Shorthand](#example-context-shorthand)
+  - [Example `useDeferredValue` Enhancements](#example-usedeferredvalue-enhancements)
+  - [Example Metadata & Resource Loading](#example-metadata--resource-loading)
+  - [Example Custom Elements Support](#example-custom-elements-support)
+  - [Example Error Handling & Logging](#example-error-handling--logging)
+
+##  **Example Actions API**
+
+**Use case:** Handling async form submission with loading & error states.
+
+```jsx
+import { useActionState, startTransition } from 'react';
+
+function SubmitButton() {
+  const [state, runAction] = useActionState(async () => {
+    await fetch('/api/save', { method: 'POST' });
+  });
+
+  return (
+    <button
+      disabled={state.pending}
+      onClick={() => startTransition(runAction)}
+    >
+      {state.pending ? 'Saving...' : 'Save'}
+      {state.error && <span>Error: {state.error.message}</span>}
+    </button>
+  );
+}
+```
+
+---
+
+##  **Example `use` Hook**
+
+**Use case:** Reading a promise directly inside a component (with Suspense).
+
+```jsx
+import { use } from 'react';
+
+function UserProfile({ userPromise }) {
+  const user = use(userPromise); // Suspense will show fallback until resolved
+  return <div>{user.name}</div>;
+}
+```
+
+---
+
+##  **Example Improved SSR / Hydration**
+
+**Use case:** Pre-rendering HTML with data.
+
+```js
+import { prerender } from 'react/server';
+
+const html = await prerender(<App />);
+console.log(html); // Server-ready HTML
+```
+
+---
+
+##  **Example Ref Improvements**
+
+**Use case:** Function component accepting ref & cleanup.
+
+```jsx
+function VideoPlayer({ ref }) {
+  React.useEffect(() => {
+    const video = ref.current;
+    return () => video?.pause(); // cleanup on unmount
+  }, [ref]);
+
+  return <video ref={ref} />;
+}
+```
+
+---
+
+##  **Example Context Shorthand**
+
+**Use case:** Providing context with simpler syntax.
+
+```jsx
+const ThemeContext = React.createContext('light');
+
+function App() {
+  return (
+    <ThemeContext value="dark">
+      <Content />
+    </ThemeContext>
+  );
+}
+```
+
+---
+
+##  **Example `useDeferredValue` Enhancements**
+
+**Use case:** Delaying expensive updates for smoother UI.
+
+```jsx
+import { useDeferredValue } from 'react';
+
+function SearchResults({ query }) {
+  const deferredQuery = useDeferredValue(query, { initialValue: '' });
+  const results = expensiveSearch(deferredQuery);
+  return <ResultsList data={results} />;
+}
+```
+
+---
+
+##  **Example Metadata & Resource Loading**
+
+**Use case:** Setting page title & meta inside component.
+
+```jsx
+function Page() {
+  return (
+    <>
+      <title>My Page</title>
+      <meta name="description" content="React 19 example" />
+      <h1>Hello World</h1>
+    </>
+  );
+}
+```
+
+---
+
+##  **Example Custom Elements Support**
+
+**Use case:** Using a web component inside React.
+
+```jsx
+function WebWidget() {
+  return <my-custom-element data-value="123" />; // React now maps props/attributes correctly
+}
+```
+
+---
+
+##  **Example Error Handling & Logging**
+
+**Use case:** Centralized root error handling.
+
+```jsx
+import { createRoot } from 'react-dom/client';
+
+const root = createRoot(document.getElementById('root'), {
+  onCaughtError: (err) => console.log('Caught error:', err),
+  onUncaughtError: (err) => console.error('Uncaught error:', err),
+});
+
+root.render(<App />);
+```
+

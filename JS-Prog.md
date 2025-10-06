@@ -446,15 +446,7 @@ const uniqueArray = Array.from(map.values());
 // Step 3: Optional: sort by id
 uniqueArray.sort((a, b) => a.id - b.id);
 
-```
-
- **Output:**
-```js
-[
-  { id: 1, name: 'A' },
-  { id: 2, name: 'B' },
-  { id: 3, name: 'C' }
-]
+console.log(uniqueArray,"uniqueArray")
 ```
 
 ---

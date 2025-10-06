@@ -432,32 +432,20 @@ Expected output:
 
 **Code Example**
 ```js
-function removeDuplicateObjects(arr) {
-  // Step 1: Initialize an empty array `result` to store unique objects
-  const result = [];
-
-  // Step 2: Iterate through the input array `arr` with `forEach`
-  arr.forEach(obj => {
-    // Step 3: Use `some()` to check if an object with the same `id` already exists in `result`
-    if (!result.some(item => item.id === obj.id)) {
-      // Step 4: If no object with the same `id` is found, push the current object to `result`
-      result.push(obj);
-    }
-  });
-
-  // Step 5: Return the `result` array containing unique objects by `id`
-  return result;
+// Step 1: Use a Map to remove duplicates by id
+const map = new Map();
+for (const obj of input) {
+  if (!map.has(obj.id)) {
+    map.set(obj.id, obj);
+  }
 }
 
+// Step 2: Convert map values to array
+const uniqueArray = Array.from(map.values());
 
-const input = [
-  { id: 1, name: 'A' },
-  { id: 2, name: 'B' },
-  { id: 1, name: 'A2' },
-  { id: 3, name: 'C' }
-];
+// Step 3: Optional: sort by id
+uniqueArray.sort((a, b) => a.id - b.id);
 
-console.log(removeDuplicateObjects(input));
 ```
 
  **Output:**

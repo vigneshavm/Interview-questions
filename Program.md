@@ -2365,14 +2365,17 @@ export default TodoList;
 ```tsx
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState('');
 
+  // useTransition for non-urgent updates
+  const [isPending, startTransition] = useTransition();
+
   // Fetch users on component mount
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -2387,6 +2390,14 @@ const UserList = () => {
     fetchData();
   }, []);
 
+  // Handle search input with startTransition
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    startTransition(() => {
+      setSearch(value);
+    });
+  };
+
   // Filter users based on search
   const filteredUsers = users.filter(user =>
     user.name.toLowerCase().includes(search.toLowerCase())
@@ -2400,9 +2411,11 @@ const UserList = () => {
         type="text"
         placeholder="Search by name..."
         value={search}
-        onChange={e => setSearch(e.target.value)}
+        onChange={handleSearchChange}
         style={{ padding: '8px', marginBottom: '10px', width: '100%' }}
       />
+
+      {isPending && <p>Updating list...</p>}
 
       <ul>
         {filteredUsers.length > 0 ? (
@@ -2420,7 +2433,6 @@ const UserList = () => {
 };
 
 export default UserList;
-
 ```
 
 

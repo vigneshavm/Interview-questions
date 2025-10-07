@@ -4,7 +4,7 @@
 |-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Project** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints) - [Project Initiation Requirements](#project-initiation-requirements) - [Managing pressure software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) - [Managing requirements conflicting ](#managing-conflicting-requirements-from-multiple-stakeholders) |
 | **Leadership** | -  [Help junior developers](#help-junior-developers-get-up-to-speed) - [Junior Developer Struggling](#junior-developer-struggling) -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers)  -  [Onboard developer](#onboard-new-developer), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help)  -  [Miss deadlines](#teammate-consistently-miss-deadlines),   - [Build Teams](#build-and-structure-effective-teams)  -  [Technical leadership](#technical-leadership), |
-| **Code Quality** |  [Handle poor code](#handle-poor-code-or-performance-from-a-team-member)   - [Lead code reviews](#lead-code-reviews)   - [Ensure code quality?](#ensure-code-quality-and-maintainability-from-project-start)   - [Code coverage and Improvement strategies](#code-coverage-and-improvement-strategies)|
+| **Code Quality** |   - [Code quality](#lead-code-reviews)    - [Code coverage and Improvement strategies](#code-coverage-and-improvement-strategies)|
 | **Architecture** | -[Architecture Used](#Architecture-Used) - [Architectural Decisions](#Architectural-Decisions), -[Application architecture challenges](#Application-architecture-challenges) - [Design system architecture complex web application.](#design-the-system-architecture-for-a-complex-web-application)  -[Recent architectural challenges](#Recent-architectural-challenges)     |
 | **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)|
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
@@ -131,24 +131,20 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 ### **Lead Code Reviews**
 
-- "In my previous projects, I led **code reviews** across frontend (React/Next.js) and backend (Node.js/TypeScript) to ensure **clean, maintainable, and high-performance code**. I emphasized **SOLID principles, proper modularization, and avoiding code duplication**, while ensuring adherence to project architecture and design patterns."
+ - "In my experience, during **code reviews** and ensuring **code quality**, I focus on multiple aspects. First, **correctness**—I check that the code implements the intended functionality, handles **edge cases**, and avoids **runtime errors**. I also pay close attention to **performance**, especially **database queries** and **async operations**, ensuring we avoid **N+1 problems** and fetch only the **required data efficiently**.
 
-- "To maintain **consistency and standards**, I implemented ESLint, Prettier, and custom rules, enforced **uniform naming conventions, folder structures, and interface designs**, and maintained a **centralized style guide** that evolved with the codebase."
+- **Security** is another key area—I verify that queries are **parameterized** to prevent **SQL injection**, **sensitive data** isn’t exposed, and **authentication and authorization checks** are correctly applied.
 
-- "During reviews, I proactively checked for **runtime errors, async/await issues, unhandled exceptions, and edge cases**, encouraged proper unit tests, and ensured **TypeScript strict typing** to reduce hidden bugs. I also mentored junior developers on **performance optimization, state management, API handling, and best practices for hooks/middleware**."
+- For **maintainability** and **readability**, I enforce **consistent naming conventions**, **proper folder structures**, **modularization**, and adherence to **SOLID principles**. I encourage **reusable components** and avoid **code duplication**, while using tools like **ESLint, Prettier**, and **custom rules** to maintain coding standards.
 
-- "I integrated reviews into **CI/CD pipelines** using GitHub Actions/GitLab CI, and leveraged tools like **SonarQube and CodeCov** to enforce coding standards, detect code smells, and track test coverage."
+- I also check **testing**—**unit tests, integration tests**, and **coverage**—to ensure new changes don’t break existing functionality. **Logging and monitoring** are reviewed to make sure critical information is captured without leaking sensitive data.
 
-- "As a result of these efforts, we saw a **~30% reduction in QA-reported bugs**, **~20% improvement in sprint velocity**, and an overall **increase in team efficiency and code maintainability**. This also fostered a **culture of shared code ownership**, where all developers actively contribute to maintaining high standards, not just senior engineers."
+- Finally, I integrate reviews into **CI/CD pipelines** using tools like **GitHub Actions** and **SonarQube**, so **quality checks** and **automated tests** run before code merges. I also **mentor junior developers** during reviews, providing **actionable feedback** and **pair programming** for complex areas.
 
+- For example, in the **TANFApp project**, I worked with a team member to **optimize inefficient SQL queries in Node.js**, reducing **API response times** from **4.5 seconds to under 1.2 seconds**, which also improved **database performance under peak load**. Overall, my approach improves **code quality**, **team efficiency**, and fosters **shared ownership** and a culture of **high standards** across the team."*
 
 
 ---
-
-
-
-
-
 
 ### **Optimize applications**
 
@@ -237,15 +233,7 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 
 
-## **Handle poor code or performance from a team member**
-- *"In the **TANFApp** project at **IAppsys**, we were migrating a legacy MS Access system into a modern full-stack platform using **Node.js and Express** with a **PostgreSQL backend**. During a sprint, I noticed one team member repeatedly wrote inefficient SQL queries within the Node.js service layer — like fetching entire tables and filtering in JS instead of using SQL `WHERE` clauses. This caused increased API response time and unnecessary memory usage.*
-- Instead of just flagging the issue, I did a **code walkthrough** with him and pointed out specific anti-patterns — like N+1 queries and missing joins. I also showed how to use **parameterized queries** safely with `pg-promise` to avoid SQL injection and improve performance.\*
-To help him improve:
-- I created a **query optimization guide** (e.g., using `LIMIT`, `JOIN`, and indexing)
-- We pair-programmed to refactor the worst-performing endpoint
-- I introduced a **logging wrapper** using `winston` to log query execution times for profiling
-- We implemented basic integration tests with realistic data to validate the logic end-to-end
-- Within a couple of sprints, his understanding of SQL inside Node.js improved, and he optimized a benefits calculation endpoint, reducing average response time from **4.5 seconds to under 1.2 seconds**. This also helped improve database load handling under peak conditions."\*
+
 
 
 ## **Manage requirements when clients frequently change**
@@ -1102,20 +1090,6 @@ Culturally, I focus on **psychological safety, continuous learning, and recognit
 
 This creates teams that are not just productive but also **resilient and motivated**.”
 
----
-
-### **Ensure code quality and maintainability from project start?**
-
-**Answer (Elevator Pitch):**
-“I ensure code quality by setting **standards early** — coding conventions, SOLID principles, documentation, and testing requirements.
-
-I enforce this with **automated quality gates** in CI/CD — static analysis, test coverage thresholds, performance checks, and security scans — plus **peer code reviews** and regular architecture reviews.
-
-On the team side, I encourage **pair programming, continuous refactoring, and knowledge sharing**.
-
-For example, introducing 80% test coverage and mandatory reviews in one project cut production bugs by **60%** in six months, while improving velocity.
-
-Code quality isn’t overhead — it’s what makes teams **faster and more confident**.”
 
 ---
 
@@ -1556,48 +1530,15 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 ### Code coverage and Improvement strategies
 
 
-*"Code coverage is a measure of how much of your code is exercised by automated tests—unit tests, integration tests, and end-to-end tests. Maintaining high coverage helps ensure **reliable, maintainable, and bug-resistant software**."*
+- "In my experience, **code coverage** is a measure of how much of your code is exercised by automated tests—**unit tests, integration tests, and end-to-end tests**. Maintaining high coverage ensures **reliable, maintainable, and bug-resistant software**.
 
-**Steps to improve code coverage:**
+- To improve coverage, I start by **analyzing the current coverage** using tools like **Jest, Mocha, Istanbul, or CodeCov** to identify **uncovered critical paths**. Then I **prioritize testing critical logic**, like **business-critical functions, async operations, API endpoints, error handling, and edge cases**.
 
-**1. Analyze Current Coverage:**
+- I add **unit tests incrementally**, breaking code into **testable units**, and ensure proper input/output handling. I also include **integration tests** to validate interactions between modules and **E2E tests** using tools like **Cypress or Playwright** for full user flows.
 
-* Use tools like **Jest, Mocha, Istanbul/nyc, or CodeCov** to generate coverage reports.
-* Identify **uncovered critical paths**, edge cases, and modules lacking tests.
+- For external dependencies like APIs or databases, I use **mocking** to reliably test modules without side effects. I integrate **coverage checks into CI/CD pipelines** and set **minimum thresholds** to prevent regressions. For legacy code, I **refactor gradually for testability** while adding tests. Finally, I **review coverage in code reviews** and track trends over time to ensure real progress.
 
-**2. Prioritize Testing Critical Paths:**
-
-* Start with **business-critical logic** and **complex functions**.
-* Cover **async operations, API endpoints, error handling, and edge cases**.
-
-**3. Incrementally Add Unit Tests:**
-
-* Break code into **testable units** (functions, modules).
-* Write **unit tests** for each function, ensuring proper input/output handling.
-
-**4. Integration and E2E Tests:**
-
-* Add **integration tests** to validate component or service interactions.
-* Use **E2E tests** (Cypress, Playwright) to cover user flows and edge scenarios.
-
-**5. Mock External Dependencies:**
-
-* Mock APIs, databases, and external services to reliably test modules without side effects.
-
-**6. Enforce Coverage in CI/CD:**
-
-* Integrate coverage tools in **CI pipelines**.
-* Set **minimum coverage thresholds** to prevent regressions.
-
-**7. Refactor & Test Legacy Code:**
-
-* For legacy or complex modules, **refactor for testability** while adding tests gradually.
-
-**8. Continuous Review & Improvement:**
-
-* Include coverage discussion in **code reviews**.
-* Track coverage trends over time to ensure **progress, not just numbers**.
-
-*"In practice, I improved coverage from ~55% to over 85% in a React/Node.js project by incrementally adding tests for critical modules, mocking external APIs, and integrating coverage checks in the CI pipeline. This **reduced production bugs by ~25%** and increased confidence for safe deployments."*
+- For example, in a **React/Node.js project**, I improved coverage from **~55% to over 85%** by focusing on **critical modules, mocking external APIs, and CI integration**, which **reduced production bugs by ~25%** and increased confidence for safe deployments."*
 
 ---
+

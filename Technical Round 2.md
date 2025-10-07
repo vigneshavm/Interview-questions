@@ -3,7 +3,7 @@
 | **Topic**                     | **Description / Anchor**                                                                                                                                                                                                                                                                                                                                                                   |
 |-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Project** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints) - [Project Initiation Requirements](#project-initiation-requirements) - [Managing pressure software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) - [Managing requirements conflicting ](#managing-conflicting-requirements-from-multiple-stakeholders) |
-| **Leadership** | -  [Help junior developers](#help-junior-developers-get-up-to-speed) - [Junior Developer Struggling](#junior-developer-struggling) -  [Mentor and guide junior developers](#mentor-and-guide-junior-developers)  -  [Onboard developer](#onboard-new-developer), -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help)  -  [Miss deadlines](#teammate-consistently-miss-deadlines),   - [Build Teams](#build-and-structure-effective-teams)  -  [Technical leadership](#technical-leadership), |
+| **Leadership** |   [Junior waiting for help](#junior-waiting-for-help) - [Build Teams](#build-and-structure-effective-teams)  -  [Technical leadership](#technical-leadership), |
 | **Code Quality** |   - [Code quality](#lead-code-reviews)    - [Code coverage and Improvement strategies](#code-coverage-and-improvement-strategies)|
 | **Architecture** | -[Architecture Used](#Architecture-Used) - [Architectural Decisions](#Architectural-Decisions), -[Architecture challenges](#Application-architecture-challenges) - [Complex architecture Design](#design-the-system-architecture-for-a-complex-web-application)  -[Recent architectural challenges](#Recent-architectural-challenges)     |
 | **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)|
@@ -20,6 +20,25 @@
 | **Other** |  - [Scope Creep Management](#scope-creep-management) - [System Integration Failure](#system-integration-failure) - [Ensure code-level safety](#ensure-code-level-safety-for-example-with-null-checks) |
 | **Client-Facing**   | [Manage requirements when clients frequently change](#manage-requirements-when-clients-frequently-change), -  [Handle production issues](#handle-production-issues-when-a-client-is-upset), -  [Release Delayed](#release-gets-delayed-due-to-unexpected-bugs),  -  [Track project progress](#track-project-progress), , -  [Conflict with manager](#conflict-with-colleague-or-manager), -  [Handle negative feedback](#handle-negative-feedback), -  [Team stuck different issues](#leading-a-team-and-2-devs-are-stuck-on-different-issues), -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-s) - [Manage client expectations](#manage-client-expectations-during-project-startup-when-there-are-many-unknowns) 
 - [Add features mid-project](#add-features-mid-project-that-werent-in-the-original-scope-how-do-you-handle-this) - [Communicate technical concepts to non-technical stakeholders?](#communicate-technical-concepts-to-non-technical-stakeholders) |
+
+
+
+
+
+
+
+
+### Junior waiting for help
+
+-  [Help junior developers](#help-junior-developers-get-up-to-speed) 
+-  [Junior Developer Struggling](#junior-developer-struggling) 
+-  [Mentor and guide junior developers](#mentor-and-guide-junior-developers)  
+-  [Onboard developer](#onboard-new-developer), 
+-  [Waiting for help](#teammate-is-blocked-and-waiting-for-help)  
+-  [Miss deadlines](#teammate-consistently-miss-deadlines), 
+
+
+
 
 
 ### **Troubleshooting Debugging and Upgrading existing software**

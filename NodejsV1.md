@@ -4,6 +4,12 @@
 
 
 
+
+
+
+
+
+
 | **Category**                 | **Topics** |
 |-----------------------------|------------|
 | **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), - [Why V8 Engine](#Why-V8-Engine) - [Handle Multiple Requests](#nodejs-handle-multiple-requests),  - [Single-Threaded Nature](#single-threaded-nature), - [node js 22 features](#node-js-22-features) - [Node js 20 features](#Node-js-20-features) |
@@ -3162,6 +3168,16 @@ npm install -g pm2
 
 
 ### **Securing Sensitive Data**
+
+
+| **Step**  | **Security Measure**   | **Step**   | **Security Measure**   |
+| --------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------- |
+| **1. Credential & Secret Management**         | • **Never hardcode credentials** in code or configs.<br>• Store secrets in **environment variables** or **secret managers**.<br>• Enforce **secret rotation** and access control.<br>•  **AWS Secrets Manager**, **HashiCorp Vault**, **Azure Key Vault**, `.env`          | **2. Authentication & Password Protection**   | • **Hash passwords securely** with **bcrypt** or **Argon2**.<br>• Apply **salting** and strong password policies.<br>• Enforce **MFA** for admin/sensitive accounts.<br>• Use **JWT/OAuth2** with refresh tokens.<br>• **bcrypt**, **Argon2**, **Passport.js**, **Auth0**, **AWS Cognito**                |
+| **3. Network & Transport Security**           | • **Enforce HTTPS** across all endpoints.<br>• Use **TLS 1.2+** for secure service-to-service communication.<br>• Enable **HSTS** at **Load Balancer/NGINX** to prevent downgrade attacks.<br>• **NGINX**, **AWS ALB**, **Let’s Encrypt**, **Cloudflare TLS**                      | **4. Application Layer Hardening**            | • Use **Helmet.js** for secure HTTP headers.<br>• Configure **CORS** to whitelist trusted origins.<br>• Add **rate limiting & brute-force protection**.<br>• Perform **input validation & sanitization**.<br>•  **Helmet**, **express-rate-limit**, **Joi**, **express-validator**                 |
+| **5. Data Protection (At Rest & In Transit)** | • **Encrypt sensitive data at rest** using crypto APIs or cloud-native encryption.<br>• Enable **DB encryption** and secure backups.<br>• **Rotate encryption keys** periodically.<br>• Use **field-level encryption** for PII.<br>• **Node.js crypto**, **AWS KMS**, **Azure Key Vault**, **MongoDB Atlas Encryption** | **6. Authorization & Access Control**         | • Implement **RBAC (Role-Based Access Control)**.<br>• Apply **Principle of Least Privilege** for users and services.<br>• Audit access policies regularly.<br>• **RBAC middleware**, **CASL**, **Keycloak**, **AWS IAM**                           |
+| **7. Dependency & Vulnerability Management**  | • Run **npm audit**, **Snyk**, or **OWASP Dependency-Check**.<br>• Patch vulnerable packages regularly.<br>• Integrate **SAST/DAST** in CI/CD pipelines.<br>• **Snyk**, **npm audit**, **SonarQube**, **OWASP ZAP**                              | **8. Logging & Monitoring**                   | • Use **centralized logging** and observability tools.<br>• **Mask/redact sensitive data** (PII, passwords, card details).<br>• Set up **alerts for suspicious activities**.<br>•  **Winston**, **ELK Stack**, **Datadog**, **Graylog**, **Splunk**                   |
+| **9. Auditing & Compliance**                  | • Maintain **audit logs** for critical actions.<br>• Define a **log retention policy**.<br>• Perform **regular security audits** and **penetration tests**.<br>• **Audit trails**, **SIEM tools**, **Burp Suite**, **Nessus**                       | **10. Incident Response & Governance**        | • Create an **Incident Response (IR) plan** with clear roles.<br>• Conduct **tabletop exercises** regularly.<br>• Maintain **backups & DR plans** for business continuity.<br>• **IR runbooks**, **AWS Backup**, **Jira Ops**, **PagerDuty**                       |
+
 
 * **Never hardcode credentials** – use **environment variables** or **secret managers** like *AWS Secrets Manager* or *Vault*.
 * **Hash passwords securely** using **bcrypt** with proper salting.

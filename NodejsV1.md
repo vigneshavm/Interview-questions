@@ -1,15 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
 | **Category**                 | **Topics** |
 |-----------------------------|------------|
 | **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), - [Why V8 Engine](#Why-V8-Engine) - [Handle Multiple Requests](#nodejs-handle-multiple-requests),  - [Single-Threaded Nature](#single-threaded-nature), - [node js 22 features](#node-js-22-features) - [Node js 20 features](#Node-js-20-features) |
@@ -18,17 +8,21 @@
 | **Processes**                | - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
 | **Async and Middleware** |  [BackPressure](#BackPressure)  - [FS(File System)](#FS), - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
 | **Package JSON**             | [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [npm install vs npm ci](#npm-install-vs-npm-ci) - [npm vs npx](#npm-vs-npx) - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
-| **REST API & Security**      | [REST API](#rest-api),  -[HTTP methods](#http-methods) - [RESTAPI version](#restapi-version) - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  - [Scalable REST APIs](#Scalable-REST-APIs) , -[Scalability and Security](#Scalability-and-Security) - [Handle retries](#Handle-retries) , - [API Slow](#API-Slow) -[Prevent Abusive Network API Call](#Prevent-abusive-network-calls-in-an-API)|
+| **REST API & Security**      | [REST API](#rest-api),  -[HTTP methods](#http-methods) - [RESTAPI version](#restapi-version) - [Pagination](#implement-pagination-in-a-rest-api),  - [Folder Structure](#clean-restful-folder-structure),  - [REST API Performance Testing](#REST-API-Performance-Testing),  , -[Scalability and Security](#Scalability-and-Security) - [Handle retries](#Handle-retries) , - [API Slow](#API-Slow) -[Prevent Abusive Network API Call](#Prevent-abusive-network-calls-in-an-API)|
 | **Security**      | - [Secure Node.js](#secure-nodejs-app),  - [Secure Sensitive Data](#securing-sensitive-data),  - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt) -[Keep secrets in Node.js](#keep-secrets-in-nodejs) - [Security & Vulnerability Handling in High-Traffic APIs](#security--vulnerability-handling-in-high-traffic-apis)|
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
-| **Error & Debugging**        | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) |
 | **Performance Optimization** | [Performance Optimization](#performance-optimization),  - [Performance Pitfalls](#common-performance-pitfalls),  - [Handle CPU Tasks](#Handle-CPU-intensive-task) |
-| **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets)  - [100K Concurrent](#Handling-100000-concurrent-requests),    - [High Traffic Scalable](#Scaling-High-Traffic)  - [REST APIs vs GraphQL](#rest-apis-vs-graphql)|
+| **Concurrency & Scaling**      | [Handles large data sets](#Handles-large-data-sets)  - [100K Concurrent](#Handling-100000-concurrent-requests),      - [REST APIs vs GraphQL](#rest-apis-vs-graphql)|
 | **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production),  - [PM2](#pm2),  - [Load Balancing](#load-balancing) |
 | **Timeout**     | [Common Cases Timeout Errors](#Common-Cases-Timeout-Errors) , - [Handle Timeout Issue](#Debugging-Steps-I-Follow-For-Timeout)  |
 | **Database Interaction**     | [JOINs in Sequelize](#JOINs-in-Sequelize) [SQL Connection](#sql-connection),  - [MongoDB Connection](#mongodb-connection),  - [DB Connections](#database-connections),  - [Transactions](#database-transactions) -[Connection Pooling](#Connection-Pooling)|
 
+
+
+| **Topic**| **Description** | **Topic**| **Description** | 
+|--------------|-----------|--------------|-----------|
+| **Scalable** | - [High Traffic Scalable](#Scaling-High-Traffic), - [Scalable REST APIs](#Scalable-REST-APIs)   | **Error & Debugging** | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) | 
 
 
 

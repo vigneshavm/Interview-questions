@@ -9,7 +9,7 @@
 | **System Design**     | [Server side rendering vs client side rendering](#server-side-rendering-vs-client-side-rendering), -  [Decide between SQL and NoSQL](#decide-between-sql-and-nosql), -  [Handle consistency in distributed systems](#handle-consistency-in-distributed-systems), -  [Implement rate limiting](#implement-rate-limiting), -  [Ensure observability](#ensure-observability), -  [Prevent single points of failure](#prevent-single-points-of-failure-in-a-system-design) -  [Decide between inhouse vs thirdparty service](#decide-between-inhouse-vs-thirdparty-service)|
 | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      |
 | **Additional** | -  [Optimize applications](#optimize-applications), -  [SDLC](#sdlc), -  [Cross functional collaboration](#cross-functional-collaboration) , - [Roles and Responsibilities](#Roles-and-Responsibilities) - [Self Introduction](#Self-Introduction)
-| **Design Documents** | [High-Level Design](#high-level-design), -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   
+| **Design Documents** | [High-Level Design](#high-level-design), -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   - [Documentation Communication ](#Documentation-Communication) 
 | **Planning** | - [Technology selection (new project)](#technology-stack-selection-for-a-new-project) - [Handle performance requirements](#handle-performance-requirements-from-the-beginning-of-a-project) |
 | **Risk** | - [Risks in software projects](#common-risks-in-software-projects-and-how-do-you-mitigate-them) - [Technical blocker](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
 | **Security** | - [Security Breach Response](#security-breach-response) - [Security and compliance](#security-and-compliance) - [Implement security across](#implement-security-across) -  [Security issue](#security-issue-on-production),  -  [Secure backend APIs](#performant-and-secure-backend-apis),|
@@ -1589,3 +1589,15 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 
 ---
 
+
+### Documentation Communication 
+
+
+
+| **Step**  | **Implementation Details**  | **Step**       | **Implementation Details**        |
+| --------- | -------------------- |------------------- |------------------- |
+| **1. Use Clear Architectural Diagrams**     | Draw **high-level architecture** showing components, data flow, and integrations. Use tools like **Draw.io, Lucidchart, or C4 model diagrams**.                                 | **2. Maintain Written Documentation**       | Document **services, APIs, data models, tech stack, deployment topology**, and **non-functional requirements** in a structured format. Use **Markdown, Confluence, or Notion**. |
+| **3. Explain Design Decisions**             | Include **why each technology, pattern, or topology was chosen**, highlight **trade-offs**, and potential **risks/benefits**.                                                   | **4. Align Technical & Business Language**  | Translate complex technical concepts into **business-impact terms** for non-technical stakeholders (e.g., scalability, reliability, cost).                                      |
+| **5. Use Version-Controlled Docs**          | Store documentation in **Git or wiki**, versioned alongside code to reflect updates in architecture.                                                                            | **6. Conduct Architecture Walkthroughs**    | Host **peer reviews** and **cross-team walkthroughs** to validate understanding and gather feedback.                                                                            |
+| **7. Create Data Flow & Sequence Diagrams** | Illustrate **how data moves between services**, **APIs**, and **databases** for clarity in implementation and debugging.                                                        | **8. Update Continuously**                  | Keep docs **current with feature changes or refactoring**. Schedule periodic review sessions.                                                                                   |
+| **9. Provide Quick Reference Guides**       | Create **cheatsheets, summary diagrams, or FAQs** for new team members or stakeholders.                                                                                         | **10. Encourage Feedback & Collaboration**  | Invite team members and business stakeholders to **comment and suggest improvements**, fostering shared understanding.                                                          |

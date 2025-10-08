@@ -155,19 +155,14 @@ var count = 10;
 ## Webpack
 
 
+
 | **Details**                               | **Details**  |
 | -------------------------------------- | ----------- |
-| **1. Overview**  - > “Yes, I’ve worked extensively with **Webpack**, especially in **large-scale React applications**. I’m comfortable configuring it from scratch and optimizing it for performance.” | **2. Purpose & Usage** - > “I use Webpack to bundle **modern JavaScript, JSX, CSS/SCSS, and static assets** into efficient, production-ready builds. It constructs a **dependency graph** starting from a defined entry point — usually `index.js` — applies **loaders** to transform files, and **plugins** to extend or optimize the build process.” |
-| **3. Configurations** - > “I typically separate configuration for **development** and **production**:
- * In **dev mode**, I enable **Hot Module Replacement (HMR)** for faster feedback.
- * In **production**, I use **code splitting, tree shaking, and cache busting** with hashed filenames in the `dist/` directory.” | **4. Common Plugins** - > “Some plugins I frequently use include:
- * **HtmlWebpackPlugin** to inject assets into HTML.
- * **MiniCssExtractPlugin** to extract CSS into separate files.
- * **DefinePlugin** to inject environment-specific variables.” |
-|**5. Loaders & Styling** - > “On the loader side, I use **babel-loader** to transpile JSX and modern ES syntax. I’ve also added support for **SCSS** and **CSS Modules** for better style encapsulation.” | **6. Performance Optimization** - > “I optimize bundles using **webpack-bundle-analyzer** to visualize bundle sizes and improve chunking strategies. I also leverage **dynamic imports** with **React.lazy** and **Suspense** to reduce initial load times.|
-|**7. CI/CD Integration** - > “I integrate Webpack into **CI/CD pipelines** to ensure **clean builds, environment-specific configurations, and minimized production bundles**.| **8. Preference & Legacy Maintenance** - > “While I prefer using **Vite** in newer projects for its speed and simplicity, I continue to maintain and optimize **Webpack-based setups** in legacy apps when advanced customization is required.” |
-
-
+| **Overview:** I’ve worked extensively with **Webpack**, especially in **large-scale React applications**. I’m comfortable configuring it from scratch and optimizing it for performance. | **Purpose & Usage:** I use Webpack to bundle **modern JavaScript, JSX, CSS/SCSS, and static assets** into efficient, production-ready builds. It constructs a **dependency graph** from an entry point (usually `index.js`), applies **loaders** to transform files, and uses **plugins** to optimize the build process. |
+| **Configurations:** I separate configuration for **development** and **production**.<br>• In **dev mode**, I enable **Hot Module Replacement (HMR)** for faster feedback.<br>• In **production**, I use **code splitting**, **tree shaking**, and **cache busting** with hashed filenames in the `dist/` directory.      | **Common Plugins:** Frequently used plugins include:<br>• **HtmlWebpackPlugin** – Injects assets into HTML.<br>• **MiniCssExtractPlugin** – Extracts CSS into separate files.<br>• **DefinePlugin** – Injects environment-specific variables.                                                                            |
+| **Loaders & Styling:** I use **babel-loader** to transpile JSX and modern ES syntax, and I’ve added support for **SCSS** and **CSS Modules** for better style encapsulation.| **Performance Optimization:** I optimize bundles using **webpack-bundle-analyzer** to visualize bundle sizes and refine chunking strategies. I also leverage **dynamic imports**, **React.lazy**, and **Suspense** to minimize initial load time.                                                                        |
+| **CI/CD Integration:** I integrate Webpack into **CI/CD pipelines** to ensure **clean builds**, **environment-specific configurations**, and **minimized production bundles**. | **Preference & Legacy Maintenance:** While I prefer using **Vite** for newer projects due to its speed and simplicity, I continue to maintain and optimize **Webpack-based setups** in legacy apps that need advanced customization.|
+| **Conclusion:** I consider **Webpack** a powerful and flexible bundler that gives full control over the **frontend build lifecycle** — from **development** through **optimization** to **deployment**.|
 
 
 

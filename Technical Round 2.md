@@ -1222,6 +1222,45 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 
 
 
+┌─────────────────────────────────────────────────────────────────┐
+│                            USER                                  │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+┌────────────────────────────▼────────────────────────────────────┐
+│                   PRESENTATION LAYER                             │
+├──────────────────────────────────────────────────────────────────┤
+│                        WEB APP                                   │
+│            ReactJS | HTML5 | Bootstrap                           │
+├──────────────────────────────────────────────────────────────────┤
+│  Login | Plans | Membership | Dashboards | KPI | Category       │
+│                Export | Notification                             │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+┌────────────────────────────▼────────────────────────────────────┐
+│                     BUSINESS LAYER                               │
+├──────────────────────────────────────────────────────────────────┤
+│                         PYTHON                                   │
+├──────────────────────────────────────────────────────────────────┤
+│  Authentication | PlanDetails | Membership | Details             │
+│  Plan Comparison | Plan Comparison Jobs | Results                │
+└──────────────┬─────────────────────────────┬────────────────────┘
+               │                             │
+               │ Data Layer ORM              │ CSV, PDF
+               │                             │
+┌──────────────▼─────────────┐   ┌──────────▼────────────────────┐
+│        DATABASE            │   │      FILE STORAGE              │
+├────────────────────────────┤   ├────────────────────────────────┤
+│   Azure SQL Server         │   │   Azure Blob Storage           │
+└────────────────────────────┘   └────────────────────────────────┘
+
+                    CROSS-CUTTING CONCERNS
+    ┌──────────────┬──────────────┬──────────────┬──────────────┐
+    │              │              │              │              │
+    │ CONFIGURATION│   SECURITY   │ COMMUNICATION│   LOGGING    │
+    │              │              │              │              │
+    └──────────────┴──────────────┴──────────────┴──────────────┘
+           (Applied across all layers)
+
 #### **Additional Architectural Concepts**
 
 * **Separation of Concerns:** Each layer has a single responsibility — UI, business logic, or data.

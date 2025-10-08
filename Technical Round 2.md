@@ -1,6 +1,6 @@
 | **Topic**| **Description** | **Topic**| **Description** | **Topic**| **Description** |
 |--------------|-----------|--------------|-----------|--------------|-----------|
-| **Security** | [Security Application](#security-application) | **Architecture** | -[Architecture Used](#Architecture-Used)  [Architectural Decisions](#Architectural-Decisions), -[Architecture challenges](#Application-architecture-challenges) - [Complex architecture Design](#design-the-system-architecture-for-a-complex-web-application)  - [Recent architectural challenges](#Recent-architectural-challenges)  | **Debugging**| - [Debugging & Troubleshooting Expertise](#debugging--troubleshooting-expertise)  -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-software)|
+| **Security** | [Security Application](#security-application) | **Architecture** | -[Architecture Used](#Architecture-Used)  - [Architectural Decisions](#Architectural-Decisions), -[Architecture challenges](#Application-architecture-challenges) - [Complex architecture Design](#design-the-system-architecture-for-a-complex-web-application)  - [Recent architectural challenges](#Recent-architectural-challenges)  | **Debugging**| - [Debugging & Troubleshooting Expertise](#debugging--troubleshooting-expertise)  -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-software)|
 | **Agile** | [Agile Overview](#agile-overview) |**Code Quality** |   - [Code quality](#lead-code-reviews)    - [Code coverage and Improvement strategies](#code-coverage-and-improvement-strategies) - [High Quality and Reuseble Code](#High-Quality-and-Reuseble-Code)| **Leadership** |   [Junior waiting for help](#junior-waiting-for-help) - [Build Teams](#build-and-structure-effective-teams)  -  [Technical leadership](#technical-leadership), |
 | **Scalability** |   [Scalability on AWS](#design-for-scalability-on-aws) | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      | **Design Documents** | [High-Level Design](#high-level-design),-  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)    -[Documentation Communication ](#Documentation-Communication) |
 
@@ -1222,35 +1222,25 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 
 
 
-┌─────────────────────────────────────────────────────────────────┐
-│                            USER                                  │
-└──────────────────────────────────────────────────────────────────┘
+USER 
+
+
+PRESENTATION LAYER 
+    WEB APP     
+    ReactJS | HTML5 | Bootstrap             
+    Modules -- Login | Plans | Membership | Dashboards | KPI | Category | Export | Notification
+
                              
-┌────────────────────────────────────────────────────────────────┐
-│                   PRESENTATION LAYER                             │
-├──────────────────────────────────────────────────────────────────┤
-│                        WEB APP                                   │
-│            ReactJS | HTML5 | Bootstrap                           │
-├──────────────────────────────────────────────────────────────────┤
-│  Login | Plans | Membership | Dashboards | KPI | Category       │
-│                Export | Notification                             │
-└────────────────────────────────────────────────────────────────┘
-                             
-┌────────────────────────────────────────────────────────────────┐
-│                     BUSINESS LAYER                               │
-├──────────────────────────────────────────────────────────────────┤
-│                         NodeJs                                  │
-├──────────────────────────────────────────────────────────────────┤
-│  Authentication | PlanDetails | Membership | Details             │
-│  Plan Comparison | Plan Comparison Jobs | Results                │
-└──────────────────────────────────────────────────────────────┘
+BUSINESS LAYER 
+    NodeJs 
+    Microservices  - Authentication | PlanDetails | Membership | Details  | Plan Comparison |Plan Comparison Jobs | Results  
                
-                                          
-┌───────────────────────────┐   ┌────────────────────────────┐
-│DATABASE  (Data Layer ORM) │   │      FILE STORAGE (CSV, PDF)   │
-├────────────────────────────┤   ├────────────────────────────────┤
-│   Azure SQL Server         │   │   Azure Blob Storage           │
-└────────────────────────────┘   └────────────────────────────────┘
+DATABASE  (Data Layer ORM)  
+    Azure SQL Server     
+
+FILE STORAGE (CSV, PDF)  
+    Azure Blob Storage                               
+
 
                     CROSS-CUTTING CONCERNS
     ┌──────────────┬──────────────┬──────────────┬──────────────┐

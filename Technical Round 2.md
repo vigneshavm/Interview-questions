@@ -2,7 +2,8 @@
 |--------------|-----------|--------------|-----------|--------------|-----------|
 | **Security** | [Security Application](#security-application) | **Scalability** | [Scalability on AWS](#design-for-scalability-on-aws) | **Debugging**| - [Debugging & Troubleshooting Expertise](#debugging--troubleshooting-expertise)  <br>-  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-software)|
 | **Agile** | [Agile Overview](#agile-overview) |**Code Quality** |   - [Code quality](#lead-code-reviews)    - [Code coverage and Improvement strategies](#code-coverage-and-improvement-strategies) - [High Quality and Reuseble Code](#High-Quality-and-Reuseble-Code)| **Leadership** |   [Junior waiting for help](#junior-waiting-for-help) - [Build Teams](#build-and-structure-effective-teams)  -  [Technical leadership](#technical-leadership), |
-| **** |    | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), <br>  [Node.js upgrade](#nodejs-upgrade), <br>  [TypeScript upgrade](#typescript-upgrade)                                      | **Design Documents** | [High-Level Design](#high-level-design),<br> -  [Low-Level Design](#low-level-design), <br> -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   <br> - [Documentation Communication ](#Documentation-Communication) |
+| **** |    | **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), <br>  [TypeScript upgrade](#typescript-upgrade)                                      | **Design Documents** | [High-Level Design](#high-level-design),<br> -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)    -[Documentation Communication ](#Documentation-Communication) |
+
 
 
 

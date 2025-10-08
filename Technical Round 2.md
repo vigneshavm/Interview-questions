@@ -1,5 +1,6 @@
 
 
+
 | **Topic**                     | **Description / Anchor**                                                                                                                                                                                                                                                                                                                                                                   |
 |-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Project** | [Project handling](#project-handled-both-backend-and-frontend), -  [Manage full-stack](#manage-full-stack-development-in-sprints) - [Project Initiation Requirements](#project-initiation-requirements) - [Managing pressure software planning and quality delivery](#managing-stakeholder-pressure-while-ensuring-proper-software-planning-and-quality-delivery) - [Managing requirements conflicting ](#managing-conflicting-requirements-from-multiple-stakeholders) |
@@ -130,6 +131,16 @@ Great — here's a **Node.js and TypeScript version upgrade example** written in
 
 
 ### **Technical Leadership**
+
+| **Step**     | **Implementation Details**   |**Step**     | **Implementation Details**   |
+| ------------ | ------------------ |------------------------ | --------------------- |
+| **1. Set Clear Coding Standards**                      | Define and enforce standards for **linting, formatting, naming conventions, folder structure, and modular design**. Use **ESLint, Prettier, TypeScript strict mode**.                                | **2. Promote Test-Driven Development (TDD)**           | Encourage writing **unit tests first**, ensuring **code correctness** and **regression protection**. Use **Jest, Mocha, or Jasmine** for automated tests.                                            |
+| **3. Enforce Continuous Integration (CI)**             | Integrate **automatic builds, linting, and test runs** on every commit or PR to catch issues early. Use **GitHub Actions, GitLab CI, or Jenkins**.                                                   | **4. Implement Continuous Delivery & Deployment (CD)** | Automate deployment pipelines for staging and production.<br> - Enable **safe, repeatable deployments** with rollback capability.<br> - Use **Docker, Kubernetes, AWS ECS/EKS, or Azure Pipelines**. |
+| **5. Establish Code Review Culture**                   | Conduct **peer reviews** to maintain **code quality, adherence to architecture, and best practices**. Provide constructive feedback.                                                                 | **6. Promote Best Practices & Patterns**               | Encourage **SOLID, DRY, KISS, modularization**, and **design patterns** across frontend and backend.                                                                                                 |
+| **7. Mentor & Upskill Team Members**                   | Guide juniors and peers on **testing, performance optimization, API design, and state management**.                                                                                                  | **8. Monitor Metrics & Performance**                   | Track **build success, test coverage, deployment frequency, and bug rates**. Use dashboards for visibility.                                                                                          |
+| **9. Maintain Documentation**                          | Keep **architecture docs, coding guidelines, and deployment instructions** up-to-date for team reference.                                                                                            | **10. Foster Continuous Improvement**                  | Conduct **retrospectives, tech discussions, and knowledge-sharing sessions** to evolve processes and engineering standards.                                                                          |
+
+
 
 - I conduct **code reviews** with a focus on readability, performance, and adherence to best practices.
 - I mentor junior developers, helping them understand TypeScript, React hooks, and debugging techniques.

@@ -2149,6 +2149,9 @@ For example, when designing APIs in Node.js using Express, I follow these REST p
 | `PATCH` | Modify a few fields |
 | `DELETE` | Remove data |
 
+- **POST is not idempotent** — multiple identical POSTs can create multiple records.
+- **PUT and PATCH are idempotent** — calling them multiple times results in the same final state.
+
 
 - The Location header is most commonly used with POST (new resource creation),
 

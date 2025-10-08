@@ -19,7 +19,7 @@
 | **Error** | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) | **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production),  - [PM2](#pm2),  - [Load Balancing](#load-balancing) |
 | **Performance** | [Performance Optimization](#performance-optimization),  - [Performance Pitfalls](#common-performance-pitfalls),  - [Handle CPU Tasks](#Handle-CPU-intensive-task) | **Timeout**     | [Common Cases Timeout Errors](#Common-Cases-Timeout-Errors) , - [Handle Timeout Issue](#Debugging-Steps-I-Follow-For-Timeout)  
 | **Security**      | - [Secure Node.js](#secure-nodejs-app),    - [Secure REST APIs](#secure-rest-apis) -[`Hash vs Encrypt`](#Hash-vs-Encrypt)  - [Security & Vulnerability Handling](#security--vulnerability-handling-in-high-traffic-apis)| **Secure Data** | - [Secure Sensitive Data](#securing-sensitive-data) -[Keep secrets in Node.js](#keep-secrets-in-nodejs)|
-| **REST API**      | - [REST APIs vs GraphQL](#rest-apis-vs-graphql) - [REST API](#rest-api),  -[HTTP methods](#http-methods) - [RESTAPI version](#restapi-version)    - [REST API Performance Testing](#REST-API-Performance-Testing),   - [API Slow](#API-Slow) -[Prevent Abusive API Call](#Prevent-abusive-network-calls-in-an-API)|   **Others**      | - [Handle retries](#Handle-retries) - [Pagination](#implement-pagination-in-a-rest-api), - [Folder Structure](#clean-restful-folder-structure), 
+| **REST API**      | - [REST APIs vs GraphQL](#rest-apis-vs-graphql) - [REST API](#rest-api),  -[HTTP methods](#http-methods)    - [REST API Performance Testing](#REST-API-Performance-Testing),   - [API Slow](#API-Slow) -[Prevent Abusive API Call](#Prevent-abusive-network-calls-in-an-API)|   **Others**      | - [Handle retries](#Handle-retries) - [Pagination](#implement-pagination-in-a-rest-api), - [Folder Structure](#clean-restful-folder-structure), 
 
 ## **Create Node App using JS**
 
@@ -2102,9 +2102,13 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
 
 ## **REST API?**
 
+
+- [RESTAPI version](#restapi-version) 
+
 A REST (Representational State Transfer) API is an architectural style that uses HTTP methods (GET, POST, PUT, DELETE) to perform CRUD operations on resources. Resources are identified by URIs.
 
 For example, when designing APIs in Node.js using Express, I follow these REST principles by structuring endpoints cleanly (/api/products/:id), keeping them stateless, and using HTTP methods semantically. I also handle proper status codes and ensure APIs are versioned and cacheable when needed.
+
 
 ---
 

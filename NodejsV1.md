@@ -5040,38 +5040,6 @@ By combining these layers — **API design, infrastructure controls, and monitor
 | **5. Reliability & High Availability** <br> -  *Resilient, fault-tolerant, and production-ready system.*  | - Containerize and deploy via **Docker + Kubernetes** or **AWS ECS**.<br>- Enable **auto-scaling** and **multi-AZ deployments**.<br>- Add **readiness/liveness probes** for self-healing.<br>- Use **blue-green or canary deployments** for safe rollouts.<br>- Plan **backups, failover**, and **disaster recovery** strategies.                                                       | 
 
 
-
-
-**1. Architecture & Scalability**
-
-* I design REST APIs to be **stateless**, so they can scale horizontally behind load balancers like **NGINX**.
-* For multi-core usage, I use **Node.js Cluster module or PM2**.
-
-**2. Performance & Efficiency**
-
-* I implement **caching** (Redis, HTTP caching headers) for frequently accessed data.
-* Use **pagination, filtering, sorting** to avoid returning huge payloads.
-* For background tasks, I offload to **message queues** (e.g., Bull + Redis, RabbitMQ, Kafka).
-
-**3. Reliability & High Availability**
-
-* Deploy APIs in **Docker + Kubernetes (or AWS ECS)**.
-* Enable **auto-scaling** and **multi-AZ deployments** with health checks.
-* Monitor using **Datadog**.
-
-**4. Security & Governance**
-
-* Apply **rate limiting & throttling** to prevent abuse.
-* Secure APIs with **Helmet, CORS, JWT/OAuth2**.
-* Use **Swagger/OpenAPI** for API documentation.
-
-**5. Observability & Testing**
-
-* Centralized logging with **Winston + ELK/Datadog**.
-* Automated tests with **Jest & Supertest**.
-
-
-
 ---
 
 

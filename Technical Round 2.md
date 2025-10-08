@@ -13,7 +13,7 @@
 | **Design Documents** | [High-Level Design](#high-level-design), -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   - [Documentation Communication ](#Documentation-Communication) 
 | **Planning** | - [Technology selection (new project)](#technology-stack-selection-for-a-new-project) - [Handle performance requirements](#handle-performance-requirements-from-the-beginning-of-a-project) |
 | **Risk** | - [Risks in software projects](#common-risks-in-software-projects-and-how-do-you-mitigate-them) - [Technical blocker](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
-| **Security** | - [Security Breach Response](#security-breach-response) - [Security and compliance](#security-and-compliance) - [Implement security across](#implement-security-across) -  [Security issue](#security-issue-on-production),  -  [Secure backend APIs](#performant-and-secure-backend-apis),|
+| **Security** | [security application](#security-application)|
 | **Agile** | - [Agile Concepts](#Agile-Concepts) , - [Agile process](#Agile-process) - [Implement Agile methodology](#implement-agile-methodology-in-a-new-project-team) - [Measure project success](#measure-project-success-and-team-performance-from-the-beginning)   - [Agile Transformation](#agile-transformation-resistance)  |
 | **Other** | - [Angular Performance Issues](#angular-performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management) - [Production Incident](#production-incident) - [Technical Debt Management](#technical-debt-management) - [Database Performance Crisis](#database-performance-crisis) |
 | **Challenge** | - [Cloud Migration Challenge](#cloud-migration-challenge) - [Docker deployment challenges](#docker-deployment-challenges) - [Vendor Integration Challenge](#vendor-integration-challenge)
@@ -353,11 +353,6 @@ To handle this smoothly, I followed these steps:
 
 ---
 
-## **Performant and Secure Backend APIs**
-
- - "In **Shoutout**, I optimized Node.js APIs with pagination, indexing, and Redis caching for high-read endpoints like celebrity listings. Security was handled with JWT, IP throttling, and validation via `express-validator`. For video uploads, we used signed URLs with Azure Blob Storage, ensuring time-bound access. We also followed PCI-DSS guidelines for payment flow."*
-
----
 
 ## **Release gets delayed due to unexpected bugs**
 
@@ -371,11 +366,7 @@ To handle this smoothly, I followed these steps:
 
 ---
 
-## **security issue on production**
 
- - "In **Shoutout**, a user discovered they could access other video links using guessable URLs. We hotfixed it by generating UUID-based URLs and restricting access with signed tokens. I added a server-side access check based on user-booking ID, wrote a test case, and enabled Sentry to track any further access attempts."*
-
----
 
 
 
@@ -797,18 +788,6 @@ LLD describes **how each module/component will be implemented**. It focuses on *
 - **Monitoring**: Enhanced monitoring during migration window
 - **Example Response**: "In my previous role, we migrated a 24/7 production monitoring system. We used feature toggles to gradually shift user traffic and maintained dual-write capability for 30 days."
 
-### Security Breach Response
-**Question**: "Your team discovers unauthorized access to sensitive E&P well data. Walk me through your incident response."
-
-**Response Framework**:
-- **Immediate Containment**: Isolate affected systems, revoke compromised credentials
-- **Assessment**: Determine scope of breach, data accessed, and entry point
-- **Legal/Compliance**: Notify legal team, prepare for regulatory reporting requirements
-- **Communication**: Brief executive leadership, prepare client communication plan
-- **Investigation**: Preserve logs, work with security team to analyze attack vector
-- **Remediation**: Patch vulnerabilities, enhance access controls, update security policies
-- **Recovery**: Restore systems from clean backups, implement additional monitoring
-- **Prevention**: Security training, penetration testing, regular security audits
 
 ### Cross-Cultural Team Management
 **Question**: "You're leading a team with developers in India, testers in Poland, and stakeholders in the US. There are frequent miscommunications. How do you resolve this?"
@@ -877,17 +856,6 @@ LLD describes **how each module/component will be implemented**. It focuses on *
 - **Knowledge Transfer**: Ensure team learns from specialists for future maintenance
 
 
-### **Security and compliance**
-
-**Answer:**
-“In both healthcare and banking, **compliance is as critical as functionality**.
-
-* In **healthcare**, I align with **HIPAA** and **GDPR**. That means **encrypting PHI at rest and in transit**, implementing **RBAC**, **audit trails**, and ensuring **FHIR/HL7 interoperability**.
-* In **banking**, I ensure **PCI-DSS compliance**. That involves **tokenization of PAN/CVV**, **MFA/2FA**, and **regular vulnerability scans**.
-* Across both domains, I enforce **least-privilege IAM policies**, **regular pen-tests**, and **continuous monitoring** with **SIEM tools**.”
-
----
-
 
 ### **Ensure code-level safety, for example with null checks?**
 
@@ -897,17 +865,7 @@ I validate payloads using **Joi** or **class-validator**. My approach is **fail-
 
 ---
 
-### **Implement security across**
 
-**Answer:**
-“I use a **layered defense strategy**:
-
-* **Frontend:** Protect against **XSS** (sanitize inputs), use **CSRF tokens**, and **HttpOnly cookies** instead of localStorage.
-* **Backend:** Apply **parameterized queries**, enforce **central auth via API Gateway**, implement **rate limiting**, and ensure **secure error handling**.
-* **Data Layer:** Use **column-level encryption**, **least-privilege DB roles**, and **data anonymization** for analytics.
-* **Cloud Layer:** Apply **IAM least-privilege**, enable **CloudTrail, GuardDuty**, and manage keys via **KMS/Secrets Manager**.”
-
----
 
 
 ### **Design for scalability on AWS**
@@ -1627,3 +1585,46 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 | **5. Cross-Functional Communication**    | Maintain **regular syncs** with Product, Marketing, and UX for updates, dependencies, and feedback. Use **Slack, Jira, or Notion** for transparency. | **6. Implement with Best Practices**     | Ensure **clean, reusable code**, **performance optimization**, **responsiveness**, and **accessibility standards**.                                  |
 | **7. Continuous Feedback & Iteration**   | Share **working prototypes** with UX/Product for validation; incorporate user feedback and analytics.                                                | **8. Marketing & Analytics Integration** | Collaborate with Marketing for **tracking user interactions**, A/B tests, and campaign integration.                                                  |
 | **9. Conduct Cross-Team Demos**          | Showcase new features and improvements to stakeholders, encouraging **early feedback** and alignment.                                                | **10. Document Decisions & Guidelines**  | Maintain **implementation notes, design decisions, and style guides** for team reference and onboarding.                                             |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| **Area**                                      | **Implementation Details / Real-World Application**                                                                                                                                                                                             |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Security Framework & Standards (OWASP)** | I follow **OWASP Top 10** as a baseline for application security — covering **injection prevention, broken authentication, sensitive data exposure, and misconfiguration**. All API and frontend reviews include an OWASP compliance checklist. |
+| **2. Authentication & Authorization**         | Implemented **JWT/OAuth2-based auth flows** with **RBAC (Role-Based Access Control)** and **MFA** for privileged users. Tokens are short-lived, stored as **HttpOnly cookies**, and refresh tokens are rotated to prevent replay attacks.       |
+| **3. Input Validation & Sanitization**        | Applied **server-side validation and sanitization** using **Joi/Zod** or **express-validator** to prevent **XSS**, **SQL injection**, and **NoSQL injection** attacks. Every incoming payload is validated against a schema.                    |
+| **4. Data Protection & Encryption**           | Sensitive data (passwords, API keys, card info) is encrypted using **bcrypt (with salt)** and **AES-256** for symmetric encryption. Keys are stored securely in **AWS KMS / Vault**, and data in transit is protected with **TLS 1.2+**.        |
+| **5. API Security**                           | Applied **rate limiting (express-rate-limit)**, **CORS policies**, and **Helmet.js** for secure headers. Used **HSTS** and enforced **HTTPS** across all environments. Added **audit logs** for all admin and sensitive actions.                |
+| **6. Secrets & Configuration Management**     | Never hardcode secrets. Use **environment variables** and **secret managers** (e.g., **AWS Secrets Manager**, **Vault**) integrated into CI/CD. Implemented **automatic key rotation** and **access auditing**.                                 |
+| **7. Dependency & Vulnerability Management**  | Used **npm audit**, **Snyk**, and **OWASP Dependency-Check** as part of CI pipeline to detect vulnerable libraries. Updated dependencies regularly and used **package whitelisting** for critical systems.                                      |
+| **8. Logging & Monitoring**                   | Implemented **structured logging** with **Winston/Pino** while masking sensitive data. Used **centralized log aggregation** (ELK/Datadog) to detect anomalies, failed logins, and potential attacks in real time.                               |
+| **9. Secure Deployment Practices**            | Used **container image scanning** (Trivy), **TLS certificates management**, and **CSP (Content Security Policy)** headers. Enforced **least privilege IAM roles** in cloud environments (AWS/Azure).                                            |
+| **10. Continuous Security Validation**        | Integrated **SAST/DAST tools** in CI/CD (SonarQube, OWASP ZAP) and conducted periodic **penetration testing**. Added automated alerts for vulnerabilities and policy violations.                                                                |
+
+
+
+| **Step**                                                                 | **Implementation Details**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Security Incident Response**                                        | - **Immediate Containment:** Isolate impacted systems and revoke compromised credentials.<br>- **Assessment:** Identify the scope of the breach, impacted data, and entry vector.<br>- **Investigation:** Preserve audit logs, analyze attack vectors with the security team.<br>- **Remediation:** Patch vulnerabilities, strengthen access control, and update security policies.<br>- **Recovery:** Restore systems from verified clean backups.<br>- **Prevention:** Conduct periodic **security training**, **penetration testing**, and **vulnerability audits**.                                                      |
+| **2. Regulatory & Compliance Alignment**                                 | - In **Healthcare**, ensured **HIPAA** and **GDPR** compliance by:<br>→ Encrypting **PHI** (at rest and in transit).<br>→ Implementing **RBAC**, **audit trails**, and **FHIR/HL7 interoperability**.<br>- In **Banking**, maintained **PCI-DSS** compliance by:<br>→ **Tokenizing** sensitive data (PAN/CVV).<br>→ Enforcing **MFA/2FA** and **TLS 1.2+** for all endpoints.<br>→ Running **regular vulnerability scans** and **pen-tests**.<br>- Applied **least-privilege IAM** and **continuous monitoring** across environments.                                                                                        |
+| **3. Layered Defense Architecture (OWASP)**                              | - **Frontend:**<br>→ Prevented **XSS** with strict input sanitization.<br>→ Used **CSRF tokens** and **HttpOnly cookies** for authentication.<br>- **Backend:**<br>→ Applied **parameterized queries** (SQL injection protection).<br>→ Implemented **centralized auth via API Gateway**, **rate limiting**, and **secure error handling**.<br>- **Data Layer:**<br>→ Used **column-level encryption**, **anonymization** for analytics, and **limited DB roles**.<br>- **Cloud Layer:**<br>→ Enforced **IAM least-privilege**, enabled **CloudTrail & GuardDuty**, and managed secrets through **AWS KMS/Secrets Manager**. |
+| **4. Real-World Fix – Access Control Vulnerability (Shoutout App)**      | - Detected issue: Users could guess and access other video URLs.<br>- Fix implemented:<br>→ Switched to **UUID-based URLs**.<br>→ Used **signed tokens** for secure access validation.<br>→ Added **server-side checks** linked to booking/user IDs.<br>→ Integrated **Sentry** for monitoring and alerting.                                                                                                                                                                                                                                                                                                                 |
+| **5. Real-World Optimization – Secure API & Performance (Shoutout App)** | - Optimized **Node.js APIs** using **pagination**, **indexing**, and **Redis caching** for scalable reads.<br>- Applied **JWT-based authentication** and **IP throttling** for security.<br>- Used **express-validator** for input validation.<br>- Implemented **signed URLs** for **Azure Blob uploads** with time-bound access.<br>- Ensured **PCI-DSS compliance** in payment flows using **Razorpay tokenization** and **HTTPS-only communication**.                                                                                                                                                                    |
+| **6. Continuous Security Integration (DevOps)**                          | - Integrated security checks into **CI/CD pipelines**:<br>→ Used **Snyk** and **npm audit** for dependency scanning.<br>→ Enforced **static code analysis** and **linting rules**.<br>- Automated **environment-specific builds** with **Webpack/Vite**.<br>- Deployed with **infrastructure-as-code (IaC)** for consistent and traceable configurations.                                                                                                                                                                                                                                                                    |
+| **7. Monitoring, Detection & Prevention**                                | - Implemented **centralized logging** (e.g., **ELK**, **CloudWatch**, **Sentry**).<br>- Set up **SIEM rules** for anomaly detection.<br>- Configured **alerting** for unusual login attempts or API abuse.<br>- Conducted **quarterly vulnerability assessments** and reviewed **OWASP Top 10** compliance.                                                                                                                                                                                                                                                                                                                  |

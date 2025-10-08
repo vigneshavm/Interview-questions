@@ -13,7 +13,7 @@
 | **Design Documents** | [High-Level Design](#high-level-design), -  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)   - [Documentation Communication ](#Documentation-Communication) 
 | **Planning** | - [Technology selection (new project)](#technology-stack-selection-for-a-new-project) - [Handle performance requirements](#handle-performance-requirements-from-the-beginning-of-a-project) |
 | **Risk** | - [Risks in software projects](#common-risks-in-software-projects-and-how-do-you-mitigate-them) - [Technical blocker](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
-| **Security** | [security application](#security-application)|
+| **Security** | [Security Application](#security-application)|
 | **Agile** | - [Agile Concepts](#Agile-Concepts) , - [Agile process](#Agile-process) - [Implement Agile methodology](#implement-agile-methodology-in-a-new-project-team) - [Measure project success](#measure-project-success-and-team-performance-from-the-beginning)   - [Agile Transformation](#agile-transformation-resistance)  |
 | **Other** | - [Angular Performance Issues](#angular-performance-issues) - [Team Conflict Resolution](#team-conflict-resolution) - [Tight Deadline Management](#tight-deadline-management) - [Production Incident](#production-incident) - [Technical Debt Management](#technical-debt-management) - [Database Performance Crisis](#database-performance-crisis) |
 | **Challenge** | - [Cloud Migration Challenge](#cloud-migration-challenge) - [Docker deployment challenges](#docker-deployment-challenges) - [Vendor Integration Challenge](#vendor-integration-challenge)
@@ -1601,10 +1601,10 @@ For example, one dashboard I used included **velocity trend, bug burn-down, code
 
 
 
+### Security Application
 
 
-
-| **Area**                                      | **Implementation Details / Real-World Application**                                                                                                                                                                                             |
+| **Area**                                      | **Implementation Details**                                                                                                                                                                                             |
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1. Security Framework & Standards (OWASP)** | I follow **OWASP Top 10** as a baseline for application security — covering **injection prevention, broken authentication, sensitive data exposure, and misconfiguration**. All API and frontend reviews include an OWASP compliance checklist. |
 | **2. Authentication & Authorization**         | Implemented **JWT/OAuth2-based auth flows** with **RBAC (Role-Based Access Control)** and **MFA** for privileged users. Tokens are short-lived, stored as **HttpOnly cookies**, and refresh tokens are rotated to prevent replay attacks.       |

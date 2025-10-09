@@ -906,7 +906,6 @@ A **Higher-Order Component** is a function that **takes a component as input and
 > I use HOCs when I need to apply **generic behavior** (like error handling, tracking, or conditionally wrapping UI) across components. However, in modern React, **custom hooks and render props** often offer more flexibility.
 So I use HOCs selectively — when they truly simplify composition without complicating the tree.
 
----
 
 ### 📌 When to Use HOCs Today
 - Applying behavior to 3rd-party components you can’t modify.
@@ -916,7 +915,6 @@ So I use HOCs selectively — when they truly simplify composition without compl
 
 **Common HOCs:** `withRouter`, `connect` (Redux)
 
----
 
 ```js
 const withLoading = (WrappedComponent) => {
@@ -928,22 +926,13 @@ const withLoading = (WrappedComponent) => {
 
 ### 🎯 **Why Use HOCs?**
 
-#### 1. **Code Reusability**
-- Encapsulate shared logic once and reuse it across multiple components.
-- Examples: logging, permissions, theming, feature toggles.
-
-#### 2. **Separation of Concerns**
-- Keeps the core component focused on rendering.
-- Extracts cross-cutting concerns like authentication or loading states.
-
-#### 3. **DRY Principle**
-- Avoid duplicating the same logic (e.g., data fetching or conditional rendering) in multiple components.
-
-#### 4. **Composition Over Inheritance**
-- Follows React’s design philosophy: reuse behavior by composing components, not subclassing them.
-
-#### 5. **Pre-Hooks Pattern**
-- Before hooks (`useEffect`, `useContext`, etc.), HOCs were the main way to share behavior in functional components.
+| **#** | **Concept**                      | **Description**                                                                                                    | **Example / Key Point**                        |
+| ----- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
+| **1** | **Code Reusability**             | Encapsulate shared logic once and reuse it across multiple components.                                             | Logging, permissions, theming, feature toggles |
+| **2** | **Separation of Concerns**       | Keeps the core component focused on rendering; extracts cross-cutting concerns.                                    | Authentication, loading states                 |
+| **3** | **DRY Principle**                | Avoid duplicating the same logic in multiple components.                                                           | Data fetching, conditional rendering           |
+| **4** | **Composition Over Inheritance** | Follows React’s philosophy: reuse behavior by composing components, not subclassing.                               | Behavior reuse via composition                 |
+| **5** | **Pre-Hooks Pattern**            | Before hooks (`useEffect`, `useContext`, etc.), HOCs were the main way to share behavior in functional components. | Legacy pattern for code sharing                |
 
 ---
 
@@ -2252,7 +2241,7 @@ function Card({ title, children }) {
 - [Uncontrolled Components](#uncontrolled-components)
 - [Pure Components](#Pure-components)
 - [Controlled vs Uncontrolled Components](#controlled-vs-uncontrolled-components)  
-•  [Higher-Order Components](#higher-order-components-hocs)
+- [Higher-Order Components](#higher-order-components-hocs)
 
 
 ###  Controlled Components

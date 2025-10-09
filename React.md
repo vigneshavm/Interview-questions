@@ -171,7 +171,7 @@ const element = <h1>Hello, {user.name}</h1>;
 - [Error Handling in Class Components](#error-handling-in-class-components)
 - [Functional Components](#functional-components)
 - [Why the Shift to Functional Components](#why-the-shift-to-functional-components)
-- [Comparison of Bundle Size & Performance](#comparison-of-bundle-size-performance)
+- [Comparison of Bundle Size & Performance](#comparison-of-bundle-size--performance)
 
 
 ### Comparison Table: Class Components vs Functional Components

@@ -1,12 +1,15 @@
 
 
+
+
+
+
 | **Category**                 | **Topics** |
 |-----------------------------|------------|
 | **Node.js Basics**           | [Node.js Architecture](#nodejs-architecture), - [Why V8 Engine](#Why-V8-Engine) - [Handle Multiple Requests](#nodejs-handle-multiple-requests),  - [Single-Threaded Nature](#single-threaded-nature), - [node js 22 features](#node-js-22-features) - [Node js 20 features](#Node-js-20-features) |
 | **Express.js Framework**     | -[Core modules](#core-modules) - [HTTP Module](#HTTP-Module),  - [Express.js](#expressjs),  - [Routing](#routing),  - [HTTP Methods](#http-methods--use-cases),  - [Query Params](#request-response-query-params),  - [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop),  - [Async I/O Handling](#asynchronous-io-handling),  - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks),  - [Async Execution Order](#Async-Execution-Order),  - [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick),  - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
 | **Async and Middleware** |  [BackPressure](#BackPressure)  - [FS(File System)](#FS), - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
-| **Package JSON**             | [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [npm install vs npm ci](#npm-install-vs-npm-ci) - [npm vs npx](#npm-vs-npx) - [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
 | **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
 | **Database Interaction**     | [JOINs in Sequelize](#JOINs-in-Sequelize) [SQL Connection](#sql-connection),  - [MongoDB Connection](#mongodb-connection),  - [DB Connections](#database-connections),  - [Transactions](#database-transactions) -[Connection Pooling](#Connection-Pooling)|
@@ -15,6 +18,7 @@
 
 | **Topic**| **Description** | **Topic**| **Description** | 
 |--------------|-----------|--------------|-----------|
+| **npm**             | [package.json vs package-lock.json](#packagejson-vs-package-lockjson),  - [npm install vs npm ci](#npm-install-vs-npm-ci) - [npm vs npx](#npm-vs-npx) -[NPM publish](#how-to-publish-an-npm-package)| **Caching**             |- [Memory Leak](#Memory-leak),  - [Garbage Collection](#garbage-collection) - [Caching Strategies](#caching-strategies),  - [Redis (Caching)](#nodejs-with-redis-caching)|
 | **Scalable** | - [High Traffic Scalable](#Scaling-High-Traffic), - [Scalable REST APIs](#Scalable-REST-APIs)  , -[Scalability and Security](#Scalability-and-Security) | **Concurrency**      | [Handles large data sets](#Handles-large-data-sets)  - [100K Concurrent](#Handling-100000-concurrent-requests) |
 | **Error** | [Error Handling](#error-handling-in-nodejs-applications),  - [Logging Errors](#logging-errors),  - [Debugging](#debugging-nodejs-applications),  - [REST API Errors](#error-handling-in-rest-apis) | **Deployment**               | [Production Deployment](#deploying-a-nodejs-application-to-production),  - [PM2](#pm2),  - [Load Balancing](#load-balancing) |
 | **Performance** | [Performance Optimization](#performance-optimization),  - [Performance Pitfalls](#common-performance-pitfalls),  - [Handle CPU Tasks](#Handle-CPU-intensive-task) | **Timeout**     | [Common Cases Timeout Errors](#Common-Cases-Timeout-Errors) , - [Handle Timeout Issue](#Debugging-Steps-I-Follow-For-Timeout)  
@@ -6155,3 +6159,33 @@ For example, in Node.js using **pg (Postgres)** or **mysql2**, I usually configu
 | **3. Database (MongoDB)**          | - Use **proper indexing** for frequent queries.<br>- Avoid unbounded queries (add filters, pagination).<br>- Use **aggregation pipelines** efficiently.<br>- Optimize schema design for read/write balance.<br>- Use **connection pooling** and **sharding/replication** for scale..<br>- MongoDB Atlas, Mongoose, Compass                   | **4. Scalability (Backend)**       | - Make services **stateless** → easy horizontal scaling.<br>- Use **PM2 Cluster mode** or **Node.js Cluster API** for multi-core usage.<br>- Deploy behind a **load balancer** (NGINX, AWS ALB).<br>- Offload heavy work to **background queues** (BullMQ, RabbitMQ, Kafka).<br>- Containerize with **Docker + Kubernetes** for auto-scaling..<br>- PM2, NGINX, Docker, Kubernetes, BullMQ             |
 | **5. Security**                    | - Apply **Helmet** for HTTP header hardening.<br>- Use **JWT/OAuth2** for secure authentication.<br>- Sanitize user input to prevent **XSS/SQL injection**.<br>- Use **HTTPS/TLS** everywhere.<br>- Implement **role-based access control (RBAC)**.<br>- Keep secrets in **.env** or secure stores (AWS Secrets Manager)..<br>- Helmet, bcrypt, Joi, dotenv, CORS                  | **6. Performance Monitoring**      | - Track performance using **APM tools** (Datadog, New Relic, Prometheus).<br>- Use **Winston** or **Morgan** for structured logging.<br>- Set up **health checks** and monitoring alerts.<br>- Use **load testing** tools before production..<br>-  Datadog, New Relic, Winston, k6, Postman           |
 | **7. CI/CD & Deployment**          | - Automate tests and builds with **GitHub Actions / Jenkins**.<br>- Use **linting (ESLint)** and **formatting (Prettier)** checks.<br>- Enforce **code coverage** and **security scans** in pipelines.<br>- Enable **auto-deployments** with rollback strategy.<br>- GitHub Actions, SonarQube, CodeCov, Docker         |
+
+
+
+### **How to Publish an NPM Package**
+
+**To publish Public**
+* To publish a package on npm, I first **initialize it using `npm init`**, then add my **code, tests, and proper documentation**.
+* Before publishing, I ensure that the **`package.json` is well-configured** with essential fields like **`name`**, **`version`**, **`main`**, and **`files`**.
+* I control which files are included using either a **`.npmignore` file** or the **`files` array**.
+* For **TypeScript projects**, I compile the source into a **`dist` folder** and include **declaration files**.
+* I **log in using `npm login`** and make sure my **`.npmrc` is properly configured**.
+* If the package is **scoped**, I publish it with **`--access public`**.
+* I also use a **`prepublishOnly` script** to automate build and test steps before publishing.
+* Finally, I **publish the package using `npm publish`**,
+* **Manage updates** through **semantic versioning** commands like `npm version patch`,
+* And **verify the package on npmjs.com** to ensure everything is working and well-documented.
+
+
+#### **.npmrc**
+
+* **`.npmrc`** is a **configuration file** used by npm to **manage settings** such as **registry URLs**, **authentication tokens**, and **publishing options**.
+* It helps **customize npm behavior** at **user**, **project**, or **global** levels.
+
+**To publish Private**
+To make an npm package private within an organization,
+I **publish it under a scoped name** like **`@myorg/mypackage`** and use the **`--access restricted`** flag.
+I **configure the `.npmrc`** to point to the **correct organization registry** and include an **auth token for authentication**.
+**Access is managed** through **npm organization settings** or **CLI commands** like **`npm access grant`**, ensuring only **authorized members** can **install or update the package**.
+
+

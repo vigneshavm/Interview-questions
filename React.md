@@ -3594,58 +3594,78 @@ useEffect(() => {
 
 Managing **loading** and **error** states is essential when fetching data in React. It improves user experience by showing appropriate feedback while waiting for or failing to receive data.
 
----
 
 ###  **Basic Example (Using `useEffect` + `axios`)**
 
 ```jsx
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState, useTransition } from "react";
 
 function UserList() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);  // loading state
-  const [error, setError] = useState(null);       // error state
+  const [isPending, startTransition] = useTransition(); // concurrent update support
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('https://api.example.com/users')
-      .then(res => {
-        setUsers(res.data);
-        setError(null);       // clear any previous error
-      })
-      .catch(err => {
-        setError(err.message || 'Something went wrong!');
-        setUsers([]);         // clear data on error
-      })
-      .finally(() => {
-        setLoading(false);    // done loading either way
-      });
+    const controller = new AbortController();
+
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("https://api.example.com/users", {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Defer state update for smoother UI (Concurrent Mode feature)
+        startTransition(() => {
+          setUsers(data);
+          setError(null);
+        });
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          setError(err.message || "Something went wrong!");
+          setUsers([]);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+
+    // cleanup to cancel fetch if component unmounts
+    return () => controller.abort();
   }, []);
 
-  if (loading) return <p>Loading users...</p>;
-  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
+  if (loading || isPending) return <p>Loading users...</p>;
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
   return (
     <ul>
-      {users.map(user => (
+      {users.map((user) => (
         <li key={user.id}>{user.name}</li>
       ))}
     </ul>
   );
 }
+
+export default UserList;
 ```
 
----
 
-### 🔄 **Best Practices**
+**What’s New & Improved**
 
-| Concept                 | Tip                                                                 |
-|------------------------|----------------------------------------------------------------------|
-| **Initial state**      | Start with `loading = true`, `error = null`                          |
-| **Set `loading` early**| Set `loading` before API call, reset it in `.finally()`              |
-| **Show feedback**      | Display a spinner or "Loading..." message                           |
-| **Display error info** | Show user-friendly message and optionally a "Retry" button           |
-| **Clear old data**     | Reset or handle stale data if needed                                 |
+* ✅ **Replaced `axios`** with the **native `fetch` API** (lighter, fully supported in React apps).
+* ✅ Added **`AbortController`** to safely cancel requests when the component unmounts.
+* ✅ Used **`async/await`** for cleaner asynchronous logic.
+* ✅ Used **`useTransition()`** for **concurrent rendering** — ensures smooth UI updates during heavy state changes.
+* ✅ Handles **errors**, **loading**, and **abort** conditions robustly.
 
 ---
 

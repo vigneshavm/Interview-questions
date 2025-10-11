@@ -3733,35 +3733,76 @@ The empty dependency array `[]` ensures the code runs **only once** after the in
 ###  Example: Fetching Data from an API
 
 ```jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useTransition, memo } from "react";
 
-function Posts() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error('Error fetching posts:', err);
-        setLoading(false);
-      });
-  }, []); // run once when component mounts
-
-  if (loading) return <p>Loading posts...</p>;
-
+// Optional: memoizing the list to avoid unnecessary re-renders
+const PostsList = memo(function PostsList({ posts }) {
   return (
     <ul>
-      {posts.slice(0, 5).map(post => (
+      {posts.slice(0, 5).map((post) => (
         <li key={post.id}>{post.title}</li>
       ))}
     </ul>
   );
+});
+
+function Posts() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function fetchPosts() {
+      try {
+        setLoading(true);
+        const resp = await fetch("https://jsonplaceholder.typicode.com/posts", {
+          signal: controller.signal,
+        });
+        if (!resp.ok) {
+          throw new Error(`HTTP error! status: ${resp.status}`);
+        }
+        const data = await resp.json();
+
+        // Use startTransition so UI updates remain responsive
+        startTransition(() => {
+          setPosts(data);
+          setError(null);
+        });
+      } catch (err) {
+        if (err.name === "AbortError") {
+          // Fetch was cancelled — skip error handling
+        } else {
+          console.error("Error fetching posts:", err);
+          setError(err.message || "Something went wrong");
+          setPosts([]);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPosts();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
+  if (loading || isPending) {
+    return <p>Loading posts...</p>;
+  }
+  if (error) {
+    return <p style={{ color: "red" }}>Error: {error}</p>;
+  }
+
+  return <PostsList posts={posts} />;
 }
+
+export default Posts;
 ```
 
 ---

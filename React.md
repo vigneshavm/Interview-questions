@@ -8,9 +8,7 @@
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) •  [Handle Large Forms](#Handle-Large-Forms)|
 | **React Others**          | •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query)   •  [React Window](#React-Window) •  [Redux Virtualized](#react-virtualized)  •  [Reacts Concurrent Mode](#Reacts-Concurrent-Mode) 
-| **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
-| **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |
 | **Performance Optimization**          | •  [Performance Optimization](#performance-optimization) •  [Avoiding Unnecessary Rerenders](#Avoiding-Unnecessary-Rerenders) •  [Memory leaks](#Memory-leaks) •  [Structure Large Scale Application](#large-scale-application) •  [During-a-React-Re-render](#What-Happens-During-a-React-Re-render)
 | **Call components**          | [Passing data child to parent](#Passing-data-child-to-parent) •  [function call child -> parent](#call-child-components-function-from-a-parent) •  [function call parent->child](#call-a-parent-components-function-from-a-child-in-react) •  [Parent → Child Rendering in React](#parent-child-rendering-in-react) •  [Rerender parent component to child component](#rerender-parent-component-to-child-component)
 
@@ -25,6 +23,8 @@
 | **Category**|**Topics** | **Category**|**Topics** |
 |------------|------------------------------|------------|-----------------------|
 | **Redux**          | •  [Redux](#redux--predictable-state-management) -[Middleware](#middleware-in-redux) -[Store Creation](#store-creation-in-redux) - [Store Configuration](#store-configuration-in-redux-toolkit) | **Refs**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef)  •    [forwardRef ](#forwardRef)  - [Recursion](#Recursion) 
+| **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |**Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
+
 
 
 ## Create React App using Typescript

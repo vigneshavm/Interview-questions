@@ -996,7 +996,7 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
 - To ensure React apps are **resilient, debuggable**, and provide a seamless experience even when something breaks.”
 
 
-#### 1. **Component-Level Error Boundaries**
+ **1. Component-Level Error Boundaries**
 
 * I use **Error Boundaries** (class components) to catch **render-time errors** in their child component tree.
 * Example:
@@ -1026,9 +1026,8 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
   </ErrorBoundary>
   ```
 
----
 
-#### 2. **Global Error Monitoring**
+ **2. Global Error Monitoring**
 
 * Integrate tools like **Sentry**, **LogRocket**, or **Firebase Crashlytics** for production error reporting.
 * Automatically logs:
@@ -1037,9 +1036,8 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
   * Stack traces
   * User/environment info
 
----
 
-#### 3. **Try/Catch in Async Code**
+ **3. Try/Catch in Async Code**
 
 * For **async/await operations**, I always wrap logic in `try/catch` blocks to gracefully handle API or runtime errors:
 
@@ -1051,9 +1049,8 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
   }
   ```
 
----
 
-#### 4. **Graceful Degradation & Fallback UI**
+ **4. Graceful Degradation & Fallback UI**
 
 * I use conditionals to **show fallback components** (spinners, retry buttons, offline UI) when parts of the app fail.
 * Example:
@@ -1062,18 +1059,16 @@ Internally uses the **History API** (`pushState`, `replaceState`) to update the 
   {error ? <ErrorMessage /> : <MainContent />}
   ```
 
----
 
-#### 5. **Form & Validation Errors**
+ **5. Form & Validation Errors**
 
 * For forms, I handle field-level and submission errors using:
 
   * Libraries like **Formik** or **React Hook Form**
   * Schema validation tools like **Yup** or **Zod**
 
----
 
-#### 6. **Network Error Handling**
+ **6. Network Error Handling**
 
 * Wrap all API calls with a utility that handles:
 

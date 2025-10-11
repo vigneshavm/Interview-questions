@@ -4,11 +4,9 @@
 | **React Component Types**          | - [React 18 key changes](#React-18-key-changes) • [React 19 – Key Changes](#react-19--key-changes) • [JSX vs HTML](#jsx-vs-html) •  [Class vs Functional Components](#class-vs-functional-components)  •  [Components](#Components)  •  [Lifting State Up](#lifting-state-up) •  [Component Composition vs Inheritance](#Component-Composition-vs-Inheritance)
 | **Props, State & Context**          | •  [Data Flows](#Data-Flows)  •  [Props ](#props-in-react) •  [Props Drilling](#props-drilling) •  [Props vs State](#props-vs-state) •  [React Children Prop](#react-children-prop) - [Render Props](Render-Props) •  [Conditional Rendering](#Conditional-Rendering) |
 | **State Management Techniques**          |  •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) |
-| **Redux**          | •  [Redux](#redux--predictable-state-management) -[Middleware](#middleware-in-redux) -[Store Creation](#store-creation-in-redux) - [Store Configuration](#store-configuration-in-redux-toolkit) |
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [Functional components lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules)  •  [`useRef` vs `useState`](#useRef-vs-useState)  •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Routing**          | •  [React Router](#react-router) •  [Roles Router](#Roles-Routes) •  [Dynamic Routing](#dynamic-routing) •  [Route Protection / Auth Routing](#route-protection)•  [React Router Navigation](#react-router-navigation) |
 | **Forms and Validation**          | •  [Form Validation with Formik / React Hook Form](#Form-Validation-with-Formik) •  [Handling Multiple Inputs in a Form](#handling-multiple-inputs) •  [Handle Large Forms](#Handle-Large-Forms)|
-| **Refs**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef)  •    [forwardRef ](#forwardRef)  - [Recursion](#Recursion) 
 | **React Others**          | •  [React Fragments](#react-fragments) •  [React Portals](#react-portals)  •  [React Profiler](#react-profiler) •  [React Fiber](#react-Fiber) •  [React Query / SWR](#react-query-swr) •  [Redux Toolkit Query](#Redux-Toolkit-Query)   •  [React Window](#React-Window) •  [Redux Virtualized](#react-virtualized)  •  [Reacts Concurrent Mode](#Reacts-Concurrent-Mode) 
 | **Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)  •  [Strict Mode](#strict-mode-in-react) •  [accessibility a11y](#accessibility-a11y)|
@@ -18,6 +16,16 @@
 
 - [Auto Batching](#auto-batching) - [Signals](#Signals) 
 ---
+
+
+
+
+
+
+| **Category**|**Topics** |
+|------------|--------------------------------------|
+| **Redux**          | •  [Redux](#redux--predictable-state-management) -[Middleware](#middleware-in-redux) -[Store Creation](#store-creation-in-redux) - [Store Configuration](#store-configuration-in-redux-toolkit) | **Refs**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef)  •    [forwardRef ](#forwardRef)  - [Recursion](#Recursion) 
+
 
 ## Create React App using Typescript
 

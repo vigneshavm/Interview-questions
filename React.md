@@ -22,8 +22,8 @@
 
 
 
-| **Category**|**Topics** |
-|------------|--------------------------------------|
+| **Category**|**Topics** | **Category**|**Topics** |
+|------------|------------------------------|------------|-----------------------|
 | **Redux**          | •  [Redux](#redux--predictable-state-management) -[Middleware](#middleware-in-redux) -[Store Creation](#store-creation-in-redux) - [Store Configuration](#store-configuration-in-redux-toolkit) | **Refs**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef)  •    [forwardRef ](#forwardRef)  - [Recursion](#Recursion) 
 
 

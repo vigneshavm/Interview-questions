@@ -16,7 +16,7 @@
 | **Redux**          | •  [Redux](#redux--predictable-state-management) -[Middleware](#middleware-in-redux) -[Store Creation](#store-creation-in-redux) - [Store Configuration](#store-configuration-in-redux-toolkit) | **Refs**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef)  •    [forwardRef ](#forwardRef)  - [Recursion](#Recursion) 
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |**Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **State Management Techniques**          |  •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) | **Concurrent**          | •  [Strict Mode](#strict-mode-in-react)•  [Auto Batching](#auto-batching) •  [Signals](#Signals) •  [Reacts Concurrent Mode](#Reacts-Concurrent-Mode) |
-| **Best Practices & Architecture**          | •  [Folder Structure Best Practices](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)   •  [accessibility a11y](#accessibility-a11y)|
+| **Best Practices & Architecture**          | •  [Folder Structure](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reusability](#component-reusability) •  [PropTypes vs TypeScript](#proptypes-vs-typescript)   •  [accessibility a11y](#accessibility-a11y)|
 
 
 ## Create React App using Typescript

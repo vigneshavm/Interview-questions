@@ -12,7 +12,7 @@
 
 | **Category**|**Topics** | **Category**|**Topics** |
 |------------|------------------------------|------------|-----------------------|
-| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [FC lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules)  •  [`useRef` vs `useState`](#useRef-vs-useState)  | **Lazy Loading**          | •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
+| **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [FC lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules)   | **Lazy Loading**          | •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
 | **Redux**          | •  [Redux](#redux--predictable-state-management) -[Middleware](#middleware-in-redux) -[Store Creation](#store-creation-in-redux) - [Store Configuration](#store-configuration-in-redux-toolkit) | **Refs**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef)  •    [forwardRef ](#forwardRef)  - [Recursion](#Recursion) 
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |**Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **State Management**          |  •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) | **Concurrent**          | •  [Strict Mode](#strict-mode-in-react)•  [Auto Batching](#auto-batching) •  [Signals](#Signals) •  [Reacts Concurrent Mode](#Reacts-Concurrent-Mode) |
@@ -1641,6 +1641,7 @@ Error boundaries catch JavaScript errors in child components and display a fallb
 
 | **Hook**                   | **Purpose**                                                                 | **When to Use**                                                          | **Example Use Case**                                 |
 |----------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------|------------------------------------------------------|
+|             [useCallback vs useMemo](#useCallback-vs-useMemo)     | [Reactmemo vs useMemo](#Reactmemo-vs-useMemo)    |  •  [`useRef` vs `useState`](#useRef-vs-useState)   |
 | `useState`                 | Store and update local state                                                | Any dynamic value inside a component                                     | Form inputs, counters, toggles                      |
 | [useEffect](#useEffect)                | Perform side effects   and runs after the render is painted                                                     | Fetching data, setting timers, subscriptions                             | API calls, local storage, DOM listeners             |
 | [useContext](#useContext)             | Consume data from a context provider                                        | Access global values without prop drilling                               | Theme, user auth, language preference               |
@@ -1656,7 +1657,7 @@ Error boundaries catch JavaScript errors in child components and display a fallb
 |             [useId](#useId)            | Generate unique IDs for accessibility & SSR                                 | Generate stable IDs for input-label, list keys                           | Forms with server-rendered markup                   |
 |             [useSyncExternalStore](#useSyncExternalStore)      | Subscribe to external data stores                                           | For state libraries, global stores                                       | Zustand, Redux, or any custom external store        |
 |             [useInsertionEffect](#useInsertionEffect)     | Inject styles before layout/render                                          | With CSS-in-JS libraries                                                 | Emotion, styled-components                          |
-|             [useCallback vs useMemo](#useCallback-vs-useMemo)     | [Reactmemo vs useMemo](#Reactmemo-vs-useMemo)    |  Emotion, styled-components                          |
+
 
 
 ---

@@ -4891,9 +4891,13 @@ EXPLAIN SELECT * FROM orders WHERE customer_id = 101;
 ## Horizontal scaling in SQL
 
 
-**“Horizontal scaling in SQL** means **adding multiple database servers** to **share the load**. It’s usually done through **replication** for **read scaling** or **sharding** for **distributing data across nodes**. This improves **performance** and **availability** compared to **vertical scaling**, which just **upgrades one machine’s hardware**.”
+**“Horizontal scaling in SQL** means **adding multiple database servers** to **share the load**.
+It’s usually done through **replication** for **read scaling** or **sharding** for **distributing data across nodes**. 
+This improves **performance** and **availability** compared to **vertical scaling**, which just **upgrades one machine’s hardware**.”
 
-**“In a Primary–Replica setup**, all **write operations occur on the primary**, which **records changes in binary logs**. **Replicas** read those logs through a **replication channel**, store them in **relay logs**, and **apply the same operations locally**. Depending on the **mode** — **asynchronous**, **semi-synchronous**, or **synchronous** — the primary may or may not **wait for replica acknowledgment**. This ensures **data consistency** while enabling **read scalability**.”
+**“In a Primary–Replica setup**, all **write operations occur on the primary**, which **records changes in binary logs**. 
+**Replicas** read those logs through a **replication channel**, store them in **relay logs**, and **apply the same operations locally**. 
+Depending on the **mode** — **asynchronous**, **semi-synchronous**, or **synchronous** — the primary may or may not **wait for replica acknowledgment**. 
+This ensures **data consistency** while enabling **read scalability**.”
 
 
----

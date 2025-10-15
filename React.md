@@ -1636,7 +1636,7 @@ Error boundaries catch JavaScript errors in child components and display a fallb
 
 | **Hook**                   | **Purpose**                                                                 | **When to Use**                                                          | **Example Use Case**                                 |
 |----------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------|------------------------------------------------------|
-|             [useCallback vs useMemo](#useCallback-vs-useMemo)     | [Reactmemo vs useMemo](#Reactmemo-vs-useMemo)    |  •  [`useRef` vs `useState`](#useRef-vs-useState)   |
+|             [useCallback vs useMemo](#useCallback-vs-useMemo)     | [Reactmemo vs useMemo](#Reactmemo-vs-useMemo)    |  •  [`useRef` vs `useState`](#useRef-vs-useState)   |   •  [`useReduce` vs `useState`](#useReduce-vs-useState)
 | `useState`                 | Store and update local state                                                | Any dynamic value inside a component                                     | Form inputs, counters, toggles                      |
 | [useEffect](#useEffect)                | Perform side effects   and runs after the render is painted                                                     | Fetching data, setting timers, subscriptions                             | API calls, local storage, DOM listeners             |
 | [useContext](#useContext)             | Consume data from a context provider                                        | Access global values without prop drilling                               | Theme, user auth, language preference               |
@@ -2101,9 +2101,64 @@ const MyComponent = React.memo(function ({ name }) {
 
 ---
 
-### useCallback vs useMemo
+### useReduce vs useState
+
+
+💡 **Interview Tip:**
+
+> “**`useState` is for simple local state**, whereas **`useReducer` is for complex state with multiple related properties and predictable transitions**.”
+
+**When to choose**
+
+| Scenario                                      | Use            |
+| --------------------------------------------- | -------------- |
+| Simple toggle, input field, counter           | **useState**   |
+| Complex object with multiple properties       | **useReducer** |
+| State transitions dependent on previous state | **useReducer** |
+| Want predictable and testable state updates   | **useReducer** |
+
+
+
+
+### **1. `useState`**
+
+* **Purpose:** **Simple, local state management**
+* **Usage:** When state is **primitive** (number, string, boolean) or a **simple object/array**
+* **Pros:**
+
+  * **Simple and easy to use**
+  * **Great for isolated state updates**
+* **Cons:**
+
+  * Can become **messy if state updates are interdependent** or involve multiple related properties
 
 ---
+
+### **2. `useReducer`**
+
+* **Purpose:** **Complex state logic** or **multiple related state updates**
+* **Usage:** When state **depends on previous state**, or state transitions are **action-based**
+* **Pros:**
+
+  * **Easier to manage complex state updates**
+  * **Predictable state transitions using actions**
+  * **Centralizes state logic**, easier for debugging and testing
+* **Cons:**
+
+  * **More boilerplate**
+  * **Overkill for simple state**
+
+---
+
+
+
+
+
+
+
+### useCallback vs useMemo
+
+
 
 *"Both `useCallback` and `useMemo` are **React hooks for performance optimization**, but they solve different problems.*
 

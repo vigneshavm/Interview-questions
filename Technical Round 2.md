@@ -1,7 +1,7 @@
 | **Topic**| **Description** | **Topic**| **Description**  |
 |--------------|-----------|--------------|-----------|
 | **Security** | [Security Application](#security-application) -  [Optimize applications](#optimize-applications) |  **Agile** | [Agile Overview](#agile-overview) 
-|**Architecture** | -[Architecture Used](#Architecture-Used)  - [Architectural Decisions](#Architectural-Decisions), -[Architecture challenges](#Application-architecture-challenges) - [Complex architecture Design](#design-the-system-architecture-for-a-complex-web-application)  - [Recent architectural challenges](#Recent-architectural-challenges)  | **Debugging**| - [Debugging & Troubleshooting Expertise](#debugging--troubleshooting-expertise)  -  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-software)| 
+|**Architecture** | - [Architecture](#Architecture)   | **Debugging**| - [Debugging](#Debugging)| 
 |**Code Quality** |   - [Code quality](#lead-code-reviews)    - [Code coverage and Improvement strategies](#code-coverage-and-improvement-strategies) - [High Quality and Reuseble Code](#High-Quality-and-Reuseble-Code)| **Leadership** |   [Junior waiting for help](#junior-waiting-for-help) - [Build Teams](#build-and-structure-effective-teams)  -  [Technical leadership](#technical-leadership), |
 | **Scalability** |   [Scalability on AWS](#design-for-scalability-on-aws) - [Scalability and Performance](#Scalability-and-Performance)| **Upgrade**          | [Upgrade Next 12 to Next 13](#upgrade-next-12-to-next-13), -  [Node.js upgrade](#nodejs-upgrade), -  [TypeScript upgrade](#typescript-upgrade)                                      
 | **Design Documents** | [High-Level Design](#high-level-design),-  [Low-Level Design](#low-level-design), -  [Key Differences HLD Vs LLD](#key-differences-hld-vs-lld)    -[Documentation Communication ](#Documentation-Communication) | **Risk** | - [Risks in software projects](#common-risks-in-software-projects-and-how-do-you-mitigate-them) - [Technical blocker](#technical-blocker-emerges-3-weeks-into-development-how-do-you-handle-this) |
@@ -43,6 +43,10 @@
 -  [Waiting for help](#teammate-is-blocked-and-waiting-for-help)  
 -  [Miss deadlines](#teammate-consistently-miss-deadlines), 
 
+
+## Debugging
+- [Debugging & Troubleshooting Expertise](#debugging--troubleshooting-expertise)  
+-  [Troubleshooting, debugging and upgrading](#troubleshooting-debugging-and-upgrading-existing-software)
 
 
 
@@ -1310,9 +1314,15 @@ FILE STORAGE (CSV, PDF)
 ---
 
 
+## **Architecture**
+
+- [Architecture Used](#Architecture-Used)  
+- [Architectural Decisions](#Architectural-Decisions), 
+- [Architecture challenges](#Application-architecture-challenges) 
+- [Complex architecture Design](#design-the-system-architecture-for-a-complex-web-application)  
+- [Recent architectural challenges](#Recent-architectural-challenges)
+
 ## **Application architecture challenges**
-
-
 
 
 - "When designing and implementing full-stack applications, there are several key architectural challenges I often encounter:"*

@@ -33,7 +33,7 @@
 | **Operators & Indexes**  | [`IN` Operator](#in-operator), [`TRUNCATE` vs `DELETE` vs `DROP`](#truncate-vs-delete-vs-drop), [`UNION` and `UNION ALL`](#union-and-union-all), [Indexes](#indexes), [Index Drawbacks](#index-drawbacks) |
 | **SQL Programs**         | [Second Highest Salary](#second-highest-salary), [3rd Largest Value](#3rd-largest-value), [Pagination](#pagination), [Return Records Without NULL `name`](#return-records-without-null-name), [Update Gender Vice Versa](#single-update-gender-vice-versa), [Update Based on Another Table](#update-data-in-one-table-based-on-another) |
 | **Duplicates & Aggregation** | [Find Duplicate Rows](#find-duplicate-rows), [Find Duplicate Salaries](#find-duplicate-salaries), [Total Salary by Department](#get-total-salary-by-department), [Rank Salaries by Department (Window Fn)](#window-function-to-rank-salaries-within-departments), [Recursive CTE – Employee Hierarchy](#recursive-cte--build-employee-hierarchy-self-join-style) |
-| **Optimize** | [Optimize Slow Query](#optimization-slow-queries-in-sql) - [Query Execution Plan](#Query-Execution-Plan)|
+| **Optimize** | [Optimize Slow Query](#optimization-slow-queries-in-sql) - [Query Execution Plan](#Query-Execution-Plan) - [Horizontal scaling in SQL](#Horizontal-scaling-in-SQL)|
 
 
 
@@ -4886,3 +4886,14 @@ EXPLAIN SELECT * FROM orders WHERE customer_id = 101;
 ---
 
 
+
+
+## Horizontal scaling in SQL
+
+
+**“Horizontal scaling in SQL** means **adding multiple database servers** to **share the load**. It’s usually done through **replication** for **read scaling** or **sharding** for **distributing data across nodes**. This improves **performance** and **availability** compared to **vertical scaling**, which just **upgrades one machine’s hardware**.”
+
+**“In a Primary–Replica setup**, all **write operations occur on the primary**, which **records changes in binary logs**. **Replicas** read those logs through a **replication channel**, store them in **relay logs**, and **apply the same operations locally**. Depending on the **mode** — **asynchronous**, **semi-synchronous**, or **synchronous** — the primary may or may not **wait for replica acknowledgment**. This ensures **data consistency** while enabling **read scalability**.”
+
+
+---

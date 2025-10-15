@@ -16,7 +16,7 @@
 | **Special Use Cases**         | [Capped Collection](#capped-collection-in-mongodb) - [Schema Design](#schema-design) - [Working Set](#working-set) - [Schema-less Design Impact](#impact-of-schema-less-design-on-validationconsistency) - [High Availability & Fault Tolerance](#ensuring-high-availability-and-fault-tolerance) - [Optimizing $lookup Operations](#optimizing-multiple-lookup-operations-in-aggregations) - [Data Migration Between Clusters or SQL](#migrating-data-between-clusters-or-from-sql-to-mongodb) - [Production Monitoring & Tuning](#monitoring-and-tuning-mongodb-in-production) - [Audit Log Schema](#design-schema-for-audit-logshistorical-data) |
 | **MongoDB & Node.js**         | [MongoDB with Node.js](#mongodb-with-nodejs) - [useNewUrlParser & useUnifiedTopology](#usenewurlparser-and-useunifiedtopology-in-mongoose) - [Mongoose vs Native Driver](#mongoose-vs--mongodb-native-driver) |
 | **Limitations & Usecases** | [Key Limitations](#key-limitations) - [Databases for a Social Media App](#databases-for-a-social-media-app) |
-
+| **Optimize** | [Optimize Slow Query](#optimization-slow-queries-in-mongodb) |
 
 
 
@@ -33,6 +33,7 @@
 | **Operators & Indexes**  | [`IN` Operator](#in-operator), [`TRUNCATE` vs `DELETE` vs `DROP`](#truncate-vs-delete-vs-drop), [`UNION` and `UNION ALL`](#union-and-union-all), [Indexes](#indexes), [Index Drawbacks](#index-drawbacks) |
 | **SQL Programs**         | [Second Highest Salary](#second-highest-salary), [3rd Largest Value](#3rd-largest-value), [Pagination](#pagination), [Return Records Without NULL `name`](#return-records-without-null-name), [Update Gender Vice Versa](#single-update-gender-vice-versa), [Update Based on Another Table](#update-data-in-one-table-based-on-another) |
 | **Duplicates & Aggregation** | [Find Duplicate Rows](#find-duplicate-rows), [Find Duplicate Salaries](#find-duplicate-salaries), [Total Salary by Department](#get-total-salary-by-department), [Rank Salaries by Department (Window Fn)](#window-function-to-rank-salaries-within-departments), [Recursive CTE – Employee Hierarchy](#recursive-cte--build-employee-hierarchy-self-join-style) |
+| **Optimize** | [Optimize Slow Query](#optimization-slow-queries-in-sql) |
 
 
 
@@ -4799,5 +4800,36 @@ I would:
 This ensures **no race conditions** and maintains **consistency** and **isolation**.
 
 ---
+
+
+
+
+
+### **Optimization Slow Queries in SQL?**  
+- **Use indexes** on columns in `WHERE`, `JOIN`, `ORDER BY`, and `GROUP BY`.  
+- **Avoid `SELECT *`**; fetch only the columns you need.  
+- **Check execution plan** using `EXPLAIN` to identify full table scans.  
+- **Optimize JOINs**: join only necessary tables, ensure join keys are indexed.  
+- **Limit results** with `LIMIT` for pagination.  
+- **Avoid functions on indexed columns**—use range queries instead.  
+- **Consider caching** frequently accessed queries in Redis or Memcached.  
+
+---
+
+### **Optimization Slow Queries in MongoDB?**  
+- **Create indexes** on fields used in queries and sorting.  
+- **Use projection** to fetch only necessary fields.  
+- **Avoid `$regex` or `$where`** on large datasets; prefer text indexes.  
+- **Use `explain()`** to check query plans and avoid `COLLSCAN`.  
+- **Optimize aggregation pipelines**: filter early with `$match`, project fields with `$project`.  
+- **Consider sharding** for huge datasets to distribute data.  
+
+
+### **Optimization Slow Queries in both SQL and MongoDB**  
+- **Index smartly** on frequently queried fields.  
+- **Reduce data scanned** by filtering early and selecting only needed data.  
+- **Analyze execution plans** to identify bottlenecks.  
+- **Cache heavy queries** to reduce repeated load.  
+- **Optimize the data model** according to query patterns.
 
 

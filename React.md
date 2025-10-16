@@ -916,13 +916,7 @@ So I use HOCs selectively — when they truly simplify composition without compl
 **Common HOCs:** `withRouter`, `connect` (Redux)
 
 
-```js
-const withLoading = (WrappedComponent) => {
-  return function EnhancedComponent(props) {
-    return props.isLoading ? <Spinner /> : <WrappedComponent {...props} />;
-  };
-};
-```
+
 
 ### 🎯 **Why Use HOCs?**
 
@@ -933,6 +927,122 @@ const withLoading = (WrappedComponent) => {
 | **3** | **DRY Principle**                | Avoid duplicating the same logic in multiple components.                                                           | Data fetching, conditional rendering           |
 | **4** | **Composition Over Inheritance** | Follows React’s philosophy: reuse behavior by composing components, not subclassing.                               | Behavior reuse via composition                 |
 | **5** | **Pre-Hooks Pattern**            | Before hooks (`useEffect`, `useContext`, etc.), HOCs were the main way to share behavior in functional components. | Legacy pattern for code sharing                |
+
+
+**Key Points**
+
+* HOCs are **functions** that take a component and return a new one.
+* They’re used for **code reuse**, **logic sharing**, and **cross-cutting concerns** (like logging, permissions, etc.).
+* Common real-world use cases:
+
+  * Handling authentication
+  * Managing loading states
+  * Injecting props
+  * Tracking analytics
+
+
+
+**Higher-Order Component (HOC)**
+
+A **Higher-Order Component** is a **function that takes a component and returns a new component** with additional functionality.
+
+It’s like a wrapper that **enhances** another component without modifying it directly.
+
+**Syntax:**
+
+```js
+const EnhancedComponent = higherOrderComponent(WrappedComponent);
+```
+
+
+**Example: Add loading functionality using HOC**
+
+**1️⃣ Create a HOC (`withLoader.js`)**
+
+```js
+import React from "react";
+
+function withLoader(WrappedComponent) {
+  return function EnhancedComponent({ isLoading, ...props }) {
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+    return <WrappedComponent {...props} />;
+  };
+}
+
+export default withLoader;
+```
+
+
+**2️⃣ Create a simple component (`UserList.js`)**
+
+```js
+import React from "react";
+
+function UserList({ users }) {
+  return (
+    <ul>
+      {users.map((u, i) => (
+        <li key={i}>{u}</li>
+      ))}
+    </ul>
+  );
+}
+
+export default UserList;
+```
+
+
+**3️⃣ Wrap the component using HOC (`App.js`)**
+
+```js
+import React, { useState, useEffect } from "react";
+import withLoader from "./withLoader";
+import UserList from "./UserList";
+
+const UserListWithLoader = withLoader(UserList);
+
+export default function App() {
+  const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Simulate API call
+    setTimeout(() => {
+      setUsers(["Vignesh", "Janardhanan", "Sandeep"]);
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+  return (
+    <div>
+      <h1>Higher Order Component Example</h1>
+      <UserListWithLoader isLoading={loading} users={users} />
+    </div>
+  );
+}
+```
+
+
+**Output:**
+
+**While loading:**
+
+```
+Higher Order Component Example
+Loading...
+```
+
+**After 2 seconds:**
+
+```
+Higher Order Component Example
+• Vignesh
+• Janardhanan
+• Sandeep
+```
+
 
 ---
 

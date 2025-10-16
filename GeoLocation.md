@@ -12,9 +12,11 @@
 
 | **Topic**                       | **Anchor Link**                     |**Anchor Link**                     |**Anchor Link**                     |
 |--------------------------------|-------------------------------------|--------------------------------|-------------------------------------|
-|- [Introduction](#1-introduction) |- [Create 2dsphere Index](#2-create-2dsphere-index) |- [Find Documents Near a Point](#1-find-documents-near-a-point) |- [Find Documents Within a Polygon](#2-find-documents-within-a-specific-polygon) |
-|- [Find Intersecting Geometries](#3-find-documents-that-intersect-a-geometry-overlapping-areas) |- [Find Documents Near a Point (Spherical)](#4-find-documents-near-a-point-simple-nearsphere) |- [Find Documents Within a Circle](#5-find-documents-within-a-circle) |- [Find by Geometry Type](#6-create-a-2dsphere-index-required-for-geojson) |
-|- [Sort by Proximity (Aggregation)](#8-find-all-documents-sorted-by-proximity) |- [Combine Geo Queries with Filters](#9-combine-geospatial-with-normal-filters) |- [Check Point Inside Polygon (Reverse Lookup)](#10-find-if-a-point-lies-inside-any-polygon-reverse-lookup) |- [Interview Tips](#12-interview-tips)
+| - [1. Introduction](#1-introduction) | - [2. Create 2dsphere Index](#2-create-2dsphere-index) | - [3. Find Documents Near a Point](#3-find-documents-near-a-point) | - [4. Find Documents Within a Polygon](#4-find-documents-within-a-polygon) | 
+| - [5. Find Intersecting Geometries](#5-find-intersecting-geometries) |- [6. Find Documents Near a Point (Spherical)](#6-find-documents-near-a-point-spherical) |- [7. Find Documents Within a Circle](#7-find-documents-within-a-circle) | - [8. Find by Geometry Type](#8-find-by-geometry-type)|
+|- [9. Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation) |- [10. Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters) |- [11. Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup)
+|- [12. Interview Tips](#12-interview-tips)|
+
 
 ---
 
@@ -306,18 +308,6 @@ When exposing or consuming location data via REST APIs.
 
 
 
-- [1. Introduction](#1-introduction)
-- [2. Create 2dsphere Index](#2-create-2dsphere-index)
-- [3. Find Documents Near a Point](#3-find-documents-near-a-point)
-- [4. Find Documents Within a Polygon](#4-find-documents-within-a-polygon)
-- [5. Find Intersecting Geometries](#5-find-intersecting-geometries)
-- [6. Find Documents Near a Point (Spherical)](#6-find-documents-near-a-point-spherical)
-- [7. Find Documents Within a Circle](#7-find-documents-within-a-circle)
-- [8. Find by Geometry Type](#8-find-by-geometry-type)
-- [9. Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation)
-- [10. Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters)
-- [11. Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup)
-- [12. Interview Tips](#12-interview-tips)
 
 ---
 

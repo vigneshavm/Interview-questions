@@ -1,14 +1,10 @@
 
-| **Topic**                       | **Anchor Link**                     |
-|--------------------------------|-------------------------------------|
-|- [GeoJSON](#geojson-) | - [Summary Table](#️-summary-table) |
-|- [GeoJSON Format](#1-understanding-geojson-format)   | - [GeoJSON Geometry Types](#2-geojson-geometry-types)
-|- [Feature and FeatureCollection](#3-feature-and-featurecollection)    |- [Coordinate System ([Longitude, Latitude])](#4-coordinate-system-longitude-latitude)
-|- [Storing GeoJSON in MongoDB](#5-storing-geojson-in-mongodb)   |- [2dsphere Index and Geospatial Queries](#6-2dsphere-index-and-geospatial-queries)
-|- [Querying Nearby Locations](#7-querying-nearby-locations)   |- [Using GeoJSON for Boundaries and Polygons](#8-using-geojson-for-boundaries-and-polygons)
-|- [GeoJSON Visualization (Leaflet / Mapbox)](#9-geojson-visualization-leaflet--mapbox)   |- [GeoJSON with Altitude (3D Coordinates)](#10-geojson-with-altitude-3d-coordinates)
-|- [GeoJSON Validation](#11-geojson-validation)   |- [GeoJSON vs TopoJSON](#12-geojson-vs-topojson)
-|- [GeoJSON Conversion (KML, Shapefile, etc.)](#13-geojson-conversion-kml-shapefile-etc)  | - [GeoJSON for Geofencing](#14-geojson-for-geofencing)
+| **Topic**                       | **Anchor Link**                     |**Anchor Link**                     |**Anchor Link**                     |
+|--------------------------------|-------------------------------------|--------------------------------|-------------------------------------|
+|- [GeoJSON](#geojson-) | - [Summary Table](#️-summary-table) |- [GeoJSON Format](#1-understanding-geojson-format)   | - [GeoJSON Geometry Types](#2-geojson-geometry-types) 
+|- [Feature and FeatureCollection](#3-feature-and-featurecollection)    |- [Coordinate System ([Longitude, Latitude])](#4-coordinate-system-longitude-latitude) | - [Storing GeoJSON in MongoDB](#5-storing-geojson-in-mongodb)   | - [2dsphere Index and Geospatial Queries](#6-2dsphere-index-and-geospatial-queries) |
+|- [Querying Nearby Locations](#7-querying-nearby-locations)   |- [Using GeoJSON for Boundaries and Polygons](#8-using-geojson-for-boundaries-and-polygons) |- [GeoJSON Visualization (Leaflet / Mapbox)](#9-geojson-visualization-leaflet--mapbox)   |- [GeoJSON with Altitude (3D Coordinates)](#10-geojson-with-altitude-3d-coordinates)
+|- [GeoJSON Validation](#11-geojson-validation)   |- [GeoJSON vs TopoJSON](#12-geojson-vs-topojson) |- [GeoJSON Conversion (KML, Shapefile, etc.)](#13-geojson-conversion-kml-shapefile-etc)  | - [GeoJSON for Geofencing](#14-geojson-for-geofencing)
 |- [Distance Calculation Using GeoJSON](#15-distance-calculation-using-geojson)   | - [Handling Large or Complex GeoJSON Data](#16-handling-large-or-complex-geojson-data)
 | - [GeoJSON in Node.js APIs](#17-geojson-in-nodejs-apis)   
 

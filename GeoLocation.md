@@ -5,20 +5,16 @@
 |- [Feature and FeatureCollection](#3-feature-and-featurecollection)    |- [Coordinate System ([Longitude, Latitude])](#4-coordinate-system-longitude-latitude) | - [Storing GeoJSON in MongoDB](#5-storing-geojson-in-mongodb)   | - [2dsphere Index and Geospatial Queries](#6-2dsphere-index-and-geospatial-queries) |
 |- [Querying Nearby Locations](#7-querying-nearby-locations)   |- [Using GeoJSON for Boundaries and Polygons](#8-using-geojson-for-boundaries-and-polygons) |- [GeoJSON Visualization (Leaflet / Mapbox)](#9-geojson-visualization-leaflet--mapbox)   |- [GeoJSON with Altitude (3D Coordinates)](#10-geojson-with-altitude-3d-coordinates)
 |- [GeoJSON Validation](#11-geojson-validation)   |- [GeoJSON vs TopoJSON](#12-geojson-vs-topojson) |- [GeoJSON Conversion (KML, Shapefile, etc.)](#13-geojson-conversion-kml-shapefile-etc)  | - [GeoJSON for Geofencing](#14-geojson-for-geofencing)
-|- [Distance Calculation Using GeoJSON](#15-distance-calculation-using-geojson)   | - [Handling Large or Complex GeoJSON Data](#16-handling-large-or-complex-geojson-data)
-| - [GeoJSON in Node.js APIs](#17-geojson-in-nodejs-apis)   
+|- [Distance Calculation Using GeoJSON](#15-distance-calculation-using-geojson)   | - [Handling Large or Complex GeoJSON Data](#16-handling-large-or-complex-geojson-data) | - [GeoJSON in Node.js APIs](#17-geojson-in-nodejs-apis)   
 
 
 
 
-| **Topic**                       | **Anchor Link**                     |
-|--------------------------------|-------------------------------------|
-|- [Introduction](#1-introduction) |- [Create 2dsphere Index](#2-create-2dsphere-index) |
-|- [Find Documents Near a Point](#3-find-documents-near-a-point) |- [Find Documents Within a Polygon](#4-find-documents-within-a-polygon) |
-|- [Find Intersecting Geometries](#5-find-intersecting-geometries) |- [Find Documents Near a Point (Spherical)](#6-find-documents-near-a-point-spherical) |
-|- [Find Documents Within a Circle](#7-find-documents-within-a-circle) |- [Find by Geometry Type](#8-find-by-geometry-type) |
-|- [Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation) |- [Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters) |
-|- [Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup)
+| **Topic**                       | **Anchor Link**                     |**Anchor Link**                     |**Anchor Link**                     |
+|--------------------------------|-------------------------------------|--------------------------------|-------------------------------------|
+|- [Introduction](#1-introduction) |- [Create 2dsphere Index](#2-create-2dsphere-index) |- [Find Documents Near a Point](#3-find-documents-near-a-point) |- [Find Documents Within a Polygon](#4-find-documents-within-a-polygon) |
+|- [Find Intersecting Geometries](#5-find-intersecting-geometries) |- [Find Documents Near a Point (Spherical)](#6-find-documents-near-a-point-spherical) |- [Find Documents Within a Circle](#7-find-documents-within-a-circle) |- [Find by Geometry Type](#8-find-by-geometry-type) |
+|- [Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation) |- [Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters) |- [Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup)
 |- [Interview Tips](#12-interview-tips)
 
 ---

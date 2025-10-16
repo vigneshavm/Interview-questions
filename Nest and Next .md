@@ -965,6 +965,15 @@ export class UserService {
 | **SSR**        | Server-Side Rendering           | On **every request**                         | `getServerSideProps`              |
 | **ISR**        | Incremental Static Regeneration | At **build**, then **rebuild** in background | `getStaticProps` + `revalidate`   |
 
+
+| Feature        | CSR                     | SSR                         | ISR                                 |
+| -------------- | ----------------------- | --------------------------- | ----------------------------------- |
+| Rendering      | Client                  | Server per request    On **every request**           | Static at build, revalidated        |
+| SEO            | ❌ poor                  | ✅ good                      | ✅ good                              |
+| Data Freshness | Depends on fetch        | Always fresh                | Fresh after revalidate interval     |
+| Speed          | Fast after initial load | Slower initial load         | Fast (static), updated periodically |
+| Use Cases      | Dashboards, SPA         | User profile, dynamic pages | Blogs, product pages                |
+| Next.js Method | Default React(useEffect)| `getServerSideProps`        | `getStaticProps` + `revalidate`   |
 ---
 
 ### **CSR**

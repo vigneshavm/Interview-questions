@@ -24,6 +24,7 @@
 
 **When used:**
 When you need to **store or exchange geographic data** (points, lines, polygons) in APIs or databases.
+
 **Use cases:**
 
 * Representing store locations, routes, or zones in JSON format.
@@ -36,6 +37,7 @@ When you need to **store or exchange geographic data** (points, lines, polygons)
 
 **When used:**
 When defining the type of spatial data (like single point, route, or boundary).
+
 **Use cases:**
 
 * `Point` → User location, restaurant, delivery point.
@@ -49,6 +51,7 @@ When defining the type of spatial data (like single point, route, or boundary).
 
 **When used:**
 To group multiple geographic features into one data structure for transmission or visualization.
+
 **Use cases:**
 
 * Sending a list of multiple stores or delivery areas in one API call.
@@ -60,6 +63,7 @@ To group multiple geographic features into one data structure for transmission o
 
 **When used:**
 Whenever dealing with spatial coordinates — GeoJSON follows **WGS84 (EPSG:4326)** standard.
+
 **Use cases:**
 
 * Integrating map data from Google Maps, OpenStreetMap, or GPS coordinates.
@@ -71,6 +75,7 @@ Whenever dealing with spatial coordinates — GeoJSON follows **WGS84 (EPSG:4326
 
 **When used:**
 In backend systems when using **MongoDB’s geospatial features**.
+
 **Use cases:**
 
 * Save user or business locations in a database.
@@ -90,6 +95,7 @@ Example:
 
 **When used:**
 When running **geographical proximity** or **region-based queries**.
+
 **Use cases:**
 
 * Find nearby restaurants, drivers, or delivery partners.
@@ -108,6 +114,7 @@ db.places.createIndex({ location: "2dsphere" });
 
 **When used:**
 To fetch all data points around a user’s current position.
+
 **Use cases:**
 
 * “Find stores near me” feature.
@@ -126,6 +133,7 @@ $near: { $geometry: { type: "Point", coordinates: [77.6, 12.97] }, $maxDistance:
 
 **When used:**
 When defining service regions, delivery zones, or area-based restrictions.
+
 **Use cases:**
 
 * Marking a delivery zone boundary.
@@ -138,6 +146,7 @@ When defining service regions, delivery zones, or area-based restrictions.
 
 **When used:**
 To display geographic data visually on maps in front-end apps.
+
 **Use cases:**
 
 * Showing delivery routes on a map.
@@ -156,6 +165,7 @@ L.geoJSON(geojsonData).addTo(map);
 
 **When used:**
 In cases where elevation or height data is relevant.
+
 **Use cases:**
 
 * Tracking drones, airplanes, or 3D location points.
@@ -173,6 +183,7 @@ Example:
 
 **When used:**
 Before saving user or API input to ensure valid structure.
+
 **Use cases:**
 
 * Validating API payloads for correct coordinate format.
@@ -191,6 +202,7 @@ gjv.isPoint(geojson); // true/false
 
 **When used:**
 When optimizing large map datasets.
+
 **Use cases:**
 
 * TopoJSON is preferred for **compressed storage** or **map visualizations** with shared borders (e.g., country outlines).
@@ -202,6 +214,7 @@ When optimizing large map datasets.
 
 **When used:**
 When integrating with GIS tools or importing/exporting data between systems.
+
 **Use cases:**
 
 * Convert map layers from external sources into GeoJSON for web use.
@@ -219,6 +232,7 @@ ogr2ogr -f GeoJSON output.json input.kml
 
 **When used:**
 When defining areas that trigger actions when users enter or exit.
+
 **Use cases:**
 
 * Notify users when entering a restricted area.
@@ -231,6 +245,7 @@ When defining areas that trigger actions when users enter or exit.
 
 **When used:**
 To calculate the distance between two points in code.
+
 **Use cases:**
 
 * Estimate delivery or travel distance.
@@ -243,6 +258,7 @@ To calculate the distance between two points in code.
 
 **When used:**
 When dealing with large datasets or detailed map features.
+
 **Use cases:**
 
 * Splitting data into smaller tiles for faster rendering.
@@ -255,6 +271,7 @@ When dealing with large datasets or detailed map features.
 
 **When used:**
 When exposing or consuming location data via REST APIs.
+
 **Use cases:**
 
 * `GET /locations` → Returns nearby places as GeoJSON.

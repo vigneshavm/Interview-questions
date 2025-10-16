@@ -11,14 +11,8 @@
 | **Topic**                       | **Anchor Link**                     |
 |--------------------------------|-------------------------------------|
 | NEXTJS | [TTFB](#ttfb)     ,                   - [SSR vs CSR vs ISR](#ssr-vs-csr-vs-isr) , - [SSR](#ssr)                          , [CSR](#csr)                          [ISR](#isr)                   , [SSG](#ssg)   ,[Middleware](#Middleware)                       |
-- [Optimize images](#optimize-images) 
-- [Code splitting](#code-splitting)
-- [Optimize a Next.js app for SEO and performance](#optimize-a-nextjs-app-for-seo-and-performance)
-- [multi-language app](#in-a-multi-language-app-how-would-you-structure-i18n-in-nextjs)
-
-
-
-
+| Routes | - [Optimize images](#optimize-images)  , - [Code splitting](#code-splitting) , - [Optimize a Next.js app for SEO and performance](#optimize-a-nextjs-app-for-seo-and-performance) , - [multi-language app](#in-a-multi-language-app-how-would-you-structure-i18n-in-nextjs) |
+| Routes | [Routes](#routes) ,  [Dynamic Routes](#dynamic-routing) , [Dynamic Routes with getStaticPaths](#dynamic-routes-with-getstaticpaths) , [Nested Dynamic Routes](#nested-dynamic-routes) ,  [Catch-All Routes](#catch-all-routes)  |
 
 
 
@@ -1757,5 +1751,165 @@ In **Next.js**, the `middleware.js` (or `middleware.ts`) file is **automatically
 
 
 
+##  **Routes**
+
+- In Next.js, routing is **file-based**, meaning every file in the `pages` directory becomes a route automatically.
+- For **dynamic routes**, we use **square brackets** (e.g., `[id].js`) to handle variable paths like `/user/1` or `/product/25`.
+- If we want to pre-render those pages at build time, we use **`getStaticPaths`** and **`getStaticProps`**.
+- For deep nested or variable routes, we can use **catch-all routes** with `[...slug].js`.
+- In Next.js, **routing is file-based** — that means every file inside the `pages/` directory automatically becomes a route.
+- You **don’t need React Router** — Next.js automatically handles it.
+
+For example:
+
+```
+pages/
+├── index.js              →  "/"
+├── about.js              →  "/about"
+├── contact.js            →  "/contact"
+├── blog/
+│   ├── index.js          →  "/blog"
+│   ├── post1.js          →  "/blog/post1"
+```
 
 
+**Example:**
+
+```javascript
+// pages/about.js
+export default function About() {
+  return <h1>About Page</h1>;
+}
+```
+
+👉 Visiting `/about` automatically renders this page.
+
+---
+
+## **Dynamic Routes**
+
+Dynamic routes let you create pages for variable paths — like `/users/1`, `/users/2`, etc.
+
+You define them using **square brackets `[ ]`** in the filename.
+
+**Example structure:**
+
+```
+pages/
+├── users/
+│   ├── index.js          →  "/users"
+│   └── [id].js           →  "/users/:id"
+```
+
+**Example code:**
+
+```javascript
+// pages/users/[id].js
+import { useRouter } from "next/router";
+
+export default function UserPage() {
+  const router = useRouter();
+  const { id } = router.query;
+
+  return <h1>User ID: {id}</h1>;
+}
+```
+
+👉 Visiting `/users/10` will render:
+
+```
+User ID: 10
+```
+
+---
+
+## **Nested Dynamic Routes**
+
+You can combine multiple parameters using nested folders.
+
+Example:
+
+```
+pages/
+└── blog/
+    └── [category]/
+        └── [postId].js
+```
+
+Visiting `/blog/tech/123` →
+`category = "tech"`, `postId = "123"`
+
+**Code:**
+
+```javascript
+import { useRouter } from "next/router";
+
+export default function BlogPost() {
+  const { category, postId } = useRouter().query;
+  return (
+    <h1>
+      Category: {category} | Post ID: {postId}
+    </h1>
+  );
+}
+```
+
+---
+
+## **Dynamic Routes with getStaticPaths**
+
+For **Static Site Generation (SSG)**, Next.js needs to know **which dynamic pages to pre-render** at build time.
+
+Example:
+
+```javascript
+// pages/users/[id].js
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { id: "1" } },
+      { params: { id: "2" } },
+    ],
+    fallback: false, // no other paths will be rendered
+  };
+}
+
+export async function getStaticProps({ params }) {
+  return {
+    props: { id: params.id },
+  };
+}
+
+export default function User({ id }) {
+  return <h1>User ID: {id}</h1>;
+}
+```
+
+✅ This generates `/users/1` and `/users/2` **at build time**.
+
+---
+
+## **Catch-All Routes**
+
+If you want to capture multiple path segments, use **`[...param].js`**.
+
+Example:
+
+```
+pages/docs/[...slug].js
+```
+
+`/docs/a/b/c` → `slug = ['a','b','c']`
+
+**Code:**
+
+```javascript
+import { useRouter } from "next/router";
+
+export default function Docs() {
+  const { slug = [] } = useRouter().query;
+  return <h1>Path: {slug.join(" / ")}</h1>;
+}
+```
+
+---

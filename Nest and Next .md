@@ -966,14 +966,16 @@ export class UserService {
 | **ISR**        | Incremental Static Regeneration | At **build**, then **rebuild** in background | `getStaticProps` + `revalidate`   |
 
 
-| Feature        | CSR                     | SSR                         | ISR                                 |
-| -------------- | ----------------------- | --------------------------- | ----------------------------------- |
-| Rendering      | Client                  | Server per request    On **every request**           | Static at build, revalidated        |
-| SEO            | ❌ poor                  | ✅ good                      | ✅ good                              |
-| Data Freshness | Depends on fetch        | Always fresh                | Fresh after revalidate interval     |
-| Speed          | Fast after initial load | Slower initial load         | Fast (static), updated periodically |
-| Use Cases      | Dashboards, SPA         | User profile, dynamic pages | Blogs, product pages                |
-| Next.js Method | Default React(useEffect)| `getServerSideProps`        | `getStaticProps` + `revalidate`   |
+
+| Feature        | CSR              | SSR                          | SSG                  | ISR                                    |
+| -------------- | ---------------- | ---------------------------- | -------------------- | -------------------------------------- |
+| Rendering      | Client           | Server per request           | Build time           | Build + periodic revalidation          |
+| SEO            | ❌ Poor           | ✅ Good                       | ✅ Good               | ✅ Good                                 |
+| Data Freshness | Depends on fetch | Always fresh                 | Stale until build    | Updated after interval                 |
+| Performance    | Fast after load  | Slower initial load          | Very fast            | Fast + updated periodically            |
+| Use Case       | Dashboards, SPAs | User profiles, dynamic pages | Blogs, landing pages | Blogs/products with occasional updates |
+| Next.js Method | `useEffect / client fetch` | `getStaticProps` | `getServerSideProps`             | `getStaticProps` + `revalidate`   |
+
 ---
 
 ### **CSR**

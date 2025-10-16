@@ -1,5 +1,27 @@
-- [NEXTJS OverView](#NEXTJS-OverView)
-- [NestJS OverView](#NestJS-OverView)
+- [NEXTJS OverView(React)](#NEXTJS-OverView)
+- [NestJS OverView(Node)](#NestJS-OverView)
+
+
+
+
+
+### **NEXTJS OverView**
+
+
+| **Topic**                       | **Anchor Link**                     |
+|--------------------------------|-------------------------------------|
+| NEXTJS | [TTFB](#ttfb)     ,                   - [SSR vs CSR vs ISR](#ssr-vs-csr-vs-isr) , - [SSR](#ssr)                          , [CSR](#csr)                          [ISR](#isr)                   , [SSG](#ssg)   ,[Middleware](#Middleware)                       |
+- [Optimize images](#optimize-images) 
+- [Code splitting](#code-splitting)
+- [Optimize a Next.js app for SEO and performance](#optimize-a-nextjs-app-for-seo-and-performance)
+- [multi-language app](#in-a-multi-language-app-how-would-you-structure-i18n-in-nextjs)
+
+
+
+
+
+
+
 
 
 ### **NestJS OverView**
@@ -10,15 +32,6 @@
 | Custom Implementations     | [Custom Pipe](#custom-pipe), [Custom Guard](#custom-guard), [Custom Interceptor](#custom-interceptor), [Custom Decorator](#custom-decorator), [Custom Pipe/Guard/Interceptor?](#custom-pipeguardinterceptor)                                                                                 |
 | Advanced Features          | [Dynamic modules](#dynamic-modules), [Reusable module](#reusable-module), [Large scale applications?](#large-scale-applications), [Microservices architecture](#microservices-architecture), [Metadata and reflection](#metadata-and-reflection)                                             |
 | Utilities & Best Practices | [Middleware](#middleware), [Pipes](#pipes), [Guard](#guard), [Interceptor](#interceptor), [Handle validation](#handle-validation), [Handle exception filtering](#handle-exception-filtering), [Implement logging](#implement-logging), [Implement authentication](#implement-authentication) |
-
-
-
-### **NEXTJS OverView**
-
-
-| **Topic**                       | **Anchor Link**                     |
-|--------------------------------|-------------------------------------|
-| NEXTJS | [TTFB](#ttfb)     ,                   - [SSR vs CSR vs ISR](#ssr-vs-csr-vs-isr) , - [SSR](#ssr)                          , [CSR](#csr)                          [ISR](#isr)                   , [SSG](#ssg)                          |
 
 
 
@@ -166,13 +179,6 @@ An interceptor can modify or extend the request/response. It’s used for loggin
 
 
 
-
-### **Middleware**
-
-
-Middleware runs **before** route handlers and is similar to Express middleware. Interceptors work **around** the method execution, before and after the controller method is called. Middleware is lower-level and doesn’t have access to DI by default.
-
----
 
 
 
@@ -1322,6 +1328,15 @@ if (!session) {
 
 ---
 
+
+
+### **Middleware**
+
+
+Middleware runs **before** route handlers and is similar to Express middleware. Interceptors work **around** the method execution, before and after the controller method is called. Middleware is lower-level and doesn’t have access to DI by default.
+
+---
+
 ### **Middleware**
 
 
@@ -1438,18 +1453,11 @@ Here are some **project-based Next.js and JSS (CSS-in-JS)** interview questions 
 
 ---
 
-### 3. **You have a blog built with markdown files and Next.js. How do you generate routes and render content dynamically?**
 
-**Expected Answer:**
 
-* Read `.md` files during build using `fs` and `gray-matter`
-* Use `getStaticPaths` to generate dynamic routes
-* Use `getStaticProps` to pass markdown content as props
-* Render using `react-markdown` or custom parser
 
----
 
-### 4. **How do you optimize a Next.js app for SEO and performance?**
+### **Optimize a Next.js app for SEO and performance?**
 
 **Expected Answer:**
 
@@ -1461,6 +1469,8 @@ Here are some **project-based Next.js and JSS (CSS-in-JS)** interview questions 
 
 ---
 
+
+
 ### 5. **How do you handle image storage and rendering for a CMS-backed Next.js site?**
 
 **Expected Answer:**
@@ -1471,7 +1481,9 @@ Here are some **project-based Next.js and JSS (CSS-in-JS)** interview questions 
 
 ---
 
-### 6. **In a multi-language app, how would you structure i18n in Next.js?**
+
+
+### **In a multi-language app, how would you structure i18n in Next.js?**
 
 **Expected Answer:**
 
@@ -1636,12 +1648,7 @@ res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate');
 
 ---
 
-### 6. **Optimize Database Queries**
 
-* Use indexes, limit joins, paginate results.
-* Use **connection pooling** to avoid opening a new DB connection on every SSR request.
-
----
 
 ### 7. **Warm Up Serverless Functions**
 
@@ -1658,6 +1665,95 @@ res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate');
   * Lighthouse
   * Chrome DevTools → Network tab → TTFB column
 
+
+
+
+
+
+
+
+
+
+
+## **Middleware*
+
+**Answer (Interview Style):**
+
+- Middleware in Next.js is a function that runs **before a request reaches a page or API route**. 
+- It allows you to handle tasks like **authentication, redirects, URL rewrites, or adding headers** at the edge, making it fast and efficient. 
+- Middleware can be scoped to specific routes using a matcher.
+- 
+
+
+**Use Case:** 
+- This middleware ensures that **unauthenticated users are redirected to the login page** before accessing any dashboard route. 
+- Other common use cases include **A/B testing, localization, role-based access, and adding security headers**.
+
+
+>
+> **Example:** Suppose we want to protect the `/dashboard` page so only logged-in users can access it:
+>
+> ```javascript
+> import { NextResponse } from "next/server";
+>
+> export function middleware(request) {
+>   const token = request.cookies.get("authToken");
+>   if (!token) {
+>     return NextResponse.redirect(new URL("/login", request.url));
+>   }
+>   return NextResponse.next();
+> }
+>
+> export const config = { matcher: ["/dashboard/:path*"] };
+> ```
+>
+
+In **Next.js**, the `middleware.js` (or `middleware.ts`) file is **automatically detected and executed by the framework**—you **do not need to import or call it manually**
+
+**Key Points for Interviews**
+
+* Middleware is **automatic**, you never import it manually.
+* Runs on the **Edge Runtime**, before SSR/SSG or API route execution.
+* Can be scoped using `matcher` for specific routes.
+* Used for auth, redirects, logging, headers, and edge logic.
+
+**1. How Next.js Calls Middleware**
+
+1. Place the file at the **root of your project** (next to `pages/`) or inside the **app directory** if using App Router.
+
+   ```
+   my-next-app/
+   ├─ pages/
+   ├─ middleware.js
+   ```
+2. Next.js automatically runs the `middleware` function on **every request that matches the routes specified in `config.matcher`**.
+
+   ```javascript
+   export function middleware(request) {
+     // your code here
+     return NextResponse.next();
+   }
+
+   export const config = {
+     matcher: ["/dashboard/:path*", "/dashboard"],
+   };
+   ```
+3. The `matcher` defines **which routes the middleware should apply to**. If no matcher is provided, it runs for **all routes** by default.
+
+
+**2. Example Flow**
+
+1. User requests `/dashboard`.
+2. Next.js detects that `middleware.js` exists and checks the `matcher`.
+3. Middleware executes **before the page or API route**.
+4. Middleware can:
+
+   * Redirect the user
+   * Modify headers
+   * Block access
+   * Continue with `NextResponse.next()`
+5. After middleware finishes, the request proceeds to the **page or API route**.
+---
 
 
 

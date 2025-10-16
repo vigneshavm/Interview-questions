@@ -14,15 +14,13 @@
 |--------------------------------|-------------------------------------|--------------------------------|-------------------------------------|
 |- [Introduction](#1-introduction) |- [Create 2dsphere Index](#2-create-2dsphere-index) |- [Find Documents Near a Point](#3-find-documents-near-a-point) |- [Find Documents Within a Polygon](#4-find-documents-within-a-polygon) |
 |- [Find Intersecting Geometries](#5-find-intersecting-geometries) |- [Find Documents Near a Point (Spherical)](#6-find-documents-near-a-point-spherical) |- [Find Documents Within a Circle](#7-find-documents-within-a-circle) |- [Find by Geometry Type](#8-find-by-geometry-type) |
-|- [Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation) |- [Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters) |- [Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup)
-|- [Interview Tips](#12-interview-tips)
+|- [Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation) |- [Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters) |- [Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup) |- [Interview Tips](#12-interview-tips)
 
 ---
 
 
 ## **GeoJSON **
 
----
 
 ### 1. **Understanding GeoJSON Format**
 

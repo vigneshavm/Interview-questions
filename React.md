@@ -2216,7 +2216,10 @@ const MyComponent = React.memo(function ({ name }) {
 
 💡 **Interview Tip:**
 
-> “**`useState` is for simple local state**, whereas **`useReducer` is for complex state with multiple related properties and predictable transitions**.”
+> “**`useState` is for simple local state**,For simple counter or toggle states, useState is more concise and readable. **.”
+> “**`useReducer` when state transitions are complex, involve multiple fields,multiple related properties and predictable transitions. or depend on action types — similar to Redux.”
+
+
 
 **When to choose**
 

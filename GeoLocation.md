@@ -12,9 +12,9 @@
 
 | **Topic**                       | **Anchor Link**                     |**Anchor Link**                     |**Anchor Link**                     |
 |--------------------------------|-------------------------------------|--------------------------------|-------------------------------------|
-|- [Introduction](#1-introduction) |- [Create 2dsphere Index](#2-create-2dsphere-index) |- [Find Documents Near a Point](#3-find-documents-near-a-point) |- [Find Documents Within a Polygon](#4-find-documents-within-a-polygon) |
-|- [Find Intersecting Geometries](#5-find-intersecting-geometries) |- [Find Documents Near a Point (Spherical)](#6-find-documents-near-a-point-spherical) |- [Find Documents Within a Circle](#7-find-documents-within-a-circle) |- [Find by Geometry Type](#8-find-by-geometry-type) |
-|- [Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation) |- [Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters) |- [Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup) |- [Interview Tips](#12-interview-tips)
+|- [Introduction](#1-introduction) |- [Create 2dsphere Index](#2-create-2dsphere-index) |- [Find Documents Near a Point](#1-find-documents-near-a-point) |- [Find Documents Within a Polygon](#2-find-documents-within-a-specific-polygon) |
+|- [Find Intersecting Geometries](#3-find-documents-that-intersect-a-geometry-overlapping-areas) |- [Find Documents Near a Point (Spherical)](#4-find-documents-near-a-point-simple-nearsphere) |- [Find Documents Within a Circle](#5-find-documents-within-a-circle) |- [Find by Geometry Type](#6-create-a-2dsphere-index-required-for-geojson) |
+|- [Sort by Proximity (Aggregation)](#8-find-all-documents-sorted-by-proximity) |- [Combine Geo Queries with Filters](#9-combine-geospatial-with-normal-filters) |- [Check Point Inside Polygon (Reverse Lookup)](#10-find-if-a-point-lies-inside-any-polygon-reverse-lookup) |- [Interview Tips](#12-interview-tips)
 
 ---
 
@@ -305,13 +305,39 @@ When exposing or consuming location data via REST APIs.
 
 
 
-Here’s a list of **commonly used MongoDB queries** related to **GeoJSON and geospatial operations**, formatted in **`.md` (Markdown)** style — suitable for documentation or interview preparation.
+
+- [1. Introduction](#1-introduction)
+- [2. Create 2dsphere Index](#2-create-2dsphere-index)
+- [3. Find Documents Near a Point](#3-find-documents-near-a-point)
+- [4. Find Documents Within a Polygon](#4-find-documents-within-a-polygon)
+- [5. Find Intersecting Geometries](#5-find-intersecting-geometries)
+- [6. Find Documents Near a Point (Spherical)](#6-find-documents-near-a-point-spherical)
+- [7. Find Documents Within a Circle](#7-find-documents-within-a-circle)
+- [8. Find by Geometry Type](#8-find-by-geometry-type)
+- [9. Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation)
+- [10. Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters)
+- [11. Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup)
+- [12. Interview Tips](#12-interview-tips)
 
 ---
 
-# 🗺️ GeoJSON Queries in MongoDB
+## 1. Introduction
+MongoDB supports **GeoJSON** objects for storing and querying geographic data.  
+You can store different geometry types like `Point`, `LineString`, and `Polygon`, and perform spatial queries such as nearby searches, containment, and intersection.
 
-## 1. Find documents near a point
+---
+
+## 2. Create 2dsphere Index
+```js
+db.places.createIndex({ location: "2dsphere" })
+````
+
+**Use case:**
+Before running any `$near`, `$geoWithin`, or `$geoIntersects` queries, you must create a **2dsphere index**.
+
+---
+
+## 3. Find Documents Near a Point
 
 ```js
 db.places.find({
@@ -333,7 +359,7 @@ Find all places (e.g., restaurants, stores, or users) **within 5 km** of a given
 
 ---
 
-## 2. Find documents within a specific polygon
+## 4. Find Documents Within a Polygon
 
 ```js
 db.places.find({
@@ -361,7 +387,7 @@ Retrieve all entities **inside a city boundary** or a **delivery zone**.
 
 ---
 
-## 3. Find documents that intersect a geometry (overlapping areas)
+## 5. Find Intersecting Geometries
 
 ```js
 db.routes.find({
@@ -384,7 +410,7 @@ Find all routes or regions that **cross a given path or area** (e.g., detecting 
 
 ---
 
-## 4. Find documents near a point (simple $nearSphere)
+## 6. Find Documents Near a Point (Spherical)
 
 ```js
 db.places.find({
@@ -405,7 +431,7 @@ Used when **Earth’s curvature** needs to be considered for global distances (e
 
 ---
 
-## 5. Find documents within a circle
+## 7. Find Documents Within a Circle
 
 ```js
 db.places.find({
@@ -422,18 +448,7 @@ Get all points **within a circular area**, e.g., find customers **within 10 km**
 
 ---
 
-## 6. Create a 2dsphere index (Required for GeoJSON)
-
-```js
-db.places.createIndex({ location: "2dsphere" })
-```
-
-**Use case:**
-Before running any `$near`, `$geoWithin`, or `$geoIntersects` queries, you **must** create a **2dsphere index**.
-
----
-
-## 7. Find documents with specific geometry type
+## 8. Find by Geometry Type
 
 ```js
 db.places.find({
@@ -446,7 +461,7 @@ Filter only **Point** data (ignoring Polygon or LineString) when mixed geometrie
 
 ---
 
-## 8. Find all documents sorted by proximity
+## 9. Sort by Proximity (Aggregation)
 
 ```js
 db.places.aggregate([
@@ -466,7 +481,7 @@ Used in **aggregation pipelines** to get results **sorted by distance** — e.g.
 
 ---
 
-## 9. Combine geospatial with normal filters
+## 10. Combine Geo Queries with Filters
 
 ```js
 db.places.find({
@@ -485,7 +500,7 @@ Get **restaurants near you** — combining location search with category or rati
 
 ---
 
-## 10. Find if a point lies inside any polygon (reverse lookup)
+## 11. Check Point Inside Polygon (Reverse Lookup)
 
 ```js
 db.zones.findOne({
@@ -505,12 +520,17 @@ Determine **which zone or district** a point belongs to (useful in delivery or c
 
 ---
 
-### GeoJSON Query Tips
+## 12. Interview Tips
 
 > **Key Concepts to Remember:**
 >
-> * MongoDB stores GeoJSON in the field with `"type"` and `"coordinates"`.
-> * Always create a **2dsphere index** before running geospatial queries.
-> * `$near` and `$geoNear` automatically sort results by proximity.
+> * MongoDB stores GeoJSON as `{ type, coordinates }`.
+> * Always create a **2dsphere index** before spatial queries.
+> * `$near` and `$geoNear` sort results automatically by distance.
 > * `$geoWithin` checks if a point lies **inside** a given geometry.
 > * `$geoIntersects` finds geometries that **overlap or touch** a given geometry.
+> * Coordinate order always follows `[longitude, latitude]`.
+
+---
+
+```

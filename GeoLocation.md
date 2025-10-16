@@ -14,8 +14,7 @@
 |--------------------------------|-------------------------------------|--------------------------------|-------------------------------------|
 | - [1. Introduction](#1-introduction) | - [2. Create 2dsphere Index](#2-create-2dsphere-index) | - [3. Find Documents Near a Point](#3-find-documents-near-a-point) | - [4. Find Documents Within a Polygon](#4-find-documents-within-a-polygon) | 
 | - [5. Find Intersecting Geometries](#5-find-intersecting-geometries) |- [6. Find Documents Near a Point (Spherical)](#6-find-documents-near-a-point-spherical) |- [7. Find Documents Within a Circle](#7-find-documents-within-a-circle) | - [8. Find by Geometry Type](#8-find-by-geometry-type)|
-|- [9. Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation) |- [10. Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters) |- [11. Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup)
-|- [12. Interview Tips](#12-interview-tips)|
+|- [9. Sort by Proximity (Aggregation)](#9-sort-by-proximity-aggregation) |- [10. Combine Geo Queries with Filters](#10-combine-geo-queries-with-filters) |- [11. Check Point Inside Polygon (Reverse Lookup)](#11-check-point-inside-polygon-reverse-lookup) |- [12. Interview Tips](#12-interview-tips)|
 
 
 ---

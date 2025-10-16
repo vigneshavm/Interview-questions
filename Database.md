@@ -1226,14 +1226,17 @@ db.collection.aggregate([
 8. **`$lookup`** – Performs a left outer join to combine documents from two collections.
 
    ```js
-   db.orders.aggregate([
-     { $lookup: {
-         from: "customers",
-         localField: "customerId",
-         foreignField: "_id",
-         as: "customerDetails"
-     }}
-   ])
+      db.users.aggregate([
+  {
+    $lookup: {
+      from: "orders",           // second collection
+      localField: "_id",        // users._id
+      foreignField: "userId",   // orders.userId
+      as: "userOrders"          // output array
+    }
+  }
+  ])
+
    ```
 
 9. **`$addFields`** – Adds new fields to the documents.

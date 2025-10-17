@@ -10,7 +10,7 @@
 | **Express.js Framework**     | -[Core modules](#core-modules) - [HTTP Module](#HTTP-Module),  - [Express.js](#expressjs),  - [Routing](#routing),  - [HTTP Methods](#http-methods--use-cases),  - [Query Params](#request-response-query-params),  - [HTTP Status Codes](#status-codes) |
 | **Processes**                | [Event Loop](#event-loop),  - [Async I/O Handling](#asynchronous-io-handling),  - [Microtasks vs Macrotasks](#Microtasks-vs-Macrotasks),  - [Async Execution Order](#Async-Execution-Order),  - [SetImmediate vs process.nextTick](#SetImmediate-vs-processnextTick),  - [Cluster vs Child vs Worker](#cluster-module-vs-child-process-vs-worker-thread),  - [libuv](#libuv),  - [spawn vs fork](#spawn-vs-fork) |
 | **Async and Middleware** |  [BackPressure](#BackPressure)  - [FS(File System)](#FS), - [Streams](#Streams),  - [Buffer](#Buffer) - [Middleware](#middleware),  - [CORS](#cors),  - [Helmet](#helmet),  - [Rate Limiter](#Rate-Limiter),  - [DDoS Attack](#DDoS-attack),  - [Data Validation](#data-validation),  - [Input Validate](#Input-Validate) , [Idempotency](#Idempotency) |
-| **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) |
+| **Authentication & Authz**   | [Auth vs Authz](#authentication-vs-authorization),  - [JWT](#implementing-jwt-authentication),  - [OAuth](#OAuth),  - [Single Sign On](#Single-Sign-On),  - [Session vs Token](#session-based-vs-token-based-authentication),  - [Protecting Routes](#protecting-sensitive-routes),  - [Refresh Tokens](#refresh-tokens),  - [JWT Cookies vs Headers](#jwt-in-cookies-vs-headers),  - [RBAC](#role-based-access-control-rbac) - [HS256 vs RS256](#hs256-vs--rs256) |
 | **Event Handling**           | [Event Driven Architecture](#Event-Driven-Architecture),  - [Event Emitters](#event-emitters),  - [Process Object](#process-object),  - [WebSockets](#websockets-socketio-basics),  - [WebSockets Drawbacks](#drawbacks-of-WebSockets),  - [Socket.IO](#SocketIO) |
 | **Database Interaction**     | [JOINs in Sequelize](#JOINs-in-Sequelize) [SQL Connection](#sql-connection),  - [MongoDB Connection](#mongodb-connection),  - [DB Connections](#database-connections),  - [Transactions](#database-transactions) -[Connection Pooling](#Connection-Pooling)|
 
@@ -6187,5 +6187,35 @@ To make an npm package private within an organization,
 I **publish it under a scoped name** like **`@myorg/mypackage`** and use the **`--access restricted`** flag.
 I **configure the `.npmrc`** to point to the **correct organization registry** and include an **auth token for authentication**.
 **Access is managed** through **npm organization settings** or **CLI commands** like **`npm access grant`**, ensuring only **authorized members** can **install or update the package**.
+
+
+
+----
+
+## **HS256** vs  **RS256**
+* **HS256** 
+– HMAC using SHA-256 (symmetric key). Both signing and verification use the **same secret key**.
+– If your system is **internal and performance-critical**, HS256 is fine.
+– Fast and lightweight and Easy to implement
+* ❌ If the secret leaks, anyone can forge tokens
+* ❌ Not ideal for multi-service systems where verification happens separately
+
+* **RS256** 
+– RSA using SHA-256 (asymmetric key). Signing uses a **private key**, verification uses a **public key**.
+– But if your JWT needs to be **verified by multiple services or exposed publicly**, RS256 is safer because the private key never leaves the server, and public keys can be shared for verification without risking token forgery.”
+– More secure for public verification scenarios
+– Private key never exposed to clients
+– Ideal for SSO, OAuth, public APIs
+* ❌ Slower due to asymmetric cryptography
+* ❌ Key management is slightly more complex
+
+| Feature              | HS256                                                       | RS256                                                                 |
+| -------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------- |
+| Key Type             | Symmetric (single secret)                                   | Asymmetric (private/public key pair)                                  |
+| Signing/Verification | Same key for both                                           | Private key signs, public key verifies                                |
+| Security             | Secret must remain confidential; if leaked, anyone can sign | Public key can be shared safely; private key must remain confidential |
+| Performance          | Faster                                                      | Slower (crypto-heavy)                                                 |
+| Use Case             | Internal systems or small-scale apps                        | Distributed systems, public APIs, microservices                       |
+
 
 

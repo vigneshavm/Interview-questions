@@ -5325,7 +5325,7 @@ evtSource.onmessage = e => console.log(e.data);
 ### **Shadowing**
 
 - **Shadowing** happens when a variable declared in a **local scope** (e.g., inside a function or block) **has the same name as a variable in an outer scope**. 
-- The inner variable **“shadows”** the outer one, meaning the outer variable becomes inaccessible within that inner scope.
+- The inner variable **“shadows”** the outer one, meaning the **outer variable becomes inaccessible within that inner scope**.
 - **Shadowing is not the same as overriding.**
 - In **ES6**, `let` and `const` allow **block-level shadowing**, while `var` is function-scoped.
 - Shadowing is useful for **encapsulation**, but overusing it can lead to **confusing bugs**, especially in nested scopes or loops. Always name variables carefully.

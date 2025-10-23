@@ -2161,13 +2161,25 @@ Webpack's optimization features help you:
 * Enable **better caching**
 * Decrease **load times**
 
+**Summary Table**
+
+| Optimization         | Purpose                         |
+| -------------------- | ------------------------------- |
+| `mode: 'production'` | Enables all basic optimizations |
+| Tree shaking         | Remove unused code              |
+| SplitChunksPlugin    | Code splitting                  |
+| TerserPlugin         | JS minification                 |
+| CssMinimizerPlugin   | CSS minification                |
+| Content hashing      | Long-term caching               |
+| CompressionPlugin    | Smaller network transfers       |
+| BundleAnalyzerPlugin | Visualize bundle size           |
+
+
 > These features are mostly configured under the `optimization` field in `webpack.config.js`.
 
----
+**Key Optimization Techniques**
 
-## 🛠️ Key Optimization Techniques
-
-### 1. **Mode: 'production'**
+1. **Mode: 'production'**
 
 ```js
 mode: 'production'
@@ -2180,9 +2192,8 @@ Enables many optimizations by default:
 * Scope hoisting
 * Module concatenation
 
----
 
-### 2. **Tree Shaking (Remove Unused Code)**
+2. **Tree Shaking (Remove Unused Code)**
 
 Works automatically in production mode **with ES6 modules** (`import/export`).
 
@@ -2193,9 +2204,8 @@ Works automatically in production mode **with ES6 modules** (`import/export`).
 import { usefulFunction } from './utils';
 ```
 
----
 
-### 3. **Code Splitting**
+3. **Code Splitting**
 
 Split code into smaller chunks:
 
@@ -2212,12 +2222,9 @@ This will:
 * Extract vendor code (`node_modules`) into a separate bundle
 * Enable lazy loading of routes/components
 
----
+4. **Minification**
 
-### 4. **Minification**
-
-#### JavaScript
-
+*JS*
 ```js
 optimization: {
   minimize: true,
@@ -2225,17 +2232,15 @@ optimization: {
 }
 ```
 
-#### CSS
-
+*CSS*
 ```js
 optimization: {
   minimizer: [new CssMinimizerPlugin()]
 }
 ```
 
----
 
-### 5. **Caching Optimization**
+5. **Caching Optimization**
 
 Use **content hashing** in filenames to take advantage of browser caching:
 
@@ -2245,9 +2250,9 @@ output: {
 }
 ```
 
----
 
-### 6. **Tree Shakable Libraries**
+
+6. **Tree Shakable Libraries**
 
 Prefer:
 
@@ -2256,9 +2261,8 @@ Prefer:
 
 These are modular and shakeable.
 
----
 
-### 7. **Remove Dead Code with `sideEffects: false`**
+7. **Remove Dead Code with `sideEffects: false`**
 
 In `package.json`:
 
@@ -2274,9 +2278,8 @@ Or more selectively:
 
 Helps Webpack know what’s safe to eliminate.
 
----
 
-### 8. **Compression Plugins**
+8. **Compression Plugins**
 
 Use gzip or Brotli:
 
@@ -2291,9 +2294,9 @@ plugins: [
 ]
 ```
 
----
 
-### 9. **Bundle Analysis**
+
+9. **Bundle Analysis**
 
 See what’s inside your bundle:
 
@@ -2307,9 +2310,9 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 plugins: [new BundleAnalyzerPlugin()]
 ```
 
----
 
-### 10. **Scope Hoisting**
+
+10. **Scope Hoisting**
 
 Enabled in production mode using **module concatenation**.
 
@@ -2319,9 +2322,9 @@ optimization: {
 }
 ```
 
----
 
-## 🧠 Extra: Performance Hints
+
+**Extra: Performance Hints**
 
 ```js
 performance: {
@@ -2330,24 +2333,9 @@ performance: {
 }
 ```
 
----
 
-##  Summary Table
 
-| Optimization         | Purpose                         |
-| -------------------- | ------------------------------- |
-| `mode: 'production'` | Enables all basic optimizations |
-| Tree shaking         | Remove unused code              |
-| SplitChunksPlugin    | Code splitting                  |
-| TerserPlugin         | JS minification                 |
-| CssMinimizerPlugin   | CSS minification                |
-| Content hashing      | Long-term caching               |
-| CompressionPlugin    | Smaller network transfers       |
-| BundleAnalyzerPlugin | Visualize bundle size           |
-
----
-
-## 🧪 Sample `optimization` Block
+**Sample `optimization` Block**
 
 ```js
 optimization: {

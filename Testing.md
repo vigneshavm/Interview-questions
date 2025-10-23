@@ -1,7 +1,8 @@
 | **Category**                | **Topics** |
 |----------------------------|------------|
 | **Build & Compilation**    | - [Tree Shaking](#tree-shaking-in-modern-bundlers) - [Compiler](#Compiler) - [Transpiling](#transpiling-javascript-code) - [Polyfills](#polyfills-and-backward-compatibility) - [Babel](#role-of-babel-in-modern-development) |
-| **Bundlers & Tools**       | [Customize Webpack](#customize-webpack) - [Webpack & Vite](#webpack-and-vite-bundling-process) - [Reduce large bundle size](#Reduce-large-bundle-size) - [Reduce the Bundle Size](#reduce-the-bundle-size) - [Plugins](#Plugins) - [Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization) |
+| **Bundlers & Tools**       | [Customize Webpack](#customize-webpack) - [Webpack & Vite](#webpack-and-vite-bundling-process) - [Reduce large bundle size](#Reduce-large-bundle-size) - [Reduce the Bundle Size](#reduce-the-bundle-size) - [Plugins](#Plugins) - [Webpack Loaders](#Webpack-Loaders) - [Webpack Optimization](#Webpack-Optimization) - [Optimize Images Webpack](#optimize-images-in-webpack)
+|
 | **Testing Basics**         | [Testing Types](#types-of-testing-in-software-development) - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests) - [Mocks and Stubs](#mocks-and-stubs-in-testing) - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript) - [Jest and React Testing Library](#Jest-and-React-Testing-Library) |
 | **Testing Adv** | [Unit test external API call](#Unit-test-external-API-call) - [Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest) - [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai) - [Mock Testing](#mock-testing) - [Mocking APIs Tests](#Mocking-APIs-Tests) - [Testing Hooks](#Testing-Hooks)  |
 | **Quality**   | [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality) - [CI CD](#CI-CD) - [Web Communication Protocols](#Web-Communication-Protocols) - [Software Engineering Practices](#Software-Engineering-Practices)  |
@@ -4367,3 +4368,103 @@ axios.get('https://api.yourdomain.com/user/profile', {
   withCredentials: true
 });
 ```
+
+---
+
+
+
+### **Optimize Images in Webpack**
+
+
+In Webpack, **image optimization** is done during the build process using **loaders and plugins**. The goal is to **reduce image size without losing quality** and ensure only optimized assets are delivered to production.
+
+> “In Webpack, I use **`image-webpack-loader`** along with **`file-loader`** or **`asset/resource`** to compress images during build time. I **inline small images** with `url-loader`, **convert to modern formats** like WebP, and **apply hashing for caching**. This ensures **faster page loads** and **smaller bundle sizes**.”
+
+
+**1. Use `image-webpack-loader`**
+
+* **Main plugin** used to compress and optimize images.
+* Works along with **`file-loader`** or **`url-loader`** to handle images efficiently.
+
+```js
+{
+  test: /\.(png|jpe?g|gif|svg)$/i,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: '[name].[hash].[ext]',
+        outputPath: 'images',
+      },
+    },
+    {
+      loader: 'image-webpack-loader',
+      options: {
+        mozjpeg: { progressive: true, quality: 70 },
+        optipng: { enabled: true },
+        pngquant: { quality: [0.6, 0.8] },
+        gifsicle: { interlaced: false },
+        webp: { quality: 75 },
+      },
+    },
+  ],
+}
+```
+
+✅ **What this does:**
+
+* **Automatically optimizes** large images during build.
+* Supports **JPEG, PNG, GIF, SVG, and WebP** formats.
+
+
+**2. Use `url-loader` for Small Images**
+
+* Converts **small images into Base64** strings and inlines them to **reduce HTTP requests**.
+
+```js
+{
+  loader: 'url-loader',
+  options: {
+    limit: 8192, // 8KB
+    name: 'images/[name].[hash].[ext]',
+  },
+}
+```
+
+
+**3. Use Modern Formats like WebP or AVIF**
+
+* Configure Webpack to generate **.webp or .avif** versions.
+* These formats offer **better compression** and **smaller file sizes**.
+
+
+**4. Split Media from Code**
+
+* Keep images in a separate directory.
+* Use **`asset/resource`** in **Webpack 5** for efficient image handling.
+
+```js
+{
+  test: /\.(png|jpg|jpeg|gif|svg)$/i,
+  type: 'asset/resource',
+}
+```
+
+
+**5. Optimize During CI/CD**
+
+* Use external tools like **Sharp**, **Imagemin**, or **Squoosh CLI** in a pre-build step for **extra compression** before Webpack processes them.
+
+
+**6. Enable Caching**
+
+* Add **hashing in filenames** to help browsers cache images effectively.
+
+```js
+outputPath: 'images',
+name: '[name].[contenthash].[ext]',
+```
+
+
+---
+

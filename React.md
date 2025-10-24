@@ -1,3 +1,6 @@
+
+
+
 | **Category**                          | **Topics**                                                                                                                                                                                                                                                                                                                                                                                                             |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **React Basics** | • [React App using TypeScript](#create-react-app-using-typescript) • [React Overview](#react-overview) •  [Virtual DOM](#virtual-dom)  •  [Virtual DOM Internally](#Compare-nodes-internally-in-the-Virtual-DOM) •   [Keys in Lists](#keys-in-lists) •  [Reconciliation Process](#reconciliation-process) • [Single Page Applications (SPA)](#single-page-applications-spa)  • [Why Use React](#why-use-react) 
@@ -13,7 +16,7 @@
 | **Category**|**Topics** | **Category**|**Topics** |
 |------------|------------------------------|------------|-----------------------|
 | **Hook**          | •  [Lifecycle Methods](#lifecycle-methods)  •  [FC lifecycle hook](#Functional-components-lifecycle-hook) •  [React Hooks](#react-hooks) •  [Custom Hook](#Custom-Hook) •  [Hooks Rules](#Hooks-Rules)   | **Lazy Loading**          | •  [Lazy Loading](#lazy-loading-components) •  [Suspense Boundary](#Suspense-Boundary) 
-| **Redux**          | •  [Redux](#redux--predictable-state-management) -[Middleware](#middleware-in-redux) -[Store Creation](#store-creation-in-redux) - [Store Configuration](#store-configuration-in-redux-toolkit) | **Refs**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef)  •    [forwardRef ](#forwardRef)  - [Recursion](#Recursion) 
+| **Redux**          | •  [Redux](#redux--predictable-state-management) -[Redux component](#redux-component) -[Middleware](#middleware-in-redux) -[Store Creation](#store-creation-in-redux) - [Store Configuration](#store-configuration-in-redux-toolkit) | **Refs**          | •    [Refs ](#refs-in-react) •    [Ref vs useRef](#Ref-vs-useRef)  •    [forwardRef ](#forwardRef)  - [Recursion](#Recursion) 
 | **Data Fetching & APIs**          | •  [Fetching Data with Axios / Fetch](#fetching-data)  •  [Using useEffect for Data Fetching](#Using-useEffect-for-Data-Fetching) |**Error**          | •  [Handling Loading, Error States](#Handling-Loading-and-Error-States) •  [Error Boundaries](#error-boundaries) •  [Error Handling in Components](#error-handling-in-components) |
 | **State Management**          |  •  [Context API](#context-api) •  [Higher-Order Components](#higher-order-components-hocs) •  [Redux vs Context API](#redux-vs-context-api)  •  [Redux-Saga](#Redux-Saga) | **Concurrent**          | •  [Strict Mode](#strict-mode-in-react)•  [Auto Batching](#auto-batching) •  [Signals](#Signals) •  [Reacts Concurrent Mode](#Reacts-Concurrent-Mode) |
 | **Best Practices**          | •  [Folder Structure](#folder-structure-best-practices) •  [Atomic Design ](#atomic-design) •  [Component Reuse](#component-reusability) •  [PropTypes vs TS](#proptypes-vs-typescript)   •  [accessibility](#accessibility-a11y)|
@@ -6770,3 +6773,14 @@ export default store;
 ```
 
 ---
+
+
+### Redux component
+
+| Concept              | What it does                                                           | How I’d explain it in an interview                                                                                                                                                       |
+| -------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`createSlice`**    | Defines a part of the Redux state, along with its actions and reducers | `createSlice` lets me group related state and logic together. It automatically generates action creators and reducers for that specific feature — for example, a counter or user module. |
+| **`configureStore`** | Creates the centralized Redux store that holds all slices              | `configureStore` sets up the main store by combining all the slices and applying default middleware and dev tools configuration. It’s the single source of truth for the app’s state.    |
+| **`dispatch`**       | Sends an action to the Redux store to update the state                 | `dispatch` is how I trigger state changes. When I dispatch an action, Redux runs the matching reducer logic to update the store accordingly.                                             |
+| **`useSelector`**    | Accesses data from the Redux store inside a React component            | `useSelector` lets me read values from the Redux store directly inside my components, so I can render the UI based on the current state.                                                 |
+

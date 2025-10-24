@@ -338,36 +338,25 @@ console.log(removeDuplicates([1, 2, 2, 3, 1, 4]));
 
 **Code Example**
 ```js
-function removeDuplicatesManual(arr) {
-  // Step 1: Initialize an empty array `result` to store unique elements
+function removeDuplicatesSingleLoop(arr) {
   let result = [];
+  let duplicate = [];
+  let seen = {};
 
-  // Step 2: Iterate through the input array `arr` with index `i`
   for (let i = 0; i < arr.length; i++) {
-    // Step 3: Initialize a flag `found` to track whether the current item is already in `result`
-    let found = false;
-
-    // Step 4: Loop through the `result` array with index `j` to check for duplicates
-    for (let j = 0; j < result.length; j++) {
-      // Step 5: If the current item already exists in `result`, set `found` to true and break out of the loop
-      if (arr[i] === result[j]) {
-        found = true;
-        break;
-      }
-    }
-
-    // Step 6: If the item was not found in `result`, push it to the `result` array
-    if (!found) {
+    if (!seen[arr[i]]) {
+      seen[arr[i]] = true;
       result.push(arr[i]);
+    }else{
+      duplicate.push(arr[i]);
     }
   }
 
-  // Step 7: Return the `result` array containing only unique elements
   return result;
 }
 
+// Output: [1, 2, 3, 4]
 
-console.log(removeDuplicatesManual([1, 2, 2, 3, 1, 4]));
 ```
 
  **Output:**

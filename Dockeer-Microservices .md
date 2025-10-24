@@ -2212,24 +2212,21 @@ Here, even though we create two instances of `Singleton`, they both point to the
 * **Provides flexibility** to add new types of objects without changing client code.
 * **Promotes code reusability** and maintainability.
 
----
 
-### **When to use it?**
+ **When to use it?**
 
 * When **object creation is complex** or involves logic.
 * When **clients shouldn’t know the concrete classes** being instantiated.
 * When building **scalable and maintainable applications** with many object types.
 
----
 
 **Pro tip for interview:**
 
 * Emphasize **“object creation encapsulation, flexibility, and maintainability”**.
 * Mention that it’s widely used in **microservices, APIs, or complex systems** where object types vary.
 
----
 
-### **Example (JavaScript):**
+ **Example (JavaScript):**
 
 ```javascript
 class Car {

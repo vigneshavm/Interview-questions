@@ -15,32 +15,46 @@
 
 ## 1️⃣ Serverless Architecture
 
-**Q:** What is Serverless Architecture?  
-**A:** Serverless means you don’t manage servers — AWS handles infrastructure scaling automatically. You focus only on code (functions).  
-
-**Example:** AWS Lambda + API Gateway + DynamoDB + S3.  
-
-**Advantages:**
-- Pay only for execution time  
-- Scales automatically  
-- No server maintenance  
-
-**Use case:** Shoutout project video processing using Lambda triggers when file uploads to S3.
-
-- **Q:** Which AWS services are serverless?  
-  **A:** AWS Lambda, DynamoDB, API Gateway, S3, Step Functions, SNS, SQS.
-
-- **Q:** How do serverless apps scale?  
-  **A:** Automatically — AWS provisions new containers based on incoming requests.
-
-- **Q:** What are key benefits?  
-  **A:** No server management, automatic scaling, pay-per-use, faster deployment.
-
-- **Q:** When would you avoid serverless?  
-  **A:** Long-running jobs or heavy CPU workloads — better suited for EC2 or ECS.
+**Q: What is Serverless Architecture?**  
+Serverless means you don’t manage or provision servers manually. AWS handles the infrastructure, scaling, and availability behind the scenes. As a developer, you focus purely on writing business logic — typically in the form of functions.
 
 **Example:**  
-In the *Shoutout project*, we used Lambda to compress videos on S3 upload and send notifications via SNS.
+A typical serverless stack might include **AWS Lambda**, **API Gateway**, **DynamoDB**, and **S3**. For instance, in our Shoutout project, we used Lambda to process videos when files were uploaded to S3.
+
+
+**Q: Which AWS services are serverless?**  
+Some key serverless services include:
+
+- **AWS Lambda** - **Amazon S3** - **DynamoDB** - **API Gateway**
+- **Step Functions** - **SNS** - **SQS**
+
+These services scale automatically and follow a pay-per-use model.
+
+
+**Q: How do serverless applications scale?**  
+They scale **automatically**. AWS provisions new containers or instances based on incoming traffic or events. For example, if 1000 users hit an API, Lambda can spin up 1000 concurrent executions without manual intervention.
+
+
+**Q: What are the key benefits of serverless?**  
+- **No server management**  - **Automatic scaling**
+- **Pay only for execution time**   - **Faster development and deployment**
+- **Built-in fault tolerance**
+
+
+**Q: When would you avoid serverless?**  
+Serverless isn’t ideal for:
+
+- **Long-running jobs**
+- **Heavy CPU or memory workloads**
+- **Low-latency requirements**
+- **Complex networking needs**
+
+In such cases, **EC2**, **ECS**, or **EKS** might be more suitable.
+
+**Example:**  
+In our Shoutout project, we used Lambda to compress videos on S3 upload and send notifications via SNS. But for longer transcoding jobs, we considered moving to ECS for better control.
+
+---
 
 
 ---

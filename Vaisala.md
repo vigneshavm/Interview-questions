@@ -411,31 +411,31 @@ In a video processing pipeline, if a transcoding job fails repeatedly, the messa
 
 ## 🔟 SQS – Duplicate Processing & Retry Handling
 
-Q: How to handle duplicate messages and retries in SQS?
-A:
 
-Use Message Deduplication ID (for FIFO queues)
+There are several strategies:  
+1. **FIFO Queues with Deduplication:** Use `MessageDeduplicationId` to avoid duplicates.  
+2. **Visibility Timeout:** Configure so that once a message is picked up, it’s hidden from other consumers until processed.  
+3. **Idempotent Consumers:** Design Lambda or processing logic so that reprocessing doesn’t cause issues (e.g., check if transaction already exists before inserting).  
+4. **Retries and DLQ:** Use Redrive Policy with `maxReceiveCount` and a Dead Letter Queue for failed messages.
 
-Enable Visibility Timeout to prevent reprocessing
+**Example:** For payment processing, use the transaction ID as a unique key to ensure the same payment isn’t processed twice.
 
-Design Idempotent Lambdas (safe to re-run)
-
-Configure Retry + DLQ
+*"In real-world systems, I combine FIFO queues for ordering, idempotent logic for safety, and DLQs for resilience. This ensures reliability even under high load or transient failures."*
 
 
-Example:
-Lambda processes payment messages → uses transaction ID to check if already processed.
 
-Follow-Up Qs:
+#### **Idempotent Lambda?**
+An idempotent Lambda produces the same result even if executed multiple times. For example, before inserting a transaction, it checks if the transaction ID already exists.
 
-Q: What’s an Idempotent Lambda?
-A: A function that produces the same result even if executed multiple times (checks existing transaction before insert).
 
-Q: How to handle retries?
-A: Configure Redrive Policy (maxReceiveCount + DLQ).
+#### **Handle retries?**
+Configure a **Redrive Policy** on the queue:
+- `maxReceiveCount` determines how many times a message can be retried.
+- After that, the message moves to a **Dead Letter Queue (DLQ)** for manual inspection or further processing.
 
-Q: What’s Visibility Timeout?
-A: Time during which a message is invisible to other consumers after being picked up.
+
+#### **Visibility Timeout?**
+It’s the duration for which a message becomes invisible to other consumers after being picked up. This prevents multiple consumers from processing the same message simultaneously. If the consumer fails to delete the message before the timeout expires, the message becomes visible again for retry.
 
 ---
 

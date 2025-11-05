@@ -156,39 +156,64 @@ Security is critical. I ensure:
 
 ## 4️⃣ AWS CDK
 
-**Q:** What is AWS CDK and why use it?  
-**A:** AWS Cloud Development Kit (CDK) lets you define AWS infrastructure using code (TypeScript, Python, etc.) instead of YAML/JSON.  
 
-**Benefits:**
-- Code reuse and modularity  
-- Easier maintenance  
-- Auto-synthesizes to CloudFormation templates  
+
+**Q: What is AWS CDK and why would you use it?**  
+AWS CDK (Cloud Development Kit) is an open-source framework that lets you define AWS infrastructure using familiar programming languages like **TypeScript**, **Python**, or **Java** — instead of writing raw YAML or JSON CloudFormation templates.
+
+**Benefits include:**
+
+- **Code reuse and modularity**
+- **Easier maintenance and readability**
+- **Strong typing and IDE support**
+- **Auto-generates CloudFormation templates**
 
 **Example:**  
-In Shoutout, CDK defines Lambda, S3, SQS setup programmatically and deploys in one command:
+In our Shoutout project, we used CDK to define and deploy resources like **Lambda functions**, **S3 buckets**, and **SQS queues** — all programmatically and consistently across environments.
 
 
-**Follow-Up Qs:**
 
-- **Q:** How is CDK different from Terraform?  
-  **A:** CDK is AWS-native and compiles to CloudFormation; Terraform is cloud-agnostic with its own engine.
+**Q: How is CDK different from Terraform?**  
+- **CDK** is **AWS-native** and compiles down to CloudFormation templates.  
+- **Terraform** is **cloud-agnostic** and uses its own engine and state management.
 
-- **Q:** What’s inside a CDK Stack?  
-  **A:** Constructs like `lambda.Function`, `s3.Bucket`, `sns.Topic`.
+Both support Infrastructure as Code, but CDK integrates more tightly with AWS services and developer tooling.
 
-- **Q:** Example command to deploy infra?  
-  **A:**
-  ```bash
-  cdk synth
-  cdk deploy
-  ```
 
-Q: What’s the advantage over manual console setup?
-A: Reproducible, version-controlled, consistent across environments.
+
+**Q: What’s inside a CDK Stack?**  
+A CDK Stack contains **constructs** — reusable components that represent AWS resources.  
+Examples include:
+
+- `lambda.Function`
+- `s3.Bucket`
+- `sns.Topic`
+- `sqs.Queue`
+
+These constructs are organized into stacks and apps for deployment.
+
+
+
+**Q: How do you deploy infrastructure using CDK?**  
+Typical commands:
 
 ```bash
-cdk deploy
+cdk synth     # Generates CloudFormation template
+cdk deploy    # Deploys the stack to AWS
 ```
+
+This makes deployments reproducible and version-controlled.
+
+
+
+**Q: What’s the advantage over manual console setup?**  
+- **Consistency across environments**
+- **Version control via Git**
+- **Faster onboarding for teams**
+- **Easier rollback and change tracking**
+
+Manual setup is error-prone and hard to maintain, especially in large-scale environments.
+
 
 
 ---

@@ -199,84 +199,96 @@ A: Slightly longer cold start but higher runtime performance.
 
 ## 7️⃣ Passing Parameters in Lambda
 
-Q: How can you pass parameters to a Lambda function?
-A:
-
-Through event object (API Gateway / SQS trigger)
-
-Through environment variables
-
-Through AWS SDK call:
 
 
+**Q: How can you pass parameters to an AWS Lambda function?**  
+There are three main ways to pass parameters to a Lambda function:
+
+1. **Through the event object**  
+   - This is common when Lambda is triggered by services like **API Gateway**, **SQS**, or **SNS**.  
+   - The event payload contains the parameters.
+
+2. **Through environment variables**  
+   - These are set at deployment time and are useful for configuration values like DB connection strings, stage names, or feature flags.
+
+3. **Through direct invocation using AWS SDK**  
+   - You can pass parameters using the `Payload` field in the `lambda.invoke()` method.
+
+
+
+**Q: Can you give an example using the AWS SDK?**  
+Yes. Here's a Node.js example:
+
+```js
 lambda.invoke({
   FunctionName: 'myLambda',
   Payload: JSON.stringify({ id: 123 })
 });
+```
 
-In CDK:
+This sends `{ id: 123 }` as the event payload to the Lambda function.
 
-environment: { NODE_ENV: 'production' }
 
-Follow-Up Qs:
 
-Q: Example using SDK?
+**Q: When would you use environment variables?**  
+Environment variables are ideal for **configuration data** that doesn’t change per invocation—like database credentials, environment stage (`dev`, `prod`), or third-party API keys.
 
-lambda.invoke({
-  FunctionName: 'myLambda',
-  Payload: JSON.stringify({ id: 123 })
-});
+In AWS CDK, you can define them like this:
 
-Q: When to use environment variables?
-A: For configuration data (DB connection, stage, secrets).
+```ts
+environment: {
+  NODE_ENV: 'production'
+}
+```
 
-Q: How to secure parameters?
-A: Store in AWS Parameter Store or Secrets Manager, then inject at runtime.
+
+**Q: How do you secure sensitive parameters?**  
+Instead of hardcoding secrets, you should store them in **AWS Systems Manager Parameter Store** or **AWS Secrets Manager**.  
+At runtime, the Lambda function can fetch these securely using IAM permissions.
+
+
 
 ---
 
 ## 8️⃣ AWS Console vs AWS CLI vs AWS CDK (Terraform)
 
-Q: What’s the difference between AWS Console, CLI, and CDK/Terraform?
+#### **What’s the difference between AWS Console, CLI, and CDK/Terraform?**  
+The main difference lies in how you interact with AWS and manage infrastructure:
 
-Tool	Description	Use Case
-
-AWS Console	UI-based	Quick manual setup/testing
-AWS CLI	Command line tool	Scripting, automation
-AWS CDK/Terraform	Infrastructure as Code	Version-controlled, repeatable infra
+- **AWS Console** is a **UI-based** interface. It’s great for quick manual setups, testing, or exploring services.
+- **AWS CLI** is a **command-line tool** used for scripting and automation. It’s ideal for one-off tasks or integrating into shell scripts.
+- **AWS CDK/Terraform** are **Infrastructure as Code (IaC)** tools. They allow you to define infrastructure in code, making it version-controlled, repeatable, and suitable for production environments.
 
 
-Example:
+#### **Can you give an example of each?**  
+Sure:
 
-Console: Create S3 bucket manually
+- **Console:** Manually create an S3 bucket via the web interface  
+- **CLI:** `aws s3 mb s3://mybucket` — creates a bucket via command line  
+- **CDK:** `new s3.Bucket(this, 'Bucket')` — defines a bucket in code using AWS CDK
 
-CLI: aws s3 mb s3://mybucket
+#### **Which one would you prefer for production?**  
+For production, I’d prefer **CDK or Terraform**. They support version control, automation, and team collaboration. They also reduce human error and make deployments consistent across environments.
 
-CDK: new s3.Bucket(this, 'Bucket')
 
-Follow-Up Qs:
-
-Q: Which one would you prefer for production?
-A: CDK or Terraform — for version control and automation.
-
-Q: What’s one advantage of CLI over CDK?
-A: Quick one-off operations without writing code.
+#### **What’s one advantage of CLI over CDK?**  
+CLI is faster for **quick one-off operations**. For example, if I need to list EC2 instances or create a bucket urgently, I can do it instantly without writing code.
 
 
 ---
 
 ## 9️⃣ Dead Letter Queue (DLQ)
 
-Here’s how you can structure your response in an **interview setting** when asked about **Dead Letter Queues (DLQs) in AWS**. This version is conversational, confident, and tailored for technical interviews:
 
 
-#### **Q: What is a Dead Letter Queue in AWS?**  
+
+#### **What is a Dead Letter Queue in AWS?**  
 A Dead Letter Queue, or DLQ, is a mechanism used to capture messages that fail to be processed successfully after a defined number of retries. It helps prevent data loss and allows for safe debugging and reprocessing.
 
 **Example:**  
 Let’s say an SQS queue triggers a Lambda function. If the Lambda fails to process a message after 3 attempts, that message is automatically moved to the DLQ. This allows engineers to inspect and handle it manually.
 
-#### **Q: Which AWS services support DLQ?**  
+#### **Which AWS services support DLQ?**  
 DLQs are supported in several AWS services, including:
 
 - **Lambda** (for asynchronous invocations)
@@ -286,14 +298,12 @@ DLQs are supported in several AWS services, including:
 
 Each of these can be configured to route failed messages to an SQS queue or SNS topic depending on the use case.
 
----
 
-#### **Q: How do you configure DLQ in Lambda?**  
+#### **How do you configure DLQ in Lambda?**  
 In the Lambda console, under **Asynchronous Invocation settings**, you can specify a DLQ target—either an SQS queue or an SNS topic. You also define the maximum retry attempts. Once that threshold is reached, the message is sent to the DLQ.
 
----
 
-#### **Q: What are the benefits of using DLQ?**  
+#### **What are the benefits of using DLQ?**  
 - **Avoids silent data loss**
 - **Helps identify and isolate problematic messages**
 - **Enables safe debugging and manual reprocessing**

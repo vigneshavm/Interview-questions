@@ -1,11 +1,17 @@
-Here’s your content formatted in Markdown (.md) — perfect for GitHub, documentation, or interview notes.
 
 
----
+- [Serverless Architecture](#1️⃣-serverless-architecture)
+- [Microservice Architecture](#2️⃣-microservice-architecture)
+- [Deployment using EC2](#3️⃣-deployment-using-ec2)
+- [AWS CDK](#4️⃣-aws-cdk)
+- [CI/CD](#5️⃣-cicd)
+- [Increasing Lambda Memory](#6️⃣-increasing-lambda-memory)
+- [Passing Parameters in Lambda](#7️⃣-passing-parameters-in-lambda)
+- [AWS Console vs AWS CLI vs AWS CDK (Terraform)](#8️⃣-aws-console-vs-aws-cli-vs-aws-cdk-terraform)
+- [Dead Letter Queue ](#9️⃣-dead-letter-queue-dlq)
+- [SQS – Duplicate Processing & Retry Handling](#-sqs--duplicate-processing--retry-handling)
+- [Cold Start in AWS Lambda](#1️⃣1️⃣-cold-start-in-aws-lambda)
 
-# 🧠 Client Interview Preparation – AWS & Architecture Topics
-
----
 
 ## 1️⃣ Serverless Architecture
 
@@ -73,11 +79,12 @@ In Shoutout, CDK defines Lambda, S3, SQS setup programmatically and deploys in o
 
 ```bash
 cdk deploy
+```
 
 
 ---
 
-5️⃣ CI/CD
+## 5️⃣ CI/CD
 
 Q: How do you implement CI/CD for AWS-based apps?
 A:
@@ -92,7 +99,7 @@ Example: When code is pushed to main, the pipeline builds Docker image → pushe
 
 ---
 
-6️⃣ Increasing Lambda Memory
+## 6️⃣ Increasing Lambda Memory
 
 Q: How do you increase Lambda memory?
 A:
@@ -113,7 +120,7 @@ new lambda.Function(this, 'MyFn', {
 
 ---
 
-7️⃣ Passing Parameters in Lambda
+## 7️⃣ Passing Parameters in Lambda
 
 Q: How can you pass parameters to a Lambda function?
 A:
@@ -137,7 +144,7 @@ environment: { NODE_ENV: 'production' }
 
 ---
 
-8️⃣ AWS Console vs AWS CLI vs AWS CDK (Terraform)
+## 8️⃣ AWS Console vs AWS CLI vs AWS CDK (Terraform)
 
 Q: What’s the difference between AWS Console, CLI, and CDK/Terraform?
 
@@ -160,7 +167,7 @@ CDK: new s3.Bucket(this, 'Bucket')
 
 ---
 
-9️⃣ Dead Letter Queue (DLQ)
+## 9️⃣ Dead Letter Queue (DLQ)
 
 Q: What is a Dead Letter Queue in AWS?
 A: DLQ stores failed messages that couldn’t be processed successfully after multiple retries.
@@ -180,7 +187,7 @@ Debug failed events safely
 
 ---
 
-🔟 SQS – Duplicate Processing & Retry Handling
+## 🔟 SQS – Duplicate Processing & Retry Handling
 
 Q: How to handle duplicate messages and retries in SQS?
 A:
@@ -200,7 +207,7 @@ Lambda processes payment messages → uses transaction ID to check if already pr
 
 ---
 
-1️⃣1️⃣ Cold Start in AWS Lambda
+## 1️⃣1️⃣ Cold Start in AWS Lambda
 
 Q: What is a Cold Start in Lambda?
 A: A cold start happens when AWS initializes a new container to run your function (first call or scale-up).

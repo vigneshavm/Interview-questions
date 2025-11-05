@@ -27,6 +27,22 @@
 
 **Use case:** Shoutout project video processing using Lambda triggers when file uploads to S3.
 
+- **Q:** Which AWS services are serverless?  
+  **A:** AWS Lambda, DynamoDB, API Gateway, S3, Step Functions, SNS, SQS.
+
+- **Q:** How do serverless apps scale?  
+  **A:** Automatically — AWS provisions new containers based on incoming requests.
+
+- **Q:** What are key benefits?  
+  **A:** No server management, automatic scaling, pay-per-use, faster deployment.
+
+- **Q:** When would you avoid serverless?  
+  **A:** Long-running jobs or heavy CPU workloads — better suited for EC2 or ECS.
+
+**Example:**  
+In the *Shoutout project*, we used Lambda to compress videos on S3 upload and send notifications via SNS.
+
+
 ---
 
 ## 2️⃣ Microservice Architecture
@@ -45,7 +61,20 @@ Each runs in its own container (ECS/EKS) or function.
 **Benefits:**
 - Independent deployment  
 - Fault isolation  
-- Technology flexibility  
+- Technology flexibility
+
+
+- **Q:** How do microservices communicate?  
+  **A:** Synchronously via REST/gRPC or asynchronously via SQS/Kafka.
+
+- **Q:** What are common challenges?  
+  **A:** Service discovery, data consistency, and inter-service communication.
+
+- **Q:** How do you ensure fault isolation?  
+  **A:** Deploy each service in separate containers or Lambda functions; use circuit breakers (Hystrix/Resilience4j).
+
+- **Q:** How did you apply this in your project?  
+  **A:** We split Shoutout into services: *User*, *Payment*, *Notification*, and *Video Processing*, each deployed separately.
 
 ---
 

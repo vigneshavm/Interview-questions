@@ -275,32 +275,18 @@ If a deployment fails or metrics drop, we can **revert to a previous version** q
 
 ## 6️⃣ Increasing Lambda Memory
 
-Q: How do you increase Lambda memory?
-A:
-
-From Console:
-Go to Lambda → Configuration → General Configuration → Edit → Increase Memory (128 MB to 10 GB)
-
-From CDK:
-
+You can increase Lambda memory in two ways:  
+- **AWS Console:** Navigate to *Lambda → Configuration → General Configuration → Edit*, and set memory between **128 MB and 10 GB**.  
+- Using AWS CDK, you specify the `memorySize` property when defining the Lambda function:  
+- **Infrastructure as Code (CDK):**  
+```typescript
 new lambda.Function(this, 'MyFn', {
-  memorySize: 2048
+  memorySize: 2048, // in MB
 });
-
-> Increasing memory also increases CPU proportionally.
-
-Follow-Up Qs:
-
-Q: How can you do it via CDK?
-
-new lambda.Function(this, 'Fn', { memorySize: 2048 });
-
-Q: Does increasing memory increase cost?
-A: Yes, cost increases linearly with memory and execution time.
-
-Q: What’s the impact on cold start?
-A: Slightly longer cold start but higher runtime performance.
-
+```
+ - Increasing memory also proportionally increases CPU power.
+ - Increasing memory increase cost Yes. Lambda pricing is based on **memory allocated × execution time × number of requests**. So, higher memory means higher cost if execution time remains constant.
+ - Cold start time may increase slightly with higher memory, but the trade-off is better runtime performance because more CPU is allocated.
 
 
 ---

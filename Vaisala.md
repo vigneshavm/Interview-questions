@@ -11,7 +11,7 @@
 - [Dead Letter Queue ](#9️⃣-dead-letter-queue-dlq)
 - [SQS – Duplicate Processing & Retry Handling](#-sqs--duplicate-processing--retry-handling)
 - [Cold Start in AWS Lambda](#1️⃣1️⃣-cold-start-in-aws-lambda)
--[ECR, ECS, and EC2](#ecr-ecs-and-ec2)
+- [ECR, ECS, and EC2](#ecr-ecs-and-ec2)
 
 ## 1️⃣ Serverless Architecture
 

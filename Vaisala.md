@@ -55,34 +55,54 @@ In our Shoutout project, we used Lambda to compress videos on S3 upload and send
 
 ## 2️⃣ Microservice Architecture
 
-**Q:** What is Microservice Architecture?  
-**A:** It breaks an application into small, independent services — each focusing on a single business capability.
-
-**Example:**
-- User service  
-- Payment service  
-- Notification service  
-- Video upload service  
-
-Each runs in its own container (ECS/EKS) or function.
-
-**Benefits:**
-- Independent deployment  
-- Fault isolation  
-- Technology flexibility
 
 
-- **Q:** How do microservices communicate?  
-  **A:** Synchronously via REST/gRPC or asynchronously via SQS/Kafka.
+**Q: What is Microservice Architecture?**  
+Microservice architecture breaks down an application into **small, independent services**, each responsible for a specific business capability. These services can be developed, deployed, and scaled independently.
 
-- **Q:** What are common challenges?  
-  **A:** Service discovery, data consistency, and inter-service communication.
+**Example:**  
+In our Shoutout project, we had separate services for:
 
-- **Q:** How do you ensure fault isolation?  
-  **A:** Deploy each service in separate containers or Lambda functions; use circuit breakers (Hystrix/Resilience4j).
+- **User Management**   - **Payment Processing**   - **Notifications**  - **Video Upload & Processing**
 
-- **Q:** How did you apply this in your project?  
-  **A:** We split Shoutout into services: *User*, *Payment*, *Notification*, and *Video Processing*, each deployed separately.
+Each service was deployed independently using containers (ECS/EKS) or serverless functions (Lambda).
+
+
+
+**Q: How do microservices communicate?**  
+Microservices communicate either:
+
+- **Synchronously** using REST APIs or gRPC  
+- **Asynchronously** using messaging systems like **SQS**, **SNS**, or **Kafka**
+
+The choice depends on latency requirements and coupling between services.
+
+
+
+**Q: What are common challenges with microservices?**  
+Some of the key challenges include:
+
+- **Service discovery**    - **Data consistency across services** - **Inter-service communication**   - **Monitoring and debugging distributed systems**
+
+
+**Q: How do you ensure fault isolation?**  
+We deploy each service in **separate containers or Lambda functions**, so a failure in one doesn’t affect others.  
+We also use **circuit breakers** (like Hystrix or Resilience4j) to prevent cascading failures and ensure graceful degradation.
+
+
+
+**Q: How did you apply this in your project?**  
+In the Shoutout project, we adopted a microservices approach:
+
+- **User Service** handled authentication and profiles  
+- **Payment Service** managed subscriptions  
+- **Notification Service** sent alerts via email/SNS  
+- **Video Service** processed uploads and triggered Lambda functions
+
+This allowed us to scale each component independently and deploy updates without affecting the entire system.
+
+---
+
 
 ---
 

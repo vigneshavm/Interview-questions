@@ -220,23 +220,56 @@ Manual setup is error-prone and hard to maintain, especially in large-scale envi
 
 ## 5️⃣ CI/CD
 
-Q: How do you implement CI/CD for AWS-based apps?
-A:
 
-CI (Continuous Integration): GitHub Actions or Jenkins builds → run tests → package artifacts
+**Q: How do you implement CI/CD for AWS-based apps?**  
+I typically set up CI/CD pipelines using tools like **GitHub Actions**, **Jenkins**, or **AWS CodePipeline**.
 
-CD (Continuous Deployment): Deploy to EC2/ECS/Lambda via AWS CodeDeploy or CDK pipelines
+- **CI (Continuous Integration):**  
+  When code is pushed to the repository (e.g., `main` branch), the pipeline triggers:
+  - **Builds the code**
+  - **Runs unit/integration tests**
+  - **Packages artifacts** (e.g., ZIP for Lambda or Docker image for ECS)
+
+- **CD (Continuous Deployment):**  
+  The pipeline then:
+  - **Pushes Docker images to ECR**
+  - **Deploys to ECS, EC2, or Lambda** using **AWS CodeDeploy** or **CDK Pipelines**
+
+**Example:**  
+In our Shoutout project, when code is pushed to `main`, GitHub Actions builds a Docker image → pushes it to **ECR** → deploys it to an **ECS Fargate service**.
 
 
-Example: When code is pushed to main, the pipeline builds Docker image → pushes to ECR → deploys to ECS service.
-Q: What tools can you use for CI/CD?
-A: AWS CodePipeline, Jenkins, GitHub Actions, GitLab CI.
 
-Q: How do you manage secrets in pipeline?
-A: Store in AWS Secrets Manager or GitHub Encrypted Secrets.
+**Q: What tools can you use for CI/CD?**  
+Some commonly used tools include:
 
-Q: What’s your rollback strategy?
-A: Use versioned artifacts (ECR image tags or Lambda versions) and revert deployment if failure detected.
+- **AWS CodePipeline**
+- **GitHub Actions**
+- **Jenkins**
+- **GitLab CI**
+- **Bitbucket Pipelines**
+
+Each integrates well with AWS services and supports custom workflows.
+
+
+
+**Q: How do you manage secrets in the pipeline?**  
+Secrets are stored securely using:
+
+- **AWS Secrets Manager** or **SSM Parameter Store** for runtime access
+- **GitHub Encrypted Secrets** for CI/CD workflows
+
+IAM roles and scoped permissions ensure secure access during deployment.
+
+
+
+**Q: What’s your rollback strategy?**  
+We use **versioned artifacts**:
+
+- For ECS: Docker image tags (e.g., `v1.2.3`)
+- For Lambda: Published versions and aliases
+
+If a deployment fails or metrics drop, we can **revert to a previous version** quickly using automation or manual triggers.
 
 ---
 

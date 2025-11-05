@@ -11,7 +11,7 @@
 - [Dead Letter Queue ](#9️⃣-dead-letter-queue-dlq)
 - [SQS – Duplicate Processing & Retry Handling](#-sqs--duplicate-processing--retry-handling)
 - [Cold Start in AWS Lambda](#1️⃣1️⃣-cold-start-in-aws-lambda)
-
+-[ECR, ECS, and EC2](#ecr-ecs-and-ec2)
 
 ## 1️⃣ Serverless Architecture
 
@@ -499,6 +499,51 @@ Example:
 In Shoutout, we used a scheduled Lambda every 10 min to keep critical APIs warm.
 
 ---
+
+## ECR, ECS, and EC2
+**Q: Can you explain the difference between ECR, ECS, and EC2?**
+
+Absolutely. These are three core AWS services, each serving a different purpose in application deployment:
+
+
+🔹 **ECR (Elastic Container Registry)**  
+- **Purpose:** A fully managed Docker container registry.
+- **Use Case:** Store and manage container images.
+- **Example:** After building a Docker image in CI, we push it to ECR so ECS or EC2 can pull and run it.
+
+
+🔹 **ECS (Elastic Container Service)**  
+- **Purpose:** A container orchestration service.
+- **Use Case:** Run and manage containers at scale.
+- **Modes:**  
+  - **Fargate:** Serverless — no need to manage EC2 instances  
+  - **EC2 Launch Type:** You manage the EC2 instances that run containers
+
+**Example:** In our Shoutout project, we deployed microservices as Docker containers using ECS Fargate for scalability and ease of management.
+
+
+🔹 **EC2 (Elastic Compute Cloud)**  
+- **Purpose:** Virtual server hosting.
+- **Use Case:** Run applications directly on virtual machines.
+- **Flexibility:** Full control over OS, runtime, and networking.
+
+**Example:** We used EC2 to host legacy applications and backend APIs with Nginx and PM2.
+
+
+**How They Work Together:**
+
+- **ECR** stores the Docker image  
+- **ECS** pulls the image from ECR and runs it  
+- **EC2** can also run containers manually or host non-containerized apps
+
+
+
+**Q: When would you choose ECS over EC2?**  
+ECS is preferred when you want **container orchestration**, **auto-scaling**, and **less manual management**. EC2 is better for **custom setups**, **long-running processes**, or **non-containerized workloads**.
+
+---
+
+
 
 ⚡ Example Discussion (Shoutout Project)
 

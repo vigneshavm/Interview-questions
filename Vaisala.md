@@ -108,29 +108,51 @@ This allowed us to scale each component independently and deploy updates without
 
 ## 3️⃣ Deployment using EC2
 
-**Q:** How do you deploy on EC2?  
-**A:**  
-1. Create an EC2 instance (Linux/Windows)  
-2. Install required runtime (Node.js, Nginx, etc.)  
-3. Pull code from GitHub  
-4. Configure environment variables  
-5. Use PM2 or Docker for running services  
-6. Add load balancer + Auto Scaling Group for HA (high availability)  
 
-**Example:** Backend APIs deployed on EC2 with PM2 and Nginx reverse proxy.
+**Q: How do you deploy an application on EC2?**  
+To deploy on EC2, I follow these steps:
 
-**Follow-Up Qs:**
+1. **Launch an EC2 instance** (Linux or Windows based on the app)
+2. **Install required runtime** — for example, Node.js, Python, Nginx, etc.
+3. **Pull the application code** from GitHub or a CI/CD pipeline
+4. **Configure environment variables** either manually or via `.env` files
+5. **Run the application** using **PM2** (for Node.js) or **Docker** for containerized apps
+6. **Set up Nginx** as a reverse proxy to route traffic and handle SSL
+7. **Attach a Load Balancer and Auto Scaling Group** for high availability and scalability
 
-- **Q:** Why PM2?  
-  **A:** Handles process management, restarts on crash, and supports zero-downtime reloads.
+**Example:**  
+In one of our projects, we deployed backend APIs on EC2 using **PM2** for process management and **Nginx** for reverse proxy and SSL termination.
 
-- **Q:** Why Nginx in front?  
-  **A:** Acts as reverse proxy, improves caching, handles SSL termination.
 
-- **Q:** How do you secure EC2 deployment?  
-  **A:** Limit SSH access, use IAM roles, Secrets Manager, and HTTPS via ACM.
+
+**Q: Why do you use PM2?**  
+PM2 is great for:
+
+- Managing Node.js processes  - Auto-restarting on crashes  - Zero-downtime reloads    - Monitoring and logging
+
+
+
+**Q: Why is Nginx used in front of the app?**  
+Nginx acts as a **reverse proxy**, which:
+
+- Routes incoming traffic to the app
+- Handles **SSL termination**
+- Improves performance via **caching**
+- Adds a layer of security and flexibility
+
+
+
+**Q: How do you secure EC2 deployments?**  
+Security is critical. I ensure:
+
+- **SSH access is restricted** using key pairs and security groups
+- **IAM roles** are attached to EC2 for secure access to AWS resources
+- **Secrets** are stored in **AWS Secrets Manager** or **Parameter Store**
+- **HTTPS** is enforced using **ACM certificates** via Load Balancer or Nginx
 
 ---
+
+
 
 ## 4️⃣ AWS CDK
 

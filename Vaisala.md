@@ -25,8 +25,7 @@ A typical serverless stack might include **AWS Lambda**, **API Gateway**, **Dyna
 **Q: Which AWS services are serverless?**  
 Some key serverless services include:
 
-- **AWS Lambda** - **Amazon S3** - **DynamoDB** - **API Gateway**
-- **Step Functions** - **SNS** - **SQS**
+- **AWS Lambda** - **Amazon S3** - **DynamoDB** - **API Gateway** - **Step Functions** - **SNS** - **SQS**
 
 These services scale automatically and follow a pay-per-use model.
 
@@ -36,25 +35,20 @@ They scale **automatically**. AWS provisions new containers or instances based o
 
 
 **Q: What are the key benefits of serverless?**  
-- **No server management**  - **Automatic scaling**
-- **Pay only for execution time**   - **Faster development and deployment**
-- **Built-in fault tolerance**
+- **No server management**  - **Automatic scaling** - **Pay only for execution time**   - **Faster development and deployment** - **Built-in fault tolerance**
 
 
 **Q: When would you avoid serverless?**  
 Serverless isn’t ideal for:
 
-- **Long-running jobs**
-- **Heavy CPU or memory workloads**
-- **Low-latency requirements**
-- **Complex networking needs**
+- **Long-running jobs** - **Heavy CPU or memory workloads** - **Low-latency requirements** - **Complex networking needs**
 
 In such cases, **EC2**, **ECS**, or **EKS** might be more suitable.
 
 **Example:**  
 In our Shoutout project, we used Lambda to compress videos on S3 upload and send notifications via SNS. But for longer transcoding jobs, we considered moving to ECS for better control.
 
----
+
 
 
 ---

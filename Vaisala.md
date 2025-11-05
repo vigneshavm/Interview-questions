@@ -91,6 +91,17 @@ Each runs in its own container (ECS/EKS) or function.
 
 **Example:** Backend APIs deployed on EC2 with PM2 and Nginx reverse proxy.
 
+**Follow-Up Qs:**
+
+- **Q:** Why PM2?  
+  **A:** Handles process management, restarts on crash, and supports zero-downtime reloads.
+
+- **Q:** Why Nginx in front?  
+  **A:** Acts as reverse proxy, improves caching, handles SSL termination.
+
+- **Q:** How do you secure EC2 deployment?  
+  **A:** Limit SSH access, use IAM roles, Secrets Manager, and HTTPS via ACM.
+
 ---
 
 ## 4️⃣ AWS CDK
@@ -105,6 +116,25 @@ Each runs in its own container (ECS/EKS) or function.
 
 **Example:**  
 In Shoutout, CDK defines Lambda, S3, SQS setup programmatically and deploys in one command:
+
+
+**Follow-Up Qs:**
+
+- **Q:** How is CDK different from Terraform?  
+  **A:** CDK is AWS-native and compiles to CloudFormation; Terraform is cloud-agnostic with its own engine.
+
+- **Q:** What’s inside a CDK Stack?  
+  **A:** Constructs like `lambda.Function`, `s3.Bucket`, `sns.Topic`.
+
+- **Q:** Example command to deploy infra?  
+  **A:**
+  ```bash
+  cdk synth
+  cdk deploy
+  ```
+
+Q: What’s the advantage over manual console setup?
+A: Reproducible, version-controlled, consistent across environments.
 
 ```bash
 cdk deploy
@@ -124,7 +154,14 @@ CD (Continuous Deployment): Deploy to EC2/ECS/Lambda via AWS CodeDeploy or CDK p
 
 
 Example: When code is pushed to main, the pipeline builds Docker image → pushes to ECR → deploys to ECS service.
+Q: What tools can you use for CI/CD?
+A: AWS CodePipeline, Jenkins, GitHub Actions, GitLab CI.
 
+Q: How do you manage secrets in pipeline?
+A: Store in AWS Secrets Manager or GitHub Encrypted Secrets.
+
+Q: What’s your rollback strategy?
+A: Use versioned artifacts (ECR image tags or Lambda versions) and revert deployment if failure detected.
 
 ---
 
@@ -144,6 +181,17 @@ new lambda.Function(this, 'MyFn', {
 
 > Increasing memory also increases CPU proportionally.
 
+Follow-Up Qs:
+
+Q: How can you do it via CDK?
+
+new lambda.Function(this, 'Fn', { memorySize: 2048 });
+
+Q: Does increasing memory increase cost?
+A: Yes, cost increases linearly with memory and execution time.
+
+Q: What’s the impact on cold start?
+A: Slightly longer cold start but higher runtime performance.
 
 
 
@@ -170,6 +218,20 @@ In CDK:
 
 environment: { NODE_ENV: 'production' }
 
+Follow-Up Qs:
+
+Q: Example using SDK?
+
+lambda.invoke({
+  FunctionName: 'myLambda',
+  Payload: JSON.stringify({ id: 123 })
+});
+
+Q: When to use environment variables?
+A: For configuration data (DB connection, stage, secrets).
+
+Q: How to secure parameters?
+A: Store in AWS Parameter Store or Secrets Manager, then inject at runtime.
 
 ---
 
@@ -192,6 +254,13 @@ CLI: aws s3 mb s3://mybucket
 
 CDK: new s3.Bucket(this, 'Bucket')
 
+Follow-Up Qs:
+
+Q: Which one would you prefer for production?
+A: CDK or Terraform — for version control and automation.
+
+Q: What’s one advantage of CLI over CDK?
+A: Quick one-off operations without writing code.
 
 
 ---
@@ -212,6 +281,20 @@ Identify problematic messages
 
 Debug failed events safely
 
+Follow-Up Qs:
+
+Q: Which AWS services can use DLQ?
+A: Lambda, SQS, SNS, EventBridge.
+
+Q: How do you configure DLQ in Lambda?
+A: Under "Asynchronous invocation" → specify SQS or SNS target.
+
+Q: What’s the benefit?
+A: Prevent message loss, helps debug and reprocess failed events.
+
+
+Example:
+If video transcoding fails thrice, the message is moved to DLQ for manual retry.
 
 
 ---
@@ -233,6 +316,16 @@ Configure Retry + DLQ
 Example:
 Lambda processes payment messages → uses transaction ID to check if already processed.
 
+Follow-Up Qs:
+
+Q: What’s an Idempotent Lambda?
+A: A function that produces the same result even if executed multiple times (checks existing transaction before insert).
+
+Q: How to handle retries?
+A: Configure Redrive Policy (maxReceiveCount + DLQ).
+
+Q: What’s Visibility Timeout?
+A: Time during which a message is invisible to other consumers after being picked up.
 
 ---
 
@@ -257,6 +350,29 @@ Use smaller dependencies
 Enable Provisioned Concurrency for critical functions
 
 
+Follow-Up Qs:
+
+Q: When do cold starts occur?
+A: On first invocation or scale-out events.
+
+Q: How can you reduce cold start time?
+A:
+
+Use Provisioned Concurrency
+
+Reduce dependency size
+
+Use lightweight runtimes (Node.js, Go)
+
+Keep warm using CloudWatch scheduled events
+
+
+Q: What’s warm start?
+A: When Lambda reuses an existing container; no initialization delay.
+
+
+Example:
+In Shoutout, we used a scheduled Lambda every 10 min to keep critical APIs warm.
 
 ---
 
@@ -266,10 +382,18 @@ Interviewer: How did you handle scaling in your video delivery service?
 You: We used a mix of serverless and microservice patterns — Lambda for video processing, S3 for storage, and SQS for decoupled messaging.
 AWS CDK defined all infra, and CI/CD via GitHub Actions automated deployments to ECS and Lambda.
 
-
 ---
 
+⚡ Example Discussion (Shoutout Project)
+
+Interviewer: How did you handle scaling in your video delivery service?
+You: We followed a hybrid model — serverless for video processing (Lambda, S3, SNS) and microservices (ECS) for user and payment APIs. CDK managed the infra, and CI/CD handled automated deployment through GitHub Actions.
+
+Interviewer: How did you ensure reliability and fault tolerance?
+You: SQS + DLQ for message durability, retries, and async processing. Each Lambda was idempotent, and failed jobs were logged to CloudWatch and retried manually.
+
+Interviewer: How did you monitor Lambda performance?
+You: Used AWS CloudWatch for metrics (Duration, Invocations, Errors) and X-Ray for tracing to identify cold start delays.
+
+
 ---
-
-Would you like me to generate the **actual `.md` file** (downloadable) so you can keep it in your interview folder?
-

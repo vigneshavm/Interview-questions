@@ -1,11 +1,8 @@
 
 
-- [Serverless Architecture](#1️⃣-serverless-architecture) - [Microservice Architecture](#2️⃣-microservice-architecture)
-- [Deployment using EC2](#3️⃣-deployment-using-ec2) - [AWS CDK](#4️⃣-aws-cdk)
-- [CI/CD](#5️⃣-cicd) - [Increasing Lambda Memory](#6️⃣-increasing-lambda-memory)
-- [Passing Parameters in Lambda](#7️⃣-passing-parameters-in-lambda) - [AWS Console vs AWS CLI vs AWS CDK (Terraform)](#8️⃣-aws-console-vs-aws-cli-vs-aws-cdk-terraform)
-- [Dead Letter Queue ](#9️⃣-dead-letter-queue-dlq) - [SQS – Duplicate Processing & Retry Handling](#-sqs--duplicate-processing--retry-handling)
-- [Cold Start in AWS Lambda](#1️⃣1️⃣-cold-start-in-aws-lambda) - [ECR, ECS, and EC2](#ecr-ecs-and-ec2)
+- [Serverless Architecture](#1️⃣-serverless-architecture) ,  - [Microservice Architecture](#2️⃣-microservice-architecture) ,  - [Deployment using EC2](#3️⃣-deployment-using-ec2) ,  - [AWS CDK](#4️⃣-aws-cdk) ,  - [CI/CD](#5️⃣-cicd) ,  - [Increasing Lambda Memory](#6️⃣-increasing-lambda-memory)
+- [Passing Parameters in Lambda](#7️⃣-passing-parameters-in-lambda) ,  - [AWS Console vs AWS CLI vs AWS CDK (Terraform)](#8️⃣-aws-console-vs-aws-cli-vs-aws-cdk-terraform)
+- [Dead Letter Queue ](#9️⃣-dead-letter-queue-dlq) ,  - [SQS – Duplicate Processing & Retry Handling](#-sqs--duplicate-processing--retry-handling) ,  - [Cold Start in AWS Lambda](#1️⃣1️⃣-cold-start-in-aws-lambda) - [ECR, ECS, and EC2](#ecr-ecs-and-ec2)
 
 
 

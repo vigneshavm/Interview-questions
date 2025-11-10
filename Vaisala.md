@@ -13,6 +13,22 @@
 - [Cold Start in AWS Lambda](#1️⃣1️⃣-cold-start-in-aws-lambda)
 - [ECR, ECS, and EC2](#ecr-ecs-and-ec2)
 
+
+
+- [Secure backend services running on EC2](#secure-backend-services-running-on-ec2)
+- [Security groups and IAM roles for EC2](#security-groups-and-iam-roles-for-ec2)
+- [Configure EC2 instances behind an ELB](#configure-ec2-instances-behind-an-elb)
+- [Handle auto-scaling with EC2](#handle-auto-scaling-with-ec2)
+- [CloudFormation or Terraform to provision EC2 instances](#cloudformation-or-terraform-to-provision-ec2-instances)
+- [Automate deployments to EC2](#automate-deployments-to-ec2)
+- [EC2 vs. ECS or Lambda](#ec2-vs-ecs-or-lambda)
+- [Deploy a backend application on EC2](#deploy-a-backend-application-on-ec2)
+- [Right EC2 instance for a backend service](#right-ec2-instance-for-a-backend-service)
+- [Different EC2 instance types and their use cases](#different-ec2-instance-types-and-their-use-cases)
+-[Mentor junior developers in backend and deployment](#mentor-junior-developers-in-backend-and-deployment)
+- [Zero downtime during deployment](#zero-downtime-during-deployment)
+-[New version and it’s failing intermittently. What do you do](#new-version-and-its-failing-intermittently-what-do-you-do)
+
 ## 1️⃣ Serverless Architecture
 
 **Q: What is Serverless Architecture?**  
@@ -775,7 +791,10 @@ Great! Let’s go through **sample answers** for each of the key areas you might
 
 ## 💡 **Scenario-Based**
 
-### **Q8: You deployed a new version and it’s failing intermittently. What do you do?**
+### **New version and it’s failing intermittently. What do you do?**
+
+
+
 **Answer:**
 > First, I check logs and metrics via CloudWatch or ELK. I compare the new version with the previous one, check for config changes, and validate dependencies. If needed, I roll back using CodeDeploy or redeploy the previous AMI snapshot.
 
@@ -785,7 +804,10 @@ Great! Let’s go through **sample answers** for each of the key areas you might
 
 ---
 
-### **Q9: How do you ensure zero downtime during deployment?**
+### **Zero downtime during deployment?**
+
+
+
 **Answer:**
 > I use blue/green deployments or rolling updates with health checks. Load balancers route traffic only to healthy instances. I also use auto-scaling groups to spin up new instances with the updated version before terminating old ones.
 
@@ -797,7 +819,9 @@ Great! Let’s go through **sample answers** for each of the key areas you might
 
 ## 🗣️ **Managerial/Team Fit**
 
-### **Q10: How do you mentor junior developers in backend and deployment?**
+### **Mentor junior developers in backend and deployment?**
+
+
 **Answer:**
 > I conduct regular code reviews, pair programming sessions, and knowledge-sharing meetings. I encourage best practices in API design, testing, and deployment. I also guide them in understanding cloud architecture and CI/CD pipelines.
 
@@ -813,7 +837,10 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ## 🔹 **EC2 Basics**
 
-### **Q1: What are the different EC2 instance types and their use cases?**
+### **Different EC2 instance types and their use cases?**
+
+
+
 
 **Answer:**
 > EC2 offers various instance families optimized for different workloads:
@@ -830,7 +857,10 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ---
 
-### **Q2: How do you choose the right EC2 instance for a backend service?**
+### **Right EC2 instance for a backend service?**
+
+
+
 
 **Answer:**
 > I evaluate based on:
@@ -847,7 +877,8 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ## 🔹 **Deployment Strategies**
 
-### **Q3: How do you deploy a backend application on EC2?**
+### **Deploy a backend application on EC2?**
+
 
 **Answer:**
 > I use a CI/CD pipeline to automate builds and deployments. The process includes:
@@ -863,7 +894,9 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ---
 
-### **Q4: What are the pros and cons of using EC2 vs. ECS or Lambda?**
+### **EC2 vs. ECS or Lambda?**
+
+
 
 **Answer:**
 > **EC2 Pros**:
@@ -894,7 +927,11 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ## 🔹 **Automation & CI/CD**
 
-### **Q5: How do you automate deployments to EC2?**
+### **Automate deployments to EC2?**
+
+
+
+
 
 **Answer:**
 > I use:
@@ -910,7 +947,10 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ---
 
-### **Q6: Have you used CloudFormation or Terraform to provision EC2 instances?**
+### **CloudFormation or Terraform to provision EC2 instances?**
+
+
+
 
 **Answer:**
 > Yes. I prefer **Terraform** for its modularity and multi-cloud support. I use it to:
@@ -928,7 +968,9 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ## 🔹 **Scaling & Load Balancing**
 
-### **Q7: How do you handle auto-scaling with EC2?**
+### **Handle auto-scaling with EC2?**
+
+
 
 **Answer:**
 > I use **Auto Scaling Groups (ASGs)** with:
@@ -943,7 +985,7 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ---
 
-### **Q8: How do you configure EC2 instances behind an ELB?**
+### **Configure EC2 instances behind an ELB?**
 
 **Answer:**
 > I use **Application Load Balancer (ALB)** for HTTP/HTTPS traffic:
@@ -960,7 +1002,8 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ## 🔹 **Security & Networking**
 
-### **Q9: How do you manage security groups and IAM roles for EC2?**
+
+### **Security groups and IAM roles for EC2?**
 
 **Answer:**
 > - **Security Groups**: Restrict inbound/outbound traffic by port and IP. Use least privilege and tag-based organization.
@@ -972,7 +1015,7 @@ Here are detailed answers for each of the **EC2 and deployment-related interview
 
 ---
 
-### **Q10: What steps do you take to secure backend services running on EC2?**
+### **Secure backend services running on EC2?**
 
 **Answer:**
 > - Disable root login and use SSH key pairs.

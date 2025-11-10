@@ -6,19 +6,13 @@
 
 
 
-- [Secure backend services running on EC2](#secure-backend-services-running-on-ec2)
-- [Security groups and IAM roles for EC2](#security-groups-and-iam-roles-for-ec2)
-- [Configure EC2 instances behind an ELB](#configure-ec2-instances-behind-an-elb)
-- [Handle auto-scaling with EC2](#handle-auto-scaling-with-ec2)
+- [Secure backend services running on EC2](#secure-backend-services-running-on-ec2) ,  -- [Security groups and IAM roles for EC2](#security-groups-and-iam-roles-for-ec2)
+- [Configure EC2 instances behind an ELB](#configure-ec2-instances-behind-an-elb) ,  -- [Handle auto-scaling with EC2](#handle-auto-scaling-with-ec2)
 - [CloudFormation or Terraform to provision EC2 instances](#cloudformation-or-terraform-to-provision-ec2-instances)
-- [Automate deployments to EC2](#automate-deployments-to-ec2)
-- [EC2 vs. ECS or Lambda](#ec2-vs-ecs-or-lambda)
-- [Deploy a backend application on EC2](#deploy-a-backend-application-on-ec2)
-- [Right EC2 instance for a backend service](#right-ec2-instance-for-a-backend-service)
-- [Different EC2 instance types and their use cases](#different-ec2-instance-types-and-their-use-cases)
--[Mentor junior developers in backend and deployment](#mentor-junior-developers-in-backend-and-deployment)
-- [Zero downtime during deployment](#zero-downtime-during-deployment)
--[New version and it’s failing intermittently. What do you do](#new-version-and-its-failing-intermittently-what-do-you-do)
+- [Automate deployments to EC2](#automate-deployments-to-ec2) ,  -- [EC2 vs. ECS or Lambda](#ec2-vs-ecs-or-lambda)
+- [Deploy a backend application on EC2](#deploy-a-backend-application-on-ec2) ,  -- [Right EC2 instance for a backend service](#right-ec2-instance-for-a-backend-service)
+- [Different EC2 instance types and their use cases](#different-ec2-instance-types-and-their-use-cases) ,  --[Mentor junior developers in backend and deployment](#mentor-junior-developers-in-backend-and-deployment)
+- [Zero downtime during deployment](#zero-downtime-during-deployment) ,  --[New version and it’s failing intermittently. What do you do](#new-version-and-its-failing-intermittently-what-do-you-do)
 
 ## 1️⃣ Serverless Architecture
 

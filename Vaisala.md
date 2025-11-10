@@ -693,3 +693,116 @@ Great! Here are strong, structured answers to the sample interview questions you
 
 ---
 
+
+Great! Let’s go through **sample answers** for each of the key areas you might be asked about in a **Vaisala backend deployment interview using EC2**, along with **follow-up sub-questions** you can expect.
+
+---
+
+## 🔧 **AWS EC2 & Deployment**
+
+### **Q1: How do you deploy a backend application on EC2?**
+**Answer:**
+> I typically start by provisioning an EC2 instance using a pre-configured AMI. I configure security groups, IAM roles, and networking. Then I use a CI/CD pipeline (e.g., GitHub Actions or Jenkins) to build and deploy the application. For deployment, I use scripts or tools like AWS CodeDeploy or Ansible to push code, restart services, and verify health.
+
+**Sub-questions:**
+- How do you handle environment variables and secrets?
+- What’s your rollback strategy if deployment fails?
+- How do you ensure zero downtime?
+
+---
+
+### **Q2: What are the pros and cons of EC2 vs ECS or Lambda?**
+**Answer:**
+> EC2 gives full control over the OS and environment, which is great for custom setups. ECS simplifies container orchestration, and Lambda is ideal for event-driven, serverless workloads. EC2 requires more maintenance, whereas ECS and Lambda reduce ops overhead but may have limitations in customization and cold start issues.
+
+**Sub-questions:**
+- When would you choose EC2 over ECS?
+- How do you handle scaling in EC2 vs ECS?
+
+---
+
+### **Q3: How do you automate deployments to EC2?**
+**Answer:**
+> I use CI/CD tools like Jenkins or GitHub Actions integrated with AWS CodeDeploy. The pipeline builds the app, runs tests, and deploys to EC2 using CodeDeploy agents. I also use infrastructure-as-code tools like Terraform to manage EC2 provisioning.
+
+**Sub-questions:**
+- How do you handle blue/green deployments?
+- Have you used CodePipeline or CodeBuild?
+
+---
+
+### **Q4: How do you secure EC2 instances?**
+**Answer:**
+> I use security groups to restrict access, IAM roles for least privilege, and enable SSH only from trusted IPs. I also disable root login, use key pairs, and regularly patch the OS. For sensitive data, I use AWS Secrets Manager or SSM Parameter Store.
+
+**Sub-questions:**
+- How do you audit access to EC2?
+- What’s your approach to vulnerability management?
+
+---
+
+## 🧠 **Backend Engineering**
+
+### **Q5: How do you design RESTful APIs?**
+**Answer:**
+> I follow REST principles: use proper HTTP methods, status codes, and resource-based URIs. I ensure statelessness and versioning via URI or headers. I also implement pagination, filtering, and consistent error responses.
+
+**Sub-questions:**
+- How do you handle authentication and authorization?
+- How do you manage API rate limiting?
+
+---
+
+### **Q6: How do you connect EC2 to RDS or DynamoDB?**
+**Answer:**
+> For RDS, I configure the VPC and security groups to allow EC2 access. I use connection pooling and ORM tools like SQLAlchemy or Hibernate. For DynamoDB, I use AWS SDKs and IAM roles for secure access.
+
+**Sub-questions:**
+- How do you handle DB failover?
+- What’s your backup and restore strategy?
+
+---
+
+### **Q7: How do you monitor EC2 and backend performance?**
+**Answer:**
+> I use CloudWatch for EC2 metrics, custom application logs, and alarms. For deeper insights, I integrate Prometheus and Grafana. I also use X-Ray for tracing and ELK stack for log analysis.
+
+**Sub-questions:**
+- How do you set up alerts for high CPU or memory?
+- How do you debug latency issues?
+
+---
+
+## 💡 **Scenario-Based**
+
+### **Q8: You deployed a new version and it’s failing intermittently. What do you do?**
+**Answer:**
+> First, I check logs and metrics via CloudWatch or ELK. I compare the new version with the previous one, check for config changes, and validate dependencies. If needed, I roll back using CodeDeploy or redeploy the previous AMI snapshot.
+
+**Sub-questions:**
+- How do you ensure logs are centralized?
+- What tools do you use for tracing?
+
+---
+
+### **Q9: How do you ensure zero downtime during deployment?**
+**Answer:**
+> I use blue/green deployments or rolling updates with health checks. Load balancers route traffic only to healthy instances. I also use auto-scaling groups to spin up new instances with the updated version before terminating old ones.
+
+**Sub-questions:**
+- How do you test deployments before going live?
+- What’s your strategy for database migrations during deployment?
+
+---
+
+## 🗣️ **Managerial/Team Fit**
+
+### **Q10: How do you mentor junior developers in backend and deployment?**
+**Answer:**
+> I conduct regular code reviews, pair programming sessions, and knowledge-sharing meetings. I encourage best practices in API design, testing, and deployment. I also guide them in understanding cloud architecture and CI/CD pipelines.
+
+**Sub-questions:**
+- How do you handle conflicts in technical decisions?
+- How do you ensure deployment reliability across teams?
+
+---

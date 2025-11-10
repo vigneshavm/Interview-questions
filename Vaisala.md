@@ -806,3 +806,183 @@ Great! Let’s go through **sample answers** for each of the key areas you might
 - How do you ensure deployment reliability across teams?
 
 ---
+
+Here are detailed answers for each of the **EC2 and deployment-related interview questions**, along with insights that can help you handle follow-up questions confidently:
+
+---
+
+## 🔹 **EC2 Basics**
+
+### **Q1: What are the different EC2 instance types and their use cases?**
+
+**Answer:**
+> EC2 offers various instance families optimized for different workloads:
+>
+> - **General Purpose (e.g., t3, t4g, m5)** – Balanced compute, memory, and networking. Ideal for web servers, small databases.
+> - **Compute Optimized (e.g., c5, c6g)** – High-performance processors for compute-intensive tasks like batch processing or gaming.
+> - **Memory Optimized (e.g., r5, x1e)** – High memory for in-memory databases, caching, and big data analytics.
+> - **Storage Optimized (e.g., i3, d2)** – High IOPS and throughput for workloads like NoSQL databases or data warehousing.
+> - **Accelerated Computing (e.g., p3, g4)** – GPUs for ML, AI, and video processing.
+
+**Follow-up questions:**
+- How do you decide between t3 and m5 for a backend service?
+- Have you used Graviton-based instances?
+
+---
+
+### **Q2: How do you choose the right EC2 instance for a backend service?**
+
+**Answer:**
+> I evaluate based on:
+> - **Workload characteristics**: CPU-bound, memory-bound, or I/O-bound.
+> - **Traffic patterns**: Steady vs. bursty (e.g., t-series for bursty workloads).
+> - **Cost vs. performance**: Use cost calculators and performance benchmarks.
+> - **Scalability needs**: Auto-scaling compatibility and AMI support.
+
+**Follow-up questions:**
+- How do you benchmark EC2 performance?
+- What tools do you use for cost optimization?
+
+---
+
+## 🔹 **Deployment Strategies**
+
+### **Q3: How do you deploy a backend application on EC2?**
+
+**Answer:**
+> I use a CI/CD pipeline to automate builds and deployments. The process includes:
+> - Provisioning EC2 via Terraform or CloudFormation.
+> - Using GitHub Actions or Jenkins to build and test.
+> - Deploying via SSH, CodeDeploy, or Ansible.
+> - Configuring services (e.g., systemd) and health checks.
+> - Monitoring via CloudWatch and logging via ELK or Fluentd.
+
+**Follow-up questions:**
+- How do you handle environment-specific configurations?
+- What’s your rollback strategy?
+
+---
+
+### **Q4: What are the pros and cons of using EC2 vs. ECS or Lambda?**
+
+**Answer:**
+> **EC2 Pros**:
+> - Full control over OS and runtime.
+> - Suitable for legacy apps or custom environments.
+>
+> **Cons**:
+> - Manual scaling and patching.
+> - Higher operational overhead.
+>
+> **ECS Pros**:
+> - Container orchestration, easier scaling.
+> - Integrated with Fargate for serverless containers.
+>
+> **Lambda Pros**:
+> - Event-driven, no server management.
+> - Cost-effective for short-lived tasks.
+>
+> **Cons**:
+> - Cold starts, limited execution time.
+> - Not ideal for long-running backend services.
+
+**Follow-up questions:**
+- Have you migrated workloads from EC2 to ECS or Lambda?
+- How do you handle stateful services in ECS?
+
+---
+
+## 🔹 **Automation & CI/CD**
+
+### **Q5: How do you automate deployments to EC2?**
+
+**Answer:**
+> I use:
+> - **GitHub Actions/Jenkins** for CI/CD.
+> - **CodeDeploy** for deployment orchestration.
+> - **Ansible** or shell scripts for configuration.
+> - **CloudWatch alarms** for post-deployment validation.
+> - **Blue/green or rolling deployments** to minimize downtime.
+
+**Follow-up questions:**
+- How do you handle secrets in CI/CD pipelines?
+- What’s your strategy for testing before deployment?
+
+---
+
+### **Q6: Have you used CloudFormation or Terraform to provision EC2 instances?**
+
+**Answer:**
+> Yes. I prefer **Terraform** for its modularity and multi-cloud support. I use it to:
+> - Define EC2 instances, security groups, IAM roles.
+> - Manage state via remote backends (e.g., S3).
+> - Integrate with CI/CD for infrastructure changes.
+>
+> I’ve also used **CloudFormation** for AWS-native stacks, especially when integrating with CodePipeline.
+
+**Follow-up questions:**
+- How do you manage Terraform state in teams?
+- Have you used Terraform modules or workspaces?
+
+---
+
+## 🔹 **Scaling & Load Balancing**
+
+### **Q7: How do you handle auto-scaling with EC2?**
+
+**Answer:**
+> I use **Auto Scaling Groups (ASGs)** with:
+> - Launch templates or configurations.
+> - Scaling policies based on CPU, memory, or custom metrics.
+> - Scheduled scaling for predictable traffic.
+> - Lifecycle hooks for graceful startup/shutdown.
+
+**Follow-up questions:**
+- How do you test auto-scaling behavior?
+- What’s your strategy for warm-up time?
+
+---
+
+### **Q8: How do you configure EC2 instances behind an ELB?**
+
+**Answer:**
+> I use **Application Load Balancer (ALB)** for HTTP/HTTPS traffic:
+> - Register EC2 instances with target groups.
+> - Configure health checks and routing rules.
+> - Use path-based routing for microservices.
+> - Enable SSL termination and redirect HTTP to HTTPS.
+
+**Follow-up questions:**
+- How do you handle sticky sessions?
+- Have you used NLB or Gateway Load Balancer?
+
+---
+
+## 🔹 **Security & Networking**
+
+### **Q9: How do you manage security groups and IAM roles for EC2?**
+
+**Answer:**
+> - **Security Groups**: Restrict inbound/outbound traffic by port and IP. Use least privilege and tag-based organization.
+> - **IAM Roles**: Assign instance profiles with scoped permissions. Use managed policies and rotate credentials securely.
+
+**Follow-up questions:**
+- How do you audit IAM permissions?
+- Have you used SCPs or IAM Access Analyzer?
+
+---
+
+### **Q10: What steps do you take to secure backend services running on EC2?**
+
+**Answer:**
+> - Disable root login and use SSH key pairs.
+> - Patch OS and dependencies regularly.
+> - Use VPC with private subnets and NAT gateways.
+> - Store secrets in AWS Secrets Manager or SSM.
+> - Enable CloudWatch logs and GuardDuty for monitoring.
+
+**Follow-up questions:**
+- How do you handle DDoS protection?
+- What’s your incident response plan?
+
+---

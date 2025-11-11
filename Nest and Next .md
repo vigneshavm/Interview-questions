@@ -1924,7 +1924,7 @@ Here’s the correct execution order in NestJS — with the Shoutout example ali
 
 ## NestJS Execution Order
 
-Step	Layer	What It Does	Example (Shoutout Upload Video)
+
 
 - 1.Middleware Runs first on every request Logs, modifies request, handles CORS AuthMiddleware extracts token from headers but doesn’t validate
  
@@ -1944,31 +1944,15 @@ Step	Layer	What It Does	Example (Shoutout Upload Video)
 
 
 
----
-
-🔄 Visual Flow
-
-Request
-   ↓
-[Middleware]  → Extract headers / log
-   ↓
-[Guards]      → Validate JWT / role
-   ↓
-[Interceptor - before] → Track request time
-   ↓
-[Pipes]       → Validate DTO input
-   ↓
-[Controller]  → Handle route logic
-   ↓
-[Service]     → Execute business logic
-   ↓
-[Interceptor - after] → Format response / log
-   ↓
-Response to client ✅
 
 
----
-
-So the correct sequence is:
-Middleware → Guards → Interceptors (Before) → Pipes → Controller → Service → Interceptors (After) → Response.
+- Request
+- Middleware → Extract headers / log
+- Guards → Validate JWT / role
+- Interceptors (Before) → Track request time
+- Pipes →  Validate DTO input
+- Controller → Handle route logic
+- Service → Execute business logic
+- Interceptors (After) → Format response / log
+- Response.
 

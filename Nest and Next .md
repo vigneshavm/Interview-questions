@@ -25,8 +25,7 @@
 | Dependency Injection       | [Dependency Injection](#dependency-injection), [`@Injectable()`](#injectable), [Provider](#provider), [`@Inject()`](#use-of-inject), [Custom Factory](#custom-factory)                                                                                                                       |
 | Custom Implementations     | [Custom Pipe](#custom-pipe), [Custom Guard](#custom-guard), [Custom Interceptor](#custom-interceptor), [Custom Decorator](#custom-decorator), [Custom Pipe/Guard/Interceptor?](#custom-pipeguardinterceptor)                                                                                 |
 | Advanced Features          | [Dynamic modules](#dynamic-modules), [Reusable module](#reusable-module), [Large scale applications?](#large-scale-applications), [Microservices architecture](#microservices-architecture), [Metadata and reflection](#metadata-and-reflection)                                             |
-| Utilities & Best Practices | [Middleware](#middleware), [Pipes](#pipes), [Guard](#guard), [Interceptor](#interceptor), [Handle validation](#handle-validation), [Handle exception filtering](#handle-exception-filtering), [Implement logging](#implement-logging), [Implement authentication](#implement-authentication) 
-[NestJS Execution Order](#NestJS-Execution-Order)
+| Utilities & Best Practices | [Middleware](#middleware), [Pipes](#pipes), [Guard](#guard), [Interceptor](#interceptor), [Handle validation](#handle-validation), [Handle exception filtering](#handle-exception-filtering), [Implement logging](#implement-logging), [Implement authentication](#implement-authentication) , [NestJS Execution Order](#NestJS-Execution-Order)
 |
 
 

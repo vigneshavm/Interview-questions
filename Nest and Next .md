@@ -1913,3 +1913,53 @@ export default function Docs() {
 ```
 
 ---
+
+
+Here’s the correct execution order in NestJS — with the Shoutout example aligned:
+
+
+---
+
+✅ Correct NestJS Execution Order
+
+Step	Layer	What It Does	Example (Shoutout Upload Video)
+
+1️⃣ Middleware	Runs first on every request	Logs, modifies request, handles CORS	AuthMiddleware extracts token from headers but doesn’t validate
+2️⃣ Guards	Runs after middleware	Checks auth and permissions	AuthGuard verifies JWT token & role (celebrity/user)
+3️⃣ Interceptors (Before Controller)	Runs before controller handler	Logs request timing, modifies request	RequestTimerInterceptor starts timer for upload duration
+4️⃣ Pipes	Runs before controller method, after guards/interceptors setup	Validates & transforms request body using DTO	UploadVideoDto validated using class-validator
+5️⃣ Controller	Entry point for route handling	Accepts clean data & calls service methods	VideoController.upload(dto) calls videoService.uploadVideo()
+6️⃣ Service	Contains business logic	Talks to DB, AWS, APIs	Uploads to S3/Mux, updates DB, triggers SNS notification
+7️⃣ Interceptors (After Controller)	Runs after controller & service finish	Modifies or formats the response	Adds success:true, removes sensitive data
+8️⃣ Response	Final output to client	Returns HTTP response	{ "success": true, "videoUrl": "...", "status": "delivered" }
+
+
+
+---
+
+🔄 Visual Flow
+
+Request
+   ↓
+[Middleware]  → Extract headers / log
+   ↓
+[Guards]      → Validate JWT / role
+   ↓
+[Interceptor - before] → Track request time
+   ↓
+[Pipes]       → Validate DTO input
+   ↓
+[Controller]  → Handle route logic
+   ↓
+[Service]     → Execute business logic
+   ↓
+[Interceptor - after] → Format response / log
+   ↓
+Response to client ✅
+
+
+---
+
+So the correct sequence is:
+Middleware → Guards → Interceptors (Before) → Pipes → Controller → Service → Interceptors (After) → Response.
+

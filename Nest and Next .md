@@ -25,7 +25,9 @@
 | Dependency Injection       | [Dependency Injection](#dependency-injection), [`@Injectable()`](#injectable), [Provider](#provider), [`@Inject()`](#use-of-inject), [Custom Factory](#custom-factory)                                                                                                                       |
 | Custom Implementations     | [Custom Pipe](#custom-pipe), [Custom Guard](#custom-guard), [Custom Interceptor](#custom-interceptor), [Custom Decorator](#custom-decorator), [Custom Pipe/Guard/Interceptor?](#custom-pipeguardinterceptor)                                                                                 |
 | Advanced Features          | [Dynamic modules](#dynamic-modules), [Reusable module](#reusable-module), [Large scale applications?](#large-scale-applications), [Microservices architecture](#microservices-architecture), [Metadata and reflection](#metadata-and-reflection)                                             |
-| Utilities & Best Practices | [Middleware](#middleware), [Pipes](#pipes), [Guard](#guard), [Interceptor](#interceptor), [Handle validation](#handle-validation), [Handle exception filtering](#handle-exception-filtering), [Implement logging](#implement-logging), [Implement authentication](#implement-authentication) |
+| Utilities & Best Practices | [Middleware](#middleware), [Pipes](#pipes), [Guard](#guard), [Interceptor](#interceptor), [Handle validation](#handle-validation), [Handle exception filtering](#handle-exception-filtering), [Implement logging](#implement-logging), [Implement authentication](#implement-authentication) 
+[NestJS Execution Order](#NestJS-Execution-Order)
+|
 
 
 
@@ -1920,18 +1922,25 @@ Here’s the correct execution order in NestJS — with the Shoutout example ali
 
 ---
 
-✅ Correct NestJS Execution Order
+## NestJS Execution Order
 
 Step	Layer	What It Does	Example (Shoutout Upload Video)
 
-1️⃣ Middleware	Runs first on every request	Logs, modifies request, handles CORS	AuthMiddleware extracts token from headers but doesn’t validate
-2️⃣ Guards	Runs after middleware	Checks auth and permissions	AuthGuard verifies JWT token & role (celebrity/user)
-3️⃣ Interceptors (Before Controller)	Runs before controller handler	Logs request timing, modifies request	RequestTimerInterceptor starts timer for upload duration
-4️⃣ Pipes	Runs before controller method, after guards/interceptors setup	Validates & transforms request body using DTO	UploadVideoDto validated using class-validator
-5️⃣ Controller	Entry point for route handling	Accepts clean data & calls service methods	VideoController.upload(dto) calls videoService.uploadVideo()
-6️⃣ Service	Contains business logic	Talks to DB, AWS, APIs	Uploads to S3/Mux, updates DB, triggers SNS notification
-7️⃣ Interceptors (After Controller)	Runs after controller & service finish	Modifies or formats the response	Adds success:true, removes sensitive data
-8️⃣ Response	Final output to client	Returns HTTP response	{ "success": true, "videoUrl": "...", "status": "delivered" }
+- 1.Middleware Runs first on every request Logs, modifies request, handles CORS AuthMiddleware extracts token from headers but doesn’t validate
+ 
+- 2️⃣ Guards Runs after middleware Checks auth and permissions AuthGuard verifies JWT token & role (celebrity/user)
+ 
+- 3️⃣ Interceptors (Before Controller) Runs before controller handler Logs request timing, modifies request RequestTimerInterceptor starts timer for upload duration
+ 
+- 4️⃣ Pipes Runs before controller method, after guards/interceptors setup Validates & transforms request body using DTO UploadVideoDto validated using class-validator
+ 
+- 5️⃣ Controller Entry point for route handling Accepts clean data & calls service methods VideoController.upload(dto) calls videoService.uploadVideo()
+ 
+- 6️⃣ Service Contains business logic Talks to DB, AWS, APIs Uploads to S3/Mux, updates DB, triggers SNS notification
+ 
+- 7️⃣ Interceptors (After Controller) Runs after controller & service finish Modifies or formats the response Adds success:true, removes sensitive data
+ 
+- 8️⃣ Response Final output to client Returns HTTP response { "success": true, "videoUrl": "...", "status": "delivered" }
 
 
 

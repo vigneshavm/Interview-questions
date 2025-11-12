@@ -20,11 +20,12 @@
 | **Cross-Cutting Topics** |  -  [Data Consistency Across Microservices](#data-consistency-across-distributed-services)  -  [Data integrity (microservices)](#ensure-data-integrity-across-microservices), - [Challenges in microservices deployment](#challenges-in-microservices-deployment) - [Type Safety Across Multiple Services](#type-safety-across-multiple-services) 
 
 
-| **Patterns & Orchestration** |            
+| **Patterns & Orchestration** |
+- [Design Patterns Overview](#Design-Patterns-Overview), [Creational Patterns](#-1-creational-patterns), [Structural Patterns](#-2-structural-patterns) , [Behavioral Patterns](#-3-behavioral-patterns)            
 - [SOLID Principles](#solid-principles) - [SAGA Pattern](#saga-pattern) - [Design Patterns](#Design-Patterns)  - [Singleton Pattern](#singleton-pattern)
 - [Prototype Pattern](#prototype-pattern) - [Module Pattern](#module-pattern) - [Factory Pattern](#factory-pattern)  - [Observer Pattern](#observer-pattern)
 - [Dependency Injection](#dependency-injection) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway) - [Circuit Breaker](#circuit-breaker)
-- [Design Patterns Overview](#Design-Patterns-Overview)
+
 
 ## **Microservices Architecture**
 
@@ -2127,7 +2128,10 @@ Finally, with **DIP (Dependency Inversion Principle)**, our **notification servi
 
 
  
-Design patterns are proven, reusable solutions to common problems in software design. They are not code templates but rather general solutions that can be adapted to specific needs. Design patterns improve code readability, reusability, maintainability, and scalability. They help developers avoid reinventing the wheel by providing standard approaches to solving design issues.
+- Design patterns are proven, reusable solutions to common problems in software design. 
+- Design patterns improve code readability, reusability, maintainability, and scalability. 
+- They are not code templates but rather general solutions that can be adapted to specific needs. 
+- They help developers avoid reinventing the wheel by providing standard approaches to solving design issues.
 
 **Example**:
 For instance, the **Singleton Pattern** ensures that a class has only one instance, which is useful in situations like managing database connections or configuration settings.

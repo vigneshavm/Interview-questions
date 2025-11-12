@@ -24,6 +24,7 @@
 - [SOLID Principles](#solid-principles) - [SAGA Pattern](#saga-pattern) - [Design Patterns](#Design-Patterns)  - [Singleton Pattern](#singleton-pattern)
 - [Prototype Pattern](#prototype-pattern) - [Module Pattern](#module-pattern) - [Factory Pattern](#factory-pattern)  - [Observer Pattern](#observer-pattern)
 - [Dependency Injection](#dependency-injection) - [Service Discovery](#service-discovery) - [API Gateway](#api-gateway) - [Circuit Breaker](#circuit-breaker)
+- [Design Patterns Overview](#Design-Patterns-Overview)
 
 ## **Microservices Architecture**
 
@@ -2527,6 +2528,87 @@ In this example, `Car` depends on `Engine`. Instead of `Car` creating its own en
  - I usually start with a **modular monolith** and migrate to microservices when the team and product maturity allow it.
 
 ---
+
+
+
+## **Design Patterns Overview**
+
+**Definition**: General reusable solutions to common problems in software design.  
+**Categories**:
+
+*   **Creational** – Object creation
+*   **Structural** – Object composition
+*   **Behavioral** – Object communication
+
+***
+
+### 🔧 **1. Creational Patterns**
+
+These patterns handle object creation in a flexible and reusable way.
+
+*   **Factory Pattern**
+    *   **Purpose**: Creates objects without exposing instantiation logic.
+    *   **Use Case**: When you need to create objects based on dynamic input or configuration.
+
+*   **Singleton Pattern**
+    *   **Purpose**: Ensures a class has only one instance.
+    *   **Use Case**: Shared resources like configuration, logging, or caching.
+
+*   **Prototype Pattern**
+
+*   **Purpose**: Creates new objects by cloning existing ones.
+*   **JS Context**: JavaScript’s prototypal inheritance naturally supports this pattern.
+*   **Use Case**: When object creation is expensive and cloning is more efficient.
+
+***
+
+
+***
+
+### 🔄 **2. Structural Patterns**
+
+These patterns deal with how classes and objects are composed.
+
+*   **Decorator Pattern**
+    *   **Purpose**: Adds behavior to objects dynamically.
+    *   **Use Case**: Enhancing functionality without modifying the original class.
+
+*   **Adapter Pattern**
+    *   **Purpose**: Allows incompatible interfaces to work together.
+    *   **Use Case**: Integrating legacy code or third-party libraries.
+
+*   **Module Pattern**
+
+*   **Purpose**: Encapsulates code and exposes only public APIs.
+*   **Use Case**: Organizing code into reusable, maintainable modules using closures or ES6 modules.
+
+***
+
+***
+
+### 🔁 **3. Behavioral Patterns**
+
+These patterns manage communication between objects.
+
+*   **Observer Pattern**
+    *   **Purpose**: Allows objects to subscribe to and react to events.
+    *   **Use Case**: Event-driven systems, UI updates, pub-sub models.
+
+*   **Strategy Pattern**
+    *   **Purpose**: Enables selecting an algorithm at runtime.
+    *   **Use Case**: Dynamic behavior changes based on context (e.g., sorting strategies).
+
+***
+
+### 🔁 **Saga Pattern**
+
+*   **Purpose**: Manages long-running transactions and side effects in distributed systems.
+*   **Use Case**: In **Redux-Saga** (React), handles asynchronous flows like API calls, retries, and error handling.
+
+***
+
+
+
 
 
 

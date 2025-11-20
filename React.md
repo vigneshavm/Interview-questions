@@ -1753,6 +1753,7 @@ Error boundaries catch JavaScript errors in child components and display a fallb
 | `useState`                 | Store and update local state                                                | Any dynamic value inside a component                                     | Form inputs, counters, toggles                      |
 | [useEffect](#useEffect)                | Perform side effects   and runs after the render is painted                                                     | Fetching data, setting timers, subscriptions                             | API calls, local storage, DOM listeners             |
 | [useContext](#useContext)             | Consume data from a context provider                                        | Access global values without prop drilling                               | Theme, user auth, language preference               |
+|[useEvent](#useEvent)                | Provides a stable function identity that always calls the latest handler logic without dependency tracking.                                            | When you need an event handler that does not change identity but still sees the latest state/props. Ideal for avoiding unnecessary re-renders in memoized children.                           | Passing event handlers to memoized child components, form input handlers, shopping cart actions, toggle reducers.         |
 |[useReducer](#useReducer)                | Complex state logic with actions                                            | When state updates depend on previous state                              | Forms, shopping carts, toggle reducers              |
 | [useCallback](#useCallback)              | Memoize a callback function                                                 | Prevent re-renders of children receiving functions as props              | Event handlers, expensive calculations              |
 |     [useMemo](#useMemo)              | Memoize an expensive computed value                                         | Heavy calculations that depend on specific inputs                        | Filtering/sorting lists, derived state              |
@@ -1812,6 +1813,21 @@ function UserProfile() {
 export default UserProfile;
 ```
 
+
+
+###  useEvent 
+– Create a stable event handler that always sees the latest state without changing identity.
+```jsx
+function Parent() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useEvent(() => {
+    setCount(count + 1);
+  });
+
+  return <Child onClick={handleClick} />;
+}
+```
 
 ###  useContext 
 – Share global data across components

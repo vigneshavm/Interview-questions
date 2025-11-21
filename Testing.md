@@ -5,7 +5,7 @@
 | **Testing Basics**         | [Testing Types](#types-of-testing-in-software-development) - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests) - [Mocks and Stubs](#mocks-and-stubs-in-testing) - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript) - [Jest and React Testing Library](#Jest-and-React-Testing-Library) |
 | **Testing Adv** | [Unit test external API call](#Unit-test-external-API-call) - [Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest) - [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai) - [Mock Testing](#mock-testing) - [Mocking APIs Tests](#Mocking-APIs-Tests) - [Testing Hooks](#Testing-Hooks)  |
 | **Quality**   | [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality) - [CI CD](#CI-CD) - [Web Communication Protocols](#Web-Communication-Protocols) - [Software Engineering Practices](#Software-Engineering-Practices)  |
-| **Micro Frontend**         | [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation) -[Session token between MF](#Session-token-between-micro-service)|
+| **Micro Frontend**         | [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation) -[Session token between MF](#Session-token-between-micro-service) - [Micro Frontend State Architecture](#Micro-Frontend-State-Architecture)|
 | **Security 1**| [HttpOnly Cookies](#HttpOnly-Cookies) - [Security](#Security) - [React Security](#React-Security) - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf) - [Content Security Policy (CSP)](#content-security-policy-csp) - [SQL Injection](#preventing-sql-injection-vulnerabilities) |
 | **Security 2**| [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Handling Sensitive Data](#handling-sensitive-data) - [Common Security Headers](#common-security-headers-and-their-purposes)
 | **Security 3**| [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration)  - [Clickjacking](#preventing-clickjacking-attacks) - [Input Validation](#input-validation-and-its-importance) |
@@ -2870,6 +2870,17 @@ Using Single-SPA:
 * Teams work in isolation, but users experience it as a single seamless SPA.
 
 ---
+
+
+## Micro Frontend State Architecture
+
+- In our micro-frontend architecture, we avoid using one giant global store because that would create tight coupling. 
+- Instead, each micro-frontend owns its own state and business logic.
+- Only true cross-application data, like authentication and user profile, lives in a global Redux store inside the shell.
+- Communication between micro-frontends happens through a lightweight Event Bus.
+- And to keep everything synchronized across multiple tabs, we extend this with the BroadcastChannel API.
+- This design lets each team build and deploy independently without impacting others, while still providing a smooth and unified experience to the user.
+
 
 ## Session token between micro service
 

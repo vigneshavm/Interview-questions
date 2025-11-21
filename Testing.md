@@ -2874,11 +2874,11 @@ Using Single-SPA:
 
 ## Micro Frontend State Architecture
 
-- In our micro-frontend architecture, we avoid using one giant global store because that would create tight coupling. 
-- Instead, each micro-frontend owns its own state and business logic.
-- Only true cross-application data, like authentication and user profile, lives in a global Redux store inside the shell.
-- Communication between micro-frontends happens through a lightweight Event Bus.
-- And to keep everything synchronized across multiple tabs, we extend this with the BroadcastChannel API.
+- In our micro-frontend architecture, we **avoid using one giant global store because that would create tight coupling**. 
+- Instead, **each micro-frontend owns its own state and business logic**.
+- Only **true cross-application data, like authentication and user profile, lives in a global Redux store inside the shell**.
+- Communication between micro-frontends happens through a lightweight **Event Bus**.
+- And to keep everything synchronized **across multiple tabs, we extend this with the BroadcastChannel API**.
 - This design lets each team build and deploy independently without impacting others, while still providing a smooth and unified experience to the user.
 
 

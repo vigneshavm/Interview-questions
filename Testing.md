@@ -5,7 +5,7 @@
 | **Testing Basics**         | [Testing Types](#types-of-testing-in-software-development) - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests) - [Mocks and Stubs](#mocks-and-stubs-in-testing) - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript) - [Jest and React Testing Library](#Jest-and-React-Testing-Library) |
 | **Testing Adv** | [Unit test external API call](#Unit-test-external-API-call) - [Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest) - [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai) - [Mock Testing](#mock-testing) - [Mocking APIs Tests](#Mocking-APIs-Tests) - [Testing Hooks](#Testing-Hooks)  |
 | **Quality**   | [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality) - [CI CD](#CI-CD) - [Web Communication Protocols](#Web-Communication-Protocols) - [Software Engineering Practices](#Software-Engineering-Practices)  |
-| **Micro Frontend**         | [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation) -[Session token between MF](#Session-token-between-micro-service) - [Micro Frontend State Architecture](#Micro-Frontend-State-Architecture)|
+| **Micro Frontend**         | [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation) -[Session token between MF](#Session-token-between-micro-service) - [Micro Frontend State Architecture](#Micro-Frontend-State-Architecture) - [Error Isolation in Micro Frontends](#Error-Isolation-in-Micro-Frontends)|
 | **Security 1**| [HttpOnly Cookies](#HttpOnly-Cookies) - [Security](#Security) - [React Security](#React-Security) - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf) - [Content Security Policy (CSP)](#content-security-policy-csp) - [SQL Injection](#preventing-sql-injection-vulnerabilities) |
 | **Security 2**| [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Handling Sensitive Data](#handling-sensitive-data) - [Common Security Headers](#common-security-headers-and-their-purposes)
 | **Security 3**| [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration)  - [Clickjacking](#preventing-clickjacking-attacks) - [Input Validation](#input-validation-and-its-importance) |
@@ -2871,6 +2871,14 @@ Using Single-SPA:
 
 ---
 
+## Error Isolation in Micro Frontends
+- To ensure error isolation, each micro-frontend is wrapped in its own error boundary,
+- So if one component fails, it shows a fallback UI instead of affecting the rest of the page.
+- Since every MFE is independently deployed and rendered, there’s no single point of failure on the UI side.
+- Even if one micro-frontend fails to load or throws a runtime error, the shell and other MFEs continue to work normally.
+- This protects the overall user experience and avoids a full application crash.
+
+---
 
 ## Micro Frontend State Architecture
 

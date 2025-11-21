@@ -5,7 +5,7 @@
 | **Testing Basics**         | [Testing Types](#types-of-testing-in-software-development) - [Unit vs Integration vs E2E](#unit-testing-vs-integration-testing-vs-e2e) - [Writing Unit Tests](#writing-unit-tests) - [Mocks and Stubs](#mocks-and-stubs-in-testing) - [Testing Frameworks](#popular-javascript-testing-frameworks) - [TDD](#test-driven-development) - [Testing Asynchronous Code](#testing-asynchronous-code-in-javascript) - [Jest and React Testing Library](#Jest-and-React-Testing-Library) |
 | **Testing Adv** | [Unit test external API call](#Unit-test-external-API-call) - [Unit testing in NodeJs using Jest](#Unit-testing-in-NodeJs-using-Jest) - [Unit testing in Node.js using Mocha and Chai](#Unit-testing-in-Nodejs-using-Mocha-and-Chai) - [Mock Testing](#mock-testing) - [Mocking APIs Tests](#Mocking-APIs-Tests) - [Testing Hooks](#Testing-Hooks)  |
 | **Quality**   | [SonarQube](#SonarQube) - [ESLint](#EsLint) - [Code Quality](#Code-Quality) - [CI CD](#CI-CD) - [Web Communication Protocols](#Web-Communication-Protocols) - [Software Engineering Practices](#Software-Engineering-Practices)  |
-| **Micro Frontend**         | [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation) -[Session token between MF](#Session-token-between-micro-service) - [Micro Frontend State Architecture](#Micro-Frontend-State-Architecture) - [Error Isolation in Micro Frontends](#Error-Isolation-in-Micro-Frontends) - [Performance in Micro Frontends](#Performance-in-Micro-Frontends)|
+| **Micro Frontend**         | [Single SPA](#Single-SPA) - [Module Federation](#Module-Federation) -[Session token between MF](#Session-token-between-micro-service) - [Micro Frontend State Architecture](#Micro-Frontend-State-Architecture) - [Error Isolation in Micro Frontends](#Error-Isolation-in-Micro-Frontends) - [Performance in Micro Frontends](#Performance-in-Micro-Frontends) - [Handling Shared Dependency Version Conflicts in Micro Frontends](#Handling-Shared-Dependency-Version-Conflicts-in-Micro-Frontends)|
 | **Security 1**| [HttpOnly Cookies](#HttpOnly-Cookies) - [Security](#Security) - [React Security](#React-Security) - [CORS](#CORS) - [Cross Site Scripting (XSS)](#cross-site-scripting-xss-and-prevention) - [Cross-Site Request Forgery (CSRF)](#cross-site-request-forgery-csrf) - [Content Security Policy (CSP)](#content-security-policy-csp) - [SQL Injection](#preventing-sql-injection-vulnerabilities) |
 | **Security 2**| [Insecure Dependencies](#insecure-dependencies) - [Insecure Deserialization](#insecure-deserialization) - [Sensitive Data Exposure](#sensitive-data-exposure) - [Handling Sensitive Data](#handling-sensitive-data) - [Common Security Headers](#common-security-headers-and-their-purposes)
 | **Security 3**| [Denial of Service (DoS)](#denial-of-service-dos) - [Directory Traversal](#directory-traversal) - [Improper Session Handling](#improper-session-handling) - [Insecure CORS Configuration](#Insecure-CORS-Configuration)  - [Clickjacking](#preventing-clickjacking-attacks) - [Input Validation](#input-validation-and-its-importance) |
@@ -2870,6 +2870,19 @@ Using Single-SPA:
 * Teams work in isolation, but users experience it as a single seamless SPA.
 
 ---
+
+
+
+### Handling Shared Dependency Version Conflicts in Micro Frontends
+
+- In micro-frontends, each team can evolve independently, so version conflicts in shared libraries are expected.
+- To manage this, we expose core dependencies like React, React-DOM, and our UI library through Module Federation with a single **shared version contract** controlled by the shell.
+- That ensures consistency at runtime and prevents duplicate copies being loaded.
+- For cases where a micro-frontend truly needs a different version,
+- We **scope and isolate** that dependency locally so it doesn’t leak into others.
+- We also follow semantic versioning and maintain a **shared dependency governance** through our design system team.
+- This keeps micro-frontends independent while maintaining stability and bundle efficiency.
+
 
 
 ## Performance in Micro Frontends
